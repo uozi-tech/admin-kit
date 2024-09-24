@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {},
+  "peerDependencies": {
+    "@ant-design/icons-vue": "^7.0.1",
+    "ant-design-vue": "^4.2.5"
+  },
   "dependencies": {
     "@uozi/admin-layout-antdv": "workspace:*"
   }

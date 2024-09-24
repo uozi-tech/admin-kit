@@ -1,10 +1,26 @@
+<script setup lang="ts">
+const emit = defineEmits(['toggleTheme', 'changeLanguage'])
+
+function toggleTheme() {
+  emit('toggleTheme')
+}
+
+function changeLanguage() {
+  emit('changeLanguage')
+}
+</script>
+
 <template>
   <div class="app-header">
-    <div></div>
+    <div />
     <ul class="flex gap-4 list-none">
       <!-- 默认的切换主题按钮 -->
-      <li @click="toggleTheme">切换主题</li>
-      <li @click="">切换语言</li>
+      <li @click="toggleTheme">
+        切换主题
+      </li>
+      <li @click="changeLanguage">
+        切换语言
+      </li>
 
       <!-- 自定义 Header 的插槽内容，默认会显示传入的 slot -->
       <template v-if="$slots.actions">
@@ -13,25 +29,6 @@
     </ul>
   </div>
 </template>
-
-<script setup>
-const props = defineProps({
-  title: {
-    type: String,
-    default: 'Admin Dashboard',
-  },
-});
-
-const emit = defineEmits(['toggleTheme', 'changeLanguage']);
-
-function toggleTheme() {
-  emit('toggleTheme');
-}
-
-function changeLanguage(language) {
-  emit('changeLanguage', language);
-}
-</script>
 
 <style scoped>
 .app-header {

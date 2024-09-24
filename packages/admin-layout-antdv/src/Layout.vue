@@ -1,122 +1,124 @@
+<script setup lang="ts">
+import AppHeader from './components/AppHeader.vue'
+import AppFooter from './components/AppFooter.vue'
+import AppSidebar from './components/AppSidebar.vue'
+import PageHeader from './components/PageHeader.vue'
+import Breadcrumb from './components/Breadcrumb.vue'
+import { MenuItemType } from 'ant-design-vue/es/menu/src/interface'
+
+withDefaults(
+  defineProps<{
+    title: string
+    pageTitle: string
+    showPageHeader: boolean
+    showBreadcrumb: boolean
+    breadcrumbItems: {
+      text: string
+      href: string
+    }[]
+    menuItems: MenuItemType[]
+    selectedMenuKey: string
+    showFooter: boolean
+  }>(),
+  {
+    title: 'Admin Dashboard',
+    pageTitle: 'Page Title',
+    showPageHeader: true,
+    showBreadcrumb: true,
+    breadcrumbItems: () => [],
+    menuItems: () => [],
+    selectedMenuKey: '',
+    showFooter: true,
+  },
+)
+
+const theme = ref('light')
+
+function toggleTheme() {
+  theme.value = theme.value === 'light' ? 'dark' : 'light'
+}
+
+function changeLanguage(language: string) {
+  console.log('Language switched to:', language)
+}
+
+function onMenuSelect(key: string) {
+  console.log('Menu selected:', key)
+}
+
+function onSidebarCollapse(collapsed: boolean) {
+  console.log('Sidebar collapsed:', collapsed)
+}
+</script>
+
 <template>
-  <a-layout class="h-100svh!" :class="theme">
+  <ALayout
+    class="h-100svh!"
+    :class="theme"
+  >
     <!-- Sidebar -->
-      <AppSidebar
-        class="shadow-lg"
-        :menu-items="menuItems"
-        :selected-key="selectedMenuKey"
-        @selectMenuItem="onMenuSelect"
-        @collapseSidebar="onSidebarCollapse"
-      >
-        <!-- 自定义 Logo 区域 -->
-        <template #logo>
-          <div class="logo">My Custom Logo</div>
-        </template>
-      </AppSidebar>
+    <AppSidebar
+      class="shadow-lg"
+      :menu-items="menuItems"
+      :selected-key="selectedMenuKey"
+      @select-menu-item="onMenuSelect"
+      @collapse-sidebar="onSidebarCollapse"
+    >
+      <!-- 自定义 Logo 区域 -->
+      <template #logo>
+        <div class="logo">
+          My Custom Logo
+        </div>
+      </template>
+    </AppSidebar>
     <!-- Main Layout -->
-    <a-layout>
-      <a-layout-header class="z-10 shadow-sm p-inline-0!">
+    <ALayout>
+      <ALayoutHeader class="z-10 shadow-sm p-inline-0!">
         <AppHeader
-            :title="title"
-            @toggleTheme="toggleTheme"
-            @changeLanguage="changeLanguage"
+          :title="title"
+          @toggle-theme="toggleTheme"
+          @change-language="changeLanguage"
         >
           <template #actions>
             <slot name="header-actions" />
           </template>
         </AppHeader>
-      </a-layout-header>
+      </ALayoutHeader>
 
-      <a-layout-content>
+      <ALayoutContent>
         <div class="flex flex-col gap-2 px-6 py-4 bg-base">
-        <!-- Breadcrumb -->
-        <AppBreadcrumb v-if="showBreadcrumb" :items="breadcrumbItems">
-          <slot name="breadcrumb-items" />
-        </AppBreadcrumb>
+          <!-- Breadcrumb -->
+          <Breadcrumb
+            v-if="showBreadcrumb"
+            :items="breadcrumbItems"
+          >
+            <slot name="breadcrumb-items" />
+          </Breadcrumb>
 
-        <!-- PageHeader -->
-        <PageHeader v-if="showPageHeader" :pageTitle="pageTitle">
-          <slot name="pageheader-extra" />
-        </PageHeader>
+          <!-- PageHeader -->
+          <PageHeader
+            v-if="showPageHeader"
+            :page-title="pageTitle"
+          >
+            <slot name="pageheader-extra" />
+          </PageHeader>
         </div>
 
         <!-- Main Content -->
         <div class="main-content">
           <slot /> <!-- 插槽：页面内容 -->
         </div>
-      </a-layout-content>
+      </ALayoutContent>
 
       <!-- Footer -->
-      <a-layout-footer v-if="showFooter">
+      <ALayoutFooter v-if="showFooter">
         <AppFooter>
           <slot name="footer-content" />
         </AppFooter>
-      </a-layout-footer>
-    </a-layout>
-  </a-layout>
+      </ALayoutFooter>
+    </ALayout>
+  </ALayout>
 </template>
-
-<script setup>
-import { ref } from 'vue';
-import AppHeader from './components/AppHeader.vue';
-import AppFooter from './components/AppFooter.vue';
-import PageHeader from './components/PageHeader.vue';
-import AppBreadcrumb from './components/AppBreadcrumb.vue';
-import AppSidebar from './components/AppSidebar.vue';
-
-const props = defineProps({
-  title: {
-    type: String,
-    default: 'Admin Dashboard',
-  },
-  pageTitle: {
-    type: String,
-    default: 'Page Title',
-  },
-  showPageHeader: {
-    type: Boolean,
-    default: true,
-  },
-  showBreadcrumb: {
-    type: Boolean,
-    default: true,
-  },
-  breadcrumbItems: {
-    type: Array,
-    default: () => [],
-  },
-  menuItems: {
-    type: Array,
-    default: () => [],
-  },
-  selectedMenuKey: {
-    type: String,
-    default: '',
-  },
-  showFooter: {
-    type: Boolean,
-    default: true,
-  },
-});
-
-const theme = ref('light');
-
-function toggleTheme() {
-  theme.value = theme.value === 'light' ? 'dark' : 'light';
-}
-
-function changeLanguage(language) {
-  console.log('Language switched to:', language);
-}
-
-function onMenuSelect(key) {
-  console.log('Menu selected:', key);
-}
-
-function onSidebarCollapse(collapsed) {
-  console.log('Sidebar collapsed:', collapsed);
-}
-</script>
 
 <style scoped>
 .main-content {

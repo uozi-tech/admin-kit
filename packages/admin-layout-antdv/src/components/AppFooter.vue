@@ -1,8 +1,10 @@
 <template>
   <div class="app-footer">
-    <slot /> <!-- 自定义插槽内容 -->
+    <!-- 自定义插槽内容 -->
+    <slot />
     <slot name="footer-content">
-      © 2024 Admin Dashboard <!-- 默认版权内容 -->
+      <!-- 默认版权内容 -->
+      Copyright © 2024 Admin Dashboard
     </slot>
   </div>
 </template>
