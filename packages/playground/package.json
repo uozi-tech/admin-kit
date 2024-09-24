@@ -1,0 +1,9 @@
+{
+  "name": "playground",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {},
+  "dependencies": {
+    "@uozi/admin-layout-antdv": "workspace:*"
+  }
+}
