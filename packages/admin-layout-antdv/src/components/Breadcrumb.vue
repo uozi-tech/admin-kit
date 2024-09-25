@@ -1,9 +1,9 @@
 <script setup lang="ts">
+import { BreadcrumbItem } from '../props.ts'
+import { getRealTitle } from '../utils'
+
 withDefaults(defineProps<{
-  items: {
-    text: string
-    href?: string
-  }[]
+  items: BreadcrumbItem[]
 }>(), {
   items: () => [],
 })
@@ -14,14 +14,28 @@ withDefaults(defineProps<{
     <ABreadcrumbItem
       v-for="(item, index) in items"
       :key="index"
-      :class="{ 'text-gray-9': index === items.length - 1 }"
     >
-      <!-- 如果有href属性则是链接，否则为普通文本 -->
-      <template v-if="item.href">
-        <a :href="item.href">{{ item.text }}</a>
+      <!-- 如果有path属性则是链接，否则为普通文本 -->
+      <template v-if="item.path && index !== items.length - 1">
+        <ADropdown>
+          <a :href="item.path">{{ getRealTitle(item.title) }}</a>
+          <template
+            v-if="item.children?.length"
+            #overlay
+          >
+            <AMenu>
+              <AMenuItem
+                v-for="child in item.children"
+                :key="child.path"
+              >
+                <a :href="item.path">{{ getRealTitle(item.title) }}</a>
+              </AMenuItem>
+            </AMenu>
+          </template>
+        </ADropdown>
       </template>
       <template v-else>
-        {{ item.text }}
+        {{ getRealTitle(item.title) }}
       </template>
     </ABreadcrumbItem>
     <!-- 支持插槽自定义面包屑项 -->

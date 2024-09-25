@@ -1,27 +1,36 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { throttle } from 'lodash-es'
+import { SidebarItem, Title } from '../props.ts'
+import { getRealTitle } from '../utils'
 
-defineProps({
-  title: {
-    type: String,
-    default: 'Admin Dashboard',
-  },
-  menuItems: {
-    type: Array,
-    default: () => [],
-  },
-  selectedKey: {
-    type: String,
-    default: '',
-  },
-  theme: {
-    type: String,
-    default: 'dark',
-  },
-})
+const props = withDefaults(defineProps<{
+  headerTitle?: Title
+  items?: SidebarItem[]
+  selectedKey?: string
+}>(), {
+  headerTitle: 'Admin Dashboard',
+  items: () => [],
+  selectedKey: '',
+},
+)
 
 const emit = defineEmits(['clickMenuItem', 'collapseSidebar'])
+
+const route = useRoute()
+const defaultSelectedKey = computed(() => {
+  return route.path
+})
+const defaultOpenKey = computed(() => {
+  const path = route.path
+  const lastSepIndex = path.lastIndexOf('/')
+
+  return path.substring(1, lastSepIndex)
+})
+const selectedKeys = ref(props.selectedKey ? [props.selectedKey] : [defaultSelectedKey.value])
+const openKeys = ref([defaultOpenKey.value])
+
+// 折叠菜单
 const collapsed = ref(false)
 
 function getClientWidth() {
@@ -32,17 +41,18 @@ function shouldCollapse() {
   return getClientWidth() < 1280
 }
 
+function handleCollapse(val: boolean) {
+  collapsed.value = val
+  emit('collapseSidebar', val)
+}
+
 addEventListener('resize', throttle(() => {
   collapsed.value = shouldCollapse()
 }, 50))
 
-function onMenuItemClick({ item }) {
-  emit('selectMenuItem', item.path)
-}
-
-function handleCollapse(val) {
-  collapsed.value = val
-  emit('collapseSidebar', val)
+// 点击菜单
+function handleMenuItemClick({ item }: { item: SidebarItem }) {
+  emit('clickMenuItem', item)
 }
 </script>
 
@@ -56,20 +66,49 @@ function handleCollapse(val) {
     <!-- 可自定义 Logo 区域 -->
     <div class="logo">
       <slot name="logo">
-        <h1>{{ title }}</h1>
+        <h1>{{ getRealTitle(headerTitle) }}</h1>
       </slot>
     </div>
 
     <AMenu
-      :default-selected-keys="[selectedKey]"
+      v-model:selected-keys="selectedKeys"
+      v-model:open-keys="openKeys"
       mode="inline"
-      :items="menuItems"
-      @click="onMenuItemClick"
+      @click="handleMenuItemClick"
     >
-      <!--      &lt;!&ndash; 动态生成菜单项 &ndash;&gt;-->
-      <!--      <a-menu-item v-for="item in menuItems" :key="item.key" :icon="item.icon">-->
-      <!--        <a :href="item.path">{{ item.label }}</a>-->
-      <!--      </a-menu-item>-->
+      <template
+        v-for="item in items"
+        :key="item.path"
+      >
+        <!-- 动态生成菜单项 -->
+        <template v-if="item.children?.length">
+          <ASubMenu :key="item.path">
+            <template #title>
+              <Component :is="item?.icon" />
+              <span>{{ getRealTitle(item.title) }}</span>
+            </template>
+            <AMenuItem
+              v-for="child in item.children"
+              :key="child.path"
+              :icon="child.icon"
+            >
+              <RouterLink :to="child.path">
+                {{ getRealTitle(child.title) }}
+              </RouterLink>
+            </AMenuItem>
+          </ASubMenu>
+        </template>
+        <template v-else>
+          <AMenuItem
+            :key="item.path"
+            :icon="item.icon"
+          >
+            <RouterLink :to="item.path">
+              {{ getRealTitle(item.title) }}
+            </RouterLink>
+          </AMenuItem>
+        </template>
+      </template>
     </AMenu>
 
     <!-- 自定义的侧边栏内容 -->

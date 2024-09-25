@@ -4,29 +4,26 @@ import AppFooter from './components/AppFooter.vue'
 import AppSidebar from './components/AppSidebar.vue'
 import PageHeader from './components/PageHeader.vue'
 import Breadcrumb from './components/Breadcrumb.vue'
-import { MenuItemType } from 'ant-design-vue/es/menu/src/interface'
+import { BreadcrumbItem, SidebarItem, Title } from './props.ts'
 
 withDefaults(
   defineProps<{
-    title: string
-    pageTitle: string
-    showPageHeader: boolean
-    showBreadcrumb: boolean
-    breadcrumbItems: {
-      text: string
-      href: string
-    }[]
-    menuItems: MenuItemType[]
-    selectedMenuKey: string
-    showFooter: boolean
+    siteTitle?: Title
+    pageTitle?: string
+    showPageHeader?: boolean
+    showBreadcrumb?: boolean
+    breadcrumbItems?: BreadcrumbItem[]
+    sidebarItems?: SidebarItem[]
+    selectedMenuKey?: string
+    showFooter?: boolean
   }>(),
   {
-    title: 'Admin Dashboard',
+    siteTitle: 'Admin Dashboard',
     pageTitle: 'Page Title',
     showPageHeader: true,
     showBreadcrumb: true,
     breadcrumbItems: () => [],
-    menuItems: () => [],
+    sidebarItems: () => [],
     selectedMenuKey: '',
     showFooter: true,
   },
@@ -59,7 +56,7 @@ function onSidebarCollapse(collapsed: boolean) {
     <!-- Sidebar -->
     <AppSidebar
       class="shadow-lg"
-      :menu-items="menuItems"
+      :items="sidebarItems"
       :selected-key="selectedMenuKey"
       @select-menu-item="onMenuSelect"
       @collapse-sidebar="onSidebarCollapse"
@@ -75,7 +72,7 @@ function onSidebarCollapse(collapsed: boolean) {
     <ALayout>
       <ALayoutHeader class="z-10 shadow-sm p-inline-0!">
         <AppHeader
-          :title="title"
+          :header-title="siteTitle"
           @toggle-theme="toggleTheme"
           @change-language="changeLanguage"
         >

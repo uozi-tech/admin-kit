@@ -8,6 +8,7 @@
     "ant-design-vue": "^4.2.5"
   },
   "dependencies": {
-    "@uozi/admin-layout-antdv": "workspace:*"
+    "@uozi/admin-layout-antdv": "workspace:*",
+    "vue-router": "^4.4.5"
   }
 }
