@@ -18,17 +18,13 @@ const props = withDefaults(defineProps<{
 const emit = defineEmits(['clickMenuItem', 'collapseSidebar'])
 
 const route = useRoute()
-const defaultSelectedKey = computed(() => {
-  return route.path
-})
-const defaultOpenKey = computed(() => {
-  const path = route.path
-  const lastSepIndex = path.lastIndexOf('/')
 
-  return path.substring(1, lastSepIndex)
+const selectedKeys = ref<string[]>([])
+const openKeys = ref<string[]>([])
+watchEffect(() => {
+  selectedKeys.value = [props.selectedKey || route.path]
+  openKeys.value = [route.path.substring(1, route.path.lastIndexOf('/'))]
 })
-const selectedKeys = ref(props.selectedKey ? [props.selectedKey] : [defaultSelectedKey.value])
-const openKeys = ref([defaultOpenKey.value])
 
 // 折叠菜单
 const collapsed = ref(false)
@@ -122,6 +118,5 @@ function handleMenuItemClick({ item }: { item: SidebarItem }) {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 16px;
 }
 </style>
