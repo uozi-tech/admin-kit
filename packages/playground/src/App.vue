@@ -1,8 +1,20 @@
 <script setup lang="ts">
 import { theme } from 'ant-design-vue'
 import { useSettingsStore } from './store'
+import gettext from './gettext.ts'
+import zh_CN from 'ant-design-vue/es/locale/zh_CN'
+import en_US from 'ant-design-vue/es/locale/en_US'
 
 const settings = useSettingsStore()
+
+const lang = computed(() => {
+  switch (gettext.current) {
+    case 'zh_CN':
+      return zh_CN
+    default:
+      return en_US
+  }
+})
 </script>
 
 <template>
@@ -11,6 +23,7 @@ const settings = useSettingsStore()
       algorithm: settings.isDark ? theme.darkAlgorithm : theme.defaultAlgorithm,
     }"
     :auto-insert-space-in-button="false"
+    :locale="lang"
   >
     <div class="app-container">
       <RouterView />

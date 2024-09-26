@@ -4,8 +4,8 @@ import { $gettext } from '../gettext.ts'
 </script>
 
 <template>
-  <ACard :title="$gettext('About')">
-    {{ $gettext('About Page') }}
+  <ACard :title="$gettext('Dashboard')">
+    {{ $gettext('Dashboard Page') }}
   </ACard>
 </template>
 

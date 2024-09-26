@@ -5,6 +5,8 @@ import AppSidebar from './components/AppSidebar.vue'
 import PageHeader from './components/PageHeader.vue'
 import Breadcrumb from './components/Breadcrumb.vue'
 import { BreadcrumbItem, Languages, LanguageValue, SidebarItem, Theme, Title } from './props.ts'
+import ThemeSwitch from './components/ThemeSwitch.vue'
+import LanguageSelect from './components/LanguageSelect.vue'
 
 const emit = defineEmits(['toggleTheme', 'changeLanguage'])
 
@@ -16,11 +18,10 @@ withDefaults(
     showBreadcrumb?: boolean
     breadcrumbItems?: BreadcrumbItem[]
     sidebarItems?: SidebarItem[]
-    selectedMenuKey?: string
     showFooter?: boolean
     showThemeSwitch?: boolean
     currentTheme?: Theme
-    showLanguageSwitch?: boolean
+    showLanguageSelect?: boolean
     currentLanguage?: LanguageValue
     languages?: Languages
   }>(),
@@ -28,25 +29,18 @@ withDefaults(
     siteTitle: 'Admin Dashboard',
     showPageHeader: true,
     showBreadcrumb: true,
-    breadcrumbItems: () => [],
-    sidebarItems: () => [],
-    selectedMenuKey: '',
     showFooter: true,
     showThemeSwitch: true,
-    showLanguageSwitch: true,
+    showLanguageSelect: true,
     languages: () => [],
   },
 )
 
-const theme = ref('light')
-
-function toggleTheme() {
-  theme.value = theme.value === 'light' ? 'dark' : 'light'
-  emit('toggleTheme', theme.value)
+function toggleTheme(t: Theme) {
+  emit('toggleTheme', t)
 }
 
 function changeLanguage(language: string) {
-  console.log('Language switched to:', language)
   emit('changeLanguage', language)
 }
 
@@ -60,31 +54,30 @@ function onSidebarCollapse(collapsed: boolean) {
 </script>
 
 <template>
-  <ALayout
-    class="layout-container min-h-screen"
-    :class="theme"
-  >
+  <ALayout class="layout-container min-h-screen">
     <!-- Sidebar -->
     <AppSidebar
       :header-title="siteTitle"
       class="shadow-lg"
       :items="sidebarItems"
-      :selected-key="selectedMenuKey"
       @select-menu-item="onMenuSelect"
       @collapse-sidebar="onSidebarCollapse"
     />
     <!-- Main Layout -->
     <ALayout>
       <ALayoutHeader class="z-10 shadow-sm p-inline-0!">
-        <AppHeader
-          :show-theme-switch="showThemeSwitch"
-          :show-language-switch="showLanguageSwitch"
-          :current-theme="theme"
-          :current-language="currentLanguage"
-          :languages="languages"
-          @toggle-theme="toggleTheme"
-          @change-language="changeLanguage"
-        >
+        <AppHeader>
+          <LanguageSelect
+            v-if="showLanguageSelect"
+            :current-language="currentLanguage"
+            :languages="languages"
+            @change-language="changeLanguage"
+          />
+          <ThemeSwitch
+            v-if="showThemeSwitch"
+            :current-theme="currentTheme"
+            @toggle-theme="toggleTheme"
+          />
           <template #actions>
             <slot name="header-actions" />
           </template>

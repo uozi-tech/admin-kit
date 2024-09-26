@@ -2,51 +2,47 @@
 
 import { RouterView } from 'vue-router'
 import { AdminLayout } from '@uozi/admin-layout-antdv'
-import { HomeOutlined, InfoOutlined } from '@ant-design/icons-vue'
 import { useSettingsStore } from '../store'
+import gettext from '../gettext.ts'
+import { routes } from '../router'
+import { SidebarItem } from '@uozi/admin-layout-antdv/src/props.ts'
 
 const settings = useSettingsStore()
+
+const languageAvailable = gettext.available
 
 function toggleTheme(t: 'auto' | 'light' | 'dark') {
   settings.set_theme(t)
 }
+function changeLanguage(l: string) {
+  settings.set_language(l)
+}
+
+const sidebarItems = computed<SidebarItem[]>(() => {
+  return routes[0].children?.map(r => {
+    return {
+      title: r.meta?.title,
+      path: r.path,
+      icon: r.meta?.icon,
+      children: r.children?.map(c => {
+        return {
+          title: c.meta?.title,
+          path: c.path,
+          icon: c.meta?.icon,
+        }
+      }),
+    }
+  }) as SidebarItem[]
+})
 </script>
 
 <template>
   <AdminLayout
-    :breadcrumb-items="[
-      {
-        title: 'Home',
-        path: '/',
-        children: [{
-          title: 'Home',
-          path: '/',
-        }]
-      },
-      {
-        title: 'About',
-        path: '/about',
-      }
-    ]"
-    :sidebar-items="[
-      {
-        title: 'Home',
-        path: '/',
-        icon: h(HomeOutlined),
-        children: [{
-          title: 'Home',
-          path: '/home',
-        }]
-      },
-      {
-        title: 'About',
-        path: '/about',
-        icon: h(InfoOutlined)
-      }
-    ]"
-    :languages="['zh-CN', 'en-US']"
-    current-language="zh-CN"
+    :sidebar-items="sidebarItems"
+    :languages="languageAvailable"
+    :current-language="gettext.current"
     @toggle-theme="toggleTheme"
+    @change-language="changeLanguage"
   >
     <RouterView v-slot="{ Component, route }">
       <component

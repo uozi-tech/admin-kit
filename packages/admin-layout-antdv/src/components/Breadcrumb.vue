@@ -2,23 +2,38 @@
 import { BreadcrumbItem } from '../props.ts'
 import { getRealTitle } from '../utils'
 
-withDefaults(defineProps<{
-  items: BreadcrumbItem[]
-}>(), {
-  items: () => [],
+const props = defineProps<{
+  items?: BreadcrumbItem[]
+}>()
+
+const route = useRoute()
+const internalItems = computed<BreadcrumbItem[]>(() => {
+  const matchedRoutes = route.matched
+  return props.items || matchedRoutes.map(r => ({
+    title: r.meta?.breadcrumb || r.meta?.title || r.name,
+    path: r.path,
+    icon: r.meta?.icon,
+    children: r.children?.map(c => ({
+      title: c.meta?.breadcrumb || c.meta?.title || c.name,
+      path: c.path,
+      icon: c.meta?.icon,
+    })),
+  })) as BreadcrumbItem[]
 })
 </script>
 
 <template>
   <ABreadcrumb>
     <ABreadcrumbItem
-      v-for="(item, index) in items"
+      v-for="(item, index) in internalItems"
       :key="index"
     >
       <!-- 如果有path属性则是链接，否则为普通文本 -->
-      <template v-if="item.path && index !== items.length - 1">
+      <template v-if="item.path && index !== internalItems.length - 1">
         <ADropdown>
-          <a :href="item.path">{{ getRealTitle(item.title) }}</a>
+          <RouterLink :to="item.path">
+            {{ getRealTitle(item.title) }}
+          </RouterLink>
           <template
             v-if="item.children?.length"
             #overlay
@@ -29,8 +44,8 @@ withDefaults(defineProps<{
                 :key="child.path"
                 class="py-[2px]!"
               >
-                <RouterLink :to="item.path">
-                  {{ getRealTitle(item.title) }}
+                <RouterLink :to="child.path">
+                  {{ getRealTitle(child.title) }}
                 </RouterLink>
               </AMenuItem>
             </AMenu>

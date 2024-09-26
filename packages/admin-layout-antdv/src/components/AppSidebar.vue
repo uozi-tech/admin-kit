@@ -4,14 +4,12 @@ import { throttle } from 'lodash-es'
 import { SidebarItem, Title } from '../props.ts'
 import { getRealTitle } from '../utils'
 
-const props = withDefaults(defineProps<{
+withDefaults(defineProps<{
   headerTitle?: Title
   items?: SidebarItem[]
-  selectedKey?: string
 }>(), {
   headerTitle: 'Admin Dashboard',
   items: () => [],
-  selectedKey: '',
 },
 )
 
@@ -22,7 +20,7 @@ const route = useRoute()
 const selectedKeys = ref<string[]>([])
 const openKeys = ref<string[]>([])
 watchEffect(() => {
-  selectedKeys.value = [props.selectedKey || route.path]
+  selectedKeys.value = [route.path]
   openKeys.value = [route.path.substring(1, route.path.lastIndexOf('/'))]
 })
 
@@ -97,7 +95,7 @@ function handleMenuItemClick({ item }: { item: SidebarItem }) {
         <template v-else>
           <AMenuItem
             :key="item.path"
-            :icon="item.icon"
+            :icon="h(item.icon as any)"
           >
             <RouterLink :to="item.path">
               {{ getRealTitle(item.title) }}

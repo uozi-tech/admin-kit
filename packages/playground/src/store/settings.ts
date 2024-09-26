@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import gettext from '../gettext.ts'
 
 export const useSettingsStore = defineStore('settings', {
   state: () => ({
@@ -10,15 +11,15 @@ export const useSettingsStore = defineStore('settings', {
   getters: {
     isDark(state) {
       return state.theme === 'dark'
-    }
+    },
   },
   actions: {
     set_language(lang: string) {
       this.language = lang
+      gettext.current = lang
     },
     set_theme(t: 'auto' | 'light' | 'dark') {
       this.theme = t
-      document.body.setAttribute('class', t === 'dark' ? 'dark' : 'light')
     },
     set_preference_theme(t: 'auto' | 'light' | 'dark') {
       this.preference_theme = t
