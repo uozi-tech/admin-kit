@@ -12,7 +12,7 @@ import {
 export default defineConfig({
   shortcuts: [
     {
-      'bg-base': 'bg-white dark:bg-gray-9',
+      'bg-base': 'bg-white dark:bg-[#141414]',
       'text-color-base': 'text-gray-9 dark:text-gray-1',
     },
   ],

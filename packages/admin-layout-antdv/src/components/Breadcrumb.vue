@@ -27,8 +27,11 @@ withDefaults(defineProps<{
               <AMenuItem
                 v-for="child in item.children"
                 :key="child.path"
+                class="py-[2px]!"
               >
-                <a :href="item.path">{{ getRealTitle(item.title) }}</a>
+                <RouterLink :to="item.path">
+                  {{ getRealTitle(item.title) }}
+                </RouterLink>
               </AMenuItem>
             </AMenu>
           </template>

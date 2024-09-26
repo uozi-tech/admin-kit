@@ -4,7 +4,9 @@ import AppFooter from './components/AppFooter.vue'
 import AppSidebar from './components/AppSidebar.vue'
 import PageHeader from './components/PageHeader.vue'
 import Breadcrumb from './components/Breadcrumb.vue'
-import { BreadcrumbItem, SidebarItem, Title } from './props.ts'
+import { BreadcrumbItem, Languages, LanguageValue, SidebarItem, Theme, Title } from './props.ts'
+
+const emit = defineEmits(['toggleTheme', 'changeLanguage'])
 
 withDefaults(
   defineProps<{
@@ -16,16 +18,23 @@ withDefaults(
     sidebarItems?: SidebarItem[]
     selectedMenuKey?: string
     showFooter?: boolean
+    showThemeSwitch?: boolean
+    currentTheme?: Theme
+    showLanguageSwitch?: boolean
+    currentLanguage?: LanguageValue
+    languages?: Languages
   }>(),
   {
     siteTitle: 'Admin Dashboard',
-    pageTitle: 'Page Title',
     showPageHeader: true,
     showBreadcrumb: true,
     breadcrumbItems: () => [],
     sidebarItems: () => [],
     selectedMenuKey: '',
     showFooter: true,
+    showThemeSwitch: true,
+    showLanguageSwitch: true,
+    languages: () => [],
   },
 )
 
@@ -33,10 +42,12 @@ const theme = ref('light')
 
 function toggleTheme() {
   theme.value = theme.value === 'light' ? 'dark' : 'light'
+  emit('toggleTheme', theme.value)
 }
 
 function changeLanguage(language: string) {
   console.log('Language switched to:', language)
+  emit('changeLanguage', language)
 }
 
 function onMenuSelect(key: string) {
@@ -50,29 +61,27 @@ function onSidebarCollapse(collapsed: boolean) {
 
 <template>
   <ALayout
-    class="h-100svh!"
+    class="layout-container min-h-screen"
     :class="theme"
   >
     <!-- Sidebar -->
     <AppSidebar
+      :header-title="siteTitle"
       class="shadow-lg"
       :items="sidebarItems"
       :selected-key="selectedMenuKey"
       @select-menu-item="onMenuSelect"
       @collapse-sidebar="onSidebarCollapse"
-    >
-      <!-- 自定义 Logo 区域 -->
-      <template #logo>
-        <div class="logo">
-          My Custom Logo
-        </div>
-      </template>
-    </AppSidebar>
+    />
     <!-- Main Layout -->
     <ALayout>
       <ALayoutHeader class="z-10 shadow-sm p-inline-0!">
         <AppHeader
-          :header-title="siteTitle"
+          :show-theme-switch="showThemeSwitch"
+          :show-language-switch="showLanguageSwitch"
+          :current-theme="theme"
+          :current-language="currentLanguage"
+          :languages="languages"
           @toggle-theme="toggleTheme"
           @change-language="changeLanguage"
         >
@@ -83,7 +92,7 @@ function onSidebarCollapse(collapsed: boolean) {
       </ALayoutHeader>
 
       <ALayoutContent>
-        <div class="flex flex-col gap-2 px-6 py-4 bg-base">
+        <div class="flex flex-col gap-1 px-6 py-2 bg-base">
           <!-- Breadcrumb -->
           <Breadcrumb
             v-if="showBreadcrumb"
@@ -102,7 +111,7 @@ function onSidebarCollapse(collapsed: boolean) {
         </div>
 
         <!-- Main Content -->
-        <div class="main-content">
+        <div class="main-content p-4">
           <slot /> <!-- 插槽：页面内容 -->
         </div>
       </ALayoutContent>
@@ -118,12 +127,15 @@ function onSidebarCollapse(collapsed: boolean) {
 </template>
 
 <style scoped>
-.main-content {
-  padding: 24px;
-  min-height: 100%;
-}
-
 :deep(.ant-layout-header), :deep(.ant-layout-sider), :deep(.ant-layout-sider-trigger) {
-  @apply bg-base text-color-base!;
+  @apply bg-base text-color-base;
+}
+:deep(.ant-layout-sider .ant-menu-root) {
+  border-inline-end: none !important;;
+}
+@media (orientation: landscape) {
+  .layout-container {
+    padding: 0 env(safe-area-inset-right) 0 env(safe-area-inset-left);
+  }
 }
 </style>

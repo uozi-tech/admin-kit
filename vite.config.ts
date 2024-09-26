@@ -34,7 +34,7 @@ export default defineConfig(({ command }) => {
         directoryAsNamespace: true,
       }),
       AutoImport({
-        imports: ['vue', 'vue-router'],
+        imports: ['vue', 'vue-router', 'pinia'],
         vueTemplate: true,
         eslintrc: {
           enabled: true,

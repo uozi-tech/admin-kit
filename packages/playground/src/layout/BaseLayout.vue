@@ -3,6 +3,13 @@
 import { RouterView } from 'vue-router'
 import { AdminLayout } from '@uozi/admin-layout-antdv'
 import { HomeOutlined, InfoOutlined } from '@ant-design/icons-vue'
+import { useSettingsStore } from '../store'
+
+const settings = useSettingsStore()
+
+function toggleTheme(t: 'auto' | 'light' | 'dark') {
+  settings.set_theme(t)
+}
 </script>
 
 <template>
@@ -37,6 +44,9 @@ import { HomeOutlined, InfoOutlined } from '@ant-design/icons-vue'
         icon: h(InfoOutlined)
       }
     ]"
+    :languages="['zh-CN', 'en-US']"
+    current-language="zh-CN"
+    @toggle-theme="toggleTheme"
   >
     <RouterView v-slot="{ Component, route }">
       <component

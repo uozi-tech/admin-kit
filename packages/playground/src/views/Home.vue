@@ -3,7 +3,9 @@
 </script>
 
 <template>
-  <h1>Home</h1>
+  <ACard title="Home">
+    Home
+  </ACard>
 </template>
 
 <style scoped>
