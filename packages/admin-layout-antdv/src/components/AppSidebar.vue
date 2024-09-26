@@ -35,14 +35,14 @@ function shouldCollapse() {
   return getClientWidth() < 1280
 }
 
+addEventListener('resize', throttle(() => {
+  collapsed.value = shouldCollapse()
+}, 50))
+
 function handleCollapse(val: boolean) {
   collapsed.value = val
   emit('collapseSidebar', val)
 }
-
-addEventListener('resize', throttle(() => {
-  collapsed.value = shouldCollapse()
-}, 50))
 
 // 点击菜单
 function handleMenuItemClick({ item }: { item: SidebarItem }) {
@@ -60,7 +60,19 @@ function handleMenuItemClick({ item }: { item: SidebarItem }) {
     <!-- 可自定义 Logo 区域 -->
     <div class="logo">
       <slot name="logo">
-        <h1>{{ getRealTitle(headerTitle) }}</h1>
+        <AAvatar
+          v-show="collapsed"
+          size="large"
+          class="flex items-center bg-purple-5 dark:bg-purple-8 text-xl font-semibold transition-all"
+        >
+          {{ getRealTitle(headerTitle)[0] }}
+        </AAvatar>
+        <h1
+          v-show="!collapsed"
+          class=" transition-all line-clamp-1"
+        >
+          {{ getRealTitle(headerTitle) }}
+        </h1>
       </slot>
     </div>
 
