@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { BreadcrumbItem } from '../props.ts'
-import { getRealTitle } from '../utils'
+import { getRealTitle } from '../utils/index.ts'
 
 const props = defineProps<{
   items?: BreadcrumbItem[]

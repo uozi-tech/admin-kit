@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 import { throttle } from 'lodash-es'
 import { SidebarItem, Title } from '../props.ts'
-import { getRealTitle } from '../utils'
+import { getRealTitle } from '../utils/index.ts'
 
 withDefaults(defineProps<{
   headerTitle?: Title

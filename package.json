@@ -1,5 +1,5 @@
 {
-  "name": "root",
+  "name": "@uozi-admin/root",
   "private": true,
   "type": "module",
   "scripts": {
@@ -14,7 +14,7 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.1.2",
-    "eslint-config-airbe": "^1.1.0",
+    "eslint-config-airbe": "^1.2.0",
     "typescript": "^5.5.4",
     "unocss": "^0.62.4",
     "unplugin-auto-import": "^0.18.3",
