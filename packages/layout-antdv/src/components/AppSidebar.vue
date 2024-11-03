@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { throttle } from 'lodash-es'
-import { SidebarItem, Title } from '../props.ts'
-import { getRealTitle } from '../utils/index.ts'
+import { SidebarItem, Title } from '../props'
+import { getRealTitle } from '../utils'
 
 withDefaults(defineProps<{
   headerTitle?: Title

@@ -1,0 +1,29 @@
+{
+  "name": "@uozi-admin/shared-config",
+  "version": "1.0.0",
+  "description": "Easy to configure your admin apps",
+  "scripts": {},
+  "keywords": [],
+  "author": "akino",
+  "license": "Apache-2.0",
+  "exports": {
+    "./vite": {
+      "import": "./dist/vite/index.mjs",
+      "require": "./dist/vite/index.js"
+    }
+  },
+  "peerDependencies": {
+    "unocss": "^0.62.4"
+  },
+  "dependencies": {
+    "@vitejs/plugin-vue": "^5.1.4",
+    "@vitejs/plugin-vue-jsx": "^4.0.1",
+    "unocss-preset-chinese": "^0.3.3",
+    "unocss-preset-ease": "^0.0.4",
+    "unplugin-auto-import": "^0.18.3",
+    "unplugin-vue-components": "^0.27.4",
+    "unplugin-vue-define-options": "^1.5.1",
+    "vite": "^5.4.1",
+    "vite-plugin-vue-devtools": "^7.6.2"
+  }
+}

@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { theme } from 'ant-design-vue'
 import { useSettingsStore } from './store'
-import gettext from './gettext.ts'
+import gettext from './gettext'
 import zh_CN from 'ant-design-vue/es/locale/zh_CN'
 import en_US from 'ant-design-vue/es/locale/en_US'
+import { computed } from 'vue'
 
 const settings = useSettingsStore()
 

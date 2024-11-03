@@ -1,0 +1,30 @@
+{
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "defaultBase": "main",
+  "nxCloudId": "672616fc94ea1032f07a83d7",
+  "workspaceLayout": {
+    "libsDir": "packages"
+  },
+  "release": {
+    "projects": [
+      "shared-config"
+    ],
+    "changelog": {
+      "projectChangelogs": {
+        "renderOptions": {
+          "authors": true,
+          "commitReferences": true,
+          "versionTitleDate": true
+        }
+      }
+    }
+  },
+  "namedInputs": {
+    "sharedGlobals": [
+      "{workspaceRoot}/.github/workflows/publish.yml"
+    ],
+    "default": [
+      "sharedGlobals"
+    ]
+  }
+}

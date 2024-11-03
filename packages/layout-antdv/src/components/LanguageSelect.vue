@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { isArray, isObject } from 'lodash-es'
-import { Languages, LanguageValue } from '../props.ts'
+import { Languages, LanguageValue } from '../props'
+import { computed, ref } from 'vue'
 
 const props = defineProps<{
   currentLanguage?: LanguageValue

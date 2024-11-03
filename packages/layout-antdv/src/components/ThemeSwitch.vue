@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import IconSun from './Icons/IconSun.vue'
 import IconMoon from './Icons/IconMoon.vue'
-import { Theme } from '../props.ts'
+import { Theme } from '../props'
+import { computed, ref, defineProps, withDefaults } from 'vue'
 
 const props = withDefaults(
   defineProps<{

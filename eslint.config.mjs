@@ -23,7 +23,7 @@ export default defineConfig({
   },
   importX: true,
   unusedImports: true,
-  ignores: ['node_modules/*', '.eslint-auto-import.mjs', 'vite.config.ts.timestamp*'],
+  ignores: ['**/node_modules', '**/dist', '.eslint-auto-import.mjs', 'vite.config.ts.timestamp*'],
   globals: autoImportGlobals.globals,
 }, {
   languageOptions: {

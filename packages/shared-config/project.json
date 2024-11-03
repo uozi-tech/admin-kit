@@ -1,0 +1,12 @@
+{
+  "name": "shared-config",
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "ls && tsup",
+        "cwd": "packages/shared-config"
+      }
+    }
+  }
+}

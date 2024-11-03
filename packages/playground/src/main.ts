@@ -4,7 +4,7 @@ import 'virtual:uno.css'
 import App from './App.vue'
 import { router } from './router'
 import { store, useSettingsStore } from './store'
-import gettext from './gettext.ts'
+import gettext from './gettext'
 
 createApp(App).use(gettext).use(store).use(router).mount('#app')
 
