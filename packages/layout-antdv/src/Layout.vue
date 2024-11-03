@@ -4,7 +4,7 @@ import AppFooter from './components/AppFooter.vue'
 import AppSidebar from './components/AppSidebar.vue'
 import PageHeader from './components/PageHeader.vue'
 import Breadcrumb from './components/Breadcrumb.vue'
-import { BreadcrumbItem, Languages, LanguageValue, SidebarItem, Theme, Title } from './props.ts'
+import { BreadcrumbItem, Languages, LanguageValue, SidebarItem, Theme, Title } from './props'
 import ThemeSwitch from './components/ThemeSwitch.vue'
 import LanguageSelect from './components/LanguageSelect.vue'
 

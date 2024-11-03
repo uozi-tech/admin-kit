@@ -1,8 +1,9 @@
 {
   "name": "playground",
-  "version": "1.0.0",
-  "description": "",
+  "private": true,
+  "type": "module",
   "scripts": {
+    "dev": "vite",
     "gettext:extract": "vue-gettext-extract",
     "gettext:compile": "vue-gettext-compile"
   },
@@ -12,6 +13,7 @@
   },
   "dependencies": {
     "@uozi-admin/layout-antdv": "workspace:*",
+    "@uozi-admin/shared-config": "workspace:^",
     "pinia": "^2.2.2",
     "vue-router": "^4.4.5",
     "vue3-gettext": "4.0.0-alpha.8"

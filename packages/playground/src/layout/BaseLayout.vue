@@ -1,11 +1,11 @@
 <script setup lang="ts">
 
 import { RouterView } from 'vue-router'
-import { AdminLayout } from '@uozi/admin-layout-antdv'
+import { AdminLayout, SidebarItem } from '@uozi-admin/layout-antdv'
 import { useSettingsStore } from '../store'
-import gettext from '../gettext.ts'
+import gettext from '../gettext'
 import { routes } from '../router'
-import { SidebarItem } from '@uozi/admin-layout-antdv/src/props.ts'
+import { computed } from 'vue'
 
 const settings = useSettingsStore()
 

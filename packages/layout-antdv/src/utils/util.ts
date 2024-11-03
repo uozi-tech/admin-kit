@@ -1,5 +1,5 @@
 import { isFunction } from 'lodash-es'
-import { Title } from '../props.ts'
+import { Title } from '../props'
 
 export function getRealTitle(t: Title) {
   if (isFunction(t))

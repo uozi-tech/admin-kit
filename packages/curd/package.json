@@ -1,0 +1,20 @@
+{
+  "name": "@uozi/curd",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "Apache-2.0",
+  "peerDependencies": {
+    "@ant-design/icons-vue": "^7.0.1",
+    "ant-design-vue": "^4.2.5",
+    "unocss": "^0.62.4",
+    "vue": "^3.4.37"
+  },
+  "dependencies": {
+  }
+}
