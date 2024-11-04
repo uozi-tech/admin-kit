@@ -1,5 +1,7 @@
 {
-  "extends": "@uozi-admin/shared-config/tsconfig/tsconfig.app.json",
+  "extends": [
+    "@uozi-admin/shared-config/tsconfig/tsconfig.app.json"
+  ],
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx",

@@ -1,4 +1,4 @@
-{
+export default {
   "globals": {
     "Component": true,
     "ComponentPublicInstance": true,
@@ -63,7 +63,6 @@
     "shallowReactive": true,
     "shallowReadonly": true,
     "shallowRef": true,
-    "store": true,
     "storeToRefs": true,
     "toRaw": true,
     "toRef": true,
@@ -79,7 +78,6 @@
     "useModel": true,
     "useRoute": true,
     "useRouter": true,
-    "useSettingsStore": true,
     "useSlots": true,
     "useTemplateRef": true,
     "watch": true,

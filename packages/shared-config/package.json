@@ -6,11 +6,11 @@
   "keywords": [],
   "author": "akino",
   "license": "Apache-2.0",
+  "type": "module",
   "exports": {
-    "./vite": {
-      "import": "./dist/vite/index.mjs",
-      "require": "./dist/vite/index.js"
-    }
+    "./vite": "./dist/vite/index.js",
+    "./tsconfig/tsconfig.app.json": "./tsconfig/tsconfig.app.json",
+    "./tsconfig/tsconfig.node.json": "./tsconfig/tsconfig.node.json"
   },
   "peerDependencies": {
     "unocss": "^0.62.4"
