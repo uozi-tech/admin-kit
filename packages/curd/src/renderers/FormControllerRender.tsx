@@ -2,12 +2,12 @@ import {FormItemType, StdTableColumn} from "../types";
 import {isFunction, isPlainObject} from "../utils/util";
 import {get} from "lodash-es";
 import getInternalFormController from "../components/StdFormControllers";
-import {inject, Ref} from "vue";
+import {inject, Reactive} from "vue";
 import {i18n} from "../i18n";
 
 export function FormControllerRender(p: {
     searchApi?: any,
-    formData: Ref<Record<string, any>>,
+    formData: Reactive<Record<string, any>>,
     column: StdTableColumn,
     lang: string,
     formItemKey: string
@@ -24,7 +24,7 @@ export function FormControllerRender(p: {
         // Support custom component, but need to pass column to component and define model for it
          return (
             <formItem.type
-                modelValue={get(p.formData.value, formItem?.formItem?.prop ?? dataIndex)}
+                modelValue={get(p.formData.value, formItem?.formItem?.name ?? dataIndex)}
                 column={p.column}
             />
         )

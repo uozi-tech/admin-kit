@@ -67,10 +67,13 @@ export default function useCurd(props: StdCurdProps, lang: string) {
     deep: true,
     immediate: true
   })
-
+  
   watch(() => route.query, getList, { deep: true, immediate: false })
 
   function resetSearchForm() {
+    if (Object.keys(searchFormData.value).length === 0) {
+      return
+    }
     searchFormData.value = {}
   }
 

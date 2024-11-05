@@ -8,7 +8,7 @@ defineProps<{
   lang: string
 }>()
 
-const formData = defineModel<Record<string, any>>('data', { default: {} })
+const formData = defineModel<Record<string, any>>('data', { required: true })
 
 </script>
 
@@ -17,11 +17,11 @@ const formData = defineModel<Record<string, any>>('data', { default: {} })
   <AFormItem
       class="form-item"
       v-for="c in columns"
-      :key="getColumnKey(c)"v-bind="c.edit?.formItem"
+      :key="getColumnKey(c)"
       :label="c.edit?.formItem?.label ?? c.title"
       :name="c.edit?.formItem?.name ?? c.dataIndex"
   >
-    <FormControllerRender :column="c" :formData="formData" :lang="lang" :formItemKey="c.search === true ? 'edit' : 'search'" />
+    <FormControllerRender :column="c" v-model:formData="formData" :lang="lang" :formItemKey="c.search === true ? 'edit' : 'search'" />
   </AFormItem>
   <slot name="extra" :form-data="formData" />
 </AForm>

@@ -13,13 +13,13 @@ import {
 } from 'ant-design-vue'
 import { InboxOutlined } from '@ant-design/icons-vue'
 import { StdTableColumn } from '../types'
-import { Ref, ref, watch } from 'vue'
 import { get, isArray, set } from 'lodash-es'
 import { FORMAT } from '../constants'
 import { i18n } from '../i18n'
+import {Reactive} from "vue";
 
 export default function getInternalFormController(
-  formData: Ref<Record<string, any>>,
+  formData: Reactive<Record<string, any>>,
   form: StdTableColumn['edit'],
   dataIndex: StdTableColumn['dataIndex'],
   lang: string,
@@ -28,7 +28,7 @@ export default function getInternalFormController(
   const value = ref(get(formData, key))
 
   watch(value, (v) => {
-    set(formData.value, key, v)
+    set(formData, key, v)
   })
 
   switch (form?.type) {

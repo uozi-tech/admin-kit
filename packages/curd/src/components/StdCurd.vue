@@ -85,8 +85,8 @@ const exportVisible = ref(false)
 
     <StdSearch
       v-if="!props.disableSearch"
-      style="margin-bottom: 16px"
       v-model:data="searchFormData"
+      style="margin-bottom: 16px"
       :columns="searchColumns"
       :lang="currentLanguage"
     >
