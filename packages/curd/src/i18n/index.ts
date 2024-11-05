@@ -1,7 +1,8 @@
-export const i18n: Record<string, Record<string, string>> = {
+export const i18n = {
   'zh-cn': {
     read: '查看',
     add: '添加',
+    trash: '回收站',
     list: '列表',
     edit: '编辑',
     delete: '删除',
@@ -20,15 +21,18 @@ export const i18n: Record<string, Record<string, string>> = {
     more: '更多',
     close: '关闭',
     clear: '清空',
+    checkAll: '全选',
     export: '导出',
     exportExcel: '导出 Excel',
     exportCsv: '导出 Csv',
     exportPdf: '导出 Pdf',
     exportWord: '导出 Word',
+    formValidateError: '请正确填写所有字段',
   },
   en: {
     read: 'Detail',
     add: 'Add',
+    trash: 'Trash',
     list: 'List',
     edit: 'Edit',
     delete: 'Delete',
@@ -47,10 +51,12 @@ export const i18n: Record<string, Record<string, string>> = {
     more: 'More',
     close: 'Close',
     clear: 'Clear',
+    checkAll: 'Check all',
     export: 'Export',
     exportExcel: 'Export Excel',
     exportCsv: 'Export Csv',
     exportPdf: 'Export Pdf',
     exportWord: 'Export Word',
+    formValidateError: 'Please fill all fields correctly',
   },
 }

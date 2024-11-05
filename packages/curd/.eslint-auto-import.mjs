@@ -11,6 +11,7 @@ export default {
     "PropType": true,
     "Ref": true,
     "StdCurd": true,
+    "StdFormControllers": true,
     "VNode": true,
     "WritableComputedRef": true,
     "acceptHMRUpdate": true,

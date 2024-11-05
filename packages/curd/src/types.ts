@@ -24,6 +24,7 @@ import {
 import { JSX } from 'vue/jsx-runtime';
 
 export interface StdTableColumn extends TableColumnType<any> {
+  title: string | (() => string);
   dataIndex: string | string[];
   customHeaderRender?: (data: {
     column: StdTableColumn;
@@ -37,6 +38,7 @@ export interface StdTableColumn extends TableColumnType<any> {
       | 'select'
       | 'date'
       | 'datetime'
+      | 'year'
       | 'month'
       | 'week'
       | 'time'
@@ -77,7 +79,10 @@ export interface StdTableColumn extends TableColumnType<any> {
   hiddenInEdit?: boolean;
   hiddenInAdd?: boolean;
   hiddenInDetail?: boolean;
+  hiddenInExport?: boolean
 }
+
+export type ExportColumn = Required<StdTableColumn> & { checked: boolean }
 
 export interface StdTableProps extends TableProps {
   columns: StdTableColumn[];
@@ -98,17 +103,20 @@ export interface CustomRenderOptions {
   export?: boolean;
 };
 
-export interface StdCurdProps extends StdTableProps {
+export interface StdCurdProps extends Pick<StdTableProps, 'rowKey' | 'rowSelectionType' | 'columns' | 'pagination' | 'scrollX' | 'scrollY'> {
   title?: string | any
   api: any
   formLabelPosition?: 'left' | 'right' | 'top'
   tableConfig?: TableProps
-  fixParams?: Record<string, any>
+  customParams?: Record<string, any>
+  listQueryParams?: Record<string, any>
   modalWidth?: string | number
   disableSearch?: boolean
   disableAdd?: boolean
   disableEdit?: boolean
   disableDelete?: boolean
+  disableExport?: boolean
+  disableTrash?: boolean
 }
 
 export type StdTableHeaderScope = {
@@ -122,4 +130,10 @@ export type StdTableBodyScope = {
   record: Record<string, any>
   index: number
   column: any
+}
+
+export interface SelectOption {
+  label: string
+  value: string
+  disabled?: boolean
 }

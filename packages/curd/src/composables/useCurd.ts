@@ -1,13 +1,14 @@
-import { cloneDeep } from 'lodash-es'
+import {cloneDeep, debounce} from 'lodash-es'
 import { reactive, ref } from 'vue'
 import { i18n } from '../i18n'
 import { StdCurdProps } from '../types'
+import {message} from "ant-design-vue";
 
 export default function useCurd(props: StdCurdProps, lang: string) {
   const mode = ref('add')
-  const formData = ref({})
+  const itemDetail = ref({})
   const formVisible = ref(false)
-  const data = ref([])
+  const tableData = ref([])
   const tableLoading = ref(false)
   const modalLoading = ref(false)
 
@@ -27,12 +28,25 @@ export default function useCurd(props: StdCurdProps, lang: string) {
     ...props.pagination,
   })
 
-  async function getList(params?: Record<string, any>) {
+
+  // const route = useRoute()
+  const router = useRouter()
+
+  const searchFormData = ref({})
+  const apiParams = computed(() => {
+    return {
+      ...props.customParams,
+      ...props.listQueryParams,
+      ...searchFormData.value,
+    }
+  })
+
+  const getList = debounce((params?: Record<string, any>) => {
     tableLoading.value = true
     return props.api
-      .getList({ page: pagination.current, pageSize: pagination?.pageSize ?? 10, ...params })
+      .getList({ page: pagination.current, pageSize: pagination?.pageSize ?? 10, ...apiParams.value, ...params })
       .then((res: any) => {
-        data.value = res.data
+        tableData.value = res.data
         const { total } = res.pagination
         pagination.total = total
       })
@@ -40,34 +54,52 @@ export default function useCurd(props: StdCurdProps, lang: string) {
       .finally(() => {
         tableLoading.value = false
       })
+  }, 100, { leading: false, trailing: true })
+  const updateRouterQuery = debounce(() => router.push({ query: apiParams.value }), 200, { leading: false, trailing: true })
+
+  watch(apiParams, async() => {
+    await updateRouterQuery()
+    getList()
+  }, {
+      deep: true,
+        immediate: true
+    })
+  function resetSearchForm() {
+    if(!Object.keys(searchFormData.value).length) {
+      return
+    }
+    searchFormData.value = {}
   }
 
   function handleRead(row: Record<string, any>) {
     formVisible.value = true
     mode.value = 'read'
-    formData.value = cloneDeep(row)
+    itemDetail.value = cloneDeep(row)
   }
 
   function handleAdd() {
     formVisible.value = true
     mode.value = 'add'
-    formData.value = {}
+    itemDetail.value = {}
   }
 
   function handleEdit(row: Record<string, any>) {
     formVisible.value = true
     mode.value = 'edit'
-    formData.value = cloneDeep(row)
+    itemDetail.value = cloneDeep(row)
   }
 
-  function handleSave() {
+  function handleSave(data: Record<string, any>) {
     modalLoading.value = true
     const operation = mode.value === 'add' ? 'create' : 'update'
 
-    props.api[operation](formData.value)
+    props.api[operation](data)
       .then(() => {
         getList()
         formVisible.value = false
+      })
+      .catch(err => {
+        message.error('Server error')
       })
       .finally(() => (modalLoading.value = false))
   }
@@ -76,11 +108,12 @@ export default function useCurd(props: StdCurdProps, lang: string) {
     tableLoading,
     modalLoading,
     mode,
-    data,
-    formData,
+    searchFormData,
+    tableData,
+    itemDetail,
     formVisible,
     pagination,
-    getList,
+    resetSearchForm,
     handleRead,
     handleAdd,
     handleEdit,

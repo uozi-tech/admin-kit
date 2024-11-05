@@ -1,6 +1,7 @@
 import { utils, writeFile } from 'xlsx'
-import { StdTableColumn } from '../types'
+import {ExportColumn, StdTableColumn} from '../types'
 import { get, set } from 'lodash-es'
+import {Ref} from "vue";
 
 export function useExport(columns: StdTableColumn[], api?: (params: Record<string, any>) => Promise<any>) {
   const exportExcel = (selectedRowKey, selectedRows) => {
@@ -13,8 +14,44 @@ export function useExport(columns: StdTableColumn[], api?: (params: Record<strin
     }
   }
 
+  const state = reactive({
+    indeterminate: false,
+    checkAll: true,
+  })
+
+  const exportColumns = ref(
+    (columns as ExportColumn[])
+      .filter((item) => !item.hiddenInExport)
+      .map((item) => {
+        if (typeof item.title === 'function') item.title = item.title()
+        if (Array.isArray(item.dataIndex)) item.dataIndex = item.dataIndex.join('.')
+        item.checked = true
+        return item
+      }),
+  ) as Ref<ExportColumn[]>
+
+  const onCheckAllChange = () => {
+    state.indeterminate = false
+    exportColumns.value = exportColumns.value.map((item) => {
+      item.checked = state.checkAll
+      return item
+    })
+  }
+  watch(
+    exportColumns,
+    (val) => {
+      const checkedCount = val.filter((item) => item.checked).length
+      state.indeterminate = checkedCount > 0 && checkedCount < val.length
+      state.checkAll = checkedCount === val.length
+    },
+    { deep: true },
+  )
+
   return {
     exportExcel,
+    exportColumns,
+    state,
+    onCheckAllChange
   }
 }
 

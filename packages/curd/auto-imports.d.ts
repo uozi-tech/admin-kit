@@ -8,6 +8,7 @@ export {}
 declare global {
   const EffectScope: typeof import('vue')['EffectScope']
   const StdCurd: typeof import('./src/components/index')['StdCurd']
+  const StdFormControllers: typeof import('./src/components/StdFormControllers')['default']
   const acceptHMRUpdate: typeof import('pinia')['acceptHMRUpdate']
   const computed: typeof import('vue')['computed']
   const createApp: typeof import('vue')['createApp']
@@ -96,6 +97,7 @@ declare module 'vue' {
   interface ComponentCustomProperties {
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
     readonly StdCurd: UnwrapRef<typeof import('./src/components/index')['StdCurd']>
+    readonly StdFormControllers: UnwrapRef<typeof import('./src/components/StdFormControllers')['default']>
     readonly acceptHMRUpdate: UnwrapRef<typeof import('pinia')['acceptHMRUpdate']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
     readonly createApp: UnwrapRef<typeof import('vue')['createApp']>
