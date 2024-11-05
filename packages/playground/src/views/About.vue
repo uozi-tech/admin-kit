@@ -7,7 +7,7 @@ const columns: StdTableColumn[] = [
     title: 'ID',
     dataIndex: 'id',
     search: true,
-    form: {
+    edit: {
       type: 'input',
     },
   },
@@ -15,7 +15,7 @@ const columns: StdTableColumn[] = [
     title: 'School ID',
     dataIndex: 'school_id',
     search: true,
-    form: {
+    edit: {
       type: 'input',
       formItem: {
         rules: [
@@ -37,7 +37,7 @@ const columns: StdTableColumn[] = [
     title: 'Type',
     dataIndex: 'type',
     key: 'type',
-    form: {
+    edit: {
       type: 'input',
     },
     customRender({ value }) {
@@ -53,7 +53,7 @@ const columns: StdTableColumn[] = [
     title: 'Name',
     dataIndex: 'name',
     search: true,
-    form: {
+    edit: {
       type: 'cascader',
       cascader: {
         options: [
@@ -112,21 +112,21 @@ const columns: StdTableColumn[] = [
   {
     title: 'Age',
     dataIndex: 'age',
-    form: {
-      type: 'input-number',
+    edit: {
+      type: 'inputNumber',
     },
   },
   {
     title: 'Checkbox',
     dataIndex: 'switch',
-    form: {
+    edit: {
       type: 'checkbox',
     },
   },
   {
     title: 'Date',
     dataIndex: 'date',
-    form: {
+    edit: {
       type: 'date',
     },
     search: true,
@@ -134,7 +134,7 @@ const columns: StdTableColumn[] = [
   {
     title: 'Date Time',
     dataIndex: 'datetime',
-    form: {
+    edit: {
       type: 'datetime',
     },
     search: true,
@@ -142,7 +142,7 @@ const columns: StdTableColumn[] = [
   {
     title: 'Year',
     dataIndex: 'year',
-    form: {
+    edit: {
       type: 'year',
     },
     search: true,
@@ -150,7 +150,7 @@ const columns: StdTableColumn[] = [
   {
     title: 'Month',
     dataIndex: 'month',
-    form: {
+    edit: {
       type: 'month',
     },
     search: true,
@@ -158,7 +158,7 @@ const columns: StdTableColumn[] = [
   {
     title: 'Week',
     dataIndex: 'week',
-    form: {
+    edit: {
       type: 'week',
     },
     search: true,
@@ -166,7 +166,7 @@ const columns: StdTableColumn[] = [
   {
     title: 'Time',
     dataIndex: 'time',
-    form: {
+    edit: {
       type: 'time',
     },
     search: true,
@@ -174,28 +174,28 @@ const columns: StdTableColumn[] = [
   {
     title: 'Switch',
     dataIndex: 'switch',
-    form: {
+    edit: {
       type: 'switch',
     },
   },
   {
     title: 'Rate',
     dataIndex: 'rate',
-    form: {
+    edit: {
       type: 'rate',
     },
   },
   {
     title: 'Slider',
     dataIndex: 'slider',
-    form: {
+    edit: {
       type: 'slider',
     },
   },
   {
     title: 'FileList',
     dataIndex: 'fileList',
-    form: {
+    edit: {
       type: 'upload',
     },
     customRender: (props) => props.text.join(','),
@@ -203,7 +203,7 @@ const columns: StdTableColumn[] = [
   {
     title: 'File',
     dataIndex: 'file',
-    form: {
+    edit: {
       type: 'upload',
     },
   },

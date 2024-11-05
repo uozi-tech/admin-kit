@@ -23,6 +23,51 @@ import {
 } from 'ant-design-vue/es/date-picker';
 import { JSX } from 'vue/jsx-runtime';
 
+export type FormControllerType = 'input'
+    | 'input-number'
+    | 'select'
+    | 'date'
+    | 'datetime'
+    | 'year'
+    | 'month'
+    | 'week'
+    | 'time'
+    | 'number'
+    | 'textarea'
+    | 'radio'
+    | 'checkbox'
+    | 'switch'
+    | 'rate'
+    | 'slider'
+    | 'upload'
+    | 'cascader'
+    | 'transfer'
+    | ((column: StdTableColumn) => VNode | JSX.Element)
+    | ComponentInstance<any>
+
+export type FormItemType = {
+  type: FormControllerType;
+  input?: ExtractPublicPropTypes<InputProps>;
+  inputNumber?: ExtractPublicPropTypes<InputNumberProps>;
+  select?: ExtractPublicPropTypes<SelectProps> & { valueKey?: string };
+  cascader?: ExtractPublicPropTypes<typeof cascaderProps>;
+  datePicker?: ExtractPublicPropTypes<DatePickerProps>;
+  week?: ExtractPublicPropTypes<WeekPickerProps>;
+  month?: ExtractPublicPropTypes<MonthPickerProps>;
+  time?: ExtractPublicPropTypes<TimePickerProps>;
+  radio?: ExtractPublicPropTypes<RadioProps>;
+  checkbox?: ExtractPublicPropTypes<CheckboxProps>;
+  rate?: ExtractPublicPropTypes<RateProps>;
+  slider?: ExtractPublicPropTypes<SliderProps>;
+  switch?: ExtractPublicPropTypes<SwitchProps>;
+  transfer?: ExtractPublicPropTypes<TransferProps>;
+  upload?: ExtractPublicPropTypes<UploadProps>;
+
+  formItem?: ExtractPublicPropTypes<FormItemProps> & {
+    name?: string | string[];
+  };
+};
+
 export interface StdTableColumn extends TableColumnType<any> {
   title: string | (() => string);
   dataIndex: string | string[];
@@ -30,50 +75,8 @@ export interface StdTableColumn extends TableColumnType<any> {
     column: StdTableColumn;
     title: string;
   }) => VNode | JSX.Element;
-  search?: boolean;
-  form?: {
-    type:
-      | 'input'
-      | 'input-number'
-      | 'select'
-      | 'date'
-      | 'datetime'
-      | 'year'
-      | 'month'
-      | 'week'
-      | 'time'
-      | 'number'
-      | 'textarea'
-      | 'radio'
-      | 'checkbox'
-      | 'switch'
-      | 'rate'
-      | 'slider'
-      | 'upload'
-      | 'cascader'
-      | 'transfer'
-      | ((column: StdTableColumn) => VNode | JSX.Element)
-      | ComponentInstance<any>;
-    input?: ExtractPublicPropTypes<InputProps>;
-    inputNumber?: ExtractPublicPropTypes<InputNumberProps>;
-    select?: ExtractPublicPropTypes<SelectProps> & { valueKey?: string };
-    cascader?: ExtractPublicPropTypes<typeof cascaderProps>;
-    datePicker?: ExtractPublicPropTypes<DatePickerProps>;
-    week?: ExtractPublicPropTypes<WeekPickerProps>;
-    month?: ExtractPublicPropTypes<MonthPickerProps>;
-    time?: ExtractPublicPropTypes<TimePickerProps>;
-    radio?: ExtractPublicPropTypes<RadioProps>;
-    checkbox?: ExtractPublicPropTypes<CheckboxProps>;
-    rate?: ExtractPublicPropTypes<RateProps>;
-    slider?: ExtractPublicPropTypes<SliderProps>;
-    switch?: ExtractPublicPropTypes<SwitchProps>;
-    transfer?: ExtractPublicPropTypes<TransferProps>;
-    upload?: ExtractPublicPropTypes<UploadProps>;
-
-    formItem?: ExtractPublicPropTypes<FormItemProps> & {
-      name?: string | string[];
-    };
-  };
+  search?: boolean | FormItemType;
+  edit?: FormItemType
   customRender?: ((data: CustomRenderOptions) => VNode | JSX.Element) | any;
   hiddenInTable?: boolean;
   hiddenInEdit?: boolean;

@@ -9,58 +9,38 @@ import {
   Input,
   InputNumber,
   Select,
-  UploadDragger,
-  RangePicker,
+  UploadDragger, RangePicker,
 } from 'ant-design-vue'
 import { InboxOutlined } from '@ant-design/icons-vue'
-import { StdTableColumn, SelectOption } from '../types'
+import { StdTableColumn } from '../types'
 import { Ref, ref, watch } from 'vue'
 import { get, isArray, set } from 'lodash-es'
 import { FORMAT } from '../constants'
 import { i18n } from '../i18n'
 
 export default function getInternalFormController(
-  api: any,
   formData: Ref<Record<string, any>>,
-  form: StdTableColumn['form'],
+  form: StdTableColumn['edit'],
   dataIndex: StdTableColumn['dataIndex'],
-  lang: 'en' | 'zh-cn',
-  isSearchForm?: boolean,
+  lang: string,
 ) {
-  const selectOptions = ref<SelectOption[]>([])
-
-  function search(query: string, key: string | string[], valueKey?: string) {
-    if (isArray(key)) {
-      key = key.join('.')
-    }
-
-    api.getList({ [key]: query }).then((res: unknown) => {
-      selectOptions.value = (res as any).data.map((item: any) => ({ label: item[key], value: item[valueKey ?? key] }) as SelectOption)
-    })
-  }
-
   const key = form?.formItem?.name ?? dataIndex
-  const value = ref(get(formData.value, key))
+  const value = ref(get(formData, key))
 
   watch(value, (v) => {
     set(formData.value, key, v)
   })
 
-  if (isSearchForm && ['date', 'datetime', 'year', 'week', 'month', 'time'].includes(form?.type)) {
-    return <RangePicker v-model:value={value.value} picker={form?.type} show-time={form?.type === 'datetime'} valueFormat={FORMAT[form?.type]} fotmat={FORMAT[form?.type]} />
-  }
-
   switch (form?.type) {
     case 'input':
       return <Input v-model:value={value.value} {...form?.input} />
-    case 'input-number':
+    case 'inputNumber':
       return <InputNumber v-model:value={value.value} {...form?.inputNumber} />
     case 'select':
       return (
         <Select
           v-model:value={value.value}
           dropdownMatchSelectWidth={false}
-          remote-method={(query: string) => search(query, dataIndex as string, form?.select?.valueKey)}
           getPopupContainer={(triggerNode: any) => triggerNode.parentNode}
           {...form?.select}
         />
@@ -95,6 +75,19 @@ export default function getInternalFormController(
           {...form?.time}
         />
       )
+    case 'dateRangePicker':
+    case 'datetimeRangePicker':
+    case 'yearRangePicker':
+    case 'monthRangePicker':
+    case 'weekRangePicker':
+    case 'timeRangePicker':
+      return <RangePicker
+          v-model:value={value.value}
+          picker={form?.type}
+          show-time={form?.type === 'datetimeRangePicker'}
+          valueFormat={FORMAT[form?.type]}
+          fotmat={FORMAT[form?.type]}
+      />
     case 'switch':
       return <Switch v-model:checked={value.value} {...form?.switch} />
     case 'slider':

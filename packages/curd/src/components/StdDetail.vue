@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { StdTableColumn } from '../types'
 import { get } from 'lodash-es'
-import { CustomRender } from '../renderers/CustomRender'
+import { DataItemRender } from '../renderers/DataItemRender'
 
 const props = defineProps<{
   record: any
@@ -14,7 +14,7 @@ const displayColumns = props.columns.filter((item) => !item?.hiddenInDetail || i
 <template>
   <ADescriptions bordered :column="1">
     <ADescriptions-item v-for="(column, index) in displayColumns" :key="index" :label="column.title">
-      <CustomRender
+      <DataItemRender
         :record="props.record"
         :column="column"
         :text="get(props.record, column.dataIndex)"

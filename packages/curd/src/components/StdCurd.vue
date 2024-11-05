@@ -7,6 +7,7 @@ import {message, TableColumnType} from "ant-design-vue";
 import {i18n} from "../i18n";
 import StdForm from "./StdForm.vue";
 import StdDetail from "./StdDetail.vue";
+import StdSearch from "./StdSearch.vue";
 
 const props = defineProps<StdCurdProps>()
 
@@ -50,7 +51,7 @@ const searchColumns = computed(() => {
 })
 
 const formColumns = computed(() => {
-  return props.columns.filter((item) => item.dataIndex !== 'actions' && item.key !== 'actions' && item.form)
+  return props.columns.filter((item) => item.dataIndex !== 'actions' && item.key !== 'actions' && (item.edit))
 })
 
 function onSelectedChange(keys: (string | number)[], rows: Record<string | number, unknown>[]) {
@@ -82,23 +83,21 @@ const exportVisible = ref(false)
     </AFlex>
   </template>
 
-    <StdForm
+    <StdSearch
       v-if="!props.disableSearch"
       style="margin-bottom: 16px"
-      :api="props.api"
       v-model:data="searchFormData"
       :columns="searchColumns"
-      layout="inline"
-      isSearchForm
+      :lang="currentLanguage"
     >
-      <template #default="{ formData }">
+      <template #extra="{ formData }">
         <AFlex wrap="wrap" gap="small">
           <AButton @click="resetSearchForm">{{ i18n[currentLanguage].reset }}</AButton>
           <AButton :disabled="selectedRowKeys.length === 0" @click="exportVisible = true">{{ i18n[currentLanguage].export }}</AButton>
           <slot name="searchFormAction" :form-data="formData" />
         </AFlex>
       </template>
-    </StdForm>
+    </StdSearch>
 
   <ATable
     :row-key="props.rowKey ?? 'id'"
