@@ -13,9 +13,8 @@ const formData = defineModel<Record<string, any>>('data', { required: true })
 </script>
 
 <template>
-<AForm :model="formData" label-width="auto" layout="inline">
+<AForm class="flex flex-wrap gap-y-4" :model="formData" label-width="auto" layout="inline">
   <AFormItem
-      class="form-item"
       v-for="c in columns"
       :key="getColumnKey(c)"
       :label="c.edit?.formItem?.label ?? c.title"
@@ -28,7 +27,4 @@ const formData = defineModel<Record<string, any>>('data', { required: true })
 </template>
 
 <style scoped>
-.form-item {
-  margin-bottom: 16px;
-}
 </style>

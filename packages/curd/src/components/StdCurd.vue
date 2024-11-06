@@ -25,6 +25,8 @@ const {
   itemDetail,
   formVisible,
   pagination,
+    isTrash,
+    switchTrashAndList,
   handleRead,
   handleAdd,
   handleEdit,
@@ -69,6 +71,21 @@ const exportVisible = ref(false)
 </script>
 
 <template>
+  <ACard title="筛选" class="mb-4">
+    <StdSearch
+        v-if="!props.disableSearch"
+        v-model:data="searchFormData"
+        :columns="searchColumns"
+        :lang="currentLanguage"
+    >
+      <template #extra="{ formData }">
+        <AFlex wrap="wrap" gap="small">
+          <AButton @click="resetSearchForm">{{ i18n[currentLanguage].reset }}</AButton>
+          <slot name="searchFormAction" :form-data="formData" />
+        </AFlex>
+      </template>
+    </StdSearch>
+  </ACard>
   <ACard>
   <template #title>
     {{ props.title ?? i18n[currentLanguage].list }}
@@ -76,28 +93,20 @@ const exportVisible = ref(false)
   </template>
   <template #extra>
     <AFlex gap="8">
-    <slot name="beforeAdd" />
-    <a v-if="!props.disableAdd" type="link" @click="handleAdd">{{ i18n[currentLanguage].add }}</a>
-    <slot name="afterAdd" />
-    <a v-if="!props.disableTrash" type="link">{{ i18n[currentLanguage].trash }}</a>
+    <slot name="beforeListActions" />
+      <a
+          v-if="!props.disableExport"
+          :class="{ 'cursor-not-allowed text-truegray-3 hover:text-truegray-3': selectedRowKeys.length === 0 }"
+          @click="exportVisible = true">
+        {{ i18n[currentLanguage].exportExcel }}
+      </a>
+    <a v-if="!props.disableAdd" @click="handleAdd">{{ i18n[currentLanguage].add }}</a>
+    <a v-if="!props.disableTrash" :class="{ 'cursor-not-allowed text-truegray-3 hover:text-truegray-3': tableLoading }" @click="switchTrashAndList">
+      {{ isTrash ? i18n[currentLanguage].backToList : i18n[currentLanguage].trash }}
+    </a>
+      <slot name="afterListActions" />
     </AFlex>
   </template>
-
-    <StdSearch
-      v-if="!props.disableSearch"
-      v-model:data="searchFormData"
-      style="margin-bottom: 16px"
-      :columns="searchColumns"
-      :lang="currentLanguage"
-    >
-      <template #extra="{ formData }">
-        <AFlex wrap="wrap" gap="small">
-          <AButton @click="resetSearchForm">{{ i18n[currentLanguage].reset }}</AButton>
-          <AButton :disabled="selectedRowKeys.length === 0" @click="exportVisible = true">{{ i18n[currentLanguage].export }}</AButton>
-          <slot name="searchFormAction" :form-data="formData" />
-        </AFlex>
-      </template>
-    </StdSearch>
 
   <ATable
     :row-key="props.rowKey ?? 'id'"
@@ -124,11 +133,14 @@ const exportVisible = ref(false)
         <AButton size="small" type="link" v-bind="column?.btnProps" @click="handleRead(record)">
           {{ i18n[currentLanguage].read }}
         </AButton>
-        <AButton v-if="!props.disableEdit" size="small" type="link" v-bind="column?.btnProps" @click="handleEdit(record)">
+        <AButton v-if="!props.disableEdit && !isTrash" size="small" type="link" v-bind="column?.btnProps" @click="handleEdit(record)">
           {{ i18n[currentLanguage].edit }}
         </AButton>
-        <APopconfirm v-if="!props.disableDelete" :title="i18n[currentLanguage].confirmDelete">
+        <APopconfirm v-if="!props.disableDelete && !isTrash" :title="i18n[currentLanguage].confirmDelete">
           <AButton size="small" type="link" v-bind="column?.btnProps" danger> {{ i18n[currentLanguage].delete }} </AButton>
+        </APopconfirm>
+        <APopconfirm v-if="!props.disableTrash && isTrash" :title="i18n[currentLanguage].confirmRestore">
+          <AButton size="small" type="link" v-bind="column?.btnProps"> {{ i18n[currentLanguage].restore }} </AButton>
         </APopconfirm>
         <slot name="afterActions" :record="record" :column="column" />
       </template>

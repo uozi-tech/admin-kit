@@ -217,29 +217,35 @@ const columns: StdTableColumn[] = [
 
 const api = {
   getList: () => {
+    const data = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1].map(() => ({
+      id: 1,
+      school_id: 1,
+      name: 'John Brown',
+      age: 32,
+      type: 2,
+      address: 'New York No. 1 Lake Park',
+      date: '2016-10-03',
+      datetime: '2016-10-03 14:00:11',
+      year: '2022',
+      month: '2016-10-03',
+      week: '2016-10-03',
+      time: '2016-10-03',
+      switch: true,
+      rate: 3,
+      slider: 20,
+      fileList: [],
+      file: 'https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png'
+    }))
     return new Promise((resolve) => {
       setTimeout(() => {
         resolve({
-          data: [{
-            id: 1,
-            school_id: 1,
-            name: 'John Brown',
-            age: 32,
-            type: 2,
-            address: 'New York No. 1 Lake Park',
-            date: '2016-10-03',
-            datetime: '2016-10-03 14:00:11',
-            year: '2022',
-            month: '2016-10-03',
-            week: '2016-10-03',
-            time: '2016-10-03',
-            switch: true,
-            rate: 3,
-            slider: 20,
-            fileList: [],
-            file: 'https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png'
-        }]}
-      )
+          data,
+          pagination: {
+            total: 1000,
+            current_page:1,
+            per_page: 20
+          }
+        })
       }, 1000)
     })
 }
