@@ -1,1 +1,1 @@
-# @uozi/admin-layout-antdv
+# @uozi-admin

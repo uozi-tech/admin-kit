@@ -1,9 +1,9 @@
-import { cloneDeep, debounce } from 'lodash-es'
+import { debounce } from 'lodash-es'
 import { reactive, ref, computed, watch } from 'vue'
 import { i18n } from '../i18n'
 import { StdCurdProps } from '../types'
 import { message } from 'ant-design-vue'
-import {PaginationConfig} from "ant-design-vue/es/pagination";
+import { PaginationConfig } from 'ant-design-vue/es/pagination'
 
 export default function useCurd(props: StdCurdProps, lang: string) {
   const router = useRouter()
@@ -30,16 +30,16 @@ export default function useCurd(props: StdCurdProps, lang: string) {
 
   const debouncedListApi = debounce(async () => {
     return props.api.getList(apiParams.value)
-        .then((res: any) => {
-          tableData.value = res.data
-          pagination.total = res?.pagination?.total
-        })
-        .catch((err: any) => {
-          message.error('Failed to fetch data')
-        })
-        .finally(() => {
-          tableLoading.value = false
-        })
+      .then((res: any) => {
+        tableData.value = res.data
+        pagination.total = res?.pagination?.total
+      })
+      .catch((err: any) => {
+        message.error('Failed to fetch data')
+      })
+      .finally(() => {
+        tableLoading.value = false
+      })
   }, 200, { leading: false, trailing: true })
 
   const pagination = reactive<PaginationConfig>(initializePagination(props.pagination, getTableList, lang))
@@ -55,8 +55,8 @@ export default function useCurd(props: StdCurdProps, lang: string) {
   }))
 
   function getTableList() {
-      tableLoading.value = true
-      debouncedListApi()
+    tableLoading.value = true
+    debouncedListApi()
   }
 
   // 更新锁，用于防止同步 route query 到 api params 时死循环
@@ -67,50 +67,59 @@ export default function useCurd(props: StdCurdProps, lang: string) {
     isUpdatedFromApiParams = true
     await router.push({ query: newQuery })
     isUpdatedFromApiParams = false
-  }, 500, { leading: false, trailing: true })
+  }, 200, { leading: false, trailing: true })
 
   // 搜索后重置分页页码
   watch(searchFormData, () => pagination.current = 1, { deep: true })
 
   // apiParams 改变时，同步到 route query，并重新请求数据
-  watch(apiParams, (v) => {
-    debouncedUpdateRouteQuery(v)
+  watch(apiParams, async v => {
+    await debouncedUpdateRouteQuery(v)
     getTableList()
   }, { deep: true, immediate: true })
 
-  // route query 改变并且不是由 apiParams 的 watch 触发的情况下，同步到 apiParams
-  watch(() => route.query, (v) => {
-    if (isUpdatedFromApiParams) {
+  // route query 改变并且不是由 debouncedUpdateRouteQuery 触发的情况下，才同步到 apiParams
+  watch(() => route.query, v => {
+    if (isUpdatedFromApiParams) 
       return
-    }
 
-    isTrash.value = Boolean(v.trash)
+    isTrash.value = JSON.parse(v.trash as string)
     pagination.current = Number(v.page) || 1
     pagination.pageSize = Number(v.page_size) || 20
-    searchFormData.value = {...v}
+    searchFormData.value = { ...v }
   }, { deep: true, immediate: true })
 
   // 重置搜索表单
   function resetSearchForm() {
-    if (Object.keys(searchFormData.value).length === 0) {
+    if (Object.keys(searchFormData.value).length === 0) 
       return
-    }
+    
     searchFormData.value = {}
   }
-
+  
   // 切换回收站和列表
   function switchTrashAndList() {
-    if(tableLoading.value) {
+    if (tableLoading.value) 
       return
-    }
+    
     isTrash.value = !isTrash.value
+  }
+
+  function getDataDetail(row: Record<string, any>) {
+    modalLoading.value = true
+    props.api.getDetail(row[props.rowKey ?? 'id']).then(res => {
+      itemDetail.value = res
+      modalLoading.value = false
+    }).catch(() => {
+      message.error('Failed to get item detail')
+    })
   }
 
   // 查看详情
   function handleRead(row: Record<string, any>) {
     formVisible.value = true
     mode.value = 'read'
-    itemDetail.value = cloneDeep(row)
+    getDataDetail(row)
   }
 
   // 打开添加弹窗
@@ -124,23 +133,40 @@ export default function useCurd(props: StdCurdProps, lang: string) {
   function handleEdit(row: Record<string, any>) {
     formVisible.value = true
     mode.value = 'edit'
-    itemDetail.value = cloneDeep(row)
+    getDataDetail(row)
   }
 
   // 保存新增/编辑数据
   function handleSave(data: Record<string, any>) {
     modalLoading.value = true
-    const operation = mode.value === 'add' ? 'create' : 'update'
 
-    props.api[operation](data)
-        .then(() => {
-          getTableList()
-          formVisible.value = false
-        })
-        .catch((err: any) => {
-          message.error('Failed to save data')
-        })
-        .finally(() => (modalLoading.value = false))
+    let promise: Promise<unknown>
+    if (mode.value === 'add') 
+      promise = props.api.create(data)
+    else 
+      promise = props.api.update(itemDetail[props.rowKey ?? 'id'], data)
+
+    promise
+      .then(() => {
+        getTableList()
+        formVisible.value = false
+      })
+      .catch((err: any) => {
+        message.error('Failed to save data')
+      })
+      .finally(() => (modalLoading.value = false))
+  }
+
+  // 处理删除/恢复数据
+  function handleDataById(action: string, record: Record<string, any>) {
+    tableLoading.value = true
+    props.api[action](record[props.rowKey ?? 'id'])
+      .then(() => {
+        getTableList()
+      })
+      .catch((err: any) => {
+        message.error('Failed to execute the operation')
+      })
   }
 
   return {
@@ -159,6 +185,7 @@ export default function useCurd(props: StdCurdProps, lang: string) {
     handleAdd,
     handleEdit,
     handleSave,
+    handleDataById,
   }
 }
 

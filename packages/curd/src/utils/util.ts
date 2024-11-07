@@ -17,3 +17,10 @@ export function getColumnKey(column: StdTableColumn) {
   }
   return column.dataIndex
 }
+
+export function getRealContent(content: string | (() => string)) {
+  if(isFunction(content)) {
+    return content()
+  }
+  return content
+}

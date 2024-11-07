@@ -14,7 +14,7 @@ export default createViteConfig({
         output: {
           exports: 'named',
         },
-        external: ['vue', 'ant-design-vue', 'lodash-es', '@ant-design/icons-vue', 'unocss'],
+        external: ['vue', 'ant-design-vue', 'lodash-es', '@ant-design/icons-vue'],
       },
     },
     plugins: [
@@ -22,6 +22,6 @@ export default createViteConfig({
         entryRoot: './src',
         include: ['./src/**/*.ts'],
       }),
-    ]
+    ],
   },
 })

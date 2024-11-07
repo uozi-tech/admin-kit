@@ -14,9 +14,9 @@ import {
 import { InboxOutlined } from '@ant-design/icons-vue'
 import { StdTableColumn } from '../types'
 import { get, isArray, set } from 'lodash-es'
-import { FORMAT } from '../constants'
+import { Format } from '../constants'
 import { i18n } from '../i18n'
-import {Reactive} from "vue";
+import { Reactive } from 'vue'
 
 export default function getInternalFormController(
   formData: Reactive<Record<string, any>>,
@@ -27,7 +27,7 @@ export default function getInternalFormController(
   const key = form?.formItem?.name ?? dataIndex
   const value = ref(get(formData, key))
 
-  watch(value, (v) => {
+  watch(value, v => {
     set(formData, key, v)
   })
 
@@ -56,11 +56,11 @@ export default function getInternalFormController(
     case 'week':
       return (
         <DatePicker
-          picker={form?.type}
+          picker={form?.type === 'datetime' ? undefined : form?.type}
           v-model:value={value.value}
-          valueFormat={FORMAT[form?.type]}
-          fotmat={FORMAT[form?.type]}
-          show-time={form?.type === 'datetime'}
+          valueFormat={Format[form?.type]}
+          format={Format[form?.type]}
+          showTime={form?.type === 'datetime'}
           getPopupContainer={(triggerNode: any) => triggerNode.parentNode}
           {...form[form?.type]}
         />
@@ -68,9 +68,9 @@ export default function getInternalFormController(
     case 'time':
       return (
         <TimePicker
-          value={value.value}
-          valueFormat={FORMAT[form?.type]}
-          fotmat={FORMAT[form?.type]}
+          v-model:value={value.value}
+          valueFormat={Format[form?.type]}
+          fotmat={Format[form?.type]}
           getPopupContainer={(triggerNode: any) => triggerNode.parentNode}
           {...form?.time}
         />
@@ -80,14 +80,17 @@ export default function getInternalFormController(
     case 'yearRangePicker':
     case 'monthRangePicker':
     case 'weekRangePicker':
-    case 'timeRangePicker':
+    case 'timeRangePicker': {
+      const pickerType = form?.type?.replace('RangePicker', '')
+
       return <RangePicker
-          v-model:value={value.value}
-          picker={form?.type}
-          show-time={form?.type === 'datetimeRangePicker'}
-          valueFormat={FORMAT[form?.type]}
-          fotmat={FORMAT[form?.type]}
+        v-model:value={value.value}
+        picker={pickerType}
+        valueFormat={Format[pickerType]}
+        format={Format[pickerType]}
+        show-time={pickerType === 'datetime'}
       />
+    }
     case 'switch':
       return <Switch v-model:checked={value.value} {...form?.switch} />
     case 'slider':
@@ -95,15 +98,15 @@ export default function getInternalFormController(
         <div style="padding: 0 6px">
           <Slider v-model:value={value.value} {...form?.slider} />
         </div>
-    )
+      )
     case 'rate':
       return <Rate v-model:value={value.value} {...form?.rate} />
     case 'upload':
       const fileUrls: string | string[] = value.value
       let fileList
-      if (isArray(fileUrls)) {
-        fileList = fileUrls.map((item) => ({ uid: item, name: item, status: 'done', url: item }))
-      } else {
+      if (isArray(fileUrls)) 
+        fileList = fileUrls.map(item => ({ uid: item, name: item, status: 'done', url: item }))
+      else 
         fileList = [
           {
             uid: fileUrls,
@@ -111,13 +114,17 @@ export default function getInternalFormController(
             url: fileUrls,
           },
         ]
-      }
+      
       return (
         <UploadDragger fileList={fileList}>
           <p class="ant-upload-drag-icon">
             <InboxOutlined />
           </p>
-          <p class="ant-upload-text"> {i18n[lang].upload} </p>
+          <p class="ant-upload-text"> 
+            {' '}
+            {i18n[lang].upload}
+            {' '}
+          </p>
         </UploadDragger>
       )
 

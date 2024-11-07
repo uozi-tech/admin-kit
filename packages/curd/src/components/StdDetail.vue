@@ -13,8 +13,9 @@ const displayColumns = props.columns.filter((item) => !item?.hiddenInDetail || i
 
 <template>
   <ADescriptions bordered :column="1">
-    <ADescriptions-item v-for="(column, index) in displayColumns" :key="index" :label="column.title">
+    <ADescriptionsItem v-for="(column, index) in displayColumns" :key="index" :label="column.title">
       <DataItemRender
+        v-if="Object.keys(props.record).length"
         :record="props.record"
         :column="column"
         :text="get(props.record, column.dataIndex)"
@@ -22,7 +23,7 @@ const displayColumns = props.columns.filter((item) => !item?.hiddenInDetail || i
         :index="index"
         :renderIndex="index"
       />
-    </ADescriptions-item>
+    </ADescriptionsItem>
   </ADescriptions>
 </template>
 

@@ -89,7 +89,7 @@ export type ExportColumn = Required<StdTableColumn> & { checked: boolean }
 
 export interface StdTableProps extends TableProps {
   columns: StdTableColumn[];
-  rowKey?: string | ((record: Record<string, any>) => string);
+  rowKey?: string;
   rowSelectionType?: 'checkbox' | 'radio';
   pagination?: any;
   scrollX?: number | string;
