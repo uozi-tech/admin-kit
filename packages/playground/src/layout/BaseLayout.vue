@@ -1,4 +1,5 @@
 <script setup lang="ts">
+
 import { RouterView } from 'vue-router'
 import { AdminLayout, SidebarItem } from '@uozi-admin/layout-antdv'
 import { useSettingsStore } from '../store'

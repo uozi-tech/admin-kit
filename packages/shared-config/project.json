@@ -4,7 +4,7 @@
     "build": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "tsup",
+        "command": "ls && tsup",
         "cwd": "packages/shared-config"
       }
     }
