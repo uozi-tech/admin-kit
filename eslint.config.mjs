@@ -11,6 +11,7 @@ export default defineConfig({
     '@typescript-eslint/no-unsafe-return': 'off',
     '@typescript-eslint/no-unnecessary-type-assertion': 'off',
     '@typescript-eslint/require-await': 'off',
+    '@typescript-eslint/no-unused-vars': 'warn'
   },
   vue: true,
   stylistic: {
@@ -20,6 +21,7 @@ export default defineConfig({
     '@stylistic/jsx-wrap-multilines': 'off',
     '@stylistic/jsx-closing-tag-location': 'off',
     '@stylistic/no-trailing-spaces': 'off',
+    '@stylistic/jsx-closing-bracket-location': 'off'
   },
   importX: true,
   unusedImports: true,

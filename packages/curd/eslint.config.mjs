@@ -4,4 +4,9 @@ import sharedConfig from '../../eslint.config.mjs'
 
 export default defineConfig({
   globals: autoImportGlobals.globals,
-}, ...sharedConfig)
+}, ...sharedConfig, {
+  rules: {
+    'no-use-before-define': 'off',
+    '@typescript-eslint/no-explicit-any': 'off'
+  }
+})

@@ -22,7 +22,7 @@ export function createAutoImportPluginConfig(customConfig?: Options): PluginOpti
     eslintrc: {
       enabled: true,
       // provide path ending with `.mjs` or `.cjs` to generate the file with the respective format
-      filepath: './.eslintrc-auto-import.json',
+      filepath: './.eslint-auto-import.mjs',
     },
     ...customConfig,
   })

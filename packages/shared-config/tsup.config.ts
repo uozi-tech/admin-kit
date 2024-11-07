@@ -3,7 +3,7 @@ import { defineConfig } from 'tsup'
 export default defineConfig({
   entry: ['vite', 'tsconfig'],
   target: 'esnext',
-  format: ['cjs', 'esm'],
+  format: ['esm'],
   splitting: true,
   sourcemap: false,
   dts: true,

@@ -1,11 +1,10 @@
 {
   "name": "@uozi-admin/layout-antdv",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "description": "Easy to implement admin layout",
+  "type": "module",
+  "main": "./src/index.ts",
+  "scripts": {},
   "keywords": [],
   "author": "",
   "license": "Apache-2.0",
@@ -13,12 +12,13 @@
     "@ant-design/icons-vue": "^7.0.1",
     "ant-design-vue": "^4.2.5",
     "vue": "^3.4.2",
-    "vue-router": "^4.4.0"
-  },
-  "dependencies": {
+    "vue-router": "^4.4.0",
     "lodash-es": "^4.17.21"
   },
+  "dependencies": {},
   "devDependencies": {
-    "@types/lodash-es": "^4.17.12"
+    "@uozi-admin/shared-config": "workspace:^",
+    "@types/lodash-es": "^4.17.12",
+    "unocss": "^0.62.4"
   }
 }
