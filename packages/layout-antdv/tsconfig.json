@@ -1,5 +1,9 @@
 {
   "extends": "@uozi-admin/shared-config/tsconfig/tsconfig.app.json",
+  "compilerOptions": {
+    "jsx": "preserve",
+    "jsxImportSource": "vue"
+  },
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx",

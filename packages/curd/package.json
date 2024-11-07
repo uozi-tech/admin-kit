@@ -1,20 +1,27 @@
 {
-  "name": "@uozi/curd",
+  "name": "@uozi-admin/curd",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "scripts": {},
   "keywords": [],
   "author": "",
   "license": "Apache-2.0",
+  "type": "module",
+  "main": "./src/index.ts",
   "peerDependencies": {
     "@ant-design/icons-vue": "^7.0.1",
     "ant-design-vue": "^4.2.5",
+    "vue-router": "^4.4.5",
+    "lodash-es": "^4.17.21",
     "unocss": "^0.62.4",
     "vue": "^3.4.37"
   },
   "dependencies": {
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "@types/lodash-es": "^4.17.12",
+    "@uozi-admin/shared-config": "workspace:^",
+    "@vue/tsconfig": "^0.5.1"
   }
 }

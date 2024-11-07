@@ -1,4 +1,4 @@
-{
+export default {
   "globals": {
     "Component": true,
     "ComponentPublicInstance": true,
@@ -10,6 +10,8 @@
     "InjectionKey": true,
     "PropType": true,
     "Ref": true,
+    "StdCurd": true,
+    "StdFormControllers": true,
     "VNode": true,
     "WritableComputedRef": true,
     "acceptHMRUpdate": true,
@@ -63,7 +65,6 @@
     "shallowReactive": true,
     "shallowReadonly": true,
     "shallowRef": true,
-    "store": true,
     "storeToRefs": true,
     "toRaw": true,
     "toRef": true,
@@ -74,12 +75,13 @@
     "useAttrs": true,
     "useCssModule": true,
     "useCssVars": true,
+    "useCurd": true,
+    "useExport": true,
     "useId": true,
     "useLink": true,
     "useModel": true,
     "useRoute": true,
     "useRouter": true,
-    "useSettingsStore": true,
     "useSlots": true,
     "useTemplateRef": true,
     "watch": true,
