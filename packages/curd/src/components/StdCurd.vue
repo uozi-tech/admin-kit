@@ -2,7 +2,7 @@
 import { StdCurdProps, StdTableBodyScope, StdTableHeaderScope } from '../types'
 import useCurd from '../composables/useCurd'
 import { useConfigContextInject } from 'ant-design-vue/es/config-provider/context'
-import { useExport } from '../composables/useExport'
+import { useExport } from '../composables'
 import { message } from 'ant-design-vue'
 import { i18n } from '../i18n'
 import StdForm from './StdForm.vue'
@@ -15,7 +15,7 @@ const props = defineProps<StdCurdProps>()
 
 const { locale: lang } = useConfigContextInject()
 const currentLanguage = computed(() => lang?.value?.locale ?? 'en')
-provide('lang', currentLanguage.value)
+provide('lang', currentLanguage)
 
 const {
   tableLoading,
@@ -43,8 +43,7 @@ const onSave = () => {
   const { formRef } = stdForm.value
   formRef.validateFields().then(res => {
     handleSave(res)
-  }).catch(err => {
-    console.log(err)
+  }).catch(() => {
     message.error(i18n[currentLanguage.value].formValidateError)
   })
 }
@@ -82,7 +81,7 @@ const exportVisible = ref(false)
 
 <template>
   <ACard
-    title="筛选"
+    :title="i18n[currentLanguage].search"
     class="mb-4"
   >
     <StdSearch
@@ -116,14 +115,14 @@ const exportVisible = ref(false)
       <AFlex gap="8">
         <slot name="beforeListActions" />
         <a
-          v-if="!props.disableExport"
+          v-if="!props.disableExport && !isTrash"
           :class="{ 'cursor-not-allowed text-truegray-3 hover:text-truegray-3': selectedRowKeys.length === 0 }"
           @click="selectedRowKeys.length > 0 && (exportVisible = true)"
         >
           {{ i18n[currentLanguage].exportExcel }}
         </a>
         <a
-          v-if="!props.disableAdd"
+          v-if="!props.disableAdd && !isTrash"
           @click="handleAdd"
         >{{ i18n[currentLanguage].add }}</a>
         <a
@@ -237,7 +236,6 @@ const exportVisible = ref(false)
           <StdDetail
             v-if="mode === 'read'"
             :row-key="props.rowKey"
-            :get-item-api="props.api.getItem"
             :columns="props.columns"
             :record="itemDetail"
           />

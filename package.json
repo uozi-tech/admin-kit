@@ -3,6 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "dev": "pnpm -F playground dev",
     "build": "nx run-many --target=build --all",
     "build:config": "nx run shared-config:build",
     "build:layout": "nx run layout-antdv:build",

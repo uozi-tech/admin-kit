@@ -75,13 +75,13 @@ export default function getInternalFormController(
           {...form?.time}
         />
       )
-    case 'dateRangePicker':
-    case 'datetimeRangePicker':
-    case 'yearRangePicker':
-    case 'monthRangePicker':
-    case 'weekRangePicker':
-    case 'timeRangePicker': {
-      const pickerType = form?.type?.replace('RangePicker', '')
+    case 'dateRange':
+    case 'datetimeRange':
+    case 'yearRange':
+    case 'monthRange':
+    case 'weekRange':
+    case 'timeRange': {
+      const pickerType = form?.type?.replace('Range', '')
 
       return <RangePicker
         v-model:value={value.value}
@@ -101,12 +101,12 @@ export default function getInternalFormController(
       )
     case 'rate':
       return <Rate v-model:value={value.value} {...form?.rate} />
-    case 'upload':
+    case 'upload': {
       const fileUrls: string | string[] = value.value
       let fileList
-      if (isArray(fileUrls)) 
+      if (isArray(fileUrls))
         fileList = fileUrls.map(item => ({ uid: item, name: item, status: 'done', url: item }))
-      else 
+      else
         fileList = [
           {
             uid: fileUrls,
@@ -114,20 +114,20 @@ export default function getInternalFormController(
             url: fileUrls,
           },
         ]
-      
+
       return (
         <UploadDragger fileList={fileList}>
           <p class="ant-upload-drag-icon">
             <InboxOutlined />
           </p>
-          <p class="ant-upload-text"> 
+          <p class="ant-upload-text">
             {' '}
             {i18n[lang].upload}
             {' '}
           </p>
         </UploadDragger>
       )
-
+    }
     default:
       return null
   }

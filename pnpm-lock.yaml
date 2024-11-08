@@ -60,9 +60,6 @@ importers:
       lodash-es:
         specifier: ^4.17.21
         version: 4.17.21
-      unocss:
-        specifier: ^0.62.4
-        version: 0.62.4(postcss@8.4.47)(rollup@4.24.3)(vite@5.4.7(@types/node@22.7.2)(less@4.2.0))
       vue:
         specifier: ^3.4.37
         version: 3.5.8(typescript@5.6.2)
@@ -79,9 +76,9 @@ importers:
       '@uozi-admin/shared-config':
         specifier: workspace:^
         version: link:../shared-config
-      '@vue/tsconfig':
-        specifier: ^0.5.1
-        version: 0.5.1
+      unocss:
+        specifier: ^0.62.4
+        version: 0.62.4(postcss@8.4.47)(rollup@4.24.3)(vite@5.4.7(@types/node@22.7.2)(less@4.2.0))
 
   packages/directives:
     dependencies:
@@ -113,37 +110,22 @@ importers:
       '@uozi-admin/shared-config':
         specifier: workspace:^
         version: link:../shared-config
-
-  packages/playground:
-    dependencies:
-      '@ant-design/icons-vue':
-        specifier: ^7.0.1
-        version: 7.0.1(vue@3.5.8(typescript@5.6.2))
-      '@uozi-admin/curd':
-        specifier: workspace:*
-        version: link:../curd
-      '@uozi-admin/layout-antdv':
-        specifier: workspace:*
-        version: link:../layout-antdv
-      ant-design-vue:
-        specifier: ^4.2.5
-        version: 4.2.5(vue@3.5.8(typescript@5.6.2))
-      pinia:
-        specifier: ^2.2.2
-        version: 2.2.2(typescript@5.6.2)(vue@3.5.8(typescript@5.6.2))
       unocss:
         specifier: ^0.62.4
         version: 0.62.4(postcss@8.4.47)(rollup@4.24.3)(vite@5.4.7(@types/node@22.7.2)(less@4.2.0))
-      vue-router:
-        specifier: ^4.4.5
-        version: 4.4.5(vue@3.5.8(typescript@5.6.2))
-      vue3-gettext:
-        specifier: 4.0.0-alpha.8
-        version: 4.0.0-alpha.8(@vue/compiler-sfc@3.5.8)(vue@3.5.8(typescript@5.6.2))
+
+  packages/request:
+    dependencies:
+      axios:
+        specifier: ^1.6.8
+        version: 1.7.7
+      lodash-es:
+        specifier: ^4.17.21
+        version: 4.17.21
     devDependencies:
-      '@uozi-admin/shared-config':
-        specifier: workspace:^
-        version: link:../shared-config
+      '@types/lodash-es':
+        specifier: ^4.17.12
+        version: 4.17.12
 
   packages/shared-config:
     dependencies:
@@ -177,6 +159,40 @@ importers:
       vite-plugin-vue-devtools:
         specifier: ^7.6.2
         version: 7.6.2(rollup@4.24.3)(vite@5.4.7(@types/node@22.7.2)(less@4.2.0))(vue@3.5.8(typescript@5.6.2))
+
+  playground:
+    dependencies:
+      '@ant-design/icons-vue':
+        specifier: ^7.0.1
+        version: 7.0.1(vue@3.5.8(typescript@5.6.2))
+      '@uozi-admin/curd':
+        specifier: workspace:*
+        version: link:../packages/curd
+      '@uozi-admin/layout-antdv':
+        specifier: workspace:*
+        version: link:../packages/layout-antdv
+      '@uozi-admin/request':
+        specifier: workspace:^
+        version: link:../packages/request
+      ant-design-vue:
+        specifier: ^4.2.5
+        version: 4.2.5(vue@3.5.8(typescript@5.6.2))
+      pinia:
+        specifier: ^2.2.2
+        version: 2.2.2(typescript@5.6.2)(vue@3.5.8(typescript@5.6.2))
+      unocss:
+        specifier: ^0.62.4
+        version: 0.62.4(postcss@8.4.47)(rollup@4.24.3)(vite@5.4.7(@types/node@22.7.2)(less@4.2.0))
+      vue-router:
+        specifier: ^4.4.5
+        version: 4.4.5(vue@3.5.8(typescript@5.6.2))
+      vue3-gettext:
+        specifier: 4.0.0-alpha.8
+        version: 4.0.0-alpha.8(@vue/compiler-sfc@3.5.8)(vue@3.5.8(typescript@5.6.2))
+    devDependencies:
+      '@uozi-admin/shared-config':
+        specifier: workspace:^
+        version: link:../packages/shared-config
 
 packages:
 
@@ -1973,9 +1989,6 @@ packages:
 
   '@vue/shared@3.5.8':
     resolution: {integrity: sha512-mJleSWbAGySd2RJdX1RBtcrUBX6snyOc0qHpgk3lGi4l9/P/3ny3ELqFWqYdkXIwwNN/kdm8nD9ky8o6l/Lx2A==}
-
-  '@vue/tsconfig@0.5.1':
-    resolution: {integrity: sha512-VcZK7MvpjuTPx2w6blwnwZAu5/LgBUtejFOi3pPGQFXQN5Ela03FUtd2Qtg4yWGGissVL0dr6Ro1LfOFh+PCuQ==}
 
   '@yarnpkg/lockfile@1.1.0':
     resolution: {integrity: sha512-GpSwvyXOcOOlV70vbnzjj4fW5xW/FdUF6nQEt1ENy7m4ZCczi1+/buVUPAqmGfqznsORNFzUMjctTIp8a9tuCQ==}
@@ -6070,8 +6083,6 @@ snapshots:
       vue: 3.5.8(typescript@5.6.2)
 
   '@vue/shared@3.5.8': {}
-
-  '@vue/tsconfig@0.5.1': {}
 
   '@yarnpkg/lockfile@1.1.0': {}
 

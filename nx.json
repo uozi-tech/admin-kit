@@ -8,7 +8,8 @@
   "release": {
     "projects": [
       "shared-config",
-      "layout-antdv"
+      "layout-antdv",
+      "curd"
     ],
     "changelog": {
       "projectChangelogs": {
