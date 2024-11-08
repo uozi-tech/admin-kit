@@ -14,102 +14,119 @@ import {
   TimePickerProps,
   TransferProps,
   UploadProps,
-} from 'ant-design-vue';
-import { ComponentInstance, ExtractPublicPropTypes, VNode } from 'vue';
-import { cascaderProps } from 'ant-design-vue/es/cascader';
+} from 'ant-design-vue'
+import { ComponentInstance, VNode } from 'vue'
 import {
   MonthPickerProps,
   WeekPickerProps,
-} from 'ant-design-vue/es/date-picker';
-import { JSX } from 'vue/jsx-runtime';
+} from 'ant-design-vue/es/date-picker'
+import { JSX } from 'vue/jsx-runtime'
+import { CascaderProps } from 'ant-design-vue/es/cascader'
 
 export type FormControllerType = 'input'
-    | 'input-number'
-    | 'select'
-    | 'date'
-    | 'datetime'
-    | 'year'
-    | 'month'
-    | 'week'
-    | 'time'
-    | 'number'
-    | 'textarea'
-    | 'radio'
-    | 'checkbox'
-    | 'switch'
-    | 'rate'
-    | 'slider'
-    | 'upload'
-    | 'cascader'
-    | 'transfer'
-    | ((column: StdTableColumn) => VNode | JSX.Element)
-    | ComponentInstance<any>
+  | 'inputNumber'
+  | 'select'
+  | 'date'
+  | 'datetime'
+  | 'year'
+  | 'month'
+  | 'week'
+  | 'time'
+  | 'number'
+  | 'textarea'
+  | 'radio'
+  | 'checkbox'
+  | 'switch'
+  | 'rate'
+  | 'slider'
+  | 'upload'
+  | 'cascader'
+  | 'transfer'
+  | 'dateRange'
+  | 'datetimeRange'
+  | 'dateTimeRange'
+  | 'yearRange'
+  | 'monthRange'
+  | 'weekRange'
+  | 'timeRange'
+  | ((column: StdTableColumn) => VNode | JSX.Element)
+    // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
+  | ComponentInstance<unknown>
 
 export type FormItemType = {
-  type: FormControllerType;
-  input?: ExtractPublicPropTypes<InputProps>;
-  inputNumber?: ExtractPublicPropTypes<InputNumberProps>;
-  select?: ExtractPublicPropTypes<SelectProps> & { valueKey?: string };
-  cascader?: ExtractPublicPropTypes<typeof cascaderProps>;
-  datePicker?: ExtractPublicPropTypes<DatePickerProps>;
-  week?: ExtractPublicPropTypes<WeekPickerProps>;
-  month?: ExtractPublicPropTypes<MonthPickerProps>;
-  time?: ExtractPublicPropTypes<TimePickerProps>;
-  radio?: ExtractPublicPropTypes<RadioProps>;
-  checkbox?: ExtractPublicPropTypes<CheckboxProps>;
-  rate?: ExtractPublicPropTypes<RateProps>;
-  slider?: ExtractPublicPropTypes<SliderProps>;
-  switch?: ExtractPublicPropTypes<SwitchProps>;
-  transfer?: ExtractPublicPropTypes<TransferProps>;
-  upload?: ExtractPublicPropTypes<UploadProps>;
+  type: FormControllerType
+  input?: InputProps
+  inputNumber?: InputNumberProps
+  select?: SelectProps & { valueKey?: string }
+  cascader?: CascaderProps
+  datePicker?: DatePickerProps
+  week?: WeekPickerProps
+  month?: MonthPickerProps
+  time?: TimePickerProps
+  radio?: RadioProps
+  checkbox?: CheckboxProps
+  rate?: RateProps
+  slider?: SliderProps
+  switch?: SwitchProps
+  transfer?: TransferProps
+  upload?: UploadProps
 
-  formItem?: ExtractPublicPropTypes<FormItemProps> & {
-    name?: string | string[];
-  };
-};
+  formItem?: FormItemProps & {
+    name?: string | (() => string)
+  }
+}
 
-export interface StdTableColumn extends TableColumnType<any> {
-  title: string | (() => string);
-  dataIndex: string | string[];
+export interface StdTableColumn extends Omit<TableColumnType, 'customRender'> {
+  title: string | (() => string)
+  dataIndex: string | string[]
   customHeaderRender?: (data: {
-    column: StdTableColumn;
-    title: string;
-  }) => VNode | JSX.Element;
-  search?: boolean | FormItemType;
+    column: StdTableColumn
+    title: string
+  }) => VNode | JSX.Element
+  search?: boolean | FormItemType
   edit?: FormItemType
-  customRender?: ((data: CustomRenderOptions) => VNode | JSX.Element) | any;
-  hiddenInTable?: boolean;
-  hiddenInEdit?: boolean;
-  hiddenInAdd?: boolean;
-  hiddenInDetail?: boolean;
+  customRender?: ((data: CustomRenderOptions) => VNode | JSX.Element)
+  hiddenInTable?: boolean
+  hiddenInEdit?: boolean
+  hiddenInAdd?: boolean
+  hiddenInDetail?: boolean
   hiddenInExport?: boolean
 }
 
 export type ExportColumn = Required<StdTableColumn> & { checked: boolean }
 
-export interface StdTableProps extends TableProps {
-  columns: StdTableColumn[];
-  rowKey?: string;
-  rowSelectionType?: 'checkbox' | 'radio';
-  pagination?: any;
-  scrollX?: number | string;
-  scrollY?: number | string;
+export interface StdTableProps extends Omit<TableProps, 'columns'> {
+  columns: StdTableColumn[]
+  rowKey?: string
+  rowSelectionType?: 'checkbox' | 'radio'
+  scrollX?: number | string
+  scrollY?: number | string
 }
 
 export interface CustomRenderOptions {
-  column: StdTableColumn;
-  record: Record<string, any>;
-  text: any;
-  value?: any;
-  index?: number;
-  renderIndex?: number;
-  export?: boolean;
-};
+  column: StdTableColumn
+  record: Record<string, any>
+  text: any
+  value?: any
+  index?: number
+  renderIndex?: number
+  export?: boolean
+}
 
-export interface StdCurdProps extends Pick<StdTableProps, 'rowKey' | 'rowSelectionType' | 'columns' | 'pagination' | 'scrollX' | 'scrollY'> {
-  title?: string | any
-  api: any
-  formLabelPosition?: 'left' | 'right' | 'top'
+export interface StdCurdProps extends
+  Pick<StdTableProps, 'columns'>,
+  Partial<
+    Pick<StdTableProps, 'rowKey' | 'rowSelectionType' | 'pagination' | 'scrollX' | 'scrollY'>
+  > {
+  title?: string | (() => string)
+  api: {
+    getList: (params?: Record<string, any>) => Promise<any>
+    getDetail: (id: string | number, params?: Record<string, any>) => Promise<any>
+    create: (data: Record<string, any>) => Promise<any>
+    update: (id: string | number, data: Record<string, any>) => Promise<any>
+    delete: (id: string | number, params?: Record<string, any>) => Promise<any>
+    restore: (id: string | number, params?: Record<string, any>) => Promise<any>
+  }
   tableConfig?: TableProps
   customParams?: Record<string, any>
   listQueryParams?: Record<string, any>

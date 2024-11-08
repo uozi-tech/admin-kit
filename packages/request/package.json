@@ -1,0 +1,19 @@
+{
+  "name": "@uozi-admin/request",
+  "version": "1.0.0",
+  "description": "Easy to create curd request functions.",
+  "main": "src/index.ts",
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "Apache-2.0",
+  "peerDependencies": {
+    "lodash-es": "^4.17.21"
+  },
+  "dependencies": {
+    "axios": "^1.6.8"
+  },
+  "devDependencies": {
+    "@types/lodash-es": "^4.17.12"
+  }
+}

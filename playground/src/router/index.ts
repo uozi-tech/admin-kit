@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
-import { $gettext } from '../gettext.ts'
+import { $gettext } from '../gettext'
 import { DashboardOutlined, HomeOutlined } from '@ant-design/icons-vue'
 
 export const routes: RouteRecordRaw[] = [
@@ -27,6 +27,15 @@ export const routes: RouteRecordRaw[] = [
         meta: {
           icon: HomeOutlined,
           title: () => $gettext('About'),
+        },
+      },
+      {
+        path: '/user',
+        name: 'user',
+        component: () => import('../views/User.vue'),
+        meta: {
+          icon: HomeOutlined,
+          title: () => $gettext('User'),
         },
       },
     ],

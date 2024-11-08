@@ -4,6 +4,7 @@ import { i18n } from '../i18n'
 import { StdCurdProps } from '../types'
 import { message } from 'ant-design-vue'
 import { PaginationConfig } from 'ant-design-vue/es/pagination'
+import { ApiActions } from '../constants/api'
 
 export default function useCurd(props: StdCurdProps, lang: string) {
   const router = useRouter()
@@ -30,11 +31,11 @@ export default function useCurd(props: StdCurdProps, lang: string) {
 
   const debouncedListApi = debounce(async () => {
     return props.api.getList(apiParams.value)
-      .then((res: any) => {
+      .then(res => {
         tableData.value = res.data
         pagination.total = res?.pagination?.total
       })
-      .catch((err: any) => {
+      .catch(() => {
         message.error('Failed to fetch data')
       })
       .finally(() => {
@@ -83,7 +84,7 @@ export default function useCurd(props: StdCurdProps, lang: string) {
     if (isUpdatedFromApiParams) 
       return
 
-    isTrash.value = JSON.parse(v.trash as string)
+    isTrash.value = JSON.parse(v.trash as string ?? 'false')
     pagination.current = Number(v.page) || 1
     pagination.pageSize = Number(v.page_size) || 20
     searchFormData.value = { ...v }
@@ -103,6 +104,8 @@ export default function useCurd(props: StdCurdProps, lang: string) {
       return
     
     isTrash.value = !isTrash.value
+    pagination.current = 1
+    searchFormData.value = {}
   }
 
   function getDataDetail(row: Record<string, any>) {
@@ -143,8 +146,8 @@ export default function useCurd(props: StdCurdProps, lang: string) {
     let promise: Promise<unknown>
     if (mode.value === 'add') 
       promise = props.api.create(data)
-    else 
-      promise = props.api.update(itemDetail[props.rowKey ?? 'id'], data)
+    else
+      promise = props.api.update(itemDetail.value[props.rowKey ?? 'id'], data)
 
     promise
       .then(() => {
@@ -160,7 +163,10 @@ export default function useCurd(props: StdCurdProps, lang: string) {
   // 处理删除/恢复数据
   function handleDataById(action: string, record: Record<string, any>) {
     tableLoading.value = true
-    props.api[action](record[props.rowKey ?? 'id'])
+    
+    const actionKey = action.startsWith('delete') ? 'delete' : 'restore'
+
+    props.api[actionKey](record[props.rowKey ?? 'id'], { permanently: action === ApiActions.DELETE_PERMANENTLY })
       .then(() => {
         getTableList()
       })

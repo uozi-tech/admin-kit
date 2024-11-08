@@ -1,5 +1,5 @@
-import {CustomRenderOptions} from '../types'
-import {get} from 'lodash-es'
+import { CustomRenderOptions } from '../types'
+import { get } from 'lodash-es'
 
 export function DataItemRender(props: CustomRenderOptions) {
   const { record, column } = props
