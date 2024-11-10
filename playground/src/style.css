@@ -1,3 +1,7 @@
+@import "@uozi-admin/layout-antdv/dist/index.css";
+@import "@uozi-admin/curd/dist/index.css";
+
+
 body {
   margin: 0;
 }

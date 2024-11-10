@@ -14,6 +14,8 @@ declare module 'vue' {
     ADescriptionsItem: typeof import('ant-design-vue/es')['DescriptionsItem']
     ADivider: typeof import('ant-design-vue/es')['Divider']
     AFlex: typeof import('ant-design-vue/es')['Flex']
+    AForm: typeof import('ant-design-vue/es')['Form']
+    AFormItem: typeof import('ant-design-vue/es')['FormItem']
     AModal: typeof import('ant-design-vue/es')['Modal']
     APopconfirm: typeof import('ant-design-vue/es')['Popconfirm']
     ASpin: typeof import('ant-design-vue/es')['Spin']
@@ -23,5 +25,6 @@ declare module 'vue' {
     StdCurd: typeof import('./src/components/StdCurd.vue')['default']
     StdDetail: typeof import('./src/components/StdDetail.vue')['default']
     StdForm: typeof import('./src/components/StdForm.vue')['default']
+    StdSearch: typeof import('./src/components/StdSearch.vue')['default']
   }
 }

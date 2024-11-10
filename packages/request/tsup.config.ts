@@ -1,13 +1,11 @@
 import { defineConfig } from 'tsup'
 
 export default defineConfig({
-  entry: ['vite', 'tsconfig'],
+  entry: ['src/index.ts'],
   target: 'esnext',
-  format: ['esm'],
+  format: ['esm', 'cjs'],
   splitting: false,
-  sourcemap: false,
+  sourcemap: true,
   dts: true,
   clean: true,
-  external: ['vite', 'unocss'],
-  noExternal: ['./**/*.json'],
 })

@@ -8,6 +8,7 @@
   "release": {
     "projects": [
       "shared-config",
+      "request",
       "layout-antdv",
       "curd"
     ],

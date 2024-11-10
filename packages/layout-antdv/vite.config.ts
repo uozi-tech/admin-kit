@@ -4,6 +4,7 @@ import dts from 'vite-plugin-dts'
 export default createViteConfig({
   overrides: {
     build: {
+      cssCodeSplit: true,
       lib: {
         entry: 'src/index.ts',
         name: 'Bundle',
@@ -19,7 +20,7 @@ export default createViteConfig({
     },
     plugins: [
       dts({
-        include: ['./src/**/*.ts'],
+        rollupTypes: true,
       }),
     ],
   },

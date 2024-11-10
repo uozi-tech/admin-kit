@@ -4,6 +4,7 @@ import dts from 'vite-plugin-dts'
 export default createViteConfig({
   overrides: {
     build: {
+      cssCodeSplit: true,
       lib: {
         entry: 'src/index.ts',
         name: 'Bundle',
@@ -13,14 +14,16 @@ export default createViteConfig({
       rollupOptions: {
         output: {
           exports: 'named',
+          globals: {
+            vue: 'Vue',
+          },
         },
-        external: ['vue', 'ant-design-vue', 'lodash-es', '@ant-design/icons-vue'],
+        external: ['vue', 'vue-router', 'ant-design-vue', 'lodash-es', '@ant-design/icons-vue'],
       },
     },
     plugins: [
       dts({
-        entryRoot: './src',
-        include: ['./src/**/*.ts'],
+        rollupTypes: true,
       }),
     ],
   },

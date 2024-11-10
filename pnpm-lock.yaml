@@ -79,6 +79,12 @@ importers:
       unocss:
         specifier: ^0.62.4
         version: 0.62.4(postcss@8.4.47)(rollup@4.24.3)(vite@5.4.7(@types/node@22.7.2)(less@4.2.0))
+      unocss-preset-chinese:
+        specifier: ^0.3.3
+        version: 0.3.3(unocss@0.62.4(postcss@8.4.47)(rollup@4.24.3)(vite@5.4.7(@types/node@22.7.2)(less@4.2.0)))
+      unocss-preset-ease:
+        specifier: ^0.0.4
+        version: 0.0.4(unocss@0.62.4(postcss@8.4.47)(rollup@4.24.3)(vite@5.4.7(@types/node@22.7.2)(less@4.2.0)))
 
   packages/directives:
     dependencies:
@@ -113,6 +119,12 @@ importers:
       unocss:
         specifier: ^0.62.4
         version: 0.62.4(postcss@8.4.47)(rollup@4.24.3)(vite@5.4.7(@types/node@22.7.2)(less@4.2.0))
+      unocss-preset-chinese:
+        specifier: ^0.3.3
+        version: 0.3.3(unocss@0.62.4(postcss@8.4.47)(rollup@4.24.3)(vite@5.4.7(@types/node@22.7.2)(less@4.2.0)))
+      unocss-preset-ease:
+        specifier: ^0.0.4
+        version: 0.0.4(unocss@0.62.4(postcss@8.4.47)(rollup@4.24.3)(vite@5.4.7(@types/node@22.7.2)(less@4.2.0)))
 
   packages/request:
     dependencies:

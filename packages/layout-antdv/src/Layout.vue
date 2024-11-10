@@ -124,7 +124,7 @@ function onSidebarCollapse(collapsed: boolean) {
   @apply bg-base text-color-base;
 }
 :deep(.ant-layout-sider .ant-menu-root) {
-  border-inline-end: none !important;;
+  border-inline-end: none !important;
 }
 @media (orientation: landscape) {
   .layout-container {

@@ -2,11 +2,33 @@
   "name": "@uozi-admin/request",
   "version": "1.0.0",
   "description": "Easy to create curd request functions.",
-  "main": "src/index.ts",
-  "scripts": {},
-  "keywords": [],
-  "author": "",
+  "main": "dist/index.mjs",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.mts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.mts",
+      "module": "./dist/index.mjs",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./*": "./*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uozi-tech/admin-kit.git",
+    "directory": "packages/request"
+  },
+  "keywords": [
+    "uozi-admin",
+    "request"
+  ],
+  "author": "Akino",
   "license": "Apache-2.0",
+  "scripts": {},
   "peerDependencies": {
     "lodash-es": "^4.17.21"
   },

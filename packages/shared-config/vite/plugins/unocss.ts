@@ -14,9 +14,20 @@ import presetEase from 'unocss-preset-ease'
 import { PluginOption } from 'vite'
 import UnoCSS from 'unocss/vite'
 
-const defaultConfig: UserConfig = {
+export interface VitePluginConfig extends UserConfig {
+  inspector?: boolean
+  mode?: 'global' | 'per-module' | 'vue-scoped' | 'dist-chunk' | 'shadow-dom'
+  transformCSS?: boolean | 'pre' | 'post'
+  postcss?: boolean
+  hmrTopLevelAwait?: boolean
+  fetchMode?: 'cors' | 'navigate' | 'no-cors' | 'same-origin'
+}
+
+const defaultConfig: VitePluginConfig = {
+  mode: 'vue-scoped',
   content: {
     pipeline: {
+      include: ['**/*.{ts,jsx,tsx,vue}'],
       exclude: ['node_modules', '.git', 'dist'],
     },
   },
@@ -69,6 +80,6 @@ const defaultConfig: UserConfig = {
   ],
 }
 
-export function createUnoCSSPluginConfig(customConfig: UserConfig = {}): PluginOption {
+export function createUnoCSSPluginConfig(customConfig: VitePluginConfig = {}): PluginOption {
   return UnoCSS(mergeConfigs([defaultConfig, customConfig]))
 }
