@@ -18,7 +18,6 @@
     },
     "./*": "./*"
   },
-  "scripts": {},
   "keywords": [
     "uozi-admin",
     "curd"
@@ -30,6 +29,9 @@
   },
   "author": "Akino",
   "license": "Apache-2.0",
+  "scripts": {
+    "build": "vite build"
+  },
   "peerDependencies": {
     "@ant-design/icons-vue": "^7.0.1",
     "ant-design-vue": "^4.2.5",
@@ -42,7 +44,7 @@
   },
   "devDependencies": {
     "@types/lodash-es": "^4.17.12",
-    "@uozi-admin/shared-config": "0.0.1",
+    "@uozi-admin/shared-config": "workspace:*",
     "unocss": "^0.62.4",
     "unocss-preset-chinese": "^0.3.3",
     "unocss-preset-ease": "^0.0.4"

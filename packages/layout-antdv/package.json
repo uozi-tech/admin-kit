@@ -20,7 +20,6 @@
     "./index.css": "./dist/index.css",
     "./*": "./*"
   },
-  "scripts": {},
   "keywords": [
     "uozi-admin",
     "admin-layout",
@@ -33,6 +32,9 @@
   },
   "author": "Akino",
   "license": "Apache-2.0",
+  "scripts": {
+    "build": "vite build"
+  },
   "peerDependencies": {
     "@ant-design/icons-vue": "^7.0.1",
     "ant-design-vue": "^4.2.5",
@@ -42,7 +44,7 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@uozi-admin/shared-config": "workspace:0.0.0",
+    "@uozi-admin/shared-config": "workspace:*",
     "@types/lodash-es": "^4.17.12",
     "unocss": "^0.62.4",
     "unocss-preset-chinese": "^0.3.3",

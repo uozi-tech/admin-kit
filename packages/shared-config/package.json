@@ -2,7 +2,6 @@
   "name": "@uozi-admin/shared-config",
   "version": "0.0.0",
   "description": "Easy to configure your admin apps",
-  "scripts": {},
   "keywords": [
     "uozi-admin",
     "shared-config"
@@ -20,6 +19,9 @@
     "./tsconfig/tsconfig.app.json": "./tsconfig/tsconfig.app.json",
     "./tsconfig/tsconfig.node.json": "./tsconfig/tsconfig.node.json",
     "./*": "./*"
+  },
+  "scripts": {
+    "build": "tsup"
   },
   "peerDependencies": {
     "unocss": "^0.62.4",

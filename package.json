@@ -4,18 +4,19 @@
   "type": "module",
   "scripts": {
     "dev": "pnpm -F playground dev",
-    "build": "nx run-many --target=build --all",
-    "build:config": "nx run shared-config:build",
-    "build:layout": "nx run layout-antdv:build",
-    "build:curd": "nx run curd:build"
+    "build": "pnpm -r build",
+    "release": "npx sematic-release"
   },
   "dependencies": {
     "vue": "^3.4.37"
   },
   "devDependencies": {
-    "@nx/js": "^20.0.7",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
     "@vitejs/plugin-vue": "^5.1.2",
     "eslint-config-airbe": "^1.2.0",
+    "semantic-release": "^24.2.0",
+    "semantic-release-monorepo": "^8.0.2",
     "tsup": "^8.3.5",
     "typescript": "^5.5.4",
     "unocss": "^0.62.4",
