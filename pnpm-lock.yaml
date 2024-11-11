@@ -74,7 +74,7 @@ importers:
         specifier: ^4.17.12
         version: 4.17.12
       '@uozi-admin/shared-config':
-        specifier: workspace:^
+        specifier: 0.0.1
         version: link:../shared-config
       unocss:
         specifier: ^0.62.4
@@ -114,7 +114,7 @@ importers:
         specifier: ^4.17.12
         version: 4.17.12
       '@uozi-admin/shared-config':
-        specifier: workspace:^
+        specifier: 0.0.1
         version: link:../shared-config
       unocss:
         specifier: ^0.62.4
@@ -178,13 +178,13 @@ importers:
         specifier: ^7.0.1
         version: 7.0.1(vue@3.5.8(typescript@5.6.2))
       '@uozi-admin/curd':
-        specifier: workspace:*
+        specifier: 0.0.2-0
         version: link:../packages/curd
       '@uozi-admin/layout-antdv':
-        specifier: workspace:*
+        specifier: 0.0.1
         version: link:../packages/layout-antdv
       '@uozi-admin/request':
-        specifier: workspace:^
+        specifier: 0.0.1
         version: link:../packages/request
       ant-design-vue:
         specifier: ^4.2.5

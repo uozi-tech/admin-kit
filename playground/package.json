@@ -1,6 +1,7 @@
 {
   "name": "playground",
   "private": true,
+  "version": "0.0.3",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -12,9 +13,9 @@
     "ant-design-vue": "^4.2.5"
   },
   "dependencies": {
-    "@uozi-admin/curd": "workspace:*",
-    "@uozi-admin/layout-antdv": "workspace:*",
-    "@uozi-admin/request": "workspace:^",
+    "@uozi-admin/curd": "0.0.1",
+    "@uozi-admin/layout-antdv": "0.0.1",
+    "@uozi-admin/request": "0.0.1",
     "pinia": "^2.2.2",
     "unocss": "^0.62.4",
     "vue-router": "^4.4.5",

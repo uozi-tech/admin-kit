@@ -13,13 +13,22 @@
       "curd"
     ],
     "changelog": {
+      "automaticFromRef": true,
       "projectChangelogs": {
+        "createRelease": "github",
+        "file": true,
         "renderOptions": {
           "authors": true,
           "commitReferences": true,
           "versionTitleDate": true
         }
       }
+    },
+    "projectsRelationship": "independent",
+    "git": {
+      "commit": true,
+      "stageChanges": true,
+      "tag": true
     }
   },
   "namedInputs": {
