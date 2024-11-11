@@ -7,12 +7,7 @@
     "build": "nx run-many --target=build --all",
     "build:config": "nx run shared-config:build",
     "build:layout": "nx run layout-antdv:build",
-    "build:curd": "nx run curd:build",
-    "release": "nx release",
-    "release:curd": "nx release prerelease --projects curd",
-    "release:layout": "nx release --projects layout-antdv",
-    "release:request": "nx release --projects request",
-    "release:shared-config": "nx release --projects shared-config"
+    "build:curd": "nx run curd:build"
   },
   "dependencies": {
     "vue": "^3.4.37"

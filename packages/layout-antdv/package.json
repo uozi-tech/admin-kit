@@ -1,6 +1,6 @@
 {
   "name": "@uozi-admin/layout-antdv",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "description": "Easy to implement admin layout",
   "type": "module",
   "main": "dist/index.mjs",
@@ -42,7 +42,7 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@uozi-admin/shared-config": "0.0.1",
+    "@uozi-admin/shared-config": "workspace:0.0.0",
     "@types/lodash-es": "^4.17.12",
     "unocss": "^0.62.4",
     "unocss-preset-chinese": "^0.3.3",

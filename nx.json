@@ -10,13 +10,12 @@
       "shared-config",
       "request",
       "layout-antdv",
-      "curd"
+      "curd",
+      "!playground"
     ],
     "changelog": {
       "automaticFromRef": true,
       "projectChangelogs": {
-        "createRelease": "github",
-        "file": true,
         "renderOptions": {
           "authors": true,
           "commitReferences": true,
@@ -26,9 +25,9 @@
     },
     "projectsRelationship": "independent",
     "git": {
-      "commit": true,
-      "stageChanges": true,
-      "tag": true
+      "commit": false,
+      "stageChanges": false,
+      "tag": false
     }
   },
   "namedInputs": {
