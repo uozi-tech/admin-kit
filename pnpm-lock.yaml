@@ -178,7 +178,7 @@ importers:
         specifier: workspace:*
         version: link:../packages/layout-antdv
       '@uozi-admin/request':
-        specifier: 0.0.1
+        specifier: workspace:*
         version: link:../packages/request
       ant-design-vue:
         specifier: ^4.2.5

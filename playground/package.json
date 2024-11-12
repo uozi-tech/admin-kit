@@ -14,7 +14,7 @@
   "dependencies": {
     "@uozi-admin/curd": "workspace:*",
     "@uozi-admin/layout-antdv": "workspace:*",
-    "@uozi-admin/request": "0.0.1",
+    "@uozi-admin/request": "workspace:*",
     "pinia": "^2.2.2",
     "unocss": "^0.62.4",
     "vue-router": "^4.4.5",
