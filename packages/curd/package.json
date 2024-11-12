@@ -45,7 +45,6 @@
   "devDependencies": {
     "@types/lodash-es": "^4.17.12",
     "@uozi-admin/shared-config": "workspace:*",
-    "unocss": "^0.62.4",
     "unocss-preset-chinese": "^0.3.3",
     "unocss-preset-ease": "^0.0.4"
   }

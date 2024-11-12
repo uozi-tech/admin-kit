@@ -5,25 +5,23 @@
   "scripts": {
     "dev": "pnpm -F playground dev",
     "build": "pnpm -r build",
-    "release": "npx sematic-release"
+    "version-packages": "changeset version",
+    "release": "pnpm build && changeset publish"
   },
   "dependencies": {
     "vue": "^3.4.37"
   },
   "devDependencies": {
-    "@semantic-release/changelog": "^6.0.3",
-    "@semantic-release/git": "^10.0.1",
+    "@changesets/cli": "^2.27.9",
     "@vitejs/plugin-vue": "^5.1.2",
     "eslint-config-airbe": "^1.2.0",
-    "semantic-release": "^24.2.0",
-    "semantic-release-monorepo": "^8.0.2",
     "tsup": "^8.3.5",
     "typescript": "^5.5.4",
-    "unocss": "^0.62.4",
+    "unocss": "^0.64.0",
     "unplugin-auto-import": "^0.18.3",
     "unplugin-vue-components": "^0.27.4",
     "unplugin-vue-define-options": "^1.5.1",
-    "vite": "^5.4.1",
+    "vite": "^5.4.11",
     "vite-plugin-dts": "^4.3.0",
     "vue-tsc": "^2.0.29"
   }

@@ -1,46 +1,30 @@
 name: Release
-on: workflow_dispatch
 
-permissions:
-  contents: write
+on:
+  push:
+    branches:
+      - main
+      - next
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
   release:
-    permissions:
-      contents: write
-      id-token: write
-      issues: write
-      pull-requests: write
+    name: Release
+    if: github.repository == 'uozi-tech/admin-kit'
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/ci-setup
+
+      - name: Create Release Pull Request or Publish to npm
+        # https://github.com/changesets/action
+        uses: changesets/action@v1
         with:
-          fetch-depth: 0
-
-      - name: Using pnpm
-        uses: pnpm/action-setup@v3
-        with:
-          version: 9.3.0
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: pnpm
-
-      - name: Install dependencies
-        run: pnpm install
-
-      - name: Build
-        run: pnpm build
-
-      - name: Release
+          # this expects you to have a script called release which does a build for your packages and calls changeset publish
+          publish: yarn release
+          version: yarn version-packages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GIT_AUTHOR_EMAIL: materialgithubbot@gmail.com
-          GIT_AUTHOR_NAME: release-bot
-          GIT_COMMITTER_EMAIL: materialgithubbot@gmail.com
-          GIT_COMMITTER_NAME: release-bot
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: pnpm release
