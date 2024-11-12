@@ -12,6 +12,11 @@ jobs:
   release:
     name: Release
     if: github.repository == 'uozi-tech/admin-kit'
+    permissions:
+      contents: write
+      id-token: write
+      issues: write
+      pull-requests: write
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
