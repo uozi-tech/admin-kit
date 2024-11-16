@@ -1,0 +1,4 @@
+{
+  "extends": "@uozi-admin/shared-config/tsconfig/tsconfig.app.json",
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue"]
+}
