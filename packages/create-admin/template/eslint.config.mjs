@@ -11,6 +11,8 @@ export default defineConfig({
     '@typescript-eslint/no-unsafe-return': 'off',
     '@typescript-eslint/no-unnecessary-type-assertion': 'off',
     '@typescript-eslint/require-await': 'off',
+    '@typescript-eslint/dot-notation': 'off',
+    '@typescript-eslint/no-empty-function': 'off'
   },
   vue: true,
   stylistic: {
