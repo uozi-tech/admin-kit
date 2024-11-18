@@ -9,7 +9,7 @@
     "release": "pnpm build && changeset publish"
   },
   "dependencies": {
-    "vue": "^3.4.37"
+    "vue": "^3.5.12"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.5.0",

@@ -1,0 +1,10 @@
+{
+    "extends": "@uozi-admin/shared-config/tsconfig/tsconfig.node.json",
+    "compilerOptions": {
+        "outDir": "dist",
+        "declaration": false,
+        "sourceMap": false,
+        "noUnusedLocals": true
+    },
+    "include": ["src/**/*.ts"]
+}

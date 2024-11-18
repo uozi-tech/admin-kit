@@ -1,8 +1,8 @@
 import AutoImport from 'unplugin-auto-import/vite'
 import type { PluginOption } from 'vite'
-import { Options } from 'unplugin-auto-import/types'
+import { PluginsCustomOptions } from './index'
 
-export function createAutoImportPluginConfig(customConfig?: Options): PluginOption {
+export function createAutoImportPluginConfig(customConfig?: PluginsCustomOptions['autoImport']): PluginOption {
   // https://github.com/antfu/unplugin-auto-import
   return AutoImport({
     imports: [

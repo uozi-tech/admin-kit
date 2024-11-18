@@ -1,0 +1,4 @@
+{
+  "extends": "@uozi-admin/shared-config/tsconfig/tsconfig.node.json",
+  "include": ["vite.config.ts"]
+}
