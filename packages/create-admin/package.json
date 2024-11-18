@@ -1,6 +1,6 @@
 {
-  "name": "@uozi-admin/create-admin",
-  "version": "0.0.2",
+  "name": "create-uozi-admin",
+  "version": "0.0.1",
   "description": "",
   "keywords": [],
   "author": "Akino",
@@ -21,7 +21,7 @@
     "prepublishOnly": "npm run build"
   },
   "devDependencies": {
-    "@uozi-admin/shared-config": "workspace:^",
+    "@uozi-admin/shared-config": "0.1.3",
     "@types/minimist": "^1.2.5",
     "@types/prompts": "^2.4.9",
     "cross-spawn": "^7.0.5",
