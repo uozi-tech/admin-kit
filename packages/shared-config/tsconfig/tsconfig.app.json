@@ -9,8 +9,6 @@
       "DOM.Iterable"
     ],
 
-    "incremental": true,
-    "composite": true,
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": false,
     "resolveJsonModule": true,
