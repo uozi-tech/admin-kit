@@ -1,5 +1,11 @@
 # @uozi-admin/shared-config
 
+## 0.1.4
+
+### Patch Changes
+
+- [#14](https://github.com/uozi-tech/admin-kit/pull/14) [`08cef9f`](https://github.com/uozi-tech/admin-kit/commit/08cef9f707fe9fdeccc233b4b38ce149c576404f) Thanks [@akinoccc](https://github.com/akinoccc)! - fix: cannot override vite config
+
 ## 0.1.3
 
 ### Patch Changes
