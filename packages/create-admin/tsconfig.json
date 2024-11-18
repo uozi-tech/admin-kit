@@ -1,5 +1,5 @@
 {
-    "extends": "@uozi-admin/shared-config/tsconfig/tsconfig.node.json",
+    "extends": "@uozi-admin/shared-config/tsconfig.node.json",
     "compilerOptions": {
         "outDir": "dist",
         "declaration": false,

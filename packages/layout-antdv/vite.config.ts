@@ -1,4 +1,4 @@
-import { createViteConfig } from '@uozi-admin/shared-config/vite'
+import { createViteConfig } from '@uozi-admin/shared-config'
 import dts from 'vite-plugin-dts'
 
 export default createViteConfig({
