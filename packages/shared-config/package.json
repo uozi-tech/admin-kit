@@ -20,13 +20,17 @@
     "./tsconfig/tsconfig.node.json": "./tsconfig/tsconfig.node.json",
     "./*": "./*"
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsup"
   },
   "peerDependencies": {
     "unocss": "^0.64.0",
     "unocss-preset-chinese": "^0.3.3",
-    "unocss-preset-ease": "^0.0.4"
+    "unocss-preset-ease": "^0.0.4",
+    "vite": "^5.4.11"
   },
   "dependencies": {
     "@vitejs/plugin-vue": "^5.1.4",
@@ -34,7 +38,6 @@
     "unplugin-auto-import": "^0.18.3",
     "unplugin-vue-components": "^0.27.4",
     "unplugin-vue-define-options": "^1.5.1",
-    "vite": "^5.4.11",
     "vite-plugin-vue-devtools": "^7.6.2"
   }
 }
