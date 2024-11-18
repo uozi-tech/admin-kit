@@ -1,4 +1,4 @@
-import { URL, fileURLToPath } from 'node:url'
+import { resolve } from 'node:path'
 import { loadEnv, UserConfig } from 'vite'
 import { configVitePlugins, PluginsCustomOptions } from './plugins'
 
@@ -9,7 +9,7 @@ export async function createApplicationViteConfig(mode: string, root: string, pl
   const applicationConfig: UserConfig = {
     resolve: {
       alias: {
-        '~': fileURLToPath(new URL('./src', import.meta.url)),
+        '~': resolve(root, 'src'),
       },
       extensions: [
         '.mjs',
