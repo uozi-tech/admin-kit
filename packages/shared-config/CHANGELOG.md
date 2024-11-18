@@ -1,5 +1,11 @@
 # @uozi-admin/shared-config
 
+## 0.1.2
+
+### Patch Changes
+
+- [#10](https://github.com/uozi-tech/admin-kit/pull/10) [`323618b`](https://github.com/uozi-tech/admin-kit/commit/323618b10acc25eedd1a26c9824e306c7f5188a7) Thanks [@akinoccc](https://github.com/akinoccc)! - fix incorrectly export ts config
+
 ## 0.1.1
 
 ### Patch Changes
