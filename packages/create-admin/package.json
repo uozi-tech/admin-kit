@@ -9,6 +9,11 @@
     "create-vite": "index.js",
     "cva": "index.js"
   },
+  "files": [
+    "index.js",
+    "template*",
+    "dist"
+  ],
   "scripts": {
     "dev": "unbuild --stub",
     "build": "unbuild",
