@@ -9,7 +9,7 @@ export async function createApplicationViteConfig(mode: string, root: string, pl
   const applicationConfig: UserConfig = {
     resolve: {
       alias: {
-        '~': fileURLToPath(new URL('./src', import.meta.url)),
+        '~': fileURLToPath(new URL('src', import.meta.url)),
       },
       extensions: [
         '.mjs',
