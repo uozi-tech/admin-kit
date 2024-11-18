@@ -1,5 +1,11 @@
 # @uozi-admin/shared-config
 
+## 0.1.0
+
+### Minor Changes
+
+- [#6](https://github.com/uozi-tech/admin-kit/pull/6) [`a75f4d5`](https://github.com/uozi-tech/admin-kit/commit/a75f4d565d772d4dee5fd2cd64b28f267ddff5bc) Thanks [@akinoccc](https://github.com/akinoccc)! - support overwrite plugin config of vite
+
 ## 0.0.1
 
 ### Patch Changes
