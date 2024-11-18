@@ -1,4 +1,4 @@
-import { createViteConfig } from '@uozi-admin/shared-config/vite'
+import { createViteConfig } from '@uozi-admin/shared-config'
 
 export default createViteConfig({
   overrides: {
