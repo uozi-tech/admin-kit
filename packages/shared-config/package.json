@@ -14,10 +14,16 @@
     "directory": "packages/shared-config"
   },
   "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
-    "./vite": "./dist/vite/index.js",
-    "./tsconfig/tsconfig.app.json": "./dist/tsconfig/tsconfig.app.json",
-    "./tsconfig/tsconfig.node.json": "./dist/tsconfig/tsconfig.node.json",
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./tsconfig.app.json": "./dist/tsconfig.app.json",
+    "./tsconfig.node.json": "./dist/tsconfig.node.json",
     "./*": "./*"
   },
   "files": [
@@ -39,5 +45,8 @@
     "unplugin-vue-components": "^0.27.4",
     "unplugin-vue-define-options": "^1.5.1",
     "vite-plugin-vue-devtools": "^7.6.2"
+  },
+  "devDependencies": {
+    "fs": "0.0.1-security"
   }
 }
