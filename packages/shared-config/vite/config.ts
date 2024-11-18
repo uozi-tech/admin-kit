@@ -1,10 +1,10 @@
 import { URL, fileURLToPath } from 'node:url'
 import { loadEnv, UserConfig } from 'vite'
-import { configVitePlugins } from './plugins'
+import { configVitePlugins, PluginsCustomOptions } from './plugins'
 
-export async function createApplicationViteConfig(mode: string, root: string) {
+export async function createApplicationViteConfig(mode: string, root: string, pluginsOptions: PluginsCustomOptions) {
   const env = loadEnv(mode, root, '')
-  const plugins = configVitePlugins()
+  const plugins = configVitePlugins(pluginsOptions)
 
   const applicationConfig: UserConfig = {
     resolve: {

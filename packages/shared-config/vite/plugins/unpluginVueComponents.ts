@@ -1,9 +1,9 @@
 import { PluginOption } from 'vite'
 import Components from 'unplugin-vue-components/vite'
-import { Options } from 'unplugin-vue-components/types'
 import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers'
+import { PluginsCustomOptions } from './index'
 
-export function createVueComponentsPluginConfig(customConfig?: Options): PluginOption {
+export function createVueComponentsPluginConfig(customConfig?: PluginsCustomOptions['vueComponents']): PluginOption {
   return Components({
     extensions: ['vue'],
     include: [/\.vue$/, /\.vue\?vue/],
