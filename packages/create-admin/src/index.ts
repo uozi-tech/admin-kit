@@ -1,14 +1,10 @@
-import minimist from 'minimist'
-import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
-import colors from 'picocolors'
+import fs from 'fs-extra'
+import minimist from 'minimist'
+import ora from 'ora'
+import { blue, gray, green, italic, red, yellow } from 'picocolors'
 import prompts from 'prompts'
-
-const {
-  red,
-  reset,
-} = colors
 
 const argv = minimist(process.argv.slice(2), {
   string: ['_'],
@@ -21,14 +17,15 @@ const renameFiles: Record<string, string | undefined> = {
 
 const defaultTargetDir = 'uozi-admin-project'
 
+const getProjectName = (targetDir: string) => path.basename(path.resolve(targetDir))
+
 async function init() {
   const argTargetDir = formatTargetDir(argv._[0])
 
   let targetDir = argTargetDir || defaultTargetDir
-  const getProjectName = () => path.basename(path.resolve(targetDir))
 
   let result: prompts.Answers<
-    'projectName' | 'overwrite' | 'packageName'
+    'projectName' | 'packageManager' | 'overwrite' | 'packageName'
   >
 
   prompts.override({
@@ -41,9 +38,9 @@ async function init() {
         {
           type: argTargetDir ? null : 'text',
           name: 'projectName',
-          message: reset('Project name:'),
+          message: green('Project name:'),
           initial: defaultTargetDir,
-          onState: state => {
+          onState: (state) => {
             targetDir = formatTargetDir(state.value) || defaultTargetDir
           },
         },
@@ -52,10 +49,10 @@ async function init() {
             !fs.existsSync(targetDir) || isEmpty(targetDir) ? null : 'select',
           name: 'overwrite',
           message: () =>
-            `${targetDir === '.'
+            green(`${targetDir === '.'
               ? 'Current directory'
-              : `Target directory "${targetDir}"` 
-            } is not empty. Please choose how to proceed:`,
+              : `Target directory "${targetDir}"`
+            } is not empty. Please choose how to proceed:`),
           initial: 0,
           choices: [
             {
@@ -73,18 +70,29 @@ async function init() {
           ],
         },
         {
-          type: () => (isValidPackageName(getProjectName()) ? null : 'text'),
+          type: () => (isValidPackageName(getProjectName(targetDir)) ? null : 'text'),
           name: 'packageName',
-          message: reset('Package name:'),
-          initial: () => toValidPackageName(getProjectName()),
+          message: green('Package name:'),
+          initial: () => toValidPackageName(getProjectName(targetDir)),
           validate: dir =>
             isValidPackageName(dir) || 'Invalid package.json name',
         },
         {
+          type: 'select',
+          name: 'packageManager',
+          message: green('Choose a package manager:'),
+          choices: [
+            { title: 'npm', value: 'npm' },
+            { title: 'yarn', value: 'yarn' },
+            { title: 'pnpm', value: 'pnpm' },
+          ],
+          initial: 2, // 设置默认值为 pnpm
+        },
+        {
           type: (_, { overwrite }: { overwrite?: string }) => {
-            if (overwrite === 'no') 
+            if (overwrite === 'no')
               throw new Error(`${red('✖')} Operation cancelled`)
-            
+
             return null
           },
           name: 'overwriteChecker',
@@ -98,71 +106,108 @@ async function init() {
     )
   }
   catch (cancelled: any) {
-    console.log(cancelled.message)
+    console.log(yellow(cancelled.message))
     return
   }
 
-  // user choice associated with prompts
-  const { overwrite, packageName } = result
-
   const root = path.join(cwd, targetDir)
 
-  if (overwrite === 'yes') 
-    emptyDir(root)
-  else if (!fs.existsSync(root)) 
-    fs.mkdirSync(root, { recursive: true })
-
   const pkgInfo = pkgFromUserAgent(process.env.npm_config_user_agent)
-  const pkgManager = pkgInfo ? pkgInfo.name : 'npm'
+  const pkgManager = result.packageManager || (pkgInfo ? pkgInfo.name : 'npm')
 
-  console.log(`\nScaffolding project in ${root}...`)
-
-  const templateDir = path.resolve(
-    fileURLToPath(import.meta.url),
-    '../..',
-    `template`,
-  )
-
-  const write = (file: string, content?: string) => {
-    const targetPath = path.join(root, renameFiles[file] ?? file)
-    if (content) 
-      fs.writeFileSync(targetPath, content)
-    else 
-      copy(path.join(templateDir, file), targetPath)
-  }
-
-  const files = fs.readdirSync(templateDir)
-  for (const file of files.filter(f => f !== 'package.json')) 
-    write(file)
-
-  const pkg = JSON.parse(
-    fs.readFileSync(path.join(templateDir, `package.json`), 'utf-8'),
-  )
-
-  pkg.name = packageName || getProjectName()
-
-  write('package.json', `${JSON.stringify(pkg, null, 2)}\n`)
-
-  const cdProjectName = path.relative(cwd, root)
-  console.log(`\nDone. Now run:\n`)
-  if (root !== cwd) 
-    console.log(
-      `  cd ${
-        cdProjectName.includes(' ') ? `"${cdProjectName}"` : cdProjectName
-      }`,
-    )
-  
-  switch (pkgManager) {
-    case 'yarn':
-      console.log('  yarn')
-      console.log('  yarn dev')
-      break
-    default:
-      console.log(`  ${pkgManager} install`)
-      console.log(`  ${pkgManager} run dev`)
-      break
-  }
   console.log()
+
+  const spinner = ora({
+    text: blue('Creating project...'),
+    color: 'yellow',
+  }).start()
+
+  createProject({ targetDir, root, result }).then(() => {
+    spinner.succeed(green('The project has been created successfully.'))
+
+    const cdProjectName = path.relative(cwd, root)
+
+    console.log(gray(`\nScaffolded project in ${root}.`))
+
+    console.log(`\nDone. Now run:\n`)
+
+    if (root !== cwd) {
+      console.log(green(
+        `  cd ${cdProjectName.includes(' ') ? `"${cdProjectName}"` : cdProjectName}`,
+      ))
+    }
+
+    // 根据包管理器打印后续命令
+    switch (pkgManager) {
+      case 'yarn':
+        console.log(green('  yarn'))
+        console.log(green('  yarn dev'))
+        break
+      default:
+        console.log(green(`  ${pkgManager} install`))
+        console.log(green(`  ${pkgManager} run dev`))
+        break
+    }
+    console.log()
+    console.log(gray(italic(`Powered by @uozi-admin/create-admin.`)))
+  }).catch(() => {
+    spinner.fail('\nFailed to create the project!\n')
+  })
+}
+
+async function createProject(options: {
+  targetDir: string
+  root: string
+  result: prompts.Answers<
+    'projectName' | 'packageManager' | 'overwrite' | 'packageName'
+  >
+}) {
+  // 模拟用户输入的配置
+  const { overwrite, packageName } = options.result
+
+  try {
+    // 根据 overwrite 设置是否清空目录
+    if (overwrite === 'yes') {
+      await emptyDir(options.root) // 异步清空目录
+    }
+    else if (!await fs.pathExists(options.root)) { // 异步检查路径是否存在
+      await fs.mkdir(options.root, { recursive: true }) // 异步创建目录
+    }
+
+    const templateDir = path.resolve(
+      fileURLToPath(import.meta.url),
+      '../..',
+      'template',
+    )
+
+    const write = async (file: string, content?: string) => {
+      const targetPath = path.join(options.root, renameFiles[file] ?? file)
+      if (content) {
+        await fs.writeFile(targetPath, content) // 异步写入文件
+      }
+      else {
+        await fs.copy(path.join(templateDir, file), targetPath) // 异步复制文件
+      }
+    }
+
+    // 异步读取模板文件
+    const files = await fs.readdir(templateDir)
+    for (const file of files.filter(f => f !== 'package.json')) {
+      await write(file) // 异步写入文件
+    }
+
+    // 异步读取并修改 package.json
+    const pkg = JSON.parse(
+      await fs.readFile(path.join(templateDir, 'package.json'), 'utf-8'), // 异步读取文件
+    )
+
+    pkg.name = packageName || getProjectName(options.targetDir)
+
+    await write('package.json', `${JSON.stringify(pkg, null, 2)}\n`) // 异步写入 package.json
+  }
+  catch (error) {
+    console.error(error)
+  }
 }
 
 function formatTargetDir(targetDir: string | undefined) {
@@ -171,9 +216,9 @@ function formatTargetDir(targetDir: string | undefined) {
 
 function copy(src: string, dest: string) {
   const stat = fs.statSync(src)
-  if (stat.isDirectory()) 
+  if (stat.isDirectory())
     copyDir(src, dest)
-  else 
+  else
     fs.copyFileSync(src, dest)
 }
 
@@ -206,20 +251,21 @@ function isEmpty(path: string) {
   return files.length === 0 || (files.length === 1 && files[0] === '.git')
 }
 
-function emptyDir(dir: string) {
-  if (!fs.existsSync(dir)) 
+async function emptyDir(dir: string) {
+  if (!(await fs.exists(dir)))
     return
-  
+
   for (const file of fs.readdirSync(dir)) {
-    if (file === '.git') 
+    if (file === '.git')
       continue
-    
-    fs.rmSync(path.resolve(dir, file), { recursive: true, force: true })
+
+    await fs.rm(path.resolve(dir, file), { recursive: true, force: true })
   }
 }
 
 function pkgFromUserAgent(userAgent: string | undefined) {
-  if (!userAgent) return undefined
+  if (!userAgent)
+    return undefined
   const pkgSpec = userAgent.split(' ')[0]
   const pkgSpecArr = pkgSpec.split('/')
   return {
@@ -228,6 +274,6 @@ function pkgFromUserAgent(userAgent: string | undefined) {
   }
 }
 
-init().catch(e => {
+init().catch((e) => {
   console.error(e)
 })
