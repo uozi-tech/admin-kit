@@ -1,5 +1,11 @@
 # @uozi-admin/shared-config
 
+## 0.1.3
+
+### Patch Changes
+
+- [#12](https://github.com/uozi-tech/admin-kit/pull/12) [`426bc11`](https://github.com/uozi-tech/admin-kit/commit/426bc11e064c5fc3640fc707bfaab1a50b5b2774) Thanks [@akinoccc](https://github.com/akinoccc)! - cannot find "xxx" type def
+
 ## 0.1.2
 
 ### Patch Changes
