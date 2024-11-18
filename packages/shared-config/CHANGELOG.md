@@ -1,5 +1,11 @@
 # @uozi-admin/shared-config
 
+## 0.1.5
+
+### Patch Changes
+
+- [#16](https://github.com/uozi-tech/admin-kit/pull/16) [`15ca65f`](https://github.com/uozi-tech/admin-kit/commit/15ca65f9b7fcf3e9ecbe694e06ba0c23c1cf4907) Thanks [@akinoccc](https://github.com/akinoccc)! - fix: alias not take effect
+
 ## 0.1.4
 
 ### Patch Changes
