@@ -16,8 +16,8 @@
   "type": "module",
   "exports": {
     "./vite": "./dist/vite/index.js",
-    "./tsconfig/tsconfig.app.json": "./tsconfig/tsconfig.app.json",
-    "./tsconfig/tsconfig.node.json": "./tsconfig/tsconfig.node.json",
+    "./tsconfig/tsconfig.app.json": "./dist/tsconfig/tsconfig.app.json",
+    "./tsconfig/tsconfig.node.json": "./dist/tsconfig/tsconfig.node.json",
     "./*": "./*"
   },
   "files": [
