@@ -19,6 +19,6 @@ export async function createViteConfig(applicationViteConfigOptions: Application
   const { overrides = {}, plugins = {} } = applicationViteConfigOptions
   const root = process.cwd()
   return defineConfig(async ({ mode }) => {
-    return mergeConfigs([overrides, await createApplicationViteConfig(mode, root, plugins)])
+    return mergeConfigs([await createApplicationViteConfig(mode, root, plugins), overrides])
   })
 }
