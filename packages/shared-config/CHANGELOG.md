@@ -1,5 +1,11 @@
 # @uozi-admin/shared-config
 
+## 0.1.1
+
+### Patch Changes
+
+- [#8](https://github.com/uozi-tech/admin-kit/pull/8) [`81e8188`](https://github.com/uozi-tech/admin-kit/commit/81e81881f68302c58d9419b150fa31ac075f6de3) Thanks [@akinoccc](https://github.com/akinoccc)! - fix incorrect deps settings
+
 ## 0.1.0
 
 ### Minor Changes
