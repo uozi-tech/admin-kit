@@ -4,8 +4,6 @@
   "description": "Easy to implement curd.",
   "type": "module",
   "main": "dist/index.js",
-  "module": "dist/index.js",
-  "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
@@ -33,11 +31,11 @@
     "build": "vite build"
   },
   "peerDependencies": {
-    "@ant-design/icons-vue": "^7.0.1",
-    "ant-design-vue": "^4.2.6",
-    "vue-router": "^4.4.5",
-    "lodash-es": "^4.17.21",
-    "vue": "^3.5.12"
+    "@ant-design/icons-vue": ">=7.0.1",
+    "ant-design-vue": ">=4.2.5",
+    "vue": ">=3.4.0",
+    "vue-router": ">=4.3.0",
+    "lodash-es": ">=4.17.21"
   },
   "dependencies": {
     "xlsx": "^0.18.5"
