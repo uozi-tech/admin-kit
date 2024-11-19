@@ -132,7 +132,7 @@ function onSidebarCollapse(collapsed: boolean) {
 
 <style scoped>
 :deep(.ant-layout-header), :deep(.ant-layout-sider), :deep(.ant-layout-sider-trigger) {
-  @apply bg-base text-color-base;
+  @apply bg-white bg-base text-color-base;
 }
 :deep(.ant-layout-sider .ant-menu-root) {
   border-inline-end: none !important;
