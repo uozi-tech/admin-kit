@@ -1,5 +1,11 @@
 # @uozi-admin/shared-config
 
+## 0.1.6
+
+### Patch Changes
+
+- [`d79d551`](https://github.com/uozi-tech/admin-kit/commit/d79d5516740cca3824903eea869b2a01396dd699) Thanks [@akinoccc](https://github.com/akinoccc)! - fix: cannot resolve `tsconfig.app.json`
+
 ## 0.1.5
 
 ### Patch Changes
