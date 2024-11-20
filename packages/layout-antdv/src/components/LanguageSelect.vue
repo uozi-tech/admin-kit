@@ -1,6 +1,6 @@
 <script setup lang="ts">
+import type { Languages, LanguageValue } from '../props'
 import { isArray, isObject } from 'lodash-es'
-import { Languages, LanguageValue } from '../props'
 import { computed, ref } from 'vue'
 
 const props = defineProps<{
@@ -14,7 +14,7 @@ const AvailableLanguages = computed(() => {
   if (isArray(props.languages)) {
     // 格式化为 key-value 对象
     const languageMap: Record<string, LanguageValue> = {}
-    props.languages.forEach(language => {
+    props.languages.forEach((language) => {
       languageMap[language] = language
     })
     return languageMap

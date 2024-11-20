@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { BreadcrumbItem } from '../props'
-import { getRealTitle } from '../utils'
+import type { BreadcrumbItem } from '../props'
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
+import { getRealTitle } from '../utils'
 
 const props = defineProps<{
   items?: BreadcrumbItem[]

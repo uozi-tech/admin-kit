@@ -1,17 +1,17 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import type { SidebarItem, Text } from '../props'
 import { throttle } from 'lodash-es'
-import { SidebarItem, Title } from '../props'
+import { ref } from 'vue'
 import { getRealTitle } from '../utils'
 
 withDefaults(defineProps<{
-  headerTitle?: Title
+  logo?: string
+  headerTitle?: Text
   items?: SidebarItem[]
 }>(), {
   headerTitle: 'Admin Dashboard',
   items: () => [],
-},
-)
+})
 
 const emit = defineEmits(['clickMenuItem', 'collapseSidebar'])
 
@@ -45,7 +45,7 @@ function handleCollapse(val: boolean) {
 }
 
 // 点击菜单
-function handleMenuItemClick({ item }: { item: SidebarItem }) {
+function handleMenuItemClick({ item }) {
   emit('clickMenuItem', item)
 }
 </script>
@@ -61,12 +61,15 @@ function handleMenuItemClick({ item }: { item: SidebarItem }) {
     <div class="logo">
       <slot name="logo">
         <AAvatar
-          v-show="collapsed"
+          v-if="collapsed && !logo"
           size="large"
           class="flex items-center bg-purple-5 dark:bg-purple-8 text-xl font-semibold transition-all"
         >
           {{ getRealTitle(headerTitle)[0] }}
         </AAvatar>
+        <div v-if="collapsed && logo" class="p-4">
+          <AImage :src="logo" />
+        </div>
         <h1
           v-show="!collapsed"
           class=" transition-all line-clamp-1"
@@ -88,15 +91,16 @@ function handleMenuItemClick({ item }: { item: SidebarItem }) {
       >
         <!-- 动态生成菜单项 -->
         <template v-if="item.children?.length">
-          <ASubMenu :key="item.path">
+          <ASubMenu
+            :key="item.path"
+            :icon="h(item?.icon as any)"
+          >
             <template #title>
-              <Component :is="item?.icon" />
-              <span>{{ getRealTitle(item.title) }}</span>
+              {{ getRealTitle(item.title) }}
             </template>
             <AMenuItem
               v-for="child in item.children"
               :key="child.path"
-              :icon="child.icon"
             >
               <RouterLink :to="child.path">
                 {{ getRealTitle(child.title) }}
@@ -107,7 +111,7 @@ function handleMenuItemClick({ item }: { item: SidebarItem }) {
         <template v-else>
           <AMenuItem
             :key="item.path"
-            :icon="h(item.icon as any)"
+            :icon="h(item?.icon as any)"
           >
             <RouterLink :to="item.path">
               {{ getRealTitle(item.title) }}
@@ -128,5 +132,9 @@ function handleMenuItemClick({ item }: { item: SidebarItem }) {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+:deep(.ant-layout-sider-trigger) {
+  color: inherit;
 }
 </style>

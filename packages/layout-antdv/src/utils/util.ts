@@ -1,7 +1,7 @@
+import type { Text } from '../props'
 import { isFunction } from 'lodash-es'
-import { Title } from '../props'
 
-export function getRealTitle(t: Title) {
+export function getRealTitle(t: Text) {
   if (isFunction(t))
     return t()
 

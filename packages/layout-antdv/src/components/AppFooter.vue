@@ -1,10 +1,16 @@
+<script setup lang="ts">
+defineProps<{
+  copyright?: string
+}>()
+</script>
+
 <template>
   <div class="app-footer">
     <!-- 自定义插槽内容 -->
     <slot />
     <slot name="footer-content">
       <!-- 默认版权内容 -->
-      Copyright © 2024 Admin Dashboard
+      {{ copyright }}
     </slot>
   </div>
 </template>

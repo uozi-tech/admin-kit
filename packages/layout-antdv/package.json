@@ -5,7 +5,11 @@
   "type": "module",
   "main": "src/index.ts",
   "files": [
-    "src"
+    "src",
+    ".eslint-auto-import.mjs",
+    "auto-imports.d.ts",
+    "components.d.ts",
+    "vite.config.ts"
   ],
   "keywords": [
     "uozi-admin",

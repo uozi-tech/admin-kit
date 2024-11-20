@@ -1,17 +1,17 @@
-import { Component, FunctionalComponent, VNode } from 'vue'
-import { AntdIconType } from '@ant-design/icons-vue/es/components/AntdIcon'
+import type { AntdIconType } from '@ant-design/icons-vue/es/components/AntdIcon'
+import type { Component, FunctionalComponent, VNode } from 'vue'
 
-export type Title = string | (() => string)
+export type Text = string | (() => string)
 
 export interface BreadcrumbItem {
-  title: Title
+  title: Text
   path: string
   icon?: AntdIconType | FunctionalComponent | Component
   children?: BreadcrumbItem[]
 }
 
 export interface SidebarItem {
-  title: Title
+  title: Text
   path: string
   icon?: VNode
   children?: SidebarItem[]

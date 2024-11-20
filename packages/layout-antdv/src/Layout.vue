@@ -1,19 +1,20 @@
 <script setup lang="ts">
-import AppHeader from './components/AppHeader.vue'
+import type { BreadcrumbItem, Languages, LanguageValue, SidebarItem, Text, Theme } from './props'
 import AppFooter from './components/AppFooter.vue'
+import AppHeader from './components/AppHeader.vue'
 import AppSidebar from './components/AppSidebar.vue'
-import PageHeader from './components/PageHeader.vue'
 import Breadcrumb from './components/Breadcrumb.vue'
-import { BreadcrumbItem, Languages, LanguageValue, SidebarItem, Theme, Title } from './props'
-import ThemeSwitch from './components/ThemeSwitch.vue'
 import LanguageSelect from './components/LanguageSelect.vue'
-
-const emit = defineEmits(['toggleTheme', 'changeLanguage'])
+import PageHeader from './components/PageHeader.vue'
+import ThemeSwitch from './components/ThemeSwitch.vue'
+import { getRealTitle } from './utils'
 
 withDefaults(
   defineProps<{
-    siteTitle?: Title
-    pageTitle?: string
+    siteTitle?: Text
+    pageTitle?: Text
+    copyright?: Text
+    logo?: string
     showPageHeader?: boolean
     showBreadcrumb?: boolean
     breadcrumbItems?: BreadcrumbItem[]
@@ -36,6 +37,13 @@ withDefaults(
   },
 )
 
+const emit = defineEmits([
+  'toggleTheme',
+  'changeLanguage',
+  'menuSelect',
+  'sidebarCollapsed',
+])
+
 function toggleTheme(t: Theme) {
   emit('toggleTheme', t)
 }
@@ -45,11 +53,11 @@ function changeLanguage(language: string) {
 }
 
 function onMenuSelect(key: string) {
-  console.log('Menu selected:', key)
+  emit('menuSelect', key)
 }
 
 function onSidebarCollapse(collapsed: boolean) {
-  console.log('Sidebar collapsed:', collapsed)
+  emit('sidebarCollapsed', collapsed)
 }
 </script>
 
@@ -57,6 +65,7 @@ function onSidebarCollapse(collapsed: boolean) {
   <ALayout class="layout-container min-h-screen">
     <!-- Sidebar -->
     <AppSidebar
+      :logo="logo"
       :header-title="siteTitle"
       class="shadow-lg"
       :items="sidebarItems"
@@ -96,8 +105,8 @@ function onSidebarCollapse(collapsed: boolean) {
 
           <!-- PageHeader -->
           <PageHeader
-            v-if="showPageHeader"
-            :page-title="pageTitle"
+            v-if="showPageHeader && pageTitle"
+            :page-title="getRealTitle(pageTitle)"
           >
             <slot name="pageheader-extra" />
           </PageHeader>
@@ -105,13 +114,14 @@ function onSidebarCollapse(collapsed: boolean) {
 
         <!-- Main Content -->
         <div class="main-content p-4">
-          <slot /> <!-- 插槽：页面内容 -->
+          <!-- 插槽：页面内容 -->
+          <slot />
         </div>
       </ALayoutContent>
 
       <!-- Footer -->
-      <ALayoutFooter v-if="showFooter">
-        <AppFooter>
+      <ALayoutFooter v-if="showFooter && copyright">
+        <AppFooter :copyright="getRealTitle(copyright)">
           <slot name="footer-content" />
         </AppFooter>
       </ALayoutFooter>
@@ -121,7 +131,7 @@ function onSidebarCollapse(collapsed: boolean) {
 
 <style scoped>
 :deep(.ant-layout-header), :deep(.ant-layout-sider), :deep(.ant-layout-sider-trigger) {
-  @apply bg-base text-color-base;
+  @apply bg-white bg-base text-color-base;
 }
 :deep(.ant-layout-sider .ant-menu-root) {
   border-inline-end: none !important;

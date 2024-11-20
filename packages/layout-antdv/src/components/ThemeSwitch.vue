@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import IconSun from './Icons/IconSun.vue'
+import type { Theme } from '../props'
+import { computed, ref } from 'vue'
 import IconMoon from './Icons/IconMoon.vue'
-import { Theme } from '../props'
-import { computed, ref, defineProps, withDefaults } from 'vue'
+import IconSun from './Icons/IconSun.vue'
 
 const props = withDefaults(
   defineProps<{
@@ -33,7 +33,7 @@ function toggleTheme() {
   >
     <div
       class="icon-container"
-      :class="{ 'dark': isDark }"
+      :class="{ dark: isDark }"
     >
       <IconSun class="icon icon-sun" />
       <IconMoon class="icon icon-moon" />

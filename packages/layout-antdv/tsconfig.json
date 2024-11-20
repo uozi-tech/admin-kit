@@ -5,6 +5,8 @@
     "src/**/*.tsx",
     "src/**/*.vue",
     "components.d.ts",
+    "tsconfig.json",
+    "eslint.config.mjs",
     "auto-imports.d.ts"
   ]
 }
