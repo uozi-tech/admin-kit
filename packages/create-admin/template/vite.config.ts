@@ -19,5 +19,11 @@ export default createViteConfig({
         },
       ],
     },
+    unocss: {
+      shortcuts: {
+        'common-bg': 'bg-gray-100 dark:bg-gray-900',
+        'bg-base': 'bg-white dark:bg-[#141414]',
+      },
+    },
   },
 })

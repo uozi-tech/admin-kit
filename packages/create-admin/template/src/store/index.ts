@@ -1,4 +1,4 @@
-import { useSettingsStore } from './settings'
+import { useSettingsStore } from './modules/settings'
 
 const store = createPinia()
 

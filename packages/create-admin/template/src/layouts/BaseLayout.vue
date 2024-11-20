@@ -1,38 +1,38 @@
 <script setup lang="ts">
-import { RouterView } from 'vue-router'
+import {RouteRecordRaw, RouterView} from 'vue-router'
 import { AdminLayout, SidebarItem } from '@uozi-admin/layout-antdv'
-import { useSettingsStore } from '~/store'
 import gettext from '~/language/gettext'
 import { routes } from '~/router'
 import { computed } from 'vue'
+
+const route = useRoute()
 
 const settings = useSettingsStore()
 
 const languageAvailable = gettext.available
 
 function toggleTheme(t: 'auto' | 'light' | 'dark') {
-  settings.set_theme(t)
+  settings.setTheme(t)
 }
 function changeLanguage(l: string) {
-  settings.set_language(l)
+  settings.setLanguage(l)
+}
+
+function getSidebarTree(routes?: RouteRecordRaw[]): SidebarItem[] {
+  if (!routes) return []
+
+  return routes.map<SidebarItem>(r => ({
+    title: r.meta?.title as any,
+    path: r.path,
+    icon: r.meta?.icon,
+    children: getSidebarTree(r.children)
+  }))
 }
 
 const sidebarItems = computed<SidebarItem[]>(() => {
-  return routes[0].children?.map(r => {
-    return {
-      title: r.meta?.title,
-      path: r.path,
-      icon: r.meta?.icon,
-      children: r.children?.map(c => {
-        return {
-          title: c.meta?.title,
-          path: c.path,
-          icon: c.meta?.icon,
-        }
-      }),
-    }
-  }) as SidebarItem[]
+  return getSidebarTree(routes[0].children)
 })
+console.log(sidebarItems)
 </script>
 
 <template>
@@ -40,6 +40,7 @@ const sidebarItems = computed<SidebarItem[]>(() => {
     :sidebar-items="sidebarItems"
     :languages="languageAvailable"
     :current-language="gettext.current"
+    :page-title="route.meta.title"
     @toggle-theme="toggleTheme"
     @change-language="changeLanguage"
   >

@@ -12,7 +12,7 @@ export default defineConfig({
     '@typescript-eslint/no-unnecessary-type-assertion': 'off',
     '@typescript-eslint/require-await': 'off',
     '@typescript-eslint/dot-notation': 'off',
-    '@typescript-eslint/no-empty-function': 'off'
+    '@typescript-eslint/no-empty-function': 'off',
   },
   vue: true,
   stylistic: {
@@ -25,6 +25,14 @@ export default defineConfig({
   },
   importX: true,
   unusedImports: true,
-  ignores: ['node_modules/*', 'vite.config.ts.timestamp*', 'dist/*'],
+  ignores: ['node_modules/*', 'vite.config.ts.timestamp*', 'dist/*', '.eslint-auto-import.mjs', 'auto-imports.d.ts', 'components.d.ts'],
   globals: autoImportGlobals.globals,
+}, {
+  languageOptions: {
+    parserOptions: {
+      projectService: {
+        maximumDefaultProjectFileMatchCount_THIS_WILL_SLOW_DOWN_LINTING: 9999,
+      },
+    },
+  },
 })

@@ -2,8 +2,9 @@ import 'vue-router'
 
 declare module 'vue-router' {
   interface RouteMeta {
+    title?: string | (() => string)
     needAuth?: boolean
-    icon?: string
+    icon?: AntDesignOutlinedIconType
     group?: string
     hidden?: boolean
   }
