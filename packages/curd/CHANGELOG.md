@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 0.0.3
+
+### Patch Changes
+
+- [`9d9f1d2`](https://github.com/uozi-tech/admin-kit/commit/9d9f1d29b0a5be1f2277a17a342c2f556a061e84) Thanks [@akinoccc](https://github.com/akinoccc)! - publish sourch code directly
+
 ## 0.0.2
 
 ### Patch Changes
