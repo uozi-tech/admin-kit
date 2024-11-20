@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 0.0.4
+
+### Patch Changes
+
+- [`c27e25e`](https://github.com/uozi-tech/admin-kit/commit/c27e25e4ece664d84483d9e8278bbc7f56683fea) Thanks [@akinoccc](https://github.com/akinoccc)! - fix: missing imports
+
 ## 0.0.3
 
 ### Patch Changes
