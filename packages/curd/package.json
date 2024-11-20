@@ -3,21 +3,10 @@
   "version": "0.0.2",
   "description": "Easy to implement curd.",
   "type": "module",
-  "main": "dist/index.js",
-  "module": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "src/index.ts",
   "files": [
-    "dist"
+    "src"
   ],
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "module": "./dist/index.js",
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
-    },
-    "./*": "./*"
-  },
   "keywords": [
     "uozi-admin",
     "curd"
@@ -29,9 +18,7 @@
   },
   "author": "Akino",
   "license": "Apache-2.0",
-  "scripts": {
-    "build": "vite build"
-  },
+  "scripts": {},
   "peerDependencies": {
     "@ant-design/icons-vue": "^7.0.1",
     "ant-design-vue": "^4.2.6",
@@ -43,8 +30,13 @@
     "xlsx": "^0.18.5"
   },
   "devDependencies": {
+    "@ant-design/icons-vue": "^7.0.1",
     "@types/lodash-es": "^4.17.12",
     "@uozi-admin/shared-config": "workspace:*",
+    "ant-design-vue": "^4.2.6",
+    "vue-router": "^4.4.5",
+    "lodash-es": "^4.17.21",
+    "vue": "^3.5.12",
     "unocss-preset-chinese": "^0.3.3",
     "unocss-preset-ease": "^0.0.4"
   }
