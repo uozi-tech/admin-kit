@@ -1,5 +1,11 @@
 # @uozi-admin/shared-config
 
+## 0.2.0
+
+### Minor Changes
+
+- [`922a94c`](https://github.com/uozi-tech/admin-kit/commit/922a94c39daaa22a15c27b1146e151cba2cda306) Thanks [@akinoccc](https://github.com/akinoccc)! - feat(vite): support func to override default config
+
 ## 0.1.6
 
 ### Patch Changes
