@@ -1,5 +1,11 @@
 # @uozi-admin/shared-config
 
+## 0.2.1
+
+### Patch Changes
+
+- [`5cc146d`](https://github.com/uozi-tech/admin-kit/commit/5cc146dc79825e9b1d587cb8e2963d97df4d744c) Thanks [@akinoccc](https://github.com/akinoccc)! - enhance(vite): [unocss] set mode as `global`
+
 ## 0.2.0
 
 ### Minor Changes
