@@ -24,7 +24,7 @@ export interface VitePluginConfig extends UserConfig {
 }
 
 const defaultConfig: VitePluginConfig = {
-  mode: 'vue-scoped',
+  mode: 'global',
   content: {
     pipeline: {
       include: ['**/*.{ts,jsx,tsx,vue}'],

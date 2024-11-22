@@ -10,7 +10,7 @@ export function createVueComponentsPluginConfig(customConfig?: PluginsCustomOpti
     dts: 'components.d.ts',
     exclude: [/[\\/]node_modules[\\/]/, /[\\/]\.git[\\/]/, /[\\/]\.nuxt[\\/]/],
     resolvers: [
-      AntDesignVueResolver({ importStyle: false }),
+      AntDesignVueResolver({ importStyle: false, resolveIcons: true }),
     ],
     ...customConfig,
   })
