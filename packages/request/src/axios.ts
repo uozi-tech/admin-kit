@@ -11,12 +11,7 @@ function createService() {
 
   service.interceptors.response.use(
     response => {
-      const apiData = response.data
-
-      const responseType = response.request?.responseType
-      if (responseType === 'blob' || responseType === 'arraybuffer') return apiData
-
-      return apiData
+      return response
     },
     error => {
       const status = get(error, 'response.status')
