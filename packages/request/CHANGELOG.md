@@ -1,5 +1,11 @@
 # @uozi-admin/request
 
+## 0.0.2
+
+### Patch Changes
+
+- [`ab8e667`](https://github.com/uozi-tech/admin-kit/commit/ab8e667ec40262b80f09167a2317d7ceded0feec) Thanks [@akinoccc](https://github.com/akinoccc)! - fix: cannot get raw resp in next interceptors
+
 ## 0.0.1
 
 ### Patch Changes
