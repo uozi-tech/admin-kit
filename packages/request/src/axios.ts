@@ -27,6 +27,10 @@ export function createRequestInstance(service: AxiosInstance) {
 
 export const service = createService()
 
+// 记录已注册的拦截器
+const registeredRequestInterceptors = new Set<string>()
+const registeredResponseInterceptors = new Set<string>()
+
 export const useAxios = () => {
   return {
     service,
@@ -35,14 +39,22 @@ export const useAxios = () => {
       onRejected?: (error: any) => any | null,
       options?: AxiosInterceptorOptions,
     ) {
+      const id = onFulfilled.toString() + onRejected?.toString() + JSON.stringify(options)
+      if (registeredRequestInterceptors.has(id)) return
+
       service.interceptors.request.use(onFulfilled, onRejected, options)
+      registeredRequestInterceptors.add(id)
     },
     setResponseInterceptor(
       onFulfilled: (value: any) => any | Promise<any>,
       onRejected?: (error: any) => any | null,
       options?: AxiosInterceptorOptions,
     ) {
+      const id = onFulfilled.toString() + onRejected?.toString() + JSON.stringify(options)
+      if (registeredResponseInterceptors.has(id)) return
+
       service.interceptors.response.use(onFulfilled, onRejected, options)
+      registeredResponseInterceptors.add(id)
     },
   }
 }
