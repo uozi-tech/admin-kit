@@ -1,5 +1,11 @@
 # @uozi-admin/request
 
+## 0.1.1
+
+### Patch Changes
+
+- [`7da7046`](https://github.com/uozi-tech/admin-kit/commit/7da7046b7ff441c227e058078546884c9edf15f4) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(axios): typedef error
+
 ## 0.1.0
 
 ### Minor Changes
