@@ -31,14 +31,14 @@ export const useAxios = () => {
   return {
     service,
     setRequestInterceptor(
-      onFulfilled?: (value: InternalAxiosRequestConfig<any>) => InternalAxiosRequestConfig<any> | Promise<InternalAxiosRequestConfig<any>> | undefined,
+      onFulfilled: (value: InternalAxiosRequestConfig<any>) => InternalAxiosRequestConfig<any> | Promise<InternalAxiosRequestConfig<any>>,
       onRejected?: (error: any) => any | null,
       options?: AxiosInterceptorOptions,
     ) {
       service.interceptors.request.use(onFulfilled, onRejected, options)
     },
     setResponseInterceptor(
-      onFulfilled?: (value: any) => any | Promise<any>,
+      onFulfilled: (value: any) => any | Promise<any>,
       onRejected?: (error: any) => any | null,
       options?: AxiosInterceptorOptions,
     ) {
