@@ -1,5 +1,11 @@
 # @uozi-admin/request
 
+## 0.1.0
+
+### Minor Changes
+
+- [`3c39769`](https://github.com/uozi-tech/admin-kit/commit/3c3976975bdc6ad7ad4525c3f11e3e16c5994518) Thanks [@akinoccc](https://github.com/akinoccc)! - feat(axios): composable axios
+
 ## 0.0.2
 
 ### Patch Changes
