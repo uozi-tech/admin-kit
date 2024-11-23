@@ -1,5 +1,11 @@
 # @uozi-admin/request
 
+## 0.1.2
+
+### Patch Changes
+
+- [`e44bf3f`](https://github.com/uozi-tech/admin-kit/commit/e44bf3fd6c755de005b7b5d114a3a541e5c6fb5a) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(axios): duplicated register interceptor when hot updating
+
 ## 0.1.1
 
 ### Patch Changes
