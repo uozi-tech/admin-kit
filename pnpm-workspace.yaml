@@ -2,3 +2,4 @@ packages:
   - 'packages/*'
   - '!packages/create-admin/template'
   - 'playground'
+  - 'docs'
