@@ -7,7 +7,7 @@ import { vitepressDemoPlugin } from 'vitepress-demo-plugin'
 // import { createUnoCSSPluginConfig } from './unocss'
 
 export default defineConfig({
-  base: '/',
+  base: '/admin-kit/',
   title: 'Admin Kit',
   head: [
     ['link', { rel: 'icon', href: '/logo.svg ' }],
