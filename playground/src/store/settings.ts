@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import gettext from '../gettext.ts'
+import gettext from '../gettext'
 
 export const useSettingsStore = defineStore('settings', {
   state: () => ({

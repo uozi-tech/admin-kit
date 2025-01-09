@@ -1,12 +1,12 @@
 <script setup lang="ts">
-
-import { $gettext } from '../gettext.ts'
+import { Card } from 'ant-design-vue'
+import { $gettext } from '~/gettext'
 </script>
 
 <template>
-  <ACard :title="$gettext('Dashboard')">
+  <Card :title="$gettext('Dashboard')">
     {{ $gettext('Dashboard Page') }}
-  </ACard>
+  </Card>
 </template>
 
 <style scoped>

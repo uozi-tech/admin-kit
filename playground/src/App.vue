@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { theme } from 'ant-design-vue'
+import { theme, ConfigProvider } from 'ant-design-vue'
 import { useSettingsStore } from './store'
 import gettext from './gettext'
 import zh_CN from 'ant-design-vue/es/locale/zh_CN'
@@ -19,9 +19,9 @@ const lang = computed(() => {
 </script>
 
 <template>
-  <AConfigProvider
+  <ConfigProvider
     :theme="{
-      algorithm: settings.isDark ? theme.darkAlgorithm : theme.defaultAlgorithm,
+      algorithm: settings.theme === 'dark' ? theme.darkAlgorithm : theme.defaultAlgorithm,
     }"
     :auto-insert-space-in-button="false"
     :locale="lang"
@@ -29,7 +29,7 @@ const lang = computed(() => {
     <div class="app-container">
       <RouterView />
     </div>
-  </AConfigProvider>
+  </ConfigProvider>
 </template>
 
 <style scoped>

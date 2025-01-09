@@ -3,7 +3,7 @@
   "version": "0.0.4",
   "description": "Easy to implement admin layout",
   "type": "module",
-  "main": "src/index.ts",
+  "main": "dist/index.js",
   "files": [
     "src",
     ".eslint-auto-import.mjs",
@@ -33,12 +33,9 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@ant-design/icons-vue": "^7.0.1",
     "@uozi-admin/shared-config": "workspace:*",
     "@types/lodash-es": "^4.17.12",
-    "ant-design-vue": "^4.2.6",
     "vite": "^5.4.11",
-    "vue": "^3.5.12",
     "vue-router": "^4.4.5",
     "lodash-es": "^4.17.21",
     "unocss-preset-chinese": "^0.3.3",

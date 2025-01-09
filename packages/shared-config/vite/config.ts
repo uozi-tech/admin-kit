@@ -1,6 +1,8 @@
+import type { UserConfig } from 'vite'
+import type { PluginsCustomOptions } from './plugins'
 import { resolve } from 'node:path'
-import { loadEnv, UserConfig } from 'vite'
-import { configVitePlugins, PluginsCustomOptions } from './plugins'
+import { loadEnv } from 'vite'
+import { configVitePlugins } from './plugins'
 
 export async function createApplicationViteConfig(mode: string, root: string, pluginsOptions: PluginsCustomOptions) {
   const env = loadEnv(mode, root, '')
@@ -39,7 +41,7 @@ export async function createApplicationViteConfig(mode: string, root: string, pl
           changeOrigin: true,
           secure: false,
           ws: true,
-          rewrite: path => path.replace('/api', ''),
+          rewrite: path => path.replace(env.VITE_API_ROOT || '/api', ''),
         },
       },
     },

@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { StdTableColumn } from '../types'
-import { inject } from 'vue'
-import { FormControllerRender } from '../renderers/FormControllerRender'
-import { getColumnKey } from '../utils/util'
+import type { StdTableColumn } from '../types'
+import { Form, FormItem, FormItemRest } from 'ant-design-vue'
+import { ref } from 'vue'
+import { getColumnKey, getRealContent } from '../utils/util'
+import FormControllerRender from './StdFormController.vue'
 
 const props = defineProps<{
   labelAlign?: 'left' | 'right'
@@ -10,39 +11,53 @@ const props = defineProps<{
   layout?: 'horizontal' | 'vertical' | 'inline'
 }>()
 
-const formData = defineModel<Record<string, any>>('data', { default: {} })
-const lang = inject('lang', 'en')
+const formData = defineModel<Record<string, any>>('data', { default: () => ({}) })
+
+for (const column of props.columns) {
+  const key = (column.edit?.formItem?.name ?? column.dataIndex) as string
+  if (column.edit && !formData.value[key]) {
+    formData.value[key] = undefined
+  }
+}
+
+function getLabel(c: StdTableColumn) {
+  if (c.edit?.formItem?.hiddenLabel) {
+    return
+  }
+
+  return getRealContent(c.edit?.formItem?.label) || getRealContent(c.title)
+}
 
 const formRef = ref()
 defineExpose({
-  'formRef': formRef,
+  formRef,
 })
 </script>
 
 <template>
-  <AForm
+  <Form
     ref="formRef"
     :model="formData"
     label-width="auto"
     :label-align="labelAlign ?? 'left'"
     :layout="props.layout ?? 'vertical'"
+    :validate-trigger="['blur', 'submit']"
   >
-    <AFormItem
-      v-for="c in props.columns"
-      :key="getColumnKey(c)"
-      :column="c"
-      style="margin-bottom: 12px;"
-      v-bind="c.edit?.formItem"
-      :label="c.edit?.formItem?.label ?? c.title"
-      :rules="c.edit?.formItem?.rules"
-      :required="c.edit?.formItem?.required"
-      :name="c.edit?.formItem?.name ?? c.dataIndex"
-    >
-      <FormControllerRender
-        :lang="lang"
+    <FormItemRest>
+      <FormItem
+        v-for="c in props.columns"
+        :key="getColumnKey(c)"
         :column="c"
-        :form-data="formData"
-      />
-    </AFormItem>
-  </AForm>
+        style="margin-bottom: 12px;"
+        v-bind="c.edit?.formItem"
+        :label="getLabel(c)"
+        :name="c.edit?.valueKey ?? c.edit?.formItem?.name ?? c.dataIndex"
+      >
+        <FormControllerRender
+          :column="c"
+          :form-data="formData"
+        />
+      </FormItem>
+    </FormItemRest>
+  </Form>
 </template>

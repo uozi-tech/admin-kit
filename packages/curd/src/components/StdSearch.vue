@@ -1,42 +1,47 @@
 <script setup lang="ts">
-import { FormControllerRender } from '../renderers/FormControllerRender'
-import { StdTableColumn } from '../types'
+import type { StdFormConfig, StdTableColumn } from '../types'
+import { Form, FormItem } from 'ant-design-vue'
 import { getColumnKey } from '../utils/util'
+import FormControllerRender from './StdFormController.vue'
 
 defineProps<{
   columns: StdTableColumn[]
-  lang: string
 }>()
 
 const formData = defineModel<Record<string, any>>('data', { required: true })
 
+function getConfig(c: StdTableColumn) {
+  if (c.search === true) {
+    return c.edit
+  }
+  return c.search as StdFormConfig
+}
 </script>
 
 <template>
-  <AForm
+  <Form
     class="flex flex-wrap gap-y-4"
     :model="formData"
     label-width="auto"
     layout="inline"
   >
-    <AFormItem
+    <FormItem
       v-for="c in columns"
       :key="getColumnKey(c)"
-      :label="c.edit?.formItem?.label ?? c.title"
-      :name="c.edit?.formItem?.name ?? c.dataIndex"
+      :label="getConfig(c)?.formItem?.label ?? c.title"
+      :name="`${getConfig(c)?.formItem?.name ?? c.dataIndex}__search`"
     >
       <FormControllerRender
         v-model:form-data="formData"
         :column="c"
-        :lang="lang"
-        :form-item-key="c.search === true ? 'edit' : 'search'"
+        :form-config-key="c.search === true ? 'edit' : 'search'"
       />
-    </AFormItem>
+    </FormItem>
     <slot
       name="extra"
       :form-data="formData"
     />
-  </AForm>
+  </Form>
 </template>
 
 <style scoped>

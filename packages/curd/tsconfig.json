@@ -1,13 +1,47 @@
 {
-  "extends": [
-    "@uozi-admin/shared-config/tsconfig.app.json"
-  ],
+  "compilerOptions": {
+    "composite": true,
+
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+    "module": "ESNext",
+    "lib": [
+      "ESNext",
+      "DOM",
+      "DOM.Iterable"
+    ],
+
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": false,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "preserve",
+    "allowJs": true,
+    "noImplicitAny": false,
+
+    "strict": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noFallthroughCasesInSwitch": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "types": [
+      "vite/client",
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["src/*"]
+    }
+  },
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
     "vite-env.d.ts",
     "components.d.ts",
-    "auto-imports.d.ts"
+    "auto-imports.d.ts",
+    "src/**/*.json",
   ]
 }

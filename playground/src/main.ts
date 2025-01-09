@@ -1,10 +1,10 @@
 import { createApp } from 'vue'
-import './style.css'
-// import 'virtual:uno.css'
 import App from './App.vue'
+import gettext from './gettext'
 import { router } from './router'
 import { store, useSettingsStore } from './store'
-import gettext from './gettext'
+import './style.css'
+// import 'virtual:uno.css'
 
 createApp(App).use(gettext).use(store).use(router).mount('#app')
 

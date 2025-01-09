@@ -1,2 +1,2 @@
 export * from './useExport'
-export * from './useCurd'
+export * from './useSearch'

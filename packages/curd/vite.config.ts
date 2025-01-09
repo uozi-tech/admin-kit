@@ -22,9 +22,14 @@ export default createViteConfig({
       },
     },
     plugins: [
-      dts({
-        rollupTypes: true,
-      }),
+      dts(),
     ],
+  },
+  pluginOptions: {
+    vueComponents: false,
+    autoImport: false,
+    unocss: {
+      mode: 'vue-scoped',
+    },
   },
 })

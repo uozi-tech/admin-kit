@@ -1,8 +1,9 @@
-import {
-  mergeConfigs,
+import type {
   UserConfig,
 } from 'unocss'
+import type { PluginOption } from 'vite'
 import {
+  mergeConfigs,
   presetAttributify,
   presetIcons,
   presetUno,
@@ -11,10 +12,9 @@ import {
 } from 'unocss'
 import presetChinese, { chineseTypography } from 'unocss-preset-chinese'
 import presetEase from 'unocss-preset-ease'
-import { PluginOption } from 'vite'
 import UnoCSS from 'unocss/vite'
 
-export interface VitePluginConfig extends UserConfig {
+export interface UnocssOptions extends UserConfig {
   inspector?: boolean
   mode?: 'global' | 'per-module' | 'vue-scoped' | 'dist-chunk' | 'shadow-dom'
   transformCSS?: boolean | 'pre' | 'post'
@@ -23,7 +23,7 @@ export interface VitePluginConfig extends UserConfig {
   fetchMode?: 'cors' | 'navigate' | 'no-cors' | 'same-origin'
 }
 
-const defaultConfig: VitePluginConfig = {
+export const defaultConfig: UnocssOptions = {
   mode: 'global',
   content: {
     pipeline: {
@@ -46,7 +46,10 @@ const defaultConfig: VitePluginConfig = {
   ],
   shortcuts: {
     // position
-    'common-bg': 'bg-gray-100 dark:bg-gray-900',
+    'common-bg': 'bg-truegray-100 dark:bg-truegray-900',
+    'bg-base': 'bg-white dark:bg-[#141414]',
+    'text-color-base': 'text-black dark:text-white',
+
     'pr': 'relative',
     'pa': 'absolute',
     'pf': 'fixed',
@@ -80,6 +83,6 @@ const defaultConfig: VitePluginConfig = {
   ],
 }
 
-export function createUnoCSSPluginConfig(customConfig: VitePluginConfig = {}): PluginOption {
+export function createUnoCSSPluginConfig(customConfig: UnocssOptions = {}): PluginOption {
   return UnoCSS(mergeConfigs([defaultConfig, customConfig]))
 }
