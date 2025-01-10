@@ -1,10 +1,10 @@
-import { AxiosRequestConfig, AxiosResponse } from 'axios'
+import type { AxiosRequestConfig, AxiosResponse } from 'axios'
 
 export type HttpFn = <T, D>(config: AxiosRequestConfig) => Promise<AxiosResponse<T, D>>
 
 export type ApiType = 'getList' | 'getDetail' | 'update' | 'create' | 'delete' | 'restore'
 
-export type PaginationType = {
+export interface PaginationType {
   total: number
   total_pages: number
   per_page: number

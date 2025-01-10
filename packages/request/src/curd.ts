@@ -1,7 +1,7 @@
-import { createRequestInstance, service } from './axios'
+import type { AxiosInterceptorOptions, AxiosResponse, InternalAxiosRequestConfig } from 'axios'
+import type { HttpFn } from './types'
 import { get } from 'lodash-es'
-import { AxiosInterceptorOptions, AxiosResponse, InternalAxiosRequestConfig } from 'axios'
-import { HttpFn } from './types'
+import { createRequestInstance, service } from './axios'
 
 type PaginationKey = 'total' | 'current_page' | 'per_page' | 'total_page'
 type PaginationMap = {
@@ -23,15 +23,16 @@ export class Curd<D> {
     this.http = config?.http ?? createRequestInstance(service)
   }
 
-  async getList(params: Record<string, any>) {
+  async getList(params?: Record<string, any>) {
     try {
       const res = await this.http({ url: this.url, method: 'GET', params })
       const pagination: { pageSize?: number, current?: number, total?: number, totalPage?: number } = {}
-      for (const key in paginationMap) 
-        if (paginationMap[key as PaginationKey]) 
+      for (const key in paginationMap) {
+        if (paginationMap[key as PaginationKey])
           pagination[key as PaginationKey] = get(res?.data, paginationMap[key as PaginationKey] ?? `pagination.${key}`)
-      
-      return Promise.resolve(res)
+      }
+
+      return Promise.resolve({ data: res.data as D[], pagination })
     }
     catch (err) {
       return Promise.reject(err)
@@ -68,7 +69,7 @@ export class Curd<D> {
     }
   }
 
-  async delete(id: string | number, params: Record<string, any>) {
+  async delete(id: string | number, params?: Record<string, any>) {
     try {
       const res = await this.http({ url: `${this.url}/${id}`, method: 'DELETE', params })
       return Promise.resolve(res as D)
@@ -78,7 +79,7 @@ export class Curd<D> {
     }
   }
 
-  async restore(id: string | number, params: Record<string, any>) {
+  async restore(id: string | number, params?: Record<string, any>) {
     try {
       const res = await this.http({ url: `${this.url}/${id}`, method: 'PATCH', params })
       return Promise.resolve(res as D)
