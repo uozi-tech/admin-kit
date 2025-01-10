@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { theme } from 'ant-design-vue'
-import { useSettingsStore } from './store'
-import gettext from './gettext'
-import zh_CN from 'ant-design-vue/es/locale/zh_CN'
+import { ConfigProvider, theme } from 'ant-design-vue'
+import { configProviderKey } from 'ant-design-vue/es/config-provider/context'
 import en_US from 'ant-design-vue/es/locale/en_US'
-import { computed } from 'vue'
+import zh_CN from 'ant-design-vue/es/locale/zh_CN'
+import { computed, provide } from 'vue'
+import gettext from './gettext'
+import { useSettingsStore } from './store'
 
 const settings = useSettingsStore()
 
@@ -16,12 +17,22 @@ const lang = computed(() => {
       return en_US
   }
 })
+
+provide('key', configProviderKey)
+
+provide(configProviderKey, {
+  getPrefixCls(suffixCls: string | undefined, customizePrefixCls: string | undefined): string {
+    return ''
+  },
+  iconPrefixCls: computed(() => 'anticon'),
+  locale: computed(() => lang.value),
+})
 </script>
 
 <template>
-  <AConfigProvider
+  <ConfigProvider
     :theme="{
-      algorithm: settings.isDark ? theme.darkAlgorithm : theme.defaultAlgorithm,
+      algorithm: settings.theme === 'dark' ? theme.darkAlgorithm : theme.defaultAlgorithm,
     }"
     :auto-insert-space-in-button="false"
     :locale="lang"
@@ -29,7 +40,7 @@ const lang = computed(() => {
     <div class="app-container">
       <RouterView />
     </div>
-  </AConfigProvider>
+  </ConfigProvider>
 </template>
 
 <style scoped>

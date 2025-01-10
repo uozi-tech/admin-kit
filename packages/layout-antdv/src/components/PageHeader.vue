@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { PageHeader } from 'ant-design-vue'
+
 defineProps({
   pageTitle: {
     type: String,
@@ -7,11 +9,11 @@ defineProps({
 </script>
 
 <template>
-  <APageHeader
+  <PageHeader
     class="p-0"
     :title="pageTitle"
   >
     <slot />
     <slot name="extra" />
-  </APageHeader>
+  </PageHeader>
 </template>

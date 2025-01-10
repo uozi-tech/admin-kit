@@ -1,238 +1,268 @@
 <script setup lang="ts">
-import { StdCurdProps, StdTableBodyScope, StdTableHeaderScope } from '../types'
-import useCurd from '../composables/useCurd'
-import { useConfigContextInject } from 'ant-design-vue/es/config-provider/context'
+import type { StdCurdProps } from '../types'
+import { Button, Card, Checkbox, Divider, Flex, message, Modal, Spin } from 'ant-design-vue'
+import { configProviderKey, useConfigContextInject } from 'ant-design-vue/es/config-provider/context'
+import { computed, inject, reactive, ref, useSlots, watchEffect } from 'vue'
+import { useRoute } from 'vue-router'
 import { useExport } from '../composables'
-import { message } from 'ant-design-vue'
-import { i18n } from '../i18n'
-import StdForm from './StdForm.vue'
+import { ApiActions } from '../constants'
+import { $gettext, gettext } from '../locales'
+import { getRealContent } from '../utils'
 import StdDetail from './StdDetail.vue'
-import StdSearch from './StdSearch.vue'
-import { getRealContent } from '../utils/util'
-import { ApiActions } from '../constants/api'
+import StdForm from './StdForm.vue'
+import StdTable from './StdTable.vue'
 
 const props = defineProps<StdCurdProps>()
 
-const { locale: lang } = useConfigContextInject()
-const currentLanguage = computed(() => lang?.value?.locale ?? 'en')
-provide('lang', currentLanguage)
+const emit = defineEmits<{
+  (e: 'add'): void
+  (e: 'read', record: any): void
+  (e: 'edit', record: any): void
+  (e: 'delete', record: any): void
+  (e: 'restore', record: any): void
+  (e: 'deletePermanently', record: any): void
+}>()
 
-const {
-  tableLoading,
-  modalLoading,
-  mode,
-  searchFormData,
-  resetSearchForm,
-  tableData,
-  itemDetail,
-  formVisible,
-  pagination,
-  isTrash,
-  switchTrashAndList,
-  handleRead,
-  handleAdd,
-  handleEdit,
-  handleSave,
-  handleDataById,
-} = useCurd(props, currentLanguage.value)
+const route = useRoute()
+const slots = useSlots()
+
+const { locale: lang } = useConfigContextInject()
+watchEffect(() => {
+  console.log(lang)
+  gettext.current = lang?.value.locale ?? 'zh-cn'
+})
+
+const key = inject('key')
+console.log(key, configProviderKey, key === configProviderKey)
+
+const refreshConfig = reactive({
+  timestamp: 0,
+  reset: false,
+})
+
+function refresh(reset: boolean = false) {
+  refreshConfig.timestamp = Date.now()
+  refreshConfig.reset = reset
+}
+
+const tableLoading = ref(false)
+
 const selectedRowKeys = ref<(string | number)[]>([])
 const selectedRows = ref<Record<string | number, unknown>[]>([])
 
 const stdForm = ref()
-const onSave = () => {
+
+function onSave() {
   const { formRef } = stdForm.value
-  formRef.validateFields().then(res => {
+  formRef.validateFields().then((res) => {
     handleSave(res)
   }).catch(() => {
-    message.error(i18n[currentLanguage.value].formValidateError)
+    message.error($gettext('Please fill all fields correctly'))
   })
 }
-
-const searchColumns = computed(() => {
-  return props.columns.filter(item => item.search)
-})
 
 const formColumns = computed(() => {
   return props.columns.filter(item => item.dataIndex !== 'actions' && item.key !== 'actions' && (item.edit))
 })
 
-const dataColumns = computed(() => {
-  return props.columns
-    .filter(item => !item.hiddenInTable)
-    .map(item => {
-      item.title = getRealContent(item.title)
-      return item
+// 当前弹窗的模式
+const mode = ref<'add' | 'read' | 'edit'>('add')
+
+// 回收站标记
+const isTrash = ref(JSON.parse(route?.query?.trash as string ?? 'false'))
+
+// 数据项详情
+const itemDetail = ref<Record<string, any>>({})
+
+// 新增/编辑弹窗可见标记
+const formVisible = ref(false)
+
+// 表格 loading 和 弹窗 loading
+const modalLoading = ref(false)
+
+// 切换回收站和列表
+function switchTrashAndList() {
+  if (tableLoading.value)
+    return
+
+  isTrash.value = !isTrash.value
+
+  refresh(true)
+}
+
+function getDataDetail(row: Record<string, any>) {
+  modalLoading.value = true
+  props.api.getDetail(row[props.rowKey ?? 'id']).then((res) => {
+    itemDetail.value = res
+    modalLoading.value = false
+  }).catch(() => {
+    message.error('Failed to get item detail')
+  })
+}
+
+// 查看详情
+function handleRead(row: Record<string, any>) {
+  emit('read', row)
+
+  formVisible.value = true
+  mode.value = 'read'
+  getDataDetail(row)
+}
+
+// 打开添加弹窗
+function handleAdd() {
+  emit('add')
+
+  formVisible.value = true
+  mode.value = 'add'
+  itemDetail.value = {}
+}
+
+// 打开编辑弹窗
+function handleEdit(row: Record<string, any>) {
+  emit('edit', row)
+
+  formVisible.value = true
+  mode.value = 'edit'
+  getDataDetail(row)
+}
+
+// 保存新增/编辑数据
+function handleSave(data: Record<string, any>) {
+  modalLoading.value = true
+  const payload = {
+    ...data,
+    ...props.overwriteParams,
+  }
+
+  let promise: Promise<unknown>
+  if (mode.value === 'add') {
+    promise = props.api.create(payload)
+  }
+  else {
+    promise = props.api.update(itemDetail.value[props.rowKey ?? 'id'], payload)
+  }
+
+  promise
+    .then(() => {
+      refresh()
+      formVisible.value = false
+      message.success($gettext('Saved successfully'))
     })
+    .catch((err: any) => {
+      message.error('Failed to save data')
+    })
+    .finally(() => (modalLoading.value = false))
+}
+
+// 处理删除/恢复数据
+function handleDataById(action: string, record: Record<string, any>) {
+  const actionKey = action.startsWith('delete') ? 'delete' : 'restore'
+
+  emit(action as any, record)
+
+  props.api[actionKey](record[props.rowKey ?? 'id'], { permanently: action === ApiActions.DELETE_PERMANENTLY })
+    .then(() => {
+      refresh()
+      if (actionKey === 'delete')
+        message.success($gettext('Deleted successfully'))
+      else
+        message.success($gettext('Restored successfully'))
+    })
+    .catch((err: any) => {
+      message.error('Failed to execute the operation')
+    })
+}
+
+const { exportExcel, exportColumns, state: exportColumnsSelectionState, onCheckAllChange } = useExport({
+  columns: props.columns,
+  api: props.api?.getList,
 })
-
-function onSelectedChange(keys: (string | number)[], rows: Record<string | number, unknown>[]) {
-  selectedRowKeys.value = keys
-  selectedRows.value = rows
-}
-
-function CustomHeaderRender(props: { node: VNode }) {
-  return props.node
-}
-
-const { exportExcel, exportColumns, state: exportColumnsSelectionState, onCheckAllChange } = useExport(props.columns)
 const exportVisible = ref(false)
-
 </script>
 
 <template>
-  <ACard
-    :title="i18n[currentLanguage].search"
-    class="mb-4"
-  >
-    <StdSearch
-      v-if="!props.disableSearch"
-      v-model:data="searchFormData"
-      :columns="searchColumns"
-      :lang="currentLanguage"
-    >
-      <template #extra="{ formData }">
-        <AFlex
-          wrap="wrap"
-          gap="small"
-        >
-          <AButton @click="resetSearchForm">
-            {{ i18n[currentLanguage].reset }}
-          </AButton>
-          <slot
-            name="searchFormAction"
-            :form-data="formData"
-          />
-        </AFlex>
-      </template>
-    </StdSearch>
-  </ACard>
-  <ACard>
+  <Card>
     <template #title>
-      {{ props.title ?? i18n[currentLanguage].list }}
+      {{ getRealContent(props.title) || $gettext('List') }}
       <slot name="titleRight" />
     </template>
     <template #extra>
-      <AFlex gap="8">
+      <Flex gap="8">
         <slot name="beforeListActions" />
         <a
           v-if="!props.disableExport && !isTrash"
           :class="{ 'cursor-not-allowed text-truegray-3 hover:text-truegray-3': selectedRowKeys.length === 0 }"
           @click="selectedRowKeys.length > 0 && (exportVisible = true)"
         >
-          {{ i18n[currentLanguage].exportExcel }}
+          {{ $gettext('Export Excel') }}
         </a>
         <a
           v-if="!props.disableAdd && !isTrash"
           @click="handleAdd"
-        >{{ i18n[currentLanguage].add }}</a>
+        >{{ $gettext('Add') }}</a>
         <a
           v-if="!props.disableTrash"
           :class="{ 'cursor-not-allowed text-truegray-3 hover:text-truegray-3': tableLoading }"
           @click="switchTrashAndList"
         >
-          {{ isTrash ? i18n[currentLanguage].backToList : i18n[currentLanguage].trash }}
+          {{ isTrash ? $gettext('Back to List') : $gettext('Trash') }}
         </a>
         <slot name="afterListActions" />
-      </AFlex>
+      </Flex>
     </template>
 
-    <ATable
-      v-model:pagination="pagination"
-      :row-key="props.rowKey ?? 'id'"
-      :row-selection="{
-        selectedRowKeys,
-        onChange: onSelectedChange,
-        type: props.rowSelectionType ?? 'checkbox',
+    <StdTable
+      v-model:table-loading="tableLoading"
+      :title
+      :columns
+      :api
+      :is-trash="isTrash"
+      :disable-add="disableAdd"
+      :disable-edit="disableEdit"
+      :disable-delete="disableDelete"
+      :disable-search="disableSearch"
+      :disable-trash="disableTrash"
+      :disable-router-query="disableRouterQuery"
+      :row-selection-type="rowSelectionType"
+      :refresh-config="refreshConfig"
+      :table-props="{
+        rowKey,
+        scroll: {
+          x: props.scrollX ?? 'max-content',
+          y: props.scrollY,
+        },
+        ...props.tableProps,
       }"
-      :data-source="tableData"
-      :columns="dataColumns"
-      :loading="tableLoading "
-      :scroll="{ x: props.scrollX ?? 2400, y: props.scrollY }"
-      v-bind="props.tableConfig"
+      :overwrite-params="overwriteParams"
+      @read="handleRead"
+      @edit="handleEdit"
+      @delete="row => handleDataById(ApiActions.DELETE_TEMPORARY, row)"
+      @delete-permanently="row => handleDataById(ApiActions.DELETE_PERMANENTLY, row)"
+      @restore="row => handleDataById(ApiActions.RESTORE, row)"
     >
-      <template #headerCell="{ title, column }: StdTableHeaderScope">
-        <template v-if="column?.customHeaderRender">
-          <CustomHeaderRender :node="column?.customHeaderRender({ title, column })" />
-        </template>
+      <template
+        v-for="(_, key) in slots"
+        :key="key"
+        #[key]="slotProps"
+      >
+        <slot
+          :name="key"
+          v-bind="slotProps"
+        />
       </template>
-      <template #bodyCell="{ record, column }: StdTableBodyScope">
-        <template v-if="column?.dataIndex === 'actions' && !column?.customRender">
-          <slot
-            name="beforeActions"
-            :record="record"
-            :column="column"
-          />
-          <AButton
-            size="small"
-            type="link"
-            @click="handleRead(record)"
-          >
-            {{ i18n[currentLanguage].read }}
-          </AButton>
-          <AButton
-            v-if="!props.disableEdit && !isTrash"
-            size="small"
-            type="link"
-            @click="handleEdit(record)"
-          >
-            {{ i18n[currentLanguage].edit }}
-          </AButton>
-          <APopconfirm
-            v-if="!props.disableDelete && !isTrash"
-            :title="i18n[currentLanguage].confirmDelete"
-            @confirm="handleDataById(ApiActions.DELETE_TEMPORARY, record)"
-          >
-            <AButton
-              size="small"
-              type="link"
-              danger
-            >
-              {{ i18n[currentLanguage].delete }}
-            </AButton>
-          </APopconfirm>
-          <APopconfirm
-            v-if="!props.disableTrash && isTrash"
-            :title="i18n[currentLanguage].confirmRestore"
-            @confirm="handleDataById(ApiActions.RESTORE, record)"
-          >
-            <AButton
-              size="small"
-              type="link"
-            >
-              {{ i18n[currentLanguage].restore }}
-            </AButton>
-          </APopconfirm>
-          <APopconfirm
-            v-if="!props.disableDelete && isTrash"
-            :title="i18n[currentLanguage].confirmDeletePermanently"
-            @confirm="handleDataById(ApiActions.DELETE_PERMANENTLY, record)"
-          >
-            <AButton
-              size="small"
-              type="link"
-              danger
-            >
-              {{ i18n[currentLanguage].deletePermanently }}
-            </AButton>
-          </APopconfirm>
-          <slot
-            name="afterActions"
-            :record="record"
-            :column="column"
-          />
-        </template>
-      </template>
-    </ATable>
+    </StdTable>
 
-    <AModal
+    <Modal
       v-model:open="formVisible"
-      style="max-height: 80vh"
+      destroy-on-close
       :closable="!modalLoading"
       :width="props.modalWidth"
-      :title="i18n[currentLanguage][mode]"
+      :title="mode === 'add' ? $gettext('Add') : $gettext('Edit')"
+      :mask-closable="false"
     >
-      <ASpin :spinning="modalLoading">
-        <div style="overflow-y: auto; max-height: 70vh">
+      <Spin :spinning="modalLoading">
+        <div>
           <StdDetail
             v-if="mode === 'read'"
             :row-key="props.rowKey"
@@ -243,59 +273,58 @@ const exportVisible = ref(false)
             v-else
             ref="stdForm"
             :data="itemDetail"
-            :api="props.api"
             :columns="formColumns"
           />
         </div>
-      </ASpin>
+      </Spin>
       <template #footer>
-        <AButton
+        <Button
           :disabled="modalLoading"
           @click="formVisible = false"
         >
-          {{ i18n[currentLanguage].close }}
-        </AButton>
-        <AButton
-          v-if="mode !== 'read'"
+          {{ $gettext('Close') }}
+        </Button>
+        <Button
+          v-show="mode !== 'read'"
           :loading="modalLoading"
           type="primary"
           @click="onSave"
         >
-          {{ i18n[currentLanguage].save }}
-        </AButton>
+          {{ $gettext('Save') }}
+        </Button>
       </template>
-    </AModal>
+    </Modal>
 
-    <AModal
+    <Modal
       v-model:open="exportVisible"
       style="max-height: 80vh"
       :closable="!modalLoading"
       :width="props.modalWidth"
-      :title="i18n[currentLanguage].export"
-      :ok-text="i18n[currentLanguage].export"
+      :title="$gettext('app.exportExcel')"
+      :ok-text="$gettext('app.ok')"
       @ok="exportExcel(selectedRowKeys, selectedRows)"
     >
-      <ACheckbox
+      <Checkbox
         v-model:checked="exportColumnsSelectionState.checkAll"
         :indeterminate="exportColumnsSelectionState.indeterminate"
         @change="onCheckAllChange"
       >
-        {{ i18n[currentLanguage].checkAll }}
-      </ACheckbox>
-      <ADivider />
-      <!--      <VueDraggable class="checkbox__wrapper" v-model="exportColumns" :animation="200">-->
-      <!--        <a-checkbox-->
-      <!--          v-for="(c, i) in exportColumns"-->
-      <!--          :key="c.dataIndex"-->
-      <!--          class="checkbox"-->
-      <!--          :checked="exportColumns[i].checked"-->
-      <!--          @change="(event) => (exportColumns[i].checked = event.target.checked)"-->
-      <!--        >-->
-      <!--          {{ c.title }}-->
-      <!--        </a-checkbox>-->
-      <!--      </VueDraggable>-->
-    </AModal>
-  </ACard>
+        {{ $gettext('app.selectAll') }}
+      </Checkbox>
+      <Divider />
+      <!--      <VueDraggable class="checkbox__wrapper" v-model="exportColumns" :animation="200"> -->
+      <!--        <a-checkbox -->
+      <!--          v-for="(c, i) in exportColumns" -->
+      <!--          :key="c.dataIndex" -->
+      <!--          class="checkbox" -->
+      <!--          :checked="exportColumns[i].checked" -->
+      <!--          @change="(event) => (exportColumns[i].checked = event.target.checked)" -->
+      <!--        > -->
+      <!--          {{ c.title }} -->
+      <!--        </a-checkbox> -->
+      <!--      </VueDraggable> -->
+    </Modal>
+  </Card>
 </template>
 
 <style scoped>

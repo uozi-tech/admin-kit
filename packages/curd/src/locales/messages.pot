@@ -1,0 +1,102 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+#: src/components/StdCurd.vue:101
+#: src/components/StdCurd.vue:228
+msgid "Add"
+msgstr ""
+
+#: src/components/StdCurd.vue:203
+msgid "Are you sure want to delete permanently?"
+msgstr ""
+
+#: src/components/StdCurd.vue:178
+msgid "Are you sure want to delete?"
+msgstr ""
+
+#: src/components/StdCurd.vue:191
+msgid "Are you sure want to restore?"
+msgstr ""
+
+#: src/components/StdCurd.vue:107
+msgid "Back to List"
+msgstr ""
+
+#: src/components/StdCurd.vue:252
+msgid "Close"
+msgstr ""
+
+#: src/components/StdCurd.vue:186
+msgid "Delete"
+msgstr ""
+
+#: src/components/StdCurd.vue:211
+msgid "Delete Permanently"
+msgstr ""
+
+#: src/components/StdCurd.vue:174
+#: src/components/StdCurd.vue:228
+msgid "Edit"
+msgstr ""
+
+#: src/components/StdCurd.vue:270
+msgid "Export"
+msgstr ""
+
+#: src/components/StdCurd.vue:96
+msgid "Export Excel"
+msgstr ""
+
+#: src/components/form/StdPassword.vue:49
+msgid "Generate"
+msgstr ""
+
+#: src/components/StdCurd.vue:85
+msgid "List"
+msgstr ""
+
+#: src/components/StdCurd.vue:271
+msgid "Ok"
+msgstr ""
+
+#: src/components/StdCurd.vue:48
+msgid "Please fill all fields correctly"
+msgstr ""
+
+#: src/components/StdCurd.vue:125
+msgid "Reset"
+msgstr ""
+
+#: src/components/StdCurd.vue:198
+msgid "Restore"
+msgstr ""
+
+#: src/components/StdCurd.vue:260
+msgid "Save"
+msgstr ""
+
+#: src/components/StdCurd.vue:279
+msgid "Select all"
+msgstr ""
+
+#: src/composables/useCurd.ts:205
+msgid "Total"
+msgstr ""
+
+#: src/components/StdCurd.vue:107
+msgid "Trash"
+msgstr ""
+
+#: src/components/form/StdUpload.vue:39
+msgid "Upload"
+msgstr ""
+
+#: src/components/StdCurd.vue:166
+msgid "View"
+msgstr ""
+
+#: src/composables/useCurd.ts:205
+msgctxt "项"
+msgid "item(s)"
+msgstr ""

@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import type { BreadcrumbItem, Languages, LanguageValue, SidebarItem, Text, Theme } from './props'
+import type { AppBreadcrumbItem, Languages, LanguageValue, SidebarItem, Text, Theme } from './props'
+import { Layout, LayoutContent, LayoutFooter, LayoutHeader } from 'ant-design-vue'
 import AppFooter from './components/AppFooter.vue'
 import AppHeader from './components/AppHeader.vue'
 import AppSidebar from './components/AppSidebar.vue'
@@ -17,7 +18,7 @@ withDefaults(
     logo?: string
     showPageHeader?: boolean
     showBreadcrumb?: boolean
-    breadcrumbItems?: BreadcrumbItem[]
+    breadcrumbItems?: AppBreadcrumbItem[]
     sidebarItems?: SidebarItem[]
     showFooter?: boolean
     showThemeSwitch?: boolean
@@ -62,7 +63,7 @@ function onSidebarCollapse(collapsed: boolean) {
 </script>
 
 <template>
-  <ALayout class="layout-container min-h-screen">
+  <Layout class="layout-container min-h-screen">
     <!-- Sidebar -->
     <AppSidebar
       :logo="logo"
@@ -73,8 +74,8 @@ function onSidebarCollapse(collapsed: boolean) {
       @collapse-sidebar="onSidebarCollapse"
     />
     <!-- Main Layout -->
-    <ALayout>
-      <ALayoutHeader class="z-10 shadow-sm p-inline-0!">
+    <Layout>
+      <LayoutHeader class="z-10 shadow-sm p-inline-0!">
         <AppHeader>
           <LanguageSelect
             v-if="showLanguageSelect"
@@ -91,9 +92,9 @@ function onSidebarCollapse(collapsed: boolean) {
             <slot name="header-actions" />
           </template>
         </AppHeader>
-      </ALayoutHeader>
+      </LayoutHeader>
 
-      <ALayoutContent>
+      <LayoutContent>
         <div class="flex flex-col gap-1 px-6 py-2 bg-base">
           <!-- Breadcrumb -->
           <Breadcrumb
@@ -117,21 +118,21 @@ function onSidebarCollapse(collapsed: boolean) {
           <!-- 插槽：页面内容 -->
           <slot />
         </div>
-      </ALayoutContent>
+      </LayoutContent>
 
       <!-- Footer -->
-      <ALayoutFooter v-if="showFooter && copyright">
+      <LayoutFooter v-if="showFooter && copyright">
         <AppFooter :copyright="getRealTitle(copyright)">
           <slot name="footer-content" />
         </AppFooter>
-      </ALayoutFooter>
-    </ALayout>
-  </ALayout>
+      </LayoutFooter>
+    </Layout>
+  </Layout>
 </template>
 
 <style scoped>
 :deep(.ant-layout-header), :deep(.ant-layout-sider), :deep(.ant-layout-sider-trigger) {
-  @apply bg-white bg-base text-color-base;
+  @apply bg-base text-color-base;
 }
 :deep(.ant-layout-sider .ant-menu-root) {
   border-inline-end: none !important;

@@ -29,6 +29,7 @@
   "author": "Akino",
   "license": "Apache-2.0",
   "scripts": {
+    "watch": "tsup --watch",
     "build": "tsup"
   },
   "peerDependencies": {

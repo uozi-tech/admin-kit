@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Languages, LanguageValue } from '../props'
+import { Select, SelectOption } from 'ant-design-vue'
 import { isArray, isObject } from 'lodash-es'
 import { computed, ref } from 'vue'
 
@@ -34,21 +35,21 @@ function changeLanguage() {
 </script>
 
 <template>
-  <ASelect
+  <Select
     v-model:value="currentSelectedLanguage"
     size="small"
     class="min-w-60px"
     :dropdown-match-select-width="false"
     @select="changeLanguage"
   >
-    <ASelectOption
+    <SelectOption
       v-for="(language, key) in AvailableLanguages"
       :key="key"
       :value="key"
     >
       {{ language }}
-    </ASelectOption>
-  </ASelect>
+    </SelectOption>
+  </Select>
 </template>
 
 <style scoped>

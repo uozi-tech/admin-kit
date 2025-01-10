@@ -9,19 +9,30 @@ export default createViteConfig({
         entry: 'src/index.ts',
         name: 'Bundle',
         fileName: 'index',
-        formats: ['es', 'cjs'],
+        formats: ['es'],
       },
       rollupOptions: {
         output: {
           exports: 'named',
         },
-        external: ['vue', 'ant-design-vue', 'lodash-es', '@ant-design/icons-vue', 'vue-router'],
+        external: [
+          'vue',
+          'vue-router',
+          'ant-design-vue',
+          '@ant-design/icons-vue',
+          'lodash-es',
+        ],
       },
     },
     plugins: [
-      dts({
-        rollupTypes: true,
-      }),
+      dts(),
     ],
+  },
+  pluginOptions: {
+    vueComponents: false,
+    autoImport: false,
+    unocss: {
+      mode: 'vue-scoped',
+    },
   },
 })

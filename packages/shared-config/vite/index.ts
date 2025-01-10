@@ -1,12 +1,12 @@
-import process from 'node:process'
 import type { UserConfig, UserConfigExport } from 'vite'
+import type { PluginsCustomOptions } from './plugins'
+import process from 'node:process'
 import { defineConfig, mergeConfig } from 'vite'
 import { createApplicationViteConfig } from './config'
-import { PluginsCustomOptions } from './plugins'
 
 interface ApplicationViteConfigOptions {
   overrides?: UserConfigExport
-  plugins?: PluginsCustomOptions
+  pluginOptions?: PluginsCustomOptions
 }
 
 export function mergeConfigs(configs: UserConfig[]): Record<string, any> {
@@ -16,12 +16,12 @@ export function mergeConfigs(configs: UserConfig[]): Record<string, any> {
 }
 
 export async function createViteConfig(applicationViteConfigOptions: ApplicationViteConfigOptions = {}) {
-  const { overrides = {}, plugins = {} } = applicationViteConfigOptions
+  const { overrides = {}, pluginOptions = {} } = applicationViteConfigOptions
   const root = process.cwd()
-  return defineConfig(async env => {
-    if (typeof overrides === 'function') 
-      return mergeConfigs([await createApplicationViteConfig(env.mode, root, plugins), await overrides(env)])
-    
-    return mergeConfigs([await createApplicationViteConfig(env.mode, root, plugins), overrides as UserConfig])
+  return defineConfig(async (env) => {
+    if (typeof overrides === 'function')
+      return mergeConfigs([await createApplicationViteConfig(env.mode, root, pluginOptions), await overrides(env)])
+
+    return mergeConfigs([await createApplicationViteConfig(env.mode, root, pluginOptions), overrides as UserConfig])
   })
 }

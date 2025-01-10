@@ -1,6 +1,7 @@
 <script setup lang="ts">
+import type { StdTableColumn } from '@uozi-admin/curd/src/types'
 import { StdCurd } from '@uozi-admin/curd'
-import { StdTableColumn } from '@uozi-admin/curd/src/types'
+import { h } from 'vue'
 
 const columns: StdTableColumn[] = [
   {
@@ -167,7 +168,7 @@ const columns: StdTableColumn[] = [
     title: 'Week Range',
     dataIndex: 'week_range',
     edit: {
-      type: 'weekRangePicker',
+      type: 'weekRange',
     },
     search: true,
   },
@@ -244,7 +245,7 @@ const api = {
       fileList: [],
       file: 'https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png',
     }))
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       setTimeout(() => {
         resolve({
           data,
@@ -257,7 +258,7 @@ const api = {
       }, 1000)
     })
   },
-  getDetail: () => new Promise(resolve => {
+  getDetail: () => new Promise((resolve) => {
     setTimeout(() => {
       resolve({
         id: 1,
@@ -286,7 +287,7 @@ const api = {
 <template>
   <StdCurd
     :custom-params="{
-      'aaa': 111
+      aaa: 111,
     }"
     :columns="columns"
     :api="api"

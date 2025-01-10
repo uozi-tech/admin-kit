@@ -10,11 +10,11 @@ import {
   transformerDirectives,
   transformerVariantGroup,
 } from 'unocss'
-import UnoCSS from 'unocss/vite'
 import presetChinese, { chineseTypography } from 'unocss-preset-chinese'
 import presetEase from 'unocss-preset-ease'
+import UnoCSS from 'unocss/vite'
 
-export interface VitePluginConfig extends UserConfig {
+export interface UnocssConfig extends UserConfig {
   inspector?: boolean
   mode?: 'global' | 'per-module' | 'vue-scoped' | 'dist-chunk' | 'shadow-dom'
   transformCSS?: boolean | 'pre' | 'post'
@@ -23,7 +23,7 @@ export interface VitePluginConfig extends UserConfig {
   fetchMode?: 'cors' | 'navigate' | 'no-cors' | 'same-origin'
 }
 
-const defaultConfig: VitePluginConfig = {
+const defaultConfig: UnocssConfig = {
   mode: 'global',
   content: {
     pipeline: {
@@ -80,6 +80,6 @@ const defaultConfig: VitePluginConfig = {
   ],
 }
 
-export function createUnoCSSPluginConfig(customConfig: VitePluginConfig = {}): PluginOption {
+export function createUnoCSSPluginConfig(customConfig: UnocssConfig = {}): PluginOption {
   return UnoCSS(mergeConfigs([defaultConfig, customConfig]))
 }

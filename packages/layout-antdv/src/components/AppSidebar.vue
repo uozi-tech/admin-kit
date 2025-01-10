@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import type { SidebarItem, Text } from '../props'
+import { Avatar, Image, LayoutSider, Menu, MenuItem, SubMenu } from 'ant-design-vue'
 import { throttle } from 'lodash-es'
-import { ref } from 'vue'
+import { h, ref, watchEffect } from 'vue'
+import { useRoute } from 'vue-router'
 import { getRealTitle } from '../utils'
 
 withDefaults(defineProps<{
@@ -51,7 +53,7 @@ function handleMenuItemClick({ item }) {
 </script>
 
 <template>
-  <ALayoutSider
+  <LayoutSider
     class="z-11 bg-base!"
     :collapsed="collapsed"
     collapsible
@@ -60,15 +62,18 @@ function handleMenuItemClick({ item }) {
     <!-- 可自定义 Logo 区域 -->
     <div class="logo">
       <slot name="logo">
-        <AAvatar
+        <Avatar
           v-if="collapsed && !logo"
           size="large"
           class="flex items-center bg-purple-5 dark:bg-purple-8 text-xl font-semibold transition-all"
         >
           {{ getRealTitle(headerTitle)[0] }}
-        </AAvatar>
-        <div v-if="collapsed && logo" class="p-4">
-          <AImage :src="logo" />
+        </Avatar>
+        <div
+          v-if="collapsed && logo"
+          class="p-4"
+        >
+          <Image :src="logo" />
         </div>
         <h1
           v-show="!collapsed"
@@ -79,7 +84,7 @@ function handleMenuItemClick({ item }) {
       </slot>
     </div>
 
-    <AMenu
+    <Menu
       v-model:selected-keys="selectedKeys"
       v-model:open-keys="openKeys"
       mode="inline"
@@ -91,39 +96,39 @@ function handleMenuItemClick({ item }) {
       >
         <!-- 动态生成菜单项 -->
         <template v-if="item.children?.length">
-          <ASubMenu
+          <SubMenu
             :key="item.path"
             :icon="h(item?.icon as any)"
           >
             <template #title>
               {{ getRealTitle(item.title) }}
             </template>
-            <AMenuItem
+            <MenuItem
               v-for="child in item.children"
               :key="child.path"
             >
               <RouterLink :to="child.path">
                 {{ getRealTitle(child.title) }}
               </RouterLink>
-            </AMenuItem>
-          </ASubMenu>
+            </MenuItem>
+          </SubMenu>
         </template>
         <template v-else>
-          <AMenuItem
+          <MenuItem
             :key="item.path"
             :icon="h(item?.icon as any)"
           >
             <RouterLink :to="item.path">
               {{ getRealTitle(item.title) }}
             </RouterLink>
-          </AMenuItem>
+          </MenuItem>
         </template>
       </template>
-    </AMenu>
+    </Menu>
 
     <!-- 自定义的侧边栏内容 -->
     <slot />
-  </ALayoutSider>
+  </LayoutSider>
 </template>
 
 <style scoped>

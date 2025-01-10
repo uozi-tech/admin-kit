@@ -3,11 +3,11 @@ import type { Component, FunctionalComponent, VNode } from 'vue'
 
 export type Text = string | (() => string)
 
-export interface BreadcrumbItem {
+export interface AppBreadcrumbItem {
   title: Text
   path: string
   icon?: AntdIconType | FunctionalComponent | Component
-  children?: BreadcrumbItem[]
+  children?: AppBreadcrumbItem[]
 }
 
 export interface SidebarItem {

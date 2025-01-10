@@ -1,10 +1,10 @@
-import axios, {
-  type AxiosInstance,
+import type {
+  AxiosInstance,
   AxiosInterceptorOptions,
-  type AxiosRequestConfig,
+  AxiosRequestConfig,
   InternalAxiosRequestConfig,
 } from 'axios'
-import { merge } from 'lodash-es'
+import axios from 'axios'
 
 const defaultConfig: AxiosRequestConfig = {
   baseURL: '/api',
@@ -20,8 +20,7 @@ function createService() {
 
 export function createRequestInstance(service: AxiosInstance) {
   return function <T>(config: AxiosRequestConfig): Promise<T> {
-    const mergeConfig = merge(defaultConfig, config)
-    return service(mergeConfig)
+    return service(config)
   }
 }
 
@@ -31,7 +30,7 @@ export const service = createService()
 const registeredRequestInterceptors = new Set<string>()
 const registeredResponseInterceptors = new Set<string>()
 
-export const useAxios = () => {
+export function useAxios() {
   return {
     service,
     setRequestInterceptor(
@@ -40,7 +39,8 @@ export const useAxios = () => {
       options?: AxiosInterceptorOptions,
     ) {
       const id = onFulfilled.toString() + onRejected?.toString() + JSON.stringify(options)
-      if (registeredRequestInterceptors.has(id)) return
+      if (registeredRequestInterceptors.has(id))
+        return
 
       service.interceptors.request.use(onFulfilled, onRejected, options)
       registeredRequestInterceptors.add(id)
@@ -51,10 +51,13 @@ export const useAxios = () => {
       options?: AxiosInterceptorOptions,
     ) {
       const id = onFulfilled.toString() + onRejected?.toString() + JSON.stringify(options)
-      if (registeredResponseInterceptors.has(id)) return
+      if (registeredResponseInterceptors.has(id))
+        return
 
       service.interceptors.response.use(onFulfilled, onRejected, options)
       registeredResponseInterceptors.add(id)
     },
   }
 }
+
+export * from 'axios'

@@ -3,15 +3,9 @@
   "version": "0.0.4",
   "description": "Easy to implement curd.",
   "type": "module",
-  "main": "src/index.ts",
+  "main": "dist/index.js",
   "files": [
-    "src",
-    ".eslint-auto-import.mjs",
-    "auto-imports.d.ts",
-    "components.d.ts",
-    "eslint.config.mjs",
-    "tsconfig.json",
-    "vite.config.ts"
+    "dist"
   ],
   "keywords": [
     "uozi-admin",
@@ -24,26 +18,25 @@
   },
   "author": "Akino",
   "license": "Apache-2.0",
-  "scripts": {},
-  "peerDependencies": {
-    "@ant-design/icons-vue": "^7.0.1",
-    "ant-design-vue": "^4.2.6",
-    "vue-router": "^4.4.5",
-    "lodash-es": "^4.17.21",
-    "vue": "^3.5.12"
+  "scripts": {
+    "watch": "vite build --watch",
+    "build": "vite build"
   },
-  "dependencies": {
-    "xlsx": "^0.18.5"
+  "peerDependencies": {
+    "@ant-design/icons-vue": ">=7.0.1",
+    "ant-design-vue": ">=4.2.6",
+    "dayjs": ">=1.11.13",
+    "lodash-es": ">=4.17.21",
+    "vue": ">=3.5.12",
+    "vue-router": ">=4.4.5",
+    "vue3-gettext": ">=3.0.0-beta.4",
+    "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz"
   },
   "devDependencies": {
-    "@ant-design/icons-vue": "^7.0.1",
     "@types/lodash-es": "^4.17.12",
     "@uozi-admin/shared-config": "workspace:*",
-    "ant-design-vue": "^4.2.6",
-    "vue-router": "^4.4.5",
-    "lodash-es": "^4.17.21",
-    "vue": "^3.5.12",
     "unocss-preset-chinese": "^0.3.3",
-    "unocss-preset-ease": "^0.0.4"
+    "unocss-preset-ease": "^0.0.4",
+    "vitest": "^2.1.8"
   }
 }

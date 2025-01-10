@@ -1,15 +1,16 @@
 <script setup lang="ts">
-import type { BreadcrumbItem } from '../props'
+import type { AppBreadcrumbItem } from '../props'
+import { Breadcrumb, BreadcrumbItem, Dropdown, Menu, MenuItem } from 'ant-design-vue'
 import { computed } from 'vue'
-import { useRoute } from 'vue-router'
+import { RouterLink, useRoute } from 'vue-router'
 import { getRealTitle } from '../utils'
 
 const props = defineProps<{
-  items?: BreadcrumbItem[]
+  items?: AppBreadcrumbItem[]
 }>()
 
 const route = useRoute()
-const internalItems = computed<BreadcrumbItem[]>(() => {
+const internalItems = computed<AppBreadcrumbItem[]>(() => {
   const matchedRoutes = route.matched
   return props.items || matchedRoutes.map(r => ({
     title: r.meta?.breadcrumb || r.meta?.title || r.name,
@@ -20,19 +21,19 @@ const internalItems = computed<BreadcrumbItem[]>(() => {
       path: c.path,
       icon: c.meta?.icon,
     })),
-  })) as BreadcrumbItem[]
+  })) as AppBreadcrumbItem[]
 })
 </script>
 
 <template>
-  <ABreadcrumb>
-    <ABreadcrumbItem
+  <Breadcrumb>
+    <BreadcrumbItem
       v-for="(item, index) in internalItems"
       :key="index"
     >
       <!-- 如果有path属性则是链接，否则为普通文本 -->
       <template v-if="item.path && index !== internalItems.length - 1">
-        <ADropdown>
+        <Dropdown>
           <RouterLink :to="item.path">
             {{ getRealTitle(item.title) }}
           </RouterLink>
@@ -40,8 +41,8 @@ const internalItems = computed<BreadcrumbItem[]>(() => {
             v-if="item.children?.length"
             #overlay
           >
-            <AMenu>
-              <AMenuItem
+            <Menu>
+              <MenuItem
                 v-for="child in item.children"
                 :key="child.path"
                 class="py-[2px]!"
@@ -49,18 +50,18 @@ const internalItems = computed<BreadcrumbItem[]>(() => {
                 <RouterLink :to="child.path">
                   {{ getRealTitle(child.title) }}
                 </RouterLink>
-              </AMenuItem>
-            </AMenu>
+              </MenuItem>
+            </Menu>
           </template>
-        </ADropdown>
+        </Dropdown>
       </template>
       <template v-else>
         {{ getRealTitle(item.title) }}
       </template>
-    </ABreadcrumbItem>
+    </BreadcrumbItem>
     <!-- 支持插槽自定义面包屑项 -->
     <slot />
-  </ABreadcrumb>
+  </Breadcrumb>
 </template>
 
 <style scoped>
