@@ -23,6 +23,13 @@ export default createViteConfig({
           'lodash-es',
         ],
       },
+      watch: {
+        buildDelay: 1000,
+        exclude: [
+          'dist',
+          'node_modules',
+        ],
+      },
     },
     plugins: [
       dts(),
