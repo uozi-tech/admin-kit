@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 0.0.5
+
+### Patch Changes
+
+- [#26](https://github.com/uozi-tech/admin-kit/pull/26) [`62161a8`](https://github.com/uozi-tech/admin-kit/commit/62161a86c65bf5cfe7e2c56b00a398d2e210f445) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(context): ant design components context cannot sync
+
 ## 0.0.4
 
 ### Patch Changes
