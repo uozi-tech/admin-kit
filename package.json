@@ -9,7 +9,7 @@
     "watch:layout": "pnpm -F layout-antdv watch",
     "watch:curd": "pnpm -F curd watch",
     "dev:playground": "pnpm -F playground dev",
-    "build": "run-p build:*",
+    "build": "run-s build:*",
     "build:shared-config": "pnpm -F shared-config build",
     "build:request": "pnpm -F request build",
     "build:layout": "pnpm -F layout-antdv build",
