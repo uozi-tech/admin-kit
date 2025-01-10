@@ -1,5 +1,11 @@
 # @uozi-admin/shared-config
 
+## 0.3.0
+
+### Minor Changes
+
+- [#26](https://github.com/uozi-tech/admin-kit/pull/26) [`62161a8`](https://github.com/uozi-tech/admin-kit/commit/62161a86c65bf5cfe7e2c56b00a398d2e210f445) Thanks [@akinoccc](https://github.com/akinoccc)! - feat(plugins): support disabling built-in plugins by user
+
 ## 0.2.1
 
 ### Patch Changes
