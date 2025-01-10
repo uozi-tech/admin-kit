@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import type { StdCurdProps } from '../types'
 import { Button, Card, Checkbox, Divider, Flex, message, Modal, Spin } from 'ant-design-vue'
-import { useConfigContextInject } from 'ant-design-vue/es/config-provider/context'
-import { computed, reactive, ref, useSlots, watchEffect } from 'vue'
+import { configProviderKey, useConfigContextInject } from 'ant-design-vue/es/config-provider/context'
+import { computed, inject, reactive, ref, useSlots, watchEffect } from 'vue'
 import { useRoute } from 'vue-router'
 import { useExport } from '../composables'
 import { ApiActions } from '../constants'
@@ -26,10 +26,14 @@ const emit = defineEmits<{
 const route = useRoute()
 const slots = useSlots()
 
-const context = useConfigContextInject()
+const { locale: lang } = useConfigContextInject()
 watchEffect(() => {
-  gettext.current = context.locale?.value.locale ?? 'zh-cn'
+  console.log(lang)
+  gettext.current = lang?.value.locale ?? 'zh-cn'
 })
+
+const key = inject('key')
+console.log(key, configProviderKey, key === configProviderKey)
 
 const refreshConfig = reactive({
   timestamp: 0,

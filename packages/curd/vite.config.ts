@@ -9,16 +9,22 @@ export default createViteConfig({
         entry: 'src/index.ts',
         name: 'Bundle',
         fileName: 'index',
-        formats: ['es', 'cjs'],
+        formats: ['es'],
       },
       rollupOptions: {
         output: {
           exports: 'named',
-          globals: {
-            vue: 'Vue',
-          },
         },
-        external: ['vue', 'vue-router', 'ant-design-vue', 'lodash-es', '@ant-design/icons-vue'],
+        external: [
+          'vue',
+          'vue-router',
+          'vue3-gettext',
+          'xlsx',
+          'ant-design-vue',
+          'ant-design-vue/es/config-provider/context',
+          '@ant-design/icons-vue',
+          'lodash-es',
+        ],
       },
     },
     plugins: [

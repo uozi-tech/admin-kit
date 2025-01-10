@@ -15,15 +15,14 @@
     "@antfu/eslint-config": "^3.12.1",
     "@changesets/changelog-github": "^0.5.0",
     "@changesets/cli": "^2.27.9",
-    "@vitejs/plugin-vue": "^5.1.2",
     "tsup": "^8.3.5",
-    "typescript": "^5.5.4",
-    "unocss": "^0.64.0",
+    "typescript": "^5.7.3",
+    "unocss": "^0.65.4",
     "unplugin-auto-import": "^0.18.3",
     "unplugin-vue-components": "^0.27.4",
     "unplugin-vue-define-options": "^1.5.1",
-    "vite": "^5.4.11",
-    "vite-plugin-dts": "^4.3.0",
-    "vue-tsc": "^2.0.29"
+    "vite": "^6.0.7",
+    "vite-plugin-dts": "^4.5.0",
+    "vue-tsc": "^2.2.0"
   }
 }

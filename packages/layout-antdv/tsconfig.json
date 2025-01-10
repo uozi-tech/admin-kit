@@ -1,7 +1,5 @@
 {
   "compilerOptions": {
-    "composite": true,
-
     "target": "ESNext",
     "useDefineForClassFields": true,
     "module": "ESNext",
@@ -17,7 +15,7 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "preserve",
-    "allowJs": true,
+    "allowJs": false,
     "noImplicitAny": false,
 
     "strict": true,
@@ -25,16 +23,23 @@
     "noUnusedParameters": false,
     "noFallthroughCasesInSwitch": true,
     "esModuleInterop": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+
+    "types": [
+      "vite/client"
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "~/*": [
+        "src/*"
+      ]
+    }
   },
 
   "include": [
     "src/**/*.ts",
+    "src/**/*.d.ts",
     "src/**/*.tsx",
-    "src/**/*.vue",
-    "components.d.ts",
-    "tsconfig.json",
-    "eslint.config.mjs",
-    "auto-imports.d.ts"
+    "src/**/*.vue"
   ]
 }

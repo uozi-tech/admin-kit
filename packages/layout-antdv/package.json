@@ -4,12 +4,9 @@
   "description": "Easy to implement admin layout",
   "type": "module",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "files": [
-    "src",
-    ".eslint-auto-import.mjs",
-    "auto-imports.d.ts",
-    "components.d.ts",
-    "vite.config.ts"
+    "dist"
   ],
   "keywords": [
     "uozi-admin",
