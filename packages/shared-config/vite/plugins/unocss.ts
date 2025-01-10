@@ -75,8 +75,7 @@ export const defaultConfig: UnocssOptions = {
     'flex-x-center': 'flex justify-center',
     'flex-y-center': 'flex items-center',
   },
-  theme: {
-  },
+  theme: {},
   transformers: [
     transformerDirectives(),
     transformerVariantGroup(),
