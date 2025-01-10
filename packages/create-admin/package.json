@@ -7,8 +7,7 @@
   "author": "Akino",
   "license": "Apache-2.0",
   "bin": {
-    "create-vite": "index.js",
-    "cva": "index.js"
+    "create-admin": "index.js"
   },
   "files": [
     "index.js",
