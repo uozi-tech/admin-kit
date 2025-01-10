@@ -16,11 +16,7 @@
     "@changesets/changelog-github": "^0.5.0",
     "@changesets/cli": "^2.27.9",
     "tsup": "^8.3.5",
-    "typescript": "^5.7.3",
-    "unocss": "^0.65.4",
-    "unplugin-auto-import": "^0.18.3",
-    "unplugin-vue-components": "^0.27.4",
-    "unplugin-vue-define-options": "^1.5.1",
+    "typescript": "^5.7.2",
     "vite": "^6.0.7",
     "vite-plugin-dts": "^4.5.0",
     "vue-tsc": "^2.2.0"

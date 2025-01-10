@@ -18,7 +18,10 @@
   },
   "author": "Akino",
   "license": "Apache-2.0",
-  "scripts": {},
+  "scripts": {
+    "dev": "vite build",
+    "build": "vite build"
+  },
   "peerDependencies": {
     "@ant-design/icons-vue": ">=7.0.1",
     "ant-design-vue": ">=4.2.6",
