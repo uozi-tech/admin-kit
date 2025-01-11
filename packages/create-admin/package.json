@@ -26,20 +26,20 @@
   "scripts": {
     "dev": "unbuild --stub",
     "typecheck": "tsc --noEmit",
-    "build": "npm run build"
+    "build": "unbuild"
   },
   "dependencies": {
     "cross-spawn": "^7.0.5",
     "minimist": "^1.2.8",
+    "ora": "^8.1.1",
     "picocolors": "^1.1.1",
-    "prompts": "^2.4.2",
-    "fs-extra": "^11.2.0",
-    "ora": "^8.1.1"
+    "prompts": "^2.4.2"
   },
   "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
     "@types/minimist": "^1.2.5",
     "@types/prompts": "^2.4.9",
-    "@uozi-admin/shared-config": "0.4.0",
+    "fs-extra": "^11.2.0",
     "unbuild": "^3.0.0-rc.11"
   }
 }

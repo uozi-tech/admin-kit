@@ -3,8 +3,10 @@ import { fileURLToPath } from 'node:url'
 import fs from 'fs-extra'
 import minimist from 'minimist'
 import ora from 'ora'
-import { blue, gray, green, italic, red, yellow } from 'picocolors'
+import colors from 'picocolors'
 import prompts from 'prompts'
+
+const { blue, gray, green, italic, red, yellow } = colors
 
 const argv = minimist(process.argv.slice(2), {
   string: ['_'],
