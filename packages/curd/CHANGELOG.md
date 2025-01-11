@@ -1,5 +1,17 @@
 # @uozi-admin/curd
 
+## 1.0.0
+
+### Major Changes
+
+- [#28](https://github.com/uozi-tech/admin-kit/pull/28) [`4bdd974`](https://github.com/uozi-tech/admin-kit/commit/4bdd97411431ff4df2cc3b0db77727bed0a07f20) Thanks [@akinoccc](https://github.com/akinoccc)! - refactor: rename curd api key
+
+### Patch Changes
+
+- [#28](https://github.com/uozi-tech/admin-kit/pull/28) [`f897ba8`](https://github.com/uozi-tech/admin-kit/commit/f897ba8102e0ba7e5175327c0922e59a627232eb) Thanks [@akinoccc](https://github.com/akinoccc)! - fix: [switch] v-model warning
+
+- [#28](https://github.com/uozi-tech/admin-kit/pull/28) [`9706e81`](https://github.com/uozi-tech/admin-kit/commit/9706e81c4df0d1c59d22427f017c89b18ef95476) Thanks [@akinoccc](https://github.com/akinoccc)! - fix: incorrect emit event name
+
 ## 0.0.5
 
 ### Patch Changes

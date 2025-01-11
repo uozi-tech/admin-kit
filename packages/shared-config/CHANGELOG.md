@@ -1,5 +1,11 @@
 # @uozi-admin/shared-config
 
+## 0.4.0
+
+### Minor Changes
+
+- [#28](https://github.com/uozi-tech/admin-kit/pull/28) [`1d743cc`](https://github.com/uozi-tech/admin-kit/commit/1d743ccfc8fc03d86373b38bd630e80a3a7c58d8) Thanks [@akinoccc](https://github.com/akinoccc)! - feat(shared-config): moving unocss as external deps
+
 ## 0.3.0
 
 ### Minor Changes
