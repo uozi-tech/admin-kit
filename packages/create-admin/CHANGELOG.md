@@ -1,5 +1,11 @@
 # @uozi-admin/create-admin
 
+## 1.0.0
+
+### Major Changes
+
+- [`c7b8850`](https://github.com/uozi-tech/admin-kit/commit/c7b8850cab55702b5a760211ab6460b7fb7562e5) Thanks [@akinoccc](https://github.com/akinoccc)! - release major
+
 ## 0.1.0
 
 ### Minor Changes
