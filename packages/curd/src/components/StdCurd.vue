@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import type { StdCurdProps } from '../types'
 import { Button, Card, Checkbox, Divider, Flex, message, Modal, Spin } from 'ant-design-vue'
-import { configProviderKey, useConfigContextInject } from 'ant-design-vue/es/config-provider/context'
-import { computed, inject, reactive, ref, useSlots, watchEffect } from 'vue'
+import { useConfigContextInject } from 'ant-design-vue/es/config-provider/context'
+import { computed, reactive, ref, useSlots, watchEffect } from 'vue'
 import { useRoute } from 'vue-router'
 import { useExport } from '../composables'
 import { ApiActions } from '../constants'
@@ -17,10 +17,10 @@ const props = defineProps<StdCurdProps>()
 const emit = defineEmits<{
   (e: 'add'): void
   (e: 'read', record: any): void
-  (e: 'edit', record: any): void
-  (e: 'delete', record: any): void
-  (e: 'restore', record: any): void
-  (e: 'deletePermanently', record: any): void
+  (e: 'editItem', record: any): void
+  (e: 'deleteItemTemporarily', record: any): void
+  (e: 'restoreItem', record: any): void
+  (e: 'deleteItemPermanently', record: any): void
 }>()
 
 const route = useRoute()
@@ -28,12 +28,8 @@ const slots = useSlots()
 
 const { locale: lang } = useConfigContextInject()
 watchEffect(() => {
-  console.log(lang)
   gettext.current = lang?.value.locale ?? 'zh-cn'
 })
-
-const key = inject('key')
-console.log(key, configProviderKey, key === configProviderKey)
 
 const refreshConfig = reactive({
   timestamp: 0,
@@ -92,7 +88,7 @@ function switchTrashAndList() {
 
 function getDataDetail(row: Record<string, any>) {
   modalLoading.value = true
-  props.api.getDetail(row[props.rowKey ?? 'id']).then((res) => {
+  props.api.getItem(row[props.rowKey ?? 'id']).then((res) => {
     itemDetail.value = res
     modalLoading.value = false
   }).catch(() => {
@@ -120,7 +116,7 @@ function handleAdd() {
 
 // 打开编辑弹窗
 function handleEdit(row: Record<string, any>) {
-  emit('edit', row)
+  emit('editItem', row)
 
   formVisible.value = true
   mode.value = 'edit'
@@ -157,14 +153,13 @@ function handleSave(data: Record<string, any>) {
 
 // 处理删除/恢复数据
 function handleDataById(action: string, record: Record<string, any>) {
-  const actionKey = action.startsWith('delete') ? 'delete' : 'restore'
-
+  const apiKey = action.startsWith('delete') ? 'deleteItem' : 'restoreItem'
   emit(action as any, record)
 
-  props.api[actionKey](record[props.rowKey ?? 'id'], { permanently: action === ApiActions.DELETE_PERMANENTLY })
+  props.api[apiKey](record[props.rowKey ?? 'id'], { permanently: action === ApiActions.DELETE_ITEM_PERMANENTLY })
     .then(() => {
       refresh()
-      if (actionKey === 'delete')
+      if (apiKey === 'deleteItem')
         message.success($gettext('Deleted successfully'))
       else
         message.success($gettext('Restored successfully'))
@@ -236,10 +231,10 @@ const exportVisible = ref(false)
       }"
       :overwrite-params="overwriteParams"
       @read="handleRead"
-      @edit="handleEdit"
-      @delete="row => handleDataById(ApiActions.DELETE_TEMPORARY, row)"
-      @delete-permanently="row => handleDataById(ApiActions.DELETE_PERMANENTLY, row)"
-      @restore="row => handleDataById(ApiActions.RESTORE, row)"
+      @edit-item="handleEdit"
+      @delete-item-temporarily="row => handleDataById(ApiActions.DELETE_ITEM_TEMPORARY, row)"
+      @delete-item-permanently="row => handleDataById(ApiActions.DELETE_ITEM_PERMANENTLY, row)"
+      @restore-item="row => handleDataById(ApiActions.RESTORE_ITEM, row)"
     >
       <template
         v-for="(_, key) in slots"
