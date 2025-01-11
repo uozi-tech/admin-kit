@@ -1,5 +1,11 @@
 # @uozi-admin/request
 
+## 1.0.0
+
+### Major Changes
+
+- [#28](https://github.com/uozi-tech/admin-kit/pull/28) [`12a3ac8`](https://github.com/uozi-tech/admin-kit/commit/12a3ac8392a14cc6812ab2ef12fa440d672b11f2) Thanks [@akinoccc](https://github.com/akinoccc)! - refactor: deprecate curd class
+
 ## 0.1.2
 
 ### Patch Changes
