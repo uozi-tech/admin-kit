@@ -1,5 +1,11 @@
 # @uozi-admin/create-admin
 
+## 1.0.1
+
+### Patch Changes
+
+- [`24b9ae4`](https://github.com/uozi-tech/admin-kit/commit/24b9ae41388af399cd83325eb2582cd229cf3dc7) Thanks [@akinoccc](https://github.com/akinoccc)! - the dist script did not work expectedly
+
 ## 1.0.0
 
 ### Major Changes
