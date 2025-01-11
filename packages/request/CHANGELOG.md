@@ -1,5 +1,11 @@
 # @uozi-admin/request
 
+## 1.0.1
+
+### Patch Changes
+
+- [`a8e1d6d`](https://github.com/uozi-tech/admin-kit/commit/a8e1d6d3d355cd589d65484e67a7470206410acb) Thanks [@akinoccc](https://github.com/akinoccc)! - fix: missing import of `createService`
+
 ## 1.0.0
 
 ### Major Changes
