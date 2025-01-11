@@ -1,4 +1,5 @@
 import type { AxiosInterceptorOptions, InternalAxiosRequestConfig } from 'axios'
+import { createService } from './axios'
 
 export const service = createService()
 
