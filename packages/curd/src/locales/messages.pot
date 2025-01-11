@@ -80,7 +80,7 @@ msgstr ""
 msgid "Select all"
 msgstr ""
 
-#: src/composables/useCurd.ts:205
+#: src/composables/useCurdApi.ts:205
 msgid "Total"
 msgstr ""
 
@@ -96,7 +96,7 @@ msgstr ""
 msgid "View"
 msgstr ""
 
-#: src/composables/useCurd.ts:205
+#: src/composables/useCurdApi.ts:205
 msgctxt "项"
 msgid "item(s)"
 msgstr ""

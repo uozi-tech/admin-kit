@@ -258,7 +258,7 @@ const api = {
       }, 1000)
     })
   },
-  getDetail: () => new Promise((resolve) => {
+  getItem: () => new Promise((resolve) => {
     setTimeout(() => {
       resolve({
         id: 1,
@@ -278,6 +278,40 @@ const api = {
         slider: 20,
         fileList: [],
         file: 'https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png',
+      })
+    })
+  }),
+  restoreItem: () => new Promise((resolve) => {
+    console.log('restoreItem')
+    setTimeout(() => {
+      resolve({
+        id: 1,
+        school_id: 1,
+        name: 'John Brown',
+        age: 32,
+        type: 2,
+        address: 'New York No. 1 Lake Park',
+        date: '2016-10-03',
+        datetime: '2016-10-03 14:00:11',
+        year: '2022',
+        month: '2016-10-03',
+      })
+    })
+  }),
+  deleteItem: () => new Promise((resolve) => {
+    console.log('deleteItem')
+    setTimeout(() => {
+      resolve({
+        id: 1,
+        school_id: 1,
+        name: 'John Brown',
+        age: 32,
+        type: 2,
+        address: 'New York No. 1 Lake Park',
+        date: '2016-10-03',
+        datetime: '2016-10-03 14:00:11',
+        year: '2022',
+        month: '2016-10-03',
       })
     })
   }),

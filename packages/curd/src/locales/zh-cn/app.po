@@ -88,7 +88,7 @@ msgstr "保存"
 msgid "Select all"
 msgstr "全选"
 
-#: src/composables/useCurd.ts:205
+#: src/composables/useCurdApi.ts:205
 msgid "Total"
 msgstr "总共"
 
@@ -104,7 +104,7 @@ msgstr "上传"
 msgid "View"
 msgstr "查看"
 
-#: src/composables/useCurd.ts:205
+#: src/composables/useCurdApi.ts:205
 msgctxt "项"
 msgid "item(s)"
 msgstr "项"

@@ -18,6 +18,10 @@
   },
   "author": "Akino",
   "license": "Apache-2.0",
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
   "scripts": {
     "watch": "vite build --watch",
     "build": "vite build"

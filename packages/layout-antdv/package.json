@@ -20,6 +20,10 @@
   },
   "author": "Akino",
   "license": "Apache-2.0",
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
   "scripts": {
     "watch": "vite build --watch",
     "build": "vite build"
@@ -33,12 +37,6 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@uozi-admin/shared-config": "workspace:*",
-    "@types/lodash-es": "^4.17.12",
-    "vite": "^5.4.11",
-    "vue-router": "^4.4.5",
-    "lodash-es": "^4.17.21",
-    "unocss-preset-chinese": "^0.3.3",
-    "unocss-preset-ease": "^0.0.4"
+    "@uozi-admin/shared-config": "workspace:*"
   }
 }

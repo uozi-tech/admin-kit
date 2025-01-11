@@ -70,7 +70,7 @@ export type RateConfig = Omit<RateProps, 'placeholder'> & PlaceholderT
 
 export type SliderConfig = Omit<SliderProps, 'placeholder'> & PlaceholderT
 
-export type SwitchConfig = Omit<SwitchProps, 'placeholder'> & PlaceholderT
+export type SwitchConfig = Omit<SwitchProps, 'placeholder' | 'checked'> & PlaceholderT
 
 export type TransferConfig = Omit<TransferProps, 'placeholder'> & PlaceholderT
 

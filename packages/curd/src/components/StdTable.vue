@@ -15,10 +15,10 @@ const props = defineProps<StdTableProps>()
 
 const emit = defineEmits<{
   (e: 'read', record: any): void
-  (e: 'edit', record: any): void
-  (e: 'delete', record: any): void
-  (e: 'restore', record: any): void
-  (e: 'deletePermanently', record: any): void
+  (e: 'editItem', record: any): void
+  (e: 'deleteItemTemporarily', record: any): void
+  (e: 'restoreItem', record: any): void
+  (e: 'deleteItemPermanently', record: any): void
 }>()
 
 onMounted(() => {
@@ -210,19 +210,19 @@ function onReadBtnClick(record: any) {
 }
 
 function onEditBtnClick(record: any) {
-  emit('edit', record)
+  emit('editItem', record)
 }
 
 function onDeleteBtnClick(record: any) {
-  emit('delete', record)
+  emit('deleteItemTemporarily', record)
 }
 
 function onRestoreBtnClick(record: any) {
-  emit('restore', record)
+  emit('restoreItem', record)
 }
 
 function onDeletePermanentlyBtnClick(record: any) {
-  emit('deletePermanently', record)
+  emit('deleteItemPermanently', record)
 }
 
 /** Table header 渲染函数 */

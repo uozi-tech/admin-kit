@@ -1,0 +1,3 @@
+template/.eslint-auto-import.mjs
+template/components.d.ts
+template/auto-omports.d.ts
