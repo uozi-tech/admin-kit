@@ -1,5 +1,11 @@
 # @uozi-admin/create-admin
 
+## 1.0.2
+
+### Patch Changes
+
+- [`7795764`](https://github.com/uozi-tech/admin-kit/commit/7795764fc61b5f116d768cec3ab6e9e55f68a644) Thanks [@akinoccc](https://github.com/akinoccc)! - fix: not run the build cmd when releasing
+
 ## 1.0.1
 
 ### Patch Changes
