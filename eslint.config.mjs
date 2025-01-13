@@ -4,9 +4,6 @@ export default antfu({
   ignores: [
     '**/node_modules/*',
     '**/dist/*',
-    '**/.eslint-auto-import.mjs',
-    '**/auto-imports.d.ts',
-    '**/components.d.ts',
     '**/vite.config.ts.timestamp*',
     '**/.pnpm-store/*',
     '**/locales/**.json',

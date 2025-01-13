@@ -56,6 +56,10 @@ function nav() {
       text: 'Layout',
       link: '/zh/layout/quick-start',
     },
+    {
+      text: 'CLI',
+      link: '/zh/cli/intro',
+    },
   ]
 }
 
