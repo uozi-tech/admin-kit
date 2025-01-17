@@ -1,5 +1,11 @@
 # @uozi-admin/request
 
+## 2.0.0
+
+### Major Changes
+
+- [#36](https://github.com/uozi-tech/admin-kit/pull/36) [`ebfda4c`](https://github.com/uozi-tech/admin-kit/commit/ebfda4c1d8f4e9d14ee7e74f5121f5a03f2efdd9) Thanks [@akinoccc](https://github.com/akinoccc)! - change params and typedef
+
 ## 1.0.1
 
 ### Patch Changes
