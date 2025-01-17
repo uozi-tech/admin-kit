@@ -59,7 +59,10 @@ const searchColumns = computed(() => {
   return props.columns.filter(item => item?.search)
 })
 
-const searchFormData = ref<Record<string, any>>({})
+const searchFormData = ref<Record<string, any>>({
+  sort_by: undefined,
+  order: undefined,
+})
 const apiParams = computed(() => ({
   ...searchFormData.value,
   trash: props.isTrash,
@@ -142,6 +145,7 @@ watch(apiParams, async (newVal, oldVal) => {
     return
   }
   if (!props.disableRouterQuery) {
+    console.log('apiParams changed', newVal, oldVal)
     // overwriteParams 不同步到 route query
     const { overwriteParams: _, ...rest } = newVal
     await debouncedUpdateRouteQuery({ ...route.query, ...rest })
@@ -199,6 +203,7 @@ function onTableChange(p: TablePaginationConfig, filters: Record<string, FilterV
     selectedRowKeys.value = []
     pagination.value.current = p.current
     pagination.value.pageSize = p.pageSize
+    console.log('onTableChange', p.current, p.pageSize)
   }
 }
 
