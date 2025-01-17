@@ -1,5 +1,13 @@
 # @uozi-admin/create-admin
 
+## 1.1.0
+
+### Minor Changes
+
+- [#38](https://github.com/uozi-tech/admin-kit/pull/38) [`98b4762`](https://github.com/uozi-tech/admin-kit/commit/98b4762118aaea460627729be5e8842996f8137d) Thanks [@akinoccc](https://github.com/akinoccc)! - update package version and tsconfig
+
+- [#38](https://github.com/uozi-tech/admin-kit/pull/38) [`f5b534e`](https://github.com/uozi-tech/admin-kit/commit/f5b534e692b0d716015a1ae01d185f2c4beae742) Thanks [@akinoccc](https://github.com/akinoccc)! - add vscode settings
+
 ## 1.0.2
 
 ### Patch Changes
