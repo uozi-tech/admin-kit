@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import type { StdCurdProps } from '../types'
+import type { StdCurdProps } from '~/types'
 import { Button, Card, Checkbox, Divider, Flex, message, Modal, Spin } from 'ant-design-vue'
 import { useConfigContextInject } from 'ant-design-vue/es/config-provider/context'
-import { computed, reactive, ref, useSlots, watchEffect } from 'vue'
+import { computed, reactive, ref, useSlots, useTemplateRef, watchEffect } from 'vue'
 import { useRoute } from 'vue-router'
-import { useExport } from '../composables'
-import { ApiActions } from '../constants'
-import { $gettext, gettext } from '../locales'
-import { getRealContent } from '../utils'
+import { useExport } from '~/composables'
+import { ApiActions } from '~/constants'
+import { $gettext, gettext } from '~/locales'
+import { getRealContent } from '~/utils'
 import StdDetail from './StdDetail.vue'
 import StdForm from './StdForm.vue'
 import StdTable from './StdTable.vue'
@@ -25,6 +25,7 @@ const emit = defineEmits<{
 
 const route = useRoute()
 const slots = useSlots()
+const refStdTable = useTemplateRef('refStdTable')
 
 const { locale: lang } = useConfigContextInject()
 watchEffect(() => {
@@ -145,7 +146,7 @@ function handleSave(data: Record<string, any>) {
       formVisible.value = false
       message.success($gettext('Saved successfully'))
     })
-    .catch((err: any) => {
+    .catch(() => {
       message.error('Failed to save data')
     })
     .finally(() => (modalLoading.value = false))
@@ -164,7 +165,7 @@ function handleDataById(action: string, record: Record<string, any>) {
       else
         message.success($gettext('Restored successfully'))
     })
-    .catch((err: any) => {
+    .catch(() => {
       message.error('Failed to execute the operation')
     })
 }
@@ -174,6 +175,10 @@ const { exportExcel, exportColumns, state: exportColumnsSelectionState, onCheckA
   api: props.api?.getList,
 })
 const exportVisible = ref(false)
+
+defineExpose({
+  refresh,
+})
 </script>
 
 <template>
@@ -208,6 +213,7 @@ const exportVisible = ref(false)
     </template>
 
     <StdTable
+      ref="refStdTable"
       v-model:table-loading="tableLoading"
       :title
       :columns
