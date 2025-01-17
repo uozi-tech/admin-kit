@@ -1,10 +1,11 @@
 <script setup lang="ts">
+import type { SidebarItem } from '@uozi-admin/layout-antdv'
+import { AdminLayout } from '@uozi-admin/layout-antdv'
+import { computed } from 'vue'
 import { RouterView } from 'vue-router'
-import { AdminLayout, SidebarItem } from '@uozi-admin/layout-antdv'
-import { useSettingsStore } from '../store'
 import gettext from '../gettext'
 import { routes } from '../router'
-import { computed } from 'vue'
+import { useSettingsStore } from '../store'
 
 const settings = useSettingsStore()
 
@@ -18,12 +19,12 @@ function changeLanguage(l: string) {
 }
 
 const sidebarItems = computed<SidebarItem[]>(() => {
-  return routes[0].children?.map(r => {
+  return routes[0].children?.map((r) => {
     return {
       title: r.meta?.title,
       path: r.path,
       icon: r.meta?.icon,
-      children: r.children?.map(c => {
+      children: r.children?.map((c) => {
         return {
           title: c.meta?.title,
           path: c.path,

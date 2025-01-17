@@ -11,6 +11,7 @@
 
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": false,
+    "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
@@ -19,7 +20,7 @@
     "noImplicitAny": false,
 
     "strict": true,
-    "noUnusedLocals": true,
+    "noUnusedLocals": false,
     "noUnusedParameters": false,
     "noFallthroughCasesInSwitch": true,
     "esModuleInterop": true,

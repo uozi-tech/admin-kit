@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import type { AppBreadcrumbItem, Languages, LanguageValue, SidebarItem, Text, Theme } from './props'
+import type { AppBreadcrumbItem, Languages, LanguageValue, SidebarItem, Text, Theme } from '../props'
 import { Layout, LayoutContent, LayoutFooter, LayoutHeader } from 'ant-design-vue'
-import AppFooter from './components/AppFooter.vue'
-import AppHeader from './components/AppHeader.vue'
-import AppSidebar from './components/AppSidebar.vue'
-import Breadcrumb from './components/Breadcrumb.vue'
-import LanguageSelect from './components/LanguageSelect.vue'
-import PageHeader from './components/PageHeader.vue'
-import ThemeSwitch from './components/ThemeSwitch.vue'
-import { getRealTitle } from './utils'
+import { getRealTitle } from '../utils'
+import AppFooter from './AppFooter.vue'
+import AppHeader from './AppHeader.vue'
+import AppSidebar from './AppSidebar.vue'
+import Breadcrumb from './Breadcrumb.vue'
+import LanguageSelect from './LanguageSelect.vue'
+import PageHeader from './PageHeader.vue'
+import ThemeSwitch from './ThemeSwitch.vue'
 
 withDefaults(
   defineProps<{

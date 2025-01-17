@@ -1,3 +1,4 @@
+import StdTable from '~/components/StdTable.vue'
 import StdCurd from './StdCurd.vue'
 import StdDetail from './StdDetail.vue'
 import StdForm from './StdForm.vue'
@@ -10,4 +11,5 @@ export {
   StdForm,
   StdFormController,
   StdSearch,
+  StdTable,
 }
