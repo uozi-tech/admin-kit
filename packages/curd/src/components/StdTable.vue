@@ -2,13 +2,13 @@
 import type { FilterValue, SorterResult, TableRowSelection } from 'ant-design-vue/es/table/interface'
 import type { TablePaginationConfig } from 'ant-design-vue/lib/table/interface'
 import type { VNode } from 'vue'
-import type { StdTableBodyScope, StdTableHeaderScope, StdTableProps } from '../types'
+import type { StdTableBodyScope, StdTableHeaderScope, StdTableProps } from '~/types'
 import { Button, Flex, message, Popconfirm, Table } from 'ant-design-vue'
 import { debounce, isArray, isEqual } from 'lodash-es'
 import { computed, onMounted, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { $gettext, $pgettext } from '../locales'
-import { getRealContent } from '../utils/util'
+import { $gettext, $pgettext } from '~/locales'
+import { getRealContent } from '~/utils'
 import StdSearch from './StdSearch.vue'
 
 const props = defineProps<StdTableProps>()
@@ -312,7 +312,7 @@ function CustomHeaderRender(props: { node: VNode }) {
           <Popconfirm
             v-if="!disableTrash && isTrash"
             :title="$gettext('Are you sure want to restore?')"
-            @confirm="onDeleteBtnClick(record)"
+            @confirm="onRestoreBtnClick(record)"
           >
             <Button
               size="small"
