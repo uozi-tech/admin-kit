@@ -1,4 +1,11 @@
 {
-  "extends": "@uozi-admin/shared-config/tsconfig.node.json",
-  "include": ["vite.config.ts"]
+  "compilerOptions": {
+    "composite": true,
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "allowSyntheticDefaultImports": true
+  },
+  "include": [
+    "vite.config.ts"
+  ]
 }
