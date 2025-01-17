@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 1.0.1
+
+### Patch Changes
+
+- [#34](https://github.com/uozi-tech/admin-kit/pull/34) [`6e99ee8`](https://github.com/uozi-tech/admin-kit/commit/6e99ee8fa880c9685e2b61f22b56952c28924094) Thanks [@akinoccc](https://github.com/akinoccc)! - incorrectly react the page changed
+
 ## 1.0.0
 
 ### Major Changes
