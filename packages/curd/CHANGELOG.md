@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 1.1.0
+
+### Minor Changes
+
+- [`7f467af`](https://github.com/uozi-tech/admin-kit/commit/7f467af54fe975e47228483b12e52d5a2cf3b201) Thanks [@akinoccc](https://github.com/akinoccc)! - [renderer] add `hiddenText`
+
 ## 1.0.1
 
 ### Patch Changes

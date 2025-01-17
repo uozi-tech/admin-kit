@@ -1,5 +1,11 @@
 # @uozi-admin/create-admin
 
+## 1.1.1
+
+### Patch Changes
+
+- [`3e7dd71`](https://github.com/uozi-tech/admin-kit/commit/3e7dd71768c5633eee54b1453eb63f6b74c601e9) Thanks [@akinoccc](https://github.com/akinoccc)! - incorrect vite config of template
+
 ## 1.1.0
 
 ### Minor Changes
