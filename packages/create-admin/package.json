@@ -10,9 +10,9 @@
     "create-admin": "index.js"
   },
   "files": [
+    "dist",
     "index.js",
-    "template",
-    "dist"
+    "template"
   ],
   "repository": {
     "type": "git",
