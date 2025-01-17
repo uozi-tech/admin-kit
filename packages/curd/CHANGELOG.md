@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 1.2.0
+
+### Minor Changes
+
+- [#41](https://github.com/uozi-tech/admin-kit/pull/41) [`d40160e`](https://github.com/uozi-tech/admin-kit/commit/d40160edfdce9c56fdd382ae459640e1c47323fc) Thanks [@0xJacky](https://github.com/0xJacky)! - feat(curd): [std-curd] expose refresh method
+
 ## 1.1.1
 
 ### Patch Changes
