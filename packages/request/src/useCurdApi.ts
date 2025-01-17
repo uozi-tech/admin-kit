@@ -14,7 +14,6 @@ const globalPaginationKeyMap: PaginationKeyMapT = {
 }
 
 interface UseCurdOptions {
-  url: string
   paginationKeyMap?: PaginationKeyMapT
 }
 
@@ -29,7 +28,8 @@ export interface CurdApi<T> {
   restoreItem: (id: string | number, params?: Record<string, any>) => Promise<any>
 }
 
-export function useCurdApi<T>({ url, paginationKeyMap = globalPaginationKeyMap }: UseCurdOptions): CurdApi<T> {
+export function useCurdApi<T>(url: string, options: UseCurdOptions = { paginationKeyMap: globalPaginationKeyMap }): CurdApi<T> {
+  const paginationKeyMap = options?.paginationKeyMap || globalPaginationKeyMap
   const getList = async (params?: Record<string, any>) => {
     try {
       const res = await http.get<{
@@ -111,7 +111,7 @@ export function useCurdApi<T>({ url, paginationKeyMap = globalPaginationKeyMap }
 
 export function extendCurdApi<T>(
   baseCurd: CurdApi<T>,
-  newApis: Record<string, <T>(...args: any[]) => Promise<T>>,
+  newApis: Record<string, (...args: any[]) => Promise<any>>,
 ) {
   return Object.assign(baseCurd, newApis)
 }
