@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 1.1.1
+
+### Patch Changes
+
+- [`8e62419`](https://github.com/uozi-tech/admin-kit/commit/8e624198e974ca164c2de09dd2ad0c120c4727ef) Thanks [@akinoccc](https://github.com/akinoccc)! - incorrectly export vue components
+
 ## 1.1.0
 
 ### Minor Changes
