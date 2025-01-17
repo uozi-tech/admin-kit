@@ -2,7 +2,7 @@ import { createViteConfig } from '@uozi-admin/shared-config'
 
 // https://vite.dev/config/
 export default createViteConfig({
-  override: {},
+  overrides: {},
   pluginOptions: {
     autoImport: {
       imports: [
