@@ -1,0 +1,20 @@
+name: Code Check
+
+on:
+  push:
+    branches:
+      - '*'
+
+jobs:
+  code-check:
+    name: Code Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/ci-setup
+
+      - name: Check Style
+        run: pnpm lint
+
+      - name: Check Type
+        run: pnpm typecheck

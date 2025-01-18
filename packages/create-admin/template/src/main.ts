@@ -1,11 +1,11 @@
 import { createApp } from 'vue'
-import './style.css'
+import gettext from '~/language/gettext'
 
-import App from './App.vue'
+import router from '~/router'
 
 import store from '~/store'
-import gettext from '~/language/gettext'
-import router from '~/router'
+import App from './App.vue'
+import './style.css'
 
 createApp(App)
   .use(store)

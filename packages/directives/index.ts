@@ -1,4 +1,4 @@
-import { App } from 'vue'
+import type { App } from 'vue'
 import { vCopy } from './src/copy'
 import { vDebounce } from './src/debounce'
 import { vLazyLoad } from './src/lazy-load'
@@ -15,5 +15,5 @@ export {
   directives as default,
   vCopy,
   vDebounce,
-  vLazyLoad
+  vLazyLoad,
 }

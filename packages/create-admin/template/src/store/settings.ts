@@ -1,10 +1,11 @@
+import type { Theme } from '@uozi-admin/layout-antdv'
 import { defineStore } from 'pinia'
 import gettext from '~/language/gettext'
 
 export const useSettingsStore = defineStore('settings', () => {
   const language = ref('')
-  const theme = ref<'auto' | 'light' | 'dark'>('light')
-  const preference_theme = ref<'auto' | 'light' | 'dark'>('auto')
+  const theme = ref<Theme>('light')
+  const preference_theme = ref<Theme>('auto')
   const copyright = ref('')
 
   const isDark = computed(() => {
@@ -15,10 +16,10 @@ export const useSettingsStore = defineStore('settings', () => {
     language.value = lang
     gettext.current = lang
   }
-  function setTheme(t: 'auto' | 'light' | 'dark') {
+  function setTheme(t: Theme) {
     theme.value = t
   }
-  function setPreferenceTheme(t: 'auto' | 'light' | 'dark') {
+  function setPreferenceTheme(t: Theme) {
     preference_theme.value = t
   }
   function setCopyright(cp: string) {

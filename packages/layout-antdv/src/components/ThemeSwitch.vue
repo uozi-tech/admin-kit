@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Theme } from '../props'
+import type { Theme } from '~/props'
 import { computed, ref } from 'vue'
 import IconMoon from './Icons/IconMoon.vue'
 import IconSun from './Icons/IconSun.vue'

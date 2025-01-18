@@ -34,7 +34,8 @@
   },
   "scripts": {
     "watch": "tsup --watch",
-    "build": "tsup"
+    "build": "tsup",
+    "typecheck": "vue-tsc --incremental --noEmit"
   },
   "peerDependencies": {
     "lodash-es": ">=4.17.21"

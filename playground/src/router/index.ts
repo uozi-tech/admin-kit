@@ -1,6 +1,7 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
-import { $gettext } from '../gettext'
+import type { RouteRecordRaw } from 'vue-router'
 import { DashboardOutlined, HomeOutlined } from '@ant-design/icons-vue'
+import { createRouter, createWebHistory } from 'vue-router'
+import { $gettext } from '../gettext'
 
 export const routes: RouteRecordRaw[] = [
   {

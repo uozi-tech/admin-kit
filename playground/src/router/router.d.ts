@@ -1,5 +1,5 @@
 import type { AntDesignOutlinedIconType } from '@ant-design/icons-vue/lib/icons/AntDesignOutlined'
-import { VNode } from 'vue'
+import type { VNode } from 'vue'
 
 export interface CustomRouteMeta {
   icon?: AntDesignOutlinedIconType | VNode
