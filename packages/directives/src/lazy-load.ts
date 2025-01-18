@@ -1,4 +1,4 @@
-import { Directive } from 'vue'
+import type { Directive } from 'vue'
 
 export const vLazyLoad: Directive = {
   mounted(el) {
@@ -6,8 +6,8 @@ export const vLazyLoad: Directive = {
       el.src = el.dataset.src
     }
 
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
           loadImage()
           observer.unobserve(el)

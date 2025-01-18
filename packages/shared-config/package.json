@@ -25,7 +25,8 @@
   },
   "scripts": {
     "watch": "tsup --watch",
-    "build": "tsup"
+    "build": "tsup",
+    "typecheck": "vue-tsc --incremental --noEmit"
   },
   "peerDependencies": {
     "vite": ">=6.0.7",

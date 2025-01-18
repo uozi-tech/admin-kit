@@ -32,4 +32,5 @@ export default antfu({
   'node/handle-callback-err': 'off',
   'ts/no-unsafe-function-type': 'off',
   'node/prefer-global/process': 'off',
+  'antfu/no-import-dist': 'off',
 })

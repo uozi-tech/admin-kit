@@ -13,7 +13,7 @@ const settings = useSettingsStore()
 
 const languageAvailable = gettext.available
 
-function toggleTheme(t: 'auto' | 'light' | 'dark') {
+function toggleTheme(t: Theme) {
   settings.setTheme(t)
 }
 function changeLanguage(l: string) {

@@ -17,6 +17,6 @@ export interface SidebarItem {
   children?: SidebarItem[]
 }
 
-export type Theme = 'light' | 'dark'
+export type Theme = 'auto' | 'light' | 'dark'
 export type LanguageValue = string | number
 export type Languages = string[] | Record<string, LanguageValue>

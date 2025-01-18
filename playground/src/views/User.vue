@@ -1,6 +1,6 @@
 <script setup lang="ts">
+import type { StdTableColumn } from '@uozi-admin/curd/src/types'
 import { StdCurd } from '@uozi-admin/curd'
-import { StdTableColumn } from '@uozi-admin/curd/src/types'
 import { userApi } from '../api/user'
 
 const columns: StdTableColumn[] = [

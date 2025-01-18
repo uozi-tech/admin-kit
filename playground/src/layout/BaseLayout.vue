@@ -1,17 +1,17 @@
 <script setup lang="ts">
-import type { SidebarItem } from '@uozi-admin/layout-antdv'
+import type { SidebarItem, Theme } from '@uozi-admin/layout-antdv'
 import { AdminLayout } from '@uozi-admin/layout-antdv'
 import { computed } from 'vue'
 import { RouterView } from 'vue-router'
+import { routes } from '~/router'
+import { useSettingsStore } from '~/store'
 import gettext from '../gettext'
-import { routes } from '../router'
-import { useSettingsStore } from '../store'
 
 const settings = useSettingsStore()
 
 const languageAvailable = gettext.available
 
-function toggleTheme(t: 'auto' | 'light' | 'dark') {
+function toggleTheme(t: Theme) {
   settings.set_theme(t)
 }
 function changeLanguage(l: string) {

@@ -1,13 +1,13 @@
 // packages/directives/src/keydownDirective.ts
-import { Directive } from 'vue'
+import type { Directive } from 'vue'
 
 type Handler = (e: KeyboardEvent) => any
 
-export const keydownDirective: Directive<HTMLElement & {_keydownHandler: Handler }, Handler> = {
+export const keydownDirective: Directive<HTMLElement & { _keydownHandler: Handler }, Handler> = {
   mounted(el, binding) {
     const key = binding.arg || 'enter' // 默认捕获 Enter 键
     const handler = (event: KeyboardEvent) => {
-      if (event.key.toLowerCase() === key.toLowerCase()) 
+      if (event.key.toLowerCase() === key.toLowerCase())
         binding.value(event)
     }
     el.addEventListener('keydown', handler)

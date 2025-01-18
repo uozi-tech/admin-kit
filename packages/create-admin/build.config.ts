@@ -15,7 +15,7 @@ export default defineBuildConfig({
     prompts: 'prompts/lib/index.js',
   },
   hooks: {
-    'rollup:options'(_ctx, options) {
+    'rollup:options': function (_ctx, options) {
       options.plugins = [
         options.plugins,
       ]

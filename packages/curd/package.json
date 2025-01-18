@@ -24,7 +24,8 @@
   },
   "scripts": {
     "watch": "vite build --watch",
-    "build": "vite build"
+    "build": "vite build",
+    "typecheck": "vue-tsc --incremental --noEmit"
   },
   "peerDependencies": {
     "@ant-design/icons-vue": ">=7.0.1",

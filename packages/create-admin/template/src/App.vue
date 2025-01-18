@@ -14,7 +14,7 @@ const settingsStore = useSettingsStore()
   >
     <AWatermark
       content="waterMark"
-      :font="{color: 'rgba(0, 0, 0, .06)'}"
+      :font="{ color: 'rgba(0, 0, 0, .06)' }"
     >
       <div class="bg-truegray-1 dark:bg-truegray-9">
         <RouterView />

@@ -1,4 +1,4 @@
-import { Directive } from 'vue'
+import type { Directive } from 'vue'
 
 export const vCopy: Directive = {
   mounted(el, binding) {
@@ -9,7 +9,7 @@ export const vCopy: Directive = {
         .then(() => {
           console.log('Text copied to clipboard!')
         })
-        .catch(err => {
+        .catch((err) => {
           console.error('Failed to copy text: ', err)
         })
     })
