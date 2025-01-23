@@ -12,8 +12,17 @@ const defaultConfig: AxiosRequestConfig = {
   timeout: 5000,
 }
 
+const overrideConfig: AxiosRequestConfig = {}
+
+export function setOverrideConfig(config: AxiosRequestConfig) {
+  Object.assign(overrideConfig, config)
+}
+
 export function createService() {
-  return axios.create(defaultConfig)
+  return axios.create({
+    ...defaultConfig,
+    ...overrideConfig,
+  })
 }
 
 export function createRequestInstance(service: AxiosInstance) {
