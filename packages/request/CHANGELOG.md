@@ -1,5 +1,11 @@
 # @uozi-admin/request
 
+## 2.1.0
+
+### Minor Changes
+
+- [`2ff75ae`](https://github.com/uozi-tech/admin-kit/commit/2ff75aecc2b1ceea041e6bf05aac4e4cdb7836ce) Thanks [@0xJacky](https://github.com/0xJacky)! - feat: set override request config
+
 ## 2.0.1
 
 ### Patch Changes
