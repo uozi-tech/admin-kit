@@ -1,5 +1,11 @@
 # @uozi-admin/request
 
+## 2.1.1
+
+### Patch Changes
+
+- [`0268159`](https://github.com/uozi-tech/admin-kit/commit/026815991afc0d073cb5d2864564d58d1c8e9650) Thanks [@0xJacky](https://github.com/0xJacky)! - fix(request): [axios] set override request config
+
 ## 2.1.0
 
 ### Minor Changes
