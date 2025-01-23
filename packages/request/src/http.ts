@@ -1,5 +1,7 @@
 import type { AxiosRequestConfig } from 'axios'
-import { service } from './useAxios'
+import { useAxios } from './useAxios'
+
+const { service } = useAxios()
 
 export const http = {
   get<T = any>(url: string, config: AxiosRequestConfig = {}) {

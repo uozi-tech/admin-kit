@@ -12,7 +12,7 @@ const defaultConfig: AxiosRequestConfig = {
   timeout: 5000,
 }
 
-const overrideConfig: AxiosRequestConfig = {}
+export const overrideConfig: AxiosRequestConfig = {}
 
 export function setOverrideConfig(config: AxiosRequestConfig) {
   Object.assign(overrideConfig, config)
