@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 1.2.2
+
+### Patch Changes
+
+- [`edf45e8`](https://github.com/uozi-tech/admin-kit/commit/edf45e8d68bf22d5fe1417e1d2f624ce2f42416d) Thanks [@0xJacky](https://github.com/0xJacky)! - fix(request): [axios] set override request config
+
 ## 1.2.1
 
 ### Patch Changes
