@@ -2,7 +2,7 @@
 import type { StdCurdProps } from '~/types'
 import { Button, Card, Checkbox, Divider, Flex, message, Modal, Spin } from 'ant-design-vue'
 import { useConfigContextInject } from 'ant-design-vue/es/config-provider/context'
-import { computed, reactive, ref, useSlots, useTemplateRef, watchEffect } from 'vue'
+import { computed, reactive, ref, useSlots, watchEffect } from 'vue'
 import { useRoute } from 'vue-router'
 import { useExport } from '~/composables'
 import { ApiActions } from '~/constants'
@@ -25,7 +25,6 @@ const emit = defineEmits<{
 
 const route = useRoute()
 const slots = useSlots()
-const refStdTable = useTemplateRef('refStdTable')
 
 const { locale: lang } = useConfigContextInject()
 watchEffect(() => {
@@ -213,7 +212,6 @@ defineExpose({
     </template>
 
     <StdTable
-      ref="refStdTable"
       v-model:table-loading="tableLoading"
       :title
       :columns

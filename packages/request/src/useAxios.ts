@@ -1,15 +1,11 @@
 import type { AxiosInterceptorOptions, InternalAxiosRequestConfig } from 'axios'
-import { createService, overrideConfig } from './axios'
-
-const service = createService()
+import { service } from './axios'
 
 // 记录已注册的拦截器
 const registeredRequestInterceptors = new Set<string>()
 const registeredResponseInterceptors = new Set<string>()
 
 export function useAxios() {
-  Object.assign(service.defaults, overrideConfig)
-
   return {
     service,
     setRequestInterceptor(

@@ -32,7 +32,7 @@
     "ant-design-vue": ">=4.2.6",
     "dayjs": ">=1.11.13",
     "lodash-es": ">=4.17.21",
-    "vue": ">=3.5.12",
+    "vue": ">=3.5.13",
     "vue-router": ">=4.4.5",
     "vue3-gettext": ">=3.0.0-beta.4",
     "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz"

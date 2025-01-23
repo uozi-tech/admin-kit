@@ -113,7 +113,7 @@ importers:
         specifier: '>=4.17.21'
         version: 4.17.21
       vue:
-        specifier: '>=3.5.12'
+        specifier: '>=3.5.13'
         version: 3.5.13(typescript@5.7.3)
       vue-router:
         specifier: '>=4.4.5'
