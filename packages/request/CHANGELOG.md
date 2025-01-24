@@ -1,5 +1,11 @@
 # @uozi-admin/request
 
+## 2.1.3
+
+### Patch Changes
+
+- [`da16617`](https://github.com/uozi-tech/admin-kit/commit/da1661701dcd65374cde2fd7b59e82c4edd87cdc) Thanks [@0xJacky](https://github.com/0xJacky)! - fix: pagination
+
 ## 2.1.2
 
 ### Patch Changes
