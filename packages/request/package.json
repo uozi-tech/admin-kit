@@ -1,6 +1,6 @@
 {
   "name": "@uozi-admin/request",
-  "version": "2.1.2",
+  "version": "2.1.3",
   "description": "Easy to create curd request functions.",
   "main": "dist/index.mjs",
   "module": "dist/index.mjs",
