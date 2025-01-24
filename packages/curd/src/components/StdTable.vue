@@ -128,6 +128,8 @@ const debouncedListApi = debounce(async () => {
     .then((res) => {
       tableData.value = res.data
       pagination.value.total = res?.pagination?.total
+      pagination.value.pageSize = res?.pagination?.pageSize
+      pagination.value.current = res?.pagination?.current
     })
     .catch((e) => {
       message.error('Failed to fetch data')

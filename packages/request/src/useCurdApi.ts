@@ -10,7 +10,7 @@ const globalPaginationKeyMap: PaginationKeyMapT = {
   total: 'total',
   current: 'current_page',
   pageSize: 'per_page',
-  totalPage: 'total_page',
+  totalPage: 'total_pages',
 }
 
 interface UseCurdOptions {
@@ -37,9 +37,10 @@ export function useCurdApi<T>(url: string, options: UseCurdOptions = { paginatio
         pagination: Record<string, number | string>
       }>(url, { params })
       const pagination = {} as PaginationT
+
       for (const key in paginationKeyMap) {
         if (paginationKeyMap[key])
-          pagination[key] = get(res?.data, paginationKeyMap[key])
+          pagination[key] = get(res?.pagination, paginationKeyMap[key])
       }
 
       return Promise.resolve({ data: res.data, pagination })
