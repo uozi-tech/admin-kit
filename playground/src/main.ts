@@ -6,7 +6,11 @@ import { store, useSettingsStore } from './store'
 import './style.css'
 // import 'virtual:uno.css'
 
-createApp(App).use(gettext).use(store).use(router).mount('#app')
+createApp(App)
+  .use(gettext)
+  .use(store)
+  .use(router)
+  .mount('#app')
 
 const settings = useSettingsStore()
 

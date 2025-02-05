@@ -52,7 +52,8 @@ function onSave() {
   const { formRef } = stdForm.value
   formRef.validateFields().then((res) => {
     handleSave(res)
-  }).catch(() => {
+  }).catch((e) => {
+    console.error(e)
     message.error($gettext('Please fill all fields correctly'))
     modalLoading.value = false
   })
@@ -92,7 +93,8 @@ function getDataDetail(row: Record<string, any>) {
   props.api.getItem(row[props.rowKey ?? 'id']).then((res) => {
     itemDetail.value = res
     modalLoading.value = false
-  }).catch(() => {
+  }).catch((e) => {
+    console.error(e)
     message.error('Failed to get item detail')
   })
 }
@@ -146,7 +148,8 @@ function handleSave(data: Record<string, any>) {
       formVisible.value = false
       message.success($gettext('Saved successfully'))
     })
-    .catch(() => {
+    .catch((e) => {
+      console.error(e)
       message.error('Failed to save data')
     })
     .finally(() => (modalLoading.value = false))
@@ -165,7 +168,8 @@ function handleDataById(action: string, record: Record<string, any>) {
       else
         message.success($gettext('Restored successfully'))
     })
-    .catch(() => {
+    .catch((e) => {
+      console.error(e)
       message.error('Failed to execute the operation')
     })
 }

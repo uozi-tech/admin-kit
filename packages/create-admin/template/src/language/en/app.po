@@ -1,0 +1,54 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: src/router/index.ts:22
+msgid "Dashboard"
+msgstr "Dashboard"
+
+#: src/pages/login/index.vue:67
+msgid "Email"
+msgstr "Email"
+
+#: src/pages/error/index.vue:47
+msgid "Go Home"
+msgstr "Go Home"
+
+#: src/router/index.ts:14
+msgid "Home"
+msgstr "Home"
+
+#: src/pages/login/index.vue:95 src/router/modules/constantRoutes.ts:12
+msgid "Login"
+msgstr "Login"
+
+#: src/pages/login/index.vue:77
+msgid "Password"
+msgstr "Password"
+
+#: src/pages/login/index.vue:25
+msgid "Please input your email!"
+msgstr "Please input your email!"
+
+#: src/pages/login/index.vue:31
+msgid "Please input your password!"
+msgstr "Please input your password!"
+
+#: src/pages/error/index.vue:28
+msgid "Sorry, something went wrong."
+msgstr "Sorry, something went wrong."
+
+#: src/pages/error/index.vue:23
+msgid "Sorry, the page you visited does not exist."
+msgstr "Sorry, the page you visited does not exist."
+
+#: src/pages/error/index.vue:17
+msgid "Sorry, you are not authorized to access this page."
+msgstr "Sorry, you are not authorized to access this page."

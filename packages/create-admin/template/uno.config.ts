@@ -1,7 +1,8 @@
-import { defineConfig, presetAttributify, presetUno } from 'unocss'
+import { defineConfig, presetAttributify, presetIcons, presetUno, transformerDirectives, transformerVariantGroup } from 'unocss'
+import presetChinese, { chineseTypography } from 'unocss-preset-chinese'
+import presetEase from 'unocss-preset-ease'
 
 export default defineConfig({
-  mode: 'global',
   content: {
     pipeline: {
       include: ['**/*.{ts,jsx,tsx,vue}'],

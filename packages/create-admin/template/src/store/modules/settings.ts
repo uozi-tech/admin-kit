@@ -7,6 +7,7 @@ export const useSettingsStore = defineStore('settings', () => {
   const language = ref('')
   const theme = ref<Theme>('light')
   const preference_theme = ref<Theme>('auto')
+  const siteTitle = ref('Admin')
   const copyright = ref('')
 
   const isDark = computed(() => {
@@ -32,6 +33,7 @@ export const useSettingsStore = defineStore('settings', () => {
   }
 
   return {
+    siteTitle,
     antdLanguage,
     language,
     theme,

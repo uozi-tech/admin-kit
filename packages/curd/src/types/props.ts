@@ -2,6 +2,7 @@ import type {
   TableProps,
 } from 'ant-design-vue'
 
+import type { CurdApi } from './api'
 import type { StdTableColumn } from './index'
 
 export interface StdTableProps extends Pick<
@@ -46,7 +47,7 @@ export interface StdCurdProps {
   scrollX?: number | string
   scrollY?: number | string
   title?: string | (() => string)
-  api: any
+  api: CurdApi
   tableProps?: TableProps
   customQueryParams?: Record<string, any>
   overwriteParams?: Record<string, any>

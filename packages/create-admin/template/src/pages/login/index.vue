@@ -7,9 +7,6 @@ import { useSettingsStore } from '~/store'
 
 const thisYear = new Date().getFullYear()
 
-const route = useRoute()
-const router = useRouter()
-
 const loading = ref(false)
 
 const modelRef = reactive({

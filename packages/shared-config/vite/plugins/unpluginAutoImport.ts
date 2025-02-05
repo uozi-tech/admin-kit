@@ -13,11 +13,6 @@ export function createAutoImportPluginConfig(customConfig?: AutoImportOptions): 
     ignoreDts: [
       /^ignore_/,
     ],
-    dirs: [
-      'src/composables',
-      'src/components',
-      'src/store',
-    ],
     vueTemplate: true,
     eslintrc: {
       enabled: true,
