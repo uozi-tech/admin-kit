@@ -1,5 +1,11 @@
 # @uozi-admin/shared-config
 
+## 0.4.2
+
+### Patch Changes
+
+- [#52](https://github.com/uozi-tech/admin-kit/pull/52) [`0af5690`](https://github.com/uozi-tech/admin-kit/commit/0af569033e0bfdad669258a0c97e32c5ba27c6ad) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(shared-config): [vite] remove auto import of owner files
+
 ## 0.4.1
 
 ### Patch Changes

@@ -1,5 +1,15 @@
 # @uozi-admin/create-admin
 
+## 1.2.0
+
+### Minor Changes
+
+- [`2682b12`](https://github.com/uozi-tech/admin-kit/commit/2682b1215b7b03a50482bd5ab4c686c986edea87) Thanks [@akinoccc](https://github.com/akinoccc)! - feat(create-admin): [template] upgrade deps
+
+### Patch Changes
+
+- [#52](https://github.com/uozi-tech/admin-kit/pull/52) [`841e37e`](https://github.com/uozi-tech/admin-kit/commit/841e37e16c83b828f40114222b02e896792230ec) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(create-admin): template issue
+
 ## 1.1.2
 
 ### Patch Changes
