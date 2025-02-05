@@ -72,7 +72,7 @@ export function useCurdApi<T>(url: string, options: UseCurdOptions = { paginatio
 
   const updateItem = async (id: string | number, data: Record<string, any>) => {
     try {
-      const res = await http.patch<T>(`${url}/${id}`, data)
+      const res = await http.post<T>(`${url}/${id}`, data)
       return Promise.resolve(res)
     }
     catch (err) {
