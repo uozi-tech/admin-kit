@@ -54,6 +54,7 @@ function onSave() {
     handleSave(res)
   }).catch(() => {
     message.error($gettext('Please fill all fields correctly'))
+    modalLoading.value = false
   })
 }
 
@@ -133,10 +134,10 @@ function handleSave(data: Record<string, any>) {
 
   let promise: Promise<unknown>
   if (mode.value === 'add') {
-    promise = props.api.create(payload)
+    promise = props.api.createItem(payload)
   }
   else {
-    promise = props.api.update(itemDetail.value[props.rowKey ?? 'id'], payload)
+    promise = props.api.updateItem(itemDetail.value[props.rowKey ?? 'id'], payload)
   }
 
   promise
