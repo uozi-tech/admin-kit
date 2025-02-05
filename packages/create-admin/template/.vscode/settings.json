@@ -39,5 +39,6 @@
   "explorer.fileNesting.patterns": {
     "package.json": "pnpm-lock.yaml,pnpm-workspace.yaml,commitlint.config.js,.gitignore,.gitattributes,auto-imports.d.ts,components.d.ts,eslint.config.mjs,.eslint-auto-import.mjs",
     "vite.config.ts": "gettext.config.mjs,uno.config.ts,tsconfig.json,tsconfig.node.json"
-  }
+  },
+  "typescript.tsdk": "node_modules/typescript/lib"
 }

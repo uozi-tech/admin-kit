@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { SidebarItem } from '@uozi-admin/layout-antdv'
+import type { SidebarItem, Theme } from '@uozi-admin/layout-antdv'
 import type { RouteRecordRaw } from 'vue-router'
 import { AdminLayout } from '@uozi-admin/layout-antdv'
 import { computed } from 'vue'
@@ -35,7 +35,6 @@ function getSidebarTree(routes?: RouteRecordRaw[]): SidebarItem[] {
 const sidebarItems = computed<SidebarItem[]>(() => {
   return getSidebarTree(routes[0].children)
 })
-console.log(sidebarItems)
 </script>
 
 <template>
@@ -47,10 +46,10 @@ console.log(sidebarItems)
     @toggle-theme="toggleTheme"
     @change-language="changeLanguage"
   >
-    <RouterView v-slot="{ Component, route }">
+    <RouterView v-slot="{ Component, route: r }">
       <component
         :is="Component"
-        :key="route.path"
+        :key="r.path"
       />
     </RouterView>
   </AdminLayout>

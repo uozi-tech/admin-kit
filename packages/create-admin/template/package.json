@@ -19,9 +19,9 @@
   "dependencies": {
     "@ant-design/icons-vue": "^7.0.1",
     "@iconify-json/tabler": "^1.2.8",
-    "@uozi-admin/layout-antdv": "^0.0.5",
-    "@uozi-admin/curd": "^1.0.1",
-    "@uozi-admin/request": "^2.0.0",
+    "@uozi-admin/curd": "^2.0.0",
+    "@uozi-admin/layout-antdv": "^0.0.7",
+    "@uozi-admin/request": "^2.1.3",
     "ant-design-vue": "^4.2.6",
     "lodash": "^4.17.21",
     "nprogress": "^0.2.0",
@@ -29,14 +29,18 @@
     "pinia-plugin-persistedstate": "^4.2.0",
     "vue": "^3.5.13",
     "vue-router": "^4.4.5",
-    "vue3-gettext": "3.0.0-beta.6"
+    "vue3-gettext": "3.0.0-beta.6",
+    "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^3.12.1",
     "@commitlint/cli": "^19.5.0",
     "@commitlint/config-conventional": "^19.5.0",
     "@types/lodash-es": "^4.17.12",
-    "@uozi-admin/shared-config": "^0.4.0",
+    "@types/nprogress": "^0.2.3",
+    "@uozi-admin/shared-config": "^0.4.1",
+    "@vue/tsconfig": "^0.7.0",
+    "eslint": "^9.19.0",
     "less": "^4.2.1",
     "simple-git-hooks": "^2.11.1",
     "typescript": "^5.7.3",

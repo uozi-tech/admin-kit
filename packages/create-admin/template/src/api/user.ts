@@ -1,3 +1,3 @@
-import { Curd } from '@uozi-admin/request'
+import { useCurdApi } from '@uozi-admin/request'
 
-export const userApi = new Curd('/user')
+export const userApi = useCurdApi('/user')

@@ -1,8 +1,9 @@
 import { HomeOutlined } from '@ant-design/icons-vue'
 
 import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
-import { PATH_DASHBOARD } from '~/constants/routes'
-import { constantRoutes } from './modules/contant'
+import { constantRoutes } from './modules/constantRoutes'
+
+export const PATH_DASHBOARD = '/dashboard'
 
 export const routes: RouteRecordRaw[] = [
   {

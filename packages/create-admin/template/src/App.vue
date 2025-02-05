@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { theme } from 'ant-design-vue'
+import { useSettingsStore } from '~/store'
 
 const settingsStore = useSettingsStore()
 </script>
