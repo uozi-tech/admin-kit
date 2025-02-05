@@ -25,7 +25,7 @@ export default antfu({
   }],
   'ts/no-use-before-define': 'off',
   'ts/no-non-null-asserted-optional-chain': 'warn',
-  'no-console': 'warn',
+  'no-console': ['warn', { allow: ['error'] }],
   'no-new': 'off',
   'unused-imports/no-unused-vars': 'warn',
   'jsonc/sort-keys': 'off',

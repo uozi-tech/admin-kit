@@ -281,6 +281,36 @@ const api = {
       })
     })
   }),
+  createItem: () => new Promise((resolve) => {
+    console.log('createItem')
+    setTimeout(() => {
+      resolve({
+        id: 1,
+        school_id: 1,
+        name: 'John Brown',
+        age: 32,
+        type: 2,
+        address: 'New York No. 1 Lake Park',
+        date: '2016-10-03',
+        datetime: '2016-10-03 14:00:11',
+      })
+    })
+  }),
+  updateItem: () => new Promise((resolve) => {
+    console.log('updateItem')
+    setTimeout(() => {
+      resolve({
+        id: 1,
+        school_id: 1,
+        name: 'John Brown',
+        age: 32,
+        type: 2,
+        address: 'New York No. 1 Lake Park',
+        date: '2016-10-03',
+        datetime: '2016-10-03 14:00:11',
+      })
+    })
+  }),
   restoreItem: () => new Promise((resolve) => {
     console.log('restoreItem')
     setTimeout(() => {

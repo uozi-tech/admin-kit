@@ -1,26 +1,7 @@
-import { get } from 'lodash-es'
 import { http } from './http'
 
-type PaginationKeyT = 'total' | 'current' | 'pageSize' | 'totalPage'
-type PaginationKeyMapT = {
-  [key in PaginationKeyT]?: string
-}
-
-const globalPaginationKeyMap: PaginationKeyMapT = {
-  total: 'total',
-  current: 'current_page',
-  pageSize: 'per_page',
-  totalPage: 'total_pages',
-}
-
-interface UseCurdOptions {
-  paginationKeyMap?: PaginationKeyMapT
-}
-
-export type PaginationT = Record<keyof PaginationKeyT, number | string>
-
-export interface CurdApi<T> {
-  getList: (params?: Record<string, any>) => Promise<{ data: T[], pagination: PaginationT }>
+export interface CurdApi<T = any, P = any> {
+  getList: (params?: Record<string, any>) => Promise<{ data: T[], pagination: P }>
   getItem: (id: string | number, params?: Record<string, any>) => Promise<T>
   createItem: (data: Record<string, any>) => Promise<T>
   updateItem: (id: string | number, data: Record<string, any>) => Promise<T>
@@ -28,22 +9,15 @@ export interface CurdApi<T> {
   restoreItem: (id: string | number, params?: Record<string, any>) => Promise<any>
 }
 
-export function useCurdApi<T>(url: string, options: UseCurdOptions = { paginationKeyMap: globalPaginationKeyMap }): CurdApi<T> {
-  const paginationKeyMap = options?.paginationKeyMap || globalPaginationKeyMap
+export function useCurdApi<T = any, P = any>(url: string): CurdApi<T, P> {
   const getList = async (params?: Record<string, any>) => {
     try {
       const res = await http.get<{
         data: T[]
-        pagination: Record<string, number | string>
+        pagination: P
       }>(url, { params })
-      const pagination = {} as PaginationT
 
-      for (const key in paginationKeyMap) {
-        if (paginationKeyMap[key])
-          pagination[key] = get(res?.pagination, paginationKeyMap[key])
-      }
-
-      return Promise.resolve({ data: res.data, pagination })
+      return Promise.resolve(res)
     }
     catch (err) {
       return Promise.reject(err)
