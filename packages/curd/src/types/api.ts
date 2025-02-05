@@ -1,9 +1,8 @@
-export interface CurdApi {
-  getList: (params?: Record<string, any>) => Promise<any>
-  getItem: (id: string | number, params?: Record<string, any>) => Promise<any>
-  createItem: (data: Record<string, any>) => Promise<any>
-  updateItem: (id: string | number, data: Record<string, any>) => Promise<any>
+export interface CurdApi<T = any, P = any> {
+  getList: (params?: Record<string, any>) => Promise<{ data: T[], pagination: P }>
+  getItem: (id: string | number, params?: Record<string, any>) => Promise<T>
+  createItem: (data: Record<string, any>) => Promise<T>
+  updateItem: (id: string | number, data: Record<string, any>) => Promise<T>
   deleteItem: (id: string | number, params?: Record<string, any>) => Promise<any>
   restoreItem: (id: string | number, params?: Record<string, any>) => Promise<any>
-  [key: string]: (...args: any[]) => Promise<any>
 }

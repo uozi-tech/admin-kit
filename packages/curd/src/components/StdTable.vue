@@ -2,13 +2,15 @@
 import type { FilterValue, SorterResult, TableRowSelection } from 'ant-design-vue/es/table/interface'
 import type { TablePaginationConfig } from 'ant-design-vue/lib/table/interface'
 import type { VNode } from 'vue'
+import type { CurdConfigT } from '..'
 import type { StdTableBodyScope, StdTableHeaderScope, StdTableProps } from '~/types'
 import { Button, Flex, message, Popconfirm, Table } from 'ant-design-vue'
 import { debounce, isArray, isEqual } from 'lodash-es'
-import { computed, onMounted, ref, watch } from 'vue'
+import { computed, inject, onMounted, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { $gettext, $pgettext } from '~/locales'
 import { getRealContent } from '~/utils'
+import { CURD_CONFIG_KEY, defaultConfig } from '..'
 import StdSearch from './StdSearch.vue'
 
 const props = defineProps<StdTableProps>()
@@ -117,7 +119,7 @@ function resetSearchForm() {
 
 // 表格数据
 const tableData = ref<Record<string, any>[]>([])
-
+const curdConfig = inject<CurdConfigT>(CURD_CONFIG_KEY, defaultConfig)
 const debouncedListApi = debounce(async () => {
   tableLoading.value = true
 
@@ -126,12 +128,14 @@ const debouncedListApi = debounce(async () => {
   // overwriteParams 优先级比 apiParams 高
   return props.api.getList({ ...rest, ...overwriteParams })
     .then((res) => {
+      const { total, pageSize, current } = curdConfig.api.paginationMap
       tableData.value = res.data
-      pagination.value.total = res?.pagination?.total
-      pagination.value.pageSize = res?.pagination?.pageSize
-      pagination.value.current = res?.pagination?.current
+      pagination.value.total = res?.pagination?.[total]
+      pagination.value.pageSize = res?.pagination?.[pageSize]
+      pagination.value.current = res?.pagination?.[current]
     })
     .catch((e) => {
+      console.error(e)
       message.error('Failed to fetch data')
     })
     .finally(() => {
