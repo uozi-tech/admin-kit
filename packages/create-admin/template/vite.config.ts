@@ -7,9 +7,6 @@ export default createViteConfig({
   overrides: ({ mode }) => {
     const env = loadEnv(mode, process.cwd(), '')
     return {
-      alias: {
-        '~': fileURLToPath(new URL('./src', import.meta.url)),
-      },
       server: {
         port: Number(env.VITE_PORT) || 6001,
         proxy: {
