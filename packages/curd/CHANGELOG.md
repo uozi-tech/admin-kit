@@ -1,5 +1,15 @@
 # @uozi-admin/curd
 
+## 2.1.0
+
+### Minor Changes
+
+- [#52](https://github.com/uozi-tech/admin-kit/pull/52) [`cf3a2c4`](https://github.com/uozi-tech/admin-kit/commit/cf3a2c45923fc619f17492f0cea9c7dc7ac906d6) Thanks [@akinoccc](https://github.com/akinoccc)! - feat(curd): add global config
+
+### Patch Changes
+
+- [#52](https://github.com/uozi-tech/admin-kit/pull/52) [`57d3cba`](https://github.com/uozi-tech/admin-kit/commit/57d3cba9ff75dbbfd02be0562271c92c0967fc19) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): curd api type def
+
 ## 2.0.0
 
 ### Major Changes

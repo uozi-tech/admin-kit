@@ -1,5 +1,15 @@
 # @uozi-admin/request
 
+## 2.2.0
+
+### Minor Changes
+
+- [#52](https://github.com/uozi-tech/admin-kit/pull/52) [`46e272f`](https://github.com/uozi-tech/admin-kit/commit/46e272fdbc87170a0fda0511052107f6e9946d4e) Thanks [@akinoccc](https://github.com/akinoccc)! - feat(request): [curd-api] remove response transformer
+
+### Patch Changes
+
+- [#52](https://github.com/uozi-tech/admin-kit/pull/52) [`3ec428b`](https://github.com/uozi-tech/admin-kit/commit/3ec428b2872185f72ee38a682b5e7daba7bc1857) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(request): using post method to update item
+
 ## 2.1.3
 
 ### Patch Changes
