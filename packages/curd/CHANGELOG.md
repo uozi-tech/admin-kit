@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 2.0.0
+
+### Major Changes
+
+- [#50](https://github.com/uozi-tech/admin-kit/pull/50) [`3f92dbd`](https://github.com/uozi-tech/admin-kit/commit/3f92dbd39342ac316f995e6706f3555b8f6ef816) Thanks [@thahao](https://github.com/thahao)! - fix: update API method names in StdCurd component
+
 ## 1.2.3
 
 ### Patch Changes
