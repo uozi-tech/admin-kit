@@ -1,7 +1,7 @@
 import { defineConfig } from 'tsup'
 
 export default defineConfig({
-  entry: ['vite'],
+  entry: ['src/index.ts'],
   target: 'esnext',
   format: ['esm', 'cjs'],
   splitting: false,

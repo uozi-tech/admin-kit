@@ -4,7 +4,7 @@ import gettext from './gettext'
 import { router } from './router'
 import { store, useSettingsStore } from './store'
 import './style.css'
-// import 'virtual:uno.css'
+import 'virtual:uno.css'
 
 createApp(App)
   .use(gettext)

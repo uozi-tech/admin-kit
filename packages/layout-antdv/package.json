@@ -3,10 +3,7 @@
   "version": "0.0.7",
   "description": "Easy to implement admin layout",
   "type": "module",
-  "main": "dist/index.js",
-  "files": [
-    "dist"
-  ],
+  "main": "src/index.ts",
   "keywords": [
     "uozi-admin",
     "admin-layout",
@@ -21,12 +18,17 @@
   "license": "Apache-2.0",
   "publishConfig": {
     "access": "public",
-    "provenance": true
+    "provenance": true,
+    "main": "dist/index.js",
+    "files": [
+      "dist"
+    ],
+    "types": "dist/index.d.ts"
   },
   "scripts": {
     "watch": "vite build --watch",
     "build": "vite build",
-    "typecheck": "vue-tsc --incremental --noEmit"
+    "typecheck": "vue-tsc --noEmit"
   },
   "peerDependencies": {
     "@ant-design/icons-vue": "^7.0.1",

@@ -3,10 +3,7 @@
   "version": "2.1.0",
   "description": "Easy to implement curd.",
   "type": "module",
-  "main": "dist/index.js",
-  "files": [
-    "dist"
-  ],
+  "main": "src/index.ts",
   "keywords": [
     "uozi-admin",
     "curd"
@@ -20,12 +17,16 @@
   "license": "Apache-2.0",
   "publishConfig": {
     "access": "public",
-    "provenance": true
+    "provenance": true,
+    "main": "dist/index.js",
+    "files": [
+      "dist"
+    ]
   },
   "scripts": {
     "watch": "vite build --watch",
     "build": "vite build",
-    "typecheck": "vue-tsc --incremental --noEmit"
+    "typecheck": "vue-tsc --noEmit"
   },
   "peerDependencies": {
     "@ant-design/icons-vue": ">=7.0.1",
@@ -40,6 +41,7 @@
   "devDependencies": {
     "@types/lodash-es": "^4.17.12",
     "@uozi-admin/shared-config": "workspace:*",
+    "simple-git-hooks": "^2.11.1",
     "unocss-preset-chinese": "^0.3.3",
     "unocss-preset-ease": "^0.0.4",
     "vitest": "^2.1.8"

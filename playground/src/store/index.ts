@@ -1,6 +1,5 @@
 import { createPinia } from 'pinia'
-import { useSettingsStore } from './settings'
 
-const store = createPinia()
+export * from './settings'
 
-export { store, useSettingsStore }
+export const store = createPinia()

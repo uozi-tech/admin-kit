@@ -31,16 +31,13 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "~/*": [
-        "src/*"
-      ]
+      "~layout-antdv/*": ["src/*"]
     }
   },
-
   "include": [
     "src/**/*.ts",
-    "src/**/*.d.ts",
     "src/**/*.tsx",
-    "src/**/*.vue"
+    "src/**/*.vue",
+    "vite-env.d.ts"
   ]
 }

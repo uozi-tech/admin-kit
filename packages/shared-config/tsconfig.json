@@ -9,5 +9,5 @@
     "skipLibCheck": true,
     "allowImportingTsExtensions": false
   },
-  "include": ["vite/**/*.ts"]
+  "include": ["src/**/*.ts"]
 }

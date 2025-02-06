@@ -2,16 +2,16 @@ import { createGettext } from 'vue3-gettext'
 import i18n from './i18n.json'
 import translations from './translations.json'
 
-export const gettext: ReturnType<typeof createGettext> = createGettext({
+type Gettext = ReturnType<typeof createGettext>
+
+export const gettext: Gettext = createGettext({
   availableLanguages: i18n,
   defaultLanguage: 'zh-cn',
   translations,
   silent: true,
 })
 
-export const {
-  $gettext,
-  $pgettext,
-  $ngettext,
-  $npgettext,
-} = gettext
+export const $gettext: Gettext['$gettext'] = gettext.$gettext
+export const $pgettext: Gettext['$pgettext'] = gettext.$pgettext
+export const $ngettext: Gettext['$ngettext'] = gettext.$ngettext
+export const $npgettext: Gettext['$npgettext'] = gettext.$npgettext
