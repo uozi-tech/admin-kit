@@ -11,6 +11,18 @@ const props = defineProps<{
   layout?: 'horizontal' | 'vertical' | 'inline'
 }>()
 
+const emit = defineEmits<{
+  (e: 'validate', payload: {
+    name: string | number | string[] | number[]
+    status: boolean
+    errors: string[]
+  }): void
+}>()
+
+function onValidate(name: string | number | string[] | number[], status: boolean, errors: string[]) {
+  emit('validate', { name, status, errors })
+}
+
 const formData = defineModel<Record<string, any>>('data', { default: () => ({}) })
 
 for (const column of props.columns) {
@@ -42,6 +54,7 @@ defineExpose({
     :label-align="labelAlign ?? 'left'"
     :layout="props.layout ?? 'vertical'"
     :validate-trigger="['blur', 'submit']"
+    @validate="onValidate"
   >
     <FormItemRest>
       <FormItem
