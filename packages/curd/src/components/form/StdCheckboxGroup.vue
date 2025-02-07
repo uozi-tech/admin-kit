@@ -1,0 +1,20 @@
+<script setup lang="ts">
+import type { CheckboxGroupProps } from 'ant-design-vue'
+import type { CheckboxGroupConfig } from '~curd/types'
+import { CheckboxGroup } from 'ant-design-vue'
+
+defineProps<{ props?: CheckboxGroupConfig }>()
+
+const value = defineModel<CheckboxGroupProps['value']>('value')
+</script>
+
+<template>
+  <CheckboxGroup
+    v-model:value="value"
+    v-bind="props"
+  />
+</template>
+
+<style scoped lang="less">
+
+</style>
