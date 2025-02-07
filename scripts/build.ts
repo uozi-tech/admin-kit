@@ -22,7 +22,6 @@ const BUILD_CONFIG: PackageConfig[] = [
   },
   {
     name: 'request',
-    dependencies: ['shared-config'],
     parallel: true,
   },
   {
@@ -37,7 +36,6 @@ const BUILD_CONFIG: PackageConfig[] = [
   },
   {
     name: 'create-uozi-admin',
-    dependencies: ['shared-config'],
     parallel: true,
   },
 ]
@@ -62,9 +60,9 @@ class Builder {
     const startTime = Date.now()
 
     try {
-      await this.execAsync(`pnpm --filter ${pkg.name} build`)
-      //   if (stderr && !stderr.includes('compiled'))
-      //     spinner.warn(`[${pkg.name}] ${stderr}`)
+      const { stderr } = await this.execAsync(`pnpm --filter ${pkg.name} build`)
+      if (stderr)
+        spinner.warn(`[${pkg.name}] ${stderr}`)
 
       const duration = Date.now() - startTime
       this.buildTimes[pkg.name] = duration
