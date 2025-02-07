@@ -44,6 +44,22 @@ const sidebarItems = computed<SidebarItem[]>(() => {
     @toggle-theme="toggleTheme"
     @change-language="changeLanguage"
   >
+    <template #logo>
+      <div class="flex items-center">
+        <span class="text-lg font-bold">Uozi Admin</span>
+      </div>
+    </template>
+
+    <template #page-header-extra>
+      <AButton>
+        Page Header Extra
+      </AButton>
+    </template>
+
+    <!-- <template #breadcrumb-item="item">
+      {{ item }}
+    </template> -->
+
     <RouterView v-slot="{ Component, route }">
       <component
         :is="Component"

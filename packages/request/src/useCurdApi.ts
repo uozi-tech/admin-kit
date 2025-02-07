@@ -1,15 +1,19 @@
 import { http } from './http'
 
-export interface CurdApi<T = any, P = any> {
+export type CurdApi<T = any, P = any> = {
   getList: (params?: Record<string, any>) => Promise<{ data: T[], pagination: P }>
   getItem: (id: string | number, params?: Record<string, any>) => Promise<T>
   createItem: (data: Record<string, any>) => Promise<T>
   updateItem: (id: string | number, data: Record<string, any>) => Promise<T>
   deleteItem: (id: string | number, params?: Record<string, any>) => Promise<any>
   restoreItem: (id: string | number, params?: Record<string, any>) => Promise<any>
+} & MoreApis
+
+export interface MoreApis {
+  [key: string]: (...args: any[]) => Promise<any>
 }
 
-export function useCurdApi<T = any, P = any>(url: string): CurdApi<T, P> {
+export function useCurdApi<T = any, P = any>(url: string, moreApis?: MoreApis): CurdApi<T, P> {
   const getList = async (params?: Record<string, any>) => {
     try {
       const res = await http.get<{
@@ -81,12 +85,13 @@ export function useCurdApi<T = any, P = any>(url: string): CurdApi<T, P> {
     updateItem,
     deleteItem,
     restoreItem,
+    ...moreApis,
   }
 }
 
 export function extendCurdApi<T>(
   baseCurd: CurdApi<T>,
-  newApis: Record<string, (...args: any[]) => Promise<any>>,
+  newApis: MoreApis,
 ) {
   return Object.assign(baseCurd, newApis)
 }

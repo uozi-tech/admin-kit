@@ -4,7 +4,7 @@ import type {
 } from 'axios'
 import axios from 'axios'
 
-const defaultConfig: AxiosRequestConfig = {
+const axiosConfig: AxiosRequestConfig = {
   baseURL: '/api',
   headers: {
     'Content-Type': 'application/json',
@@ -13,12 +13,13 @@ const defaultConfig: AxiosRequestConfig = {
 }
 
 function createService() {
-  return axios.create(defaultConfig)
+  return axios.create(axiosConfig)
 }
 
 export const service = createService()
 
 export function setOverrideConfig(config: AxiosRequestConfig) {
+  Object.assign(axiosConfig, config)
   Object.assign(service.defaults, config)
 }
 
