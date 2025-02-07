@@ -1,9 +1,10 @@
 import StdCascader from './StdCascader.vue'
-import StdCheckbox from './StdCheckbox.vue'
+import StdCheckbox from './StdCheckboxGroup.vue'
 import StdDatePicker from './StdDatePicker.vue'
 import StdInput from './StdInput.vue'
 import StdInputNumber from './StdInputNumber.vue'
 import StdPassword from './StdPassword.vue'
+import StdRadioGroup from './StdRadioGroup.vue'
 import StdRangePicker from './StdRangePicker.vue'
 import StdRate from './StdRate.vue'
 import StdSelect from './StdSelect.vue'
@@ -20,6 +21,7 @@ export {
   StdInput,
   StdInputNumber,
   StdPassword,
+  StdRadioGroup,
   StdRangePicker,
   StdRate,
   StdSelect,

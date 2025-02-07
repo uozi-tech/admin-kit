@@ -220,7 +220,7 @@ defineExpose({
       v-model:table-loading="tableLoading"
       :title
       :columns
-      :api
+      :get-list-api="api.getList"
       :is-trash="isTrash"
       :disable-add="disableAdd"
       :disable-edit="disableEdit"

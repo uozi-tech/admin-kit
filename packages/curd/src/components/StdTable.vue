@@ -16,6 +16,7 @@ import StdSearch from './StdSearch.vue'
 const props = defineProps<StdTableProps>()
 
 const emit = defineEmits<{
+  (e: 'change', payload: { pagination: TablePaginationConfig, filters: Record<string, FilterValue>, sorter: SorterResult | SorterResult<any>[] }): void
   (e: 'read', record: any): void
   (e: 'editItem', record: any): void
   (e: 'deleteItemTemporarily', record: any): void
@@ -119,16 +120,33 @@ function resetSearchForm() {
 
 // 表格数据
 const tableData = ref<Record<string, any>[]>([])
-const curdConfig = inject<CurdConfigT>(CURD_CONFIG_KEY, defaultConfig)
+const curdConfig = inject<CurdConfigT>(CURD_CONFIG_KEY, {} as CurdConfigT)
 const debouncedListApi = debounce(async () => {
   tableLoading.value = true
 
   const { overwriteParams, ...rest } = apiParams.value
 
+  let finialParams: Record<string, any> = { ...rest, ...overwriteParams }
+
+  // 如果配置了 requestFormat，则使用 requestFormat 格式化参数
+  if (curdConfig.listApi?.requestFormat) {
+    finialParams = curdConfig.listApi.requestFormat(finialParams)
+  }
+
   // overwriteParams 优先级比 apiParams 高
-  return props.api.getList({ ...rest, ...overwriteParams })
+  return props.getListApi(finialParams)
     .then((res) => {
-      const { total, pageSize, current } = curdConfig.api.paginationMap
+      let { total, pageSize, current } = curdConfig.listApi!.paginationMap
+      // 如果配置了 responseFormat，则使用 responseFormat 格式化数据
+      if (curdConfig.listApi?.responseFormat) {
+        res = curdConfig.listApi.responseFormat(res)
+      }
+      // 如果未配置 responseFormat，则使用默认配置
+      else {
+        total = defaultConfig.listApi!.paginationMap.total
+        pageSize = defaultConfig.listApi!.paginationMap.pageSize
+        current = defaultConfig.listApi!.paginationMap.current
+      }
       tableData.value = res.data
       pagination.value.total = res?.pagination?.[total]
       pagination.value.pageSize = res?.pagination?.[pageSize]
@@ -151,7 +169,6 @@ watch(apiParams, async (newVal, oldVal) => {
     return
   }
   if (!props.disableRouterQuery) {
-    console.log('apiParams changed', newVal, oldVal)
     // overwriteParams 不同步到 route query
     const { overwriteParams: _, ...rest } = newVal
     await debouncedUpdateRouteQuery({ ...route.query, ...rest })
@@ -181,6 +198,8 @@ const rowSelection = computed(() => {
 })
 
 function onTableChange(p: TablePaginationConfig, filters: Record<string, FilterValue>, sorter: SorterResult | SorterResult<any>[]) {
+  emit('change', { pagination: p, filters, sorter })
+
   if (sorter) {
     if (isArray(sorter)) {
       sorter = sorter[0]
@@ -209,7 +228,6 @@ function onTableChange(p: TablePaginationConfig, filters: Record<string, FilterV
     selectedRowKeys.value = []
     pagination.value.current = p.current
     pagination.value.pageSize = p.pageSize
-    console.log('onTableChange', p.current, p.pageSize)
   }
 }
 

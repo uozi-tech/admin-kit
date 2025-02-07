@@ -1,9 +1,9 @@
 import type {
-  CheckboxProps,
+  CheckboxGroupProps,
   DatePickerProps,
   InputNumberProps,
   InputProps,
-  RadioProps,
+  RadioGroupProps,
   RateProps,
   SelectProps,
   SliderProps,
@@ -15,16 +15,20 @@ import type {
 } from 'ant-design-vue'
 import type { CascaderProps } from 'ant-design-vue/es/cascader'
 import type { MonthPickerProps, WeekPickerProps } from 'ant-design-vue/es/date-picker'
+import type { CurdApi } from './api'
 import type { StdTableColumn } from './index'
 
-export interface PlaceholderT { placeholder?: number | string | (() => string) }
+export interface PlaceholderT { placeholder?: number | string | (() => string) | [string, string] }
 
 // 使用联合类型并移除 placeholder
 export type InputConfig = Omit<InputProps, 'placeholder'> & PlaceholderT
 
 export type InputNumberConfig = Omit<InputNumberProps, 'placeholder'> & PlaceholderT
 
-export type PasswordConfig = Omit<InputProps, 'placeholder'> & PlaceholderT & { generate?: boolean }
+export type PasswordConfig = Omit<InputProps, 'placeholder'> & PlaceholderT & {
+  generate?: boolean
+  maxLength?: number
+}
 
 export type SelectConfig = Omit<SelectProps, 'placeholder'> &
   PlaceholderT & {
@@ -39,10 +43,10 @@ export type SelectConfig = Omit<SelectProps, 'placeholder'> &
 
 export type SelectorConfig = {
   tableProps?: TableProps
-  rowKey?: string
+  valueKey?: string
   displayKey?: string
   selectionType?: 'radio' | 'checkbox'
-  api: any // 获取列表数据的api
+  getListApi: CurdApi['getList']
   columns: StdTableColumn[]
   tips?: string
   disabled?: boolean
@@ -62,15 +66,15 @@ export type TimePickerConfig = Omit<TimePickerProps, 'placeholder'> & Placeholde
 
 export type RangePickerConfig = Omit<DatePickerProps, 'placeholder'> & PlaceholderT
 
-export type RadioConfig = Omit<RadioProps, 'placeholder'> & PlaceholderT
+export type RadioGroupConfig = RadioGroupProps
 
-export type CheckboxConfig = Omit<CheckboxProps, 'placeholder'> & PlaceholderT
+export type CheckboxGroupConfig = CheckboxGroupProps
 
-export type RateConfig = Omit<RateProps, 'placeholder'> & PlaceholderT
+export type RateConfig = RateProps
 
-export type SliderConfig = Omit<SliderProps, 'placeholder'> & PlaceholderT
+export type SliderConfig = SliderProps
 
-export type SwitchConfig = Omit<SwitchProps, 'placeholder' | 'checked'> & PlaceholderT
+export type SwitchConfig = SwitchProps
 
 export type TransferConfig = Omit<TransferProps, 'placeholder'> & PlaceholderT
 

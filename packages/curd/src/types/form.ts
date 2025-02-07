@@ -3,13 +3,13 @@ import type { DefineComponent, VNode } from 'vue'
 import type { JSX } from 'vue/jsx-runtime'
 import type {
   CascaderConfig,
-  CheckboxConfig,
+  CheckboxGroupConfig,
   DatePickerConfig,
   InputConfig,
   InputNumberConfig,
   MonthPickerConfig,
   PasswordConfig,
-  RadioConfig,
+  RadioGroupConfig,
   RangePickerConfig,
   RateConfig,
   SelectConfig,
@@ -35,8 +35,8 @@ export type FormItemType =
   | 'week'
   | 'time'
   | 'textarea'
-  | 'radio'
-  | 'checkbox'
+  | 'radioGroup'
+  | 'checkboxGroup'
   | 'switch'
   | 'rate'
   | 'slider'
@@ -76,8 +76,8 @@ export interface StdFormConfig extends Record<any, any> {
   monthRange?: RangePickerConfig
   weekRange?: RangePickerConfig
   timeRange?: RangePickerConfig
-  radio?: RadioConfig
-  checkbox?: CheckboxConfig
+  radioGroup?: RadioGroupConfig
+  checkboxGroup?: CheckboxGroupConfig
   rate?: RateConfig
   slider?: SliderConfig
   switch?: SwitchConfig

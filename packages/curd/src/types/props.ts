@@ -9,17 +9,16 @@ export interface StdTableProps extends Pick<
   StdCurdProps,
   'tableProps' |
   'columns' |
-  'api' |
+  'customQueryParams' |
+  'overwriteParams' |
+  'rowSelectionType' |
+  'disableRouterQuery' |
   'disableEdit' |
   'disableSearch' |
   'disableDelete' |
-  'customQueryParams' |
-  'overwriteParams' |
-  'disableRouterQuery' |
-  'tableProps' |
-  'rowSelectionType' |
   'disableTrash'
 > {
+  getListApi: CurdApi['getList']
   refreshConfig?: {
     // 刷新时间戳
     timestamp: number

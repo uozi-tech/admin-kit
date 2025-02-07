@@ -10,6 +10,7 @@ import {
   StdInput,
   StdInputNumber,
   StdPassword,
+  StdRadioGroup,
   StdRangePicker,
   StdRate,
   StdSelect,
@@ -85,8 +86,10 @@ function Render() {
         )
       case 'cascader':
         return <StdCascader v-model:value={value.value} props={formConfig?.cascader} />
-      case 'checkbox':
+      case 'checkboxGroup':
         return <StdCheckbox v-model:checked={value.value} props={formConfig?.checkbox} />
+      case 'radioGroup':
+        return <StdRadioGroup v-model:value={value.value} props={formConfig?.radioGroup} />
       case 'date':
       case 'datetime':
       case 'year':
