@@ -1,86 +1,79 @@
-# Std Column
+# Column 定义
 
-Std Table Column 继承于 Ant Design Vue 的 Table Column，同时扩展了一些额外的字段。
+StdColumn 是 CURD 组件的核心配置,用于定义表格列和表单项的展示、编辑等行为。
 
-## 基本定义
+## 基础属性
 
-```tsx
-import { CustomRenderArgs, StdTableColumn } from '@uozi-admin/curd'
+| 属性 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| title | 列标题 | string | - |
+| dataIndex | 列数据字段名 | string | - |
+| width | 列宽度 | number \| string | - |
+| fixed | 列固定方向 | 'left' \| 'right' | - |
+| align | 对齐方式 | 'left' \| 'center' \| 'right' | 'left' |
 
-const columns: StdTableColumn = [
-  {
-    title: '姓名', // 支持 string 和 返回 string 的函数
-    dataIndex: 'name', // 与 Ant Design Vue 一致
-    search: true, // 该列是否可搜索，搜索框类型为默认与 edit 类型一致，也支持自定义
-    pure: true, // 内置表单组件 selector 筛选列时使用，即 pure 为 true 时，该列会显示在 selector 表格中
-    edit: {
-      /**
-       * 表单控件类型，内置支持大部分 antd 表单组件，也可以自定义
-       */
-      type: 'input',
+## 搜索配置
 
-      /**
-       * 配置与 antd FormItem props 一致，支持 antd FormItem 的所有属性
-       */
-      formItem: {
-        placeholder: '请输入姓名', // 支持 string 和 返回 string 的函数
-        required: true,
-      },
-
-      /**
-       * 输入框配置，当 type 为 input 时有效，支持 antd Input 的所有属性
-       * 注意：控件的配置字段名与 type 是一致的：比如 type 为 'select' 时，配置字段名是 select
-       * 如果是自定义的控件，则通过 customComponent 字段传入配置
-       */
-      input: {}
-    },
-
-    customHeaderRender: (data: {
-      column: StdTableColumn
-      title: string
-    }) => {
-      return <div>自定义表头</div>
-    },
-
-    /**
-     * record 为当前行数据，text 为当前单元格的数据
-     * 返回 string 或 JSX Element 或 VNode
-     */
-    customRender: ({ record, text }: CustomRenderArgs<any>) => {},
-
-    hiddenInTable: false,
-    hiddenInEdit: false,
-    hiddenInAdd: false,
-    hiddenInDetail: false,
-    hiddenInExport: false,
-  }
-]
-```
-
-## Types Definition
+通过 `search` 属性配置搜索表单:
 
 ```ts
-interface StdTableHeaderScope {
-  title: string
-  column: any
+{
+  title: '用户名',
+  dataIndex: 'username',
+  search: true // 开启搜索
 }
 
-type CustomHeaderRenderFn = (data: StdTableHeaderScope) => VNode | JSX.Element
-
-type CustomRenderFn = ((props: CustomRenderArgs<T>) => VNode | VNode[] | JSX.Element | JSX.Element[] | string | string[])
-
-interface StdTableColumn<T = any> extends Omit<TableColumnType, 'customRender'> {
-  title: string | (() => string)
-  dataIndex: string | string[]
-  customHeaderRender?: CustomHeaderRenderFn
-  pure?: boolean
-  search?: boolean | StdFormConfig
-  edit?: StdFormConfig
-  customRender?: CustomRenderFn
-  hiddenInTable?: boolean
-  hiddenInEdit?: boolean
-  hiddenInAdd?: boolean
-  hiddenInDetail?: boolean
-  hiddenInExport?: boolean
+// 或者自定义搜索表单配置
+{
+  title: '创建时间',
+  dataIndex: 'created_at',
+  search: {
+    type: 'dateRange' // 使用日期范围选择器
+  }
 }
 ```
+
+## 编辑配置
+
+通过 `edit` 属性配置编辑表单:
+
+```ts
+{
+  title: '用户名',
+  dataIndex: 'username',
+  edit: {
+    type: 'input', // 表单控件类型
+    formItem: { // antd form-item 配置
+      required: true,
+      rules: [{ required: true, message: '请输入用户名' }]
+    },
+    input: { // 控件属性配置
+      maxLength: 20,
+      placeholder: '请输入用户名'
+    }
+  }
+}
+```
+
+## 自定义渲染
+
+通过 `customRender` 自定义单元格渲染:
+
+```ts
+{
+  title: '状态',
+  dataIndex: 'status',
+  customRender: ({ text }) => {
+    return text === 1 ? '启用' : '禁用'
+  }
+}
+```
+
+## 显示控制
+
+| 属性 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| hiddenInTable | 在表格中隐藏 | boolean | false |
+| hiddenInSearch | 在搜索表单中隐藏 | boolean | false |
+| hiddenInForm | 在编辑表单中隐藏 | boolean | false |
+| hiddenInDetail | 在详情中隐藏 | boolean | false |
