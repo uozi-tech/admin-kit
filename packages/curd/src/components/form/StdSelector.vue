@@ -8,7 +8,7 @@ import StdTable from '../StdTable.vue'
 const props = withDefaults(
   defineProps<SelectorConfig & { placeholder?: string | number }>(),
   {
-    rowKey: 'id',
+    valueKey: 'id',
     selectionType: 'radio',
   },
 )
@@ -18,15 +18,15 @@ const dataColumns = computed(() => {
   return props.columns.filter(item => item.pure)
 })
 
-const formItemContext = Form.useInjectFormItemContext()
+Form.useInjectFormItemContext()
 
 const visible = ref(false)
 const selectedRowKeys = ref()
 const selectedRows = ref([])
 const options = computed(() => {
   return selectedRows.value.map(item => ({
-    label: get(item, props.displayKey ?? props.rowKey),
-    value: get(item, props.rowKey),
+    label: get(item, props.displayKey ?? props.valueKey),
+    value: get(item, props.valueKey),
   }))
 })
 
@@ -96,12 +96,12 @@ watchEffect(() => {
         v-model:selected-row-keys="selectedRowKeys"
         v-model:selected-rows="selectedRows"
         :columns="dataColumns"
-        :api
+        :get-list-api="getListApi"
         only-query
         disable-router-query
         :row-selection-type="selectionType"
         :table-props="{
-          rowKey: props.rowKey,
+          rowKey: props.valueKey,
           ...tableProps,
         }"
       />
