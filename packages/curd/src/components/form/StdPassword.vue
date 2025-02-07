@@ -3,7 +3,7 @@ import type { PasswordConfig } from '../../types'
 import { Button, Input, InputGroup, InputPassword } from 'ant-design-vue'
 import { ref } from 'vue'
 
-defineProps<{ props: PasswordConfig & { placeholder?: string | number } }>()
+const p = defineProps<{ props: PasswordConfig & { placeholder?: string | number } }>()
 
 const modelValue = defineModel<string>('value')
 
@@ -14,7 +14,7 @@ function handleGenerate() {
   modelValue.value = 'xxxx'
 
   const chars = '0123456789abcdefghijklmnopqrstuvwxyz!@#$%^&*()ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-  const passwordLength = 12
+  const passwordLength = p.props?.maxLength || 12
   let password = ''
   for (let i = 0; i <= passwordLength; i++) {
     const randomNumber = Math.floor(Math.random() * chars.length)
