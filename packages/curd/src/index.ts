@@ -1,5 +1,5 @@
 import { merge } from 'ant-design-vue/es/theme/util/statistic'
-import { type ObjectPlugin, reactive } from 'vue'
+import { type App, type ObjectPlugin, reactive } from 'vue'
 
 export * from './components'
 export * from './composables'
@@ -9,32 +9,47 @@ export * from './types'
 
 // app.use(curdConfigProvider)
 export interface CurdConfigT {
-  api: {
+  listApi?: {
     paginationMap: {
       total: string
       current: string
       pageSize: string
-      totalPage: string
+      totalPages: string
     }
+
+    responseFormat?: (response: any) => {
+      data: any[]
+      pagination: {
+        total: number
+        current: number
+        pageSize: number
+        totalPages: number
+      }
+    }
+    requestFormat?: (params: Record<string, any>) => Record<string, any>
   }
 }
 
 export const defaultConfig = {
-  api: {
+  listApi: {
     paginationMap: {
       total: 'total',
-      current: 'current',
-      pageSize: 'pageSize',
-      totalPage: 'totalPage',
+      current: 'current_page',
+      pageSize: 'per_page',
+      totalPages: 'total_pages',
     },
   },
 }
 
 export const CURD_CONFIG_KEY = 'curdConfig'
-export const curdConfigProvider: ObjectPlugin = {
-  install(app, ...options: Partial<CurdConfigT>[]) {
-    app.provide(CURD_CONFIG_KEY, reactive(
-      merge(defaultConfig, ...options),
-    ))
-  },
+
+// app.use(createCurdConfig(config))
+export function createCurdConfig(config: Partial<CurdConfigT>): ObjectPlugin {
+  return {
+    install(app: App) {
+      app.provide(CURD_CONFIG_KEY, reactive(
+        config,
+      ))
+    },
+  }
 }
