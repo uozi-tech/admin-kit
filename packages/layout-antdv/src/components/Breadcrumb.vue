@@ -31,36 +31,36 @@ const internalItems = computed<AppBreadcrumbItem[]>(() => {
       v-for="(item, index) in internalItems"
       :key="index"
     >
-      <!-- 如果有path属性则是链接，否则为普通文本 -->
-      <template v-if="item.path && index !== internalItems.length - 1">
-        <Dropdown>
-          <RouterLink :to="item.path">
-            {{ getRealTitle(item.title) }}
-          </RouterLink>
-          <template
-            v-if="item.children?.length"
-            #overlay
-          >
-            <Menu>
-              <MenuItem
-                v-for="child in item.children"
-                :key="child.path"
-                class="py-[2px]!"
-              >
-                <RouterLink :to="child.path">
-                  {{ getRealTitle(child.title) }}
-                </RouterLink>
-              </MenuItem>
-            </Menu>
-          </template>
-        </Dropdown>
-      </template>
-      <template v-else>
-        {{ getRealTitle(item.title) }}
-      </template>
+      <slot :item="item">
+        <!-- 如果有path属性则是链接，否则为普通文本 -->
+        <template v-if="item.path && index !== internalItems.length - 1">
+          <Dropdown>
+            <RouterLink :to="item.path">
+              {{ getRealTitle(item.title) }}
+            </RouterLink>
+            <template
+              v-if="item.children?.length"
+              #overlay
+            >
+              <Menu>
+                <MenuItem
+                  v-for="child in item.children"
+                  :key="child.path"
+                  class="py-[2px]!"
+                >
+                  <RouterLink :to="child.path">
+                    {{ getRealTitle(child.title) }}
+                  </RouterLink>
+                </MenuItem>
+              </Menu>
+            </template>
+          </Dropdown>
+        </template>
+        <template v-else>
+          {{ getRealTitle(item.title) }}
+        </template>
+      </slot>
     </BreadcrumbItem>
-    <!-- 支持插槽自定义面包屑项 -->
-    <slot />
   </Breadcrumb>
 </template>
 

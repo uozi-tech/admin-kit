@@ -72,7 +72,12 @@ function onSidebarCollapse(collapsed: boolean) {
       :items="sidebarItems"
       @select-menu-item="onMenuSelect"
       @collapse-sidebar="onSidebarCollapse"
-    />
+    >
+      <template #logo>
+        <slot name="logo" />
+      </template>
+    </AppSidebar>
+
     <!-- Main Layout -->
     <Layout>
       <LayoutHeader class="z-10 shadow-sm p-inline-0!">
@@ -89,7 +94,7 @@ function onSidebarCollapse(collapsed: boolean) {
             @toggle-theme="toggleTheme"
           />
           <template #actions>
-            <slot name="header-actions" />
+            <slot name="page-header-extra" />
           </template>
         </AppHeader>
       </LayoutHeader>
@@ -101,7 +106,12 @@ function onSidebarCollapse(collapsed: boolean) {
             v-if="showBreadcrumb"
             :items="breadcrumbItems"
           >
-            <slot name="breadcrumb-items" />
+            <template #default="item">
+              <slot
+                name="breadcrumb-item"
+                :item="item"
+              />
+            </template>
           </Breadcrumb>
 
           <!-- PageHeader -->
@@ -109,7 +119,7 @@ function onSidebarCollapse(collapsed: boolean) {
             v-if="showPageHeader && pageTitle"
             :page-title="getRealTitle(pageTitle)"
           >
-            <slot name="pageheader-extra" />
+            <slot name="page-header-extra" />
           </PageHeader>
         </div>
 
