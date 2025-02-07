@@ -9,5 +9,6 @@
     "skipLibCheck": true,
     "allowImportingTsExtensions": false
   },
-  "include": ["src/*.ts"]
+  "include": ["src/*.ts"],
+  "exclude": ["template"]
 }
