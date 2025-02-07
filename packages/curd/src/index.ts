@@ -7,26 +7,36 @@ export * from './constants'
 export * from './renderers'
 export * from './types'
 
+export interface PaginationMap {
+  total: string // 总数字段
+  current: string // 当前页字段
+  pageSize: string // 每页条数字段
+  totalPages: string // 总页数字段
+}
+
+export interface ResponseFormatFn {
+  (response: any): {
+    data: any[] // 列表数据
+    pagination: { // 分页信息
+      total: number
+      current: number
+      pageSize: number
+      totalPages: number
+    }
+  }
+}
+
+export interface RequestFormatFn {
+  (params: Record<string, any>): Record<string, any>
+}
+
 // app.use(curdConfigProvider)
 export interface CurdConfigT {
   listApi?: {
-    paginationMap: {
-      total: string
-      current: string
-      pageSize: string
-      totalPages: string
-    }
+    paginationMap: PaginationMap
 
-    responseFormat?: (response: any) => {
-      data: any[]
-      pagination: {
-        total: number
-        current: number
-        pageSize: number
-        totalPages: number
-      }
-    }
-    requestFormat?: (params: Record<string, any>) => Record<string, any>
+    responseFormat?: ResponseFormatFn
+    requestFormat?: RequestFormatFn
   }
 }
 

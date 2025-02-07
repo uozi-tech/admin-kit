@@ -136,21 +136,26 @@ const debouncedListApi = debounce(async () => {
   // overwriteParams 优先级比 apiParams 高
   return props.getListApi(finialParams)
     .then((res) => {
-      let { total, pageSize, current } = curdConfig.listApi!.paginationMap
       // 如果配置了 responseFormat，则使用 responseFormat 格式化数据
       if (curdConfig.listApi?.responseFormat) {
-        res = curdConfig.listApi.responseFormat(res)
+        const formattedRes = curdConfig.listApi.responseFormat(res)
+
+        const { total, current, pageSize } = formattedRes.pagination
+        pagination.value.total = total
+        pagination.value.current = current
+        pagination.value.pageSize = pageSize
+
+        tableData.value = formattedRes.data
       }
       // 如果未配置 responseFormat，则使用默认配置
       else {
-        total = defaultConfig.listApi!.paginationMap.total
-        pageSize = defaultConfig.listApi!.paginationMap.pageSize
-        current = defaultConfig.listApi!.paginationMap.current
+        const { total, pageSize, current } = curdConfig.listApi!.paginationMap
+        pagination.value.total = res?.pagination?.[total]
+        pagination.value.current = res?.pagination?.[current]
+        pagination.value.pageSize = res?.pagination?.[pageSize]
+
+        tableData.value = res.data
       }
-      tableData.value = res.data
-      pagination.value.total = res?.pagination?.[total]
-      pagination.value.pageSize = res?.pagination?.[pageSize]
-      pagination.value.current = res?.pagination?.[current]
     })
     .catch((e) => {
       console.error(e)
