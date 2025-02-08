@@ -3,10 +3,10 @@ name: Update Template Dependencies
 on:
   push:
     paths:
-      - 'packages/curd/package.json'
-      - 'packages/layout-antdv/package.json' 
-      - 'packages/request/package.json'
-      - 'packages/shared-config/package.json'
+      - packages/curd/package.json
+      - packages/layout-antdv/package.json
+      - packages/request/package.json
+      - packages/shared-config/package.json
     branches:
       - main
 
@@ -18,19 +18,38 @@ jobs:
     permissions:
       contents: write
       pull-requests: write
-    
+
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          
+
       - name: Update Template Dependencies
+        id: update-deps
         run: |
           # 获取各个包的最新版本
           CURD_VERSION=$(node -p "require('./packages/curd/package.json').version")
           LAYOUT_VERSION=$(node -p "require('./packages/layout-antdv/package.json').version")
           REQUEST_VERSION=$(node -p "require('./packages/request/package.json').version")
           SHARED_CONFIG_VERSION=$(node -p "require('./packages/shared-config/package.json').version")
+          
+          # 获取模板中的当前版本
+          cd packages/create-uozi-admin/template
+          CURRENT_CURD_VERSION=$(node -p "require('./package.json').dependencies['@uozi-admin/curd'].replace('^', '')")
+          CURRENT_LAYOUT_VERSION=$(node -p "require('./package.json').dependencies['@uozi-admin/layout-antdv'].replace('^', '')")
+          CURRENT_REQUEST_VERSION=$(node -p "require('./package.json').dependencies['@uozi-admin/request'].replace('^', '')")
+          CURRENT_SHARED_CONFIG_VERSION=$(node -p "require('./package.json').devDependencies['@uozi-admin/shared-config'].replace('^', '')")
+          cd ../../..
+          
+          # 检查是否有版本更新
+          if [ "$CURD_VERSION" = "$CURRENT_CURD_VERSION" ] && \
+             [ "$LAYOUT_VERSION" = "$CURRENT_LAYOUT_VERSION" ] && \
+             [ "$REQUEST_VERSION" = "$CURRENT_REQUEST_VERSION" ] && \
+             [ "$SHARED_CONFIG_VERSION" = "$CURRENT_SHARED_CONFIG_VERSION" ]; then
+            echo "No version changes detected, skipping update"
+            echo "needs_update=false" >> $GITHUB_OUTPUT
+            exit 0
+          fi
           
           # 导出版本变量供后续步骤使用
           echo "CURD_VERSION=$CURD_VERSION" >> $GITHUB_ENV
@@ -52,21 +71,24 @@ jobs:
               .devDependencies["@uozi-admin/shared-config"] = "^" + $sv' \
              package.json > package.json.tmp
           mv package.json.tmp package.json
+          
+          echo "needs_update=true" >> $GITHUB_OUTPUT
 
       - name: Create Changeset
+        if: steps.update-deps.outputs.needs_update == 'true'
         run: |
           # 创建.changeset目录
           mkdir -p .changeset
-          
+
           # 生成随机ID
           CHANGE_ID=$(date +%s%N | md5sum | head -c 8)
-          
+
           # 创建changeset文件
           cat << EOF > .changeset/$CHANGE_ID.md
           ---
           "create-uozi-admin": patch
           ---
-          
+
           Update template dependencies:
           - @uozi-admin/curd@^${CURD_VERSION}
           - @uozi-admin/layout-antdv@^${LAYOUT_VERSION}
@@ -75,17 +97,18 @@ jobs:
           EOF
 
       - name: Create Pull Request
+        if: steps.update-deps.outputs.needs_update == 'true'
         uses: peter-evans/create-pull-request@v6
         with:
           commit-message: 'chore(create-uozi-admin): update template dependencies'
           title: 'chore(create-uozi-admin): update template dependencies'
           body: |
             Auto update template project dependencies version:
-            
+
             - @uozi-admin/curd: ^${{ env.CURD_VERSION }}
             - @uozi-admin/layout-antdv: ^${{ env.LAYOUT_VERSION }}
             - @uozi-admin/request: ^${{ env.REQUEST_VERSION }}
             - @uozi-admin/shared-config: ^${{ env.SHARED_CONFIG_VERSION }}
           branch: update-template-deps
           base: main
-          delete-branch: true 
+          delete-branch: true
