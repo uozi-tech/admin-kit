@@ -32,7 +32,7 @@ jobs:
           LAYOUT_VERSION=$(node -p "require('./packages/layout-antdv/package.json').version")
           REQUEST_VERSION=$(node -p "require('./packages/request/package.json').version")
           SHARED_CONFIG_VERSION=$(node -p "require('./packages/shared-config/package.json').version")
-          
+
           # 获取模板中的当前版本
           cd packages/create-uozi-admin/template
           CURRENT_CURD_VERSION=$(node -p "require('./package.json').dependencies['@uozi-admin/curd'].replace('^', '')")
@@ -40,7 +40,7 @@ jobs:
           CURRENT_REQUEST_VERSION=$(node -p "require('./package.json').dependencies['@uozi-admin/request'].replace('^', '')")
           CURRENT_SHARED_CONFIG_VERSION=$(node -p "require('./package.json').devDependencies['@uozi-admin/shared-config'].replace('^', '')")
           cd ../../..
-          
+
           # 检查是否有版本更新
           if [ "$CURD_VERSION" = "$CURRENT_CURD_VERSION" ] && \
              [ "$LAYOUT_VERSION" = "$CURRENT_LAYOUT_VERSION" ] && \
@@ -50,16 +50,16 @@ jobs:
             echo "needs_update=false" >> $GITHUB_OUTPUT
             exit 0
           fi
-          
+
           # 导出版本变量供后续步骤使用
           echo "CURD_VERSION=$CURD_VERSION" >> $GITHUB_ENV
           echo "LAYOUT_VERSION=$LAYOUT_VERSION" >> $GITHUB_ENV
           echo "REQUEST_VERSION=$REQUEST_VERSION" >> $GITHUB_ENV
           echo "SHARED_CONFIG_VERSION=$SHARED_CONFIG_VERSION" >> $GITHUB_ENV
-          
+
           # 更新模板的 package.json
           cd packages/create-uozi-admin/template
-          
+
           # 使用 jq 更新依赖版本
           jq --arg cv "$CURD_VERSION" \
              --arg lv "$LAYOUT_VERSION" \
@@ -71,7 +71,7 @@ jobs:
               .devDependencies["@uozi-admin/shared-config"] = "^" + $sv' \
              package.json > package.json.tmp
           mv package.json.tmp package.json
-          
+
           echo "needs_update=true" >> $GITHUB_OUTPUT
 
       - name: Create Changeset

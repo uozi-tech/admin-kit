@@ -1,4 +1,3 @@
-import { fileURLToPath, URL } from 'node:url'
 import { createViteConfig } from '@uozi-admin/shared-config'
 import { loadEnv } from 'vite'
 
