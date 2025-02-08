@@ -1,5 +1,11 @@
 # @uozi-admin/layout-antdv
 
+## 0.0.8
+
+### Patch Changes
+
+- [`82e7b16`](https://github.com/uozi-tech/admin-kit/commit/82e7b167a8655fc251d9eb77e0a037a049d78438) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(layout-antdv): logo slot and breadcrumb slot do not take effect
+
 ## 0.0.7
 
 ### Patch Changes

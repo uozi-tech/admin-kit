@@ -1,5 +1,11 @@
 # @uozi-admin/request
 
+## 2.3.0
+
+### Minor Changes
+
+- [`3dda739`](https://github.com/uozi-tech/admin-kit/commit/3dda73959d1e8770c0a4a97126dfe075ca67d134) Thanks [@akinoccc](https://github.com/akinoccc)! - feat(request): [useCurdApi] support extend apis directly on creating curd api
+
 ## 2.2.0
 
 ### Minor Changes

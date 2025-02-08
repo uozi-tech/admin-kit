@@ -1,5 +1,11 @@
 # @uozi-admin/create-admin
 
+## 1.3.0
+
+### Minor Changes
+
+- [`ee5359b`](https://github.com/uozi-tech/admin-kit/commit/ee5359b0e2a8376eed8c4edd74d8ac7ee46c3c12) Thanks [@akinoccc](https://github.com/akinoccc)! - feat(create-uozi-admin): [template] upgrade admin kit
+
 ## 1.2.0
 
 ### Minor Changes
