@@ -51,6 +51,25 @@ const columns: StdTableColumn[] = [
     },
   },
   {
+    title: 'Checkbox',
+    dataIndex: 'checkboxGroup',
+    edit: {
+      type: 'checkboxGroup',
+      checkboxGroup: {
+        options: [
+          {
+            label: '选项1',
+            value: 1,
+          },
+          {
+            label: '选项2',
+            value: 2,
+          },
+        ],
+      },
+    },
+  },
+  {
     title: 'Name',
     dataIndex: 'name',
     search: true,
@@ -115,13 +134,6 @@ const columns: StdTableColumn[] = [
     dataIndex: 'age',
     edit: {
       type: 'inputNumber',
-    },
-  },
-  {
-    title: 'Checkbox',
-    dataIndex: 'switch',
-    edit: {
-      type: 'checkbox',
     },
   },
   {
@@ -266,6 +278,7 @@ const api = {
         name: 'John Brown',
         age: 32,
         type: 2,
+        checkboxGroup: [1, 2],
         address: 'New York No. 1 Lake Park',
         date: '2016-10-03',
         datetime: '2016-10-03 14:00:11',

@@ -5,7 +5,7 @@ import { get, set } from 'lodash-es'
 import { ref, watch } from 'vue'
 import {
   StdCascader,
-  StdCheckbox,
+  StdCheckboxGroup,
   StdDatePicker,
   StdInput,
   StdInputNumber,
@@ -87,7 +87,7 @@ function Render() {
       case 'cascader':
         return <StdCascader v-model:value={value.value} props={formConfig?.cascader} />
       case 'checkboxGroup':
-        return <StdCheckbox v-model:checked={value.value} props={formConfig?.checkbox} />
+        return <StdCheckboxGroup v-model:value={value.value} props={formConfig?.checkboxGroup} />
       case 'radioGroup':
         return <StdRadioGroup v-model:value={value.value} props={formConfig?.radioGroup} />
       case 'date':
