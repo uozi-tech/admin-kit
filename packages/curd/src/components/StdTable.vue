@@ -120,7 +120,7 @@ function resetSearchForm() {
 
 // 表格数据
 const tableData = ref<Record<string, any>[]>([])
-const curdConfig = inject<CurdConfigT>(CURD_CONFIG_KEY, {} as CurdConfigT)
+const curdConfig = inject<Required<CurdConfigT>>(CURD_CONFIG_KEY, defaultConfig as Required<CurdConfigT>)
 const debouncedListApi = debounce(async () => {
   tableLoading.value = true
 
@@ -149,10 +149,18 @@ const debouncedListApi = debounce(async () => {
       }
       // 如果未配置 responseFormat，则使用默认配置
       else {
-        const { total, pageSize, current } = curdConfig.listApi!.paginationMap
-        pagination.value.total = res?.pagination?.[total]
-        pagination.value.current = res?.pagination?.[current]
-        pagination.value.pageSize = res?.pagination?.[pageSize]
+        const { total, pageSize, current } = curdConfig.listApi.paginationMap
+
+        // 如果 pagination 取值为 undefined，则不进行赋值
+        if (res?.pagination?.[total]) {
+          pagination.value.total = res?.pagination?.[total]
+        }
+        if (res?.pagination?.[current]) {
+          pagination.value.current = res?.pagination?.[current]
+        }
+        if (res?.pagination?.[pageSize]) {
+          pagination.value.pageSize = res?.pagination?.[pageSize]
+        }
 
         tableData.value = res.data
       }
