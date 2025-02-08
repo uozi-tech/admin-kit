@@ -4,7 +4,7 @@ import { Cascader } from 'ant-design-vue'
 
 defineProps<{ props?: CascaderConfig & { placeholder?: string | number } }>()
 
-const value = defineModel('value')
+const value = defineModel<CascaderConfig['value']>('value')
 </script>
 
 <template>

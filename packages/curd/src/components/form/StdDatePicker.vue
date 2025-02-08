@@ -6,7 +6,7 @@ import { Format } from '../../constants'
 
 defineProps<{ props?: (DatePickerConfig | WeekPickerConfig | MonthPickerConfig) & { placeholder?: string | number }, type: PanelMode | 'datetime' }>()
 
-const value = defineModel('value')
+const value = defineModel<DatePickerConfig['value'] | WeekPickerConfig['value'] | MonthPickerConfig['value']>('value')
 </script>
 
 <template>

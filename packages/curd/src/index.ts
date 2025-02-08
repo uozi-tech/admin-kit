@@ -44,9 +44,9 @@ export const defaultConfig = {
   listApi: {
     paginationMap: {
       total: 'total',
-      current: 'current_page',
-      pageSize: 'per_page',
-      totalPages: 'total_pages',
+      current: 'current',
+      pageSize: 'pageSize',
+      totalPages: 'totalPages',
     },
   },
 }
@@ -58,7 +58,7 @@ export function createCurdConfig(config: Partial<CurdConfigT>): ObjectPlugin {
   return {
     install(app: App) {
       app.provide(CURD_CONFIG_KEY, reactive(
-        config,
+        merge(defaultConfig, config),
       ))
     },
   }

@@ -4,7 +4,7 @@ import { Rate } from 'ant-design-vue'
 
 defineProps<{ props?: RateConfig & { placeholder?: string | number } }>()
 
-const value = defineModel<number>('value')
+const value = defineModel<RateConfig['value']>('value')
 </script>
 
 <template>

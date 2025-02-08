@@ -5,7 +5,7 @@ import { Format } from '../../constants'
 
 defineProps<{ props?: TimePickerConfig & { placeholder?: string | number } }>()
 
-const value = defineModel('value')
+const value = defineModel<TimePickerConfig['value']>('value')
 </script>
 
 <template>

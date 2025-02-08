@@ -4,7 +4,7 @@ import { Slider } from 'ant-design-vue'
 
 defineProps<{ props?: SliderConfig & { placeholder?: string | number } }>()
 
-const value = defineModel<number>('value')
+const value = defineModel<SliderConfig['value']>('value')
 </script>
 
 <template>

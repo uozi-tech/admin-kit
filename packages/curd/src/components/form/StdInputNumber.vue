@@ -4,7 +4,7 @@ import { InputNumber } from 'ant-design-vue'
 
 defineProps<{ props?: Omit<InputNumberConfig, 'placeholder'> & { placeholder?: string } }>()
 
-const value = defineModel<number>('value')
+const value = defineModel<InputNumberConfig['value']>('value')
 </script>
 
 <template>

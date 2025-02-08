@@ -1,5 +1,5 @@
 import StdCascader from './StdCascader.vue'
-import StdCheckbox from './StdCheckboxGroup.vue'
+import StdCheckboxGroup from './StdCheckboxGroup.vue'
 import StdDatePicker from './StdDatePicker.vue'
 import StdInput from './StdInput.vue'
 import StdInputNumber from './StdInputNumber.vue'
@@ -16,7 +16,7 @@ import StdUpload from './StdUpload.vue'
 
 export {
   StdCascader,
-  StdCheckbox,
+  StdCheckboxGroup,
   StdDatePicker,
   StdInput,
   StdInputNumber,

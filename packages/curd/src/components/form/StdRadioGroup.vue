@@ -4,7 +4,7 @@ import { RadioGroup } from 'ant-design-vue'
 
 defineProps<{ props?: RadioGroupConfig }>()
 
-const value = defineModel<number>('value')
+const value = defineModel<RadioGroupConfig['value']>('value')
 </script>
 
 <template>

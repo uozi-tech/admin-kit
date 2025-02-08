@@ -6,7 +6,7 @@ import { computed, ref, watch } from 'vue'
 
 const p = defineProps<{ props?: SelectConfig & { placeholder?: string | number } }>()
 
-const value = defineModel('value')
+const value = defineModel<SelectConfig['value']>('value')
 
 const options = ref()
 

@@ -5,7 +5,7 @@ import { ref } from 'vue'
 
 const p = defineProps<{ props: PasswordConfig & { placeholder?: string | number } }>()
 
-const modelValue = defineModel<string>('value')
+const modelValue = defineModel<PasswordConfig['value']>('value')
 
 const visibility = ref(false)
 

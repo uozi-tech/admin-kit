@@ -4,7 +4,7 @@ import { Switch } from 'ant-design-vue'
 
 defineProps<{ props?: SwitchConfig & { placeholder?: string | number } }>()
 
-const checked = defineModel<boolean>('value')
+const checked = defineModel<SwitchConfig['checked']>('value')
 </script>
 
 <template>

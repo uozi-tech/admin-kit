@@ -6,7 +6,7 @@ import { Format } from '../../constants'
 
 defineProps<{ props?: RangePickerConfig & { placeholder?: string | number }, type: PanelMode | 'datetime' }>()
 
-const value = defineModel('value')
+const value = defineModel<RangePickerConfig['value']>('value')
 </script>
 
 <template>
