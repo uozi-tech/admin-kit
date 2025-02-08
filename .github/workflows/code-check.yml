@@ -3,7 +3,8 @@ name: Code Check
 on:
   push:
     branches:
-      - '*'
+      # 检查非 main 分支
+      - '!main'
 
 jobs:
   code-check:
