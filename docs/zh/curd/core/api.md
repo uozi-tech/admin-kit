@@ -3,7 +3,7 @@
 CURD 组件需要配置标准的增删改查接口来实现数据操作。
 
 :::tip
-推荐使用 [@uozi-admin/request](../../request/index.md) 来生成 CURD API。
+推荐使用 [@uozi-admin/request](/zh/request/quick-start) 来生成 CURD API。
 :::
 
 ## 基础接口

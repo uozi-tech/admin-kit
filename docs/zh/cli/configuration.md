@@ -18,8 +18,8 @@ VITE_PROXY_TARGET=http://localhost:8080
 
 | 变量名 | 说明 | 默认值 |
 |--------|------|--------|
-| VITE_API_ROOT | API 请求根路径 | /api |
-| VITE_PROXY_TARGET | 开发环境代理目标 | http://localhost:8080 |
+| VITE_API_ROOT | API 请求根路径 | `/api` |
+| VITE_PROXY_TARGET | 开发环境代理目标 | `http://localhost:8080` |
 
 ## Vite 配置
 
@@ -234,4 +234,4 @@ export const router = createRouter({
 
 - [Layout 组件配置](/zh/layout/quick-start)
 - [CURD 组件配置](/zh/curd/quick-start)
-- [Request 配置](/zh/request/)
+- [Request 配置](/zh/request/quick-start)

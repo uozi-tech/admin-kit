@@ -16,7 +16,7 @@ interface StdTableColumn {
 }
 ```
 
-更多配置项请参考[列配置](./core/column.md)章节。
+更多配置项请参考[列配置](/zh/curd/core/column)章节。
 
 ## 表单控件 (FormControl)
 
@@ -55,7 +55,7 @@ type FormControlType =
   | DefineComponent<any, any, any> // 自定义 Vue 组件
 ```
 
-更多配置项请参考[表单控件](./core/form.md)章节。
+更多配置项请参考[表单控件](/zh/curd/core/form)章节。
 
 ## API 接口
 
@@ -140,6 +140,7 @@ CURD 组件内部管理以下状态:
 
 ## 下一步
 
-- 了解 [列配置](./core/column.md) 的详细用法
-- 查看 [表单配置](./core/form.md) 的完整选项
-- 探索 [自定义渲染](./core/render.md) 的能力
+- 了解 [列配置](/zh/curd/core/column) 的详细用法
+- 查看 [表单配置](/zh/curd/core/form) 的完整选项
+- 探索 [搜索表单](/zh/curd/core/search) 的完整选项
+- 了解 [API 接口](/zh/curd/core/api) 的要求

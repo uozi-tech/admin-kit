@@ -20,7 +20,7 @@ src/
 
 ## API 封装
 
-推荐使用 [@uozi-admin/request](../../request/index.md) 来封装 CURD API 请求。
+推荐使用 [@uozi-admin/request](/zh/request/quick-start) 来封装 CURD API 请求。
 
 ```ts
 import { useCurdApi } from '@uozi-admin/request'

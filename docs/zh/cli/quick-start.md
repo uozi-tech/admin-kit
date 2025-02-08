@@ -90,7 +90,7 @@ pnpm install
 pnpm dev
 ```
 
-现在你可以通过 http://localhost:5173 访问你的项目。
+现在你可以通过 `http://localhost:5173` 访问你的项目。
 
 ## 项目结构预览
 
@@ -115,6 +115,6 @@ my-admin-project/
 
 ## 下一步
 
-- 查看[项目结构](./project-structure)了解详细的目录说明
-- 查看[配置说明](./configuration)了解项目配置选项
+- 查看[项目结构](/zh/cli/project-structure)了解详细的目录说明
+- 查看[配置说明](/zh/cli/configuration)了解项目配置选项
 - 访问 [CURD 组件](/zh/curd/quick-start)和 [Layout 组件](/zh/layout/quick-start)了解核心功能
