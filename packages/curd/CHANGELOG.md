@@ -1,5 +1,35 @@
 # @uozi-admin/curd
 
+## 3.0.0
+
+### Major Changes
+
+- [`5f8b586`](https://github.com/uozi-tech/admin-kit/commit/5f8b5868f310ad2b5fbb41ea4e8dd77f4f66f889) Thanks [@akinoccc](https://github.com/akinoccc)! - refactor(curd): [std-table] rename `api` to `getListApi`
+
+- [`5d6e36a`](https://github.com/uozi-tech/admin-kit/commit/5d6e36a9b84afa712b2505d821e2f7022d661d47) Thanks [@akinoccc](https://github.com/akinoccc)! - refactor(curd): [selector] rename `rowKey` and `api` to `valueKey` and `getListApi`
+
+### Minor Changes
+
+- [`a3fb3b3`](https://github.com/uozi-tech/admin-kit/commit/a3fb3b3d3baad5dace9cd6b8f2d0f516366f92ad) Thanks [@akinoccc](https://github.com/akinoccc)! - feat(curd): add `checkbox group` and remove `checkbox`
+
+- [`ec22bd1`](https://github.com/uozi-tech/admin-kit/commit/ec22bd1a085b828bfe3f7823628a136a78841e22) Thanks [@akinoccc](https://github.com/akinoccc)! - feat(curd): [std-form] add event of `validate`
+
+- [`91d4a13`](https://github.com/uozi-tech/admin-kit/commit/91d4a134a74239835fb9981ac1214e8f7e4f8855) Thanks [@akinoccc](https://github.com/akinoccc)! - feat(curd): [password] add prop of `maxLength` for generated psw
+
+- [`57dcb01`](https://github.com/uozi-tech/admin-kit/commit/57dcb011240249575cacf14691eb0473bfa94acd) Thanks [@akinoccc](https://github.com/akinoccc)! - feat(curd): add plugin to add global config of `responseFormat` and `requestFormat`
+
+- [`3ea1d31`](https://github.com/uozi-tech/admin-kit/commit/3ea1d3163457b8af91a2c6c62be6ac4c9176cd82) Thanks [@akinoccc](https://github.com/akinoccc)! - feat(curd): add `radio group`
+
+### Patch Changes
+
+- [`3d1c5e9`](https://github.com/uozi-tech/admin-kit/commit/3d1c5e9b8bfbc76bd53f3c1283af26b799017c5a) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): [checkbox-group] incorrect key name of type config
+
+- [`5578ed0`](https://github.com/uozi-tech/admin-kit/commit/5578ed00abb4156efbac8f862a759fd990e65e35) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): [std-table] incorrectly transform response
+
+- [`fda13ae`](https://github.com/uozi-tech/admin-kit/commit/fda13ae50bc2455ac1edc507ad3847f847af05a9) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): [config] change default config
+
+- [`8dc416c`](https://github.com/uozi-tech/admin-kit/commit/8dc416c1a9eee6729c97b37254dd85e84df7fcff) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): [controls] incorrect typedef
+
 ## 2.1.0
 
 ### Minor Changes
