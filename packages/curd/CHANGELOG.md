@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 3.0.2
+
+### Patch Changes
+
+- [`0c19e04`](https://github.com/uozi-tech/admin-kit/commit/0c19e048a149aea66d0ff48137f23ad132c4d1ea) Thanks [@akinoccc](https://github.com/akinoccc)! - feat(curd): export utils function
+
 ## 3.0.1
 
 ### Patch Changes
