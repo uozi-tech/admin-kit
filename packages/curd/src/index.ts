@@ -6,6 +6,7 @@ export * from './composables'
 export * from './constants'
 export * from './renderers'
 export * from './types'
+export * from './utils'
 
 export interface PaginationMap {
   total: string // 总数字段
