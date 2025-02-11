@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 3.2.1
+
+### Patch Changes
+
+- [`eef0673`](https://github.com/uozi-tech/admin-kit/commit/eef0673adb591988ce2a1f92b1b3d3dc90fcb190) Thanks [@0xJacky](https://github.com/0xJacky)! - fix(curd): [std-selector] disabled option for selector
+
 ## 3.2.0
 
 ### Minor Changes
