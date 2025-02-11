@@ -65,11 +65,18 @@ watchEffect(() => {
     selectedRowKeys.value = []
   }
 })
+
+function clickInput() {
+  if (props.disabled) {
+    return
+  }
+  visible.value = true
+}
 </script>
 
 <template>
   <div>
-    <div @click="visible = true">
+    <div @click="clickInput">
       <Select
         v-model:value="selectedRowKeys"
         class="min-w-184px"
