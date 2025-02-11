@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 3.2.0
+
+### Minor Changes
+
+- [`8f8e4dd`](https://github.com/uozi-tech/admin-kit/commit/8f8e4dd0ee030747f40954361160376c33892a2d) Thanks [@akinoccc](https://github.com/akinoccc)! - feat(curd): export all form components
+
 ## 3.1.0
 
 ### Minor Changes
