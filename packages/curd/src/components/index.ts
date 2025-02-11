@@ -5,6 +5,8 @@ import StdFormController from './StdFormController.vue'
 import StdSearch from './StdSearch.vue'
 import StdTable from './StdTable.vue'
 
+export * from './form'
+
 export {
   StdCurd,
   StdDetail,
