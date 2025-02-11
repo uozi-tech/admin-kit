@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 3.0.1
+
+### Patch Changes
+
+- [`286d06b`](https://github.com/uozi-tech/admin-kit/commit/286d06beda8d4ffdc7b573e25eef282033691eee) Thanks [@akinoccc](https://github.com/akinoccc)! - build: ignore not needed files
+
 ## 3.0.0
 
 ### Major Changes
