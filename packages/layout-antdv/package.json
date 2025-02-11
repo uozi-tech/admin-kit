@@ -4,6 +4,9 @@
   "description": "Easy to implement admin layout",
   "type": "module",
   "main": "src/index.ts",
+  "files": [
+    "dist"
+  ],
   "keywords": [
     "uozi-admin",
     "admin-layout",
@@ -20,9 +23,6 @@
     "access": "public",
     "provenance": true,
     "main": "dist/index.js",
-    "files": [
-      "dist"
-    ],
     "types": "dist/index.d.ts"
   },
   "scripts": {
