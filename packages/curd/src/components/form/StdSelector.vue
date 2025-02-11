@@ -79,6 +79,7 @@ function clickInput() {
     <div @click="clickInput">
       <Select
         v-model:value="selectedRowKeys"
+        :disabled
         class="min-w-184px"
         :options="options"
         :dropdown-menu-style="{ display: 'none' }"
