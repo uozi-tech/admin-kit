@@ -37,7 +37,7 @@
 
 | Package Name | Version | Description | Documentation |
 | --- | --- | --- | --- |
-| `@uozi-admin/create-admin` | [![npm](https://img.shields.io/npm/v/create-uozi-admin.svg)](https://www.npmjs.com/package/create-uozi-admin) | Project scaffolding tool | [Docs](https://uozi-tech.github.io/admin-kit/en/cli/quick-start) |
+| `create-uozi-admin` | [![npm](https://img.shields.io/npm/v/create-uozi-admin.svg)](https://www.npmjs.com/package/create-uozi-admin) | Project scaffolding tool | [Docs](https://uozi-tech.github.io/admin-kit/en/cli/quick-start) |
 | `@uozi-admin/curd` | [![npm](https://img.shields.io/npm/v/@uozi-admin/curd.svg)](https://www.npmjs.com/package/@uozi-admin/curd) | CRUD component library | [Docs](https://uozi-tech.github.io/admin-kit/en/curd/quick-start) |
 | `@uozi-admin/request` | [![npm](https://img.shields.io/npm/v/@uozi-admin/request.svg)](https://www.npmjs.com/package/@uozi-admin/request) | Request library encapsulation | [Docs](https://uozi-tech.github.io/admin-kit/en/request/quick-start) |
 | `@uozi-admin/layout-antdv` | [![npm](https://img.shields.io/npm/v/@uozi-admin/layout-antdv.svg)](https://www.npmjs.com/package/@uozi-admin/layout-antdv) | Admin layout components based on Ant Design Vue | [Docs](https://uozi-tech.github.io/admin-kit/en/layout/quick-start) |

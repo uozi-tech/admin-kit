@@ -39,8 +39,5 @@
     "src/**/*.tsx",
     "src/**/*.vue",
     "vite-env.d.ts"
-  ],
-  "exclude": [
-    "src/__tests__"
   ]
 }
