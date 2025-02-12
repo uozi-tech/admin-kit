@@ -1,3 +1,5 @@
+/// <reference types="vite/client" />
+
 import { fileURLToPath, URL } from 'node:url'
 import { createViteConfig } from '@uozi-admin/shared-config'
 import dts from 'vite-plugin-dts'
@@ -36,6 +38,11 @@ export default createViteConfig({
     plugins: [
       dts(),
     ],
+    test: {
+      environment: 'jsdom',
+      globals: true,
+      setupFiles: ['../../vitest.setup.ts'],
+    },
   },
   pluginOptions: {
     vueComponents: false,

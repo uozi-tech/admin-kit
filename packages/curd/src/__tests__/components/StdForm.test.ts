@@ -1,9 +1,10 @@
-import { fireEvent, render, waitFor } from '@testing-library/vue'
-import { describe, expect, it, vi } from 'vitest'
+import type { StdTableColumn } from '~curd/types'
+import { render } from '@testing-library/vue'
+import { describe, expect, it } from 'vitest'
 import StdForm from '~curd/components/StdForm.vue'
 
 describe('stdForm 组件', () => {
-  const mockColumns = [
+  const mockColumns: StdTableColumn[] = [
     {
       title: '姓名',
       dataIndex: 'name',

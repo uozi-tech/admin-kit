@@ -1,5 +1,5 @@
-import { fireEvent, render, waitFor } from '@testing-library/vue'
-import { describe, expect, it, vi } from 'vitest'
+import { render } from '@testing-library/vue'
+import { describe, expect, it } from 'vitest'
 import StdSelect from '~curd/components/form/StdSelect.vue'
 
 describe('stdSelect 组件', () => {
