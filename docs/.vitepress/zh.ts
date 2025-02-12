@@ -1,3 +1,4 @@
+import type { DefaultTheme } from 'vitepress'
 import { defineConfig } from 'vitepress'
 
 export default defineConfig({
@@ -50,7 +51,7 @@ export default defineConfig({
   },
 })
 
-function nav() {
+function nav(): DefaultTheme.NavItem[] {
   return [
     {
       text: 'CURD',
@@ -69,7 +70,7 @@ function nav() {
     },
     {
       text: 'Shared Config',
-      link: '/zh/shared-config/',
+      link: '/zh/shared-config/quick-start',
       activeMatch: '/zh/shared-config/',
     },
     {
