@@ -1,6 +1,7 @@
 import antfu from '@antfu/eslint-config'
 
 export default antfu({
+  type: 'lib',
   markdown: false,
   ignores: [
     '**/node_modules/*',
@@ -34,4 +35,5 @@ export default antfu({
   'ts/no-unsafe-function-type': 'off',
   'node/prefer-global/process': 'off',
   'antfu/no-import-dist': 'off',
+  'unused-imports/no-unused-imports': 'warn',
 })
