@@ -1,10 +1,10 @@
 import type { UserConfig } from 'vite'
-import type { PluginsCustomOptions } from './plugins'
+import type { PluginsCustomOptions } from '../types'
 import { resolve } from 'node:path'
 import { loadEnv } from 'vite'
 import { configVitePlugins } from './plugins'
 
-export async function createApplicationViteConfig(mode: string, root: string, pluginsOptions: PluginsCustomOptions) {
+export async function createApplicationViteConfig(mode: string, root: string, pluginsOptions: PluginsCustomOptions): Promise<UserConfig> {
   const env = loadEnv(mode, root, '')
   const plugins = configVitePlugins(pluginsOptions)
 

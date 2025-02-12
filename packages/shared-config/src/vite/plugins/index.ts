@@ -1,25 +1,12 @@
-import type { Options as VueOptions } from '@vitejs/plugin-vue'
-import type { Options as JsxOptions } from '@vitejs/plugin-vue-jsx'
-import type { Options as AutoImportOptions } from 'unplugin-auto-import/types'
-import type { Options as VueComponentsOptions } from 'unplugin-vue-components'
 import type { PluginOption } from 'vite'
-import type { VitePluginVueDevToolsOptions as DevToolOptions } from 'vite-plugin-vue-devtools'
+import type { PluginsCustomOptions } from '../../types'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
-import { createVueDevToolsPluginConfig } from './devTools'
 
-import { createUnoCSSPluginConfig, type UnocssOptions } from './unocss'
+import { createVueDevToolsPluginConfig } from './devTools'
+import { createUnoCSSPluginConfig } from './unocss'
 import { createAutoImportPluginConfig } from './unpluginAutoImport'
 import { createVueComponentsPluginConfig } from './unpluginVueComponents'
-
-export interface PluginsCustomOptions {
-  vue?: VueOptions | false
-  vueJsx?: JsxOptions | false
-  autoImport?: AutoImportOptions | false
-  vueComponents?: VueComponentsOptions | false
-  unocss?: UnocssOptions | false
-  devTools?: DevToolOptions | false
-}
 
 export function configVitePlugins(pluginOptions: PluginsCustomOptions = {}): (PluginOption | PluginOption[])[] {
   const vitePlugins: (PluginOption | PluginOption[])[] = []

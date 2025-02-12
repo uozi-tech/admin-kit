@@ -1,5 +1,5 @@
-import type { UserConfig, UserConfigExport } from 'vite'
-import type { PluginsCustomOptions } from './plugins'
+import type { UserConfig, UserConfigExport, UserConfigFnPromise } from 'vite'
+import type { PluginsCustomOptions } from '../types'
 import process from 'node:process'
 import { defineConfig, mergeConfig } from 'vite'
 import { createApplicationViteConfig } from './config'
@@ -15,7 +15,9 @@ export function mergeConfigs(configs: UserConfig[]): Record<string, any> {
   }, {})
 }
 
-export async function createViteConfig(applicationViteConfigOptions: ApplicationViteConfigOptions = {}) {
+export async function createViteConfig(
+  applicationViteConfigOptions: ApplicationViteConfigOptions = {},
+): Promise<UserConfigFnPromise> {
   const { overrides = {}, pluginOptions = {} } = applicationViteConfigOptions
   const root = process.cwd()
   return defineConfig(async (env) => {

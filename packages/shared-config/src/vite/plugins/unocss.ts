@@ -1,7 +1,5 @@
-import type {
-  UserConfig,
-} from 'unocss'
 import type { PluginOption } from 'vite'
+import type { UnocssOptions } from '../../types'
 import {
   mergeConfigs,
   presetAttributify,
@@ -13,15 +11,6 @@ import {
 import presetChinese, { chineseTypography } from 'unocss-preset-chinese'
 import presetEase from 'unocss-preset-ease'
 import UnoCSS from 'unocss/vite'
-
-export interface UnocssOptions extends UserConfig {
-  inspector?: boolean
-  mode?: 'global' | 'per-module' | 'vue-scoped' | 'dist-chunk' | 'shadow-dom'
-  transformCSS?: boolean | 'pre' | 'post'
-  postcss?: boolean
-  hmrTopLevelAwait?: boolean
-  fetchMode?: 'cors' | 'navigate' | 'no-cors' | 'same-origin'
-}
 
 export const defaultConfig: UnocssOptions = {
   mode: 'global',
