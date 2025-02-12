@@ -1,5 +1,15 @@
 # @uozi-admin/create-admin
 
+## 1.3.2
+
+### Patch Changes
+
+- [#61](https://github.com/uozi-tech/admin-kit/pull/61) [`ea73da2`](https://github.com/uozi-tech/admin-kit/commit/ea73da2bc2a4522406e1e83f791854c1905137c8) Thanks [@github-actions](https://github.com/apps/github-actions)! - Update template dependencies:
+  - @uozi-admin/curd@^3.2.2
+  - @uozi-admin/layout-antdv@^0.0.9
+  - @uozi-admin/request@^2.3.1
+  - @uozi-admin/shared-config@^0.4.2
+
 ## 1.3.1
 
 ### Patch Changes
