@@ -1,5 +1,11 @@
 # @uozi-admin/request
 
+## 2.4.0
+
+### Minor Changes
+
+- [`fa66359`](https://github.com/uozi-tech/admin-kit/commit/fa6635910874db0e58fac0d28bf2dc927d06dc60) Thanks [@akinoccc](https://github.com/akinoccc)! - feat(request): support config methods of curd api
+
 ## 2.3.1
 
 ### Patch Changes
