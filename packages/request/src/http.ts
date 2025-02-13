@@ -3,18 +3,36 @@ import { service } from './axios'
 
 export const http = {
   get<T = any>(url: string, config: AxiosRequestConfig = {}) {
-    return service.get<any, T>(url, config)
+    return service<any, T>(url, {
+      method: config.method || 'get',
+      ...config,
+    })
   },
   post<T = any>(url: string, data: any = undefined, config: AxiosRequestConfig = {}) {
-    return service.post<any, T>(url, data, config)
+    return service<any, T>(url, {
+      method: config.method || 'post',
+      data,
+      ...config,
+    })
   },
   put<T = any>(url: string, data: any = undefined, config: AxiosRequestConfig = {}) {
-    return service.put<any, T>(url, data, config)
+    return service<any, T>(url, {
+      method: config.method || 'put',
+      data,
+      ...config,
+    })
   },
   delete<T = any>(url: string, config: AxiosRequestConfig = {}) {
-    return service.delete<any, T>(url, config)
+    return service<any, T>(url, {
+      method: config.method || 'delete',
+      ...config,
+    })
   },
   patch<T = any>(url: string, data: any = undefined, config: AxiosRequestConfig = {}) {
-    return service.patch<any, T>(url, data, config)
+    return service<any, T>(url, {
+      method: config.method || 'patch',
+      data,
+      ...config,
+    })
   },
 }
