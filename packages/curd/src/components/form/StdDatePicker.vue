@@ -3,10 +3,14 @@ import type { PanelMode } from 'ant-design-vue/es/vc-picker/interface'
 import type { DatePickerConfig, MonthPickerConfig, WeekPickerConfig } from '../../types'
 import { DatePicker } from 'ant-design-vue'
 import dayjs from 'dayjs'
+import localeData from 'dayjs/plugin/localeData'
+import weekday from 'dayjs/plugin/weekday'
 import { computed } from 'vue'
 import { Format } from '../../constants'
 
 defineProps<{ props?: (DatePickerConfig | WeekPickerConfig | MonthPickerConfig) & { placeholder?: string | number }, type: PanelMode | 'datetime' }>()
+dayjs.extend(weekday)
+dayjs.extend(localeData)
 
 const value = defineModel<DatePickerConfig['value'] | WeekPickerConfig['value'] | MonthPickerConfig['value'] | number | string>('value')
 
