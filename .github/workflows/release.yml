@@ -10,6 +10,7 @@ on:
       - '.changeset/**'
       - 'eslint.config.mjs'
       - 'scripts/**'
+      - '.github/**'
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
