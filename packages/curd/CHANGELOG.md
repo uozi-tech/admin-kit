@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 3.2.3
+
+### Patch Changes
+
+- [`d14e5e9`](https://github.com/uozi-tech/admin-kit/commit/d14e5e971e023ac7e3d9f80e2e72b334edfad615) Thanks [@0xJacky](https://github.com/0xJacky)! - feat(curd): [std-selector] add overwrite params
+
 ## 3.2.2
 
 ### Patch Changes

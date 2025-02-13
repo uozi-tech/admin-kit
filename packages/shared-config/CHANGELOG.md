@@ -1,5 +1,11 @@
 # @uozi-admin/shared-config
 
+## 0.4.3
+
+### Patch Changes
+
+- [`73bc62d`](https://github.com/uozi-tech/admin-kit/commit/73bc62d9a882c370c4a4d297d71763f78cd73f2c) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(shared-config): vitest typedef error
+
 ## 0.4.2
 
 ### Patch Changes
