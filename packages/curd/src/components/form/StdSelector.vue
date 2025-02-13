@@ -112,6 +112,7 @@ function clickInput() {
           rowKey: props.valueKey,
           ...tableProps,
         }"
+        :overwrite-params="overwriteParams"
       />
     </Modal>
   </div>

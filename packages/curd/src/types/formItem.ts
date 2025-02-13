@@ -52,6 +52,7 @@ export type SelectorConfig = {
   disabled?: boolean
   hideInputContainer?: boolean
   modalWidth?: number | string
+  overwriteParams?: Record<string, any>
 } & PlaceholderT
 
 export type CascaderConfig = Omit<CascaderProps, 'placeholder'> & PlaceholderT
