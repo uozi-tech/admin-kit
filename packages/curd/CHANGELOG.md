@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 3.2.5
+
+### Patch Changes
+
+- [`030116c`](https://github.com/uozi-tech/admin-kit/commit/030116ca2caa5879815d263269608d6558f9e0a0) Thanks [@0xJacky](https://github.com/0xJacky)! - fix(curd): [datepicker] parse unix time
+
 ## 3.2.4
 
 ### Patch Changes
