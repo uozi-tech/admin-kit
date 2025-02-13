@@ -11,10 +11,7 @@ defineProps<{ props?: (DatePickerConfig | WeekPickerConfig | MonthPickerConfig) 
 const value = defineModel<DatePickerConfig['value'] | WeekPickerConfig['value'] | MonthPickerConfig['value'] | number | string>('value')
 
 const computedValue = computed(() => {
-  if (typeof value.value === 'number') {
-    return dayjs.unix(value.value)
-  }
-  return value.value
+  return value.value ? dayjs.unix(Number(value.value)) : undefined
 })
 
 function handleChange(v: string) {
