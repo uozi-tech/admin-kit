@@ -18,10 +18,4 @@ export function setOverrideConfig(userConfig: AxiosRequestConfig) {
   Object.assign(service.defaults, c)
 }
 
-// export function createRequestInstance(service: AxiosInstance) {
-//   return function <T>(userConfig: AxiosRequestConfig): Promise<T> {
-//     return service(userConfig)
-//   }
-// }
-
 export * from 'axios'
