@@ -1,5 +1,11 @@
 # @uozi-admin/layout-antdv
 
+## 0.0.10
+
+### Patch Changes
+
+- [`c470c4b`](https://github.com/uozi-tech/admin-kit/commit/c470c4b520ac8aa910135dd66dffd4231d88aaa2) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(layout): content height issue
+
 ## 0.0.9
 
 ### Patch Changes
