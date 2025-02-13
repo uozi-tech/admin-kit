@@ -86,16 +86,16 @@ jobs:
           # 准备更新信息
           UPDATES=""
           if [ "$CURD_VERSION" != "$CURRENT_CURD_VERSION" ]; then
-            UPDATES="$UPDATES\n- @uozi-admin/curd@^${CURD_VERSION}"
+            UPDATES="${UPDATES}- @uozi-admin/curd@^${CURD_VERSION}"$'\n'
           fi
           if [ "$LAYOUT_VERSION" != "$CURRENT_LAYOUT_VERSION" ]; then
-            UPDATES="$UPDATES\n- @uozi-admin/layout-antdv@^${LAYOUT_VERSION}"
+            UPDATES="${UPDATES}- @uozi-admin/layout-antdv@^${LAYOUT_VERSION}"$'\n'
           fi
           if [ "$REQUEST_VERSION" != "$CURRENT_REQUEST_VERSION" ]; then
-            UPDATES="$UPDATES\n- @uozi-admin/request@^${REQUEST_VERSION}"
+            UPDATES="${UPDATES}- @uozi-admin/request@^${REQUEST_VERSION}"$'\n'
           fi
           if [ "$SHARED_CONFIG_VERSION" != "$CURRENT_SHARED_CONFIG_VERSION" ]; then
-            UPDATES="$UPDATES\n- @uozi-admin/shared-config@^${SHARED_CONFIG_VERSION}"
+            UPDATES="${UPDATES}- @uozi-admin/shared-config@^${SHARED_CONFIG_VERSION}"$'\n'
           fi
 
           # 导出 UPDATES 变量
@@ -107,7 +107,8 @@ jobs:
           "create-uozi-admin": patch
           ---
 
-          Update template dependencies:${UPDATES}
+          Update template dependencies:
+          ${UPDATES}
           EOF
 
       - name: Create Pull Request
