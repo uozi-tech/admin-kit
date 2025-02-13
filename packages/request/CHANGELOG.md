@@ -1,5 +1,11 @@
 # @uozi-admin/request
 
+## 2.4.1
+
+### Patch Changes
+
+- [`b50795c`](https://github.com/uozi-tech/admin-kit/commit/b50795c648b6f0de6108ec22d72335543e20c408) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(request): not export `setRequestConfig`
+
 ## 2.4.0
 
 ### Minor Changes
