@@ -63,7 +63,7 @@ function onSidebarCollapse(collapsed: boolean) {
 </script>
 
 <template>
-  <Layout class="layout-container min-h-screen">
+  <Layout class="layout-container h-screen of-hidden">
     <!-- Sidebar -->
     <AppSidebar
       :logo="logo"
@@ -99,7 +99,7 @@ function onSidebarCollapse(collapsed: boolean) {
         </AppHeader>
       </LayoutHeader>
 
-      <LayoutContent>
+      <LayoutContent class="flex flex-col">
         <div class="flex flex-col gap-1 px-6 py-2 bg-base">
           <!-- Breadcrumb -->
           <Breadcrumb
@@ -124,7 +124,7 @@ function onSidebarCollapse(collapsed: boolean) {
         </div>
 
         <!-- Main Content -->
-        <div class="main-content p-4">
+        <div class="main-content flex-1 max-h-full of-auto p-4">
           <!-- 插槽：页面内容 -->
           <slot />
         </div>
