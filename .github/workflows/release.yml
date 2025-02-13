@@ -8,6 +8,8 @@ on:
     paths:
       - 'packages/**'
       - '.changeset/**'
+      - 'eslint.config.mjs'
+      - 'scripts/**'
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
