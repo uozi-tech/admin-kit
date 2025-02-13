@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 3.2.6
+
+### Patch Changes
+
+- [`646895f`](https://github.com/uozi-tech/admin-kit/commit/646895f0a254b7a26beafdeade0d052e60b2a302) Thanks [@0xJacky](https://github.com/0xJacky)! - fix(curd): [datepicker] clone2.weekday is not a function
+
 ## 3.2.5
 
 ### Patch Changes
