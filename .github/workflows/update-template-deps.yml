@@ -118,7 +118,7 @@ jobs:
           title: 'chore(create-uozi-admin): update template dependencies'
           body: |
             Auto update template project dependencies version:
-            ${UPDATES}
+            ${{ env.UPDATES }}
           branch: update-template-deps
           base: main
           delete-branch: true
