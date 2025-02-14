@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 3.2.7
+
+### Patch Changes
+
+- [`a21d224`](https://github.com/uozi-tech/admin-kit/commit/a21d2245917381da1c7071b992e583dbabee31bd) Thanks [@0xJacky](https://github.com/0xJacky)! - feat(curd): [selector] add label render prop
+
 ## 3.2.6
 
 ### Patch Changes
