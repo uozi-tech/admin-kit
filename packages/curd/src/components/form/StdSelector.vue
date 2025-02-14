@@ -25,7 +25,7 @@ const selectedRowKeys = ref()
 const selectedRows = ref([])
 const options = computed(() => {
   return selectedRows.value.map(item => ({
-    label: get(item, props.displayKey ?? props.valueKey),
+    label: props.labelRender ? props.labelRender(item) : get(item, props.displayKey ?? props.valueKey),
     value: get(item, props.valueKey),
   }))
 })
