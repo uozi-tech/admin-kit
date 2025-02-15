@@ -31,9 +31,6 @@
       "vitest/config"
     ],
     "baseUrl": ".",
-    "paths": {
-      "~curd/*": ["src/*"]
-    }
   },
   "include": [
     "src/**/*.ts",

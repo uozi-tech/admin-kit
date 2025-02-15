@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { CheckboxGroupProps } from 'ant-design-vue'
-import type { CheckboxGroupConfig } from '~curd/types'
+import type { CheckboxGroupConfig } from '../../types'
 import { CheckboxGroup } from 'ant-design-vue'
 
 defineProps<{ props?: CheckboxGroupConfig }>()
