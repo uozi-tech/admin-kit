@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 3.2.9
+
+### Patch Changes
+
+- [`af1204e`](https://github.com/uozi-tech/admin-kit/commit/af1204ef9e3db63acf10a0571482e6d4ae7d3b50) Thanks [@0xJacky](https://github.com/0xJacky)! - fix(curd): [selector] preload selected row from server
+
 ## 3.2.8
 
 ### Patch Changes
