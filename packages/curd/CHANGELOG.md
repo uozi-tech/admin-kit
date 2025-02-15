@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 3.2.8
+
+### Patch Changes
+
+- [`5f195eb`](https://github.com/uozi-tech/admin-kit/commit/5f195ebeaf13d1fe3251b0f7704255ded5307f16) Thanks [@0xJacky](https://github.com/0xJacky)! - feat(curd): [selector] preload selected row from server; press OK then submit the selected value #72
+
 ## 3.2.7
 
 ### Patch Changes
