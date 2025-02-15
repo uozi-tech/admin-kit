@@ -7,6 +7,7 @@ on:
       - packages/layout-antdv/package.json
       - packages/request/package.json
       - packages/shared-config/package.json
+      - .github/workflows/update-template-deps.yml
     branches:
       - main
 
@@ -57,6 +58,12 @@ jobs:
           echo "REQUEST_VERSION=$REQUEST_VERSION" >> $GITHUB_ENV
           echo "SHARED_CONFIG_VERSION=$SHARED_CONFIG_VERSION" >> $GITHUB_ENV
 
+          # 导出当前版本变量
+          echo "CURRENT_CURD_VERSION=$CURRENT_CURD_VERSION" >> $GITHUB_ENV
+          echo "CURRENT_LAYOUT_VERSION=$CURRENT_LAYOUT_VERSION" >> $GITHUB_ENV
+          echo "CURRENT_REQUEST_VERSION=$CURRENT_REQUEST_VERSION" >> $GITHUB_ENV
+          echo "CURRENT_SHARED_CONFIG_VERSION=$CURRENT_SHARED_CONFIG_VERSION" >> $GITHUB_ENV
+
           # 更新模板的 package.json
           cd packages/create-uozi-admin/template
 
@@ -86,23 +93,35 @@ jobs:
           # 准备更新信息
           UPDATES=""
           if [ "$CURD_VERSION" != "$CURRENT_CURD_VERSION" ]; then
-            UPDATES="${UPDATES}- @uozi-admin/curd@^${CURD_VERSION}"$'\n'
-          fi
-          if [ "$LAYOUT_VERSION" != "$CURRENT_LAYOUT_VERSION" ]; then
-            UPDATES="${UPDATES}- @uozi-admin/layout-antdv@^${LAYOUT_VERSION}"$'\n'
-          fi
-          if [ "$REQUEST_VERSION" != "$CURRENT_REQUEST_VERSION" ]; then
-            UPDATES="${UPDATES}- @uozi-admin/request@^${REQUEST_VERSION}"$'\n'
-          fi
-          if [ "$SHARED_CONFIG_VERSION" != "$CURRENT_SHARED_CONFIG_VERSION" ]; then
-            UPDATES="${UPDATES}- @uozi-admin/shared-config@^${SHARED_CONFIG_VERSION}"$'\n'
+            UPDATES+="- @uozi-admin/curd@^${CURD_VERSION}"$'\n'
+            echo "UPDATED_CURD_VERSION=^${CURD_VERSION}" >> $GITHUB_ENV
+          else
+            echo "UPDATED_CURD_VERSION='already at latest'" >> $GITHUB_ENV
           fi
 
-          # 导出 UPDATES 变量
-          echo "UPDATES=$UPDATES" >> $GITHUB_OUTPUT
+          if [ "$LAYOUT_VERSION" != "$CURRENT_LAYOUT_VERSION" ]; then
+            UPDATES+="- @uozi-admin/layout-antdv@^${LAYOUT_VERSION}"$'\n'
+            echo "UPDATED_LAYOUT_VERSION=^${LAYOUT_VERSION}" >> $GITHUB_ENV
+          else
+            echo "UPDATED_LAYOUT_VERSION='already at latest'" >> $GITHUB_ENV
+          fi
+
+          if [ "$REQUEST_VERSION" != "$CURRENT_REQUEST_VERSION" ]; then
+            UPDATES+="- @uozi-admin/request@^${REQUEST_VERSION}"$'\n'
+            echo "UPDATED_REQUEST_VERSION=^${REQUEST_VERSION}" >> $GITHUB_ENV
+          else
+            echo "UPDATED_REQUEST_VERSION='already at latest'" >> $GITHUB_ENV
+          fi
+
+          if [ "$SHARED_CONFIG_VERSION" != "$CURRENT_SHARED_CONFIG_VERSION" ]; then
+            UPDATES+="- @uozi-admin/shared-config@^${SHARED_CONFIG_VERSION}"$'\n'
+            echo "UPDATED_SHARED_CONFIG_VERSION=^${SHARED_CONFIG_VERSION}" >> $GITHUB_ENV
+          else
+            echo "UPDATED_SHARED_CONFIG_VERSION='already at latest'" >> $GITHUB_ENV
+          fi
 
           # 创建changeset文件
-          cat << EOF > .changeset/$CHANGE_ID.md
+          cat <<EOF > .changeset/$CHANGE_ID.md
           ---
           "create-uozi-admin": patch
           ---
@@ -119,7 +138,13 @@ jobs:
           title: 'chore(create-uozi-admin): update template dependencies'
           body: |
             Auto update template project dependencies version:
-            ${{ env.UPDATES }}
+
+            - **@uozi-admin/curd**: ${{ env.UPDATED_CURD_VERSION }}
+            - **@uozi-admin/layout-antdv**: ${{ env.UPDATED_LAYOUT_VERSION }}
+            - **@uozi-admin/request**: ${{ env.UPDATED_REQUEST_VERSION }}
+            - **@uozi-admin/shared-config**: ${{ env.UPDATED_SHARED_CONFIG_VERSION }}
           branch: update-template-deps
           base: main
+          labels: |
+            automated pr
           delete-branch: true
