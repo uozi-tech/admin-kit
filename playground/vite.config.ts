@@ -6,8 +6,6 @@ export default createViteConfig({
     resolve: {
       alias: {
         '~': fileURLToPath(new URL('./src', import.meta.url)),
-        '~layout-antdv': fileURLToPath(new URL('../packages/layout-antdv/src', import.meta.url)),
-        '~curd': fileURLToPath(new URL('../packages/curd/src', import.meta.url)),
       },
     },
   },

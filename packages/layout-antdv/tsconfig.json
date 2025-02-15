@@ -30,9 +30,7 @@
       "vite/client"
     ],
     "baseUrl": ".",
-    "paths": {
-      "~layout-antdv/*": ["src/*"]
-    }
+    "paths": {}
   },
   "include": [
     "src/**/*.ts",

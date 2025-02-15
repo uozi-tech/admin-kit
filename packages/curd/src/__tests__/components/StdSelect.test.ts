@@ -1,6 +1,6 @@
 import { render } from '@testing-library/vue'
 import { describe, expect, it } from 'vitest'
-import StdSelect from '~curd/components/form/StdSelect.vue'
+import StdSelect from './components/form/StdSelect.vue'
 
 describe('stdSelect 组件', () => {
   it('应该正确渲染选择框', () => {

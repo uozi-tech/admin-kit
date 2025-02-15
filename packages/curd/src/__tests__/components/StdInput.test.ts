@@ -1,6 +1,6 @@
 import { fireEvent, render } from '@testing-library/vue'
 import { describe, expect, it } from 'vitest'
-import StdInput from '~curd/components/form/StdInput.vue'
+import StdInput from '../components/form/StdInput.vue'
 
 describe('stdInput 组件', () => {
   it('应该正确渲染输入框', () => {
