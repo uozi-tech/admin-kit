@@ -1,4 +1,4 @@
-import type { StdTableColumn } from '../types'
+import type { StdTableColumn } from '../../types'
 import { render } from '@testing-library/vue'
 import { describe, expect, it } from 'vitest'
 import StdForm from '../components/StdForm.vue'

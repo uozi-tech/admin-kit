@@ -2,7 +2,7 @@
 import type { SelectorConfig } from '../../types'
 import { Form, Modal, Select } from 'ant-design-vue'
 import { get, isArray } from 'lodash-es'
-import { computed, nextTick, ref, watchEffect, withDefaults } from 'vue'
+import { computed, nextTick, onMounted, ref, watch, withDefaults } from 'vue'
 import StdTable from '../StdTable.vue'
 
 const props = withDefaults(
@@ -49,7 +49,7 @@ function removeValue(v) {
   }
 }
 
-watchEffect(async () => {
+async function init() {
   if (props.selectionType === 'checkbox') {
     if (!isArray(value.value)) {
       if (value.value) {
@@ -65,11 +65,30 @@ watchEffect(async () => {
     selectedRowKeys.value = []
   }
   await nextTick()
-  if (value.value.length > 0) {
-    const { data } = await props.getListApi?.({ ...props.overwriteParams, id: value.value })
+  const preloadIds: any[] = []
+  if (isArray(value.value)) {
+    preloadIds.push(...value.value.filter(item => item))
+  }
+  else {
+    // filter out null, undefined
+    if (value.value) {
+      preloadIds.push(value.value)
+    }
+  }
+  if (preloadIds.length > 0) {
+    const { data } = await props.getListApi?.({ ...props.overwriteParams, id: preloadIds })
     selectedRows.value = data
   }
-})
+}
+
+watch(() => {
+  return {
+    value: value.value,
+    props,
+  }
+}, init, { deep: true })
+
+onMounted(init)
 
 function clickInput() {
   if (props.disabled) {
@@ -77,13 +96,30 @@ function clickInput() {
   }
   visible.value = true
 }
+
+const computedValue = computed({
+  get() {
+    if (isArray(value.value)) {
+      return value.value
+    }
+    else if (value.value) {
+      return [value.value]
+    }
+    else {
+      return []
+    }
+  },
+  set(v) {
+    value.value = v
+  },
+})
 </script>
 
 <template>
   <div>
     <div @click="clickInput">
       <Select
-        v-model:value="value"
+        v-model:value="computedValue"
         :disabled
         class="min-w-184px"
         :options="options"
