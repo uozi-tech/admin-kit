@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 3.2.10
+
+### Patch Changes
+
+- [`3f613e3`](https://github.com/uozi-tech/admin-kit/commit/3f613e338a17857dcdcd6d3842177843e0a59e9c) Thanks [@0xJacky](https://github.com/0xJacky)! - fix(curd): [select] set min width to 180px
+
 ## 3.2.9
 
 ### Patch Changes
