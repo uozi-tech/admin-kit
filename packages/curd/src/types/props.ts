@@ -13,6 +13,7 @@ export interface StdTableProps extends Pick<
   'overwriteParams' |
   'rowSelectionType' |
   'disableRouterQuery' |
+  'disableView' |
   'disableEdit' |
   'disableSearch' |
   'disableDelete' |
@@ -54,6 +55,7 @@ export interface StdCurdProps {
   disableRouterQuery?: boolean
   disableSearch?: boolean
   disableAdd?: boolean
+  disableView?: boolean
   disableEdit?: boolean
   disableDelete?: boolean
   disableExport?: boolean

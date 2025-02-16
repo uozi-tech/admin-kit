@@ -318,7 +318,7 @@ function CustomHeaderRender(props: { node: VNode }) {
             :column="column"
           />
           <Button
-            v-if="!isTrash"
+            v-if="!disableView && !isTrash"
             size="small"
             type="link"
             @click="onReadBtnClick(record)"
