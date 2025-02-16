@@ -38,6 +38,7 @@ watch(value, computedOptions, { immediate: true })
 <template>
   <Select
     v-model:value="value as any"
+    class="min-w-180px"
     :dropdown-match-select-width="false"
     allow-clear
     v-bind="props"
