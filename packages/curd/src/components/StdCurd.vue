@@ -227,6 +227,7 @@ defineExpose({
       :disable-delete="disableDelete"
       :disable-search="disableSearch"
       :disable-trash="disableTrash"
+      :disable-view="disableView"
       :disable-router-query="disableRouterQuery"
       :row-selection-type="rowSelectionType"
       :refresh-config="refreshConfig"
