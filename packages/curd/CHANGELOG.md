@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 3.2.12
+
+### Patch Changes
+
+- [`7fd41db`](https://github.com/uozi-tech/admin-kit/commit/7fd41dbcef34a6e9ab6f5f428b65a70d207d0a3a) Thanks [@0xJacky](https://github.com/0xJacky)! - feat(curd): [curd] add disable view prop
+
 ## 3.2.11
 
 ### Patch Changes
