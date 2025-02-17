@@ -1,5 +1,19 @@
 # @uozi-admin/curd
 
+## 3.3.0
+
+### Minor Changes
+
+- [#80](https://github.com/uozi-tech/admin-kit/pull/80) [`14e097a`](https://github.com/uozi-tech/admin-kit/commit/14e097ad1e9e91768c312feb5306d2ba7d7da066) Thanks [@akinoccc](https://github.com/akinoccc)! - feat(curd): [std-selector] add placeholder
+
+- [#81](https://github.com/uozi-tech/admin-kit/pull/81) [`fb5073e`](https://github.com/uozi-tech/admin-kit/commit/fb5073ec2145b2cf37750f1092f55645866455dc) Thanks [@akinoccc](https://github.com/akinoccc)! - feat(curd): [i18n] support change translations by user
+
+- [#80](https://github.com/uozi-tech/admin-kit/pull/80) [`fbcb943`](https://github.com/uozi-tech/admin-kit/commit/fbcb943e8108274905362104cf758024ff7c9f07) Thanks [@akinoccc](https://github.com/akinoccc)! - feat(curd): [std-table] conditionally render reset button
+
+### Patch Changes
+
+- [#81](https://github.com/uozi-tech/admin-kit/pull/81) [`4b812b5`](https://github.com/uozi-tech/admin-kit/commit/4b812b5c55ced15849f90e967ea99caac973b4e0) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): i18n text not react language changed
+
 ## 3.2.12
 
 ### Patch Changes
