@@ -5,6 +5,31 @@ import { h } from 'vue'
 
 const columns: StdTableColumn[] = [
   {
+    title: 'ID2',
+    dataIndex: 'id2',
+    search: true,
+    edit: {
+      type: 'selector',
+      selector: {
+        getListApi: () => Promise.resolve({
+          data: [],
+          pagination: {
+            total: 0,
+            current_page: 1,
+            per_page: 20,
+          },
+        }),
+        columns: [
+          {
+            title: 'ID',
+            dataIndex: 'id',
+          },
+
+        ],
+      },
+    },
+  },
+  {
     title: 'ID',
     dataIndex: 'id',
     search: true,

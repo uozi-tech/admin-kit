@@ -286,7 +286,10 @@ function CustomHeaderRender(props: { node: VNode }) {
           wrap="wrap"
           gap="small"
         >
-          <Button @click="resetSearchForm">
+          <Button
+            v-if="searchColumns.length"
+            @click="resetSearchForm"
+          >
             {{ $gettext('Reset') }}
           </Button>
           <slot
