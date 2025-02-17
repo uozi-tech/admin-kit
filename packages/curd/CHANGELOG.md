@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 3.3.1
+
+### Patch Changes
+
+- [`d94b938`](https://github.com/uozi-tech/admin-kit/commit/d94b938aa27d8d2296a07673e5400bd42b01cca3) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): placeholder issue
+
 ## 3.3.0
 
 ### Minor Changes
