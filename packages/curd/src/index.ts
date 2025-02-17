@@ -1,5 +1,5 @@
 import type { I18nOptions } from 'vue-i18n'
-import { merge } from 'ant-design-vue/es/theme/util/statistic'
+import { merge } from 'lodash-es'
 import { type App, type ObjectPlugin, reactive } from 'vue'
 import { createI18n } from 'vue-i18n'
 import { enUS, zhCN, zhHK, zhTW } from './locales'
@@ -45,7 +45,7 @@ export interface CurdConfigT {
   i18n?: I18nOptions
 }
 
-export const defaultConfig = {
+export const defaultConfig: Required<CurdConfigT> = {
   listApi: {
     paginationMap: {
       total: 'total',
@@ -66,33 +66,16 @@ export const defaultConfig = {
   },
 }
 
-export const CURD_CONFIG_KEY = 'curdConfig'
+export const CURD_CONFIG_KEY = Symbol('curdConfig')
 
 // app.use(createCurdConfig(config))
 export function createCurdConfig(config: Partial<CurdConfigT>): ObjectPlugin {
   return {
     install(app: App) {
-      const i18n = createI18n({
-        legacy: false,
-        locale: config.i18n?.locale || defaultConfig.i18n.locale,
-        fallbackLocale: config.i18n?.fallbackLocale || defaultConfig.i18n.fallbackLocale,
-        messages: {
-          ...defaultConfig.i18n.messages,
-          ...config.i18n?.messages,
-        },
-      })
+      const mergedConfig = merge({}, defaultConfig, config)
+      const i18n = createI18n(mergedConfig.i18n as I18nOptions)
       app.use(i18n)
-      app.provide(CURD_CONFIG_KEY, reactive(
-        merge(defaultConfig, config),
-      ))
+      app.provide(CURD_CONFIG_KEY, reactive(mergedConfig))
     },
-  }
-}
-
-// 导出切换语言的函数
-export function setLocale(locale: string) {
-  const i18n = getCurrentInstance()?.appContext.config.globalProperties.$i18n
-  if (i18n) {
-    i18n.locale.value = locale
   }
 }
