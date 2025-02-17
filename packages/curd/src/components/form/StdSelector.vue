@@ -125,6 +125,7 @@ const computedValue = computed({
         :options="options"
         :dropdown-menu-style="{ display: 'none' }"
         mode="tags"
+        :placeholder="placeholder"
         popup-class-name="selector"
         :get-popup-container="node => node.parentNode"
         @deselect="removeValue"
