@@ -8,6 +8,9 @@ export default createViteConfig({
         '~': fileURLToPath(new URL('./src', import.meta.url)),
       },
     },
+    server: {
+      port: 10067,
+    },
   },
   pluginOptions: {
     autoImport: {

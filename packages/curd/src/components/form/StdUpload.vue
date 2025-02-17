@@ -5,9 +5,11 @@ import { InboxOutlined } from '@ant-design/icons-vue'
 import { UploadDragger } from 'ant-design-vue'
 import { isArray } from 'lodash-es'
 import { computed } from 'vue'
-import { $gettext } from '../../locales'
+import { useI18n } from 'vue-i18n'
 
 const { props } = defineProps<{ props?: UploadConfig & { placeholder?: string | number } }>()
+
+const { t } = useI18n()
 
 const value = defineModel<string | string[]>('value')
 
@@ -38,7 +40,7 @@ const fileList = computed(() => {
       <InboxOutlined />
     </p>
     <p class="ant-upload-text">
-      {{ $gettext('Upload') }}
+      {{ t('upload') }}
     </p>
   </UploadDragger>
 </template>

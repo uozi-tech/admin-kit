@@ -17,6 +17,13 @@ createApp(App)
         totalPages: 'total_pages',
       },
     },
+    i18n: {
+      messages: {
+        'en-US': {
+          list: '列表',
+        },
+      },
+    },
   }))
   .use(gettext)
   .use(store)

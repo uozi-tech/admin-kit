@@ -2,10 +2,11 @@
 import type { StdTableColumn } from '@uozi-admin/curd/src/types'
 import { StdCurd } from '@uozi-admin/curd'
 import { h } from 'vue'
+import { $gettext } from '~/gettext'
 
 const columns: StdTableColumn[] = [
   {
-    title: 'ID2',
+    title: () => $gettext('ID2'),
     dataIndex: 'id2',
     search: true,
     edit: {

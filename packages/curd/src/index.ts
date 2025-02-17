@@ -1,5 +1,8 @@
-import { merge } from 'ant-design-vue/es/theme/util/statistic'
+import type { I18nOptions } from 'vue-i18n'
+import { merge } from 'lodash-es'
 import { type App, type ObjectPlugin, reactive } from 'vue'
+import { createI18n } from 'vue-i18n'
+import { enUS, zhCN, zhHK, zhTW } from './locales'
 
 export * from './components'
 export * from './composables'
@@ -39,9 +42,10 @@ export interface CurdConfigT {
     responseFormat?: ResponseFormatFn
     requestFormat?: RequestFormatFn
   }
+  i18n?: I18nOptions
 }
 
-export const defaultConfig = {
+export const defaultConfig: Required<CurdConfigT> = {
   listApi: {
     paginationMap: {
       total: 'total',
@@ -50,17 +54,28 @@ export const defaultConfig = {
       totalPages: 'totalPages',
     },
   },
+  i18n: {
+    locale: 'zh-CN',
+    fallbackLocale: 'en-US',
+    messages: {
+      'zh-CN': zhCN,
+      'zh-HK': zhHK,
+      'zh-TW': zhTW,
+      'en-US': enUS,
+    },
+  },
 }
 
-export const CURD_CONFIG_KEY = 'curdConfig'
+export const CURD_CONFIG_KEY = Symbol('curdConfig')
 
 // app.use(createCurdConfig(config))
 export function createCurdConfig(config: Partial<CurdConfigT>): ObjectPlugin {
   return {
     install(app: App) {
-      app.provide(CURD_CONFIG_KEY, reactive(
-        merge(defaultConfig, config),
-      ))
+      const mergedConfig = merge({}, defaultConfig, config)
+      const i18n = createI18n(mergedConfig.i18n as I18nOptions)
+      app.use(i18n)
+      app.provide(CURD_CONFIG_KEY, reactive(mergedConfig))
     },
   }
 }

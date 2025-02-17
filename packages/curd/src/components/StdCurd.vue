@@ -3,10 +3,10 @@ import type { StdCurdProps } from '../types'
 import { Button, Card, Checkbox, Divider, Flex, message, Modal, Spin } from 'ant-design-vue'
 import { useConfigContextInject } from 'ant-design-vue/es/config-provider/context'
 import { computed, reactive, ref, useSlots, watchEffect } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
 import { useExport } from '../composables'
 import { ApiActions } from '../constants'
-import { $gettext, gettext } from '../locales'
 import { getRealContent } from '../utils'
 import StdDetail from './StdDetail.vue'
 import StdForm from './StdForm.vue'
@@ -25,10 +25,23 @@ const emit = defineEmits<{
 
 const route = useRoute()
 const slots = useSlots()
-
+const { t, locale } = useI18n()
 const { locale: lang } = useConfigContextInject()
+
 watchEffect(() => {
-  gettext.current = lang?.value.locale ?? 'zh-cn'
+  switch (lang?.value.locale) {
+    case 'zh-cn':
+      locale.value = 'zh-CN'
+      break
+    case 'zh-hk':
+      locale.value = 'zh-HK'
+      break
+    case 'zh-tw':
+      locale.value = 'zh-TW'
+      break
+    default:
+      locale.value = 'en-US'
+  }
 })
 
 const refreshConfig = reactive({
@@ -54,7 +67,7 @@ function onSave() {
     handleSave(res)
   }).catch((e) => {
     console.error(e)
-    message.error($gettext('Please fill all fields correctly'))
+    message.error(t('formValidateError'))
     modalLoading.value = false
   })
 }
@@ -146,7 +159,7 @@ function handleSave(data: Record<string, any>) {
     .then(() => {
       refresh()
       formVisible.value = false
-      message.success($gettext('Saved successfully'))
+      message.success(t('savedSuccessfully'))
     })
     .catch((e) => {
       console.error(e)
@@ -164,9 +177,9 @@ function handleDataById(action: string, record: Record<string, any>) {
     .then(() => {
       refresh()
       if (apiKey === 'deleteItem')
-        message.success($gettext('Deleted successfully'))
+        message.success(t('deletedSuccessfully'))
       else
-        message.success($gettext('Restored successfully'))
+        message.success(t('restoredSuccessfully'))
     })
     .catch((e) => {
       console.error(e)
@@ -183,12 +196,16 @@ const exportVisible = ref(false)
 defineExpose({
   refresh,
 })
+
+const title = computed(() => {
+  return getRealContent(props.title) || t('list')
+})
 </script>
 
 <template>
   <Card>
     <template #title>
-      {{ getRealContent(props.title) || $gettext('List') }}
+      {{ title }}
       <slot name="titleRight" />
     </template>
     <template #extra>
@@ -199,23 +216,22 @@ defineExpose({
           :class="{ 'cursor-not-allowed text-truegray-3 hover:text-truegray-3': selectedRowKeys.length === 0 }"
           @click="selectedRowKeys.length > 0 && (exportVisible = true)"
         >
-          {{ $gettext('Export Excel') }}
+          {{ t('exportExcel') }}
         </a>
         <a
           v-if="!props.disableAdd && !isTrash"
           @click="handleAdd"
-        >{{ $gettext('Add') }}</a>
+        >{{ t('add') }}</a>
         <a
           v-if="!props.disableTrash"
           :class="{ 'cursor-not-allowed text-truegray-3 hover:text-truegray-3': tableLoading }"
           @click="switchTrashAndList"
         >
-          {{ isTrash ? $gettext('Back to List') : $gettext('Trash') }}
+          {{ isTrash ? t('backToList') : t('trash') }}
         </a>
         <slot name="afterListActions" />
       </Flex>
     </template>
-
     <StdTable
       v-model:table-loading="tableLoading"
       :title
@@ -263,7 +279,7 @@ defineExpose({
       destroy-on-close
       :closable="!modalLoading"
       :width="props.modalWidth"
-      :title="mode === 'add' ? $gettext('Add') : $gettext('Edit')"
+      :title="mode === 'add' ? t('add') : t('edit')"
       :mask-closable="false"
     >
       <Spin :spinning="modalLoading">
@@ -287,7 +303,7 @@ defineExpose({
           :disabled="modalLoading"
           @click="formVisible = false"
         >
-          {{ $gettext('Close') }}
+          {{ t('close') }}
         </Button>
         <Button
           v-show="mode !== 'read'"
@@ -295,7 +311,7 @@ defineExpose({
           type="primary"
           @click="onSave"
         >
-          {{ $gettext('Save') }}
+          {{ t('save') }}
         </Button>
       </template>
     </Modal>
@@ -305,8 +321,8 @@ defineExpose({
       style="max-height: 80vh"
       :closable="!modalLoading"
       :width="props.modalWidth"
-      :title="$gettext('app.exportExcel')"
-      :ok-text="$gettext('app.ok')"
+      :title="t('exportExcel')"
+      :ok-text="t('ok')"
       @ok="exportExcel(selectedRowKeys, selectedRows)"
     >
       <Checkbox
@@ -314,7 +330,7 @@ defineExpose({
         :indeterminate="exportColumnsSelectionState.indeterminate"
         @change="onCheckAllChange"
       >
-        {{ $gettext('app.selectAll') }}
+        {{ t('selectAll') }}
       </Checkbox>
       <Divider />
       <!--      <VueDraggable class="checkbox__wrapper" v-model="exportColumns" :animation="200"> -->

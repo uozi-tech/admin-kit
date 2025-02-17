@@ -3,6 +3,7 @@ import type { SelectorConfig } from '../../types'
 import { Form, Modal, Select } from 'ant-design-vue'
 import { get, isArray } from 'lodash-es'
 import { computed, nextTick, onMounted, ref, watch, withDefaults } from 'vue'
+import { useI18n } from 'vue-i18n'
 import StdTable from '../StdTable.vue'
 
 const props = withDefaults(
@@ -29,6 +30,8 @@ const options = computed(() => {
     value: get(item, props.valueKey),
   }))
 })
+
+const { t } = useI18n()
 
 function setValue() {
   if (props.selectionType === 'radio') {
@@ -134,9 +137,9 @@ const computedValue = computed({
     <Modal
       v-model:open="visible"
       :mask="false"
-      :cancel-text="$gettext('Close')"
-      :ok-text="$gettext('Ok')"
-      :title="$gettext('Selector')"
+      :cancel-text="t('close')"
+      :ok-text="t('ok')"
+      :title="t('selectorTitle')"
       :width="modalWidth || 800"
       destroy-on-close
       @ok="setValue"
