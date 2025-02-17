@@ -2,7 +2,7 @@
 import type { Reactive } from 'vue'
 import type { StdTableColumn } from '../types'
 import { get, set } from 'lodash-es'
-import { ref, watch } from 'vue'
+import { computed, ref, watch } from 'vue'
 import {
   StdCascader,
   StdCheckboxGroup,
@@ -20,7 +20,7 @@ import {
   StdTimePicker,
   StdUpload,
 } from '../components/form'
-import { placeholder } from '../utils/helper'
+import { getPlaceholder } from '../utils/helper'
 import { isFunction, isPlainObject } from '../utils/util'
 import StdTextarea from './form/StdTextarea.vue'
 
@@ -39,7 +39,7 @@ function Render() {
     formConfig = p.column.search
   }
 
-  placeholder(p.column, formConfig)
+  const placeholder = computed(() => getPlaceholder(p.column, formConfig))
   if (isFunction(formConfig?.type)) {
   // Support custom render function
     return formConfig?.type(p.formData, p.column, formConfig?.customComponent)
@@ -70,26 +70,27 @@ function Render() {
 
     switch (formConfig?.type) {
       case 'input':
-        return <StdInput v-model:value={value.value} props={formConfig?.input} name={formConfig?.formItem?.name ?? dataIndex} />
+        return <StdInput v-model:value={value.value} props={formConfig?.input} name={formConfig?.formItem?.name ?? dataIndex} placeholder={placeholder.value} />
       case 'inputNumber':
-        return <StdInputNumber v-model:value={value.value} props={formConfig?.inputNumber} />
+        return <StdInputNumber v-model:value={value.value} props={formConfig?.inputNumber} placeholder={placeholder.value} />
       case 'textarea':
-        return <StdTextarea v-model:value={value.value} props={formConfig?.textarea} />
+        return <StdTextarea v-model:value={value.value} props={formConfig?.textarea} placeholder={placeholder.value} />
       case 'password':
-        return <StdPassword v-model:value={value.value} props={formConfig?.password} />
+        return <StdPassword v-model:value={value.value} props={formConfig?.password} placeholder={placeholder.value} />
       case 'select':
         return (
           <StdSelect
             v-model:value={value.value}
             props={formConfig?.select}
+            placeholder={placeholder.value}
           />
         )
       case 'cascader':
-        return <StdCascader v-model:value={value.value} props={formConfig?.cascader} />
+        return <StdCascader v-model:value={value.value} props={formConfig?.cascader} placeholder={placeholder.value} />
       case 'checkboxGroup':
-        return <StdCheckboxGroup v-model:value={value.value} props={formConfig?.checkboxGroup} />
+        return <StdCheckboxGroup v-model:value={value.value} props={formConfig?.checkboxGroup} placeholder={placeholder.value} />
       case 'radioGroup':
-        return <StdRadioGroup v-model:value={value.value} props={formConfig?.radioGroup} />
+        return <StdRadioGroup v-model:value={value.value} props={formConfig?.radioGroup} placeholder={placeholder.value} />
       case 'date':
       case 'datetime':
       case 'year':
@@ -100,6 +101,7 @@ function Render() {
             v-model:value={value.value}
             props={formConfig[formConfig?.type]}
             type={formConfig.type}
+            placeholder={placeholder.value}
           />
         )
       case 'time':
@@ -107,6 +109,7 @@ function Render() {
           <StdTimePicker
             v-model:value={value.value}
             props={formConfig?.time as any}
+            placeholder={placeholder.value}
           />
         )
       case 'dateRange':
@@ -139,7 +142,7 @@ function Render() {
         return <StdUpload v-model:value={value.value} />
       }
       case 'selector': {
-        return <StdSelector v-model:value={value.value} {...formConfig?.selector} />
+        return <StdSelector v-model:value={value.value} {...formConfig?.selector} placeholder={placeholder.value} />
       }
       default:
         return null

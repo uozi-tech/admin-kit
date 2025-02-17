@@ -1,6 +1,6 @@
 import type { StdFormConfig, StdTableColumn } from '../../types'
 import { describe, expect, it } from 'vitest'
-import { placeholder } from '../../utils'
+import { getPlaceholder } from '../../utils'
 
 describe('placeholder function', () => {
   it('should set placeholder when formItem does not have a placeholder', () => {
@@ -15,7 +15,7 @@ describe('placeholder function', () => {
       },
     }
 
-    placeholder(column, formItem)
+    getPlaceholder(column, formItem)
 
     expect(formItem.input).toEqual({
       placeholder: 'Name',
@@ -37,7 +37,7 @@ describe('placeholder function', () => {
       },
     }
 
-    placeholder(column, formItem)
+    getPlaceholder(column, formItem)
 
     expect(formItem.input).toEqual({
       placeholder: 'Existing Placeholder',

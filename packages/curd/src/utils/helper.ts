@@ -1,17 +1,19 @@
 import type { StdFormConfig, StdTableColumn } from '../types'
-import { isFunction } from './util'
+import { getRealContent } from './util'
 
-export function placeholder(column: StdTableColumn, config?: StdFormConfig) {
+export function getPlaceholder(column: StdTableColumn, config?: StdFormConfig) {
   const type = (config?.type ?? '') as string
-  if (!config || config?.[type]?.placeholder) {
-    if (isFunction(config?.[type]?.placeholder)) {
-      config[type].placeholder = config[type].placeholder()
-    }
-    return
-  }
+  // if (!config || config?.[type]?.placeholder) {
+  //   if (isFunction(config?.[type]?.placeholder)) {
+  //     config[type].placeholder = config[type].placeholder()
+  //   }
+  //   return
+  // }
 
-  if (!config?.[type])
-    config[type] = {}
+  // if (!config?.[type])
+  //   config[type] = {}
 
-  config[type].placeholder = column.dataIndex as string ?? config.formItem?.name
+  // config[type].placeholder = getRealContent(config.formItem?.name ?? column.title ?? column.dataIndex as string)
+
+  return getRealContent(config?.[type]?.placeholder ?? config?.formItem?.name ?? column.title ?? column.dataIndex as string)
 }

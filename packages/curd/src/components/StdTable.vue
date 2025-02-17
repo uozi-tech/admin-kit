@@ -49,18 +49,21 @@ function initializePagination(paginationProps: any): TablePaginationConfig {
   }
 }
 
-/** 筛选 table 显示的列，并且获取 title 真实内容 */
-const dataColumns = computed<any>(() => {
+const computedColumns = computed(() => {
   return props.columns
-    .filter(item => !item.hiddenInTable)
     .map(item => ({
       ...item,
       title: getRealContent(item.title),
     }))
 })
+/** 筛选 table 显示的列，并且获取 title 真实内容 */
+const dataColumns = computed<any>(() => {
+  return computedColumns.value
+    .filter(item => !item.hiddenInTable)
+})
 
 const searchColumns = computed(() => {
-  return props.columns.filter(item => item?.search)
+  return computedColumns.value.filter(item => item?.search)
 })
 
 const searchFormData = ref<Record<string, any>>({
