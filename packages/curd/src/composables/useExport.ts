@@ -1,6 +1,6 @@
 import type { ExportColumn, StdTableColumn } from '../types'
 import { get, set } from 'lodash-es'
-import { reactive, type Ref, ref, watch } from 'vue'
+import { computed, reactive, type Ref, watch } from 'vue'
 import { utils, writeFile } from 'xlsx'
 
 export function useExport(config: {
@@ -23,12 +23,12 @@ export function useExport(config: {
     checkAll: true,
   })
 
-  const exportColumns = ref(
+  const exportColumns = computed(() =>
     (config.columns as ExportColumn[])
       .filter(item => !item.hiddenInExport)
       .map((item) => {
-        if (typeof item.title === 'function')
-          item.title = item.title()
+        // if (typeof item.title === 'function')
+        //   item.title = item.title()
         if (Array.isArray(item.dataIndex))
           item.dataIndex = item.dataIndex.join('.')
         item.checked = true

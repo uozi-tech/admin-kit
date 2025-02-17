@@ -37,7 +37,7 @@ function getLabel(c: StdTableColumn) {
     return
   }
 
-  return getRealContent(c.edit?.formItem?.label) || getRealContent(c.title)
+  return getRealContent(c.edit?.formItem?.label ?? c.title)
 }
 
 const formRef = ref()

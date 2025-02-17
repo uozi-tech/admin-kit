@@ -9,7 +9,7 @@ import { debounce, isArray, isEqual } from 'lodash-es'
 import { computed, inject, onMounted, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute, useRouter } from 'vue-router'
-import { CURD_CONFIG_KEY, defaultConfig } from '..'
+import { CURD_CONFIG_KEY, defaultConfig, getRealContent } from '..'
 import StdSearch from './StdSearch.vue'
 
 const props = defineProps<StdTableProps>()
@@ -53,6 +53,10 @@ function initializePagination(paginationProps: any): TablePaginationConfig {
 const dataColumns = computed<any>(() => {
   return props.columns
     .filter(item => !item.hiddenInTable)
+    .map(item => ({
+      ...item,
+      title: getRealContent(item.title),
+    }))
 })
 
 const searchColumns = computed(() => {
@@ -292,7 +296,6 @@ function CustomHeaderRender(props: { node: VNode }) {
         </Flex>
       </template>
     </StdSearch>
-    {{ props.columns[0] }}
     <Table
       v-model:pagination="pagination"
       :row-selection="rowSelection"

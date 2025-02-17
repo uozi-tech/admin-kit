@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { StdFormConfig, StdTableColumn } from '../types'
 import { Form, FormItem } from 'ant-design-vue'
-import { getColumnKey } from '../utils/util'
+import { getColumnKey, getRealContent } from '../utils/util'
 import FormControllerRender from './StdFormController.vue'
 
 defineProps<{
@@ -16,6 +16,11 @@ function getConfig(c: StdTableColumn) {
   }
   return c.search as StdFormConfig
 }
+
+function getLabel(c: StdTableColumn) {
+  const realConfig = getConfig(c)
+  return getRealContent(realConfig?.formItem?.label ?? c.title)
+}
 </script>
 
 <template>
@@ -28,7 +33,7 @@ function getConfig(c: StdTableColumn) {
     <FormItem
       v-for="c in columns"
       :key="getColumnKey(c)"
-      :label="getConfig(c)?.formItem?.label ?? c.title"
+      :label="getLabel(c)"
       :name="`${getConfig(c)?.formItem?.name ?? c.dataIndex}__search`"
     >
       <FormControllerRender
