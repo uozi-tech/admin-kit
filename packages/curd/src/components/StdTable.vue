@@ -4,13 +4,12 @@ import type { TablePaginationConfig } from 'ant-design-vue/lib/table/interface'
 import type { VNode } from 'vue'
 import type { CurdConfigT } from '..'
 import type { StdTableBodyScope, StdTableHeaderScope, StdTableProps } from '../types'
-import { Button, Flex, message, Popconfirm, Table } from 'ant-design-vue'
+import { Button, Flex, Popconfirm, Table } from 'ant-design-vue'
 import { debounce, isArray, isEqual } from 'lodash-es'
 import { computed, inject, onMounted, ref, watch } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { useRoute, useRouter } from 'vue-router'
 import { CURD_CONFIG_KEY, defaultConfig } from '..'
-import { $gettext, $pgettext } from '../locales'
-import { getRealContent } from '../utils'
 import StdSearch from './StdSearch.vue'
 
 const props = defineProps<StdTableProps>()
@@ -33,6 +32,8 @@ const tableLoading = defineModel<boolean>('tableLoading')
 const router = useRouter()
 const route = useRoute()
 
+const { t } = useI18n()
+
 const pagination = ref<TablePaginationConfig>(initializePagination(props.tableProps?.pagination))
 
 function initializePagination(paginationProps: any): TablePaginationConfig {
@@ -43,7 +44,7 @@ function initializePagination(paginationProps: any): TablePaginationConfig {
     showQuickJumper: true,
     hideOnSinglePage: true,
     responsive: true,
-    showTotal: (total: number) => `${$gettext('Total')}: ${total} ${$pgettext('项', 'item(s)')}`,
+    showTotal: (total: number) => `${t('total')}: ${total} ${t('item(s)')}`,
     ...paginationProps,
   }
 }
@@ -52,10 +53,6 @@ function initializePagination(paginationProps: any): TablePaginationConfig {
 const dataColumns = computed<any>(() => {
   return props.columns
     .filter(item => !item.hiddenInTable)
-    .map((item) => {
-      item.title = getRealContent(item.title)
-      return item
-    })
 })
 
 const searchColumns = computed(() => {
@@ -164,10 +161,6 @@ const debouncedListApi = debounce(async () => {
 
         tableData.value = res.data
       }
-    })
-    .catch((e) => {
-      console.error(e)
-      message.error('Failed to fetch data')
     })
     .finally(() => {
       tableLoading.value = false
@@ -290,7 +283,7 @@ function CustomHeaderRender(props: { node: VNode }) {
             v-if="searchColumns.length"
             @click="resetSearchForm"
           >
-            {{ $gettext('Reset') }}
+            {{ t('reset') }}
           </Button>
           <slot
             name="searchFormAction"
@@ -299,6 +292,7 @@ function CustomHeaderRender(props: { node: VNode }) {
         </Flex>
       </template>
     </StdSearch>
+    {{ props.columns[0] }}
     <Table
       v-model:pagination="pagination"
       :row-selection="rowSelection"
@@ -326,7 +320,7 @@ function CustomHeaderRender(props: { node: VNode }) {
             type="link"
             @click="onReadBtnClick(record)"
           >
-            {{ $gettext('View') }}
+            {{ t('view') }}
           </Button>
           <Button
             v-if="!disableEdit && !isTrash"
@@ -334,11 +328,11 @@ function CustomHeaderRender(props: { node: VNode }) {
             type="link"
             @click="onEditBtnClick(record)"
           >
-            {{ $gettext('Edit') }}
+            {{ t('edit') }}
           </Button>
           <Popconfirm
             v-if="!disableDelete && !isTrash"
-            :title="$gettext('Are you sure want to delete?')"
+            :title="t('deleteConfirm')"
             @confirm="onDeleteBtnClick(record)"
           >
             <Button
@@ -346,24 +340,24 @@ function CustomHeaderRender(props: { node: VNode }) {
               type="link"
               danger
             >
-              {{ $gettext('Delete') }}
+              {{ t('delete') }}
             </Button>
           </Popconfirm>
           <Popconfirm
             v-if="!disableTrash && isTrash"
-            :title="$gettext('Are you sure want to restore?')"
+            :title="t('restoreConfirm')"
             @confirm="onRestoreBtnClick(record)"
           >
             <Button
               size="small"
               type="link"
             >
-              {{ $gettext('Restore') }}
+              {{ t('restore') }}
             </Button>
           </Popconfirm>
           <Popconfirm
             v-if="!disableDelete && isTrash"
-            :title="$gettext('Are you sure want to delete permanently?')"
+            :title="t('deletePermanentlyConfirm')"
             @confirm="onDeletePermanentlyBtnClick(record)"
           >
             <Button
@@ -371,7 +365,7 @@ function CustomHeaderRender(props: { node: VNode }) {
               type="link"
               danger
             >
-              {{ $gettext('Delete Permanently') }}
+              {{ t('deletePermanently') }}
             </Button>
           </Popconfirm>
           <slot
