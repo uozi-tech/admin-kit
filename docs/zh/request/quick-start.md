@@ -4,9 +4,19 @@
 
 ## 安装
 
-```bash
-pnpm add @uozi-admin/request
+::: code-group
+```bash [npm]
+npm install @uozi-admin/request -D
 ```
+
+```bash [yarn]
+yarn add @uozi-admin/request -D
+```
+
+```bash [pnpm]
+pnpm add @uozi-admin/request -D
+```
+:::
 
 ## 基础用法
 
@@ -46,11 +56,23 @@ await http.patch('/api/users/1', {
 需要在 `app.mount` 之前配置，否则会报错。
 :::
 
-```ts
-import { setOverrideConfig } from '@uozi-admin/request'
+::: details 默认配置
+```json
+{
+  "baseURL": "/api",
+  "timeout": 5000,
+  "headers": {
+    "Content-Type": "application/json"
+  }
+}
+```
+:::
 
-// 设置全局配置
-setOverrideConfig({
+```ts
+import { createApp } from 'vue'
+import { setRequestConfig } from '@uozi-admin/request'
+
+setRequestConfig({
   baseURL: '/api',
   timeout: 5000,
   headers: {

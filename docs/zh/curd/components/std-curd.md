@@ -54,6 +54,7 @@ const api = {
 | modalWidth | 弹窗宽度 | number \| string | 520 |
 | scrollX | 表格横向滚动 | number \| string | - |
 | scrollY | 表格纵向滚动 | number \| string | - |
+| disableView | 禁用查看 | boolean | false |
 | disableAdd | 禁用新增 | boolean | false |
 | disableEdit | 禁用编辑 | boolean | false |
 | disableDelete | 禁用删除 | boolean | false |

@@ -8,16 +8,19 @@ outline: deep
 
 ## 安装
 
-```bash
-# npm
+::: code-group
+```bash [npm]
 npm install @uozi-admin/curd
+```
 
-# yarn
+```bash [yarn]
 yarn add @uozi-admin/curd
+```
 
-# pnpm
+```bash [pnpm]
 pnpm add @uozi-admin/curd
 ```
+:::
 
 ## 基础示例
 

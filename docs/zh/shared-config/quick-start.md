@@ -4,16 +4,19 @@
 
 ## 安装
 
-```bash
-# NPM
+::: code-group
+```bash [npm]
 npm install @uozi-admin/shared-config -D
+```
 
-# YARN
+```bash [yarn]
 yarn add @uozi-admin/shared-config -D
+```
 
-# PNPM
+```bash [pnpm]
 pnpm add @uozi-admin/shared-config -D
 ```
+:::
 
 ## 基础用法
 

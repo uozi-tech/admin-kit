@@ -106,7 +106,7 @@ function sidebarGuide() {
         { text: '全局配置', link: 'advance/global-config' },
         { text: '自定义渲染', link: 'advance/custom-render' },
         { text: '自定义表单控件', link: 'advance/custom-form-control' },
-        { text: '最佳实践', link: 'advance/best-practice' },
+        { text: '国际化', link: 'advance/i18n' },
       ],
     },
     {
@@ -156,7 +156,7 @@ function sidebarRequest() {
     {
       text: '指南',
       items: [
-        { text: '介绍', link: 'quick-start' },
+        { text: '快速开始', link: 'quick-start' },
       ],
     },
   ]
@@ -194,7 +194,7 @@ function sidebarSharedConfig() {
     {
       text: '指南',
       items: [
-        { text: '介绍', link: 'index' },
+        { text: '快速开始', link: 'quick-start' },
         { text: 'Vite 配置', link: 'vite-config' },
         { text: '插件配置', link: 'plugins' },
       ],

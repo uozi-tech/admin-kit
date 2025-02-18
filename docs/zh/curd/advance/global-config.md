@@ -2,6 +2,32 @@
 
 CURD 组件支持全局配置,可以统一设置 API 响应格式、分页参数等。
 
+::: details 默认配置
+
+```json
+{
+  listApi: {
+    paginationPath: '$.pagination',
+    paginationMap: {
+      total: 'total',
+      current: 'current',
+      pageSize: 'pageSize',
+      totalPages: 'totalPages',
+    },
+  },
+  i18n: {
+    locale: 'zh-CN',
+    fallbackLocale: 'en-US',
+    messages: {
+      'zh-CN': zhCN, // 中文语言包
+      'zh-HK': zhHK, // 繁体中文语言包
+      'zh-TW': zhTW, // 简体中文语言包
+      'en-US': enUS, // 英文语言包
+    },
+  },
+}
+:::
+
 ## 配置方式
 
 ```ts
@@ -37,11 +63,13 @@ app.use(createCurdConfig({
 
 ## 配置项
 
-### api.paginationMap
+### 分页配置
 
-该配置与 `responseFormat` 配置互斥，如果同时配置，则以 `responseFormat` 配置为准。
+**分页数据在响应 data 中的路径:**
 
-分页字段映射配置:
+默认 `$.pagination`，如果需要自定义分页数据在响应 data 中的路径，可以通过 `paginationPath` 配置。
+
+**分页字段映射配置:**
 
 ```ts
 interface PaginationMap {
@@ -52,7 +80,7 @@ interface PaginationMap {
 }
 ```
 
-### api.responseFormat
+### 响应数据格式化
 
 响应数据格式化函数:
 
@@ -70,7 +98,7 @@ interface ResponseFormat {
 }
 ```
 
-### api.requestFormat
+### 请求参数格式化
 
 请求参数格式化函数:
 

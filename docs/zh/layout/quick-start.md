@@ -4,16 +4,19 @@
 
 ## 安装
 
-```bash
-# NPM
+::: code-group
+```bash [npm]
 npm install @uozi-admin/layout-antdv
+```
 
-# Yarn
+```bash [yarn]
 yarn add @uozi-admin/layout-antdv
+```
 
-# PNPM
+```bash [pnpm]
 pnpm add @uozi-admin/layout-antdv
 ```
+:::
 
 ## 基础用法
 
