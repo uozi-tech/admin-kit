@@ -10,7 +10,7 @@ export default defineConfig({
   base: '/admin-kit/',
   title: 'Admin Kit',
   head: [
-    ['link', { rel: 'icon', href: '/logo.svg ' }],
+    ['link', { rel: 'icon', href: './logo.svg' }],
   ],
 
   lastUpdated: true,

@@ -59,24 +59,29 @@ function nav(): DefaultTheme.NavItem[] {
       activeMatch: '/zh/curd/',
     },
     {
-      text: 'Request',
+      text: '请求',
       link: '/zh/request/quick-start',
       activeMatch: '/zh/request/',
     },
     {
-      text: 'Layout',
+      text: '布局',
       link: '/zh/layout/quick-start',
       activeMatch: '/zh/layout/',
     },
     {
-      text: 'Shared Config',
+      text: '共享配置',
       link: '/zh/shared-config/quick-start',
       activeMatch: '/zh/shared-config/',
     },
     {
-      text: 'CLI',
+      text: '脚手架',
       link: '/zh/cli/quick-start',
       activeMatch: '/zh/cli/',
+    },
+    {
+      text: '团队',
+      link: '/zh/team',
+      activeMatch: '/zh/team/',
     },
   ]
 }
