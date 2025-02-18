@@ -5,7 +5,7 @@ import type { VNode } from 'vue'
 import type { CurdConfigT } from '..'
 import type { StdTableBodyScope, StdTableHeaderScope, StdTableProps } from '../types'
 import { Button, Flex, Popconfirm, Table } from 'ant-design-vue'
-import { debounce, isArray, isEqual } from 'lodash-es'
+import { debounce, get, isArray, isEqual } from 'lodash-es'
 import { computed, inject, onMounted, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute, useRouter } from 'vue-router'
@@ -129,49 +129,43 @@ const debouncedListApi = debounce(async () => {
   tableLoading.value = true
 
   const { overwriteParams, ...rest } = apiParams.value
-
   let finialParams: Record<string, any> = { ...rest, ...overwriteParams }
 
-  // 如果配置了 requestFormat，则使用 requestFormat 格式化参数
+  // 格式化请求参数
   if (curdConfig.listApi?.requestFormat) {
     finialParams = curdConfig.listApi.requestFormat(finialParams)
   }
 
-  // overwriteParams 优先级比 apiParams 高
-  return props.getListApi(finialParams)
-    .then((res) => {
-      // 如果配置了 responseFormat，则使用 responseFormat 格式化数据
-      if (curdConfig.listApi?.responseFormat) {
-        const formattedRes = curdConfig.listApi.responseFormat(res)
+  try {
+    const res = await props.getListApi(finialParams)
+    let formattedRes = res
 
-        const { total, current, pageSize } = formattedRes.pagination
-        pagination.value.total = total
-        pagination.value.current = current
-        pagination.value.pageSize = pageSize
+    // 格式化响应数据
+    if (curdConfig.listApi?.responseFormat) {
+      formattedRes = curdConfig.listApi.responseFormat(res)
+    }
 
-        tableData.value = formattedRes.data
-      }
-      // 如果未配置 responseFormat，则使用默认配置
-      else {
-        const { total, pageSize, current } = curdConfig.listApi.paginationMap
+    // 获取分页数据
+    const paginationPath = curdConfig.listApi?.paginationPath || '$.pagination'
+    const paginationData = get(formattedRes, paginationPath.replace(/^\$\./, ''))
+    const { total, current, pageSize } = curdConfig.listApi?.paginationMap
 
-        // 如果 pagination 取值为 undefined，则不进行赋值
-        if (res?.pagination?.[total]) {
-          pagination.value.total = res?.pagination?.[total]
-        }
-        if (res?.pagination?.[current]) {
-          pagination.value.current = res?.pagination?.[current]
-        }
-        if (res?.pagination?.[pageSize]) {
-          pagination.value.pageSize = res?.pagination?.[pageSize]
-        }
+    // 更新分页信息
+    if (paginationData) {
+      if (paginationData[total])
+        pagination.value.total = paginationData[total]
+      if (paginationData[current])
+        pagination.value.current = paginationData[current]
+      if (paginationData[pageSize])
+        pagination.value.pageSize = paginationData[pageSize]
+    }
 
-        tableData.value = res.data
-      }
-    })
-    .finally(() => {
-      tableLoading.value = false
-    })
+    // 更新表格数据
+    tableData.value = formattedRes.data
+  }
+  finally {
+    tableLoading.value = false
+  }
 }, 200, { leading: false, trailing: true })
 
 // apiParams 改变时，同步到 route query，并重新请求数据
@@ -210,6 +204,7 @@ const rowSelection = computed(() => {
   return undefined
 })
 
+/** Table 分页，排序，筛选发生改变时触发 */
 function onTableChange(p: TablePaginationConfig, filters: Record<string, FilterValue>, sorter: SorterResult | SorterResult<any>[]) {
   emit('change', { pagination: p, filters, sorter })
 

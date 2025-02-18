@@ -1,4 +1,6 @@
-export const zhTW = {
+import type { I18nLanguageObject } from '../types'
+
+export const zhTW: I18nLanguageObject = {
   'total': '總計',
   'item(s)': '項',
   'view': '檢視',

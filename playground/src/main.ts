@@ -22,6 +22,12 @@ createApp(App)
         'en-US': {
           list: '列表',
         },
+        'zh-CN': {
+          list: '用户列表',
+        },
+        'zh-TW': {
+          list: '用戶列表台湾',
+        },
       },
     },
   }))

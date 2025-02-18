@@ -31,6 +31,20 @@ const columns: StdTableColumn[] = [
     },
   },
   {
+    title: () => $gettext('Select'),
+    dataIndex: 'select',
+    search: true,
+    edit: {
+      type: 'select',
+      select: {
+        mask: {
+          1: () => '选项1',
+          2: () => '选项2',
+        },
+      },
+    },
+  },
+  {
     title: 'ID',
     dataIndex: 'id',
     search: true,

@@ -1,3 +1,4 @@
+export * from './config'
 export * from './form'
 export * from './formItem'
 export * from './props'

@@ -1,4 +1,6 @@
-export const enUS = {
+import type { I18nLanguageObject } from '../types'
+
+export const enUS: I18nLanguageObject = {
   'total': 'Total',
   'item(s)': 'item(s)',
   'view': 'View',
