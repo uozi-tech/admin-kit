@@ -2,7 +2,7 @@ import antfu from '@antfu/eslint-config'
 
 export default antfu({
   type: 'lib',
-  markdown: true,
+  markdown: false,
   ignores: [
     '**/node_modules/*',
     '**/dist/*',

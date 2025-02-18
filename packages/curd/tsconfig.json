@@ -30,7 +30,7 @@
       "vite/client",
       "vitest/config"
     ],
-    "baseUrl": ".",
+    "baseUrl": "."
   },
   "include": [
     "src/**/*.ts",

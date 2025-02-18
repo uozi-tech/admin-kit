@@ -8,7 +8,7 @@ on:
     paths:
       - 'packages/**'
       - '.changeset/**'
-      - 'eslint.config.mjs'
+      - eslint.config.mjs
       - 'scripts/**'
       - '.github/**'
 

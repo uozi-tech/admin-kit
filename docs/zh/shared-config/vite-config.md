@@ -4,7 +4,7 @@
 
 shared-config 提供了一套开箱即用的 Vite 配置:
 
-```ts
+```json5
 {
   // 路径别名
   resolve: {

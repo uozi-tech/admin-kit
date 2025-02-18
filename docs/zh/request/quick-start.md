@@ -69,7 +69,6 @@ await http.patch('/api/users/1', {
 :::
 
 ```ts
-import { createApp } from 'vue'
 import { setRequestConfig } from '@uozi-admin/request'
 
 setRequestConfig({
