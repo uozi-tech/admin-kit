@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 3.4.0
+
+### Minor Changes
+
+- [`066a13e`](https://github.com/uozi-tech/admin-kit/commit/066a13e8b9c7e6bc5e8fba06f5aadd60a179d6b6) Thanks [@akinoccc](https://github.com/akinoccc)! - feat(curd): support config pagination path
+
 ## 3.3.1
 
 ### Patch Changes
