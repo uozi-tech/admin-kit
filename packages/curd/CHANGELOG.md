@@ -1,5 +1,13 @@
 # @uozi-admin/curd
 
+## 3.4.1
+
+### Patch Changes
+
+- [`f210fc0`](https://github.com/uozi-tech/admin-kit/commit/f210fc0a49ff67bf7b642446ca1934a3965cc3a3) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): `overwrite-params` not react changes
+
+- [`6224524`](https://github.com/uozi-tech/admin-kit/commit/62245244c8590e029f63d04a7bdf491d67e70e46) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): `overwrite-params` not take effect
+
 ## 3.4.0
 
 ### Minor Changes
