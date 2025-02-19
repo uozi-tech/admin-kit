@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { StdTableColumn } from '@uozi-admin/curd/src/types'
 import { StdCurd } from '@uozi-admin/curd'
-import { h } from 'vue'
+import { h, ref } from 'vue'
 import { $gettext } from '~/gettext'
 
 const columns: StdTableColumn[] = [
@@ -277,7 +277,8 @@ const columns: StdTableColumn[] = [
 ]
 
 const api = {
-  getList: () => {
+  getList: (p) => {
+    console.log('getList', p)
     const data = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1].map(() => ({
       id: 1,
       school_id: 1,
@@ -399,14 +400,21 @@ const api = {
     })
   }),
 }
+
+const overwriteParams = ref({
+  aaa: 111,
+})
+
+// setInterval(() => {
+//   overwriteParams.value.aaa = Math.random()
+//   console.log('overwriteParams', overwriteParams.value.aaa)
+// }, 3000)
 </script>
 
 <template>
   <StdCurd
-    :custom-params="{
-      aaa: 111,
-    }"
     :columns="columns"
+    :custom-query-params="overwriteParams"
     :api="api"
   />
 </template>

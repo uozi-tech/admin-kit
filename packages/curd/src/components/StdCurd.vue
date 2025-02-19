@@ -256,6 +256,7 @@ const title = computed(() => {
         ...props.tableProps,
       }"
       :overwrite-params="overwriteParams"
+      :custom-query-params="customQueryParams"
       @read="handleRead"
       @edit-item="handleEdit"
       @delete-item-temporarily="row => handleDataById(ApiActions.DELETE_ITEM_TEMPORARY, row)"
