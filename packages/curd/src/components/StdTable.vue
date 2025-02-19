@@ -5,7 +5,7 @@ import type { VNode } from 'vue'
 import type { CurdConfigT } from '..'
 import type { StdTableBodyScope, StdTableHeaderScope, StdTableProps } from '../types'
 import { Button, Flex, Popconfirm, Table } from 'ant-design-vue'
-import { debounce, get, isArray, isEqual } from 'lodash-es'
+import { cloneDeep, debounce, get, isArray, isEqual } from 'lodash-es'
 import { computed, inject, onMounted, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute, useRouter } from 'vue-router'
@@ -70,14 +70,19 @@ const searchFormData = ref<Record<string, any>>({
   sort_by: undefined,
   order: undefined,
 })
-const apiParams = computed(() => ({
-  ...searchFormData.value,
-  trash: props.isTrash,
-  page: pagination.value.current ?? 1,
-  page_size: pagination.value?.pageSize ?? 20,
-  ...props.customQueryParams,
-  overwriteParams: props.overwriteParams,
-}))
+
+const apiParams = computed(() => {
+  const overwriteParams = cloneDeep(props.overwriteParams)
+  const customQueryParams = cloneDeep(props.customQueryParams)
+  return {
+    ...searchFormData.value,
+    trash: props.isTrash,
+    page: pagination.value.current ?? 1,
+    page_size: pagination.value?.pageSize ?? 20,
+    ...customQueryParams,
+    overwriteParams,
+  }
+})
 
 // 更新锁，用于防止同步 route query 到 api params 时死循环
 let isUpdatedFromApiParams = false
