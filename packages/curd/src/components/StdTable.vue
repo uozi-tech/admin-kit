@@ -271,6 +271,10 @@ function onDeletePermanentlyBtnClick(record: any) {
 function CustomHeaderRender(props: { node: VNode }) {
   return props.node
 }
+
+defineExpose({
+  refresh: debouncedListApi,
+})
 </script>
 
 <template>
