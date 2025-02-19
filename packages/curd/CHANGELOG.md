@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 3.4.2
+
+### Patch Changes
+
+- [`86d926f`](https://github.com/uozi-tech/admin-kit/commit/86d926fa4b5af87ee931cac15d1add717955a47a) Thanks [@0xJacky](https://github.com/0xJacky)! - feat(curd): expose table refresh method
+
 ## 3.4.1
 
 ### Patch Changes
