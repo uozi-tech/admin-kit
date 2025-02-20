@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "npx jsonx-mock & vite",
     "gettext:extract": "vue-gettext-extract",
     "gettext:compile": "vue-gettext-compile"
   },
@@ -13,13 +13,14 @@
     "@uozi-admin/layout-antdv": "workspace:*",
     "@uozi-admin/request": "workspace:*",
     "ant-design-vue": "^4.2.6",
-    "jsonx-mock": "1.0.1-beta.1",
+    "dayjs": "^1.11.13",
     "pinia": "^2.2.2",
     "vue": "^3.5.12",
     "vue-router": "^4.4.5",
     "vue3-gettext": "4.0.0-alpha.8"
   },
   "devDependencies": {
-    "@uozi-admin/shared-config": "workspace:^"
+    "@uozi-admin/shared-config": "workspace:^",
+    "jsonx-mock": "1.1.0-beta.1"
   }
 }

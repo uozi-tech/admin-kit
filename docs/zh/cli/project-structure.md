@@ -121,7 +121,7 @@ export const useSettingsStore = defineStore('settings', {
 ```vue
 <!-- src/views/user/index.vue -->
 <script setup lang="ts">
-import { userApi } from '@/api/user'
+import { userApi } from '~/api/user'
 import { StdCurd } from '@uozi-admin/curd'
 import { columns } from './columns'
 </script>

@@ -10,6 +10,12 @@ export default createViteConfig({
     },
     server: {
       port: 10067,
+      proxy: {
+        '/api': {
+          target: 'http://localhost:10040',
+          changeOrigin: true,
+        },
+      },
     },
   },
   pluginOptions: {

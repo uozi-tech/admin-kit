@@ -49,5 +49,6 @@
   "explorer.fileNesting.expand": false,
   "explorer.fileNesting.patterns": {
     "package.json": "pnpm-lock.yaml,pnpm-workspace.yaml,.npmrc,commitlint.config.js,.gitignore,.gitattributes,auto-imports.d.ts,components.d.ts,eslint.config.mjs,.eslint-auto-import.mjs"
-  }
+  },
+  "typescript.tsdk": "node_modules/typescript/lib"
 }

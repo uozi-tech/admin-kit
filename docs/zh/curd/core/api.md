@@ -121,9 +121,9 @@ interface Response {
 ## 使用示例
 
 ```ts
-import type { UserInfo } from '@/types/user'
+import type { UserInfo } from '~/types/user'
 // api/user.ts
-import { request } from '@/utils/request'
+import { request } from '~/utils/request'
 
 export const userApi = {
   // 获取用户列表
