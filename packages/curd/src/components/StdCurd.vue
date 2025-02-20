@@ -247,6 +247,8 @@ const title = computed(() => {
       :disable-view="disableView"
       :disable-router-query="disableRouterQuery"
       :row-selection-type="rowSelectionType"
+      :row-draggable="rowDraggable"
+      :row-draggable-options="rowDraggableOptions"
       :refresh-config="refreshConfig"
       :table-props="{
         rowKey,

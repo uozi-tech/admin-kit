@@ -44,6 +44,8 @@ function onChange(pagination, filters, sorter) {
 | disableTrash | 禁用软删除 | boolean | false |
 | onlyQuery | 仅查询 | boolean | false |
 | isTrash | 是否显示回收站 | boolean | false |
+| rowDraggable | 是否开启行拖拽 | boolean | false |
+| rowDraggableOptions | 行拖拽配置 | \{ onMove: (oldRow, newRow) => void, onEnd: ({target_id, direction, affected_ids}) => void \} | - |
 
 ### Model
 

@@ -40,12 +40,14 @@
   },
   "devDependencies": {
     "@types/lodash-es": "^4.17.12",
+    "@types/sortablejs": "^1.15.8",
     "@uozi-admin/shared-config": "workspace:*",
     "simple-git-hooks": "^2.11.1",
     "unocss-preset-chinese": "^0.3.3",
     "unocss-preset-ease": "^0.0.4"
   },
   "dependencies": {
+    "sortablejs": "^1.15.6",
     "vue-i18n": "^11.1.1"
   }
 }

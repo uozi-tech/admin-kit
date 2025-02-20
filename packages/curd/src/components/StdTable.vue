@@ -4,12 +4,14 @@ import type { TablePaginationConfig } from 'ant-design-vue/lib/table/interface'
 import type { VNode } from 'vue'
 import type { CurdConfigT } from '..'
 import type { StdTableBodyScope, StdTableHeaderScope, StdTableProps } from '../types'
+import { HolderOutlined } from '@ant-design/icons-vue'
 import { Button, Flex, Popconfirm, Table } from 'ant-design-vue'
 import { cloneDeep, debounce, get, isArray, isEqual } from 'lodash-es'
-import { computed, inject, onMounted, ref, watch } from 'vue'
+import { computed, h, inject, onMounted, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute, useRouter } from 'vue-router'
 import { CURD_CONFIG_KEY, defaultConfig, getRealContent } from '..'
+import useDraggableTable from '../composables/useDraggableTable'
 import StdSearch from './StdSearch.vue'
 
 const props = defineProps<StdTableProps>()
@@ -23,7 +25,10 @@ const emit = defineEmits<{
   (e: 'deleteItemPermanently', record: any): void
 }>()
 
+const { randomId, initSortable, buildIndexMap, resetIndexMap } = useDraggableTable()
+
 onMounted(() => {
+  initSortable(tableData)
   debouncedListApi()
 })
 
@@ -58,8 +63,18 @@ const computedColumns = computed(() => {
 })
 /** 筛选 table 显示的列，并且获取 title 真实内容 */
 const dataColumns = computed<any>(() => {
-  return computedColumns.value
+  const cols = computedColumns.value
     .filter(item => !item.hiddenInTable)
+  if (props.rowDraggable) {
+    cols.unshift({
+      title: '',
+      dataIndex: 'drag',
+      customRender: () => {
+        return h(HolderOutlined, { class: 'ant-table-drag-icon' })
+      },
+    })
+  }
+  return cols
 })
 
 const searchColumns = computed(() => {
@@ -153,7 +168,7 @@ const debouncedListApi = debounce(async () => {
     // 获取分页数据
     const paginationPath = curdConfig.listApi?.paginationPath || '$.pagination'
     const paginationData = get(formattedRes, paginationPath.replace(/^\$\./, ''))
-    const { total, current, pageSize } = curdConfig.listApi?.paginationMap
+    const { total, current, pageSize } = curdConfig.listApi!.paginationMap!
 
     // 更新分页信息
     if (paginationData) {
@@ -167,6 +182,11 @@ const debouncedListApi = debounce(async () => {
 
     // 更新表格数据
     tableData.value = formattedRes.data
+
+    if (props.rowDraggable) {
+      resetIndexMap()
+      buildIndexMap(tableData.value)
+    }
   }
   finally {
     tableLoading.value = false
@@ -304,6 +324,7 @@ defineExpose({
       </template>
     </StdSearch>
     <Table
+      :id="`std-table-${randomId}`"
       v-model:pagination="pagination"
       :row-selection="rowSelection"
       :columns="dataColumns"
@@ -389,4 +410,14 @@ defineExpose({
   </div>
 </template>
 
-<style scoped lang="less"></style>
+<style scoped lang="less">
+:deep(.ant-table-drag-icon) {
+  float: left;
+  margin-right: 16px;
+  cursor: grab;
+}
+
+.sortable-ghost *, .sortable-chosen * {
+  cursor: grabbing !important;
+}
+</style>

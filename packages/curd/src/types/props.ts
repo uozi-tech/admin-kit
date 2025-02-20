@@ -17,7 +17,9 @@ export interface StdTableProps extends Pick<
   'disableEdit' |
   'disableSearch' |
   'disableDelete' |
-  'disableTrash'
+  'disableTrash' |
+  'rowDraggable' |
+  'rowDraggableOptions'
 > {
   getListApi: CurdApi['getList']
   refreshConfig?: {
@@ -60,4 +62,13 @@ export interface StdCurdProps {
   disableDelete?: boolean
   disableExport?: boolean
   disableTrash?: boolean
+  rowDraggable?: boolean
+  rowDraggableOptions?: {
+    onMove?: (oldRow: number[], newRow: number[]) => void
+    onEnd?: (data: {
+      target_id: number
+      direction: number
+      affected_ids: number[]
+    }) => void
+  }
 }

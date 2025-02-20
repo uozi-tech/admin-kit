@@ -279,8 +279,8 @@ const columns: StdTableColumn[] = [
 const api = {
   getList: (p) => {
     console.log('getList', p)
-    const data = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1].map(() => ({
-      id: 1,
+    const data = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1].map((_, index) => ({
+      id: index,
       school_id: 1,
       name: 'John Brown',
       age: 32,
@@ -413,9 +413,11 @@ const overwriteParams = ref({
 
 <template>
   <StdCurd
+    row-key="id"
     :columns="columns"
     :custom-query-params="overwriteParams"
     :api="api"
+    row-draggable
   />
 </template>
 
