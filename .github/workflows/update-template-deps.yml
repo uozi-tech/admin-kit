@@ -96,28 +96,28 @@ jobs:
             UPDATES+="- @uozi-admin/curd@^${CURD_VERSION}"$'\n'
             echo "UPDATED_CURD_VERSION=^${CURD_VERSION}" >> $GITHUB_ENV
           else
-            echo "UPDATED_CURD_VERSION='already at latest'" >> $GITHUB_ENV
+            echo "UPDATED_CURD_VERSION=already at latest" >> $GITHUB_ENV
           fi
 
           if [ "$LAYOUT_VERSION" != "$CURRENT_LAYOUT_VERSION" ]; then
             UPDATES+="- @uozi-admin/layout-antdv@^${LAYOUT_VERSION}"$'\n'
             echo "UPDATED_LAYOUT_VERSION=^${LAYOUT_VERSION}" >> $GITHUB_ENV
           else
-            echo "UPDATED_LAYOUT_VERSION='already at latest'" >> $GITHUB_ENV
+            echo "UPDATED_LAYOUT_VERSION=already at latest" >> $GITHUB_ENV
           fi
 
           if [ "$REQUEST_VERSION" != "$CURRENT_REQUEST_VERSION" ]; then
             UPDATES+="- @uozi-admin/request@^${REQUEST_VERSION}"$'\n'
             echo "UPDATED_REQUEST_VERSION=^${REQUEST_VERSION}" >> $GITHUB_ENV
           else
-            echo "UPDATED_REQUEST_VERSION='already at latest'" >> $GITHUB_ENV
+            echo "UPDATED_REQUEST_VERSION=already at latest" >> $GITHUB_ENV
           fi
 
           if [ "$SHARED_CONFIG_VERSION" != "$CURRENT_SHARED_CONFIG_VERSION" ]; then
             UPDATES+="- @uozi-admin/shared-config@^${SHARED_CONFIG_VERSION}"$'\n'
             echo "UPDATED_SHARED_CONFIG_VERSION=^${SHARED_CONFIG_VERSION}" >> $GITHUB_ENV
           else
-            echo "UPDATED_SHARED_CONFIG_VERSION='already at latest'" >> $GITHUB_ENV
+            echo "UPDATED_SHARED_CONFIG_VERSION=already at latest" >> $GITHUB_ENV
           fi
 
           # 创建changeset文件
