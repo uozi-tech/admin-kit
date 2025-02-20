@@ -101,7 +101,7 @@ export interface CurdConfigT {
      * }
      * ```
      */
-    paginationPath: string
+    paginationPath?: string
 
     /**
      * The mapping of the pagination data in the response
@@ -112,7 +112,7 @@ export interface CurdConfigT {
      *  totalPages: 'totalPages',
      * }
      */
-    paginationMap: PaginationMap
+    paginationMap?: PaginationMap
 
     /**
      * The response format function
