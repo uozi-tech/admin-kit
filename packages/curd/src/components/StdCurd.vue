@@ -232,6 +232,7 @@ const title = computed(() => {
         <slot name="afterListActions" />
       </Flex>
     </template>
+    <slot name="beforeTable" />
     <StdTable
       v-model:table-loading="tableLoading"
       :title
