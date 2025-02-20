@@ -1,5 +1,15 @@
 # @uozi-admin/curd
 
+## 3.5.0
+
+### Minor Changes
+
+- [`57fb4dc`](https://github.com/uozi-tech/admin-kit/commit/57fb4dcc6b1fd3b0b5fa5c54f486a0ec0bfbdf02) Thanks [@akinoccc](https://github.com/akinoccc)! - feat(curd): [table] row draggable
+
+### Patch Changes
+
+- [`46087b4`](https://github.com/uozi-tech/admin-kit/commit/46087b47a30ef3c72d6d72ef0ddb3e8a5fd0e3ce) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): config typedef issus of pagination
+
 ## 3.4.3
 
 ### Patch Changes
