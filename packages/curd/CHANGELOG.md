@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 3.5.1
+
+### Patch Changes
+
+- [`6e87acf`](https://github.com/uozi-tech/admin-kit/commit/6e87acfda76c43354c05fe68d35fc772b4846c35) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): search params not consistent with router query
+
 ## 3.5.0
 
 ### Minor Changes
