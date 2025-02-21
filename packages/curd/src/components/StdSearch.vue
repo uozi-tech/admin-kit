@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { StdFormConfig, StdTableColumn } from '../types'
+import type { StdTableColumn } from '../types'
 import { Form, FormItem } from 'ant-design-vue'
 import { getColumnKey, getRealContent } from '../utils/util'
 import FormControllerRender from './StdFormController.vue'
@@ -11,10 +11,16 @@ defineProps<{
 const formData = defineModel<Record<string, any>>('data', { required: true })
 
 function getConfig(c: StdTableColumn) {
+  if (c.search === false) {
+    return null
+  }
   if (c.search === true) {
     return c.edit
   }
-  return c.search as StdFormConfig
+  if (typeof c.search === 'object' && !c.search.type) {
+    c.search.type = c.edit?.type
+  }
+  return c.search
 }
 
 function getLabel(c: StdTableColumn) {

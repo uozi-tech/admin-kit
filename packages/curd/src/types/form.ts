@@ -86,7 +86,7 @@ export interface StdFormConfig extends Record<any, any> {
   customComponent?: Record<string | number | symbol, any>
 
   formItem?: FormItemProps & {
-    name?: string | (() => string)
+    name?: string | string[]
     label?: string | (() => string)
     hiddenLabel?: boolean
   }

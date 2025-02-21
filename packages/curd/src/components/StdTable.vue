@@ -6,7 +6,7 @@ import type { CurdConfigT } from '..'
 import type { StdTableBodyScope, StdTableHeaderScope, StdTableProps } from '../types'
 import { HolderOutlined } from '@ant-design/icons-vue'
 import { Button, Flex, Popconfirm, Table } from 'ant-design-vue'
-import { cloneDeep, debounce, get, isArray, isEqual } from 'lodash-es'
+import { cloneDeep, debounce, get, isArray, isEqual, isObject } from 'lodash-es'
 import { computed, h, inject, onMounted, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute, useRouter } from 'vue-router'
@@ -110,7 +110,13 @@ const debouncedUpdateRouteQuery = debounce(async (newQuery: Record<string, any>)
 }, 200, { leading: false, trailing: true })
 
 // 搜索后重置分页页码
-watch(searchFormData, () => pagination.value.current = 1, { deep: true })
+watch(searchFormData, () => {
+  pagination.value.current = 1
+  // debouncedUpdateRouteQuery({
+  //   page: 1,
+  //   page_size: pagination.value.pageSize,
+  // })
+}, { deep: true })
 
 // route query 改变并且不是由 debouncedUpdateRouteQuery 触发的情况下，才同步到 apiParams
 watch(() => route?.query, (v) => {
@@ -119,7 +125,16 @@ watch(() => route?.query, (v) => {
   pagination.value.current = Number(v.page) || 1
   pagination.value.pageSize = Number(v.page_size) || 20
   searchColumns.value.forEach((c) => {
-    const key = c.dataIndex as string
+    const dataIndex = c.dataIndex
+    let key = dataIndex
+    if (isObject(c.search) && c.search.formItem?.name) {
+      key = c.search.formItem.name
+    }
+
+    if (isArray(key)) {
+      key = key.join('.')
+    }
+
     searchFormData.value[key] = v[key]
   })
 }, { deep: true, immediate: true })

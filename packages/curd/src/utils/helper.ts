@@ -15,5 +15,5 @@ export function getPlaceholder(column: StdTableColumn, config?: StdFormConfig) {
 
   // config[type].placeholder = getRealContent(config.formItem?.name ?? column.title ?? column.dataIndex as string)
 
-  return getRealContent(config?.[type]?.placeholder ?? config?.formItem?.name ?? column.title ?? column.dataIndex as string)
+  return getRealContent(config?.[type]?.placeholder ?? config?.formItem?.label ?? column.title ?? config?.formItem?.name ?? column.dataIndex as string)
 }

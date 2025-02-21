@@ -25,7 +25,7 @@ export interface StdTableColumn<T = any> extends Omit<TableColumnType, 'customRe
   dataIndex: string | string[]
   customHeaderRender?: CustomHeaderRenderFn
   pure?: boolean
-  search?: boolean | StdFormConfig
+  search?: boolean | Partial<StdFormConfig>
   edit?: StdFormConfig
   customRender?: CustomRenderFn<T>
   hiddenInTable?: boolean
