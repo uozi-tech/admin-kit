@@ -1,5 +1,11 @@
 # @uozi-admin/layout-antdv
 
+## 0.0.11
+
+### Patch Changes
+
+- [`0392a5e`](https://github.com/uozi-tech/admin-kit/commit/0392a5e5088955ebd60c68cf8af91a5e93ac338f) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(layout): breadcrumb should not fixed
+
 ## 0.0.10
 
 ### Patch Changes
