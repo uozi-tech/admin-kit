@@ -314,6 +314,7 @@ defineExpose({
 
 <template>
   <div>
+    <slot name="beforeSearch" />
     <StdSearch
       v-if="!props.disableSearch"
       v-model:data="searchFormData"
@@ -338,6 +339,7 @@ defineExpose({
         </Flex>
       </template>
     </StdSearch>
+    <slot name="beforeTable" />
     <Table
       :id="`std-table-${randomId}`"
       v-model:pagination="pagination"

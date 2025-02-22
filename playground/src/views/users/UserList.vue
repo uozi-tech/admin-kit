@@ -1,13 +1,25 @@
 <script setup lang="ts">
 import type { StdTableColumn } from '@uozi-admin/curd'
 import { StdCurd } from '@uozi-admin/curd'
-import { h } from 'vue'
 import { userApi } from '~/api'
 
 const columns: StdTableColumn[] = [
   {
     title: '姓名',
     dataIndex: 'name',
+    search: {
+      formItem: {
+        name: 'name_fz',
+      },
+    },
+    edit: {
+      type: 'input',
+      formItem: { rules: [{ required: true }] },
+    },
+  },
+  {
+    title: '邮箱',
+    dataIndex: 'email',
     search: true,
     edit: {
       type: 'input',
@@ -24,25 +36,22 @@ const columns: StdTableColumn[] = [
     },
   },
   {
-    title: '状态',
-    dataIndex: 'active',
+    title: '密码',
+    dataIndex: 'password',
     edit: {
-      type: 'switch',
-      switch: { checkedChildren: '启用', unCheckedChildren: '禁用' },
+      type: 'password',
+      formItem: { rules: [{ required: true }] },
     },
   },
   {
-    title: '头像',
-    dataIndex: 'avatar',
+    title: '状态',
+    dataIndex: 'status',
+    search: true,
     edit: {
-      type: 'upload',
-      upload: {
-        listType: 'picture-card',
-        maxCount: 1,
-        accept: 'image/*',
-      },
+      type: 'select',
+      select: { options: [{ label: '启用', value: 1 }, { label: '禁用', value: -1 }] },
+      formItem: { rules: [{ required: true }] },
     },
-    customRender: ({ text }) => text ? h('img', { src: text, style: 'width: 40px; height: 40px; border-radius: 50%;' }) : '-',
   },
   {
     title: '操作',
@@ -53,8 +62,20 @@ const columns: StdTableColumn[] = [
 
 <template>
   <StdCurd
+    hide-header
     :api="userApi"
     :columns="columns"
     row-key="id"
-  />
+  >
+    <template #beforeSearch>
+      <Button>
+        按钮
+      </Button>
+    </template>
+    <template #beforeTable>
+      <Button>
+        按钮
+      </Button>
+    </template>
+  </StdCurd>
 </template>
