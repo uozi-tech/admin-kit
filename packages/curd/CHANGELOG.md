@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 3.7.1
+
+### Patch Changes
+
+- [`6b87238`](https://github.com/uozi-tech/admin-kit/commit/6b8723835ee83c30d4e62e9d336eb2dd7f2ba363) Thanks [@0xJacky](https://github.com/0xJacky)! - fix(curd): [datetime-picker] fail to change if the value is undefined
+
 ## 3.7.0
 
 ### Minor Changes
