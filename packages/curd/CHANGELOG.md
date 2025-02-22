@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 3.6.1
+
+### Patch Changes
+
+- [`c9bc2b1`](https://github.com/uozi-tech/admin-kit/commit/c9bc2b1fe82483bc1ea82c658eba1cac66bde426) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): incorrectly render with labels
+
 ## 3.6.0
 
 ### Minor Changes
