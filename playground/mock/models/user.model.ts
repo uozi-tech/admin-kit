@@ -6,9 +6,18 @@ export class User {
   @Field({ type: 'number' })
   id?: number
 
-  @Field({ type: 'string', required: true, min: 2, max: 50 })
+  @Field({ type: 'string', required: true, min: 2, max: 50, filterable: true })
   name?: string
 
   @Field({ type: 'number', min: 0, max: 150 })
   age?: number
+
+  @Field({ type: 'string', required: true, min: 2, max: 50, filterable: true })
+  email?: string
+
+  @Field({ type: 'string', required: true, min: 2, max: 50, filterable: true })
+  password?: string
+
+  @Field({ type: 'number', required: true, filterable: true })
+  status?: number
 }

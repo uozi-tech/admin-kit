@@ -14,6 +14,7 @@ export default createViteConfig({
         '/api': {
           target: 'http://localhost:10040',
           changeOrigin: true,
+          rewrite: path => path.replace(/^\/api/, '/api'),
         },
       },
     },

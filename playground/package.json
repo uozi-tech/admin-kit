@@ -3,7 +3,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "npx jsonx-mock & vite",
+    "dev": "vite",
+    "mock": "npx jsonx-mock",
     "gettext:extract": "vue-gettext-extract",
     "gettext:compile": "vue-gettext-compile"
   },
@@ -21,6 +22,6 @@
   },
   "devDependencies": {
     "@uozi-admin/shared-config": "workspace:^",
-    "jsonx-mock": "1.1.0-beta.1"
+    "jsonx-mock": "1.1.0-beta.3"
   }
 }
