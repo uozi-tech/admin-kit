@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 3.7.0
+
+### Minor Changes
+
+- [#101](https://github.com/uozi-tech/admin-kit/pull/101) [`8642e33`](https://github.com/uozi-tech/admin-kit/commit/8642e337f531551b2ff01e5064b15f31e1aa569f) Thanks [@0xJacky](https://github.com/0xJacky)! - feat(curd): add timestamp config for date(datetime) pickers
+
 ## 3.6.1
 
 ### Patch Changes
