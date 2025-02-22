@@ -21,7 +21,7 @@ const usingTimestamp = isUingTimestamp(props.props)
 const computedValue = computed<string | Dayjs | undefined>({
   get() {
     if (usingTimestamp) {
-      return dayjs.unix(Number(value.value))
+      return value.value ? dayjs.unix(Number(value.value)) : undefined
     }
     else {
       return value.value?.toString()
