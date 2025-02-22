@@ -13,8 +13,10 @@ const props = withDefaults(
     selectionType: 'radio',
   },
 )
+const emit = defineEmits<{
+  (e: 'selectedRecords', records: any[]): void
+}>()
 const value = defineModel<any>('value')
-
 const dataColumns = computed(() => {
   return props.columns.filter(item => item.pure)
 })
@@ -41,6 +43,7 @@ function setValue() {
     value.value = selectedRowKeys.value
   }
   visible.value = false
+  emit('selectedRecords', selectedRows.value)
 }
 
 function removeValue(v) {

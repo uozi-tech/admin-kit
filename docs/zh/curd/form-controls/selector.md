@@ -45,6 +45,15 @@ const config = {
 | hideInputContainer | 是否隐藏输入容器 | boolean | false |
 | modalWidth | 弹窗宽度 | number \| string | - |
 | placeholder | 选择框默认文字 | PlaceholderT | - |
+| overwriteParams | 覆盖请求参数 | Record<string, any> | - |
+| labelRender | 自定义 label 渲染函数 | (row: any) => string | - |
+
+### 事件
+
+| 事件名 | 说明 | 参数 |
+| --- | --- | --- |
+| selectedRecords | 选择记录 | records: any[] |
+
 
 ```ts
 export interface PlaceholderT { placeholder?: number | string | (() => string) }
@@ -60,6 +69,8 @@ export type SelectorConfig = {
   disabled?: boolean
   hideInputContainer?: boolean
   modalWidth?: number | string
+  overwriteParams?: Record<string, any>
+  labelRender?: (row: any) => string
 } & PlaceholderT
 ```
 
