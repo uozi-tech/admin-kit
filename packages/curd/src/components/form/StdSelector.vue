@@ -2,7 +2,7 @@
 import type { SelectorConfig } from '../../types'
 import { Form, Modal, Select } from 'ant-design-vue'
 import { get, isArray } from 'lodash-es'
-import { computed, nextTick, onMounted, ref, watch, withDefaults } from 'vue'
+import { computed, nextTick, onMounted, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import StdTable from '../StdTable.vue'
 
