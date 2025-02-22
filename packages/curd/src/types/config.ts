@@ -54,6 +54,14 @@ export interface RequestFormatFn {
 export type I18nLanguage = 'zh-CN' | 'zh-HK' | 'zh-TW' | 'en-US'
 
 /**
+ * The time config
+ * @description The config for the time
+ */
+export interface TimeConfig {
+  timestamp?: boolean
+}
+
+/**
  * The i18n token
  * @description The token used in the curd i18n
  */
@@ -166,4 +174,10 @@ export interface CurdConfigT {
   i18n?: I18nOptions<{
     message: I18nLanguageObject
   }>
+
+  /**
+   * The time config
+   * @description The config for the time
+   */
+  time?: TimeConfig
 }

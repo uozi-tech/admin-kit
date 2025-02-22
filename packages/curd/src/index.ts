@@ -32,6 +32,9 @@ export const defaultConfig: Required<CurdConfigT> = {
       'en-US': enUS,
     },
   },
+  time: {
+    timestamp: false,
+  },
 }
 
 export const CURD_CONFIG_KEY = Symbol('curdConfig')

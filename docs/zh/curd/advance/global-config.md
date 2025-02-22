@@ -58,6 +58,11 @@ app.use(createCurdConfig({
     // 请求参数格式化
     requestFormat: (params) => {
       return params
+    },
+
+    // 时间戳配置
+    time: {
+      timestamp: true
     }
   }
 }))
