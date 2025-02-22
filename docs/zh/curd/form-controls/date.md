@@ -22,6 +22,10 @@ const config = {
 
 请参考 [Ant Design Vue DatePicker](https://www.antdv.com/components/date-picker-cn#api)
 
+| 属性 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| timestamp | 是否使用时间戳 | boolean | 继承 `curdConfig.time.timestamp` |
+
 ## 示例
 
 ```vue
@@ -41,6 +45,7 @@ const columns = [
         disabledDate: (current) => {
           return current && current > moment().endOf('day')
         }
+        timestamp: false
       }
     }
   }

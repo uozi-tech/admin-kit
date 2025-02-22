@@ -2,15 +2,15 @@
 import type { FilterValue, SorterResult, TableRowSelection } from 'ant-design-vue/es/table/interface'
 import type { TablePaginationConfig } from 'ant-design-vue/lib/table/interface'
 import type { VNode } from 'vue'
-import type { CurdConfigT } from '..'
 import type { StdTableBodyScope, StdTableHeaderScope, StdTableProps } from '../types'
 import { HolderOutlined } from '@ant-design/icons-vue'
 import { Button, Flex, Popconfirm, Table } from 'ant-design-vue'
 import { cloneDeep, debounce, get, isArray, isEqual, isObject } from 'lodash-es'
-import { computed, h, inject, onMounted, ref, watch } from 'vue'
+import { computed, h, onMounted, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute, useRouter } from 'vue-router'
-import { CURD_CONFIG_KEY, defaultConfig, getRealContent } from '..'
+import { getRealContent } from '..'
+import useCurdConfig from '../composables/useCurdConfig'
 import useDraggableTable from '../composables/useDraggableTable'
 import StdSearch from './StdSearch.vue'
 
@@ -159,7 +159,7 @@ function resetSearchForm() {
 
 // 表格数据
 const tableData = ref<Record<string, any>[]>([])
-const curdConfig = inject<Required<CurdConfigT>>(CURD_CONFIG_KEY, defaultConfig as Required<CurdConfigT>)
+const curdConfig = useCurdConfig()
 const debouncedListApi = debounce(async () => {
   tableLoading.value = true
 

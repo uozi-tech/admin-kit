@@ -58,6 +58,11 @@ app.use(createCurdConfig({
     // 请求参数格式化
     requestFormat: (params) => {
       return params
+    },
+
+    // 时间戳配置
+    time: {
+      timestamp: true
     }
   }
 }))
@@ -107,5 +112,17 @@ interface ResponseFormat {
 ```ts
 interface RequestFormat {
   (params: any): any
+}
+```
+
+### 时间戳配置
+
+如果项目的后端使用的是时间戳，可以通过 `time` 配置来统一设置时间戳配置。
+
+时间戳配置:
+
+```ts
+interface TimeT {
+  timestamp: boolean
 }
 ```
