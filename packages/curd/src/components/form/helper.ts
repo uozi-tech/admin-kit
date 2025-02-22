@@ -1,7 +1,7 @@
 import type { TimeT } from '../../types'
 import useCurdConfig from '../../composables/useCurdConfig'
 
-export function isUingTimestamp(props?: TimeT) {
+export function isUsingTimestamp(props?: TimeT) {
   const curdConfig = useCurdConfig()
 
   if (props?.timestamp !== undefined) {

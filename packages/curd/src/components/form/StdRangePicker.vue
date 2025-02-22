@@ -6,13 +6,13 @@ import { RangePicker } from 'ant-design-vue'
 import dayjs from 'dayjs'
 import { computed } from 'vue'
 import { Format } from '../../constants'
-import { isUingTimestamp } from './helper'
+import { isUsingTimestamp } from './helper'
 
 const props = defineProps<{ props?: RangePickerConfig & { placeholder?: string | number } & TimeT, type: PanelMode | 'datetime' }>()
 
 const value = defineModel<RangePickerConfig['value'] & [number, number] & [string, string]>('value')
 
-const usingTimestamp = isUingTimestamp(props.props)
+const usingTimestamp = isUsingTimestamp(props.props)
 
 const computedValue = computed<[string, string] | [Dayjs, Dayjs] | undefined>({
   get() {

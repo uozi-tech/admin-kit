@@ -8,7 +8,7 @@ import localeData from 'dayjs/plugin/localeData'
 import weekday from 'dayjs/plugin/weekday'
 import { computed } from 'vue'
 import { Format } from '../../constants'
-import { isUingTimestamp } from './helper'
+import { isUsingTimestamp } from './helper'
 
 const props = defineProps<{ props?: (DatePickerConfig | WeekPickerConfig | MonthPickerConfig) & { placeholder?: string | number } & TimeT, type: PanelMode | 'datetime' }>()
 dayjs.extend(weekday)
@@ -16,7 +16,7 @@ dayjs.extend(localeData)
 
 const value = defineModel<DatePickerConfig['value'] | WeekPickerConfig['value'] | MonthPickerConfig['value'] | number | string>('value')
 
-const usingTimestamp = isUingTimestamp(props.props)
+const usingTimestamp = isUsingTimestamp(props.props)
 
 const computedValue = computed<string | Dayjs | undefined>({
   get() {
