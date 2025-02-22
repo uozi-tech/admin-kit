@@ -1,5 +1,17 @@
 # @uozi-admin/curd
 
+## 3.6.0
+
+### Minor Changes
+
+- [`4a02018`](https://github.com/uozi-tech/admin-kit/commit/4a020187976d4f7709180190d9f8023fdcc2dbb0) Thanks [@akinoccc](https://github.com/akinoccc)! - feat(curd): add slots of `beforeSearch` and `beforeTable`
+
+- [`0f596f6`](https://github.com/uozi-tech/admin-kit/commit/0f596f679abe50efd5f1060031ec2d68c677d176) Thanks [@akinoccc](https://github.com/akinoccc)! - feat(curd): support hide card header, title and extra actions
+
+### Patch Changes
+
+- [`810b07f`](https://github.com/uozi-tech/admin-kit/commit/810b07f7b50248d83c1e644104b353814c2936ee) Thanks [@0xJacky](https://github.com/0xJacky)! - feat(curd): [std-selector] add selectedRecords event
+
 ## 3.5.1
 
 ### Patch Changes
