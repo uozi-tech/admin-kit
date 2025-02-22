@@ -2,6 +2,7 @@
 import type { CustomRenderArgs, StdTableColumn } from '../types'
 import { Descriptions, DescriptionsItem } from 'ant-design-vue'
 import { get } from 'lodash-es'
+import { getEditLabel } from '../utils'
 
 const props = defineProps<{
   record: any
@@ -25,7 +26,7 @@ function DataItemRender(props: CustomRenderArgs) {
     <DescriptionsItem
       v-for="(column, index) in displayColumns"
       :key="index"
-      :label="column.title"
+      :label="getEditLabel(column)"
     >
       <DataItemRender
         v-if="Object.keys(props.record).length"

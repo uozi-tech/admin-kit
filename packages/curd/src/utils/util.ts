@@ -25,3 +25,23 @@ export function getRealContent(content?: string | (() => string)) {
 
   return content ?? ''
 }
+
+export function getEditLabel(c: StdTableColumn) {
+  if (c.edit?.formItem?.hiddenLabel) {
+    return
+  }
+
+  return getRealContent(c.edit?.formItem?.label ?? c.title)
+}
+
+export function getSearchLabel(c: StdTableColumn) {
+  if (typeof c.search === 'boolean') {
+    return getEditLabel(c)
+  }
+
+  if (c.search?.formItem?.hiddenLabel) {
+    return
+  }
+
+  return getRealContent(c.search?.formItem?.label ?? c.title)
+}

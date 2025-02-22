@@ -5,7 +5,8 @@ import { userApi } from '~/api'
 
 const columns: StdTableColumn[] = [
   {
-    title: '姓名',
+    title: () =>
+      '姓名',
     dataIndex: 'name',
     search: {
       formItem: {

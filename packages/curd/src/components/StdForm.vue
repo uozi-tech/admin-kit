@@ -2,7 +2,7 @@
 import type { StdTableColumn } from '../types'
 import { Form, FormItem, FormItemRest } from 'ant-design-vue'
 import { ref } from 'vue'
-import { getColumnKey, getRealContent } from '../utils/util'
+import { getColumnKey, getEditLabel } from '../utils'
 import FormControllerRender from './StdFormController.vue'
 
 const props = defineProps<{
@@ -32,14 +32,6 @@ for (const column of props.columns) {
   }
 }
 
-function getLabel(c: StdTableColumn) {
-  if (c.edit?.formItem?.hiddenLabel) {
-    return
-  }
-
-  return getRealContent(c.edit?.formItem?.label ?? c.title)
-}
-
 const formRef = ref()
 defineExpose({
   formRef,
@@ -63,7 +55,7 @@ defineExpose({
         :column="c"
         style="margin-bottom: 12px;"
         v-bind="c.edit?.formItem"
-        :label="getLabel(c)"
+        :label="getEditLabel(c)"
         :name="c.edit?.valueKey ?? c.edit?.formItem?.name ?? c.dataIndex"
       >
         <FormControllerRender
