@@ -204,11 +204,20 @@ const title = computed(() => {
 
 <template>
   <Card>
-    <template #title>
-      {{ title }}
+    <template
+      v-if="!hideHeader && !hideTitle"
+      #title
+    >
+      <slot name="titleLeft" />
+      <slot name="title">
+        {{ title }}
+      </slot>
       <slot name="titleRight" />
     </template>
-    <template #extra>
+    <template
+      v-if="!hideHeader && !hideExtra"
+      #extra
+    >
       <Flex gap="8">
         <slot name="beforeListActions" />
         <a
@@ -232,7 +241,7 @@ const title = computed(() => {
         <slot name="afterListActions" />
       </Flex>
     </template>
-    <slot name="beforeTable" />
+    <slot name="beforeCardBody" />
     <StdTable
       v-model:table-loading="tableLoading"
       :title

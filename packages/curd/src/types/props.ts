@@ -62,6 +62,9 @@ export interface StdCurdProps {
   disableDelete?: boolean
   disableExport?: boolean
   disableTrash?: boolean
+  hideTitle?: boolean
+  hideExtra?: boolean
+  hideHeader?: boolean
   rowDraggable?: boolean
   rowDraggableOptions?: {
     onMove?: (oldRow: number[], newRow: number[]) => void
