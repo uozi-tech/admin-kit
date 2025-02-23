@@ -94,7 +94,7 @@ function onSidebarCollapse(collapsed: boolean) {
             @toggle-theme="toggleTheme"
           />
           <template #actions>
-            <slot name="page-header-extra" />
+            <slot name="header-extra" />
           </template>
         </AppHeader>
       </LayoutHeader>
