@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 3.7.4
+
+### Patch Changes
+
+- [`e3ac490`](https://github.com/uozi-tech/admin-kit/commit/e3ac490fe5207aecef2b30ce5409f35ed474202a) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): pagination field name not sync on request params
+
 ## 3.7.3
 
 ### Patch Changes
