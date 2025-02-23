@@ -312,7 +312,7 @@ const modalTitle = computed(() => {
             :record="itemDetail"
           />
           <StdForm
-            v-else-if="mode === 'edit'"
+            v-else-if="mode === 'edit' || mode === 'add'"
             ref="stdForm"
             :data="itemDetail"
             :columns="formColumns"
@@ -327,7 +327,7 @@ const modalTitle = computed(() => {
           {{ t('close') }}
         </Button>
         <Button
-          v-show="mode !== 'read'"
+          v-show="mode !== 'view'"
           :loading="modalLoading"
           type="primary"
           @click="onSave"

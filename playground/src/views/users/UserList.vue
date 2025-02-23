@@ -63,7 +63,6 @@ const columns: StdTableColumn[] = [
 
 <template>
   <StdCurd
-    hide-header
     :api="userApi"
     :columns="columns"
     row-key="id"
