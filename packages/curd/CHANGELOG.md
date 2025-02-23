@@ -1,5 +1,13 @@
 # @uozi-admin/curd
 
+## 3.7.2
+
+### Patch Changes
+
+- [`01c62f0`](https://github.com/uozi-tech/admin-kit/commit/01c62f08f1eb40bb584b1bbfc8264b1cb09fd753) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): hidden label take effect in detail
+
+- [`0dbbc14`](https://github.com/uozi-tech/admin-kit/commit/0dbbc1407bbc5788d2e12a99cd1865591857ee4c) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): incorrect modal title in detail
+
 ## 3.7.1
 
 ### Patch Changes
