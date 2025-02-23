@@ -88,6 +88,8 @@ export interface StdFormConfig extends Record<any, any> {
   formItem?: FormItemProps & {
     name?: string | string[]
     label?: string | (() => string)
-    hiddenLabel?: boolean
+    hiddenLabelInEdit?: boolean
+    hiddenLabelInSearch?: boolean
+    hiddenLabelInDetail?: boolean
   }
 }

@@ -26,7 +26,7 @@ function DataItemRender(props: CustomRenderArgs) {
     <DescriptionsItem
       v-for="(column, index) in displayColumns"
       :key="index"
-      :label="getEditLabel(column)"
+      :label="getEditLabel(column, 'detail')"
     >
       <DataItemRender
         v-if="Object.keys(props.record).length"
