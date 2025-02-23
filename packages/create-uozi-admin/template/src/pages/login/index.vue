@@ -97,10 +97,23 @@ const settings = useSettingsStore()
           </AForm>
           <div class="footer">
             <p>Copyright © 2023 - {{ thisYear }} {{ settings.copyright }}</p>
-            Language
-            <LanguageSelect class="inline" />
+            <AFlex
+              justify="center"
+              align="center"
+              gap="8"
+            >
+              <LanguageSelect
+                class="inline"
+                :current-language="settings.language"
+                :languages="gettext.available"
+                @change-language="(l) => settings.setLanguage(l)"
+              />
+            </AFlex>
             <div class="flex justify-center mt-4">
-              <ThemeSwitch />
+              <ThemeSwitch
+                :current-theme="settings.theme"
+                @toggle-theme="t => settings.setTheme(t)"
+              />
             </div>
           </div>
         </div>

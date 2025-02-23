@@ -1,5 +1,7 @@
-import { useSettingsStore } from './modules/settings'
+import piniaPluginPersistState from 'pinia-plugin-persistedstate'
 
-const store = createPinia()
+export * from './modules/settings'
 
-export { store, useSettingsStore }
+export const store = createPinia()
+
+store.use(piniaPluginPersistState)

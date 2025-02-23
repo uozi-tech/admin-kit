@@ -1,9 +1,10 @@
+import type { AntDesignOutlinedIconType } from 'ant-design-vue'
 import 'vue-router'
 
 declare module 'vue-router' {
   interface RouteMeta {
     title?: string | (() => string)
-    needAuth?: boolean
+    noNeedAuth?: boolean
     icon?: AntDesignOutlinedIconType
     group?: string
     hidden?: boolean

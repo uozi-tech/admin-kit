@@ -6,6 +6,7 @@ import { computed } from 'vue'
 import { RouterView } from 'vue-router'
 import gettext from '~/language/gettext'
 import { routes } from '~/router'
+import { useSettingsStore } from '~/store'
 
 const route = useRoute()
 
