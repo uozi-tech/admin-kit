@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 3.7.3
+
+### Patch Changes
+
+- [`81c6a52`](https://github.com/uozi-tech/admin-kit/commit/81c6a52095e094368338509ec9fde0dd01b78cfb) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): incorrect mode on clicking `view`
+
 ## 3.7.2
 
 ### Patch Changes
