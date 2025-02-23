@@ -1,5 +1,11 @@
 # @uozi-admin/layout-antdv
 
+## 1.1.0
+
+### Minor Changes
+
+- [`d21008c`](https://github.com/uozi-tech/admin-kit/commit/d21008c43e81739b23c62a8a33b9479494ace9ee) Thanks [@akinoccc](https://github.com/akinoccc)! - feat(layout): support setting header extra gap by user
+
 ## 1.0.0
 
 ### Major Changes
