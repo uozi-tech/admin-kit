@@ -98,7 +98,7 @@ function handleMenuItemClick({ item }) {
         <template v-if="item.children?.length">
           <SubMenu
             :key="item.path"
-            :icon="h(item?.icon as any)"
+            :icon="item?.icon ? h(item?.icon as any) : undefined"
           >
             <template #title>
               {{ getRealTitle(item.title) }}
@@ -116,7 +116,7 @@ function handleMenuItemClick({ item }) {
         <template v-else>
           <MenuItem
             :key="item.path"
-            :icon="h(item?.icon as any)"
+            :icon="item?.icon ? h(item?.icon as any) : undefined"
           >
             <RouterLink :to="item.path">
               {{ getRealTitle(item.title) }}
