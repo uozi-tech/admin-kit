@@ -16,7 +16,7 @@ const props = defineProps<StdCurdProps>()
 
 const emit = defineEmits<{
   (e: 'add'): void
-  (e: 'read', record: any): void
+  (e: 'view', record: any): void
   (e: 'editItem', record: any): void
   (e: 'deleteItemTemporarily', record: any): void
   (e: 'restoreItem', record: any): void
@@ -77,7 +77,7 @@ const formColumns = computed(() => {
 })
 
 // 当前弹窗的模式
-const mode = ref<'add' | 'read' | 'edit'>('add')
+const mode = ref<'add' | 'view' | 'edit'>('add')
 
 // 回收站标记
 const isTrash = ref(JSON.parse(route?.query?.trash as string ?? 'false'))
@@ -113,11 +113,11 @@ function getDataDetail(row: Record<string, any>) {
 }
 
 // 查看详情
-function handleRead(row: Record<string, any>) {
-  emit('read', row)
+function handleView(row: Record<string, any>) {
+  emit('view', row)
 
   formVisible.value = true
-  mode.value = 'read'
+  mode.value = 'view'
   getDataDetail(row)
 }
 
@@ -200,6 +200,14 @@ defineExpose({
 const title = computed(() => {
   return getRealContent(props.title) || t('list')
 })
+
+const modalTitle = computed(() => {
+  if (mode.value === 'add')
+    return t('add')
+  if (mode.value === 'view')
+    return t('view')
+  return t('edit')
+})
 </script>
 
 <template>
@@ -269,7 +277,7 @@ const title = computed(() => {
       }"
       :overwrite-params="overwriteParams"
       :custom-query-params="customQueryParams"
-      @read="handleRead"
+      @view="handleView"
       @edit-item="handleEdit"
       @delete-item-temporarily="row => handleDataById(ApiActions.DELETE_ITEM_TEMPORARY, row)"
       @delete-item-permanently="row => handleDataById(ApiActions.DELETE_ITEM_PERMANENTLY, row)"
@@ -292,7 +300,7 @@ const title = computed(() => {
       destroy-on-close
       :closable="!modalLoading"
       :width="props.modalWidth"
-      :title="mode === 'add' ? t('add') : t('edit')"
+      :title="modalTitle"
       :mask-closable="false"
     >
       <Spin :spinning="modalLoading">

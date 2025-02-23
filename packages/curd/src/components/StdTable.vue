@@ -18,7 +18,7 @@ const props = defineProps<StdTableProps>()
 
 const emit = defineEmits<{
   (e: 'change', payload: { pagination: TablePaginationConfig, filters: Record<string, FilterValue>, sorter: SorterResult | SorterResult<any>[] }): void
-  (e: 'read', record: any): void
+  (e: 'view', record: any): void
   (e: 'editItem', record: any): void
   (e: 'deleteItemTemporarily', record: any): void
   (e: 'restoreItem', record: any): void
@@ -282,8 +282,8 @@ function onTableChange(p: TablePaginationConfig, filters: Record<string, FilterV
 /**
  * 删改查相关 Emits
  */
-function onReadBtnClick(record: any) {
-  emit('read', record)
+function onViewBtnClick(record: any) {
+  emit('view', record)
 }
 
 function onEditBtnClick(record: any) {
@@ -366,7 +366,7 @@ defineExpose({
             v-if="!disableView && !isTrash"
             size="small"
             type="link"
-            @click="onReadBtnClick(record)"
+            @click="onViewBtnClick(record)"
           >
             {{ t('view') }}
           </Button>
