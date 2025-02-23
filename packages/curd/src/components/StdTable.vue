@@ -39,6 +39,7 @@ const route = useRoute()
 
 const { t } = useI18n()
 
+const curdConfig = useCurdConfig()
 const pagination = ref<TablePaginationConfig>(initializePagination(props.tableProps?.pagination))
 
 function initializePagination(paginationProps: any): TablePaginationConfig {
@@ -92,8 +93,8 @@ const apiParams = computed(() => {
   return {
     ...searchFormData.value,
     trash: props.isTrash,
-    page: pagination.value.current ?? 1,
-    page_size: pagination.value?.pageSize ?? 20,
+    [curdConfig.listApi?.paginationMap?.current ?? 'page']: pagination.value.current ?? 1,
+    [curdConfig.listApi?.paginationMap?.pageSize ?? 'page_size']: pagination.value?.pageSize ?? 20,
     ...customQueryParams,
     overwriteParams,
   }
@@ -159,7 +160,6 @@ function resetSearchForm() {
 
 // 表格数据
 const tableData = ref<Record<string, any>[]>([])
-const curdConfig = useCurdConfig()
 const debouncedListApi = debounce(async () => {
   tableLoading.value = true
 
