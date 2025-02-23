@@ -5,7 +5,7 @@ import zhCN from 'ant-design-vue/es/locale/zh_CN'
 import gettext from '~/language/gettext'
 
 export const useSettingsStore = defineStore('settings', () => {
-  const language = ref('zh-CN')
+  const language = ref('zh_CN')
   const theme = useColorMode({
     initialValue: 'auto',
   }) as unknown as Ref<Theme>
@@ -18,7 +18,7 @@ export const useSettingsStore = defineStore('settings', () => {
   })
 
   const antdLanguage = computed(() => {
-    return language.value === 'zh-CN' ? zhCN : enUS
+    return language.value === 'zh_CN' ? zhCN : enUS
   })
 
   function setLanguage(lang: string) {

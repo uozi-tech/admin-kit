@@ -6,7 +6,7 @@ type Gettext = ReturnType<typeof createGettext>
 
 const gettext: Gettext = createGettext({
   availableLanguages: i18n,
-  defaultLanguage: 'zh-CN',
+  defaultLanguage: 'zh_CN',
   translations,
   silent: true,
 })
