@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 3.7.5
+
+### Patch Changes
+
+- [`19e0e31`](https://github.com/uozi-tech/admin-kit/commit/19e0e31c82aabd2e0455f9694853e21e013cf6ae) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): cannot show form on `add` mode
+
 ## 3.7.4
 
 ### Patch Changes
