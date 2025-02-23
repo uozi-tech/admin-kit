@@ -1,5 +1,11 @@
 # @uozi-admin/create-admin
 
+## 1.3.8
+
+### Patch Changes
+
+- [`135be74`](https://github.com/uozi-tech/admin-kit/commit/135be74cdee3aa899a035120a39e8d56b59ce210) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(create-uozi-admin): incorrect language config of template
+
 ## 1.3.7
 
 ### Patch Changes
