@@ -1,5 +1,11 @@
 # @uozi-admin/layout-antdv
 
+## 0.0.12
+
+### Patch Changes
+
+- [`770b2c1`](https://github.com/uozi-tech/admin-kit/commit/770b2c14a974e77798c66b6e2412c96d64114c5a) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(layout): [sidebar] has warning if no icon
+
 ## 0.0.11
 
 ### Patch Changes
