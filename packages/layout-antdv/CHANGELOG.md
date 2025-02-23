@@ -1,5 +1,11 @@
 # @uozi-admin/layout-antdv
 
+## 1.0.0
+
+### Major Changes
+
+- [`d08dc32`](https://github.com/uozi-tech/admin-kit/commit/d08dc32283ff7632bb5c7d07ccc44c81d3a2b1a7) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(layout): conflict slot name of header slot
+
 ## 0.0.12
 
 ### Patch Changes
