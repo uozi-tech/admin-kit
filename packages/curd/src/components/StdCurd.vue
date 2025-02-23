@@ -306,13 +306,13 @@ const modalTitle = computed(() => {
       <Spin :spinning="modalLoading">
         <div>
           <StdDetail
-            v-if="mode === 'read'"
+            v-if="mode === 'view'"
             :row-key="props.rowKey"
             :columns="props.columns"
             :record="itemDetail"
           />
           <StdForm
-            v-else
+            v-else-if="mode === 'edit'"
             ref="stdForm"
             :data="itemDetail"
             :columns="formColumns"
