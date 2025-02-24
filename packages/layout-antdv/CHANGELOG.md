@@ -1,5 +1,11 @@
 # @uozi-admin/layout-antdv
 
+## 1.1.1
+
+### Patch Changes
+
+- [`43e7355`](https://github.com/uozi-tech/admin-kit/commit/43e7355439546fb361a883b3c9634ebbc9a2775c) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(layout): sub menus do not keep open
+
 ## 1.1.0
 
 ### Minor Changes
