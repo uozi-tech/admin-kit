@@ -31,6 +31,20 @@ export const routes: RouteRecordRaw[] = [
           title: () => $gettext('Dashboard'),
         },
       },
+      {
+        path: '/aaa',
+        name: 'aaa',
+        meta: {
+          title: () => $gettext('Home'),
+        },
+        children: [
+          {
+            path: 'users',
+            name: 'users',
+            component: () => import('../views/users/UserList.vue'),
+          },
+        ],
+      },
       // 用户管理
       {
         path: '/users',

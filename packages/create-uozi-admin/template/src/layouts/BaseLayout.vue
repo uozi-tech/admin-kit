@@ -27,6 +27,7 @@ function getSidebarTree(routes?: RouteRecordRaw[]): SidebarItem[] {
 
   return routes.map<SidebarItem>(r => ({
     title: r.meta?.title as any,
+    name: r.name as string,
     path: r.path,
     icon: r.meta?.icon,
     children: getSidebarTree(r.children),
