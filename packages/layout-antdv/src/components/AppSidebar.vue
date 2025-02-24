@@ -2,7 +2,7 @@
 import type { SidebarItem, Text } from '../props'
 import { Avatar, Image, LayoutSider, Menu, MenuItem, SubMenu } from 'ant-design-vue'
 import { throttle } from 'lodash-es'
-import { h, ref, watchEffect } from 'vue'
+import { h, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { getRealTitle } from '../utils'
 
@@ -19,12 +19,10 @@ const emit = defineEmits(['clickMenuItem', 'collapseSidebar'])
 
 const route = useRoute()
 
-const selectedKeys = ref<string[]>([])
-const openKeys = ref<string[]>([])
-watchEffect(() => {
-  selectedKeys.value = [route.path]
-  openKeys.value = [route.path.substring(1, route.path.lastIndexOf('/'))]
-})
+const selectedKeys = ref<string[]>([route.name as string])
+
+const lastSepIndex = route.path.lastIndexOf('/')
+const openKeys = ref<string[]>([route.path.substring(0, lastSepIndex)])
 
 // 折叠菜单
 const collapsed = ref(false)
@@ -83,7 +81,6 @@ function handleMenuItemClick({ item }) {
         </h1>
       </slot>
     </div>
-
     <Menu
       v-model:selected-keys="selectedKeys"
       v-model:open-keys="openKeys"
@@ -105,9 +102,9 @@ function handleMenuItemClick({ item }) {
             </template>
             <MenuItem
               v-for="child in item.children"
-              :key="child.path"
+              :key="child.name"
             >
-              <RouterLink :to="child.path">
+              <RouterLink :to="`${item.path}/${child.path}`">
                 {{ getRealTitle(child.title) }}
               </RouterLink>
             </MenuItem>
@@ -115,7 +112,7 @@ function handleMenuItemClick({ item }) {
         </template>
         <template v-else>
           <MenuItem
-            :key="item.path"
+            :key="item.name"
             :icon="item?.icon ? h(item?.icon as any) : undefined"
           >
             <RouterLink :to="item.path">

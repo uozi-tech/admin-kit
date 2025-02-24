@@ -22,11 +22,13 @@ const sidebarItems = computed<SidebarItem[]>(() => {
   return routes[0].children?.map((r) => {
     return {
       title: r.meta?.title,
+      name: r.name as string,
       path: r.path,
       icon: r.meta?.icon,
       children: r.children?.map((c) => {
         return {
           title: c.meta?.title,
+          name: c.name as string,
           path: c.path,
           icon: c.meta?.icon,
         }

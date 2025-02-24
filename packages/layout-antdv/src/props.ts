@@ -12,6 +12,7 @@ export interface AppBreadcrumbItem {
 
 export interface SidebarItem {
   title: Text
+  name: string
   path: string
   icon?: VNode
   children?: SidebarItem[]
