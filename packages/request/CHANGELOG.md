@@ -1,5 +1,11 @@
 # @uozi-admin/request
 
+## 2.5.1
+
+### Patch Changes
+
+- [`a926a20`](https://github.com/uozi-tech/admin-kit/commit/a926a20786f378b6325d127c9ce8de9b2b1e92f4) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(request): incorrectly infer type
+
 ## 2.5.0
 
 ### Minor Changes
