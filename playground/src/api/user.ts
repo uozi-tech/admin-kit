@@ -6,8 +6,8 @@ import { extendCurdApi, useCurdApi } from '@uozi-admin/request/src/useCurdApi.js
 
 export const userApi = useCurdApi<{ aa: string }>('/aass')
 
-extendCurdApi(userApi, {
-  getList: async () => {
+const userApi2 = extendCurdApi(userApi, {
+  getLis2t: async (aa?: string) => {
     console.log('getList')
     return {
       data: [],
@@ -19,3 +19,5 @@ extendCurdApi(userApi, {
     }
   },
 })
+
+userApi2.getLis2t()

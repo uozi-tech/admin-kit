@@ -1,6 +1,10 @@
 import { http } from './http'
 
-export type MoreApis<M = Record<string, (...args: any[]) => Promise<any>>> = M
+export type ApiMethod<TParams = any, TResponse = any> = (
+  ...args: TParams[]
+) => Promise<TResponse>
+
+export type MoreApis = Record<string, ApiMethod>
 
 export interface BaseCurdApi<T = any, P = any> {
   getList: (params?: Record<string, any>) => Promise<{ data: T[], pagination: P }>
@@ -11,12 +15,16 @@ export interface BaseCurdApi<T = any, P = any> {
   restoreItem: (id: string | number, params?: Record<string, any>) => Promise<any>
 }
 
-export type CurdApi<T = any, P = any, M = Record<string, never>> = BaseCurdApi<T, P> & M
+export type CurdApi<
+  T = any,
+  P = any,
+  M extends MoreApis = MoreApis,
+> = BaseCurdApi<T, P> & M
 
 export function useCurdApi<
   T = any,
   P = any,
-  M extends Record<string, (...args: any[]) => Promise<any>> = Record<string, never>,
+  M extends MoreApis = MoreApis,
 >(url: string, moreApis?: M): CurdApi<T, P, M> {
   const getList = async (params?: Record<string, any>) => {
     try {
@@ -95,8 +103,8 @@ export function useCurdApi<
 
 export function extendCurdApi<
   T,
-  M extends Record<string, (...args: any[]) => Promise<any>>,
-  N extends Record<string, (...args: any[]) => Promise<any>>,
+  M extends MoreApis,
+  N extends MoreApis,
 >(baseCurd: CurdApi<T, any, M>, newApis: N): CurdApi<T, any, M & N> {
   return Object.assign(baseCurd, newApis)
 }
