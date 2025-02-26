@@ -12,7 +12,9 @@ import StdDetail from './StdDetail.vue'
 import StdForm from './StdForm.vue'
 import StdTable from './StdTable.vue'
 
-const props = defineProps<StdCurdProps>()
+const props = withDefaults(defineProps<StdCurdProps>(), {
+  rowKey: 'id',
+})
 
 const emit = defineEmits<{
   (e: 'add'): void
