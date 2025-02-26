@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 3.7.9
+
+### Patch Changes
+
+- [`7f82491`](https://github.com/uozi-tech/admin-kit/commit/7f824918b8dad1c86240309964e64e740dc020c8) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): pagination does not update when data is zero
+
 ## 3.7.8
 
 ### Patch Changes
