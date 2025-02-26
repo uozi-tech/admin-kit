@@ -56,8 +56,8 @@ function refresh(reset: boolean = false) {
 
 const tableLoading = ref(false)
 
-const selectedRowKeys = ref<(string | number)[]>([])
-const selectedRows = ref<Record<string | number, unknown>[]>([])
+const selectedRowKeys = defineModel<any[]>('selectedRowKeys', { default: () => ref([]) })
+const selectedRows = defineModel<any[]>('selectedRows', { default: () => ref([]) })
 
 const stdForm = ref()
 
@@ -252,6 +252,8 @@ const modalTitle = computed(() => {
     <slot name="beforeCardBody" />
     <StdTable
       v-model:table-loading="tableLoading"
+      v-model:selected-row-keys="selectedRowKeys"
+      v-model:selected-rows="selectedRows"
       :title
       :columns
       :get-list-api="api.getList"

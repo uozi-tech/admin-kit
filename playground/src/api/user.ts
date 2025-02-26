@@ -4,7 +4,19 @@
 
 import { extendCurdApi, useCurdApi } from '@uozi-admin/request/src/useCurdApi.js'
 
-export const userApi = useCurdApi<{ aa: string }>('/aass')
+export const userApi = useCurdApi<{ aa: string }>('/aass', {
+  getLis2t: async (aa?: string) => {
+    console.log('getList')
+    return {
+      data: [],
+      pagination: {
+        total: 0,
+        page: 1,
+        pageSize: 10,
+      },
+    }
+  },
+})
 
 const userApi2 = extendCurdApi(userApi, {
   getLis2t: async (aa?: string) => {
@@ -21,3 +33,4 @@ const userApi2 = extendCurdApi(userApi, {
 })
 
 userApi2.getLis2t()
+userApi.getLis2t()

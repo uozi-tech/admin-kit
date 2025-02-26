@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { StdTableColumn } from '@uozi-admin/curd'
 import { StdCurd } from '@uozi-admin/curd'
+import { ref } from 'vue'
 import { userApi } from '~/api'
 
 const columns: StdTableColumn[] = [
@@ -59,12 +60,17 @@ const columns: StdTableColumn[] = [
     dataIndex: 'actions',
   },
 ]
+
+const selectedRowKeys = ref<any[]>([])
 </script>
 
 <template>
+  {{ selectedRowKeys }}
   <StdCurd
+    v-model:selected-row-keys="selectedRowKeys"
     :api="userApi"
     :columns="columns"
+    row-selection-type="checkbox"
     row-key="id"
   >
     <template #beforeSearch>
