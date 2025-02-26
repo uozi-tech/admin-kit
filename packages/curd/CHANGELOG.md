@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 3.7.7
+
+### Patch Changes
+
+- [`68e1b8e`](https://github.com/uozi-tech/admin-kit/commit/68e1b8e42443799b8ec8272986a0cb9435fded44) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): maximum call stack size exceeded
+
 ## 3.7.6
 
 ### Patch Changes
