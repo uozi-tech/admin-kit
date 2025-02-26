@@ -67,7 +67,7 @@ const selectedRowKeys = ref<any[]>([])
 <template>
   {{ selectedRowKeys }}
   <StdCurd
-    v-model:selected-row-keys="selectedRowKeys"
+    v-model:selected-rows="selectedRowKeys"
     :api="userApi"
     :columns="columns"
     row-selection-type="checkbox"

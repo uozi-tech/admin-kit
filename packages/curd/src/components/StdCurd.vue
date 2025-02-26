@@ -56,8 +56,8 @@ function refresh(reset: boolean = false) {
 
 const tableLoading = ref(false)
 
-const selectedRowKeys = defineModel<any[]>('selectedRowKeys', { default: () => ref([]) })
-const selectedRows = defineModel<any[]>('selectedRows', { default: () => ref([]) })
+const selectedRowKeys = defineModel<any[]>('selectedRowKeys', { default: () => reactive([]) })
+const selectedRows = defineModel<any[]>('selectedRows', { default: () => reactive([]) })
 
 const stdForm = ref()
 
