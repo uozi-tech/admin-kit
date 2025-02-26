@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 3.7.6
+
+### Patch Changes
+
+- [`3a993b4`](https://github.com/uozi-tech/admin-kit/commit/3a993b47e11ef6f23392e3a3725453bf49004fbd) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): does not export selected rows and rows key
+
 ## 3.7.5
 
 ### Patch Changes
