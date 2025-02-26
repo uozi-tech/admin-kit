@@ -1,5 +1,11 @@
 # @uozi-admin/request
 
+## 2.5.0
+
+### Minor Changes
+
+- [`55eace2`](https://github.com/uozi-tech/admin-kit/commit/55eace2f210b70fcd547abbea442c3dd2a88a774) Thanks [@akinoccc](https://github.com/akinoccc)! - feat(request): auto infer type of extend api
+
 ## 2.4.1
 
 ### Patch Changes
