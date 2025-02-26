@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 3.7.8
+
+### Patch Changes
+
+- [`a8d97cf`](https://github.com/uozi-tech/admin-kit/commit/a8d97cfb76b2253f588a5a3efb6a9191abda578e) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): missing default value of `rowKey`
+
 ## 3.7.7
 
 ### Patch Changes
