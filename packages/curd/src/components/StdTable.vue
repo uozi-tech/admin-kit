@@ -5,7 +5,7 @@ import type { VNode } from 'vue'
 import type { StdTableBodyScope, StdTableHeaderScope, StdTableProps } from '../types'
 import { HolderOutlined } from '@ant-design/icons-vue'
 import { Button, Flex, Popconfirm, Table } from 'ant-design-vue'
-import { cloneDeep, debounce, get, isArray, isEqual, isObject } from 'lodash-es'
+import { cloneDeep, debounce, get, isArray, isEqual, isNil, isObject } from 'lodash-es'
 import { computed, h, onMounted, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute, useRouter } from 'vue-router'
@@ -187,11 +187,11 @@ const debouncedListApi = debounce(async () => {
 
     // 更新分页信息
     if (paginationData) {
-      if (paginationData[total])
+      if (!isNil(paginationData[total]))
         pagination.value.total = paginationData[total]
-      if (paginationData[current])
+      if (!isNil(paginationData[current]))
         pagination.value.current = paginationData[current]
-      if (paginationData[pageSize])
+      if (!isNil(paginationData[pageSize]))
         pagination.value.pageSize = paginationData[pageSize]
     }
 
