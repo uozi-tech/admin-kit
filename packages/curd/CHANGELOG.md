@@ -1,5 +1,15 @@
 # @uozi-admin/curd
 
+## 3.8.0
+
+### Minor Changes
+
+- [`6779e31`](https://github.com/uozi-tech/admin-kit/commit/6779e3148c5684bfc810a2850c85d8e95c709fdc) Thanks [@akinoccc](https://github.com/akinoccc)! - feat(curd): [std-selector] support control selector visibility
+
+### Patch Changes
+
+- [`f22a5a9`](https://github.com/uozi-tech/admin-kit/commit/f22a5a9068cb9a44684e4d54709de3746ebca2a8) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): [std-form] form data lose reactive
+
 ## 3.7.9
 
 ### Patch Changes
