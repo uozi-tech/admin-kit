@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { StdTableColumn } from '../types'
 import { Form, FormItem, FormItemRest } from 'ant-design-vue'
-import { ref } from 'vue'
+import { reactive, ref } from 'vue'
 import { getColumnKey, getEditLabel } from '../utils'
 import FormControllerRender from './StdFormController.vue'
 
@@ -23,7 +23,7 @@ function onValidate(name: string | number | string[] | number[], status: boolean
   emit('validate', { name, status, errors })
 }
 
-const formData = defineModel<Record<string, any>>('data', { default: () => ({}) })
+const formData = defineModel<Record<string, any>>('data', { default: () => reactive({}) })
 
 for (const column of props.columns) {
   const key = (column.edit?.formItem?.name ?? column.dataIndex) as string
