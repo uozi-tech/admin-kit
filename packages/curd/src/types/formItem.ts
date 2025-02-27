@@ -3,6 +3,7 @@ import type {
   DatePickerProps,
   InputNumberProps,
   InputProps,
+  ModalProps,
   RadioGroupProps,
   RateProps,
   SelectProps,
@@ -56,6 +57,7 @@ export type SelectorConfig = {
   disabled?: boolean
   hideInputContainer?: boolean
   modalWidth?: number | string
+  modalProps?: ModalProps
   overwriteParams?: Record<string, any>
   labelRender?: (row: any) => string
 } & PlaceholderT

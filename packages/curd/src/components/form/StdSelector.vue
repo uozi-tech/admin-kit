@@ -23,7 +23,7 @@ const dataColumns = computed(() => {
 
 Form.useInjectFormItemContext()
 
-const visible = ref(false)
+const visible = defineModel<boolean>('visible', { default: false })
 const selectedRowKeys = ref<any[]>([])
 const selectedRows = ref<any[]>([])
 const options = computed(() => {
@@ -123,7 +123,10 @@ const computedValue = computed({
 
 <template>
   <div>
-    <div @click="clickInput">
+    <div
+      v-if="!hideInputContainer"
+      @click="clickInput"
+    >
       <Select
         v-model:value="computedValue"
         :disabled
@@ -139,12 +142,12 @@ const computedValue = computed({
     </div>
     <Modal
       v-model:open="visible"
-      :mask="false"
       :cancel-text="t('close')"
       :ok-text="t('ok')"
       :title="t('selectorTitle')"
       :width="modalWidth || 800"
       destroy-on-close
+      v-bind="modalProps"
       @ok="setValue"
     >
       {{ tips }}
