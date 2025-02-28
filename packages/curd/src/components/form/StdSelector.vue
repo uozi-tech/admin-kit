@@ -1,17 +1,14 @@
 <script setup lang="ts">
 import type { SelectorConfig } from '../../types'
 import { Form, Modal, Select } from 'ant-design-vue'
-import { get, isArray } from 'lodash-es'
-import { computed, nextTick, onMounted, ref, watch } from 'vue'
+import { get } from 'lodash-es'
+import { computed, onMounted, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import StdTable from '../StdTable.vue'
 
 const props = withDefaults(
   defineProps<SelectorConfig & { placeholder?: string | number }>(),
-  {
-    valueKey: 'id',
-    selectionType: 'radio',
-  },
+  { valueKey: 'id', selectionType: 'radio' },
 )
 const emit = defineEmits<{
   (e: 'selectedRecords', records: any[]): void
@@ -26,12 +23,15 @@ Form.useInjectFormItemContext()
 const visible = defineModel<boolean>('visible', { default: false })
 const selectedRowKeys = ref<any[]>([])
 const selectedRows = ref<any[]>([])
-const options = computed(() => {
-  return selectedRows.value.map(item => ({
-    label: props.labelRender ? props.labelRender(item) : get(item, props.displayKey ?? props.valueKey),
-    value: get(item, props.valueKey),
-  }))
-})
+
+function arraylizeValue(val: any) {
+  return Array.isArray(val) ? val : val ? [val] : []
+}
+
+const options = computed(() => selectedRows.value.map(item => ({
+  label: props.labelRender?.(item) ?? get(item, props.displayKey || props.valueKey),
+  value: get(item, props.valueKey),
+})))
 
 const { t } = useI18n()
 
@@ -46,55 +46,36 @@ function setValue() {
   emit('selectedRecords', selectedRows.value)
 }
 
-function removeValue(v) {
-  if (props.selectionType === 'radio') {
-    value.value = undefined
-  }
-  else {
-    value.value = value.value.filter(item => item !== v)
-  }
+function removeValue(v: any) {
+  value.value = arraylizeValue(value.value).filter(item => item !== v)
 }
 
 async function init() {
-  if (props.selectionType === 'checkbox') {
-    if (!isArray(value.value)) {
-      if (value.value) {
-        value.value = [value.value]
-      }
-      else {
-        value.value = []
-      }
-    }
-    selectedRowKeys.value = value.value
-  }
-  else {
-    selectedRowKeys.value = []
-  }
-  await nextTick()
-  const preloadIds: any[] = []
-  if (isArray(value.value)) {
-    preloadIds.push(...value.value.filter(item => item))
-  }
-  else {
-    // filter out null, undefined
-    if (value.value) {
-      preloadIds.push(value.value)
-    }
-  }
-  if (preloadIds.length > 0) {
-    const { data } = await props.getListApi?.({ ...props.overwriteParams, id: preloadIds })
-    selectedRows.value = data
-  }
+  const isMulti = props.selectionType === 'checkbox'
+  selectedRowKeys.value = isMulti ? arraylizeValue(value.value) : []
 }
 
-watch(() => {
-  return {
-    value: value.value,
-    props,
-  }
-}, init, { deep: true })
+watch(
+  [
+    () => value.value,
+    () => props.getListApi,
+    () => props.overwriteParams,
+    () => props.valueKey,
+  ],
+  init,
+  { immediate: true },
+)
 
-onMounted(init)
+onMounted(async () => {
+  const preloadIds = arraylizeValue(value.value).filter(Boolean)
+  if (preloadIds.length && props.getListApi) {
+    const { data } = await props.getListApi({
+      ...props.overwriteParams,
+      id: preloadIds,
+    })
+    selectedRows.value = data
+  }
+})
 
 function clickInput() {
   if (props.disabled) {
@@ -104,20 +85,8 @@ function clickInput() {
 }
 
 const computedValue = computed({
-  get() {
-    if (isArray(value.value)) {
-      return value.value
-    }
-    else if (value.value) {
-      return [value.value]
-    }
-    else {
-      return []
-    }
-  },
-  set(v) {
-    value.value = v
-  },
+  get: () => arraylizeValue(value.value),
+  set: v => value.value = props.selectionType === 'checkbox' ? v : v[0],
 })
 </script>
 
