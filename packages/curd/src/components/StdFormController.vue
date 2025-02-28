@@ -129,7 +129,7 @@ function Render() {
         )
       }
       case 'switch':
-        return <StdSwitch v-model:checked={value.value} props={formConfig?.switch} />
+        return <StdSwitch v-model:value={value.value} props={formConfig?.switch} />
       case 'slider':
         return (
           <div style="padding: 0 6px">
