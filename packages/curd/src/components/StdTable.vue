@@ -44,8 +44,8 @@ const pagination = ref<TablePaginationConfig>(initializePagination(props.tablePr
 
 function initializePagination(paginationProps: any): TablePaginationConfig {
   return {
-    current: 1,
-    pageSize: 20,
+    current: route.query[curdConfig.listApi?.paginationMap?.current ?? 'page'] ?? 1,
+    pageSize: route.query[curdConfig.listApi?.paginationMap?.pageSize ?? 'page_size'] ?? 20,
     showSizeChanger: true,
     showQuickJumper: true,
     hideOnSinglePage: true,
@@ -110,21 +110,12 @@ const debouncedUpdateRouteQuery = debounce(async (newQuery: Record<string, any>)
   isUpdatedFromApiParams = false
 }, 200, { leading: false, trailing: true })
 
-// 搜索后重置分页页码
-watch(searchFormData, () => {
-  pagination.value.current = 1
-  // debouncedUpdateRouteQuery({
-  //   page: 1,
-  //   page_size: pagination.value.pageSize,
-  // })
-}, { deep: true })
-
 // route query 改变并且不是由 debouncedUpdateRouteQuery 触发的情况下，才同步到 apiParams
 watch(() => route?.query, (v) => {
   if (isUpdatedFromApiParams)
     return
-  pagination.value.current = Number(v.page) || 1
-  pagination.value.pageSize = Number(v.page_size) || 20
+  pagination.value.current = Number(v[curdConfig.listApi?.paginationMap?.current ?? 'page']) || 1
+  pagination.value.pageSize = Number(v[curdConfig.listApi?.paginationMap?.pageSize ?? 'page_size']) || 20
   searchColumns.value.forEach((c) => {
     const dataIndex = c.dataIndex
     let key = dataIndex
@@ -156,6 +147,8 @@ function resetSearchForm() {
     return
 
   searchFormData.value = {}
+
+  pagination.value.current = 1
 }
 
 // 表格数据
