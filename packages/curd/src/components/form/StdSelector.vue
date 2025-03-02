@@ -126,6 +126,7 @@ const computedValue = computed({
         :columns="dataColumns"
         :get-list-api="getListApi"
         only-query
+        disable-search
         disable-router-query
         :row-selection-type="selectionType"
         :table-props="{
