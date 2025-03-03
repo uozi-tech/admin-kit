@@ -45,3 +45,7 @@ export function getSearchLabel(c: StdTableColumn) {
 
   return getRealContent(c.search?.formItem?.label ?? c.title)
 }
+
+export function getPopupContainer(triggerNode: HTMLElement | null) {
+  return triggerNode?.parentElement ?? document.body
+}

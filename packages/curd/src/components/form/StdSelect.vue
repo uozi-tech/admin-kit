@@ -3,6 +3,7 @@ import type { SelectConfig } from '../../types'
 import { Select } from 'ant-design-vue'
 import { isNumber } from 'lodash-es'
 import { computed, ref, watch } from 'vue'
+import { getPopupContainer } from '../../utils'
 
 const p = defineProps<{ props?: SelectConfig & { placeholder?: string | number } }>()
 
@@ -40,6 +41,7 @@ watch(value, computedOptions, { immediate: true })
     v-model:value="value as any"
     class="min-w-180px"
     :dropdown-match-select-width="false"
+    :get-popup-container="getPopupContainer"
     allow-clear
     v-bind="props"
     :options="options"
