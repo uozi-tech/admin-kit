@@ -1,7 +1,7 @@
 <script setup lang="tsx">
 import type { Reactive } from 'vue'
 import type { StdTableColumn } from '../types'
-import { get, set } from 'lodash-es'
+import { get, isBoolean, set } from 'lodash-es'
 import { computed, ref, watch } from 'vue'
 import {
   StdCascader,
@@ -55,12 +55,18 @@ function Render() {
     )
   }
   else {
+    const componentConfig = formConfig?.[formConfig?.type]
     const valueKey = formConfig?.valueKey ?? formConfig?.formItem?.name ?? dataIndex
-    const value = ref()
+    const value = ref(componentConfig?.defaultValue)
 
     // 接受外部数据
-    watch(() => p.formData, (v) => {
-      value.value = get(v, valueKey) ?? formConfig?.defaultValue
+    watch(() => get(p.formData, valueKey), (newVal, oldVal) => {
+      if (isBoolean(oldVal)) {
+        value.value = newVal ?? componentConfig?.defaultValue ?? Boolean(newVal)
+      }
+      else {
+        value.value = newVal ?? componentConfig?.defaultValue
+      }
     }, { deep: true, immediate: true })
 
     // 回传 form 表单数据

@@ -16,21 +16,26 @@ import type {
 } from 'ant-design-vue'
 import type { CascaderProps } from 'ant-design-vue/es/cascader'
 import type { MonthPickerProps, RangePickerProps, WeekPickerProps } from 'ant-design-vue/es/date-picker'
+import type { HTMLAttributes } from 'vue'
 import type { CurdApi } from './api'
 import type { StdTableColumn } from './index'
 
 export interface PlaceholderT { placeholder?: number | string | (() => string) | [string, string] }
 
-export interface TimeT {
+type BaseConfig = {
+  defaultValue?: any
+} & Omit<HTMLAttributes, 'placeholder'>
+
+export interface TimeT extends BaseConfig {
   timestamp?: boolean
 }
 
 // 使用联合类型并移除 placeholder
-export type InputConfig = Omit<InputProps, 'placeholder'> & PlaceholderT
+export type InputConfig = Omit<InputProps, 'placeholder'> & PlaceholderT & BaseConfig
 
-export type InputNumberConfig = Omit<InputNumberProps, 'placeholder'> & PlaceholderT
+export type InputNumberConfig = Omit<InputNumberProps, 'placeholder'> & PlaceholderT & BaseConfig
 
-export type PasswordConfig = Omit<InputProps, 'placeholder'> & PlaceholderT & {
+export type PasswordConfig = Omit<InputProps, 'placeholder'> & PlaceholderT & BaseConfig & {
   generate?: boolean
   maxLength?: number
 }
@@ -44,7 +49,7 @@ export type SelectConfig = Omit<SelectProps, 'placeholder'> &
     }
     mask?: Record<string | number, any>
     valueKey?: string
-  }
+  } & BaseConfig
 
 export type SelectorConfig = {
   tableProps?: TableProps
@@ -60,30 +65,30 @@ export type SelectorConfig = {
   modalProps?: ModalProps
   overwriteParams?: Record<string, any>
   labelRender?: (row: any) => string
-} & PlaceholderT
+} & PlaceholderT & BaseConfig
 
-export type CascaderConfig = Omit<CascaderProps, 'placeholder'> & PlaceholderT
+export type CascaderConfig = Omit<CascaderProps, 'placeholder'> & PlaceholderT & BaseConfig
 
-export type DatePickerConfig = Omit<DatePickerProps, 'placeholder'> & PlaceholderT & TimeT
+export type DatePickerConfig = Omit<DatePickerProps, 'placeholder'> & PlaceholderT & TimeT & BaseConfig
 
-export type RangePickerConfig = Omit<RangePickerProps, 'placeholder'> & PlaceholderT & TimeT
+export type RangePickerConfig = Omit<RangePickerProps, 'placeholder'> & PlaceholderT & TimeT & BaseConfig
 
-export type WeekPickerConfig = Omit<WeekPickerProps, 'placeholder'> & PlaceholderT
+export type WeekPickerConfig = Omit<WeekPickerProps, 'placeholder'> & PlaceholderT & BaseConfig
 
-export type MonthPickerConfig = Omit<MonthPickerProps, 'placeholder'> & PlaceholderT
+export type MonthPickerConfig = Omit<MonthPickerProps, 'placeholder'> & PlaceholderT & BaseConfig
 
-export type TimePickerConfig = Omit<TimePickerProps, 'placeholder'> & PlaceholderT
+export type TimePickerConfig = Omit<TimePickerProps, 'placeholder'> & PlaceholderT & BaseConfig
 
-export type RadioGroupConfig = RadioGroupProps
+export type RadioGroupConfig = RadioGroupProps & BaseConfig
 
-export type CheckboxGroupConfig = CheckboxGroupProps
+export type CheckboxGroupConfig = CheckboxGroupProps & BaseConfig
 
-export type RateConfig = RateProps
+export type RateConfig = RateProps & BaseConfig
 
-export type SliderConfig = SliderProps
+export type SliderConfig = SliderProps & BaseConfig
 
-export type SwitchConfig = SwitchProps
+export type SwitchConfig = SwitchProps & BaseConfig
 
-export type TransferConfig = Omit<TransferProps, 'placeholder'> & PlaceholderT
+export type TransferConfig = Omit<TransferProps, 'placeholder'> & PlaceholderT & BaseConfig
 
-export type UploadConfig = Omit<UploadProps, 'placeholder'> & PlaceholderT
+export type UploadConfig = Omit<UploadProps, 'placeholder'> & PlaceholderT & BaseConfig
