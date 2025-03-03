@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 3.9.1
+
+### Patch Changes
+
+- [`895c42a`](https://github.com/uozi-tech/admin-kit/commit/895c42a4478a5770ba2c3f06710cd6aac641e4fc) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): typedef error
+
 ## 3.9.0
 
 ### Minor Changes
