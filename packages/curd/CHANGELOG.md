@@ -1,5 +1,23 @@
 # @uozi-admin/curd
 
+## 3.9.0
+
+### Minor Changes
+
+- [`1db8968`](https://github.com/uozi-tech/admin-kit/commit/1db8968a5689f5efc747cb626c2a374f91263163) Thanks [@akinoccc](https://github.com/akinoccc)! - feat(curd): [std-form] add default value support
+
+### Patch Changes
+
+- [`f6bfb0a`](https://github.com/uozi-tech/admin-kit/commit/f6bfb0ae6b41aff300357477360c7765194c50ed) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): [std-select] select popover layer issue
+
+- [`6f1026a`](https://github.com/uozi-tech/admin-kit/commit/6f1026a28b46b2813709c8e777df443d2b14cec8) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): [std-form] switch cannot reactive change
+
+- [`2bf1853`](https://github.com/uozi-tech/admin-kit/commit/2bf185320dae491c88acb80a884fb995b8026503) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): [std-selector] duplicated request
+
+- [`7e19313`](https://github.com/uozi-tech/admin-kit/commit/7e19313db319e1cbb44c65765238aa79ba4de003) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): [std-table] incorrect pagination updated from router
+
+- [`bbdb2b8`](https://github.com/uozi-tech/admin-kit/commit/bbdb2b81429bd210892197fe75ecdf58089ced8e) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): [std-table] drag issue
+
 ## 3.8.0
 
 ### Minor Changes
