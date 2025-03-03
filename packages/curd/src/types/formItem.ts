@@ -16,15 +16,16 @@ import type {
 } from 'ant-design-vue'
 import type { CascaderProps } from 'ant-design-vue/es/cascader'
 import type { MonthPickerProps, RangePickerProps, WeekPickerProps } from 'ant-design-vue/es/date-picker'
-import type { HTMLAttributes } from 'vue'
 import type { CurdApi } from './api'
 import type { StdTableColumn } from './index'
 
 export interface PlaceholderT { placeholder?: number | string | (() => string) | [string, string] }
 
-type BaseConfig = {
+interface BaseConfig {
   defaultValue?: any
-} & Omit<HTMLAttributes, 'placeholder'>
+  class?: string
+  style?: string
+}
 
 export interface TimeT extends BaseConfig {
   timestamp?: boolean
