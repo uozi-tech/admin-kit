@@ -271,6 +271,7 @@ const modalTitle = computed(() => {
       :row-draggable="rowDraggable"
       :row-draggable-options="rowDraggableOptions"
       :refresh-config="refreshConfig"
+      :hide-reset-btn="hideResetBtn"
       :table-props="{
         rowKey,
         scroll: {

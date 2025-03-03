@@ -2,14 +2,32 @@ import type { StdTableProps } from 'src/types'
 import Sortable from 'sortablejs'
 import { ref, type Ref, toRaw } from 'vue'
 
-function getRowKey(item: any) {
-  return item.dataset.rowKey
+// 类型定义
+interface RowData {
+  id: number
+  level?: number
+  children?: RowData[]
+  parent?: any
+  [key: string]: any
 }
 
-function getTargetData(data: any, indexList: number[]): any {
+interface DragEndPayload {
+  target_id: number
+  direction: number
+  affected_ids: number[]
+}
+
+// 从DOM元素获取行键
+function getRowKey(element: HTMLElement) {
+  return element.dataset.rowKey ?? ''
+}
+
+// 根据索引路径获取目标数据
+function getTargetData(data: RowData[], indexPath: number[]): RowData {
   let target: any = { children: data }
-  indexList.forEach((index: number) => {
-    console.log(target)
+
+  indexPath?.forEach((index: number) => {
+    // 设置父引用以便后续操作
     target.children[index].parent = target
     target = target.children[index]
   })
@@ -18,128 +36,148 @@ function getTargetData(data: any, indexList: number[]): any {
 }
 
 function useDraggableTable(options?: StdTableProps['rowDraggableOptions']) {
-  const randomId = ref(Math.random().toString(36).substring(2, 8))
-  const rowsKeyIndexMap = ref<Record<number, number[]>>({})
+  // 生成随机ID用于DOM选择器
+  const tableId = ref(Math.random().toString(36).substring(2, 8))
+  // 存储行键与索引路径的映射关系
+  const rowKeyIndexMap = ref<Record<number, number[]>>({})
 
-  const buildIndexMap = (data: any, level: number = 0, index: number = 0, total: number[] = []) => {
-    if (data && data.length > 0) {
-      data.forEach((v: any) => {
-        v.level = level
+  // 构建行索引映射
+  function buildIndexMap(data: RowData[] | any[], level: number = 0, index: number = 0, parentPath: number[] = []) {
+    if (!data || data.length === 0)
+      return
 
-        const currentIndexes = [...total, index++]
+    data.forEach((row: RowData) => {
+      // 设置行级别
+      row.level = level
+      // 当前行完整索引路径
+      const currentPath = [...parentPath, index++]
+      // 记录行ID到索引路径的映射
+      rowKeyIndexMap.value[row.id] = currentPath
 
-        rowsKeyIndexMap.value[v.id] = currentIndexes
-        if (v.children)
-          buildIndexMap(v.children, level + 1, 0, currentIndexes)
-      })
+      // 递归处理子行
+      if (row.children?.length) {
+        buildIndexMap(row.children, level + 1, 0, currentPath)
+      }
+    })
+  }
+
+  // 重置索引映射表
+  function resetIndexMap() {
+    rowKeyIndexMap.value = {}
+  }
+
+  // 处理拖拽导致的行索引变更
+  function processRowIndexChanges(row: RowData, isChild: boolean = false, newLevelIndex?: number, direction?: number) {
+    const level = row.level || 0
+    const rowId = row.id
+
+    // 构建变更ID列表
+    if (isChild || newLevelIndex === undefined) {
+      return rowId
     }
+
+    // 更新索引映射
+    if (newLevelIndex !== undefined) {
+      rowKeyIndexMap.value[rowId][level] = newLevelIndex
+    }
+    else if (isChild && direction !== undefined) {
+      rowKeyIndexMap.value[rowId][level] += direction
+    }
+
+    // 清除临时父引用
+    row.parent = null
+
+    // 递归处理子行
+    if (row.children?.length) {
+      return [rowId, ...row.children.map(child => processRowIndexChanges(child, true, newLevelIndex, direction))]
+    }
+
+    return rowId
   }
 
-  const resetIndexMap = () => {
-    rowsKeyIndexMap.value = {}
-  }
+  // 初始化拖拽功能
+  function initSortable(dataSource: Ref<any[]>) {
+    const tableElement: HTMLElement | null = document.querySelector(`#std-table-${tableId.value} tbody`)
+    if (!tableElement)
+      return
 
-  const initSortable = (dataSource: Ref<any[]>) => {
-    const table: any = document.querySelector(`#std-table-${randomId.value} tbody`)
+    new Sortable(tableElement, {
+      handle: '.ant-table-drag-icon', // 拖拽把手
+      animation: 150, // 动画持续时间
+      sort: true, // 允许排序
+      forceFallback: true, // 强制回退模式，解决某些浏览器兼容性问题
 
-    new Sortable(table, {
-      handle: '.ant-table-drag-icon',
-      animation: 150,
-      sort: true,
-      forceFallback: true,
-
+      // 设置拖拽数据
       setData(dataTransfer) {
         dataTransfer.setData('Text', '')
       },
 
-      // onStart({ item }) {
-      //   const targetRowKey = Number(getRowKey(item))
-      //   if (targetRowKey)
-      //     expandKeysList.value = expandKeysList.value.filter((_item: Key) => _item !== targetRowKey)
-      // },
+      // 移动验证
+      onMove({ dragged, related }) {
+        const sourceRowPath = rowKeyIndexMap.value[getRowKey(dragged)]
+        const targetRowPath = rowKeyIndexMap.value[getRowKey(related)]
 
-      onMove({
-        dragged,
-        related,
-      }) {
-        const oldRow: number[] = rowsKeyIndexMap.value?.[Number(getRowKey(dragged))]
-        const newRow: number[] = rowsKeyIndexMap.value?.[Number(getRowKey(related))]
-
-        if (oldRow.length !== newRow.length || oldRow[oldRow.length - 2] !== newRow[newRow.length - 2])
+        // 验证是否在同一层级
+        if (sourceRowPath?.length !== targetRowPath?.length
+          || sourceRowPath?.[sourceRowPath.length - 2] !== targetRowPath?.[targetRowPath.length - 2]) {
           return false
+        }
 
-        return options?.onMove?.(oldRow, newRow)
+        // 调用用户自定义验证
+        return options?.onMove?.(sourceRowPath, targetRowPath)
       },
 
-      async onEnd({
-        item,
-        newIndex,
-        oldIndex,
-      }) {
-        if (newIndex === oldIndex)
+      // 拖拽完成处理
+      async onEnd({ item, newIndex, oldIndex }) {
+        if (newIndex === undefined || oldIndex === undefined || newIndex === oldIndex)
           return
 
-        const indexDelta: number = Number(oldIndex) - Number(newIndex)
-        const direction: number = indexDelta > 0 ? +1 : -1
+        // 计算方向和索引差值
+        const indexDelta = oldIndex - newIndex
+        const direction = indexDelta > 0 ? 1 : -1
 
-        const rowIndex: number[] = rowsKeyIndexMap.value?.[Number(getRowKey(item))]
-        const newRow = getTargetData(dataSource.value, rowIndex)
-        const newRowParent = newRow.parent
-        const level: number = newRow.level
+        // 获取被拖拽行的数据
+        const draggedRowPath = rowKeyIndexMap.value[getRowKey(item)]
+        const draggedRow = getTargetData(dataSource.value, draggedRowPath)
+        const draggedRowParent = draggedRow.parent
+        const level = draggedRow.level || 0
 
-        const currentRowIndex: number[] = [...rowsKeyIndexMap.value![Number(getRowKey(table?.children?.[Number(newIndex) + direction]))]]
+        // 获取目标位置行数据
+        const targetRowPath = rowKeyIndexMap.value[getRowKey(tableElement?.children?.[newIndex + direction] as HTMLElement)] || []
+        const targetRow = getTargetData(dataSource.value, targetRowPath)
 
-        const currentRow: any = getTargetData(dataSource.value, currentRowIndex)
+        // 重置临时引用并更新数据源
+        targetRow.parent = draggedRow.parent = null
+        draggedRowParent?.children.splice(draggedRowPath[level], 1)
+        draggedRowParent?.children.splice(targetRowPath[level], 0, toRaw(draggedRow))
 
-        // Reset parent
-        currentRow.parent = newRow.parent = null
-        newRowParent.children.splice(rowIndex[level], 1)
-        newRowParent.children.splice(currentRowIndex[level], 0, toRaw(newRow))
+        // 处理受影响的行
+        const affectedIds: number[] = []
 
-        const changeIds: number[] = []
+        // 更新被拖拽行的索引
+        affectedIds.push(processRowIndexChanges(draggedRow, false, targetRowPath[level], direction))
 
-        function processChanges(row: any, children = false, _newIndex: number | undefined = undefined) {
-        // Build changes ID list expect new row
-          if (children || _newIndex === undefined)
-            changeIds.push(row.id)
+        // 更新其他受影响行的索引
+        for (let i = oldIndex; i !== newIndex; i -= direction) {
+          const affectedRowPath = rowKeyIndexMap.value[getRowKey(tableElement.children[i] as HTMLElement)]
+          if (!affectedRowPath)
+            continue
 
-          if (_newIndex !== undefined)
-            rowsKeyIndexMap.value[row.id][level] = _newIndex
-          else if (children)
-            rowsKeyIndexMap.value[row.id][level] += direction
-
-          row.parent = null
-          if (row.children)
-            row.children.forEach((v: any) => processChanges(v, true, _newIndex))
+          // 更新索引
+          affectedRowPath[level] += direction
+          const affectedRow = getTargetData(dataSource.value, affectedRowPath)
+          affectedIds.push(processRowIndexChanges(affectedRow, false, undefined, direction))
         }
 
-        // Replace row index for new row
-        processChanges(newRow, false, currentRowIndex[level])
+        // 扁平化并去重ID数组
+        const flattenedIds = Array.from(new Set(affectedIds.flat()))
 
-        // Rebuild row index maps for changes row
-        for (let i = Number(oldIndex); i !== newIndex; i -= direction) {
-          const _rowIndex: number[] = rowsKeyIndexMap.value?.[getRowKey(table.children[i])]
-
-          _rowIndex[level] += direction
-          processChanges(getTargetData(dataSource.value, _rowIndex))
-        }
-
-        // console.log('Change row id', newRow.id, 'order', newRow.id, '=>', currentRow.id, ', direction: ', direction,
-        //   ', changes IDs:', changeIds
-
+        // 调用完成回调
         options?.onEnd?.({
-          target_id: newRow.id,
+          target_id: draggedRow.id,
           direction,
-          affected_ids: changeIds,
+          affected_ids: flattenedIds,
         })
-
-      //   props.api.update_order({
-      //     target_id: newRow.id,
-      //     direction,
-      //     affected_ids: changeIds,
-      //   }).then(() => {
-        //     message.success($gettext('Updated successfully'))
-        //   })
       },
     })
   }
@@ -148,8 +186,8 @@ function useDraggableTable(options?: StdTableProps['rowDraggableOptions']) {
     initSortable,
     buildIndexMap,
     resetIndexMap,
-    randomId,
-    rowsKeyIndexMap,
+    tableId,
+    rowKeyIndexMap,
   }
 }
 

@@ -72,6 +72,7 @@ const selectedRowKeys = ref<any[]>([])
     :columns="columns"
     row-selection-type="checkbox"
     row-key="id"
+    row-draggable
   >
     <template #beforeSearch>
       <Button>

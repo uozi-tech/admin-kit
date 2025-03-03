@@ -25,7 +25,7 @@ const emit = defineEmits<{
   (e: 'deleteItemPermanently', record: any): void
 }>()
 
-const { randomId, initSortable, buildIndexMap, resetIndexMap } = useDraggableTable()
+const { tableId, initSortable, buildIndexMap, resetIndexMap } = useDraggableTable(props.rowDraggableOptions)
 
 onMounted(() => {
   initSortable(tableData)
@@ -70,6 +70,8 @@ const dataColumns = computed<any>(() => {
     cols.unshift({
       title: '',
       dataIndex: 'drag',
+      width: 40,
+      align: 'center',
       customRender: () => {
         return h(HolderOutlined, { class: 'ant-table-drag-icon' })
       },
@@ -143,7 +145,8 @@ watch(() => props.refreshConfig, () => {
 
 // 重置搜索表单
 function resetSearchForm() {
-  if (Object.keys(searchFormData.value).length === 0)
+  const searchKeys = Object.keys(searchFormData.value)
+  if (searchKeys.length === 0)
     return
 
   searchFormData.value = {}
@@ -216,6 +219,10 @@ watch(apiParams, async (newVal, oldVal) => {
   tableData.value = []
   await debouncedListApi()
 }, { deep: true })
+
+watch(() => props.getListApi, () => {
+  debouncedListApi()
+})
 
 /** Table 选择 */
 const selectedRowKeys = defineModel<any[]>('selectedRowKeys')
@@ -320,7 +327,7 @@ defineExpose({
           gap="small"
         >
           <Button
-            v-if="searchColumns.length"
+            v-if="searchColumns.length && !hideResetBtn"
             @click="resetSearchForm"
           >
             {{ t('reset') }}
@@ -334,7 +341,7 @@ defineExpose({
     </StdSearch>
     <slot name="beforeTable" />
     <Table
-      :id="`std-table-${randomId}`"
+      :id="`std-table-${tableId}`"
       v-model:pagination="pagination"
       :row-selection="rowSelection"
       :columns="dataColumns"
@@ -422,8 +429,6 @@ defineExpose({
 
 <style scoped lang="less">
 :deep(.ant-table-drag-icon) {
-  float: left;
-  margin-right: 16px;
   cursor: grab;
 }
 
