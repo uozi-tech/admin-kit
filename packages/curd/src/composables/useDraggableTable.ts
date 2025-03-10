@@ -1,6 +1,7 @@
 import type { StdTableProps } from 'src/types'
+import type { Ref } from 'vue'
 import Sortable from 'sortablejs'
-import { ref, type Ref, toRaw } from 'vue'
+import { ref, toRaw } from 'vue'
 
 // 类型定义
 interface RowData {

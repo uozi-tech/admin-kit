@@ -1,7 +1,8 @@
+import type { App, ObjectPlugin } from 'vue'
 import type { I18nOptions } from 'vue-i18n'
 import type { CurdConfigT } from './types'
 import { merge } from 'lodash-es'
-import { type App, type ObjectPlugin, reactive } from 'vue'
+import { reactive } from 'vue'
 import { createI18n } from 'vue-i18n'
 import { enUS, zhCN, zhHK, zhTW } from './locales'
 

@@ -1,6 +1,7 @@
+import type { Ref } from 'vue'
 import type { ExportColumn, StdTableColumn } from '../types'
 import { get, set } from 'lodash-es'
-import { computed, reactive, type Ref, watch } from 'vue'
+import { computed, reactive, watch } from 'vue'
 import { utils, writeFile } from 'xlsx'
 
 export function useExport(config: {
