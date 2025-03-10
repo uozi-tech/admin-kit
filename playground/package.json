@@ -15,7 +15,7 @@
     "@uozi-admin/request": "workspace:*",
     "ant-design-vue": "^4.2.6",
     "dayjs": "^1.11.13",
-    "pinia": "^2.2.2",
+    "pinia": "^3.0.0",
     "vue": "^3.5.12",
     "vue-router": "^4.4.5",
     "vue3-gettext": "4.0.0-alpha.8"
