@@ -23,13 +23,12 @@ export function useAxios() {
     setResponseInterceptor(
       onFulfilled: (value: any) => any | Promise<any>,
       onRejected?: (error: any) => any | null,
-      options?: AxiosInterceptorOptions,
     ) {
-      const id = onFulfilled.toString() + onRejected?.toString() + JSON.stringify(options)
+      const id = onFulfilled.toString() + onRejected?.toString()
       if (registeredResponseInterceptors.has(id))
         return
 
-      service.interceptors.response.use(onFulfilled, onRejected, options)
+      service.interceptors.response.use(onFulfilled, onRejected)
       registeredResponseInterceptors.add(id)
     },
   }
