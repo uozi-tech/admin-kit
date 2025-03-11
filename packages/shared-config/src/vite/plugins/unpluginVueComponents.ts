@@ -13,5 +13,5 @@ export function createVueComponentsPluginConfig(customConfig?: VueComponentsOpti
       AntDesignVueResolver({ importStyle: false, resolveIcons: true }),
     ],
     ...customConfig,
-  })
+  }) as PluginOption
 }

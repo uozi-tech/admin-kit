@@ -2,7 +2,7 @@
 import type { SelectorConfig } from '../../types'
 import { Form, Modal, Select } from 'ant-design-vue'
 import { get } from 'lodash-es'
-import { computed, onMounted, ref, watch } from 'vue'
+import { computed, nextTick, onMounted, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import StdTable from '../StdTable.vue'
 
@@ -53,6 +53,15 @@ function removeValue(v: any) {
 async function init() {
   const isMulti = props.selectionType === 'checkbox'
   selectedRowKeys.value = isMulti ? arraylizeValue(value.value) : []
+  await nextTick()
+  const preloadIds = arraylizeValue(value.value).filter(Boolean)
+  if (preloadIds.length && props.getListApi) {
+    const { data } = await props.getListApi({
+      ...props.overwriteParams,
+      id: preloadIds,
+    })
+    selectedRows.value = data
+  }
 }
 
 watch(
@@ -66,16 +75,7 @@ watch(
   { immediate: true },
 )
 
-onMounted(async () => {
-  const preloadIds = arraylizeValue(value.value).filter(Boolean)
-  if (preloadIds.length && props.getListApi) {
-    const { data } = await props.getListApi({
-      ...props.overwriteParams,
-      id: preloadIds,
-    })
-    selectedRows.value = data
-  }
-})
+onMounted(init)
 
 function clickInput() {
   if (props.disabled) {
