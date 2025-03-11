@@ -1,5 +1,11 @@
 # @uozi-admin/shared-config
 
+## 0.4.4
+
+### Patch Changes
+
+- [`80f76a4`](https://github.com/uozi-tech/admin-kit/commit/80f76a42858bc8d6ad9d6e8e273f540ee4486897) Thanks [@0xJacky](https://github.com/0xJacky)! - fix(curd): [selecctor] preload issue
+
 ## 0.4.3
 
 ### Patch Changes

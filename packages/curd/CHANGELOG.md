@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 3.9.2
+
+### Patch Changes
+
+- [`80f76a4`](https://github.com/uozi-tech/admin-kit/commit/80f76a42858bc8d6ad9d6e8e273f540ee4486897) Thanks [@0xJacky](https://github.com/0xJacky)! - fix(curd): [selecctor] preload issue
+
 ## 3.9.1
 
 ### Patch Changes
