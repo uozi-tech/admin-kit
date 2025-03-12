@@ -35,7 +35,7 @@
     "dayjs": ">=1.11.13",
     "lodash-es": ">=4.17.21",
     "vue": ">=3.5.13",
-    "vue-router": ">=4.4.5"
+    "vue-router": ">=4.5.0"
   },
   "devDependencies": {
     "@types/lodash-es": "^4.17.12",
@@ -47,7 +47,7 @@
   },
   "dependencies": {
     "sortablejs": "^1.15.6",
-    "vue-i18n": "^11.1.1",
+    "vue-i18n": "^11.1.2",
     "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz"
   }
 }
