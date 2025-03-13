@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 3.9.3
+
+### Patch Changes
+
+- [`bd2a3e9`](https://github.com/uozi-tech/admin-kit/commit/bd2a3e9ddb6f9af36d1cca41eb4aa86cbe20a47b) Thanks [@0xJacky](https://github.com/0xJacky)! - enhance(i18n): disable legacy mode
+
 ## 3.9.2
 
 ### Patch Changes
