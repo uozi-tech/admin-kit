@@ -1,5 +1,11 @@
 # @uozi-admin/create-admin
 
+## 1.3.13
+
+### Patch Changes
+
+- [`e1a1778`](https://github.com/uozi-tech/admin-kit/commit/e1a1778148b3532523d7def213e95f39c98ad02d) Thanks [@0xJacky](https://github.com/0xJacky)! - fix: access router before init
+
 ## 1.3.12
 
 ### Patch Changes
