@@ -12,7 +12,6 @@ const loading = ref(false)
 const modelRef = reactive({
   email: '',
   password: '',
-  turnstile_token: '',
 })
 
 const rulesRef = reactive({
@@ -78,22 +77,17 @@ const settings = useSettingsStore()
                 </template>
               </AInputPassword>
             </AFormItem>
-            <Turnstile v-model="modelRef">
-              <template #default="{ status }">
-                <AFormItem>
-                  <AButton
-                    type="primary"
-                    block
-                    html-type="submit"
-                    :loading="loading"
-                    :disabled="!status"
-                    @click="onSubmit"
-                  >
-                    {{ $gettext('Login') }}
-                  </AButton>
-                </AFormItem>
-              </template>
-            </Turnstile>
+            <AFormItem>
+              <AButton
+                type="primary"
+                block
+                html-type="submit"
+                :loading
+                @click="onSubmit"
+              >
+                {{ $gettext('Login') }}
+              </AButton>
+            </AFormItem>
           </AForm>
           <div class="footer">
             <p>Copyright © 2023 - {{ thisYear }} {{ settings.copyright }}</p>
