@@ -24,6 +24,7 @@ export const defaultConfig: Required<CurdConfigT> = {
     },
   },
   i18n: {
+    legacy: false,
     locale: 'zh-CN',
     fallbackLocale: 'en-US',
     messages: {
