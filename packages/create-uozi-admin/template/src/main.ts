@@ -7,6 +7,7 @@ import App from './App.vue'
 import './style.css'
 import '@uozi-admin/curd/dist/index.css'
 import '@uozi-admin/layout-antdv/dist/index.css'
+import 'virtual:uno.css'
 
 createApp(App)
   .use(createCurdConfig({
