@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 3.10.0
+
+### Minor Changes
+
+- [`7863031`](https://github.com/uozi-tech/admin-kit/commit/7863031fd0237708fe00d49ac776bb043ff8cd84) Thanks [@0xJacky](https://github.com/0xJacky)! - feat(std-curd): add slots for before and after form
+
 ## 3.9.3
 
 ### Patch Changes
