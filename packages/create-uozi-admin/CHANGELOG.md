@@ -1,5 +1,13 @@
 # @uozi-admin/create-admin
 
+## 1.3.14
+
+### Patch Changes
+
+- [`88cda98`](https://github.com/uozi-tech/admin-kit/commit/88cda988fb0787c2aaca497565b931faf7268a12) Thanks [@0xJacky](https://github.com/0xJacky)! - fix(template): import unocs for improved styling
+
+- [`b721eb6`](https://github.com/uozi-tech/admin-kit/commit/b721eb65d8f40802f4b309ac9288d8b5cb2f40d7) Thanks [@0xJacky](https://github.com/0xJacky)! - fix(template): login page
+
 ## 1.3.13
 
 ### Patch Changes
