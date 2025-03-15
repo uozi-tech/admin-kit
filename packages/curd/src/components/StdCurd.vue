@@ -228,7 +228,10 @@ const modalTitle = computed(() => {
       v-if="!hideHeader && !hideExtra"
       #extra
     >
-      <Flex gap="8">
+      <Flex
+        align="center"
+        gap="8"
+      >
         <slot name="beforeListActions" />
         <a
           v-if="!props.disableExport && !isTrash"
