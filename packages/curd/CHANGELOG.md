@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 3.10.1
+
+### Patch Changes
+
+- [`1580bbd`](https://github.com/uozi-tech/admin-kit/commit/1580bbd3ae7ba8809b65010dad0efa8a22620615) Thanks [@0xJacky](https://github.com/0xJacky)! - refactor(form): update StdTextarea component to use TextareaConfig type
+
 ## 3.10.0
 
 ### Minor Changes
