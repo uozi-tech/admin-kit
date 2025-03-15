@@ -1,5 +1,11 @@
 # @uozi-admin/layout-antdv
 
+## 1.1.2
+
+### Patch Changes
+
+- [`1641aaf`](https://github.com/uozi-tech/admin-kit/commit/1641aaf91ef7a457378c1989f7718ebdfecc9fd5) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(layout-antdv): incorrect collapsed status of sidebar
+
 ## 1.1.1
 
 ### Patch Changes

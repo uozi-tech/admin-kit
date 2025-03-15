@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 3.10.2
+
+### Patch Changes
+
+- [`c9ac3ee`](https://github.com/uozi-tech/admin-kit/commit/c9ac3ee4deb4664d4af9902d9e5fc1def221f6a4) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): list action style
+
 ## 3.10.1
 
 ### Patch Changes
