@@ -16,6 +16,7 @@ import type {
   SelectorConfig,
   SliderConfig,
   SwitchConfig,
+  TextareaConfig,
   TimePickerConfig,
   UploadConfig,
   WeekPickerConfig,
@@ -61,6 +62,7 @@ export interface StdFormConfig extends Record<any, any> {
   password?: PasswordConfig
   input?: InputConfig
   inputNumber?: InputNumberConfig
+  textarea?: TextareaConfig
   select?: SelectConfig
   selector?: SelectorConfig
   cascader?: CascaderConfig

@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import type { InputConfig } from '../../types'
+import type { TextareaConfig } from '../../types'
 import { Textarea } from 'ant-design-vue'
 
-defineProps<{ props?: InputConfig & { placeholder?: string | number } }>()
-const value = defineModel<InputConfig['value']>('value')
+defineProps<{ props?: TextareaConfig & { placeholder?: string | number } }>()
+const value = defineModel<TextareaConfig['value']>('value')
 </script>
 
 <template>

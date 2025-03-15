@@ -10,6 +10,7 @@ import type {
   SliderProps,
   SwitchProps,
   TableProps,
+  TextAreaProps,
   TimePickerProps,
   TransferProps,
   UploadProps,
@@ -35,6 +36,8 @@ export interface TimeT extends BaseConfig {
 export type InputConfig = Omit<InputProps, 'placeholder'> & PlaceholderT & BaseConfig
 
 export type InputNumberConfig = Omit<InputNumberProps, 'placeholder'> & PlaceholderT & BaseConfig
+
+export type TextareaConfig = Omit<TextAreaProps, 'placeholder'> & PlaceholderT & BaseConfig
 
 export type PasswordConfig = Omit<InputProps, 'placeholder'> & PlaceholderT & BaseConfig & {
   generate?: boolean
