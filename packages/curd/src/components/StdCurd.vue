@@ -316,12 +316,21 @@ const modalTitle = computed(() => {
             :columns="props.columns"
             :record="itemDetail"
           />
-          <StdForm
-            v-else-if="mode === 'edit' || mode === 'add'"
-            ref="stdForm"
-            :data="itemDetail"
-            :columns="formColumns"
-          />
+          <template v-else-if="mode === 'edit' || mode === 'add'">
+            <slot
+              name="beforeForm"
+              :record="itemDetail"
+            />
+            <StdForm
+              ref="stdForm"
+              :data="itemDetail"
+              :columns="formColumns"
+            />
+            <slot
+              name="afterForm"
+              :record="itemDetail"
+            />
+          </template>
         </div>
       </Spin>
       <template #footer>

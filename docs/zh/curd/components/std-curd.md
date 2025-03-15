@@ -81,6 +81,8 @@ const api = {
 | afterListActions | 列表操作后的区域 | - |
 | beforeActions | 操作列前的区域 | { record } |
 | afterActions | 操作列后的区域 | { record } |
+| beforeForm | 编辑器表单上方的区域 | { record } |
+| afterForm | 编辑器表单下方的区域 | { record } |
 
 ## 方法
 

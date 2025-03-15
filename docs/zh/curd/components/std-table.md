@@ -1,6 +1,6 @@
 # StdTable 组件
 
-StdTable 是一个增强的表格组件,基于 Ant Design Vue 的 Table 组件扩展,提供了搜索、排序、筛选等功能。
+StdTable 是一个增强的表格组件,基于 Ant Design Vue 的 Table 组件扩展，提供了搜索、排序、筛选等功能。
 
 ## 基础用法
 
