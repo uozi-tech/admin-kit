@@ -2,7 +2,7 @@
 import type { SidebarItem, Text } from '../props'
 import { Avatar, Image, LayoutSider, Menu, MenuItem, SubMenu } from 'ant-design-vue'
 import { throttle } from 'lodash-es'
-import { h, ref } from 'vue'
+import { h, onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { getRealTitle } from '../utils'
 
@@ -26,6 +26,10 @@ const openKeys = ref<string[]>([route.path.substring(0, lastSepIndex)])
 
 // 折叠菜单
 const collapsed = ref(false)
+
+onMounted(() => {
+  collapsed.value = shouldCollapse()
+})
 
 function getClientWidth() {
   return document.body.clientWidth
@@ -59,7 +63,10 @@ function handleMenuItemClick({ item }) {
   >
     <!-- 可自定义 Logo 区域 -->
     <div class="logo">
-      <slot name="logo">
+      <slot
+        name="logo"
+        :collapsed="collapsed"
+      >
         <Avatar
           v-if="collapsed && !logo"
           size="large"

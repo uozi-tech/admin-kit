@@ -73,8 +73,11 @@ function onSidebarCollapse(collapsed: boolean) {
       @select-menu-item="onMenuSelect"
       @collapse-sidebar="onSidebarCollapse"
     >
-      <template #logo>
-        <slot name="logo" />
+      <template #logo="props">
+        <slot
+          name="logo"
+          v-bind="props"
+        />
       </template>
     </AppSidebar>
 

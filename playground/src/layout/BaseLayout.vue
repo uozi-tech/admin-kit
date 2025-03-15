@@ -46,9 +46,9 @@ const sidebarItems = computed<SidebarItem[]>(() => {
     @toggle-theme="toggleTheme"
     @change-language="changeLanguage"
   >
-    <template #logo>
+    <template #logo="{ collapsed }">
       <div class="flex items-center">
-        <span class="text-lg font-bold">Uozi Admin</span>
+        <span class="text-lg font-bold">{{ collapsed ? 'U' : 'Uozi Admin' }}</span>
       </div>
     </template>
 
