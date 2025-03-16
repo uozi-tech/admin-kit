@@ -25,25 +25,33 @@ function getSidebarTree(routes?: RouteRecordRaw[]): SidebarItem[] {
   if (!routes)
     return []
 
-  return routes.map<SidebarItem>(r => ({
-    title: r.meta?.title as any,
-    name: r.name as string,
-    path: r.path,
-    icon: r.meta?.icon,
-    children: getSidebarTree(r.children),
-  }))
+  return routes
+    .filter((r) => {
+      return !r.meta?.hidden
+    })
+    .map<SidebarItem>(r => ({
+      title: r.meta?.title as any,
+      name: r.name as string,
+      path: r.path,
+      icon: r.meta?.icon,
+      children: getSidebarTree(r.children),
+    }))
 }
 
 const sidebarItems = computed<SidebarItem[]>(() => {
   return getSidebarTree(routes[0].children)
 })
+
+const settingsStore = useSettingsStore()
 </script>
 
 <template>
   <AdminLayout
     :sidebar-items="sidebarItems"
+    logo="/logo.svg"
+    :current-theme="settingsStore.theme"
     :languages="languageAvailable"
-    :current-language="gettext.current"
+    :current-language="settingsStore.language"
     :page-title="route.meta.title"
     @toggle-theme="toggleTheme"
     @change-language="changeLanguage"
