@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { LockOutlined, UserOutlined } from '@ant-design/icons-vue'
-import { LanguageSelect, ThemeSwitch } from '@uozi-admin/layout-antdv'
+import { LanguageSelect, ThemeSwitch, getAppConfig } from '@uozi-admin/layout-antdv'
 import { Form } from 'ant-design-vue'
 import gettext from '~/language/gettext'
 import { useSettingsStore } from '~/store'
@@ -45,6 +45,7 @@ watch(() => gettext.current, () => {
   clearValidate()
 })
 
+const appConfig = getAppConfig()
 const settings = useSettingsStore()
 </script>
 
@@ -54,7 +55,7 @@ const settings = useSettingsStore()
       <div class="login-container">
         <div class="login-form">
           <div class="project-title">
-            <h1>{{ settings.siteTitle }}</h1>
+            <h1>{{ appConfig.siteTitle }}</h1>
           </div>
           <AForm id="components-form-demo-normal-login">
             <AFormItem v-bind="validateInfos.email">
@@ -90,7 +91,7 @@ const settings = useSettingsStore()
             </AFormItem>
           </AForm>
           <div class="footer">
-            <p>Copyright © 2023 - {{ thisYear }} {{ settings.copyright }}</p>
+            <p>Copyright © 2023 - {{ thisYear }} {{ appConfig.copyright }}</p>
             <AFlex
               justify="center"
               align="center"

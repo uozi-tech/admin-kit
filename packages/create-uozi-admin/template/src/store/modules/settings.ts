@@ -10,8 +10,6 @@ export const useSettingsStore = defineStore('settings', () => {
     initialValue: 'auto',
   }) as unknown as Ref<Theme>
   const preference_theme = ref<Theme>('auto')
-  const siteTitle = ref('Admin')
-  const copyright = ref('')
 
   const isDark = computed(() => {
     return theme.value === 'dark'
@@ -31,22 +29,16 @@ export const useSettingsStore = defineStore('settings', () => {
   function setPreferenceTheme(t: Theme) {
     preference_theme.value = t
   }
-  function setCopyright(cp: string) {
-    copyright.value = cp
-  }
 
   return {
-    siteTitle,
     antdLanguage,
     language,
     theme,
     preference_theme,
-    copyright,
     isDark,
     setLanguage,
     setTheme,
     setPreferenceTheme,
-    setCopyright,
   }
 }, {
   persist: true,
