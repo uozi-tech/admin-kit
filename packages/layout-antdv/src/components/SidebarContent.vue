@@ -42,7 +42,7 @@ function handleMenuItemClick({ item }) {
         <Avatar
           v-if="collapsed && !logo"
           size="large"
-          class="flex items-center bg-purple-5 dark:bg-purple-8 text-xl font-semibold transition-all"
+          class="flex items-center bg-purple-5 dark:bg-purple-8 text-xl transition-all"
         >
           {{ getRealTitle(headerTitle)[0] }}
         </Avatar>
@@ -54,7 +54,7 @@ function handleMenuItemClick({ item }) {
         </div>
         <h1
           v-show="!collapsed"
-          class=" transition-all line-clamp-1"
+          class="text-20px font-400 transition-all line-clamp-1"
         >
           {{ getRealTitle(headerTitle) }}
         </h1>
