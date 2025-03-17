@@ -3,6 +3,7 @@ import type { Theme } from '../props'
 import { computed, ref } from 'vue'
 import IconMoon from './Icons/IconMoon.vue'
 import IconSun from './Icons/IconSun.vue'
+import VPSwitch from './VPSwitch/VPSwitch.vue'
 
 const props = withDefaults(
   defineProps<{
@@ -26,68 +27,35 @@ function toggleTheme() {
 </script>
 
 <template>
-  <button
-    role="switch"
-    class="theme-switch"
+  <VPSwitch
+    class="VPSwitchAppearance"
+    :aria-checked="isDark"
     @click="toggleTheme"
   >
-    <div
-      class="icon-container"
-      :class="{ dark: isDark }"
-    >
-      <IconSun class="icon icon-sun" />
-      <IconMoon class="icon icon-moon" />
-    </div>
-  </button>
+    <IconSun class="sun" />
+    <IconMoon class="moon" />
+  </VPSwitch>
 </template>
 
-<style scoped>
-.theme-switch {
-  @apply
-  w-40px
-  h-22px
-  p-0
-  bg-[#eff0f3]
-  b-gray-2
-  transition-all
-  rounded-full
-  cursor-pointer
-  dark:(bg-[#222426] b-[#424242])
-  hover:(b-[#3c89e8] dark:b-blue-5);
-
-  border-width: 1px;
-  border-style: solid;
+<style lang="less">
+.sun {
+  opacity: 1;
 }
 
-.theme-switch .icon-container {
-  @apply relative flex items-center w-full h-full p-4px;
+.moon {
+  opacity: 0;
 }
 
-.theme-switch .icon-container .icon {
-  @apply
-  absolute
-  h-92%
-  p-3px
-  rounded-full
-  transition-all
-  transition-ease-in;
+.dark .sun {
+  opacity: 0;
 }
 
-.icon-sun {
-  @apply
-  left-1px
-  fill-gray-6
-  bg-white
-  dark:(op-0 translate-x-5);
+.dark .moon {
+  opacity: 1;
 }
 
-.icon-moon {
-  @apply
-  right-1px
-  fill-gray-1
-  bg-gray-8
-  op-0
-  translate-x--5
-  dark:(op-100 translate-x-0);
+.dark .VPSwitchAppearance .check {
+  /*rtl:ignore*/
+  transform: translateX(18px);
 }
 </style>

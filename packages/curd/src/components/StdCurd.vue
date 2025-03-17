@@ -189,7 +189,7 @@ function handleDataById(action: string, record: Record<string, any>) {
     })
 }
 
-const { exportExcel, exportColumns, state: exportColumnsSelectionState, onCheckAllChange } = useExport({
+const { exportExcel, state: exportColumnsSelectionState, onCheckAllChange } = useExport({
   columns: props.columns,
   api: props.api?.getList,
 })

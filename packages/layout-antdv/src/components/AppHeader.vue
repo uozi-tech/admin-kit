@@ -1,10 +1,16 @@
 <script setup lang="ts">
+import { MenuUnfoldOutlined } from '@ant-design/icons-vue'
+
+const emit = defineEmits(['clickUnFold'])
 </script>
 
 <template>
   <div class="app-header">
-    <div />
-    <div class="flex items-center">
+    <div class="tool">
+      <MenuUnfoldOutlined @click="emit('clickUnFold')" />
+    </div>
+
+    <div class="flex w-full items-center justify-end">
       <div class="flex items-center gap-4">
         <slot name="default" />
       </div>
@@ -17,7 +23,7 @@
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="less">
 .app-header {
   display: flex;
   justify-content: space-between;
@@ -25,7 +31,16 @@
   height: 64px;
   padding: 0 24px;
 }
+
 .logo {
   font-size: 20px;
+}
+
+.tool {
+  position: absolute;
+  left: 20px;
+  @media (min-width: 600px) {
+    display: none;
+  }
 }
 </style>

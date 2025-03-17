@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { AppBreadcrumbItem, Languages, LanguageValue, SidebarItem, Text, Theme } from '../props'
 import { Layout, LayoutContent, LayoutFooter, LayoutHeader } from 'ant-design-vue'
+import { ref } from 'vue'
 import { getRealTitle } from '../utils'
 import AppFooter from './AppFooter.vue'
 import AppHeader from './AppHeader.vue'
@@ -45,6 +46,8 @@ const emit = defineEmits([
   'sidebarCollapsed',
 ])
 
+const sidebarDrawerVisible = ref(false)
+
 function toggleTheme(t: Theme) {
   emit('toggleTheme', t)
 }
@@ -66,6 +69,7 @@ function onSidebarCollapse(collapsed: boolean) {
   <Layout class="layout-container h-screen of-hidden">
     <!-- Sidebar -->
     <AppSidebar
+      v-model:drawer-visible="sidebarDrawerVisible"
       :logo="logo"
       :header-title="siteTitle"
       class="shadow-lg"
@@ -84,7 +88,7 @@ function onSidebarCollapse(collapsed: boolean) {
     <!-- Main Layout -->
     <Layout>
       <LayoutHeader class="z-10 shadow-sm p-inline-0!">
-        <AppHeader>
+        <AppHeader @click-un-fold="sidebarDrawerVisible = true">
           <LanguageSelect
             v-if="showLanguageSelect"
             :current-language="currentLanguage"
@@ -143,7 +147,7 @@ function onSidebarCollapse(collapsed: boolean) {
   </Layout>
 </template>
 
-<style scoped>
+<style scoped lang="less">
 :deep(.ant-layout-header), :deep(.ant-layout-sider), :deep(.ant-layout-sider-trigger) {
   @apply bg-white bg-base text-color-base;
 }

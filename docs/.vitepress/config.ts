@@ -7,7 +7,7 @@ export default defineConfig({
 
   locales: {
     root: {
-      label: '简体中文',
+      label: '简',
       ...zh,
     },
   },

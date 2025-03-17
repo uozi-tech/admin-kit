@@ -16,11 +16,6 @@ const internalItems = computed<AppBreadcrumbItem[]>(() => {
     title: r.meta?.breadcrumb || r.meta?.title || r.name,
     path: r.path,
     icon: r.meta?.icon,
-    children: r.children?.map(c => ({
-      title: c.meta?.breadcrumb || c.meta?.title || c.name,
-      path: c.path,
-      icon: c.meta?.icon,
-    })),
   })) as AppBreadcrumbItem[]
 })
 </script>
