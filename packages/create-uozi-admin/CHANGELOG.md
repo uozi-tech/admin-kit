@@ -1,5 +1,11 @@
 # @uozi-admin/create-admin
 
+## 1.4.3
+
+### Patch Changes
+
+- [`3289b50`](https://github.com/uozi-tech/admin-kit/commit/3289b50f14ce45bcef7fd3ab19f7d637ae98d96a) Thanks [@0xJacky](https://github.com/0xJacky)! - enhance(footer): copyright prop
+
 ## 1.4.2
 
 ### Patch Changes
