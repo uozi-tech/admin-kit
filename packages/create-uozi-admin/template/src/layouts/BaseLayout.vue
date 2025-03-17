@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { SidebarItem, Theme } from '@uozi-admin/layout-antdv'
 import type { RouteRecordRaw } from 'vue-router'
-import { AdminLayout } from '@uozi-admin/layout-antdv'
+import { AdminLayout, getAppConfig } from '@uozi-admin/layout-antdv'
 import { computed } from 'vue'
 import { RouterView } from 'vue-router'
 import gettext from '~/language/gettext'
@@ -42,6 +42,7 @@ const sidebarItems = computed<SidebarItem[]>(() => {
   return getSidebarTree(routes[0].children)
 })
 
+const appConfig = getAppConfig()
 const settingsStore = useSettingsStore()
 </script>
 
@@ -53,6 +54,9 @@ const settingsStore = useSettingsStore()
     :languages="languageAvailable"
     :current-language="settingsStore.language"
     :page-title="route.meta.title"
+    show-footer
+    :site-title="appConfig.siteTitle"
+    :copyright="appConfig.copyright"
     @toggle-theme="toggleTheme"
     @change-language="changeLanguage"
   >

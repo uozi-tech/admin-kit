@@ -138,14 +138,14 @@ provide('breadList', breadList)
           <!-- 插槽：页面内容 -->
           <slot />
         </div>
-      </LayoutContent>
 
-      <!-- Footer -->
-      <LayoutFooter v-if="showFooter">
-        <AppFooter :copyright="getRealTitle(copyright)">
-          <slot name="footer-content" />
-        </AppFooter>
-      </LayoutFooter>
+        <!-- Footer -->
+        <LayoutFooter v-if="showFooter">
+          <AppFooter :copyright="getRealTitle(copyright)">
+            <slot name="footer-content" />
+          </AppFooter>
+        </LayoutFooter>
+      </LayoutContent>
     </Layout>
   </Layout>
 </template>
