@@ -7,7 +7,7 @@ export interface AppBreadcrumbItem {
   title: Text
   path: string
   icon?: AntdIconType | FunctionalComponent | Component
-  children?: AppBreadcrumbItem[]
+  lastRouteName?: Text
 }
 
 export interface SidebarItem {

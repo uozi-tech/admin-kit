@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { AppBreadcrumbItem, Languages, LanguageValue, SidebarItem, Text, Theme } from '../props'
 import { Layout, LayoutContent, LayoutFooter, LayoutHeader } from 'ant-design-vue'
-import { ref } from 'vue'
+import { provide, ref } from 'vue'
 import { getRealTitle } from '../utils'
 import AppFooter from './AppFooter.vue'
 import AppHeader from './AppHeader.vue'
@@ -63,6 +63,10 @@ function onMenuSelect(key: string) {
 function onSidebarCollapse(collapsed: boolean) {
   emit('sidebarCollapsed', collapsed)
 }
+
+const breadList = ref([])
+
+provide('breadList', breadList)
 </script>
 
 <template>
@@ -72,7 +76,6 @@ function onSidebarCollapse(collapsed: boolean) {
       v-model:drawer-visible="sidebarDrawerVisible"
       :logo="logo"
       :header-title="siteTitle"
-      class="shadow-lg"
       :items="sidebarItems"
       @select-menu-item="onMenuSelect"
       @collapse-sidebar="onSidebarCollapse"
