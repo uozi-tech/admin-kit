@@ -1,5 +1,11 @@
 # @uozi-admin/layout-antdv
 
+## 1.2.3
+
+### Patch Changes
+
+- [`63e88d5`](https://github.com/uozi-tech/admin-kit/commit/63e88d54a064883d0d471a76f8882ec76d6ff19d) Thanks [@0xJacky](https://github.com/0xJacky)! - enhance(layout): footer style
+
 ## 1.2.2
 
 ### Patch Changes
