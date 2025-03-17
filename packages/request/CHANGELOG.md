@@ -1,5 +1,11 @@
 # @uozi-admin/request
 
+## 2.5.3
+
+### Patch Changes
+
+- [`319d1d0`](https://github.com/uozi-tech/admin-kit/commit/319d1d04550f4284dbc0cb5881cda32c70d8f1c3) Thanks [@akinoccc](https://github.com/akinoccc)! - feat(request): support pass axios config when using curd api
+
 ## 2.5.2
 
 ### Patch Changes
