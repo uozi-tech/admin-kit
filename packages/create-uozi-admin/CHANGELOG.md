@@ -1,5 +1,15 @@
 # @uozi-admin/create-admin
 
+## 1.4.1
+
+### Patch Changes
+
+- [#172](https://github.com/uozi-tech/admin-kit/pull/172) [`fd81545`](https://github.com/uozi-tech/admin-kit/commit/fd8154512f9110b1c00f39648aa161309ab0d9bf) Thanks [@github-actions](https://github.com/apps/github-actions)! - Update template dependencies:
+
+  - @uozi-admin/layout-antdv@^1.2.0
+
+- [`9493637`](https://github.com/uozi-tech/admin-kit/commit/94936379ce06e3717cafa9d6028237bb2e58decd) Thanks [@0xJacky](https://github.com/0xJacky)! - feat(login): integrate app configuration for site title and copyright
+
 ## 1.4.0
 
 ### Minor Changes
