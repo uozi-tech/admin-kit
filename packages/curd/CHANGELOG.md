@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 3.10.3
+
+### Patch Changes
+
+- [`c71cd19`](https://github.com/uozi-tech/admin-kit/commit/c71cd19ab6520b98322f2d6fb67d379d124e757b) Thanks [@0xJacky](https://github.com/0xJacky)! - chore: update verison
+
 ## 3.10.2
 
 ### Patch Changes
