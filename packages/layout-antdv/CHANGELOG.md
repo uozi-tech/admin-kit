@@ -1,5 +1,11 @@
 # @uozi-admin/layout-antdv
 
+## 1.2.1
+
+### Patch Changes
+
+- [`c43415b`](https://github.com/uozi-tech/admin-kit/commit/c43415ba8499d1e6bc0f264ceef31e9377b5f260) Thanks [@0xJacky](https://github.com/0xJacky)! - style(sidebar): adjust logo shadow in drawer mode
+
 ## 1.2.0
 
 ### Minor Changes
