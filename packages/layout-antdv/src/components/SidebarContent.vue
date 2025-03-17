@@ -125,6 +125,12 @@ function handleMenuItemClick({ item }) {
   box-shadow: 1px 1px 0 0 #e8e8e8;
 }
 
+.ant-drawer-body {
+  .logo {
+    box-shadow: unset !important;
+  }
+}
+
 :deep(.ant-layout-sider-trigger) {
   color: inherit;
 }

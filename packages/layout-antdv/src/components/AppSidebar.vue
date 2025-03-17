@@ -120,7 +120,7 @@ onUnmounted(() => {
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="less">
 .logo {
   height: 64px;
   display: flex;
@@ -143,4 +143,6 @@ onUnmounted(() => {
 
   box-shadow: 2px 0 8px rgba(29, 35, 41, 0.05);
 }
+
+
 </style>
