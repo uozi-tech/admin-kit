@@ -43,4 +43,14 @@ const emit = defineEmits(['clickUnFold'])
     display: none;
   }
 }
+
+.dark {
+  .app-header {
+    box-shadow: 1px 1px 0 0 #404040;
+
+    a {
+      color: #fafafa;
+    }
+  }
+}
 </style>

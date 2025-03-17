@@ -34,7 +34,7 @@ function handleMenuItemClick({ item }) {
 <template>
   <div>
     <!-- 可自定义 Logo 区域 -->
-    <div class="logo">
+    <div class="logo mb-1">
       <slot
         name="logo"
         :collapsed="collapsed"
@@ -108,11 +108,21 @@ function handleMenuItemClick({ item }) {
 </template>
 
 <style scoped>
+.dark {
+  .logo {
+    background-color: transparent;
+    -webkit-box-shadow: 1px 1px 0 0 #404040;
+    box-shadow: 1px 1px 0 0 #404040;
+  }
+}
+
 .logo {
   height: 64px;
   display: flex;
   justify-content: center;
   align-items: center;
+  -webkit-box-shadow: 1px 1px 0 0 #e8e8e8;
+  box-shadow: 1px 1px 0 0 #e8e8e8;
 }
 
 :deep(.ant-layout-sider-trigger) {

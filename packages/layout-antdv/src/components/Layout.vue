@@ -110,7 +110,7 @@ provide('breadList', breadList)
       </LayoutHeader>
 
       <LayoutContent class="flex flex-col max-h-full of-auto">
-        <div class="flex flex-col gap-1 px-6 py-2 bg-base">
+        <div class="flex flex-col gap-1 px-6 py-2 page-header">
           <!-- Breadcrumb -->
           <Breadcrumb
             v-if="showBreadcrumb"
@@ -160,6 +160,16 @@ provide('breadList', breadList)
 @media (orientation: landscape) {
   .layout-container {
     padding: 0 env(safe-area-inset-right) 0 env(safe-area-inset-left);
+  }
+}
+.dark {
+  .page-header {
+    background: #121212 !important;
+    border-bottom: unset;
+
+    h1 {
+      color: #fafafa;
+    }
   }
 }
 </style>

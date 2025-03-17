@@ -17,3 +17,7 @@ defineProps({
     <slot name="extra" />
   </PageHeader>
 </template>
+
+<style scoped>
+
+</style>
