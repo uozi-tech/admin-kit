@@ -3,6 +3,10 @@ import { theme } from 'ant-design-vue'
 import { useSettingsStore } from '~/store'
 
 const settingsStore = useSettingsStore()
+
+const watermarkFontColor = computed(() => {
+  return settingsStore.isDark ? 'rgba(255, 255, 255, .06)' : 'rgba(0, 0, 0, .06)'
+})
 </script>
 
 <template>
@@ -15,7 +19,7 @@ const settingsStore = useSettingsStore()
   >
     <AWatermark
       content="waterMark"
-      :font="{ color: 'rgba(0, 0, 0, .06)' }"
+      :font="{ color: watermarkFontColor }"
     >
       <div class="bg-truegray-1 dark:bg-truegray-9">
         <RouterView />

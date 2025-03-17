@@ -110,7 +110,7 @@ provide('breadList', breadList)
       </LayoutHeader>
 
       <LayoutContent class="flex flex-col max-h-full of-auto">
-        <div class="flex flex-col gap-1 px-6 py-2 page-header">
+        <div class="flex flex-col gap-1 px-6 py-2 page-header light:bg-base">
           <!-- Breadcrumb -->
           <Breadcrumb
             v-if="showBreadcrumb"
