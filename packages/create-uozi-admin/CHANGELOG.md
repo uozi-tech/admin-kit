@@ -1,5 +1,26 @@
 # @uozi-admin/create-admin
 
+## 1.4.0
+
+### Minor Changes
+
+- [`3b6a50f`](https://github.com/uozi-tech/admin-kit/commit/3b6a50fd0d128ca5c9bc8f7ccf0ed984a659cf1e) Thanks [@0xJacky](https://github.com/0xJacky)! - style(template): enhance body styling for dark mode and overall layout
+
+- [`333b0d5`](https://github.com/uozi-tech/admin-kit/commit/333b0d594a9801eb710a776a78efbcb43f85dc87) Thanks [@0xJacky](https://github.com/0xJacky)! - fix(template): update watermark font color for dark mode support
+
+- [`862846e`](https://github.com/uozi-tech/admin-kit/commit/862846ec41e26330c973a9b1dc872b40053602c9) Thanks [@0xJacky](https://github.com/0xJacky)! - style(layout): improve dark mode styles for header, page header, and sidebar components
+
+### Patch Changes
+
+- [#164](https://github.com/uozi-tech/admin-kit/pull/164) [`1f19b83`](https://github.com/uozi-tech/admin-kit/commit/1f19b83c707586ceea90b28d5f39ad8b7f2237bd) Thanks [@github-actions](https://github.com/apps/github-actions)! - Update template dependencies:
+
+  - @uozi-admin/curd@^3.10.2
+  - @uozi-admin/layout-antdv@^1.1.2
+
+- [`84e565e`](https://github.com/uozi-tech/admin-kit/commit/84e565e59398804468c04785a9a7ff4b57782dae) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(create-uozi-admin): template issue
+
+- [`a2071e6`](https://github.com/uozi-tech/admin-kit/commit/a2071e656abb88b80e2c8758cb246ef9905a3c0c) Thanks [@0xJacky](https://github.com/0xJacky)! - fix(create-uozi-admin): update viewport meta tag for better responsiveness
+
 ## 1.3.14
 
 ### Patch Changes

@@ -1,5 +1,21 @@
 # @uozi-admin/layout-antdv
 
+## 1.2.0
+
+### Minor Changes
+
+- [`e58a08a`](https://github.com/uozi-tech/admin-kit/commit/e58a08aa2180b92c7432bd1cf71d315626e12653) Thanks [@0xJacky](https://github.com/0xJacky)! - refactor(layout): show sidebar in drawer in sm device
+
+- [`4f157e7`](https://github.com/uozi-tech/admin-kit/commit/4f157e770a20048395a8fcabfd3806d18f531e67) Thanks [@0xJacky](https://github.com/0xJacky)! - feat(layout): add app config
+
+- [`862846e`](https://github.com/uozi-tech/admin-kit/commit/862846ec41e26330c973a9b1dc872b40053602c9) Thanks [@0xJacky](https://github.com/0xJacky)! - style(layout): improve dark mode styles for header, page header, and sidebar components
+
+- [`ebecc22`](https://github.com/uozi-tech/admin-kit/commit/ebecc228311b3645ad4a523534d6252c4c6aad02) Thanks [@0xJacky](https://github.com/0xJacky)! - refactor(layout): add breadcrumb component with routing support and update props
+
+### Patch Changes
+
+- [`7f2372c`](https://github.com/uozi-tech/admin-kit/commit/7f2372c363fc0111a086ac04a7785a6b6ffd77c3) Thanks [@0xJacky](https://github.com/0xJacky)! - style(sidebar): refine avatar and header text styles for improved visual consistency
+
 ## 1.1.2
 
 ### Patch Changes
