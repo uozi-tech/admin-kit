@@ -1,11 +1,9 @@
 <script setup lang="ts">
 import { LockOutlined, UserOutlined } from '@ant-design/icons-vue'
-import { LanguageSelect, ThemeSwitch, getAppConfig } from '@uozi-admin/layout-antdv'
+import { getAppConfig, LanguageSelect, ThemeSwitch } from '@uozi-admin/layout-antdv'
 import { Form } from 'ant-design-vue'
 import gettext from '~/language/gettext'
 import { useSettingsStore } from '~/store'
-
-const thisYear = new Date().getFullYear()
 
 const loading = ref(false)
 
@@ -91,7 +89,7 @@ const settings = useSettingsStore()
             </AFormItem>
           </AForm>
           <div class="footer">
-            <p>Copyright © 2023 - {{ thisYear }} {{ appConfig.copyright }}</p>
+            <p>{{ appConfig.copyright }}</p>
             <AFlex
               justify="center"
               align="center"

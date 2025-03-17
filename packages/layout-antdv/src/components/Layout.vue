@@ -141,7 +141,7 @@ provide('breadList', breadList)
       </LayoutContent>
 
       <!-- Footer -->
-      <LayoutFooter v-if="showFooter && copyright">
+      <LayoutFooter v-if="showFooter">
         <AppFooter :copyright="getRealTitle(copyright)">
           <slot name="footer-content" />
         </AppFooter>
