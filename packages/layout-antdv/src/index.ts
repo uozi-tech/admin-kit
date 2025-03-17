@@ -1,4 +1,5 @@
 export * from './components'
 export * from './composables'
+export * from './config'
 export * from './props'
 export * from './utils'

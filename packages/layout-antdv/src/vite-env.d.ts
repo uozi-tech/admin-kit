@@ -17,7 +17,7 @@ declare module '*.vue' {
 declare module 'vue-router' {
   interface RouteMeta {
     title: Text
-    breadcrumb: Text
+    breadcrumb?: Text
     lastRouteName?: string
   }
 }

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { AppBreadcrumbItem } from '../props'
+import type { AppBreadcrumbItem, Text } from '../props'
 import { Breadcrumb, BreadcrumbItem } from 'ant-design-vue'
 import { computed, onMounted, watch } from 'vue'
 import { RouterLink, useRoute, useRouter } from 'vue-router'
@@ -18,14 +18,14 @@ const internalItems = computed<AppBreadcrumbItem[]>(() => {
 
   matchedRoutes.forEach((r) => {
     if (r.meta?.lastRouteName) {
-      const lastRoute = router.resolve({ name: r.meta.lastRouteName })
+      const lastRoute = router.resolve({ name: r.meta.lastRouteName as string })
       result.push({
-        title: lastRoute.meta?.breadcrumb || lastRoute.meta?.title || '',
+        title: (lastRoute.meta?.breadcrumb || lastRoute.meta?.title || '') as Text,
         path: lastRoute.path,
       })
     }
     result.push({
-      title: r.meta?.breadcrumb || r.meta?.title || '',
+      title: (r.meta?.breadcrumb || r.meta?.title || '') as Text,
       path: r.path,
     })
   })
