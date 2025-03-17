@@ -1,3 +1,4 @@
+import type { AxiosRequestConfig } from 'axios'
 import { http } from './http'
 
 export type ApiMethod<TParams = any, TResponse = any> = (
@@ -7,12 +8,12 @@ export type ApiMethod<TParams = any, TResponse = any> = (
 export type MoreApis = Record<string, ApiMethod>
 
 export interface BaseCurdApi<T = any, P = any> {
-  getList: (params?: Record<string, any>) => Promise<{ data: T[], pagination: P }>
-  getItem: (id: string | number, params?: Record<string, any>) => Promise<T>
-  createItem: (data: Record<string, any>) => Promise<T>
-  updateItem: (id: string | number, data: Record<string, any>) => Promise<T>
-  deleteItem: (id: string | number, params?: Record<string, any>) => Promise<any>
-  restoreItem: (id: string | number, params?: Record<string, any>) => Promise<any>
+  getList: (params?: Record<string, any>, config?: AxiosRequestConfig) => Promise<{ data: T[], pagination: P }>
+  getItem: (id: string | number, params?: Record<string, any>, config?: AxiosRequestConfig) => Promise<T>
+  createItem: (data: Record<string, any>, config?: AxiosRequestConfig) => Promise<T>
+  updateItem: (id: string | number, data: Record<string, any>, config?: AxiosRequestConfig) => Promise<T>
+  deleteItem: (id: string | number, params?: Record<string, any>, config?: AxiosRequestConfig) => Promise<any>
+  restoreItem: (id: string | number, params?: Record<string, any>, config?: AxiosRequestConfig) => Promise<any>
 }
 
 export type CurdApi<
@@ -26,12 +27,12 @@ export function useCurdApi<
   P = any,
   M extends MoreApis = MoreApis,
 >(url: string, moreApis?: M): CurdApi<T, P, M> {
-  const getList = async (params?: Record<string, any>) => {
+  const getList = async (params?: Record<string, any>, config?: AxiosRequestConfig) => {
     try {
       const res = await http.get<{
         data: T[]
         pagination: P
-      }>(url, { params })
+      }>(url, { params, ...config })
 
       return Promise.resolve(res)
     }
@@ -40,9 +41,9 @@ export function useCurdApi<
     }
   }
 
-  const getItem = async (id: string | number, params?: Record<string, any>) => {
+  const getItem = async (id: string | number, params?: Record<string, any>, config?: AxiosRequestConfig) => {
     try {
-      const res = await http.get<T>(`${url}/${id}`, { params })
+      const res = await http.get<T>(`${url}/${id}`, { params, ...config })
       return Promise.resolve(res)
     }
     catch (err) {
@@ -50,9 +51,9 @@ export function useCurdApi<
     }
   }
 
-  const createItem = async (data: Record<string, any>) => {
+  const createItem = async (data: Record<string, any>, config?: AxiosRequestConfig) => {
     try {
-      const res = await http.post<T>(url, data)
+      const res = await http.post<T>(url, data, config)
       return Promise.resolve(res)
     }
     catch (err) {
@@ -60,9 +61,9 @@ export function useCurdApi<
     }
   }
 
-  const updateItem = async (id: string | number, data: Record<string, any>) => {
+  const updateItem = async (id: string | number, data: Record<string, any>, config?: AxiosRequestConfig) => {
     try {
-      const res = await http.post<T>(`${url}/${id}`, data)
+      const res = await http.post<T>(`${url}/${id}`, data, config)
       return Promise.resolve(res)
     }
     catch (err) {
@@ -70,9 +71,9 @@ export function useCurdApi<
     }
   }
 
-  const deleteItem = async (id: string | number, params?: Record<string, any>) => {
+  const deleteItem = async (id: string | number, params?: Record<string, any>, config?: AxiosRequestConfig) => {
     try {
-      const res = await http.delete(`${url}/${id}`, { params })
+      const res = await http.delete(`${url}/${id}`, { params, ...config })
       return Promise.resolve(res)
     }
     catch (err) {
@@ -80,9 +81,9 @@ export function useCurdApi<
     }
   }
 
-  const restoreItem = async (id: string | number, params?: Record<string, any>) => {
+  const restoreItem = async (id: string | number, params?: Record<string, any>, config?: AxiosRequestConfig) => {
     try {
-      const res = await http.patch<T>(`${url}/${id}`, {}, { params })
+      const res = await http.patch<T>(`${url}/${id}`, {}, { params, ...config })
       return Promise.resolve(res)
     }
     catch (err) {
