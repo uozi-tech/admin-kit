@@ -1,6 +1,6 @@
 {
   "name": "@uozi-admin/request",
-  "version": "2.5.2",
+  "version": "2.5.3",
   "description": "Easy to create curd request functions.",
   "main": "src/index.ts",
   "files": [
