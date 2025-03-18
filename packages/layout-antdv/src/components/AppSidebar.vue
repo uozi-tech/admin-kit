@@ -70,7 +70,7 @@ onUnmounted(() => {
         :closable="false"
         placement="left"
         width="256"
-        @close="drawerVisible = false"
+        @close="handleCollapse(false)"
       >
         <SidebarContent
           :logo="logo"
@@ -143,6 +143,4 @@ onUnmounted(() => {
 
   box-shadow: 2px 0 8px rgba(29, 35, 41, 0.05);
 }
-
-
 </style>
