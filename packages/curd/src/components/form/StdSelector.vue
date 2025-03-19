@@ -117,6 +117,7 @@ const computedValue = computed({
       :width="modalWidth || 800"
       destroy-on-close
       v-bind="modalProps"
+      :z-index="3000"
       @ok="setValue"
     >
       {{ tips }}
