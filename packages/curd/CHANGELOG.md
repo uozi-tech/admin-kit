@@ -1,5 +1,13 @@
 # @uozi-admin/curd
 
+## 3.11.0
+
+### Minor Changes
+
+- [`4db6779`](https://github.com/uozi-tech/admin-kit/commit/4db67791dd240efc481e8e2283da199a671f5500) Thanks [@akinoccc](https://github.com/akinoccc)! - feat(curd): add overwrite params to `cud`
+
+- [`6411319`](https://github.com/uozi-tech/admin-kit/commit/6411319f15213244dea8502dc233364ab39cc6cc) Thanks [@akinoccc](https://github.com/akinoccc)! - feat(curd): expose table data of std table
+
 ## 3.10.3
 
 ### Patch Changes

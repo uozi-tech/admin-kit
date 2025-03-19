@@ -1,5 +1,11 @@
 # @uozi-admin/layout-antdv
 
+## 1.2.5
+
+### Patch Changes
+
+- [`c82b6a5`](https://github.com/uozi-tech/admin-kit/commit/c82b6a5ef927ace922f4292382382ee0bd880bfc) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(layout): emit menu collapse event on mobile
+
 ## 1.2.4
 
 ### Patch Changes
