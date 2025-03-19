@@ -1,7 +1,7 @@
 <script setup lang="tsx">
 import type { Reactive } from 'vue'
 import type { StdTableColumn } from '../types'
-import { get, isBoolean, set } from 'lodash-es'
+import { get, set } from 'lodash-es'
 import { computed, ref, watch } from 'vue'
 import {
   StdCascader,
@@ -41,7 +41,7 @@ function Render() {
 
   const placeholder = computed(() => getPlaceholder(p.column, formConfig))
   if (isFunction(formConfig?.type)) {
-  // Support custom render function
+    // Support custom render function
     return formConfig?.type(p.formData, p.column, formConfig?.customComponent)
   }
   else if (isPlainObject(formConfig?.type) && formConfig?.type?.__name) {
@@ -56,23 +56,20 @@ function Render() {
   }
   else {
     const componentConfig = formConfig?.[formConfig?.type]
-    const valueKey = formConfig?.valueKey ?? formConfig?.formItem?.name ?? dataIndex
-    const value = ref(componentConfig?.defaultValue)
+    const valueKey = computed(() => {
+      const key = formConfig?.valueKey ?? formConfig?.formItem?.name ?? dataIndex
+      if (Array.isArray(key)) {
+        return key.join('.')
+      }
 
-    // 接受外部数据
-    watch(() => get(p.formData, valueKey), (newVal, oldVal) => {
-      if (isBoolean(oldVal)) {
-        value.value = newVal ?? componentConfig?.defaultValue ?? Boolean(newVal)
-      }
-      else {
-        value.value = newVal ?? componentConfig?.defaultValue
-      }
-    }, { deep: true, immediate: true })
+      return key
+    })
+    const value = ref(get(p.formData, valueKey.value) ?? componentConfig?.defaultValue ?? formConfig?.defaultValue)
 
     // 回传 form 表单数据
     watch(value, (v) => {
-      set(p.formData, valueKey, v)
-    })
+      set(p.formData, valueKey.value, v)
+    }, { immediate: true })
 
     switch (formConfig?.type) {
       case 'input':

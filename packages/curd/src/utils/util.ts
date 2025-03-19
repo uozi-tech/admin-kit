@@ -26,7 +26,7 @@ export function getRealContent(content?: string | (() => string)) {
   return content ?? ''
 }
 
-export function getEditLabel(c: StdTableColumn, mode: 'edit' | 'detail' = 'edit') {
+export function getEditLabel(c: StdTableColumn, mode: 'Edit' | 'Detail' | 'Search' = 'Edit') {
   if (c.edit?.formItem?.[`hiddenLabelIn${mode}`]) {
     return
   }
@@ -36,7 +36,7 @@ export function getEditLabel(c: StdTableColumn, mode: 'edit' | 'detail' = 'edit'
 
 export function getSearchLabel(c: StdTableColumn) {
   if (typeof c.search === 'boolean') {
-    return getEditLabel(c)
+    return getEditLabel(c, 'Search')
   }
 
   if (c.search?.formItem?.hiddenLabelInSearch) {

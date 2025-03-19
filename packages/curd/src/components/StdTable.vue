@@ -129,7 +129,15 @@ watch(() => route?.query, (v) => {
       key = key.join('.')
     }
 
-    searchFormData.value[key] = v[key]
+    if (v[key] === 'true') {
+      searchFormData.value[key] = true
+    }
+    else if (v[key] === 'false') {
+      searchFormData.value[key] = false
+    }
+    else {
+      searchFormData.value[key] = v[key]
+    }
   })
 }, { deep: true, immediate: true })
 
