@@ -309,6 +309,7 @@ function CustomHeaderRender(props: { node: VNode }) {
 
 defineExpose({
   refresh: debouncedListApi,
+  tableData,
 })
 </script>
 
