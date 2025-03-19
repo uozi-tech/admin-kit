@@ -1,5 +1,13 @@
 # @uozi-admin/curd
 
+## 3.11.1
+
+### Patch Changes
+
+- [`06cd0b2`](https://github.com/uozi-tech/admin-kit/commit/06cd0b2c45d57159080caea13d1c434717604348) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): form default value bug
+
+- [`5b0f480`](https://github.com/uozi-tech/admin-kit/commit/5b0f48084e035a619ae00cbf1ce3dc8310efa7f1) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): selector layer index
+
 ## 3.11.0
 
 ### Minor Changes
