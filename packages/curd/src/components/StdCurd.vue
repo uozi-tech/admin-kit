@@ -151,10 +151,14 @@ function handleSave(data: Record<string, any>) {
 
   let promise: Promise<unknown>
   if (mode.value === 'add') {
-    promise = props.api.createItem(payload)
+    promise = props.api.createItem(payload, {
+      params: props.overwriteParams,
+    })
   }
   else {
-    promise = props.api.updateItem(itemDetail.value[props.rowKey ?? 'id'], payload)
+    promise = props.api.updateItem(itemDetail.value[props.rowKey ?? 'id'], payload, {
+      params: props.overwriteParams,
+    })
   }
 
   promise
@@ -175,7 +179,10 @@ function handleDataById(action: string, record: Record<string, any>) {
   const apiKey = action.startsWith('delete') ? 'deleteItem' : 'restoreItem'
   emit(action as any, record)
 
-  props.api[apiKey](record[props.rowKey ?? 'id'], { permanently: action === ApiActions.DELETE_ITEM_PERMANENTLY })
+  props.api[apiKey](record[props.rowKey ?? 'id'], {
+    permanently: action === ApiActions.DELETE_ITEM_PERMANENTLY,
+    ...props.overwriteParams,
+  })
     .then(() => {
       refresh()
       if (apiKey === 'deleteItem')
