@@ -54,7 +54,7 @@ function handleMenuItemClick({ item }) {
         </div>
         <h1
           v-show="!collapsed"
-          class="text-20px font-400 transition-all line-clamp-1"
+          class="text-20px font-400 transition-all line-clamp-1 mb-0"
         >
           {{ getRealTitle(headerTitle) }}
         </h1>
