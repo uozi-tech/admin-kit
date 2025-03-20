@@ -1,5 +1,11 @@
 # @uozi-admin/layout-antdv
 
+## 1.2.6
+
+### Patch Changes
+
+- [`5985ae7`](https://github.com/uozi-tech/admin-kit/commit/5985ae75502a496b19f3a5c6f9763cc27cfb4282) Thanks [@0xJacky](https://github.com/0xJacky)! - fix(SidebarContent): remove bottom margin from header title
+
 ## 1.2.5
 
 ### Patch Changes
