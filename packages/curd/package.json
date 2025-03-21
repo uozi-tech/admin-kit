@@ -41,7 +41,7 @@
     "@types/lodash-es": "^4.17.12",
     "@types/sortablejs": "^1.15.8",
     "@uozi-admin/shared-config": "workspace:*",
-    "simple-git-hooks": "^2.11.1",
+    "simple-git-hooks": "^2.12.1",
     "unocss-preset-chinese": "^0.3.3",
     "unocss-preset-ease": "^0.0.4"
   },
