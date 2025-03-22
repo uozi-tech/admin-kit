@@ -1,7 +1,0 @@
----
-"create-uozi-admin": patch
----
-
-Update template dependencies:
-- @uozi-admin/layout-antdv@^1.2.6
-
