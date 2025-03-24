@@ -173,6 +173,7 @@ function sidebarLayout() {
       text: '指南',
       items: [
         { text: '快速开始', link: 'quick-start' },
+        { text: '应用配置', link: 'app-config' },
         { text: '组件', link: 'components' },
         { text: '主题配置', link: 'theme' },
         { text: '国际化', link: 'i18n' },
