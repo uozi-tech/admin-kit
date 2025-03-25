@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 3.12.0
+
+### Minor Changes
+
+- [`64ce34b`](https://github.com/uozi-tech/admin-kit/commit/64ce34bc8aeaa74c061963fc949bbd6bfbd8cf8e) Thanks [@akinoccc](https://github.com/akinoccc)! - feat(curd): add upload controller
+
 ## 3.11.1
 
 ### Patch Changes
