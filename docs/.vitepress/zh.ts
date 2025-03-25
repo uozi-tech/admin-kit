@@ -151,6 +151,7 @@ function sidebarGuide() {
         { text: '周范围选择器', link: 'form-controls/week-range' },
         { text: '年份选择器', link: 'form-controls/year' },
         { text: '年份范围选择器', link: 'form-controls/year-range' },
+        { text: '文件选择器', link: 'form-controls/upload' },
       ],
     },
   ]
