@@ -142,7 +142,7 @@ function Render() {
       case 'rate':
         return <StdRate v-model:value={value.value} props={formConfig?.rate} />
       case 'upload': {
-        return <StdUpload v-model:value={value.value} />
+        return <StdUpload v-model:value={value.value} props={formConfig?.upload} />
       }
       case 'selector': {
         return <StdSelector v-model:value={value.value} {...formConfig?.selector} placeholder={placeholder.value} />

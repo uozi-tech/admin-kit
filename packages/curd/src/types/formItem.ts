@@ -95,4 +95,6 @@ export type SwitchConfig = SwitchProps & BaseConfig
 
 export type TransferConfig = Omit<TransferProps, 'placeholder'> & PlaceholderT & BaseConfig
 
-export type UploadConfig = Omit<UploadProps, 'placeholder'> & PlaceholderT & BaseConfig
+export type UploadConfig = Omit<UploadProps, 'placeholder'> & PlaceholderT & BaseConfig & {
+  multiple?: boolean
+}

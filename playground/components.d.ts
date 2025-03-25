@@ -8,6 +8,15 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     AButton: typeof import('ant-design-vue/es')['Button']
+    AFlex: typeof import('ant-design-vue/es')['Flex']
+    AProgress: typeof import('ant-design-vue/es')['Progress']
+    ARadioButton: typeof import('ant-design-vue/es')['RadioButton']
+    ARadioGroup: typeof import('ant-design-vue/es')['RadioGroup']
+    AUploadDragger: typeof import('ant-design-vue/es')['UploadDragger']
+    DeleteOutlined: typeof import('@ant-design/icons-vue')['DeleteOutlined']
+    FileOutlined: typeof import('@ant-design/icons-vue')['FileOutlined']
+    FolderOutlined: typeof import('@ant-design/icons-vue')['FolderOutlined']
+    PlusOutlined: typeof import('@ant-design/icons-vue')['PlusOutlined']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }

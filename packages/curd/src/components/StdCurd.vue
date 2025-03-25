@@ -142,8 +142,17 @@ function handleEdit(row: Record<string, any>) {
 }
 
 // 保存新增/编辑数据
-function handleSave(data: Record<string, any>) {
+async function handleSave(data: Record<string, any>) {
   modalLoading.value = true
+
+  if (props?.beforeSave) {
+    const result = await props.beforeSave(data)
+    if (!result) {
+      modalLoading.value = false
+      return
+    }
+  }
+
   const payload = {
     ...data,
     ...props.overwriteParams,

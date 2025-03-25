@@ -92,8 +92,9 @@ export type I18nToken =
   | 'deletedSuccessfully'
   | 'restoredSuccessfully'
   | 'selectAll'
+  | 'upload'
 
-export type I18nLanguageObject = Partial<Record<I18nToken, string>>
+export type I18nLanguageObject = Partial<Record<I18nToken, any>>
 
 // app.use(curdConfigProvider)
 export interface CurdConfigT {

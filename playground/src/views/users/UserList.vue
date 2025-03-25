@@ -56,6 +56,17 @@ const columns: StdTableColumn[] = [
     },
   },
   {
+    title: '头像',
+    dataIndex: 'avatar',
+    edit: {
+      type: 'upload',
+      formItem: { required: true },
+      upload: {
+        multiple: true,
+      },
+    },
+  },
+  {
     title: '操作',
     dataIndex: 'actions',
   },
@@ -73,6 +84,10 @@ const selectedRowKeys = ref<any[]>([])
     row-selection-type="checkbox"
     row-key="id"
     row-draggable
+    :before-save="f => {
+      console.log(f)
+      return true
+    }"
   >
     <template #beforeSearch>
       <Button>

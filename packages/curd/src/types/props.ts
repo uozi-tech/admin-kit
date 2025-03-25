@@ -76,4 +76,5 @@ export interface StdCurdProps {
       affected_ids: number[]
     }) => void
   }
+  beforeSave?: (data: Record<string, any>) => Promise<boolean> | boolean
 }

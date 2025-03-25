@@ -4,7 +4,7 @@ import { Button, Input, InputGroup, InputPassword } from 'ant-design-vue'
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-const p = defineProps<{ props: PasswordConfig & { placeholder?: string | number } }>()
+const p = defineProps<{ props?: PasswordConfig & { placeholder?: string | number } }>()
 
 const modelValue = defineModel<PasswordConfig['value']>('value')
 
