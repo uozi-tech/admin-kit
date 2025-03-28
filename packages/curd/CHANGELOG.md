@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 3.13.2
+
+### Patch Changes
+
+- [`ed5538b`](https://github.com/uozi-tech/admin-kit/commit/ed5538b0a46586f9b360392bf781b0d0c6e9a6f7) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): [std-selector] cannot search
+
 ## 3.13.1
 
 ### Patch Changes
