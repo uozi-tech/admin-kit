@@ -47,6 +47,7 @@ const config = {
 | placeholder | 选择框默认文字 | PlaceholderT | - |
 | overwriteParams | 覆盖请求参数 | Record<string, any> | - |
 | labelRender | 自定义 label 渲染函数 | (row: any) => string | - |
+| omitZeroString | 是否过滤掉值为 "0" 的字符串 | boolean | 全局配置 |
 
 ### 事件
 
@@ -71,6 +72,7 @@ export type SelectorConfig = {
   modalWidth?: number | string
   overwriteParams?: Record<string, any>
   labelRender?: (row: any) => string
+  omitZeroString?: boolean
 } & PlaceholderT
 ```
 
@@ -115,6 +117,7 @@ const columns = [
             dataIndex: 'department'
           }
         ],
+        omitZeroString: true
       }
     }
   },

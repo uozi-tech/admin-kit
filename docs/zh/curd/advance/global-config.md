@@ -24,6 +24,12 @@ CURD 组件支持全局配置,可以统一设置 API 响应格式、分页参数
       "zh-TW": {}, // 简体中文语言包
       "en-US": {} // 英文语言包
     }
+  },
+  "time": {
+    "timestamp": false
+  },
+  "selector": {
+    "omitZeroString": true
   }
 }
 ```
@@ -64,6 +70,11 @@ app.use(createCurdConfig({
     time: {
       timestamp: true
     }
+  },
+  
+  // 选择器配置
+  selector: {
+    omitZeroString: true
   }
 }))
 ```
@@ -124,5 +135,15 @@ interface RequestFormat {
 ```ts
 interface TimeT {
   timestamp: boolean
+}
+```
+
+### 选择器配置
+
+选择器全局配置:
+
+```ts
+interface SelectorConfig {
+  omitZeroString: boolean // 是否过滤掉"0"字符串值，默认为true
 }
 ```
