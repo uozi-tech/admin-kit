@@ -9,7 +9,7 @@ import StdTable from '../StdTable.vue'
 
 const props = withDefaults(
   defineProps<SelectorConfig & { placeholder?: string | number }>(),
-  { valueKey: 'id', selectionType: 'radio' },
+  { valueKey: 'id', selectionType: 'radio', omitZeroString: undefined },
 )
 const emit = defineEmits<{
   (e: 'selectedRecords', records: any[]): void
