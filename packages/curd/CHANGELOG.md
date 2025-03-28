@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 3.13.1
+
+### Patch Changes
+
+- [`0faca2b`](https://github.com/uozi-tech/admin-kit/commit/0faca2b7bc5d8c9d1ac6bd889c508d5533950a66) Thanks [@0xJacky](https://github.com/0xJacky)! - fix(curd): [selector] omit zero string
+
 ## 3.13.0
 
 ### Minor Changes
