@@ -37,6 +37,9 @@ export const defaultConfig: Required<CurdConfigT> = {
   time: {
     timestamp: false,
   },
+  selector: {
+    omitZeroString: true,
+  },
 }
 
 export const CURD_CONFIG_KEY = Symbol('curdConfig')

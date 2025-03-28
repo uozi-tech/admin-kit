@@ -4,6 +4,7 @@ import { Form, Modal, Select } from 'ant-design-vue'
 import { get } from 'lodash-es'
 import { computed, nextTick, onMounted, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
+import useCurdConfig from '../../composables/useCurdConfig'
 import StdTable from '../StdTable.vue'
 
 const props = withDefaults(
@@ -24,8 +25,22 @@ const visible = defineModel<boolean>('visible', { default: false })
 const selectedRowKeys = ref<any[]>([])
 const selectedRows = ref<any[]>([])
 
+// 获取全局配置
+const curdConfig = useCurdConfig()
+
 function arraylizeValue(val: any) {
-  return Array.isArray(val) ? val : val ? [val] : []
+  let result = Array.isArray(val) ? val : val ? [val] : []
+
+  // 应用 omitZeroString，优先使用组件 props 设置，否则使用全局配置
+  const shouldOmitZeroString = props.omitZeroString !== undefined
+    ? props.omitZeroString
+    : curdConfig.selector.omitZeroString
+
+  if (shouldOmitZeroString) {
+    result = result.filter(item => item !== '0')
+  }
+
+  return result
 }
 
 const options = computed(() => selectedRows.value.map(item => ({

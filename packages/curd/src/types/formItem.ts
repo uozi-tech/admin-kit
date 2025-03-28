@@ -69,6 +69,7 @@ export type SelectorConfig = {
   modalProps?: ModalProps
   overwriteParams?: Record<string, any>
   labelRender?: (row: any) => string
+  omitZeroString?: boolean
 } & PlaceholderT & BaseConfig
 
 export type CascaderConfig = Omit<CascaderProps, 'placeholder'> & PlaceholderT & BaseConfig

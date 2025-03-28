@@ -181,4 +181,16 @@ export interface CurdConfigT {
    * @description The config for the time
    */
   time?: TimeConfig
+
+  /**
+   * The selector config
+   * @description The config for the selector
+   */
+  selector?: {
+    /**
+     * The omit zero string
+     * @description The flag to omit the zero string
+     */
+    omitZeroString?: boolean
+  }
 }
