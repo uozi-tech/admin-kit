@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 3.13.0
+
+### Minor Changes
+
+- [`f28ce9e`](https://github.com/uozi-tech/admin-kit/commit/f28ce9e8cc349dff45398e3efe5791642812f2aa) Thanks [@0xJacky](https://github.com/0xJacky)! - feat(curd): [selector] add config for omit zero string
+
 ## 3.12.0
 
 ### Minor Changes
