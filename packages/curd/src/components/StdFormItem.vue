@@ -4,9 +4,10 @@ import type { StdTableColumn } from '../types'
 import { FormItem } from 'ant-design-vue'
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
-import FormErrors from '../constants/formErrors'
+import { getFormErrors } from '../constants/formErrors'
 
 const props = defineProps<Props>()
+const FormErrors = getFormErrors()
 const { t } = useI18n()
 export interface Props {
   dataIndex?: StdTableColumn['dataIndex']
