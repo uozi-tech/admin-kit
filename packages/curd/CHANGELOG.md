@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 3.14.1
+
+### Patch Changes
+
+- [`f04b92d`](https://github.com/uozi-tech/admin-kit/commit/f04b92dca87d1c93ccfbde58182c1da8ae7e0480) Thanks [@0xJacky](https://github.com/0xJacky)! - feat(index): export StdFormItem component in index file
+
 ## 3.14.0
 
 ### Minor Changes
