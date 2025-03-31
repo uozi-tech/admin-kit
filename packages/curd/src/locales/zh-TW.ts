@@ -27,6 +27,11 @@ export const zhTW: I18nLanguageObject = {
   'deletedSuccessfully': '刪除成功',
   'restoredSuccessfully': '復原成功',
   'selectAll': '全選',
+  'This field should not be empty': '此欄位不能為空',
+  'This field should be a valid email address': '此欄位應該是有效的電子郵件地址',
+  'This value is already taken': '此值已被佔用',
+  'This field should be a valid hostname': '此欄位應該是有效的主機名',
+  'This field should only contain letters, unicode characters, numbers, and -_.': '此欄位應該只包含字母、Unicode字元、數字和-_.',
   'upload': {
     uploadFiles: '上傳文件',
     uploadFolders: '上傳文件夾',

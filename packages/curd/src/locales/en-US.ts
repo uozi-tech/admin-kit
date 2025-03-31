@@ -27,6 +27,11 @@ export const enUS: I18nLanguageObject = {
   'deletedSuccessfully': 'Deleted successfully',
   'restoredSuccessfully': 'Restored successfully',
   'selectAll': 'Select All',
+  'This field should not be empty': 'This field should not be empty',
+  'This field should be a valid email address': 'This field should be a valid email address',
+  'This value is already taken': 'This value is already taken',
+  'This field should be a valid hostname': 'This field should be a valid hostname',
+  'This field should only contain letters, unicode characters, numbers, and -_.': 'This field should only contain letters, unicode characters, numbers, and -_.',
   'upload': {
     uploadFiles: 'Upload Files',
     uploadFolders: 'Upload Folders',

@@ -27,6 +27,11 @@ export const zhCN: I18nLanguageObject = {
   'deletedSuccessfully': '删除成功',
   'restoredSuccessfully': '恢复成功',
   'selectAll': '全选',
+  'This field should not be empty': '此字段不能为空',
+  'This field should be a valid email address': '此字段应该是有效的电子邮件地址',
+  'This value is already taken': '此值已被占用',
+  'This field should be a valid hostname': '此字段应该是有效的主机名',
+  'This field should only contain letters, unicode characters, numbers, and -_.': '此字段应该只包含字母、Unicode字符、数字和-_.',
   'upload': {
     uploadFiles: '上传文件',
     uploadFolders: '上传文件夹',

@@ -93,6 +93,11 @@ export type I18nToken =
   | 'restoredSuccessfully'
   | 'selectAll'
   | 'upload'
+  | 'This field should not be empty'
+  | 'This field should be a valid email address'
+  | 'This value is already taken'
+  | 'This field should be a valid hostname'
+  | 'This field should only contain letters, unicode characters, numbers, and -_.'
 
 export type I18nLanguageObject = Partial<Record<I18nToken, any>>
 
