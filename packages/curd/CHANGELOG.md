@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 3.14.0
+
+### Minor Changes
+
+- [`566b08e`](https://github.com/uozi-tech/admin-kit/commit/566b08eb9b5d0c4936c1e8bb5187590de62cc139) Thanks [@0xJacky](https://github.com/0xJacky)! - feat(StdFormItem): add StdFormItem component with validation and error handling
+
 ## 3.13.2
 
 ### Patch Changes
