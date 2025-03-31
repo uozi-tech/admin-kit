@@ -1,5 +1,11 @@
 # @uozi-admin/layout-antdv
 
+## 1.2.7
+
+### Patch Changes
+
+- [`857b386`](https://github.com/uozi-tech/admin-kit/commit/857b38643475e16d0c76b42c6913e1342fb15f5f) Thanks [@0xJacky](https://github.com/0xJacky)! - fix(SidebarContent): adjust margin class for header title
+
 ## 1.2.6
 
 ### Patch Changes
