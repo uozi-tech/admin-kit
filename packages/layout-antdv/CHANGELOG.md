@@ -1,5 +1,11 @@
 # @uozi-admin/layout-antdv
 
+## 1.2.8
+
+### Patch Changes
+
+- [`7d80911`](https://github.com/uozi-tech/admin-kit/commit/7d80911cb9bc19a0257ea844deca261a44a365a9) Thanks [@0xJacky](https://github.com/0xJacky)! - fix(Layout): add main-container class to Layout component
+
 ## 1.2.7
 
 ### Patch Changes
