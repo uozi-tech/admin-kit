@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 3.14.2
+
+### Patch Changes
+
+- [`914aa3b`](https://github.com/uozi-tech/admin-kit/commit/914aa3b485d6c373e7315cb60693f329a30befa9) Thanks [@0xJacky](https://github.com/0xJacky)! - refactor(StdFormItem): extract form error messages into a reusable function
+
 ## 3.14.1
 
 ### Patch Changes
