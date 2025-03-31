@@ -50,5 +50,17 @@
   "explorer.fileNesting.patterns": {
     "package.json": "pnpm-lock.yaml,pnpm-workspace.yaml,.npmrc,commitlint.config.js,.gitignore,.gitattributes,auto-imports.d.ts,components.d.ts,eslint.config.mjs,.eslint-auto-import.mjs"
   },
-  "typescript.tsdk": "node_modules/typescript/lib"
+  "typescript.tsdk": "node_modules/typescript/lib",
+
+  "i18n-ally.localesPaths": ["packages/curd/src/locales"],
+  "i18n-ally.displayLanguage": "zh-CN", // 显示用的文字
+  "i18n-ally.enabledParsers": ["ts"],
+  "i18n-ally.enabledFrameworks": ["vue"],
+  "i18n-ally.editor.preferEditor": true,
+  "i18n-ally.keystyle": "nested", // 嵌套式json
+  "[html][css][less][scss][sass][markdown][yaml][yml][jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "i18n-ally.sourceLanguage": "zh-CN" // 翻译源语言
 }
