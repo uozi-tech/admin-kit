@@ -89,7 +89,7 @@ provide('breadList', breadList)
     </AppSidebar>
 
     <!-- Main Layout -->
-    <Layout>
+    <Layout class="main-container">
       <LayoutHeader class="z-10 shadow-sm p-inline-0!">
         <AppHeader @click-un-fold="sidebarDrawerVisible = true">
           <LanguageSelect
