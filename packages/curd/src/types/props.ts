@@ -2,6 +2,7 @@ import type {
   TableProps,
 } from 'ant-design-vue'
 
+import type { TableRowSelection } from 'ant-design-vue/es/table/interface'
 import type { CurdApi } from './api'
 import type { StdTableColumn } from './index'
 
@@ -12,6 +13,7 @@ export interface StdTableProps extends Pick<
   'customQueryParams' |
   'overwriteParams' |
   'rowSelectionType' |
+  'rowSelection' |
   'disableRouterQuery' |
   'disableView' |
   'disableEdit' |
@@ -47,6 +49,7 @@ export interface StdCurdProps {
   columns: StdTableColumn[]
   rowKey?: string
   rowSelectionType?: 'checkbox' | 'radio'
+  rowSelection?: TableRowSelection
   scrollX?: number | string
   scrollY?: number | string
   title?: string | (() => string)

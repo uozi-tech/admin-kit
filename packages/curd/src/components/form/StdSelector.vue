@@ -144,6 +144,7 @@ const computedValue = computed({
         only-query
         disable-router-query
         :row-selection-type="selectionType"
+        :row-selection="selectionConfig"
         :table-props="{
           rowKey: props.valueKey,
           ...tableProps,

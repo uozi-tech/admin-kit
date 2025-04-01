@@ -17,6 +17,7 @@ import type {
 } from 'ant-design-vue'
 import type { CascaderProps } from 'ant-design-vue/es/cascader'
 import type { MonthPickerProps, RangePickerProps, WeekPickerProps } from 'ant-design-vue/es/date-picker'
+import type { TableRowSelection } from 'ant-design-vue/es/table/interface'
 import type { CurdApi } from './api'
 import type { StdTableColumn } from './index'
 
@@ -60,6 +61,7 @@ export type SelectorConfig = {
   valueKey?: string
   displayKey?: string
   selectionType?: 'radio' | 'checkbox'
+  selectionConfig?: TableRowSelection
   getListApi: CurdApi['getList']
   columns: StdTableColumn[]
   tips?: string
