@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 3.15.0
+
+### Minor Changes
+
+- [`f23f312`](https://github.com/uozi-tech/admin-kit/commit/f23f3122bf1f2a18ca7fb7b9861318466c7b4b74) Thanks [@akinoccc](https://github.com/akinoccc)! - feat(curd): [std-selector] support custom row selection config
+
 ## 3.14.2
 
 ### Patch Changes
