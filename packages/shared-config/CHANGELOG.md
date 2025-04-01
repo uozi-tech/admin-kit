@@ -1,5 +1,11 @@
 # @uozi-admin/shared-config
 
+## 0.4.6
+
+### Patch Changes
+
+- [`ff42238`](https://github.com/uozi-tech/admin-kit/commit/ff42238dd9e615c322a31e01db4345ad9e85f34a) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(shared-config): remove incompatible deps
+
 ## 0.4.5
 
 ### Patch Changes
