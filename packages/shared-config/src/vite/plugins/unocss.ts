@@ -4,12 +4,10 @@ import {
   mergeConfigs,
   presetAttributify,
   presetIcons,
-  presetUno,
+  presetWind3,
   transformerDirectives,
   transformerVariantGroup,
 } from 'unocss'
-import presetChinese, { chineseTypography } from 'unocss-preset-chinese'
-import presetEase from 'unocss-preset-ease'
 import UnoCSS from 'unocss/vite'
 
 export const defaultConfig: UnocssOptions = {
@@ -21,13 +19,8 @@ export const defaultConfig: UnocssOptions = {
     },
   },
   presets: [
-    presetUno({ dark: 'class' }),
+    presetWind3({ dark: 'class' }),
     presetAttributify(),
-    chineseTypography(),
-    presetChinese({
-      chineseType: 'simplified',
-    }),
-    presetEase(),
     presetIcons({
       scale: 1.2,
       warn: true,
