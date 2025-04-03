@@ -19,10 +19,16 @@ createApp(App)
   .use(createCurdConfig({
     listApi: {
       paginationMap: {
-        total: 'total',
-        current: 'current_page',
-        pageSize: 'per_page',
-        totalPages: 'total_pages',
+        params: {
+          current: 'page',
+          pageSize: 'page_size',
+        },
+        response: {
+          total: 'total',
+          current: 'current_page',
+          pageSize: 'per_page',
+          totalPages: 'total_pages',
+        },
       },
     },
   }))
