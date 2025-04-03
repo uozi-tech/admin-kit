@@ -48,9 +48,16 @@ app.use(createCurdConfig({
   api: {
     // 分页字段映射
     paginationMap: {
-      total: 'total',
-      current: 'current_page',
-      pageSize: 'per_page'
+      params: {
+        current: 'page',
+        pageSize: 'page_size'
+      },
+      response: {
+        current: 'page',
+        pageSize: 'page_size',
+        total: 'total',
+        totalPages: 'total_pages'
+      }
     },
 
     // 响应数据格式化

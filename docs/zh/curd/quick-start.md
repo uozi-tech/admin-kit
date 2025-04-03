@@ -22,6 +22,54 @@ pnpm add @uozi-admin/curd
 ```
 :::
 
+## 配置
+
+```ts
+import { createCurdConfig } from '@uozi-admin/curd'
+import { createApp } from 'vue'
+
+createApp(App)
+  .use(createCurdConfig({
+    // 可选，如果你需要自定义分页
+    listApi: {
+      paginationMap: {
+        params: {
+          current: 'page',
+          pageSize: 'page_size',
+        },
+        response: {
+          total: 'total',
+          current: 'current_page',
+          pageSize: 'per_page',
+          totalPages: 'total_pages',
+        },
+      },
+    },
+    // 可选，如果你需要自定义国际化
+    i18n: {
+      legacy: false,
+      locale: 'zh-CN',
+      fallbackLocale: 'en-US',
+      messages: {
+        'zh-CN': 'your-zh-CN-messages',
+        'zh-HK': 'your-zh-HK-messages',
+        'zh-TW': 'your-zh-TW-messages',
+        'en-US': 'your-en-US-messages',
+      },
+    },
+    // 可选
+    time: {
+      // 时间字段是否是 timestamp 类型
+      timestamp: false,
+    },
+    // 可选
+    selector: {
+      // 忽略 '0' 的字符串
+      omitZeroString: true,
+    },
+  }))
+```
+
 ## 基础示例
 
 下面是一个最简单的用户管理页面示例:
