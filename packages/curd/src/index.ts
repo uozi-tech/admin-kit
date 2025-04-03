@@ -17,10 +17,16 @@ export const defaultConfig: Required<CurdConfigT> = {
   listApi: {
     paginationPath: '$.pagination',
     paginationMap: {
-      total: 'total',
-      current: 'current',
-      pageSize: 'pageSize',
-      totalPages: 'totalPages',
+      params: {
+        current: 'current',
+        pageSize: 'pageSize',
+      },
+      response: {
+        current: 'current',
+        pageSize: 'pageSize',
+        total: 'total',
+        totalPages: 'totalPages',
+      },
     },
   },
   i18n: {

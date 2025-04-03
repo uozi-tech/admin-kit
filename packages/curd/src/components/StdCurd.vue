@@ -26,7 +26,6 @@ const emit = defineEmits<{
 }>()
 
 const route = useRoute()
-const slots = useSlots()
 const { t, locale } = useI18n()
 const { locale: lang } = useConfigContextInject()
 
@@ -307,15 +306,17 @@ const modalTitle = computed(() => {
       @delete-item-permanently="row => handleDataById(ApiActions.DELETE_ITEM_PERMANENTLY, row)"
       @restore-item="row => handleDataById(ApiActions.RESTORE_ITEM, row)"
     >
-      <template
-        v-for="(_, key) in slots"
-        :key="key"
-        #[key]="slotProps"
-      >
-        <slot
-          :name="key"
-          v-bind="slotProps"
-        />
+      <template #beforeSearch>
+        <slot name="beforeSearch" />
+      </template>
+      <template #beforeTable>
+        <slot name="beforeTable" />
+      </template>
+      <template #beforeActions>
+        <slot name="beforeActions" />
+      </template>
+      <template #afterActions>
+        <slot name="afterActions" />
       </template>
     </StdTable>
 

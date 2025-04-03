@@ -5,10 +5,16 @@ import type { I18nOptions } from 'vue-i18n'
  * @description The map of the pagination data
  */
 export interface PaginationMap {
-  total: string // 总数字段
-  current: string // 当前页字段
-  pageSize: string // 每页条数字段
-  totalPages: string // 总页数字段
+  params: {
+    current: string // 当前页字段
+    pageSize: string // 每页条数字段
+  }
+  response: {
+    total: string // 总数字段
+    current: string // 当前页字段
+    pageSize: string // 每页条数字段
+    totalPages: string // 总页数字段
+  }
 }
 
 /**

@@ -44,8 +44,8 @@ const pagination = ref<TablePaginationConfig>(initializePagination(props.tablePr
 
 function initializePagination(paginationProps: any): TablePaginationConfig {
   return {
-    current: route.query[curdConfig.listApi?.paginationMap?.current ?? 'page'] ?? 1,
-    pageSize: route.query[curdConfig.listApi?.paginationMap?.pageSize ?? 'page_size'] ?? 20,
+    current: route.query[curdConfig.listApi!.paginationMap!.params!.current!] ?? 1,
+    pageSize: route.query[curdConfig.listApi!.paginationMap!.params!.pageSize!] ?? 20,
     showSizeChanger: true,
     showQuickJumper: true,
     hideOnSinglePage: true,
@@ -95,8 +95,8 @@ const apiParams = computed(() => {
   return {
     ...searchFormData.value,
     trash: props.isTrash,
-    [curdConfig.listApi?.paginationMap?.current ?? 'page']: pagination.value.current ?? 1,
-    [curdConfig.listApi?.paginationMap?.pageSize ?? 'page_size']: pagination.value?.pageSize ?? 20,
+    [curdConfig.listApi!.paginationMap!.params!.current!]: pagination.value.current ?? 1,
+    [curdConfig.listApi!.paginationMap!.params!.pageSize!]: pagination.value?.pageSize ?? 20,
     ...customQueryParams,
     overwriteParams,
   }
@@ -116,8 +116,8 @@ const debouncedUpdateRouteQuery = debounce(async (newQuery: Record<string, any>)
 watch(() => route?.query, (v) => {
   if (isUpdatedFromApiParams)
     return
-  pagination.value.current = Number(v[curdConfig.listApi?.paginationMap?.current ?? 'page']) || 1
-  pagination.value.pageSize = Number(v[curdConfig.listApi?.paginationMap?.pageSize ?? 'page_size']) || 20
+  pagination.value.current = Number(v[curdConfig.listApi!.paginationMap!.params!.current!]) || 1
+  pagination.value.pageSize = Number(v[curdConfig.listApi!.paginationMap!.params!.pageSize!]) || 20
   searchColumns.value.forEach((c) => {
     const dataIndex = c.dataIndex
     let key = dataIndex
@@ -185,9 +185,9 @@ const debouncedListApi = debounce(async () => {
     }
 
     // 获取分页数据
-    const paginationPath = curdConfig.listApi?.paginationPath || '$.pagination'
+    const paginationPath = curdConfig.listApi.paginationPath!
     const paginationData = get(formattedRes, paginationPath.replace(/^\$\./, ''))
-    const { total, current, pageSize } = curdConfig.listApi!.paginationMap!
+    const { total, current, pageSize } = curdConfig.listApi!.paginationMap!.response
 
     // 更新分页信息
     if (paginationData) {
