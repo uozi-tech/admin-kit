@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 3.16.0
+
+### Minor Changes
+
+- [`60dcd19`](https://github.com/uozi-tech/admin-kit/commit/60dcd196ea397d3c3cbdb7648398b3cd4d08b98f) Thanks [@akinoccc](https://github.com/akinoccc)! - feat(curd): update config for pagination and support params and response map
+
 ## 3.15.0
 
 ### Minor Changes
