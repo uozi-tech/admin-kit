@@ -4,32 +4,38 @@ CURD 组件支持全局配置,可以统一设置 API 响应格式、分页参数
 
 ::: details 默认配置
 
-```json
+```js
 {
-  "listApi": {
-    "paginationPath": "$.pagination",
-    "paginationMap": {
-      "total": "total",
-      "current": "current",
-      "pageSize": "pageSize",
-      "totalPages": "totalPages"
-    }
+  listApi: {
+    paginationPath: '$.pagination',
+    paginationMap: {
+      params: {
+        current: 'page',
+        pageSize: 'page_size'
+      },
+      response: {
+        current: 'page',
+        pageSize: 'page_size',
+        total: 'total',
+        totalPages: 'total_pages'
+      }
+    },
   },
-  "i18n": {
-    "locale": "zh-CN",
-    "fallbackLocale": "en-US",
-    "messages": {
+  i18n: {
+    locale: 'zh-CN',
+    fallbackLocale: 'en-US',
+    messages: {
       "zh-CN": {}, // 中文语言包
       "zh-HK": {}, // 繁体中文语言包
       "zh-TW": {}, // 简体中文语言包
       "en-US": {} // 英文语言包
     }
   },
-  "time": {
-    "timestamp": false
+  time: {
+    timestamp: false
   },
-  "selector": {
-    "omitZeroString": true
+  selector: {
+    omitZeroString: true
   }
 }
 ```
