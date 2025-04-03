@@ -61,3 +61,51 @@ export function createCurdConfig(config: Partial<CurdConfigT>): ObjectPlugin {
     },
   }
 }
+
+// app.use(createCosyCurd(config))
+export function createCosyCurd(config: Partial<CurdConfigT> = {}): ObjectPlugin {
+  return createCurdConfig({
+    listApi: {
+      paginationMap: {
+        params: {
+          current: 'page',
+          pageSize: 'page_size',
+        },
+        response: {
+          total: 'total',
+          current: 'current_page',
+          pageSize: 'per_page',
+          totalPages: 'total_pages',
+        },
+      },
+    },
+    ...config,
+  })
+}
+
+// app.use(createCosyProCurd(config))
+export function createCosyProCurd(config: Partial<CurdConfigT> = {}): ObjectPlugin {
+  return createCurdConfig({
+    listApi: {
+      paginationMap: {
+        params: {
+          current: 'page',
+          pageSize: 'page_size',
+        },
+        response: {
+          total: 'total',
+          current: 'current_page',
+          pageSize: 'per_page',
+          totalPages: 'total_pages',
+        },
+      },
+    },
+    time: {
+      timestamp: true,
+    },
+    selector: {
+      omitZeroString: true,
+    },
+    ...config,
+  })
+}
