@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 3.17.0
+
+### Minor Changes
+
+- [`54c6783`](https://github.com/uozi-tech/admin-kit/commit/54c6783b8495c05113c04673a042e53effa757d1) Thanks [@0xJacky](https://github.com/0xJacky)! - feat(curd): add createCosyCurd and createCosyProCurd
+
 ## 3.16.0
 
 ### Minor Changes
