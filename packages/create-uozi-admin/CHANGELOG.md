@@ -1,5 +1,15 @@
 # @uozi-admin/create-admin
 
+## 1.4.16
+
+### Patch Changes
+
+- [#220](https://github.com/uozi-tech/admin-kit/pull/220) [`65d96f7`](https://github.com/uozi-tech/admin-kit/commit/65d96f7895b1c75c593fe49abf19716e3cfb6955) Thanks [@github-actions](https://github.com/apps/github-actions)! - Update template dependencies:
+
+  - @uozi-admin/curd@^3.16.0
+
+- [`2d39b2f`](https://github.com/uozi-tech/admin-kit/commit/2d39b2f30f2f10efe170ed2479849d7ca41fc2c7) Thanks [@akinoccc](https://github.com/akinoccc)! - feat(curd): refine pagination configuration to separate params and response mapping
+
 ## 1.4.15
 
 ### Patch Changes
