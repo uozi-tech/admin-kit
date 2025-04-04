@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 3.17.1
+
+### Patch Changes
+
+- [`db8a82c`](https://github.com/uozi-tech/admin-kit/commit/db8a82ccf312c8a305cb7b86b95930b5eb1e46a1) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): not pass slot props in StdCurd component
+
 ## 3.17.0
 
 ### Minor Changes
