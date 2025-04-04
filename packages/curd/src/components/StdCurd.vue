@@ -306,17 +306,28 @@ const modalTitle = computed(() => {
       @delete-item-permanently="row => handleDataById(ApiActions.DELETE_ITEM_PERMANENTLY, row)"
       @restore-item="row => handleDataById(ApiActions.RESTORE_ITEM, row)"
     >
-      <template #beforeSearch>
-        <slot name="beforeSearch" />
+      <template #beforeSearch="data">
+        <slot
+          name="beforeSearch"
+          :data="data"
+        />
       </template>
       <template #beforeTable>
         <slot name="beforeTable" />
       </template>
-      <template #beforeActions>
-        <slot name="beforeActions" />
+      <template #beforeActions="{ record, column }">
+        <slot
+          name="beforeActions"
+          :record="record"
+          :column="column"
+        />
       </template>
-      <template #afterActions>
-        <slot name="afterActions" />
+      <template #afterActions="{ record, column }">
+        <slot
+          name="afterActions"
+          :record="record"
+          :column="column"
+        />
       </template>
     </StdTable>
 
