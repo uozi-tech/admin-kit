@@ -117,6 +117,18 @@ export interface StdTableColumn<T = any> extends Omit<TableColumnType, 'customRe
 }
 ```
 
+## 自定义布局
+
+```ts
+{
+  // ...
+  col: {
+    // 配置同 ant-design-vue 的 Col 组件属性
+    span: 12
+  }
+}
+```
+
 ## 完整示例
 
 ```ts

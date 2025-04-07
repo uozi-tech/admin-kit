@@ -89,6 +89,7 @@ const column = {
 
 - `record`: 当前行的数据对象。
 - `columns`: 列配置数组，定义详情展示的字段。
+- `detailProps`: 同 Description 组件属性
 
 ## Slots
 

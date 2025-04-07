@@ -117,6 +117,13 @@ const columns: StdColumn[] = [
   }
 ]
 
+// 自定义表单行属性
+const formRowProps = {
+  gutter: 24, // 设置栅格间隔
+  justify: 'start', // 水平布局
+  align: 'middle' // 垂直对齐方式
+}
+
 // API 接口配置
 const api = {
   getList: params => fetch('/api/users', { params }),
@@ -140,6 +147,7 @@ const api = {
     title="用户管理"
     :columns="columns"
     :api="api"
+    :form-row-props="formRowProps"
   />
 </template>
 ```

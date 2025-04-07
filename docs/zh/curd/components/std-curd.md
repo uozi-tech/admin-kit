@@ -48,6 +48,7 @@ const api = {
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | title | 标题 | string | - |
+| formRowProps | 表单 Row 组件属性，用于自定义表单布局 | RowProps | - |
 | columns | 列配置 | StdColumn[] | [] |
 | api | 接口配置 | StdApi | - |
 | rowKey | 行数据的 key | string | 'id' |

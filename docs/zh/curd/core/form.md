@@ -163,6 +163,9 @@ const columns: StdColumn[] = [
     dataIndex: 'username',
     edit: {
       type: 'input',
+      col: {
+        span: 10
+      },
       formItem: {
         required: true,
         rules: [
@@ -182,6 +185,9 @@ const columns: StdColumn[] = [
     dataIndex: 'department',
     edit: {
       type: 'select',
+      col: {
+        span: 10
+      },
       formItem: {
         required: true
       },

@@ -45,6 +45,9 @@ const columns: StdTableColumn[] = [
     dataIndex: 'username',
     edit: {
       type: 'input', // 表单控件类型
+      col: { // 同 Col 组件属性
+        span: 10
+      },
       formItem: { // antd form-item 配置
         required: true,
         rules: [{ required: true, message: '请输入用户名' }]

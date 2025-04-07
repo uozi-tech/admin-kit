@@ -19,6 +19,13 @@ const columns = [
     }
   }
 ]
+
+// 自定义表单行属性
+const formRowProps = {
+  gutter: 16,
+  justify: 'start',
+  align: 'top'
+}
 </script>
 
 <template>
@@ -26,6 +33,7 @@ const columns = [
     v-model:data="formData"
     :columns="columns"
     label-align="right"
+    :form-row-props="formRowProps"
   />
 </template>
 ```
@@ -38,6 +46,7 @@ const columns = [
 | --- | --- | --- | --- |
 | columns | 列配置 | StdTableColumn[] | [] |
 | labelAlign | 标签对齐方式 | 'left' \| 'right' | 'left' |
+| formRowProps | Row 组件属性，用于自定义表单布局 | RowProps | - |
 | layout | 布局方式 | 'horizontal' \| 'vertical' \| 'inline' | 'vertical' |
 
 ### Model
