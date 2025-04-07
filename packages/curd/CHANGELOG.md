@@ -1,5 +1,13 @@
 # @uozi-admin/curd
 
+## 3.18.0
+
+### Minor Changes
+
+- [`0baa8ff`](https://github.com/uozi-tech/admin-kit/commit/0baa8ff8685c049bec8bd251fcb44211994579f6) Thanks [@akinoccc](https://github.com/akinoccc)! - feat(curd): add formRowProps to StdForm and StdCurd for enhanced layout customization
+
+- [`600aaed`](https://github.com/uozi-tech/admin-kit/commit/600aaed94c06ad6f9a367d7dc400f884b2a5a7a8) Thanks [@akinoccc](https://github.com/akinoccc)! - feat(curd): enhance form and detail components with additional props for better customization layout
+
 ## 3.17.2
 
 ### Patch Changes
