@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 3.17.2
+
+### Patch Changes
+
+- [`7c5d2c2`](https://github.com/uozi-tech/admin-kit/commit/7c5d2c22058672196ea1d31378ba5d59b4f20d84) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): update parameter name from 'permanently' to 'permanent' in StdCurd component API call
+
 ## 3.17.1
 
 ### Patch Changes
