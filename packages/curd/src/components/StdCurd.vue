@@ -358,6 +358,7 @@ const modalTitle = computed(() => {
               :data="itemDetail"
               :columns="formColumns"
               :form-class="props.formClass"
+              :form-row-props="props.formRowProps"
             />
             <slot
               name="afterForm"

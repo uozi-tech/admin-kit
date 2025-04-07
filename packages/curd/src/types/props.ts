@@ -1,5 +1,6 @@
 import type {
   DescriptionsProps,
+  RowProps,
   TableProps,
 } from 'ant-design-vue'
 
@@ -48,6 +49,7 @@ export interface CustomRenderArgs<T = any, U = any> {
 
 export interface StdCurdProps {
   detailProps?: DescriptionsProps
+  formRowProps?: RowProps
   columns: StdTableColumn[]
   rowKey?: string
   rowSelectionType?: 'checkbox' | 'radio'

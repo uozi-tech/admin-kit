@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { RowProps } from 'ant-design-vue'
 import type { StdCurdProps, StdTableColumn } from '../types'
 import { Col, Form, FormItem, FormItemRest, Row } from 'ant-design-vue'
 import { reactive, ref } from 'vue'
@@ -10,6 +11,7 @@ const props = defineProps<{
   columns: StdTableColumn[]
   layout?: 'horizontal' | 'vertical' | 'inline'
   formClass?: StdCurdProps['formClass']
+  formRowProps?: RowProps
 }>()
 
 const emit = defineEmits<{
@@ -51,7 +53,7 @@ defineExpose({
     @validate="onValidate"
   >
     <FormItemRest>
-      <Row>
+      <Row v-bind="props.formRowProps">
         <Col
           v-for="c in props.columns"
           :key="getColumnKey(c)"
