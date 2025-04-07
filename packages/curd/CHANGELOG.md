@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 3.18.1
+
+### Patch Changes
+
+- [`40867d2`](https://github.com/uozi-tech/admin-kit/commit/40867d21b3122fd65cdf8b718626e5b53bd0d1e4) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): search form layout
+
 ## 3.18.0
 
 ### Minor Changes
