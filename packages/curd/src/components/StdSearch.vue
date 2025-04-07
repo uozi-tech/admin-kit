@@ -31,24 +31,18 @@ function getConfig(c: StdTableColumn) {
     label-width="auto"
     layout="inline"
   >
-    <Row>
-      <Col
-        v-for="c in columns"
-        :key="getColumnKey(c)"
-        v-bind="getConfig(c)?.col"
-      >
-        <FormItem
-          :label="getSearchLabel(c)"
-          :name="`${getConfig(c)?.formItem?.name ?? c.dataIndex}__search`"
-        >
-          <FormControllerRender
-            v-model:form-data="formData"
-            :column="c"
-            :form-config-key="c.search === true ? 'edit' : 'search'"
-          />
-        </FormItem>
-      </Col>
-    </Row>
+    <FormItem
+      v-for="c in columns"
+      :key="getColumnKey(c)"
+      :label="getSearchLabel(c)"
+      :name="`${getConfig(c)?.formItem?.name ?? c.dataIndex}__search`"
+    >
+      <FormControllerRender
+        v-model:form-data="formData"
+        :column="c"
+        :form-config-key="c.search === true ? 'edit' : 'search'"
+      />
+    </FormItem>
     <slot
       name="extra"
       :form-data="formData"
