@@ -188,7 +188,7 @@ function handleDataById(action: string, record: Record<string, any>) {
   emit(action as any, record)
 
   props.api[apiKey](record[props.rowKey ?? 'id'], {
-    permanently: action === ApiActions.DELETE_ITEM_PERMANENTLY,
+    permanent: action === ApiActions.DELETE_ITEM_PERMANENTLY,
     ...props.overwriteParams,
   })
     .then(() => {
