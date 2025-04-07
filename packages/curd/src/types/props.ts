@@ -1,4 +1,5 @@
 import type {
+  DescriptionsProps,
   TableProps,
 } from 'ant-design-vue'
 
@@ -46,6 +47,7 @@ export interface CustomRenderArgs<T = any, U = any> {
 }
 
 export interface StdCurdProps {
+  detailProps?: DescriptionsProps
   columns: StdTableColumn[]
   rowKey?: string
   rowSelectionType?: 'checkbox' | 'radio'
@@ -58,6 +60,7 @@ export interface StdCurdProps {
   customQueryParams?: Record<string, any>
   overwriteParams?: Record<string, any>
   modalWidth?: string | number
+  formClass?: string | string[] | Record<string, boolean>
   disableRouterQuery?: boolean
   disableSearch?: boolean
   disableAdd?: boolean

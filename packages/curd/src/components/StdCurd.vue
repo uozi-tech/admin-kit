@@ -346,6 +346,7 @@ const modalTitle = computed(() => {
             :row-key="props.rowKey"
             :columns="props.columns"
             :record="itemDetail"
+            :detail-props="props.detailProps"
           />
           <template v-else-if="mode === 'edit' || mode === 'add'">
             <slot
@@ -356,6 +357,7 @@ const modalTitle = computed(() => {
               ref="stdForm"
               :data="itemDetail"
               :columns="formColumns"
+              :form-class="props.formClass"
             />
             <slot
               name="afterForm"

@@ -1,4 +1,4 @@
-import type { FormItemProps } from 'ant-design-vue'
+import type { ColProps, FormItemProps } from 'ant-design-vue'
 import type { DefineComponent, VNode } from 'vue'
 import type { JSX } from 'vue/jsx-runtime'
 import type {
@@ -58,6 +58,7 @@ export interface StdFormConfig extends Record<any, any> {
   type: FormItemType
   defaultValue?: any
   valueKey?: string
+  col?: ColProps
 
   password?: PasswordConfig
   input?: InputConfig

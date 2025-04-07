@@ -17,6 +17,7 @@ const columns: StdTableColumn[] = [
     edit: {
       type: 'input',
       formItem: { rules: [{ required: true }] },
+      col: { span: 12 },
     },
   },
   {
@@ -26,6 +27,7 @@ const columns: StdTableColumn[] = [
     edit: {
       type: 'input',
       formItem: { rules: [{ required: true }] },
+      col: { span: 12 },
     },
   },
   {

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { StdTableColumn } from '../types'
-import { Form, FormItem } from 'ant-design-vue'
+import { Col, Form, FormItem, Row } from 'ant-design-vue'
 import { getColumnKey, getSearchLabel } from '../utils'
 import FormControllerRender from './StdFormController.vue'
 
@@ -31,18 +31,24 @@ function getConfig(c: StdTableColumn) {
     label-width="auto"
     layout="inline"
   >
-    <FormItem
-      v-for="c in columns"
-      :key="getColumnKey(c)"
-      :label="getSearchLabel(c)"
-      :name="`${getConfig(c)?.formItem?.name ?? c.dataIndex}__search`"
-    >
-      <FormControllerRender
-        v-model:form-data="formData"
-        :column="c"
-        :form-config-key="c.search === true ? 'edit' : 'search'"
-      />
-    </FormItem>
+    <Row>
+      <Col
+        v-for="c in columns"
+        :key="getColumnKey(c)"
+        v-bind="getConfig(c)?.col"
+      >
+        <FormItem
+          :label="getSearchLabel(c)"
+          :name="`${getConfig(c)?.formItem?.name ?? c.dataIndex}__search`"
+        >
+          <FormControllerRender
+            v-model:form-data="formData"
+            :column="c"
+            :form-config-key="c.search === true ? 'edit' : 'search'"
+          />
+        </FormItem>
+      </Col>
+    </Row>
     <slot
       name="extra"
       :form-data="formData"

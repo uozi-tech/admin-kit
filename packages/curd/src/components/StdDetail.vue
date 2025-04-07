@@ -1,4 +1,5 @@
 <script setup lang="tsx">
+import type { DescriptionsProps } from 'ant-design-vue'
 import type { CustomRenderArgs, StdTableColumn } from '../types'
 import { Descriptions, DescriptionsItem } from 'ant-design-vue'
 import { get } from 'lodash-es'
@@ -7,6 +8,7 @@ import { getEditLabel } from '../utils'
 const props = defineProps<{
   record: any
   columns: StdTableColumn[]
+  detailProps?: DescriptionsProps
 }>()
 
 const displayColumns = props.columns.filter(item => !item?.hiddenInDetail && item.dataIndex !== 'actions')
@@ -22,11 +24,13 @@ function DataItemRender(props: CustomRenderArgs) {
   <Descriptions
     bordered
     :column="1"
+    v-bind="props.detailProps"
   >
     <DescriptionsItem
       v-for="(column, index) in displayColumns"
       :key="index"
       :label="getEditLabel(column, 'Detail')"
+      :span="Number(column.edit?.col?.span) ?? 24"
     >
       <DataItemRender
         v-if="Object.keys(props.record).length"
