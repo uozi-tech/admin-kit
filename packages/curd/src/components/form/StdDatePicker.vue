@@ -10,13 +10,13 @@ import { computed } from 'vue'
 import { Format } from '../../constants'
 import { isUsingTimestamp } from './helper'
 
-const props = defineProps<{ props?: (DatePickerConfig | WeekPickerConfig | MonthPickerConfig) & { placeholder?: string | number } & TimeT, type: PanelMode | 'datetime' }>()
+const p = defineProps<{ props?: (DatePickerConfig | WeekPickerConfig | MonthPickerConfig) & { placeholder?: string | number } & TimeT, type: PanelMode | 'datetime' }>()
 dayjs.extend(weekday)
 dayjs.extend(localeData)
 
 const value = defineModel<DatePickerConfig['value'] | WeekPickerConfig['value'] | MonthPickerConfig['value'] | number | string>('value')
 
-const usingTimestamp = isUsingTimestamp(props.props)
+const usingTimestamp = isUsingTimestamp(p.props)
 
 const computedValue = computed<string | Dayjs | undefined>({
   get() {
@@ -46,7 +46,7 @@ const computedValue = computed<string | Dayjs | undefined>({
     :show-time="type === 'datetime'"
     :get-popup-container="(triggerNode: any) => triggerNode.parentNode"
     v-bind="{
-      ...props,
+      ...props as any,
       value: computedValue,
     }"
     @update:value="v => computedValue = v"
