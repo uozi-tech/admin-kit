@@ -1,5 +1,13 @@
 # @uozi-admin/curd
 
+## 3.18.2
+
+### Patch Changes
+
+- [`8233120`](https://github.com/uozi-tech/admin-kit/commit/8233120d975be9e7cab136c893470af2bda66fea) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): rename props variable to improve clarity in StdDatePicker component
+
+- [`ce66934`](https://github.com/uozi-tech/admin-kit/commit/ce6693467b80ff57e6226a9f97aeee78aefdc5b2) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): update variable name from props to p for consistency in StdRangePicker component
+
 ## 3.18.1
 
 ### Patch Changes
