@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 3.18.3
+
+### Patch Changes
+
+- [`0e4aa9b`](https://github.com/uozi-tech/admin-kit/commit/0e4aa9bddabcb4dd957bb0efff24be9b90d81a7e) Thanks [@0xJacky](https://github.com/0xJacky)! - fix(curd): [table] change hideOnSinglePage to false
+
 ## 3.18.2
 
 ### Patch Changes
