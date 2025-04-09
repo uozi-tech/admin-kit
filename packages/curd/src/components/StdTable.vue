@@ -48,7 +48,7 @@ function initializePagination(paginationProps: any): TablePaginationConfig {
     pageSize: route.query[curdConfig.listApi!.paginationMap!.params!.pageSize!] ?? 20,
     showSizeChanger: true,
     showQuickJumper: true,
-    hideOnSinglePage: true,
+    hideOnSinglePage: false,
     responsive: true,
     showTotal: (total: number) => `${t('total')}: ${total} ${t('item(s)')}`,
     ...paginationProps,
