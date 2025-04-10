@@ -1,5 +1,11 @@
 # @uozi-admin/request
 
+## 2.6.0
+
+### Minor Changes
+
+- [`f7bbbe6`](https://github.com/uozi-tech/admin-kit/commit/f7bbbe66a6d0c6f81b89c28febe0e6c593b4f822) Thanks [@akinoccc](https://github.com/akinoccc)! - feat(request): add getUrl method to useCurdApi for dynamic URL handling
+
 ## 2.5.3
 
 ### Patch Changes
