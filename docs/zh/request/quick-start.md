@@ -88,7 +88,10 @@ setRequestConfig({
 import { useCurdApi } from '@uozi-admin/request'
 
 // 创建 CURD API
-const userApi = useCurdApi('/users')
+const userApi = useCurdApi('/users') 
+
+// 支持传递一个函数动态获取 url
+// const userApi = useCurdApi(() => '/users') 
 
 // 获取列表
 const { data, pagination } = await userApi.getList({
