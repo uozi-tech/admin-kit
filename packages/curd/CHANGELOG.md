@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 3.18.4
+
+### Patch Changes
+
+- [`c070e84`](https://github.com/uozi-tech/admin-kit/commit/c070e84d992847999b9a49a95d873d9f746c1c86) Thanks [@0xJacky](https://github.com/0xJacky)! - fix(StdSelector): update removeValue function to handle radio selection type
+
 ## 3.18.3
 
 ### Patch Changes
