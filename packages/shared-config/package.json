@@ -35,8 +35,8 @@
     "@vitejs/plugin-vue": "^5.2.3",
     "@vitejs/plugin-vue-jsx": "^4.1.2",
     "unplugin-auto-import": "^19.1.2",
-    "unplugin-vue-components": "^28.4.1",
+    "unplugin-vue-components": "^28.5.0",
     "unplugin-vue-define-options": "^1.5.5",
-    "vite-plugin-vue-devtools": "^7.7.2"
+    "vite-plugin-vue-devtools": "^7.7.5"
   }
 }
