@@ -62,7 +62,12 @@ function setValue() {
 }
 
 function removeValue(v: any) {
-  value.value = arraylizeValue(value.value).filter(item => item !== v)
+  if (props.selectionType === 'radio') {
+    value.value = ''
+  }
+  else {
+    value.value = arraylizeValue(value.value).filter(item => item !== v)
+  }
 }
 
 async function init() {
