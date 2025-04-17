@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { StdTableColumn } from '../types'
-import { Col, Form, FormItem, Row } from 'ant-design-vue'
+import { Form, FormItem } from 'ant-design-vue'
 import { getColumnKey, getSearchLabel } from '../utils'
 import FormControllerRender from './StdFormController.vue'
 
