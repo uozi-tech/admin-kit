@@ -1,6 +1,6 @@
 import type { Ref } from 'vue'
 import type { ExportColumn, StdTableColumn } from '../types'
-import { get, set } from 'lodash-es'
+import { cloneDeep, get, set } from 'lodash-es'
 import { computed, reactive, watch } from 'vue'
 import { utils, writeFile } from 'xlsx'
 
@@ -28,12 +28,13 @@ export function useExport(config: {
     (config.columns as ExportColumn[])
       .filter(item => !item.hiddenInExport)
       .map((item) => {
+        const column = cloneDeep(item)
         // if (typeof item.title === 'function')
         //   item.title = item.title()
-        if (Array.isArray(item.dataIndex))
-          item.dataIndex = item.dataIndex.join('.')
-        item.checked = true
-        return item
+        if (Array.isArray(column.dataIndex))
+          column.dataIndex = column.dataIndex.join('.')
+        column.checked = true
+        return column
       }),
   ) as Ref<ExportColumn[]>
 
