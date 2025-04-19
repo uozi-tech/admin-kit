@@ -1,6 +1,6 @@
 {
   "name": "@uozi-admin/curd",
-  "version": "3.18.4",
+  "version": "3.18.5",
   "description": "Easy to implement curd.",
   "type": "module",
   "main": "src/index.ts",
