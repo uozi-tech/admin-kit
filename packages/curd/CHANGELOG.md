@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 3.18.5
+
+### Patch Changes
+
+- [`88e6a14`](https://github.com/uozi-tech/admin-kit/commit/88e6a1436fc374140bdad839cac5a1a21651e372) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): unexpected change for column's dataIndex
+
 ## 3.18.4
 
 ### Patch Changes
