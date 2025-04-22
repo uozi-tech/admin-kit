@@ -1,5 +1,13 @@
 # @uozi-admin/curd
 
+## 3.19.0
+
+### Minor Changes
+
+- [`cf74ffb`](https://github.com/uozi-tech/admin-kit/commit/cf74ffb09cbd1ae536d38500fdefe53db8b2bfaa) Thanks [@0xJacky](https://github.com/0xJacky)! - feat(curd): enhance form validation and error handling
+
+- [`c3143c1`](https://github.com/uozi-tech/admin-kit/commit/c3143c19a553ac1dbb0130888795284baab3cefe) Thanks [@0xJacky](https://github.com/0xJacky)! - feat(curd): add search functionality with configurable buttons
+
 ## 3.18.5
 
 ### Patch Changes
