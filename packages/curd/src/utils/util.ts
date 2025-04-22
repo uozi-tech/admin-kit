@@ -12,10 +12,17 @@ export function getColumnKey(column: StdTableColumn) {
   if (column.key)
     return column.key
 
-  if (Array.isArray(column.dataIndex))
-    return column.dataIndex.join('.')
+  return getDataIndexStr(column.dataIndex)
+}
 
-  return column.dataIndex
+export function getDataIndexStr(dataIndex?: string | string[]) {
+  if (!dataIndex)
+    return ''
+
+  if (Array.isArray(dataIndex))
+    return dataIndex.join('.')
+
+  return dataIndex
 }
 
 export function getRealContent(content?: string | (() => string)) {

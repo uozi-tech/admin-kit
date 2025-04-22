@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import type { RowProps } from 'ant-design-vue'
 import type { StdCurdProps, StdTableColumn } from '../types'
-import { Col, Form, FormItem, FormItemRest, Row } from 'ant-design-vue'
+import { Col, Form, FormItemRest, Row } from 'ant-design-vue'
 import { reactive, ref } from 'vue'
-import { getColumnKey, getEditLabel } from '../utils'
+import { getColumnKey, getDataIndexStr, getEditLabel } from '../utils'
 import FormControllerRender from './StdFormController.vue'
+import StdFormItem from './StdFormItem.vue'
 
 const props = defineProps<{
   labelAlign?: 'left' | 'right'
@@ -12,6 +13,7 @@ const props = defineProps<{
   layout?: 'horizontal' | 'vertical' | 'inline'
   formClass?: StdCurdProps['formClass']
   formRowProps?: RowProps
+  errors?: Record<string, string>
 }>()
 
 const emit = defineEmits<{
@@ -26,7 +28,7 @@ function onValidate(name: string | number | string[] | number[], status: boolean
   emit('validate', { name, status, errors })
 }
 
-const formData = defineModel<Record<string, any>>('data', { default: () => reactive({}) })
+const formData = defineModel<Record<string, any>>('data', { default: reactive({}) })
 
 for (const column of props.columns) {
   const key = (column.edit?.formItem?.name ?? column.dataIndex) as string
@@ -60,18 +62,18 @@ defineExpose({
           span="24"
           v-bind="c.edit?.col"
         >
-          <FormItem
-            :column="c"
+          <StdFormItem
             style="margin-bottom: 12px;"
-            v-bind="c.edit?.formItem"
+            :form-item="c.edit?.formItem"
             :label="getEditLabel(c)"
-            :name="c.edit?.valueKey ?? c.edit?.formItem?.name ?? c.dataIndex"
+            :name="c.edit?.valueKey ?? c.edit?.formItem?.name ?? getDataIndexStr(c.dataIndex)"
+            :error="errors?.[getDataIndexStr(c.dataIndex)]"
           >
             <FormControllerRender
               :column="c"
               :form-data="formData"
             />
-          </FormItem>
+          </StdFormItem>
         </Col>
       </Row>
     </FormItemRest>

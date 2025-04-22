@@ -1,10 +1,12 @@
 <script setup lang="ts">
+import type { FormItemProps } from 'ant-design-vue'
 import type { Rule } from 'ant-design-vue/es/form'
 import type { StdTableColumn } from '../types'
 import { FormItem } from 'ant-design-vue'
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { getFormErrors } from '../constants/formErrors'
+import { getDataIndexStr } from '../utils'
 
 const props = defineProps<Props>()
 const FormErrors = getFormErrors()
@@ -14,25 +16,16 @@ export interface Props {
   label?: string
   extra?: string
   hint?: string | (() => string)
-  error?: {
-    [key: string]: string
-  }
+  error?: string
   required?: boolean
   noValidate?: boolean
+  formItem?: FormItemProps
 }
 
-const tag = computed(() => {
-  return props.error?.[props.dataIndex!.toString()] ?? ''
-})
-
-// const valid_status = computed(() => {
-//   if (tag.value)
-//     return 'error'
-//   else return 'success'
-// })
-
 const help = computed(() => {
-  const rules = tag.value.split(',')
+  const rules = props.error?.split(',')
+  if (!rules)
+    return props.hint
 
   for (const rule of rules) {
     if (FormErrors[rule])
@@ -57,12 +50,13 @@ async function validator(_: Rule, value: any): Promise<any> {
 
 <template>
   <FormItem
-    :name="dataIndex as string"
+    :name="getDataIndexStr(dataIndex)"
     :label="label"
     :help="help"
     :rules="{ required, validator }"
-    :validate-status="tag ? 'error' : undefined"
+    :validate-status="error ? 'error' : undefined"
     :auto-link="false"
+    v-bind="formItem"
   >
     <slot />
   </FormItem>

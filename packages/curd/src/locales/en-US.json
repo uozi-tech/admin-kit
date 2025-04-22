@@ -26,11 +26,13 @@
   "deletedSuccessfully": "Deleted successfully",
   "restoredSuccessfully": "Restored successfully",
   "selectAll": "Select all",
-  "This field should not be empty": "This field should not be empty",
-  "This field should be a valid email address": "This field should be a valid email address",
-  "This value is already taken": "This value is already taken",
-  "This field should be a valid hostname": "This field should be a valid hostname",
-  "This field should only contain letters, unicode characters, numbers, and -_.": "This field should only contain letters, unicode characters, numbers, and -_.",
+  "validate": {
+    "required": "This field should not be empty",
+    "email": "This field should be a valid email address",
+    "db_unique": "This value is already taken",
+    "hostname": "This field should be a valid hostname",
+    "safety_text": "This field should only contain letters, unicode characters, numbers, and -_./:"
+  },
   "upload": {
     "uploadFiles": "Upload Files",
     "uploadFolders": "Upload Folders",
