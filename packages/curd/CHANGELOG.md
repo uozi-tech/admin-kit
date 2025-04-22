@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 3.19.1
+
+### Patch Changes
+
+- [`4ff75c3`](https://github.com/uozi-tech/admin-kit/commit/4ff75c3719d790f3e16e5a9eb63576c14a8dd0e2) Thanks [@0xJacky](https://github.com/0xJacky)! - feat(curd): add form error handling and improve prop management
+
 ## 3.19.0
 
 ### Minor Changes
