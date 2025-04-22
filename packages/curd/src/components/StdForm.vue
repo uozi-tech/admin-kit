@@ -7,14 +7,18 @@ import { getColumnKey, getDataIndexStr, getEditLabel } from '../utils'
 import FormControllerRender from './StdFormController.vue'
 import StdFormItem from './StdFormItem.vue'
 
-const props = defineProps<{
+const props = withDefaults(defineProps<{
   labelAlign?: 'left' | 'right'
   columns: StdTableColumn[]
   layout?: 'horizontal' | 'vertical' | 'inline'
   formClass?: StdCurdProps['formClass']
   formRowProps?: RowProps
   errors?: Record<string, string>
-}>()
+}>(), {
+  formRowProps: () => ({
+    gutter: 16,
+  }),
+})
 
 const emit = defineEmits<{
   (e: 'validate', payload: {

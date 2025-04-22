@@ -15,6 +15,9 @@ import StdTable from './StdTable.vue'
 const props = withDefaults(defineProps<StdCurdProps>(), {
   rowKey: 'id',
   showSearchBtn: undefined,
+  formRowProps: () => ({
+    gutter: 16,
+  }),
 })
 
 const emit = defineEmits<{
@@ -86,6 +89,9 @@ const isTrash = ref(JSON.parse(route?.query?.trash as string ?? 'false'))
 
 // 数据项详情
 const itemDetail = ref<Record<string, any>>({})
+
+// 表单错误
+const errors = ref<Record<string, string>>({})
 
 // 新增/编辑弹窗可见标记
 const formVisible = ref(false)
@@ -178,6 +184,7 @@ async function handleSave(data: Record<string, any>) {
     })
     .catch((e) => {
       console.error(e)
+      errors.value = e.errors
       message.error('Failed to save data')
     })
     .finally(() => (modalLoading.value = false))
@@ -250,18 +257,18 @@ const modalTitle = computed(() => {
       >
         <slot name="beforeListActions" />
         <a
-          v-if="!props.disableExport && !isTrash"
+          v-if="!disableExport && !isTrash"
           :class="{ 'cursor-not-allowed text-truegray-3 hover:text-truegray-3': selectedRowKeys.length === 0 }"
           @click="selectedRowKeys.length > 0 && (exportVisible = true)"
         >
           {{ t('exportExcel') }}
         </a>
         <a
-          v-if="!props.disableAdd && !isTrash"
+          v-if="!disableAdd && !isTrash"
           @click="handleAdd"
         >{{ t('add') }}</a>
         <a
-          v-if="!props.disableTrash"
+          v-if="!disableTrash"
           :class="{ 'cursor-not-allowed text-truegray-3 hover:text-truegray-3': tableLoading }"
           @click="switchTrashAndList"
         >
@@ -278,27 +285,27 @@ const modalTitle = computed(() => {
       :title
       :columns
       :get-list-api="api.getList"
-      :is-trash="isTrash"
-      :disable-add="disableAdd"
-      :disable-edit="disableEdit"
-      :disable-delete="disableDelete"
-      :disable-search="disableSearch"
-      :disable-trash="disableTrash"
-      :disable-view="disableView"
-      :disable-router-query="disableRouterQuery"
-      :row-selection-type="rowSelectionType"
-      :row-draggable="rowDraggable"
-      :row-draggable-options="rowDraggableOptions"
-      :refresh-config="refreshConfig"
-      :show-search-btn="showSearchBtn"
-      :hide-reset-btn="hideResetBtn"
+      :is-trash
+      :disable-add
+      :disable-edit
+      :disable-delete
+      :disable-search
+      :disable-trash
+      :disable-view
+      :disable-router-query
+      :row-selection-type
+      :row-draggable
+      :row-draggable-options
+      :refresh-config
+      :show-search-btn
+      :hide-reset-btn
       :table-props="{
         rowKey,
         scroll: {
-          x: props.scrollX ?? 'max-content',
-          y: props.scrollY,
+          x: scrollX ?? 'max-content',
+          y: scrollY,
         },
-        ...props.tableProps,
+        ...tableProps,
       }"
       :overwrite-params="overwriteParams"
       :custom-query-params="customQueryParams"
@@ -337,7 +344,7 @@ const modalTitle = computed(() => {
       v-model:open="formVisible"
       destroy-on-close
       :closable="!modalLoading"
-      :width="props.modalWidth"
+      :width="modalWidth"
       :title="modalTitle"
       :mask-closable="false"
     >
@@ -345,10 +352,10 @@ const modalTitle = computed(() => {
         <div>
           <StdDetail
             v-if="mode === 'view'"
-            :row-key="props.rowKey"
-            :columns="props.columns"
+            :row-key
+            :columns
             :record="itemDetail"
-            :detail-props="props.detailProps"
+            :detail-props
           />
           <template v-else-if="mode === 'edit' || mode === 'add'">
             <slot
@@ -357,10 +364,11 @@ const modalTitle = computed(() => {
             />
             <StdForm
               ref="stdForm"
-              :data="itemDetail"
+              v-model:data="itemDetail"
+              :errors
               :columns="formColumns"
-              :form-class="props.formClass"
-              :form-row-props="props.formRowProps"
+              :form-class
+              :form-row-props
             />
             <slot
               name="afterForm"
