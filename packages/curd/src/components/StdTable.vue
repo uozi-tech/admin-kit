@@ -4,7 +4,7 @@ import type { TablePaginationConfig } from 'ant-design-vue/lib/table/interface'
 import type { VNode } from 'vue'
 import type { StdTableBodyScope, StdTableHeaderScope, StdTableProps } from '../types'
 import { HolderOutlined } from '@ant-design/icons-vue'
-import { Button, Flex, Popconfirm, Table } from 'ant-design-vue'
+import { Button, Popconfirm, Table } from 'ant-design-vue'
 import { cloneDeep, debounce, get, isArray, isEqual, isNil, isObject } from 'lodash-es'
 import { computed, h, onMounted, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
@@ -221,6 +221,7 @@ watch(apiParams, async (newVal, oldVal) => {
   }
   if (!props.disableRouterQuery) {
     // overwriteParams 不同步到 route query
+    // eslint-disable-next-line unused-imports/no-unused-vars
     const { overwriteParams: _, ...rest } = newVal
     await debouncedUpdateRouteQuery({ ...route.query, ...rest })
   }
@@ -328,25 +329,17 @@ defineExpose({
     <StdSearch
       v-if="!props.disableSearch"
       v-model:data="searchFormData"
+      :show-search-btn
+      :hide-reset-btn
       class="mb-6"
       :columns="searchColumns"
+      @reset="resetSearchForm"
     >
       <template #extra="{ formData }">
-        <Flex
-          wrap="wrap"
-          gap="small"
-        >
-          <Button
-            v-if="searchColumns.length && !hideResetBtn"
-            @click="resetSearchForm"
-          >
-            {{ t('reset') }}
-          </Button>
-          <slot
-            name="searchFormAction"
-            :form-data="formData"
-          />
-        </Flex>
+        <slot
+          name="searchFormAction"
+          :form-data="formData"
+        />
       </template>
     </StdSearch>
     <slot name="beforeTable" />

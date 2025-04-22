@@ -46,6 +46,10 @@ export const defaultConfig: Required<CurdConfigT> = {
   selector: {
     omitZeroString: true,
   },
+  search: {
+    showSearchBtn: false,
+    hideResetBtn: true,
+  },
 }
 
 export const CURD_CONFIG_KEY = Symbol('curdConfig')

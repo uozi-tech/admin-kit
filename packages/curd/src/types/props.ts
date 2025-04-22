@@ -24,7 +24,8 @@ export interface StdTableProps extends Pick<
   'disableTrash' |
   'rowDraggable' |
   'rowDraggableOptions' |
-  'hideResetBtn'
+  'hideResetBtn' |
+  'showSearchBtn'
 > {
   getListApi: CurdApi['getList']
   refreshConfig?: {
@@ -72,6 +73,7 @@ export interface StdCurdProps {
   disableExport?: boolean
   disableTrash?: boolean
   hideResetBtn?: boolean
+  showSearchBtn?: boolean
   hideTitle?: boolean
   hideExtra?: boolean
   hideHeader?: boolean

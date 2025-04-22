@@ -14,6 +14,7 @@ import StdTable from './StdTable.vue'
 
 const props = withDefaults(defineProps<StdCurdProps>(), {
   rowKey: 'id',
+  showSearchBtn: undefined,
 })
 
 const emit = defineEmits<{
@@ -289,6 +290,7 @@ const modalTitle = computed(() => {
       :row-draggable="rowDraggable"
       :row-draggable-options="rowDraggableOptions"
       :refresh-config="refreshConfig"
+      :show-search-btn="showSearchBtn"
       :hide-reset-btn="hideResetBtn"
       :table-props="{
         rowKey,

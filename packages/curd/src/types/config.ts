@@ -204,4 +204,21 @@ export interface CurdConfigT {
      */
     omitZeroString?: boolean
   }
+
+  /**
+   * The search config
+   * @description The config for the search
+   */
+  search?: {
+    /**
+     * The show search btn
+     * @description The flag to show the search btn
+     */
+    showSearchBtn?: boolean
+
+    /**
+     * The hide reset btn
+     */
+    hideResetBtn?: boolean
+  }
 }

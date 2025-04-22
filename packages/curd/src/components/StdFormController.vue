@@ -73,7 +73,7 @@ function Render() {
 
     switch (formConfig?.type) {
       case 'input':
-        return <StdInput v-model:value={value.value} props={formConfig?.input} name={formConfig?.formItem?.name ?? dataIndex} placeholder={placeholder.value} />
+        return <StdInput v-model:value={value.value} props={formConfig?.input} placeholder={placeholder.value} />
       case 'inputNumber':
         return <StdInputNumber v-model:value={value.value} props={formConfig?.inputNumber} placeholder={placeholder.value} />
       case 'textarea':

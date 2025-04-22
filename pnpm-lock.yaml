@@ -124,6 +124,9 @@ importers:
       '@ant-design/icons-vue':
         specifier: '>=7.0.1'
         version: 7.0.1(vue@3.5.13(typescript@5.8.3))
+      '@vueuse/core':
+        specifier: ^13.1.0
+        version: 13.1.0(vue@3.5.13(typescript@5.8.3))
       ant-design-vue:
         specifier: '>=4.2.6'
         version: 4.2.6(vue@3.5.13(typescript@5.8.3))
@@ -8439,7 +8442,6 @@ snapshots:
       '@vueuse/metadata': 13.1.0
       '@vueuse/shared': 13.1.0(vue@3.5.13(typescript@5.8.3))
       vue: 3.5.13(typescript@5.8.3)
-    optional: true
 
   '@vueuse/integrations@12.8.2(async-validator@4.2.5)(axios@1.8.4)(focus-trap@7.6.4)(nprogress@0.2.0)(sortablejs@1.15.6)(typescript@5.8.3)':
     dependencies:
@@ -8457,8 +8459,7 @@ snapshots:
 
   '@vueuse/metadata@12.8.2': {}
 
-  '@vueuse/metadata@13.1.0':
-    optional: true
+  '@vueuse/metadata@13.1.0': {}
 
   '@vueuse/shared@12.8.2(typescript@5.8.3)':
     dependencies:
@@ -8469,7 +8470,6 @@ snapshots:
   '@vueuse/shared@13.1.0(vue@3.5.13(typescript@5.8.3))':
     dependencies:
       vue: 3.5.13(typescript@5.8.3)
-    optional: true
 
   abbrev@2.0.0: {}
 
