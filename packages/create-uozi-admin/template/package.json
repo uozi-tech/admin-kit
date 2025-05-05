@@ -29,7 +29,7 @@
     "pinia": "^3.0.2",
     "pinia-plugin-persistedstate": "^4.2.0",
     "vue": "^3.5.13",
-    "vue-router": "^4.5.0",
+    "vue-router": "^4.5.1",
     "vue3-gettext": "3.0.0-beta.6",
     "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz"
   },
@@ -41,14 +41,14 @@
     "@types/nprogress": "^0.2.3",
     "@uozi-admin/shared-config": "^0.4.6",
     "@vue/tsconfig": "^0.7.0",
-    "eslint": "^9.25.1",
+    "eslint": "^9.26.0",
     "less": "^4.3.0",
-    "simple-git-hooks": "^2.12.1",
+    "simple-git-hooks": "^2.13.0",
     "typescript": "^5.8.3",
     "unocss": "^66.0.0",
     "unocss-preset-chinese": "^0.3.3",
     "unocss-preset-ease": "^0.0.4",
     "vite": "^6.3.1",
-    "vue-tsc": "^2.2.8"
+    "vue-tsc": "^2.2.10"
   }
 }
