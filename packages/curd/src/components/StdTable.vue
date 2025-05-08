@@ -350,7 +350,12 @@ defineExpose({
       :columns="dataColumns"
       :data-source="tableData"
       :loading="tableLoading"
-      v-bind="tableProps"
+      v-bind="{
+        scroll: {
+          x: 'max-content',
+        },
+        ...tableProps,
+      }"
       @change="onTableChange"
     >
       <template #headerCell="{ title, column }: StdTableHeaderScope">
