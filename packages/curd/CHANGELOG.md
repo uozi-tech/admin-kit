@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.0.0
+
+### Major Changes
+
+- [`47a3ca4`](https://github.com/uozi-tech/admin-kit/commit/47a3ca48f260bf42f8b1053148eccf7b2c039df0) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): enhance custom render function to support detail context in StdDetail component
+
 ## 3.19.1
 
 ### Patch Changes
