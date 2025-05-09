@@ -159,6 +159,12 @@ function resetSearchForm() {
 
   searchFormData.value = {}
 
+  const query = route.query
+  for (const key of searchKeys) {
+    delete query[key]
+  }
+  router.replace({ query })
+
   pagination.value.current = 1
 }
 
