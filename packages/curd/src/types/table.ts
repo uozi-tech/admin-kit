@@ -18,7 +18,7 @@ export interface StdTableBodyScope {
 }
 
 type CustomHeaderRenderFn = (data: StdTableHeaderScope) => VNode | JSX.Element
-type CustomRenderFn<T> = ((props: CustomRenderArgs<T>) => VNode | VNode[] | JSX.Element | JSX.Element[] | string | string[])
+type CustomRenderFn<T> = ((props: CustomRenderArgs<T>, source?: 'table' | 'edit' | 'add' | 'detail') => VNode | VNode[] | JSX.Element | JSX.Element[] | string | string[])
 
 export interface StdTableColumn<T = any> extends Omit<TableColumnType, 'customRender'> {
   title: string | (() => string)

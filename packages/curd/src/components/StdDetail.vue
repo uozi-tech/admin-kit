@@ -16,7 +16,7 @@ const displayColumns = props.columns.filter(item => !item?.hiddenInDetail && ite
 function DataItemRender(props: CustomRenderArgs) {
   const { record, column } = props
   const value = get(record, column.dataIndex)
-  return column.customRender ? column.customRender(props) : value ?? '/'
+  return column.customRender ? column.customRender(props, 'detail') : value ?? '/'
 }
 </script>
 
