@@ -157,13 +157,13 @@ function resetSearchForm() {
   if (searchKeys.length === 0)
     return
 
-  searchFormData.value = {}
-
-  const query = route.query
+  const query = cloneDeep(route.query)
   for (const key of searchKeys) {
     delete query[key]
   }
   router.replace({ query })
+
+  searchFormData.value = {}
 
   pagination.value.current = 1
 }

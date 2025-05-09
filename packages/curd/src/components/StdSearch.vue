@@ -45,7 +45,7 @@ watch(() => props.data, async () => {
   formDataBuffer.value = cloneDeep(props.data)
   await nextTick()
   resume()
-})
+}, { deep: true, immediate: true })
 
 function getConfig(c: StdTableColumn) {
   if (c.search === false) {
