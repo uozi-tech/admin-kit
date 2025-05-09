@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.0.1
+
+### Patch Changes
+
+- [`2fd03c1`](https://github.com/uozi-tech/admin-kit/commit/2fd03c180dcdc456d50f600731c1c87496652119) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): reset search form and clear query parameters in StdTable component
+
 ## 4.0.0
 
 ### Major Changes
