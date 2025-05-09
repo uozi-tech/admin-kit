@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.0.2
+
+### Patch Changes
+
+- [`22ec652`](https://github.com/uozi-tech/admin-kit/commit/22ec65242f209f0c2a2a66c1be6c1ec67a423d04) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): update StdSearch and StdTable components for improved reactivity and query handling
+
 ## 4.0.1
 
 ### Patch Changes
