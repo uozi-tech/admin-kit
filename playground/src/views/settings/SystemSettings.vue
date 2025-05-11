@@ -36,3 +36,7 @@ const columns = [
   },
 ]
 </script>
+
+<template>
+  <StdTable :columns="columns" />
+</template>

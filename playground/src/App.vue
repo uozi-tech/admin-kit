@@ -27,7 +27,7 @@ const lang = computed(() => {
 provide('key', configProviderKey)
 
 provide(configProviderKey, {
-  getPrefixCls(suffixCls: string | undefined, customizePrefixCls: string | undefined): string {
+  getPrefixCls(): string {
     return ''
   },
   iconPrefixCls: computed(() => 'anticon'),

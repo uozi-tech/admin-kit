@@ -1,4 +1,4 @@
-import { createCosyProCurd, createCurdConfig } from '@uozi-admin/curd'
+import { createCosyProCurd } from '@uozi-admin/curd'
 import { createApp } from 'vue'
 import App from './App.vue'
 import gettext from './gettext'

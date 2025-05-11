@@ -5,7 +5,8 @@
 import { extendCurdApi, useCurdApi } from '@uozi-admin/request/src/useCurdApi.js'
 
 export const userApi = useCurdApi<{ aa: string }>('/aass', {
-  getLis2t: async (aa?: string) => {
+  getLis2t: async () => {
+    // eslint-disable-next-line no-console
     console.log('getList')
     return {
       data: [],
@@ -19,7 +20,8 @@ export const userApi = useCurdApi<{ aa: string }>('/aass', {
 })
 
 const userApi2 = extendCurdApi(userApi, {
-  getLis2t: async (aa?: string) => {
+  getLis2t: async () => {
+    // eslint-disable-next-line no-console
     console.log('getList')
     return {
       data: [],

@@ -21,7 +21,7 @@ export function serviceInterceptor() {
 
       return Promise.resolve(response.data)
     },
-    async (error) => {
+    async () => {
     //   const permission = usePermissionStore()
     //   const user = useUserStore()
     //   const router = useRouter()

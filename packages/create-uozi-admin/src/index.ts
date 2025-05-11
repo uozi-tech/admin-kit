@@ -108,6 +108,7 @@ async function init() {
     )
   }
   catch (cancelled: any) {
+    // eslint-disable-next-line no-console
     console.log(yellow(cancelled.message))
     return
   }
@@ -117,6 +118,7 @@ async function init() {
   const pkgInfo = pkgFromUserAgent(process.env.npm_config_user_agent)
   const pkgManager = result.packageManager || (pkgInfo ? pkgInfo.name : 'npm')
 
+  // eslint-disable-next-line no-console
   console.log()
 
   const spinner = ora({
@@ -129,11 +131,14 @@ async function init() {
 
     const cdProjectName = path.relative(cwd, root)
 
+    // eslint-disable-next-line no-console
     console.log(gray(`\nScaffolded project in ${root}.`))
 
+    // eslint-disable-next-line no-console
     console.log(`\nDone. Now run:\n`)
 
     if (root !== cwd) {
+      // eslint-disable-next-line no-console
       console.log(green(
         `  cd ${cdProjectName.includes(' ') ? `"${cdProjectName}"` : cdProjectName}`,
       ))
@@ -142,15 +147,21 @@ async function init() {
     // 根据包管理器打印后续命令
     switch (pkgManager) {
       case 'yarn':
+        // eslint-disable-next-line no-console
         console.log(green('  yarn'))
+        // eslint-disable-next-line no-console
         console.log(green('  yarn dev'))
         break
       default:
+        // eslint-disable-next-line no-console
         console.log(green(`  ${pkgManager} install`))
+        // eslint-disable-next-line no-console
         console.log(green(`  ${pkgManager} run dev`))
         break
     }
+    // eslint-disable-next-line no-console
     console.log()
+    // eslint-disable-next-line no-console
     console.log(gray(italic(`Powered by @uozi-admin/create-admin.`)))
   }).catch(() => {
     spinner.fail('\nFailed to create the project!\n')

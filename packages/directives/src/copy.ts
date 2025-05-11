@@ -7,6 +7,7 @@ export const vCopy: Directive = {
       navigator.clipboard
         .writeText(textToCopy)
         .then(() => {
+          // eslint-disable-next-line no-console
           console.log('Text copied to clipboard!')
         })
         .catch((err) => {

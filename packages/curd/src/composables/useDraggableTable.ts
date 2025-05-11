@@ -12,7 +12,7 @@ interface RowData {
   [key: string]: any
 }
 
-interface DragEndPayload {
+export interface DragEndPayload {
   target_id: number
   direction: number
   affected_ids: number[]
