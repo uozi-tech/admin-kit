@@ -1,5 +1,11 @@
 # @uozi-admin/create-admin
 
+## 1.4.24
+
+### Patch Changes
+
+- [`0204bbd`](https://github.com/uozi-tech/admin-kit/commit/0204bbd24b61e70ae2444afd186d033f898f4c26) Thanks [@0xJacky](https://github.com/0xJacky)! - chore: update deps
+
 ## 1.4.23
 
 ### Patch Changes
