@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.1.3
+
+### Patch Changes
+
+- [`c4f79b8`](https://github.com/uozi-tech/admin-kit/commit/c4f79b899029258c03a27bcbb893124a1f173c9c) Thanks [@0xJacky](https://github.com/0xJacky)! - fix(generateTranslations): update import statement to use JSON assertion
+
 ## 4.1.2
 
 ### Patch Changes
