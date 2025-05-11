@@ -36,6 +36,7 @@
     "src/**/*.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
+    "scripts/**/*.ts",
     "vite-env.d.ts",
     "../../vitest.setup.ts",
     "src/locales/zh-TW.json",

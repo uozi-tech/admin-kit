@@ -211,7 +211,7 @@ async function createProject(options: {
 
     // 异步读取并修改 package.json
     const pkg = JSON.parse(
-      await fs.readFile(path.join(templateDir, 'package.json'), 'utf-8'), // 异步读取文件
+      await fs.readFile(path.join(templateDir, 'package.json'), 'utf-8') as string, // 异步读取文件
     )
 
     pkg.name = packageName || getProjectName(options.targetDir)
