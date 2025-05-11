@@ -16,7 +16,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 // Import translations directly
-import translations from '../src/locales/en-US.json'
+import translations from '../src/locales/en-US.json' assert { type: 'json' }
 
 // Parse command line arguments
 const args = process.argv.slice(2)
