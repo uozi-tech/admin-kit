@@ -9,7 +9,7 @@
     "dist/scripts"
   ],
   "bin": {
-    "generate-curd-translations": "./dist/scripts/generateTranslations.js"
+    "generate-curd-translations": "./dist/scripts/scripts/generateTranslations.js"
   },
   "keywords": [
     "uozi-admin",
