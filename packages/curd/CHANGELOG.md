@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.1.2
+
+### Patch Changes
+
+- [`f3b455c`](https://github.com/uozi-tech/admin-kit/commit/f3b455c36c610dd5efbb37cca19e0fb74e542bf1) Thanks [@0xJacky](https://github.com/0xJacky)! - fix(package.json): correct path for generate-curd-translations script
+
 ## 4.1.1
 
 ### Patch Changes
