@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.1.0
+
+### Minor Changes
+
+- [`0204bbd`](https://github.com/uozi-tech/admin-kit/commit/0204bbd24b61e70ae2444afd186d033f898f4c26) Thanks [@0xJacky](https://github.com/0xJacky)! - feat(curd): add gen translations cli
+
 ## 4.0.2
 
 ### Patch Changes
