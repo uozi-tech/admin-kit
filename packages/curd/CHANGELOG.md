@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.1.4
+
+### Patch Changes
+
+- [`4fed024`](https://github.com/uozi-tech/admin-kit/commit/4fed024292fc5a59ed3c8bb1a74c646ea6be3e12) Thanks [@0xJacky](https://github.com/0xJacky)! - fix(generateTranslations): change import statement to use 'with' syntax for JSON
+
 ## 4.1.3
 
 ### Patch Changes
