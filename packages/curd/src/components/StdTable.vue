@@ -449,4 +449,8 @@ defineExpose({
 .sortable-ghost *, .sortable-chosen * {
   cursor: grabbing !important;
 }
+
+:deep(.ant-pagination-options .ant-select.ant-select-in-form-item) {
+  width: fit-content;
+}
 </style>
