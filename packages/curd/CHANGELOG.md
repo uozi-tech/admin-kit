@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.1.5
+
+### Patch Changes
+
+- [`efa0606`](https://github.com/uozi-tech/admin-kit/commit/efa06069b912b6231992309736f5bff1b92f3194) Thanks [@akinoccc](https://github.com/akinoccc)! - fix: adjust pagination select width for better layout
+
 ## 4.1.4
 
 ### Patch Changes
