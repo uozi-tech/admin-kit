@@ -44,5 +44,3 @@ function DataItemRender(props: CustomRenderArgs) {
     </DescriptionsItem>
   </Descriptions>
 </template>
-
-<style scoped></style>

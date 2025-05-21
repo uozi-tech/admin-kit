@@ -17,7 +17,3 @@ const value = defineModel<TimePickerConfig['value']>('value')
     v-bind="props as any"
   />
 </template>
-
-<style scoped lang="less">
-
-</style>

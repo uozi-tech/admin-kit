@@ -160,7 +160,3 @@ function removeFile(index: number) {
     </div>
   </FormItemRest>
 </template>
-
-<style scoped lang="less">
-
-</style>

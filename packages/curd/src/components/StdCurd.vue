@@ -412,21 +412,6 @@ const modalTitle = computed(() => {
         {{ t('selectAll') }}
       </Checkbox>
       <Divider />
-      <!--      <VueDraggable class="checkbox__wrapper" v-model="exportColumns" :animation="200"> -->
-      <!--        <a-checkbox -->
-      <!--          v-for="(c, i) in exportColumns" -->
-      <!--          :key="c.dataIndex" -->
-      <!--          class="checkbox" -->
-      <!--          :checked="exportColumns[i].checked" -->
-      <!--          @change="(event) => (exportColumns[i].checked = event.target.checked)" -->
-      <!--        > -->
-      <!--          {{ c.title }} -->
-      <!--        </a-checkbox> -->
-      <!--      </VueDraggable> -->
     </Modal>
   </Card>
 </template>
-
-<style scoped>
-
-</style>

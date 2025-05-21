@@ -16,7 +16,3 @@ const checked = defineModel<SwitchConfig['checked']>('value')
     />
   </div>
 </template>
-
-<style scoped lang="less">
-
-</style>

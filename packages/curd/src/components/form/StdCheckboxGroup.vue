@@ -14,7 +14,3 @@ const value = defineModel<CheckboxGroupProps['value']>('value')
     v-bind="props"
   />
 </template>
-
-<style scoped lang="less">
-
-</style>

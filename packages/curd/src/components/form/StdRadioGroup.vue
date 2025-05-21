@@ -13,7 +13,3 @@ const value = defineModel<RadioGroupConfig['value']>('value')
     v-bind="props"
   />
 </template>
-
-<style scoped lang="less">
-
-</style>

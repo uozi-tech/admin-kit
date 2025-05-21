@@ -108,7 +108,3 @@ function onSearch() {
     </Flex>
   </Form>
 </template>
-
-<style scoped>
-
-</style>

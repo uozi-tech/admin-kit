@@ -61,7 +61,3 @@ async function validator(_: Rule, value: any): Promise<any> {
     <slot />
   </FormItem>
 </template>
-
-<style scoped lang="less">
-
-</style>

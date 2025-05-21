@@ -51,7 +51,3 @@ const computedValue = computed<[string, string] | [Dayjs, Dayjs] | undefined>({
     @update:value="v => computedValue = v"
   />
 </template>
-
-<style scoped lang="less">
-
-</style>

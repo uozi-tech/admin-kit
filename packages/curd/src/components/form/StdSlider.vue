@@ -15,7 +15,3 @@ const value = defineModel<SliderConfig['value']>('value')
     />
   </div>
 </template>
-
-<style scoped lang="less">
-
-</style>
