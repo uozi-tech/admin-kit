@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.2.0
+
+### Minor Changes
+
+- [`951d127`](https://github.com/uozi-tech/admin-kit/commit/951d12780d344e9ec4ea450e9148ad3bbefb9b02) Thanks [@akinoccc](https://github.com/akinoccc)! - feat: add search form extra render functionality to StdTable and related components
+
 ## 4.1.5
 
 ### Patch Changes
