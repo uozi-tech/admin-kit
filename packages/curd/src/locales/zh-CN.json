@@ -26,6 +26,13 @@
   "deletedSuccessfully": "删除成功",
   "restoredSuccessfully": "恢复成功",
   "selectAll": "全选",
+  "batchEdit": "批量编辑",
+  "pleaseSelectAtLeastOneItem": "请至少选择一项",
+  "batchModify": "批量修改",
+  "saveSuccessfully": "保存成功",
+  "belowsAreSelectedItems": "以下是您要批量修改的选中项",
+  "leaveBlankIfDoNotWantToModify": "如不想修改请留空",
+  "no": "取消",
   "validate": {
     "required": "此字段不能为空",
     "email": "此字段应该是有效的电子邮件地址",

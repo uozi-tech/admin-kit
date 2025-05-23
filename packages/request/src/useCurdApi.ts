@@ -14,6 +14,7 @@ export interface BaseCurdApi<T = any, P = any> {
   updateItem: (id: string | number, data: Record<string, any>, config?: AxiosRequestConfig) => Promise<T>
   deleteItem: (id: string | number, params?: Record<string, any>, config?: AxiosRequestConfig) => Promise<any>
   restoreItem: (id: string | number, params?: Record<string, any>, config?: AxiosRequestConfig) => Promise<any>
+  batchSave: (ids: (number | string)[], data: Record<string, any>, config?: AxiosRequestConfig) => Promise<any>
   getUrl: () => string
 }
 
@@ -99,6 +100,16 @@ export function useCurdApi<
     }
   }
 
+  const batchSave = async (ids: (number | string)[], data: Record<string, any>, config?: AxiosRequestConfig) => {
+    try {
+      const res = await http.put<any>(getUrl(), { ids, data }, config)
+      return Promise.resolve(res)
+    }
+    catch (err) {
+      return Promise.reject(err)
+    }
+  }
+
   return {
     getList,
     getItem,
@@ -106,6 +117,7 @@ export function useCurdApi<
     updateItem,
     deleteItem,
     restoreItem,
+    batchSave,
     getUrl,
     ...moreApis,
   } as CurdApi<T, P, M>

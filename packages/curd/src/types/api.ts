@@ -5,4 +5,5 @@ export interface CurdApi<T = any, P = any> {
   updateItem: (id: string | number, data: Record<string, any>, config?: Record<string, any>) => Promise<T>
   deleteItem: (id: string | number, params?: Record<string, any>, config?: Record<string, any>) => Promise<any>
   restoreItem: (id: string | number, params?: Record<string, any>, config?: Record<string, any>) => Promise<any>
+  batchSave: (ids: (number | string)[], data: Record<string, any>, config?: Record<string, any>) => Promise<any>
 }

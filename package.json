@@ -18,7 +18,7 @@
     "vue": "^3.5.14"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^4.13.1",
+    "@antfu/eslint-config": "^4.13.2",
     "@changesets/changelog-github": "^0.5.1",
     "@changesets/cli": "^2.29.4",
     "@testing-library/jest-dom": "^6.6.3",

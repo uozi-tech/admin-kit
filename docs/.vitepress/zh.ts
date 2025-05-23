@@ -122,6 +122,7 @@ function sidebarGuide() {
         { text: 'StdTable', link: 'components/std-table' },
         { text: 'StdForm', link: 'components/std-form' },
         { text: 'StdSearch', link: 'components/std-search' },
+        { text: 'StdPagination', link: 'components/std-pagination' },
       ],
     },
     {

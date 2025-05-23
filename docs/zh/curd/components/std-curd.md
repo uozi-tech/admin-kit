@@ -9,7 +9,7 @@ StdCurd 是一个完整的 CRUD 页面组件，集成了列表、搜索、新增
 import type { StdColumn } from '@uozi-admin/curd'
 import { StdCurd } from '@uozi-admin/curd'
 
-const columns: StdColumn[] = [
+const columns: StdTableColumn[] = [
   {
     title: '用户名',
     dataIndex: 'username',
@@ -63,6 +63,9 @@ const api = {
 | disableExport | 禁用导出 | boolean | false |
 | disableTrash | 禁用回收站 | boolean | false |
 | disableRouterQuery | 禁用路由参数 | boolean | false |
+| hideResetBtn | 隐藏重置按钮 | boolean | false |
+| showSearchBtn | 显示搜索按钮 | boolean | false |
+| searchFormExtraRender | 搜索表单额外渲染函数 | (searchFormData: any, searchColumns: StdTableColumn[], stdTableConfig: Record<any, any>) => VNode \| JSX.Element | - |
 
 ## 事件
 
@@ -77,9 +80,14 @@ const api = {
 
 | 插槽名 | 说明 | 参数 |
 | --- | --- | --- |
+| titleLeft | 标题左侧区域 | - |
+| title | 标题内容区域 | - |
 | titleRight | 标题右侧区域 | - |
 | beforeListActions | 列表操作前的区域 | - |
 | afterListActions | 列表操作后的区域 | - |
+| beforeCardBody | 卡片内容前的区域 | - |
+| searchFormAction | 搜索表单操作区域 | { formData } |
+| beforeTable | 表格前的区域 | - |
 | beforeActions | 操作列前的区域 | { record } |
 | afterActions | 操作列后的区域 | { record } |
 | beforeForm | 编辑器表单上方的区域 | { record } |
@@ -95,13 +103,15 @@ const api = {
 
 ```vue
 <script setup lang="ts">
-import type { StdColumn } from '@uozi-admin/curd'
+import type { StdTableColumn } from '@uozi-admin/curd'
 import { StdCurd } from '@uozi-admin/curd'
-import { message } from 'ant-design-vue'
-import { ref } from 'vue'
+import { Button, Drawer, message } from 'ant-design-vue'
+import { h, ref } from 'vue'
 
 const curdRef = ref()
-const columns: StdColumn[] = [
+const visible = ref(false)
+
+const columns: StdTableColumn[] = [
   {
     title: '用户名',
     dataIndex: 'username',
@@ -162,6 +172,19 @@ function handleExport(record) {
 function refreshTable() {
   curdRef.value?.refresh()
 }
+
+// 搜索表单额外渲染函数
+function searchFormExtraRender(searchFormData, searchColumns, config) {
+  return h('div', { class: 'flex gap-2' }, [
+    h(Button, { 
+      type: 'primary',
+      onClick: () => visible.value = true 
+    }, '批量操作'),
+    h(Button, { 
+      onClick: () => console.log('当前搜索数据:', searchFormData) 
+    }, '调试')
+  ])
+}
 </script>
 
 <template>
@@ -172,6 +195,7 @@ function refreshTable() {
     :api="api"
     :modal-width="800"
     :scroll-x="1200"
+    :search-form-extra-render="searchFormExtraRender"
   >
     <template #titleRight>
       <Button @click="refreshTable">
@@ -188,5 +212,13 @@ function refreshTable() {
       </Button>
     </template>
   </StdCurd>
+
+  <Drawer
+    v-model:open="visible"
+    title="批量操作"
+    width="400"
+  >
+    <p>批量操作内容...</p>
+  </Drawer>
 </template>
 ```

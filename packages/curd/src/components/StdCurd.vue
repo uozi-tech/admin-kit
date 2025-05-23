@@ -8,6 +8,7 @@ import { useRoute } from 'vue-router'
 import { useExport } from '../composables'
 import { ApiActions } from '../constants'
 import { getRealContent } from '../utils'
+import StdBatchEdit from './StdBatchEdit.vue'
 import StdDetail from './StdDetail.vue'
 import StdForm from './StdForm.vue'
 import StdTable from './StdTable.vue'
@@ -65,6 +66,7 @@ const selectedRowKeys = defineModel<any[]>('selectedRowKeys', { default: () => r
 const selectedRows = defineModel<any[]>('selectedRows', { default: () => reactive([]) })
 
 const stdForm = ref()
+const stdBatchEdit = ref()
 
 function onSave() {
   const { formRef } = stdForm.value
@@ -79,6 +81,11 @@ function onSave() {
 
 const formColumns = computed(() => {
   return props.columns.filter(item => item.dataIndex !== 'actions' && item.key !== 'actions' && (item.edit))
+})
+
+// 检查是否有列支持批量编辑
+const hasBatchEditColumns = computed(() => {
+  return props.columns.some(column => column.batchEdit === true)
 })
 
 // 当前弹窗的模式
@@ -218,6 +225,23 @@ const { exportExcel, state: exportColumnsSelectionState, onCheckAllChange } = us
 })
 const exportVisible = ref(false)
 
+// 批量编辑
+function handleBatchEdit() {
+  if (selectedRowKeys.value.length === 0) {
+    message.warning(t('pleaseSelectAtLeastOneItem'))
+    return
+  }
+  stdBatchEdit.value?.showModal(selectedRowKeys.value, selectedRows.value)
+}
+
+// 批量编辑保存后的回调
+function onBatchEditSave() {
+  refresh()
+  // 清空选中项
+  selectedRowKeys.value = reactive([])
+  selectedRows.value = reactive([])
+}
+
 defineExpose({
   refresh,
 })
@@ -322,6 +346,16 @@ const modalTitle = computed(() => {
           :data="data"
         />
       </template>
+      <template #searchFormAction>
+        <slot name="searchFormAction" />
+        <Button
+          v-if="hasBatchEditColumns && !isTrash"
+          :class="{ 'cursor-not-allowed text-truegray-3 hover:text-truegray-3': selectedRowKeys.length === 0 }"
+          @click="handleBatchEdit"
+        >
+          {{ t('batchEdit') }}
+        </Button>
+      </template>
       <template #beforeTable>
         <slot name="beforeTable" />
       </template>
@@ -415,4 +449,13 @@ const modalTitle = computed(() => {
       <Divider />
     </Modal>
   </Card>
+
+  <!-- 批量编辑组件 -->
+  <StdBatchEdit
+    ref="stdBatchEdit"
+    :api="api"
+    :columns="columns"
+    :form-row-props="formRowProps"
+    @save="onBatchEditSave"
+  />
 </template>

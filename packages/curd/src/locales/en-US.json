@@ -26,6 +26,13 @@
   "deletedSuccessfully": "Deleted successfully",
   "restoredSuccessfully": "Restored successfully",
   "selectAll": "Select all",
+  "batchEdit": "Batch Edit",
+  "pleaseSelectAtLeastOneItem": "Please select at least one item",
+  "batchModify": "Batch Modify",
+  "saveSuccessfully": "Save successfully",
+  "belowsAreSelectedItems": "Belows are selected items that you want to batch modify",
+  "leaveBlankIfDoNotWantToModify": "Leave blank if do not want to modify",
+  "no": "No",
   "validate": {
     "required": "This field should not be empty",
     "email": "This field should be a valid email address",

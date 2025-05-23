@@ -27,6 +27,7 @@ export interface StdTableColumn<T = any> extends Omit<TableColumnType, 'customRe
   pure?: boolean
   search?: boolean | Partial<StdFormConfig>
   edit?: StdFormConfig
+  batchEdit?: boolean
   customRender?: CustomRenderFn<T>
   hiddenInTable?: boolean
   hiddenInEdit?: boolean
