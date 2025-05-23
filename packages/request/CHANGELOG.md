@@ -1,5 +1,11 @@
 # @uozi-admin/request
 
+## 2.7.1
+
+### Patch Changes
+
+- [`d19b7a5`](https://github.com/uozi-tech/admin-kit/commit/d19b7a50eeee60c0b57e44043149323d50fa8806) Thanks [@akinoccc](https://github.com/akinoccc)! - fix: useCurdApi and extendCurdApi type definitions issue
+
 ## 2.7.0
 
 ### Minor Changes
