@@ -1,5 +1,13 @@
 # @uozi-admin/curd
 
+## 4.3.0
+
+### Minor Changes
+
+- [`8316bbb`](https://github.com/uozi-tech/admin-kit/commit/8316bbbf75d24c33e2f7af863674bf5849a37ea9) Thanks [@0xJacky](https://github.com/0xJacky)! - feat(curd): add std-pagination component
+
+- [`9d125f6`](https://github.com/uozi-tech/admin-kit/commit/9d125f64b2a6819c9e8a62dbf93be86ba0e18e09) Thanks [@0xJacky](https://github.com/0xJacky)! - feat(curd): add batch modity
+
 ## 4.2.0
 
 ### Minor Changes

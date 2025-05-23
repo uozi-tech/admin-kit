@@ -1,5 +1,11 @@
 # @uozi-admin/request
 
+## 2.7.0
+
+### Minor Changes
+
+- [`9d125f6`](https://github.com/uozi-tech/admin-kit/commit/9d125f64b2a6819c9e8a62dbf93be86ba0e18e09) Thanks [@0xJacky](https://github.com/0xJacky)! - feat(curd): add batch modity
+
 ## 2.6.0
 
 ### Minor Changes
