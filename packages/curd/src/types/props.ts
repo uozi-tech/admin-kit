@@ -5,6 +5,8 @@ import type {
 } from 'ant-design-vue'
 
 import type { TableRowSelection } from 'ant-design-vue/es/table/interface'
+import type { VNode } from 'vue'
+import type { JSX } from 'vue/jsx-runtime'
 import type { CurdApi } from './api'
 import type { StdTableColumn } from './index'
 
@@ -25,7 +27,8 @@ export interface StdTableProps extends Pick<
   'rowDraggable' |
   'rowDraggableOptions' |
   'hideResetBtn' |
-  'showSearchBtn'
+  'showSearchBtn' |
+  'searchFormExtraRender'
 > {
   getListApi: CurdApi['getList']
   refreshConfig?: {
@@ -86,5 +89,7 @@ export interface StdCurdProps {
       affected_ids: number[]
     }) => void
   }
+  searchFormExtraRender?: (searchFormData: any, searchColumns: StdTableColumn[], stdTableConfig: Record<any, any>) => VNode | JSX.Element
+
   beforeSave?: (data: Record<string, any>) => Promise<boolean> | boolean
 }

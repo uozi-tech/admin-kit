@@ -327,6 +327,13 @@ defineExpose({
   refresh: debouncedListApi,
   tableData,
 })
+
+function SearchFormExtraRender() {
+  if (!props.searchFormExtraRender) {
+    return null
+  }
+  return props?.searchFormExtraRender(searchFormData, searchColumns.value, props)
+}
 </script>
 
 <template>
@@ -346,6 +353,9 @@ defineExpose({
           name="searchFormAction"
           :form-data="formData"
         />
+        <template v-if="searchFormExtraRender">
+          <SearchFormExtraRender />
+        </template>
       </template>
     </StdSearch>
     <slot name="beforeTable" />

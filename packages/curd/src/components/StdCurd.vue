@@ -299,6 +299,7 @@ const modalTitle = computed(() => {
       :refresh-config
       :show-search-btn
       :hide-reset-btn
+      :search-form-extra-render
       :table-props="{
         rowKey,
         scroll: {

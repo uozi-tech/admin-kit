@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import type { StdTableColumn } from '@uozi-admin/curd'
 import { StdCurd } from '@uozi-admin/curd'
-import { ref } from 'vue'
+import { Button, Drawer } from 'ant-design-vue'
+import { h, ref } from 'vue'
 import { userApi } from '~/api'
 
 const columns: StdTableColumn[] = [
@@ -75,6 +76,7 @@ const columns: StdTableColumn[] = [
 ]
 
 const selectedRowKeys = ref<any[]>([])
+const visible = ref(false)
 </script>
 
 <template>
@@ -89,6 +91,12 @@ const selectedRowKeys = ref<any[]>([])
     :before-save="f => {
       console.log(f)
       return true
+    }"
+    :search-form-extra-render="() => {
+      return h('div', [
+        h(Button, { onClick: () => visible = true }, '添加用户'),
+        h(Drawer, { title: '添加用户', open: visible, onClose: () => visible = false }),
+      ])
     }"
   >
     <template #beforeSearch>
