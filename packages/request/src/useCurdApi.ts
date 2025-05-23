@@ -1,12 +1,6 @@
 import type { AxiosRequestConfig } from 'axios'
 import { http } from './http'
 
-export type ApiMethod<TParams = any, TResponse = any> = (
-  ...args: TParams[]
-) => Promise<TResponse>
-
-export type MoreApis = Record<string, ApiMethod>
-
 export interface BaseCurdApi<T = any, P = any> {
   getList: (params?: Record<string, any>, config?: AxiosRequestConfig) => Promise<{ data: T[], pagination: P }>
   getItem: (id: string | number, params?: Record<string, any>, config?: AxiosRequestConfig) => Promise<T>
@@ -21,14 +15,13 @@ export interface BaseCurdApi<T = any, P = any> {
 export type CurdApi<
   T = any,
   P = any,
-  M extends MoreApis = MoreApis,
-> = BaseCurdApi<T, P> & M
+> = BaseCurdApi<T, P>
 
 export function useCurdApi<
   T = any,
   P = any,
-  M extends MoreApis = MoreApis,
->(url: string | (() => string), moreApis?: M): CurdApi<T, P, M> {
+  M = object,
+>(url: string | (() => string), moreApis = {} as M) {
   const getUrl = () => {
     if (typeof url === 'function') {
       return url()
@@ -120,13 +113,12 @@ export function useCurdApi<
     batchSave,
     getUrl,
     ...moreApis,
-  } as CurdApi<T, P, M>
+  }
 }
 
 export function extendCurdApi<
   T,
-  M extends MoreApis,
-  N extends MoreApis,
->(baseCurd: CurdApi<T, any, M>, newApis: N): CurdApi<T, any, M & N> {
+  M extends object = object,
+>(baseCurd: CurdApi<T, any>, newApis: M) {
   return Object.assign(baseCurd, newApis)
 }
