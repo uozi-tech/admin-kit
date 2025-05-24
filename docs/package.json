@@ -10,7 +10,7 @@
   "author": "Akino",
   "devDependencies": {
     "vitepress": "^1.6.3",
-    "vitepress-demo-plugin": "^1.4.2"
+    "vitepress-demo-plugin": "^1.4.3"
   },
   "dependencies": {
     "vue": "^3.5.14"
