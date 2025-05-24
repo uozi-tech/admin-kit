@@ -2,7 +2,7 @@
 import type { StdCurdProps } from '../types'
 import { Button, Card, Checkbox, Divider, Flex, message, Modal, Spin } from 'ant-design-vue'
 import { useConfigContextInject } from 'ant-design-vue/es/config-provider/context'
-import { computed, reactive, ref, watchEffect } from 'vue'
+import { computed, getCurrentInstance, reactive, ref, watchEffect } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
 import { useExport } from '../composables'
@@ -33,6 +33,7 @@ const emit = defineEmits<{
 const route = useRoute()
 const { t, locale } = useI18n()
 const { locale: lang } = useConfigContextInject()
+const instance = getCurrentInstance()
 
 watchEffect(() => {
   switch (lang?.value.locale) {
@@ -146,12 +147,17 @@ function handleAdd() {
 }
 
 // 打开编辑弹窗
-function handleEdit(row: Record<string, any>) {
+async function handleEdit(row: Record<string, any>) {
   emit('editItem', row)
 
-  formVisible.value = true
-  mode.value = 'edit'
+  // 如果父组件定义了 editItem handler，则不执行下面的逻辑
+  if (instance?.vnode.props?.onEditItem) {
+    return
+  }
+
   getDataDetail(row)
+  mode.value = 'edit'
+  formVisible.value = true
 }
 
 // 保存新增/编辑数据
