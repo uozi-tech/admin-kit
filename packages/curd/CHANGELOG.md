@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.3.1
+
+### Patch Changes
+
+- [`0dcd233`](https://github.com/uozi-tech/admin-kit/commit/0dcd233664813dc12ce36569c423e2b0ab12d79b) Thanks [@0xJacky](https://github.com/0xJacky)! - fix: handleEdit function now checks for parent component's editItem handler before executing logic
+
 ## 4.3.0
 
 ### Minor Changes
