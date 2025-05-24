@@ -61,3 +61,9 @@ async function validator(_: Rule, value: any): Promise<any> {
     <slot />
   </FormItem>
 </template>
+
+<style lang="less" scoped>
+:deep(.ant-form-item-control-input) {
+  min-height: 0;
+}
+</style>
