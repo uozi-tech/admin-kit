@@ -266,202 +266,204 @@ const modalTitle = computed(() => {
 </script>
 
 <template>
-  <Card>
-    <template
-      v-if="!hideHeader && !hideTitle"
-      #title
-    >
-      <slot name="titleLeft" />
-      <slot name="title">
-        {{ title }}
-      </slot>
-      <slot name="titleRight" />
-    </template>
-    <template
-      v-if="!hideHeader && !hideExtra"
-      #extra
-    >
-      <Flex
-        align="center"
-        gap="8"
+  <div>
+    <Card>
+      <template
+        v-if="!hideHeader && !hideTitle"
+        #title
       >
-        <slot name="beforeListActions" />
-        <a
-          v-if="!disableExport && !isTrash"
-          :class="{ 'cursor-not-allowed text-truegray-3 hover:text-truegray-3': selectedRowKeys.length === 0 }"
-          @click="selectedRowKeys.length > 0 && (exportVisible = true)"
+        <slot name="titleLeft" />
+        <slot name="title">
+          {{ title }}
+        </slot>
+        <slot name="titleRight" />
+      </template>
+      <template
+        v-if="!hideHeader && !hideExtra"
+        #extra
+      >
+        <Flex
+          align="center"
+          gap="8"
         >
-          {{ t('exportExcel') }}
-        </a>
-        <a
-          v-if="!disableAdd && !isTrash"
-          @click="handleAdd"
-        >{{ t('add') }}</a>
-        <a
-          v-if="!disableTrash"
-          :class="{ 'cursor-not-allowed text-truegray-3 hover:text-truegray-3': tableLoading }"
-          @click="switchTrashAndList"
-        >
-          {{ isTrash ? t('backToList') : t('trash') }}
-        </a>
-        <slot name="afterListActions" />
-      </Flex>
-    </template>
-    <slot name="beforeCardBody" />
-    <StdTable
-      v-model:table-loading="tableLoading"
-      v-model:selected-row-keys="selectedRowKeys"
-      v-model:selected-rows="selectedRows"
-      :title
-      :columns
-      :get-list-api="api.getList"
-      :is-trash
-      :disable-add
-      :disable-edit
-      :disable-delete
-      :disable-search
-      :disable-trash
-      :disable-view
-      :disable-router-query
-      :row-selection-type
-      :row-draggable
-      :row-draggable-options
-      :refresh-config
-      :show-search-btn
-      :hide-reset-btn
-      :search-form-extra-render
-      :table-props="{
-        rowKey,
-        scroll: {
-          x: scrollX ?? 'max-content',
-          y: scrollY,
-        },
-        ...tableProps,
-      }"
-      :overwrite-params="overwriteParams"
-      :custom-query-params="customQueryParams"
-      @view="handleView"
-      @edit-item="handleEdit"
-      @delete-item-temporarily="row => handleDataById(ApiActions.DELETE_ITEM_TEMPORARY, row)"
-      @delete-item-permanently="row => handleDataById(ApiActions.DELETE_ITEM_PERMANENTLY, row)"
-      @restore-item="row => handleDataById(ApiActions.RESTORE_ITEM, row)"
-    >
-      <template #beforeSearch="data">
-        <slot
-          name="beforeSearch"
-          :data="data"
-        />
+          <slot name="beforeListActions" />
+          <a
+            v-if="!disableExport && !isTrash"
+            :class="{ 'cursor-not-allowed text-truegray-3 hover:text-truegray-3': selectedRowKeys.length === 0 }"
+            @click="selectedRowKeys.length > 0 && (exportVisible = true)"
+          >
+            {{ t('exportExcel') }}
+          </a>
+          <a
+            v-if="!disableAdd && !isTrash"
+            @click="handleAdd"
+          >{{ t('add') }}</a>
+          <a
+            v-if="!disableTrash"
+            :class="{ 'cursor-not-allowed text-truegray-3 hover:text-truegray-3': tableLoading }"
+            @click="switchTrashAndList"
+          >
+            {{ isTrash ? t('backToList') : t('trash') }}
+          </a>
+          <slot name="afterListActions" />
+        </Flex>
       </template>
-      <template #searchFormAction>
-        <slot name="searchFormAction" />
-        <Button
-          v-if="hasBatchEditColumns && !isTrash"
-          :class="{ 'cursor-not-allowed text-truegray-3 hover:text-truegray-3': selectedRowKeys.length === 0 }"
-          @click="handleBatchEdit"
-        >
-          {{ t('batchEdit') }}
-        </Button>
-      </template>
-      <template #beforeTable>
-        <slot name="beforeTable" />
-      </template>
-      <template #beforeActions="{ record, column }">
-        <slot
-          name="beforeActions"
-          :record="record"
-          :column="column"
-        />
-      </template>
-      <template #afterActions="{ record, column }">
-        <slot
-          name="afterActions"
-          :record="record"
-          :column="column"
-        />
-      </template>
-    </StdTable>
-
-    <Modal
-      v-model:open="formVisible"
-      destroy-on-close
-      :closable="!modalLoading"
-      :width="modalWidth"
-      :title="modalTitle"
-      :mask-closable="false"
-    >
-      <Spin :spinning="modalLoading">
-        <div>
-          <StdDetail
-            v-if="mode === 'view'"
-            :row-key
-            :columns
-            :record="itemDetail"
-            :detail-props
+      <slot name="beforeCardBody" />
+      <StdTable
+        v-model:table-loading="tableLoading"
+        v-model:selected-row-keys="selectedRowKeys"
+        v-model:selected-rows="selectedRows"
+        :title
+        :columns
+        :get-list-api="api.getList"
+        :is-trash
+        :disable-add
+        :disable-edit
+        :disable-delete
+        :disable-search
+        :disable-trash
+        :disable-view
+        :disable-router-query
+        :row-selection-type
+        :row-draggable
+        :row-draggable-options
+        :refresh-config
+        :show-search-btn
+        :hide-reset-btn
+        :search-form-extra-render
+        :table-props="{
+          rowKey,
+          scroll: {
+            x: scrollX ?? 'max-content',
+            y: scrollY,
+          },
+          ...tableProps,
+        }"
+        :overwrite-params="overwriteParams"
+        :custom-query-params="customQueryParams"
+        @view="handleView"
+        @edit-item="handleEdit"
+        @delete-item-temporarily="row => handleDataById(ApiActions.DELETE_ITEM_TEMPORARY, row)"
+        @delete-item-permanently="row => handleDataById(ApiActions.DELETE_ITEM_PERMANENTLY, row)"
+        @restore-item="row => handleDataById(ApiActions.RESTORE_ITEM, row)"
+      >
+        <template #beforeSearch="data">
+          <slot
+            name="beforeSearch"
+            :data="data"
           />
-          <template v-else-if="mode === 'edit' || mode === 'add'">
-            <slot
-              name="beforeForm"
-              :record="itemDetail"
-            />
-            <StdForm
-              ref="stdForm"
-              v-model:data="itemDetail"
-              :errors
-              :columns="formColumns"
-              :form-class
-              :form-row-props
-            />
-            <slot
-              name="afterForm"
-              :record="itemDetail"
-            />
-          </template>
-        </div>
-      </Spin>
-      <template #footer>
-        <Button
-          :disabled="modalLoading"
-          @click="formVisible = false"
-        >
-          {{ t('close') }}
-        </Button>
-        <Button
-          v-show="mode !== 'view'"
-          :loading="modalLoading"
-          type="primary"
-          @click="onSave"
-        >
-          {{ t('save') }}
-        </Button>
-      </template>
-    </Modal>
+        </template>
+        <template #searchFormAction>
+          <slot name="searchFormAction" />
+          <Button
+            v-if="hasBatchEditColumns && !isTrash"
+            :class="{ 'cursor-not-allowed text-truegray-3 hover:text-truegray-3': selectedRowKeys.length === 0 }"
+            @click="handleBatchEdit"
+          >
+            {{ t('batchEdit') }}
+          </Button>
+        </template>
+        <template #beforeTable>
+          <slot name="beforeTable" />
+        </template>
+        <template #beforeActions="{ record, column }">
+          <slot
+            name="beforeActions"
+            :record="record"
+            :column="column"
+          />
+        </template>
+        <template #afterActions="{ record, column }">
+          <slot
+            name="afterActions"
+            :record="record"
+            :column="column"
+          />
+        </template>
+      </StdTable>
 
-    <Modal
-      v-model:open="exportVisible"
-      style="max-height: 80vh"
-      :closable="!modalLoading"
-      :width="props.modalWidth"
-      :title="t('exportExcel')"
-      :ok-text="t('ok')"
-      @ok="exportExcel(selectedRowKeys, selectedRows)"
-    >
-      <Checkbox
-        v-model:checked="exportColumnsSelectionState.checkAll"
-        :indeterminate="exportColumnsSelectionState.indeterminate"
-        @change="onCheckAllChange"
+      <Modal
+        v-model:open="formVisible"
+        destroy-on-close
+        :closable="!modalLoading"
+        :width="modalWidth"
+        :title="modalTitle"
+        :mask-closable="false"
       >
-        {{ t('selectAll') }}
-      </Checkbox>
-      <Divider />
-    </Modal>
-  </Card>
+        <Spin :spinning="modalLoading">
+          <div>
+            <StdDetail
+              v-if="mode === 'view'"
+              :row-key
+              :columns
+              :record="itemDetail"
+              :detail-props
+            />
+            <template v-else-if="mode === 'edit' || mode === 'add'">
+              <slot
+                name="beforeForm"
+                :record="itemDetail"
+              />
+              <StdForm
+                ref="stdForm"
+                v-model:data="itemDetail"
+                :errors
+                :columns="formColumns"
+                :form-class
+                :form-row-props
+              />
+              <slot
+                name="afterForm"
+                :record="itemDetail"
+              />
+            </template>
+          </div>
+        </Spin>
+        <template #footer>
+          <Button
+            :disabled="modalLoading"
+            @click="formVisible = false"
+          >
+            {{ t('close') }}
+          </Button>
+          <Button
+            v-show="mode !== 'view'"
+            :loading="modalLoading"
+            type="primary"
+            @click="onSave"
+          >
+            {{ t('save') }}
+          </Button>
+        </template>
+      </Modal>
 
-  <!-- 批量编辑组件 -->
-  <StdBatchEdit
-    ref="stdBatchEdit"
-    :api="api"
-    :columns="columns"
-    :form-row-props="formRowProps"
-    @save="onBatchEditSave"
-  />
+      <Modal
+        v-model:open="exportVisible"
+        style="max-height: 80vh"
+        :closable="!modalLoading"
+        :width="props.modalWidth"
+        :title="t('exportExcel')"
+        :ok-text="t('ok')"
+        @ok="exportExcel(selectedRowKeys, selectedRows)"
+      >
+        <Checkbox
+          v-model:checked="exportColumnsSelectionState.checkAll"
+          :indeterminate="exportColumnsSelectionState.indeterminate"
+          @change="onCheckAllChange"
+        >
+          {{ t('selectAll') }}
+        </Checkbox>
+        <Divider />
+      </Modal>
+    </Card>
+
+    <!-- 批量编辑组件 -->
+    <StdBatchEdit
+      ref="stdBatchEdit"
+      :api="api"
+      :columns="columns"
+      :form-row-props="formRowProps"
+      @save="onBatchEditSave"
+    />
+  </div>
 </template>
