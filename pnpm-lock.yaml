@@ -83,8 +83,8 @@ importers:
         specifier: ^1.6.3
         version: 1.6.3(@algolia/client-search@5.16.0)(@types/node@22.15.21)(async-validator@4.2.5)(axios@1.9.0)(less@4.3.0)(nprogress@0.2.0)(postcss@8.5.3)(search-insights@2.17.3)(sortablejs@1.15.6)(typescript@5.8.3)
       vitepress-demo-plugin:
-        specifier: ^1.4.2
-        version: 1.4.2(shiki@2.5.0)(vitepress@1.6.3(@algolia/client-search@5.16.0)(@types/node@22.15.21)(async-validator@4.2.5)(axios@1.9.0)(less@4.3.0)(nprogress@0.2.0)(postcss@8.5.3)(search-insights@2.17.3)(sortablejs@1.15.6)(typescript@5.8.3))(vue@3.5.14(typescript@5.8.3))
+        specifier: ^1.4.3
+        version: 1.4.3(shiki@2.5.0)(vitepress@1.6.3(@algolia/client-search@5.16.0)(@types/node@22.15.21)(async-validator@4.2.5)(axios@1.9.0)(less@4.3.0)(nprogress@0.2.0)(postcss@8.5.3)(search-insights@2.17.3)(sortablejs@1.15.6)(typescript@5.8.3))(vue@3.5.14(typescript@5.8.3))
 
   packages/create-uozi-admin:
     devDependencies:
@@ -6160,8 +6160,8 @@ packages:
       yaml:
         optional: true
 
-  vitepress-demo-plugin@1.4.2:
-    resolution: {integrity: sha512-426F3ggd1xnxioD/Z8cDDdHABAhi/+3D5ir0CK/1MJ+ZY8LCi0VjLa54++NQ6GrX1g2TALUJc77JbC/qQjT5OA==}
+  vitepress-demo-plugin@1.4.3:
+    resolution: {integrity: sha512-wspxiF9uTdoq6Pq3Uy5S2vbJEANiSG5C/l1N2Iq0xsWCyGTB+1hPsDTwqBpFcPPmPs0zzQfONUr/qPpFwGw9zg==}
     peerDependencies:
       shiki: '*'
       vitepress: '*'
@@ -12902,7 +12902,7 @@ snapshots:
       tsx: 4.19.4
       yaml: 2.8.0
 
-  vitepress-demo-plugin@1.4.2(shiki@2.5.0)(vitepress@1.6.3(@algolia/client-search@5.16.0)(@types/node@22.15.21)(async-validator@4.2.5)(axios@1.9.0)(less@4.3.0)(nprogress@0.2.0)(postcss@8.5.3)(search-insights@2.17.3)(sortablejs@1.15.6)(typescript@5.8.3))(vue@3.5.14(typescript@5.8.3)):
+  vitepress-demo-plugin@1.4.3(shiki@2.5.0)(vitepress@1.6.3(@algolia/client-search@5.16.0)(@types/node@22.15.21)(async-validator@4.2.5)(axios@1.9.0)(less@4.3.0)(nprogress@0.2.0)(postcss@8.5.3)(search-insights@2.17.3)(sortablejs@1.15.6)(typescript@5.8.3))(vue@3.5.14(typescript@5.8.3)):
     dependencies:
       shiki: 2.5.0
       vitepress: 1.6.3(@algolia/client-search@5.16.0)(@types/node@22.15.21)(async-validator@4.2.5)(axios@1.9.0)(less@4.3.0)(nprogress@0.2.0)(postcss@8.5.3)(search-insights@2.17.3)(sortablejs@1.15.6)(typescript@5.8.3)
