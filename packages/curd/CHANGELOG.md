@@ -1,5 +1,13 @@
 # @uozi-admin/curd
 
+## 4.3.2
+
+### Patch Changes
+
+- [`33d2c6b`](https://github.com/uozi-tech/admin-kit/commit/33d2c6b8de059eede9733b5d79d1cd562b076bfb) Thanks [@0xJacky](https://github.com/0xJacky)! - fix(curd): template root-elements more then one
+
+- [`aa2f3ad`](https://github.com/uozi-tech/admin-kit/commit/aa2f3ad5d38a3fdce9904ab30fbbeda1e4867ccb) Thanks [@0xJacky](https://github.com/0xJacky)! - style(curd): add scoped styles to StdFormItem for minimum height adjustment
+
 ## 4.3.1
 
 ### Patch Changes
