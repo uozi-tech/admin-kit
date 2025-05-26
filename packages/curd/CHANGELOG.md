@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.3.3
+
+### Patch Changes
+
+- [`79d9612`](https://github.com/uozi-tech/admin-kit/commit/79d96124d0adbce1899c7a29babf558b6f526b8a) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): hiddenInAdd and hiddenInEdit do not take effect
+
 ## 4.3.2
 
 ### Patch Changes
