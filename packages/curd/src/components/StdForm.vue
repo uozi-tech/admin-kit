@@ -14,6 +14,7 @@ const props = withDefaults(defineProps<{
   formClass?: StdCurdProps['formClass']
   formRowProps?: RowProps
   errors?: Record<string, string>
+  mode?: 'edit' | 'add'
 }>(), {
   formRowProps: () => ({
     gutter: 16,
@@ -60,25 +61,30 @@ defineExpose({
   >
     <FormItemRest>
       <Row v-bind="props.formRowProps">
-        <Col
+        <template
           v-for="c in props.columns"
           :key="getColumnKey(c)"
-          span="24"
-          v-bind="c.edit?.col"
         >
-          <StdFormItem
-            style="margin-bottom: 12px;"
-            :form-item="c.edit?.formItem"
-            :label="getEditLabel(c)"
-            :name="c.edit?.valueKey ?? c.edit?.formItem?.name ?? getDataIndexStr(c.dataIndex)"
-            :error="errors?.[getDataIndexStr(c.dataIndex)]"
+          <Col
+            v-if="(mode && mode === 'edit' && !c.hiddenInEdit) || (mode && mode === 'add' && !c.hiddenInAdd)"
+            span="24"
+            v-bind="c.edit?.col"
           >
-            <FormControllerRender
-              :column="c"
-              :form-data="formData"
-            />
-          </StdFormItem>
-        </Col>
+            <StdFormItem
+              style="margin-bottom: 12px;"
+              :form-item="c.edit?.formItem"
+              :label="getEditLabel(c)"
+              :name="c.edit?.valueKey ?? c.edit?.formItem?.name ?? getDataIndexStr(c.dataIndex)"
+              :error="errors?.[getDataIndexStr(c.dataIndex)]"
+            >
+              <FormControllerRender
+                :column="c"
+                :form-data="formData"
+                :mode="mode"
+              />
+            </StdFormItem>
+          </Col>
+        </template>
       </Row>
     </FormItemRest>
   </Form>

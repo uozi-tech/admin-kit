@@ -28,6 +28,7 @@ const p = defineProps<{
   formData: Reactive<Record<string, any>>
   column: StdTableColumn
   formConfigKey?: 'edit' | 'search'
+  mode?: 'edit' | 'add'
 }>()
 
 function Render() {
@@ -42,7 +43,7 @@ function Render() {
   const placeholder = computed(() => getPlaceholder(p.column, formConfig))
   if (isFunction(formConfig?.type)) {
     // Support custom render function
-    return formConfig?.type(p.formData, p.column, formConfig?.customComponent)
+    return formConfig?.type(p.formData, p.column, formConfig?.customComponent, p.mode)
   }
   else if (isPlainObject(formConfig?.type) && formConfig?.type?.__name) {
   // Support custom component, but need to pass column to component and define model for it
@@ -51,6 +52,7 @@ function Render() {
         v-model:value={p.formData[formConfig?.formItem?.name ?? dataIndex]}
         column={p.column}
         {...formConfig?.customComponent}
+        mode={p.mode}
       />
     )
   }
