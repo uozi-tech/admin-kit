@@ -66,7 +66,7 @@ defineExpose({
           :key="getColumnKey(c)"
         >
           <Col
-            v-if="(mode && mode === 'edit' && !c.hiddenInEdit) || (mode && mode === 'add' && !c.hiddenInAdd)"
+            v-if="!mode || (mode && mode === 'edit' && !c.hiddenInEdit) || (mode && mode === 'add' && !c.hiddenInAdd)"
             span="24"
             v-bind="c.edit?.col"
           >
