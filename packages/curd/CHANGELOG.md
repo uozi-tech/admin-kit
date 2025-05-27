@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.3.4
+
+### Patch Changes
+
+- [`7be8511`](https://github.com/uozi-tech/admin-kit/commit/7be85111b917cc7b26e2de65f76b7ba1fd67a238) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): form item logic of display
+
 ## 4.3.3
 
 ### Patch Changes
