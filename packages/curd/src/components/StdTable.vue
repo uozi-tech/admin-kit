@@ -249,12 +249,12 @@ function onSelectedChange(keys: (string | number)[], rows: Record<string | numbe
 }
 
 const rowSelection = computed(() => {
-  if (props.rowSelectionType || props.rowSelection) {
+  if (props.rowSelectionType || props.tableProps?.rowSelection) {
     return {
       selectedRowKeys,
       onChange: onSelectedChange,
       type: props.rowSelectionType || 'radio',
-      ...props.rowSelection,
+      ...props.tableProps?.rowSelection,
     } as unknown as TableRowSelection<any>
   }
   return undefined
@@ -362,7 +362,6 @@ function SearchFormExtraRender() {
     <Table
       :id="`std-table-${tableId}`"
       v-model:pagination="pagination"
-      :row-selection="rowSelection"
       :columns="dataColumns"
       :data-source="tableData"
       :loading="tableLoading"
@@ -371,6 +370,7 @@ function SearchFormExtraRender() {
           x: 'max-content',
         },
         ...tableProps,
+        rowSelection,
       }"
       @change="onTableChange"
     >
