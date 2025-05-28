@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.3.5
+
+### Patch Changes
+
+- [`b74ddda`](https://github.com/uozi-tech/admin-kit/commit/b74ddda4a9d0ed7bd2f275484414f2f0697667e0) Thanks [@0xJacky](https://github.com/0xJacky)! - fix(curd): update row selection handling in StdTable component
+
 ## 4.3.4
 
 ### Patch Changes
