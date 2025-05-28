@@ -80,7 +80,7 @@ async function init() {
       ...props.overwriteParams,
       id: preloadIds,
     })
-    selectedRows.value = data
+    selectedRows.value = data.filter(item => preloadIds.includes(get(item, props.valueKey)))
   }
 }
 
