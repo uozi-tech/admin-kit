@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.3.6
+
+### Patch Changes
+
+- [`233a6b0`](https://github.com/uozi-tech/admin-kit/commit/233a6b0f49ba78ce1b014849681dee8030164733) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): incorrect selected rows
+
 ## 4.3.5
 
 ### Patch Changes
