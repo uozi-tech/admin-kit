@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.3.8
+
+### Patch Changes
+
+- [`6e74991`](https://github.com/uozi-tech/admin-kit/commit/6e74991645d0e6091a797da646b9e6abacb208ba) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): row selection merge logic
+
 ## 4.3.7
 
 ### Patch Changes
