@@ -59,6 +59,8 @@ function setValue() {
   }
   visible.value = false
   emit('selectedRecords', selectedRows.value)
+  selectedRowKeys.value = []
+  selectedRows.value = []
 }
 
 function removeValue(v: any) {
