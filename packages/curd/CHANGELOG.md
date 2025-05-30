@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.3.7
+
+### Patch Changes
+
+- [`b633144`](https://github.com/uozi-tech/admin-kit/commit/b633144f455dd4cdbec651d25a33dc38021b8b3d) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): [StdSelector] issue of not clearing selected rows after confirmation
+
 ## 4.3.6
 
 ### Patch Changes
