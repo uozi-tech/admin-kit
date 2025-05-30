@@ -249,11 +249,12 @@ function onSelectedChange(keys: (string | number)[], rows: Record<string | numbe
 }
 
 const rowSelection = computed(() => {
-  if (props.rowSelectionType || props.tableProps?.rowSelection) {
+  if (props.rowSelectionType || props.rowSelection || props.tableProps?.rowSelection) {
     return {
       selectedRowKeys,
       onChange: onSelectedChange,
       type: props.rowSelectionType || 'radio',
+      ...props.rowSelection,
       ...props.tableProps?.rowSelection,
     } as unknown as TableRowSelection<any>
   }
