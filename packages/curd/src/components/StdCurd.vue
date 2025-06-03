@@ -71,8 +71,8 @@ const stdBatchEdit = ref()
 
 function onSave() {
   const { formRef } = stdForm.value
-  formRef.validateFields().then((res) => {
-    handleSave(res)
+  formRef.validateFields().then(() => {
+    handleSave(itemDetail.value)
   }).catch((e) => {
     console.error(e)
     message.error(t('formValidateError'))
