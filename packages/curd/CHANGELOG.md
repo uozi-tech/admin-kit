@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.3.9
+
+### Patch Changes
+
+- [`8967782`](https://github.com/uozi-tech/admin-kit/commit/8967782499f884b40476c7f101eeacd7b829737b) Thanks [@0xJacky](https://github.com/0xJacky)! - fix(curd): update onSave function to use itemDetail for saving
+
 ## 4.3.8
 
 ### Patch Changes
