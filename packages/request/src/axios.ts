@@ -10,10 +10,7 @@ function createService() {
 
 export const service = createService()
 
-/**
- * @deprecated use createRequestConfig instead
- */
-export function setOverrideConfig(userConfig: AxiosRequestConfig) {
+export function createRequestConfig(userConfig: AxiosRequestConfig) {
   const c = setRequestConfig(userConfig)
   Object.assign(service.defaults, c)
 }
