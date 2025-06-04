@@ -1,5 +1,11 @@
 # @uozi-admin/request
 
+## 2.8.0
+
+### Minor Changes
+
+- [`33b3dd9`](https://github.com/uozi-tech/admin-kit/commit/33b3dd93377e366f12e28588a7d3b6ce23ed19aa) Thanks [@0xJacky](https://github.com/0xJacky)! - refactor(axios): replace setOverrideConfig with createRequestConfig
+
 ## 2.7.1
 
 ### Patch Changes
