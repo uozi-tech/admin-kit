@@ -5,7 +5,7 @@ layout: home
 hero:
   name: "Admin kit"
   text: "A admin system kit"
-  tagline: Help you to develop your admin apps fastly!
+  tagline: Help you to develop your admin apps quickly!
   image:
     src: /logo.svg
     alt: Admin kit
