@@ -4,7 +4,15 @@ outline: deep
 
 # 快速开始
 
-本节将帮助你快速上手 CURD 组件库。
+本节将帮助你快速上手 CRUD 组件库，学会如何构建一个完整的数据管理页面。
+
+## 核心概念
+
+在开始之前，了解几个核心概念：
+
+- **API 层** - 使用 `@uozi-admin/request` 定义数据接口
+- **列定义** - 定义表格列、搜索字段和表单字段
+- **CRUD 组件** - 提供完整的增删改查功能
 
 ## 安装
 
@@ -70,128 +78,138 @@ createApp(App)
   }))
 ```
 
-## 基础示例
+## 完整示例
 
-下面是一个最简单的用户管理页面示例:
+下面通过一个用户管理页面，展示如何使用 CRUD 组件库：
 
-```vue
-<script setup lang="ts">
-import type { StdColumn } from '@uozi-admin/curd'
-import { StdCurd } from '@uozi-admin/curd'
+### 1. 定义 API 接口
 
-// 定义列配置
-const columns: StdColumn[] = [
+```ts
+// src/api/user.ts
+import { useCurdApi } from '@uozi-admin/request'
+
+export const userApi = useCurdApi('/users')
+```
+
+### 2. 定义列配置
+
+```ts
+// src/views/user/columns.ts
+import type { StdColumnT } from '@uozi-admin/curd'
+
+export const columns: StdColumnT[] = [
   {
     title: '用户名',
     dataIndex: 'username',
-    search: true, // 启用搜索
-    edit: {
-      type: 'input',
-      formItem: {
-        required: true
-      }
+    search: { control: 'input' }, // 启用搜索
+    form: {
+      control: 'input',
+      required: true
     }
   },
   {
     title: '邮箱',
     dataIndex: 'email',
-    edit: {
-      type: 'input',
-      formItem: {
-        rules: [{ type: 'email' }]
-      }
+    form: {
+      control: 'input',
+      required: true,
+      rules: [{ type: 'email', message: '请输入正确的邮箱格式' }]
     }
   },
   {
     title: '状态',
     dataIndex: 'status',
-    edit: {
-      type: 'select',
-      select: {
-        options: [
-          { label: '启用', value: 1 },
-          { label: '禁用', value: 0 }
-        ]
-      }
-    }
+    search: { control: 'select' },
+    form: {
+      control: 'select',
+      options: [
+        { label: '启用', value: 1 },
+        { label: '禁用', value: 0 }
+      ]
+    },
+    render: (value) => value === 1 ? '启用' : '禁用'
+  },
+  {
+    title: '创建时间',
+    dataIndex: 'created_at',
+    search: { control: 'date-range' }
   }
 ]
+```
 
-// 自定义表单行属性
-const formRowProps = {
-  gutter: 24, // 设置栅格间隔
-  justify: 'start', // 水平布局
-  align: 'middle' // 垂直对齐方式
-}
+### 3. 创建页面组件
 
-// API 接口配置
-const api = {
-  getList: params => fetch('/api/users', { params }),
-  getItem: id => fetch(`/api/users/${id}`),
-  createItem: data => fetch('/api/users', {
-    method: 'POST',
-    body: JSON.stringify(data)
-  }),
-  updateItem: (id, data) => fetch(`/api/users/${id}`, {
-    method: 'PUT',
-    body: JSON.stringify(data)
-  }),
-  deleteItem: id => fetch(`/api/users/${id}`, {
-    method: 'DELETE'
-  })
-}
+```vue
+<!-- src/views/user/index.vue -->
+<script setup lang="ts">
+import { userApi } from '~/api/user'
+import { StdCurd } from '@uozi-admin/curd'
+import { columns } from './columns'
 </script>
 
 <template>
   <StdCurd
     title="用户管理"
+    :api="userApi"
     :columns="columns"
-    :api="api"
-    :form-row-props="formRowProps"
   />
 </template>
 ```
 
-这个示例实现了:
+这样就完成了一个功能完整的用户管理页面，包含：
+- 数据列表展示
+- 搜索功能
+- 新增/编辑表单
+- 删除功能
+- 分页功能
 
-1. 用户列表展示
-2. 新增/编辑表单
-3. 删除功能
-4. 搜索功能
+## 高级用法
+
+### 自定义 API 配置
+
+如果不使用 `@uozi-admin/request`，也可以手动定义 API：
+
+```ts
+// 手动定义 API
+const api = {
+  getList: (params) => {
+    return fetch('/api/users', {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(params)
+    }).then(res => res.json())
+  },
+  getItem: (id) => {
+    return fetch(`/api/users/${id}`).then(res => res.json())
+  },
+  createItem: (data) => {
+    return fetch('/api/users', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    }).then(res => res.json())
+  },
+  updateItem: (id, data) => {
+    return fetch(`/api/users/${id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    }).then(res => res.json())
+  },
+  deleteItem: (id) => {
+    return fetch(`/api/users/${id}`, {
+      method: 'DELETE'
+    }).then(res => res.json())
+  }
+}
+```
 
 ## 下一步
 
-- 了解 [基础概念](./basic-concepts.md)
-- 查看 [列配置](./core/column.md) 详细说明
-- 探索更多 [组件](./components/std-curd.md)
+现在你已经学会了基础用法，可以继续学习：
 
-## 特性
-
-- 🚀 开箱即用的 CRUD 组件
-- 📦 内置多种表单控件
-- 🎨 可自定义的列渲染
-- 🔍 支持搜索和筛选
-- 📱 响应式设计
-- 🌍 国际化支持
-
-## 组件
-
-- StdCurd - 完整的 CRUD 页面组件
-- StdTable - 表格组件
-- StdForm - 表单组件
-- StdDetail - 详情组件
-- StdSearch - 搜索组件
-
-## 表单控件
-
-内置丰富的表单控件:
-
-- Input - 输入框
-- InputNumber - 数字输入框
-- Select - 选择器
-- DatePicker - 日期选择器
-- TimePicker - 时间选择器
-- Switch - 开关
-- Radio - 单选框
-- Checkbox - 复选框
-- ...
+- [基础概念](/zh/curd/basic-concepts) - 了解核心概念
+- [列定义详解](/zh/curd/core/column) - 了解更多列配置选项
+- [表单控件](/zh/curd/form-controls/input) - 学习各种表单控件的使用
+- [自定义渲染](/zh/curd/advance/custom-render) - 实现复杂的自定义需求
+- [全局配置](/zh/curd/advance/global-config) - 配置全局默认行为

@@ -8,6 +8,9 @@ export default defineConfig({
     nav: nav(),
 
     sidebar: {
+      // '/zh/overview': { base: '/zh/', items: sidebarOverview() },
+      // '/zh/getting-started': { base: '/zh/', items: sidebarGettingStarted() },
+      // '/zh/guide': { base: '/zh/', items: sidebarGuideNav() },
       '/zh/curd/': { base: '/zh/curd/', items: sidebarGuide() },
       '/zh/request/': { base: '/zh/request/', items: sidebarRequest() },
       '/zh/layout/': { base: '/zh/layout/', items: sidebarLayout() },
@@ -53,6 +56,14 @@ export default defineConfig({
 
 function nav(): DefaultTheme.NavItem[] {
   return [
+    {
+      text: '指南',
+      items: [
+        { text: '框架总览', link: '/zh/overview' },
+        { text: '入门指南', link: '/zh/getting-started' },
+        { text: '文档导航', link: '/zh/guide' },
+      ],
+    },
     {
       text: 'CURD',
       link: '/zh/curd/introduction',
@@ -209,3 +220,52 @@ function sidebarSharedConfig() {
     },
   ]
 }
+
+// function sidebarOverview() {
+//   return [
+//     {
+//       text: '框架总览',
+//       items: [
+//         { text: '核心理念', link: 'overview#核心理念' },
+//         { text: '核心包介绍', link: 'overview#核心包介绍' },
+//         { text: '快速开始', link: 'overview#快速开始' },
+//         { text: '学习路径', link: 'overview#学习路径' },
+//         { text: '架构特点', link: 'overview#架构特点' },
+//       ],
+//     },
+//   ]
+// }
+
+// function sidebarGettingStarted() {
+//   return [
+//     {
+//       text: '入门指南',
+//       items: [
+//         { text: '学习目标', link: 'getting-started#学习目标' },
+//         { text: '前置要求', link: 'getting-started#前置要求' },
+//         { text: '创建项目', link: 'getting-started#第一步创建项目' },
+//         { text: '项目结构', link: 'getting-started#项目结构' },
+//         { text: '核心概念', link: 'getting-started#核心概念' },
+//         { text: '构建页面', link: 'getting-started#第二步构建第一个页面' },
+//         { text: '自定义样式', link: 'getting-started#第三步自定义样式' },
+//         { text: '配置优化', link: 'getting-started#第四步配置和优化' },
+//         { text: '下一步学习', link: 'getting-started#下一步学习' },
+//       ],
+//     },
+//   ]
+// }
+
+// function sidebarGuideNav() {
+//   return [
+//     {
+//       text: '文档导航',
+//       items: [
+//         { text: '学习路径', link: 'guide#学习路径' },
+//         { text: '文档分类', link: 'guide#文档分类' },
+//         { text: '按功能查找', link: 'guide#按功能查找' },
+//         { text: '常见场景', link: 'guide#常见场景' },
+//         { text: '文档约定', link: 'guide#文档约定' },
+//       ],
+//     },
+//   ]
+// }
