@@ -12,7 +12,7 @@ hero:
   actions:
     - theme: brand
       text: Get started
-      link: /zh/curd/quick-start
+      link: /zh/getting-started
     - theme: alt
       text: Github
       link: https://github.com/uozi-tech/admin-kit
