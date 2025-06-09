@@ -17,6 +17,8 @@ export default defineConfig({
   cleanUrls: true,
   metaChunk: true,
 
+  ignoreDeadLinks: true,
+
   themeConfig: {
     logo: '/logo.svg',
 
