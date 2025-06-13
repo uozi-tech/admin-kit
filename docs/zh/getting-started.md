@@ -155,38 +155,44 @@ export const columns: StdColumnT<User>[] = [
   {
     title: '用户名',
     dataIndex: 'username',
-    search: { control: 'input' },
-    form: {
-      control: 'input',
-      required: true,
-      rules: [
-        { min: 3, max: 20, message: '用户名长度为 3-20 个字符' }
-      ]
-    }
+    search: true,
+    edit: {
+      type: 'input',
+      formItem: {
+        required: true,
+        rules: [
+          { min: 3, max: 20, message: '用户名长度为 3-20 个字符' }
+        ]
+      }
+    },
   },
   {
     title: '邮箱',
     dataIndex: 'email',
-    form: {
-      control: 'input',
-      required: true,
-      rules: [
-        { type: 'email', message: '请输入正确的邮箱格式' }
-      ]
+    edit: {
+      type: 'input',
+      formItem: {
+        required: true,
+        rules: [
+          { type: 'email', message: '请输入正确的邮箱格式' }
+        ]
+      }
     }
   },
   {
     title: '状态',
     dataIndex: 'status',
-    search: { control: 'select' },
-    form: {
-      control: 'select',
-      options: [
-        { label: '启用', value: 1 },
-        { label: '禁用', value: 0 }
-      ]
+    search: true,
+    edit: {
+      type: 'select',
+      select: {
+        options: [
+          { label: '启用', value: 1 },
+          { label: '禁用', value: 0 }
+        ]
+      }
     },
-    render: (value: number) => {
+    customRender: ({ text: value }) => {
       return value === 1 ? 
         '<span style="color: green">启用</span>' : 
         '<span style="color: red">禁用</span>'
@@ -195,7 +201,7 @@ export const columns: StdColumnT<User>[] = [
   {
     title: '创建时间',
     dataIndex: 'created_at',
-    search: { control: 'date-range' }
+    search: { type: 'date-range' }
   }
 ]
 ```
@@ -256,7 +262,7 @@ export default createRouter({
 {
   title: '头像',
   dataIndex: 'avatar',
-  render: (value: string) => {
+  customRender: ({ text: value }) => {
     return `<img src="${value}" style="width: 40px; height: 40px; border-radius: 50%" />`
   }
 }
@@ -272,7 +278,7 @@ export default createRouter({
     :columns="columns"
   >
     <!-- 自定义操作列 -->
-    <template #action="{ record }">
+    <template #beforeActions="{ record }">
       <a-button type="link" @click="viewProfile(record.id)">
         查看详情
       </a-button>
