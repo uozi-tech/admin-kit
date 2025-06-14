@@ -1,5 +1,11 @@
 # @uozi-admin/request
 
+## 2.8.1
+
+### Patch Changes
+
+- [`ea35f5b`](https://github.com/uozi-tech/admin-kit/commit/ea35f5bec0efa0f1794bcd3dbaeec727228e9760) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(config): remove timeout setting from request config
+
 ## 2.8.0
 
 ### Minor Changes
