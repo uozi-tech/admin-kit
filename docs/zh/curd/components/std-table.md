@@ -63,7 +63,7 @@ function onChange(pagination, filters, sorter) {
 | 事件名 | 说明 | 回调参数 |
 | --- | --- | --- |
 | change | 分页、排序、筛选变化时触发 | (pagination, filters, sorter) |
-| read | 点击查看按钮时触发 | record |
+| view | 点击查看按钮时触发 | record |
 | editItem | 点击编辑按钮时触发 | record |
 | deleteItemTemporarily | 点击删除按钮时触发 | record |
 | restoreItem | 点击恢复按钮时触发 | record |
