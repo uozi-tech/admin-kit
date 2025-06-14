@@ -33,7 +33,6 @@ export const config: RequestConfig = {
   headers: {
     'Content-Type': 'application/json',
   },
-  timeout: 5000,
 }
 
 /**
