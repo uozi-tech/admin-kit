@@ -45,7 +45,7 @@
     "less": "^4.3.0",
     "simple-git-hooks": "^2.13.0",
     "typescript": "^5.8.3",
-    "unocss": "^66.1.3",
+    "unocss": "^66.2.3",
     "unocss-preset-chinese": "^0.3.3",
     "unocss-preset-ease": "^0.0.4",
     "vite": "^6.3.1",
