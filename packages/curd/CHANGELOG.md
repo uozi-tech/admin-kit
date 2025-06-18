@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.3.10
+
+### Patch Changes
+
+- [`9ccae7c`](https://github.com/uozi-tech/admin-kit/commit/9ccae7cc712ea02c1fc640f3835af31908fe814b) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(std-table): reset pagination on search data change
+
 ## 4.3.9
 
 ### Patch Changes
