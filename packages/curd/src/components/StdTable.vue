@@ -28,6 +28,7 @@ const emit = defineEmits<{
 const { tableId, initSortable, buildIndexMap, resetIndexMap } = useDraggableTable(props.rowDraggableOptions)
 
 onMounted(() => {
+  syncSearchFormDataFromRouteQuery()
   initSortable(tableData)
   debouncedListApi()
 })
@@ -53,6 +54,38 @@ function initializePagination(paginationProps: any): TablePaginationConfig {
     showTotal: (total: number) => `${t('total')}: ${total} ${t('item(s)')}`,
     ...paginationProps,
   }
+}
+
+function syncSearchFormDataFromRouteQuery() {
+  const v = route.query
+  pagination.value.current = Number(v[curdConfig.listApi!.paginationMap!.params!.current!]) || 1
+  pagination.value.pageSize = Number(v[curdConfig.listApi!.paginationMap!.params!.pageSize!]) || 20
+  searchColumns.value.forEach((c) => {
+    const dataIndex = c.dataIndex
+    let key = dataIndex
+    if (isObject(c.search) && c.search.formItem?.name) {
+      key = c.search.formItem.name
+    }
+
+    if (isArray(key)) {
+      key = key.join('.')
+    }
+
+    if (v[key] === 'true') {
+      searchFormData.value[key] = true
+    }
+    else if (v[key] === 'false') {
+      searchFormData.value[key] = false
+    }
+    else {
+      searchFormData.value[key] = v[key]
+    }
+  })
+
+  // 监听 search form 数据变化，如果数据变化，则重置分页
+  watch(() => searchFormData.value, () => {
+    pagination.value.current = 1
+  }, { deep: true })
 }
 
 const computedColumns = computed(() => {
@@ -92,6 +125,7 @@ const searchFormData = ref<Record<string, any>>({
 const apiParams = computed(() => {
   const overwriteParams = cloneDeep(props.overwriteParams)
   const customQueryParams = cloneDeep(props.customQueryParams)
+
   return {
     ...searchFormData.value,
     trash: props.isTrash,
@@ -102,44 +136,10 @@ const apiParams = computed(() => {
   }
 })
 
-// 更新锁，用于防止同步 route query 到 api params 时死循环
-let isUpdatedFromApiParams = false
-
 // 更新路由 query，加入防抖是为了频繁触发时合并更新
 const debouncedUpdateRouteQuery = debounce(async (newQuery: Record<string, any>) => {
-  isUpdatedFromApiParams = true
   await router.push({ query: { ...newQuery } })
-  isUpdatedFromApiParams = false
 }, 200, { leading: false, trailing: true })
-
-// route query 改变并且不是由 debouncedUpdateRouteQuery 触发的情况下，才同步到 apiParams
-watch(() => route?.query, (v) => {
-  if (isUpdatedFromApiParams)
-    return
-  pagination.value.current = Number(v[curdConfig.listApi!.paginationMap!.params!.current!]) || 1
-  pagination.value.pageSize = Number(v[curdConfig.listApi!.paginationMap!.params!.pageSize!]) || 20
-  searchColumns.value.forEach((c) => {
-    const dataIndex = c.dataIndex
-    let key = dataIndex
-    if (isObject(c.search) && c.search.formItem?.name) {
-      key = c.search.formItem.name
-    }
-
-    if (isArray(key)) {
-      key = key.join('.')
-    }
-
-    if (v[key] === 'true') {
-      searchFormData.value[key] = true
-    }
-    else if (v[key] === 'false') {
-      searchFormData.value[key] = false
-    }
-    else {
-      searchFormData.value[key] = v[key]
-    }
-  })
-}, { deep: true, immediate: true })
 
 watch(() => props.refreshConfig, () => {
   if (!props.refreshConfig?.timestamp) {
