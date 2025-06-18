@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@ant-design/icons-vue": "^7.0.1",
-    "@iconify-json/tabler": "^1.2.18",
+    "@iconify-json/tabler": "^1.2.19",
     "@uozi-admin/curd": "^4.3.9",
     "@uozi-admin/layout-antdv": "^1.2.8",
     "@uozi-admin/request": "^2.8.1",
@@ -41,7 +41,7 @@
     "@types/nprogress": "^0.2.3",
     "@uozi-admin/shared-config": "^0.4.6",
     "@vue/tsconfig": "^0.7.0",
-    "eslint": "^9.28.0",
+    "eslint": "^9.29.0",
     "less": "^4.3.0",
     "simple-git-hooks": "^2.13.0",
     "typescript": "^5.8.3",
