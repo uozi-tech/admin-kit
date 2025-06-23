@@ -1,8 +1,9 @@
+import type { Composer } from 'vue-i18n'
 import { useConfigContextInject } from 'ant-design-vue/es/config-provider/context'
 import { watchEffect } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-export function useLocale() {
+export function useLocale(): Composer {
   const i18n = useI18n()
   const { locale: lang } = useConfigContextInject()
 
