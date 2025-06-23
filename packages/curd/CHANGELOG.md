@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.3.11
+
+### Patch Changes
+
+- [`d323270`](https://github.com/uozi-tech/admin-kit/commit/d32327060df8487cf1050daad1350f7dd2591ce3) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd ): not react lang changing
+
 ## 4.3.10
 
 ### Patch Changes
