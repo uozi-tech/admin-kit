@@ -2,7 +2,7 @@
 import type { PasswordConfig } from '../../types'
 import { Button, Input, InputGroup, InputPassword } from 'ant-design-vue'
 import { ref } from 'vue'
-import { useI18n } from 'vue-i18n'
+import { useLocale } from '../../composables'
 
 const p = defineProps<{ props?: PasswordConfig & { placeholder?: string | number } }>()
 
@@ -10,7 +10,7 @@ const modelValue = defineModel<PasswordConfig['value']>('value')
 
 const visibility = ref(false)
 
-const { t } = useI18n()
+const { t } = useLocale()
 
 function handleGenerate() {
   visibility.value = true

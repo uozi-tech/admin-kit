@@ -3,8 +3,7 @@ import type { SelectorConfig } from '../../types'
 import { Form, Modal, Select } from 'ant-design-vue'
 import { get } from 'lodash-es'
 import { computed, nextTick, onMounted, ref, watch } from 'vue'
-import { useI18n } from 'vue-i18n'
-import useCurdConfig from '../../composables/useCurdConfig'
+import { useCurdConfig, useLocale } from '../../composables'
 import StdTable from '../StdTable.vue'
 
 const props = withDefaults(
@@ -48,7 +47,7 @@ const options = computed(() => selectedRows.value.map(item => ({
   value: get(item, props.valueKey),
 })))
 
-const { t } = useI18n()
+const { t } = useLocale()
 
 function setValue() {
   if (props.selectionType === 'radio') {

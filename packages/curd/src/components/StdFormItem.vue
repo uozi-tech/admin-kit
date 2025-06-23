@@ -4,13 +4,13 @@ import type { Rule } from 'ant-design-vue/es/form'
 import type { StdTableColumn } from '../types'
 import { FormItem } from 'ant-design-vue'
 import { computed } from 'vue'
-import { useI18n } from 'vue-i18n'
+import { useLocale } from '../composables'
 import { getFormErrors } from '../constants/formErrors'
 import { getDataIndexStr } from '../utils'
 
 const props = defineProps<Props>()
 const FormErrors = getFormErrors()
-const { t } = useI18n()
+const { t } = useLocale()
 export interface Props {
   dataIndex?: StdTableColumn['dataIndex']
   label?: string

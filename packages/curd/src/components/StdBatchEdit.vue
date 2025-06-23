@@ -3,7 +3,7 @@ import type { StdTableColumn } from 'src/types'
 import type { CurdApi } from 'src/types/api'
 import { message, Modal, Table } from 'ant-design-vue'
 import { computed, ref } from 'vue'
-import { useI18n } from 'vue-i18n'
+import { useLocale } from '../composables'
 import StdForm from './StdForm.vue'
 
 const props = defineProps<{
@@ -20,7 +20,7 @@ const columns = computed(() => {
   return props.columns.filter(item => item.pure) as any
 })
 
-const { t } = useI18n()
+const { t } = useLocale()
 
 const batchColumns = computed(() => {
   return props.columns.filter(item => item.batchEdit)

@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { Pagination } from 'ant-design-vue'
 import { computed } from 'vue'
-import { useI18n } from 'vue-i18n'
-import useCurdConfig from '../composables/useCurdConfig'
+import { useCurdConfig, useLocale } from '../composables'
 
 const props = withDefaults(defineProps<{
   pagination: any
@@ -15,7 +14,7 @@ const props = withDefaults(defineProps<{
 
 const emit = defineEmits(['change', 'changePageSize', 'update:pagination'])
 
-const { t } = useI18n()
+const { t } = useLocale()
 const curdConfig = useCurdConfig()
 const { total, current, pageSize } = curdConfig.listApi!.paginationMap!.response
 
@@ -45,6 +44,10 @@ const pagination = computed({
     emit('update:pagination', { ...props.pagination, [pageSize]: v })
   },
 })
+
+const totalText = computed(() => {
+  return `${t('total')}: ${pagination.value.total} ${t('item(s)')}`
+})
 </script>
 
 <template>
@@ -57,7 +60,7 @@ const pagination = computed({
       :disabled="loading"
       :current="pagination.current"
       :show-size-changer="showSizeChanger"
-      :show-total="(total: number) => `${t('total')}: ${total} ${t('item(s)')}`"
+      :show-total="() => totalText"
       :size="size"
       :total="pagination.total"
       @change="change"

@@ -4,8 +4,7 @@ import { watchPausable } from '@vueuse/core'
 import { Button, Flex, Form, FormItem } from 'ant-design-vue'
 import { cloneDeep } from 'lodash-es'
 import { computed, nextTick, ref, watch } from 'vue'
-import { useI18n } from 'vue-i18n'
-import useCurdConfig from '../composables/useCurdConfig'
+import { useCurdConfig, useLocale } from '../composables'
 import { getColumnKey, getSearchLabel } from '../utils'
 import FormControllerRender from './StdFormController.vue'
 
@@ -21,7 +20,7 @@ const emit = defineEmits<{
   (e: 'update:data', data: Record<string, any>): void
 }>()
 
-const { t } = useI18n()
+const { t } = useLocale()
 
 const curdConfig = useCurdConfig()
 const formDataBuffer = ref<Record<string, any>>({})

@@ -1,11 +1,9 @@
 <script setup lang="ts">
 import type { StdCurdProps } from '../types'
 import { Button, Card, Checkbox, Divider, Flex, message, Modal, Spin } from 'ant-design-vue'
-import { useConfigContextInject } from 'ant-design-vue/es/config-provider/context'
-import { computed, getCurrentInstance, reactive, ref, watchEffect } from 'vue'
-import { useI18n } from 'vue-i18n'
+import { computed, getCurrentInstance, reactive, ref } from 'vue'
 import { useRoute } from 'vue-router'
-import { useExport } from '../composables'
+import { useExport, useLocale } from '../composables'
 import { ApiActions } from '../constants'
 import { getRealContent } from '../utils'
 import StdBatchEdit from './StdBatchEdit.vue'
@@ -31,25 +29,8 @@ const emit = defineEmits<{
 }>()
 
 const route = useRoute()
-const { t, locale } = useI18n()
-const { locale: lang } = useConfigContextInject()
+const { t } = useLocale()
 const instance = getCurrentInstance()
-
-watchEffect(() => {
-  switch (lang?.value.locale) {
-    case 'zh-cn':
-      locale.value = 'zh-CN'
-      break
-    case 'zh-hk':
-      locale.value = 'zh-HK'
-      break
-    case 'zh-tw':
-      locale.value = 'zh-TW'
-      break
-    default:
-      locale.value = 'en-US'
-  }
-})
 
 const refreshConfig = reactive({
   timestamp: 0,

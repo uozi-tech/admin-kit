@@ -1,3 +1,5 @@
+export * from './useCurdConfig'
 export * from './useDraggableTable'
 export * from './useExport'
+export * from './useLocale'
 export * from './useSearch'

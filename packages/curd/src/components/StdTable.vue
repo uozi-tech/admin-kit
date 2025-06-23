@@ -7,9 +7,9 @@ import { HolderOutlined } from '@ant-design/icons-vue'
 import { Button, Popconfirm, Table } from 'ant-design-vue'
 import { cloneDeep, debounce, get, isArray, isEqual, isNil, isObject } from 'lodash-es'
 import { computed, h, onMounted, ref, watch } from 'vue'
-import { useI18n } from 'vue-i18n'
 import { useRoute, useRouter } from 'vue-router'
 import { getRealContent } from '..'
+import { useLocale } from '../composables'
 import useCurdConfig from '../composables/useCurdConfig'
 import useDraggableTable from '../composables/useDraggableTable'
 import StdSearch from './StdSearch.vue'
@@ -38,7 +38,7 @@ const tableLoading = defineModel<boolean>('tableLoading')
 const router = useRouter()
 const route = useRoute()
 
-const { t } = useI18n()
+const { t } = useLocale()
 
 const curdConfig = useCurdConfig()
 const pagination = ref<TablePaginationConfig>(initializePagination(props.tableProps?.pagination))

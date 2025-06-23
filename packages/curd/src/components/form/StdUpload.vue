@@ -5,11 +5,11 @@ import type { UploadConfig } from '../../types'
 import { DeleteOutlined, FileOutlined, FolderOutlined, InboxOutlined } from '@ant-design/icons-vue'
 import { Button, Flex, Form, FormItemRest, Progress, RadioButton, RadioGroup, UploadDragger } from 'ant-design-vue'
 import { computed, ref } from 'vue'
-import { useI18n } from 'vue-i18n'
+import { useLocale } from '../../composables'
 
 const { props } = defineProps<{ props?: UploadConfig & { placeholder?: string | number } }>()
 
-const { t } = useI18n()
+const { t } = useLocale()
 
 const formContext = Form.useInjectFormItemContext()
 
