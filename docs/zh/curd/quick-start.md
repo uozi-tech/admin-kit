@@ -95,9 +95,9 @@ export const userApi = useCurdApi('/users')
 
 ```ts
 // src/views/user/columns.ts
-import type { StdColumnT } from '@uozi-admin/curd'
+import type { StdTableColumn } from '@uozi-admin/curd'
 
-export const columns: StdColumnT[] = [
+export const columns: StdTableColumn[] = [
   {
     title: '用户名',
     dataIndex: 'username',
