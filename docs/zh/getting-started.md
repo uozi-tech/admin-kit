@@ -71,6 +71,30 @@ my-admin/
 UOZI Admin 基于几个核心概念构建：
 
 ### 1. API 层
+
+使用拦截器预处理响应数据：
+
+```ts
+// interceptor.ts
+import { useAxios } from '@uozi-admin/request'
+
+const { setRequestInterceptor, setResponseInterceptor } = useAxios()
+
+export function serviceInterceptor() {
+  // 其他逻辑...
+
+  setResponseInterceptor(
+    (response) => {
+      // 必须返回 response.data, 否则 CURD 组件无法正常运行
+      return Promise.resolve(response.data)
+    },
+    async (error) => {
+      return Promise.reject(error.response.data)
+    },
+  )
+}
+```
+
 使用 `@uozi-admin/request` 定义数据接口：
 
 ```ts
