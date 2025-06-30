@@ -25,6 +25,10 @@ export default defineConfig({
     socialLinks: [
       { icon: 'github', link: 'https://github.com/uozi-tech/admin-kit' },
     ],
+
+    search: {
+      provider: 'local',
+    },
   } as DefaultTheme.Config,
   markdown: {
     config(md) {
