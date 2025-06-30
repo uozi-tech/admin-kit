@@ -76,7 +76,7 @@
 ## 完整示例
 
 ```ts
-const columns: StdColumn[] = [
+const columns: StdTableColumn[] = [
   {
     title: '用户名',
     dataIndex: 'username',

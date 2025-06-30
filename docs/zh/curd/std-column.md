@@ -1,6 +1,6 @@
 # Column 定义
 
-StdColumn 是 CURD 组件的核心配置,用于定义表格列和表单项的展示、编辑等行为。
+StdTableColumn 是 CURD 组件的核心配置,用于定义表格列和表单项的展示、编辑等行为。
 
 ## 基础属性
 

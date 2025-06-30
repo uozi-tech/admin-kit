@@ -132,7 +132,7 @@ export interface StdTableColumn<T = any> extends Omit<TableColumnType, 'customRe
 ## 完整示例
 
 ```ts
-const columns: StdColumn[] = [
+const columns: StdTableColumn[] = [
   {
     title: '用户名',
     dataIndex: 'username',

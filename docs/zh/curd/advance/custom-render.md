@@ -27,7 +27,7 @@ interface RenderContext {
   text: any // 单元格数据
   record: any // 行数据
   index: number // 行索引
-  column: StdColumn // 列配置
+  column: StdTableColumn // 列配置
 }
 ```
 

@@ -6,7 +6,7 @@ StdCurd 是一个完整的 CRUD 页面组件，集成了列表、搜索、新增
 
 ```vue
 <script setup lang="ts">
-import type { StdColumn } from '@uozi-admin/curd'
+import type { StdTableColumn } from '@uozi-admin/curd'
 import { StdCurd } from '@uozi-admin/curd'
 
 const columns: StdTableColumn[] = [
@@ -49,7 +49,7 @@ const api = {
 | --- | --- | --- | --- |
 | title | 标题 | string | - |
 | formRowProps | 表单 Row 组件属性，用于自定义表单布局 | RowProps | - |
-| columns | 列配置 | StdColumn[] | [] |
+| columns | 列配置 | StdTableColumn[] | [] |
 | api | 接口配置 | StdApi | - |
 | rowKey | 行数据的 key | string | 'id' |
 | modalWidth | 弹窗宽度 | number \| string | 520 |

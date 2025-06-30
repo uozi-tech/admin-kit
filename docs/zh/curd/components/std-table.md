@@ -30,7 +30,7 @@ function onChange(pagination, filters, sorter) {
 
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| columns | 列配置 | StdColumn[] | [] |
+| columns | 列配置 | StdTableColumn[] | [] |
 | getListApi | 接口配置 | StdApi['getList'] | - |
 | tableProps | antd table 配置 | TableProps | {} |
 | customQueryParams | 自定义查询参数(同步到路由) | Record<string, any> | {} |

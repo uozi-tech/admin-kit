@@ -44,7 +44,7 @@ const columns = [
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | record | 详情数据 | object | {} |
-| columns | 列配置 | StdColumn[] | [] |
+| columns | 列配置 | StdTableColumn[] | [] |
 
 ## 功能特性
 
