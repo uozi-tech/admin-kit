@@ -29,7 +29,7 @@
   },
   "peerDependencies": {
     "unocss": ">=66.3.2",
-    "vite": ">=6.3.5"
+    "vite": ">=7.0.2"
   },
   "dependencies": {
     "@vitejs/plugin-vue": "^5.2.4",
