@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { StdCurdProps } from '../types'
 import { Button, Card, Checkbox, Divider, Flex, message, Modal, Spin } from 'ant-design-vue'
+import { cloneDeep } from 'lodash-es'
 import { computed, getCurrentInstance, reactive, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { useExport, useLocale } from '../composables'
@@ -141,6 +142,13 @@ async function handleEdit(row: Record<string, any>) {
   formVisible.value = true
 }
 
+// 从外部打开添加弹窗并使用预设数据
+function add(data: Record<string, any>) {
+  itemDetail.value = cloneDeep(data)
+  mode.value = 'add'
+  formVisible.value = true
+}
+
 // 保存新增/编辑数据
 async function handleSave(data: Record<string, any>) {
   modalLoading.value = true
@@ -231,6 +239,7 @@ function onBatchEditSave() {
 
 defineExpose({
   refresh,
+  add,
 })
 
 const title = computed(() => {
