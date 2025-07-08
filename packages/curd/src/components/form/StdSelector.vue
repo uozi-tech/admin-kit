@@ -2,7 +2,7 @@
 import type { SelectorConfig } from '../../types'
 import { Form, Modal, Select } from 'ant-design-vue'
 import { get } from 'lodash-es'
-import { computed, nextTick, onMounted, ref, watch } from 'vue'
+import { computed, nextTick, onMounted, reactive, ref, watch } from 'vue'
 import { useCurdConfig, useLocale } from '../../composables'
 import StdTable from '../StdTable.vue'
 
@@ -22,7 +22,7 @@ Form.useInjectFormItemContext()
 
 const visible = defineModel<boolean>('visible', { default: false })
 const selectedRowKeys = ref<any[]>([])
-const selectedRows = ref<any[]>([])
+const selectedRows = defineModel<any[]>('selectedRows', { default: reactive([]) })
 
 // 获取全局配置
 const curdConfig = useCurdConfig()
