@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.3.13
+
+### Patch Changes
+
+- [`8d77013`](https://github.com/uozi-tech/admin-kit/commit/8d77013795ead49d0d86ab28e6828b9ba261b7ff) Thanks [@0xJacky](https://github.com/0xJacky)! - chore: update deps
+
 ## 4.3.12
 
 ### Patch Changes
