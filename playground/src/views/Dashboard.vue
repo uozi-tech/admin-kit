@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { StdTable } from '@uozi-admin/curd'
-import StdCurd from '@uozi-admin/curd/src/components/StdCurd.vue'
 import { Card } from 'ant-design-vue'
 import { $gettext } from '~/gettext'
 

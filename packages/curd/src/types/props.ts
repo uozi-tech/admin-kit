@@ -12,23 +12,23 @@ import type { StdTableColumn } from './index'
 
 export interface StdTableProps extends Pick<
   StdCurdProps,
-  'tableProps' |
-  'columns' |
-  'customQueryParams' |
-  'overwriteParams' |
-  'rowSelectionType' |
-  'rowSelection' |
-  'disableRouterQuery' |
-  'disableView' |
-  'disableEdit' |
-  'disableSearch' |
-  'disableDelete' |
-  'disableTrash' |
-  'rowDraggable' |
-  'rowDraggableOptions' |
-  'hideResetBtn' |
-  'showSearchBtn' |
-  'searchFormExtraRender'
+  'tableProps'
+  | 'columns'
+  | 'customQueryParams'
+  | 'overwriteParams'
+  | 'rowSelectionType'
+  | 'rowSelection'
+  | 'disableRouterQuery'
+  | 'disableView'
+  | 'disableEdit'
+  | 'disableSearch'
+  | 'disableDelete'
+  | 'disableTrash'
+  | 'rowDraggable'
+  | 'rowDraggableOptions'
+  | 'hideResetBtn'
+  | 'showSearchBtn'
+  | 'searchFormExtraRender'
 > {
   getListApi: CurdApi['getList']
   refreshConfig?: {

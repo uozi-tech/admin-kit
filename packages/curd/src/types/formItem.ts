@@ -45,8 +45,8 @@ export type PasswordConfig = Omit<InputProps, 'placeholder'> & PlaceholderT & Ba
   maxLength?: number
 }
 
-export type SelectConfig = Omit<SelectProps, 'placeholder'> &
-  PlaceholderT & {
+export type SelectConfig = Omit<SelectProps, 'placeholder'>
+  & PlaceholderT & {
     remote?: {
       valueKey: string
       labelKey: string

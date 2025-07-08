@@ -23,36 +23,36 @@ import type {
 } from './formItem'
 import type { StdTableColumn } from './index'
 
-export type FormItemType =
-  'input'
-  | 'password'
-  | 'inputNumber'
-  | 'select'
-  | 'selector'
-  | 'date'
-  | 'datetime'
-  | 'year'
-  | 'month'
-  | 'week'
-  | 'time'
-  | 'textarea'
-  | 'radioGroup'
-  | 'checkboxGroup'
-  | 'switch'
-  | 'rate'
-  | 'slider'
-  | 'upload'
-  | 'cascader'
-  | 'transfer'
-  | 'dateRange'
-  | 'datetimeRange'
-  | 'yearRange'
-  | 'monthRange'
-  | 'weekRange'
-  | 'timeRange'
-  | ((formData: any, column: StdTableColumn, config: Record<any, any>, mode: 'edit' | 'add') => VNode | JSX.Element)
-  | JSX.Element
-  | DefineComponent<any, any, any>
+export type FormItemType
+  = 'input'
+    | 'password'
+    | 'inputNumber'
+    | 'select'
+    | 'selector'
+    | 'date'
+    | 'datetime'
+    | 'year'
+    | 'month'
+    | 'week'
+    | 'time'
+    | 'textarea'
+    | 'radioGroup'
+    | 'checkboxGroup'
+    | 'switch'
+    | 'rate'
+    | 'slider'
+    | 'upload'
+    | 'cascader'
+    | 'transfer'
+    | 'dateRange'
+    | 'datetimeRange'
+    | 'yearRange'
+    | 'monthRange'
+    | 'weekRange'
+    | 'timeRange'
+    | ((formData: any, column: StdTableColumn, config: Record<any, any>, mode: 'edit' | 'add') => VNode | JSX.Element)
+    | JSX.Element
+    | DefineComponent<any, any, any>
 
 export interface StdFormConfig extends Record<any, any> {
   type: FormItemType
