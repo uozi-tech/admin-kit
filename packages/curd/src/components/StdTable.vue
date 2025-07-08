@@ -103,7 +103,7 @@ const dataColumns = computed<any>(() => {
     cols.unshift({
       title: '',
       dataIndex: 'drag',
-      width: 40,
+      width: 80,
       align: 'center',
       customRender: () => {
         return h(HolderOutlined, { class: 'ant-table-drag-icon' })
