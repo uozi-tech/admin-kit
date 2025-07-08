@@ -119,13 +119,19 @@ function handleView(row: Record<string, any>) {
   getDataDetail(row)
 }
 
-// 打开添加弹窗
-function handleAdd() {
+// 打开添加弹窗并使用预设数据
+function handleAdd(data?: Record<string, any>) {
   emit('add')
 
   formVisible.value = true
   mode.value = 'add'
-  itemDetail.value = {}
+
+  if (data) {
+    itemDetail.value = cloneDeep(data)
+  }
+  else {
+    itemDetail.value = {}
+  }
 }
 
 // 打开编辑弹窗
@@ -139,13 +145,6 @@ async function handleEdit(row: Record<string, any>) {
 
   getDataDetail(row)
   mode.value = 'edit'
-  formVisible.value = true
-}
-
-// 从外部打开添加弹窗并使用预设数据
-function add(data: Record<string, any>) {
-  itemDetail.value = cloneDeep(data)
-  mode.value = 'add'
   formVisible.value = true
 }
 
@@ -239,7 +238,7 @@ function onBatchEditSave() {
 
 defineExpose({
   refresh,
-  add,
+  handleAdd,
 })
 
 const title = computed(() => {
