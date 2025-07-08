@@ -288,7 +288,7 @@ const modalTitle = computed(() => {
             @click="handleAdd"
           >{{ t('add') }}</a>
           <a
-            v-if="!disableTrash || !disableDelete"
+            v-if="!disableTrash && !disableDelete"
             :class="{ 'cursor-not-allowed text-truegray-3 hover:text-truegray-3': tableLoading }"
             @click="switchTrashAndList"
           >
