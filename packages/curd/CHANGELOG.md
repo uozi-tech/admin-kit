@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.3.18
+
+### Patch Changes
+
+- [`fdb0809`](https://github.com/uozi-tech/admin-kit/commit/fdb08094273887ea100c228207cbef4f449ed607) Thanks [@0xJacky](https://github.com/0xJacky)! - feat(curd): change selectedRows to use defineModel
+
 ## 4.3.17
 
 ### Patch Changes
