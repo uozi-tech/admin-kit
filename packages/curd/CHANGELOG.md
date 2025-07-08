@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.3.17
+
+### Patch Changes
+
+- [`d8c1a66`](https://github.com/uozi-tech/admin-kit/commit/d8c1a66e48660fc6ebeafd6532ff3d5e2a0d1650) Thanks [@0xJacky](https://github.com/0xJacky)! - fix(curd): increase drag icon column width from 40 to 80 for better visibility
+
 ## 4.3.16
 
 ### Patch Changes
