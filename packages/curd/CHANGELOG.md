@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.3.15
+
+### Patch Changes
+
+- [`2d3c286`](https://github.com/uozi-tech/admin-kit/commit/2d3c286a754f3e98b0a2eb58bd7f6cdea612ad40) Thanks [@0xJacky](https://github.com/0xJacky)! - fix(curd): update condition for trash button visibility to include delete permission
+
 ## 4.3.14
 
 ### Patch Changes
