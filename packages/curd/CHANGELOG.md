@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.3.14
+
+### Patch Changes
+
+- [`8d6c93c`](https://github.com/uozi-tech/admin-kit/commit/8d6c93c8a4d73f2f29feb3f469bfc42f33854557) Thanks [@0xJacky](https://github.com/0xJacky)! - feat(curd): enhance handleAdd to accept preset data for modal and expose it
+
 ## 4.3.13
 
 ### Patch Changes
