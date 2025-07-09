@@ -96,8 +96,11 @@ StdCurd (顶层容器)
 ├── StdSearch (搜索表单)
 ├── StdTable (数据表格)
 ├── StdForm (编辑表单)
-└── StdDetail (数据详情)
+└── StdDetail (数据详情/可编辑详情)
 ```
+
+每个组件既可以在 StdCurd 中使用，也可以单独使用：
+- **StdDetail**: 支持查看和编辑两种模式，可用于构建独立的详情页面
 
 ## 数据流
 

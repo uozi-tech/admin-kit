@@ -163,6 +163,100 @@ import { columns } from './columns'
 - 删除功能
 - 分页功能
 
+## 独立的可编辑详情页
+
+除了 StdCurd 的完整解决方案，你也可以单独使用 StdDetail 组件创建可编辑的详情页面：
+
+```vue
+<!-- src/views/user/detail.vue -->
+<script setup lang="ts">
+import { StdDetail } from '@uozi-admin/curd'
+import { ref } from 'vue'
+
+const userDetail = ref({
+  id: 1,
+  username: 'admin',
+  email: 'admin@example.com',
+  status: 1,
+  bio: '系统管理员'
+})
+
+const columns = [
+  {
+    title: '用户名',
+    dataIndex: 'username',
+    edit: {
+      type: 'input',
+      formItem: {
+        rules: [{ required: true, min: 3, max: 20 }]
+      }
+    }
+  },
+  {
+    title: '邮箱',
+    dataIndex: 'email',
+    edit: {
+      type: 'input',
+      formItem: {
+        rules: [
+          { required: true },
+          { type: 'email', message: '请输入有效邮箱' }
+        ]
+      }
+    }
+  },
+  {
+    title: '状态',
+    dataIndex: 'status',
+    edit: {
+      type: 'switch',
+      switch: {
+        checkedValue: 1,
+        unCheckedValue: 0,
+        checkedChildren: '启用',
+        unCheckedChildren: '禁用'
+      }
+    },
+    customRender: ({ value }) => value === 1 ? '启用' : '禁用'
+  },
+  {
+    title: '个人简介',
+    dataIndex: 'bio',
+    edit: {
+      type: 'textarea',
+      textarea: { maxLength: 200, showCount: true }
+    }
+  },
+  {
+    title: 'ID',
+    dataIndex: 'id'
+    // 不设置 edit，此字段不可编辑
+  }
+]
+
+async function handleSave(data) {
+  // 调用 API 保存数据
+  await userApi.updateItem(data.id, data)
+  userDetail.value = { ...data }
+}
+</script>
+
+<template>
+  <StdDetail
+    :record="userDetail"
+    :columns="columns"
+    :editable="true"
+    @save="handleSave"
+  />
+</template>
+```
+
+这个详情页面支持：
+- 字段级别的编辑控制
+- 表单验证
+- 模式切换（查看/编辑）
+- 自定义渲染
+
 ## 高级用法
 
 ### 自定义 API 配置

@@ -30,6 +30,8 @@
   "pleaseSelectAtLeastOneItem": "請至少選擇一項",
   "batchModify": "批量修改",
   "saveSuccessfully": "保存成功",
+  "saveSuccess": "保存成功",
+  "cancel": "取消",
   "belowsAreSelectedItems": "以下是您要批量修改的選中項",
   "leaveBlankIfDoNotWantToModify": "如不想修改請留空",
   "no": "取消",

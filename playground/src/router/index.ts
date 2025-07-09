@@ -125,6 +125,16 @@ export const routes: RouteRecordRaw[] = [
           title: () => $gettext('System Settings'),
         },
       },
+      // StdDetail 演示
+      {
+        path: '/detail-demo',
+        name: 'detail-demo',
+        component: () => import('../views/DetailDemo.vue'),
+        meta: {
+          icon: FileTextOutlined,
+          title: () => 'StdDetail 演示',
+        },
+      },
     ],
   },
 ]

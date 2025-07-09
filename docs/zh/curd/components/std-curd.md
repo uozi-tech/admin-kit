@@ -67,6 +67,56 @@ const api = {
 | showSearchBtn | 显示搜索按钮 | boolean | false |
 | searchFormExtraRender | 搜索表单额外渲染函数 | (searchFormData: any, searchColumns: StdTableColumn[], stdTableConfig: Record<any, any>) => VNode \| JSX.Element | - |
 
+## 详情页编辑
+
+StdCurd 组件内置的详情页是只读的。如果需要在详情页进行编辑，建议单独使用 [StdDetail](./std-detail.md) 组件：
+
+```vue
+<script setup lang="ts">
+import { StdDetail } from '@uozi-admin/curd'
+import { ref } from 'vue'
+
+const userDetail = ref({
+  id: 1,
+  username: 'admin',
+  email: 'admin@example.com'
+})
+
+const columns = [
+  {
+    title: '用户名',
+    dataIndex: 'username',
+    edit: {
+      type: 'input',
+      formItem: { rules: [{ required: true }] }
+    }
+  },
+  {
+    title: '邮箱', 
+    dataIndex: 'email',
+    edit: {
+      type: 'input',
+      formItem: { rules: [{ type: 'email' }] }
+    }
+  }
+]
+
+function handleSave(data) {
+  // 保存逻辑
+  userDetail.value = { ...data }
+}
+</script>
+
+<template>
+  <StdDetail
+    :record="userDetail"
+    :columns="columns"
+    :editable="true"
+    @save="handleSave"
+  />
+</template>
+```
+
 ## 事件
 
 | 事件名 | 说明 | 回调参数 |

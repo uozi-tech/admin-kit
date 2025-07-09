@@ -30,6 +30,8 @@
   "pleaseSelectAtLeastOneItem": "Please select at least one item",
   "batchModify": "Batch Modify",
   "saveSuccessfully": "Save successfully",
+  "saveSuccess": "Save successful",
+  "cancel": "Cancel",
   "belowsAreSelectedItems": "Belows are selected items that you want to batch modify",
   "leaveBlankIfDoNotWantToModify": "Leave blank if do not want to modify",
   "no": "No",
