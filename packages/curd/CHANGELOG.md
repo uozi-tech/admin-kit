@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.4.0
+
+### Minor Changes
+
+- [`494abb2`](https://github.com/uozi-tech/admin-kit/commit/494abb28e4d16e436356c4e15d2e87637e5d55aa) Thanks [@akinoccc](https://github.com/akinoccc)! - feat(curd): enhance StdDetail, support edit mode
+
 ## 4.3.19
 
 ### Patch Changes
