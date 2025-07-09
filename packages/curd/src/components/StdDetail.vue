@@ -1,43 +1,41 @@
 <script setup lang="tsx">
 import type { DescriptionsProps } from 'ant-design-vue'
+import type { CurdApi } from 'src/types/api'
 import type { CustomRenderArgs, StdTableColumn } from '../types'
 import { Button, Descriptions, DescriptionsItem, Flex, Form, FormItem, message } from 'ant-design-vue'
 import { get } from 'lodash-es'
-import { computed, reactive, ref, watch } from 'vue'
+import { computed, onMounted, reactive, ref, watch } from 'vue'
 import { useLocale } from '../composables'
 import { getEditLabel } from '../utils'
 import FormControllerRender from './StdFormController.vue'
 
 interface Props {
-  record: any
+  id?: string
   columns: StdTableColumn[]
   detailProps?: DescriptionsProps
-  api?: (...args: any[]) => Promise<any>
+  api?: CurdApi
   editable?: boolean
   editableFields?: string[]
-  mode?: 'view' | 'edit'
   loading?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
   editable: false,
-  mode: 'view',
+  loading: false,
 })
 
 const emit = defineEmits<{
   (e: 'save', data: any): void
   (e: 'cancel'): void
   (e: 'edit'): void
-  (e: 'update:mode', mode: 'view' | 'edit'): void
 }>()
+
+const record = defineModel<any>('record')
 
 const { t } = useLocale()
 
 // 当前模式
-const currentMode = computed({
-  get: () => props.mode,
-  set: value => emit('update:mode', value),
-})
+const currentMode = ref<'view' | 'edit'>('view')
 
 // 表单数据
 const formData = ref<Record<string, any>>({})
@@ -53,7 +51,7 @@ const displayColumns = computed(() =>
 )
 
 // 初始化表单数据
-watch(() => props.record, (newRecord) => {
+watch(() => record.value, (newRecord) => {
   if (newRecord && Object.keys(newRecord).length > 0) {
     formData.value = reactive({ ...newRecord })
   }
@@ -87,11 +85,12 @@ async function handleSave() {
   try {
     await formRef.value.validateFields()
     if (props.api) {
-      await props.api(formData.value)
+      await props.api.updateItem(formData.value.id, formData.value)
     }
     else {
       emit('save', { ...formData.value })
     }
+    await getRecord()
     currentMode.value = 'view'
     message.success(t('saveSuccess'))
   }
@@ -104,7 +103,7 @@ async function handleSave() {
 // 取消编辑
 function handleCancel() {
   // 重置表单数据
-  formData.value = reactive({ ...props.record })
+  formData.value = reactive({ ...record.value })
   currentMode.value = 'view'
   emit('cancel')
 }
@@ -133,6 +132,22 @@ function FormItemRender({ column }: { column: StdTableColumn }) {
     </FormItem>
   )
 }
+
+function getRecord() {
+  if (!props.api || !props.id)
+    return
+
+  props.api.getItem(props.id).then((res) => {
+    record.value = res
+    formData.value = reactive({ ...res })
+  })
+}
+
+onMounted(() => {
+  if (!record.value && props.api && props.id) {
+    getRecord()
+  }
+})
 </script>
 
 <template>
@@ -191,7 +206,7 @@ function FormItemRender({ column }: { column: StdTableColumn }) {
           />
           <!-- 只读字段 -->
           <DataItemRender
-            v-else-if="Object.keys(record).length"
+            v-else-if="Object.keys(record || {}).length"
             :record="record"
             :column="column"
             :text="get(record, column.dataIndex)"
@@ -217,7 +232,7 @@ function FormItemRender({ column }: { column: StdTableColumn }) {
         :span="Number(column.edit?.col?.span) ?? 24"
       >
         <DataItemRender
-          v-if="Object.keys(record).length"
+          v-if="Object.keys(record || {}).length"
           :record="record"
           :column="column"
           :text="get(record, column.dataIndex)"

@@ -4,19 +4,37 @@ import { StdDetail } from '@uozi-admin/curd'
 import { Card, Divider, message, Space } from 'ant-design-vue'
 import { ref } from 'vue'
 
-// 模拟数据
-const sampleRecord = ref({
-  id: 1,
-  name: '张三',
-  email: 'zhangsan@example.com',
-  age: 28,
-  status: 1,
-  avatar: ['https://via.placeholder.com/100'],
-  bio: '这是一个简介描述',
-  createdAt: '2025-01-01',
-  isVip: true,
-  rating: 4.5,
-  tags: [1, 2],
+// 模拟 API
+const mockApi = {
+  getItem: (id: string) => {
+    return Promise.resolve({
+      id: 1,
+      name: '张三',
+      email: 'zhangsan@example.com',
+      age: 28,
+      status: 1,
+      avatar: ['https://via.placeholder.com/100'],
+      bio: '这是一个简介描述',
+      createdAt: '2025-01-01',
+      isVip: true,
+      rating: 4.5,
+      tags: [1, 2],
+    })
+  },
+  updateItem: (id: string, data: any) => {
+    console.log('更新数据:', id, data)
+    return Promise.resolve(data)
+  },
+}
+
+// 手动控制的记录数据
+const manualRecord = ref({
+  id: 2,
+  name: '李四',
+  email: 'lisi@example.com',
+  age: 25,
+  status: 0,
+  bio: '手动传入的数据',
 })
 
 // 列配置
@@ -132,30 +150,6 @@ const columns: StdTableColumn[] = [
   },
 ]
 
-// 状态
-const mode = ref<'view' | 'edit'>('view')
-const loading = ref(false)
-
-// 事件处理
-function handleSave(data: any) {
-  loading.value = true
-
-  // 模拟 API 调用
-  setTimeout(() => {
-    sampleRecord.value = { ...data }
-    loading.value = false
-    message.success('保存成功！')
-  }, 1000)
-}
-
-function handleCancel() {
-  message.info('已取消编辑')
-}
-
-function handleEdit() {
-  message.info('进入编辑模式')
-}
-
 // 受限编辑模式的列配置（只能编辑部分字段）
 const restrictedEditableFields = ['name', 'bio', 'rating']
 </script>
@@ -167,39 +161,31 @@ const restrictedEditableFields = ['name', 'bio', 'rating']
       size="large"
       style="width: 100%;"
     >
-      <!-- 完全可编辑模式 -->
+      <!-- 通过 API 自动获取数据的可编辑模式 -->
       <Card
-        title="完全可编辑模式"
+        title="通过 API 自动获取数据的可编辑模式"
         size="small"
       >
         <StdDetail
-          :record="sampleRecord"
+          id="1"
+          :api="mockApi"
           :columns="columns"
           :editable="true"
-          :mode="mode"
-          :loading="loading"
-          @save="handleSave"
-          @cancel="handleCancel"
-          @edit="handleEdit"
-          @update:mode="mode = $event"
         />
       </Card>
 
       <Divider />
 
-      <!-- 受限编辑模式（只能编辑特定字段） -->
+      <!-- 手动传入数据的受限编辑模式 -->
       <Card
-        title="受限编辑模式（只能编辑姓名、简介、评分）"
+        title="手动传入数据的受限编辑模式（只能编辑姓名、简介、评分）"
         size="small"
       >
         <StdDetail
-          :record="sampleRecord"
+          v-model:record="manualRecord"
           :columns="columns"
           :editable="true"
           :editable-fields="restrictedEditableFields"
-          @save="handleSave"
-          @cancel="handleCancel"
-          @edit="handleEdit"
         />
       </Card>
 
@@ -211,7 +197,7 @@ const restrictedEditableFields = ['name', 'bio', 'rating']
         size="small"
       >
         <StdDetail
-          :record="sampleRecord"
+          v-model:record="manualRecord"
           :columns="columns"
           :editable="false"
         />

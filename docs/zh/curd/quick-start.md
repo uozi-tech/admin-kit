@@ -171,15 +171,11 @@ import { columns } from './columns'
 <!-- src/views/user/detail.vue -->
 <script setup lang="ts">
 import { StdDetail } from '@uozi-admin/curd'
-import { ref } from 'vue'
+import { userApi } from '~/api/user'
+import { useRoute } from 'vue-router'
 
-const userDetail = ref({
-  id: 1,
-  username: 'admin',
-  email: 'admin@example.com',
-  status: 1,
-  bio: '系统管理员'
-})
+const route = useRoute()
+const userId = route.params.id
 
 const columns = [
   {
@@ -233,20 +229,14 @@ const columns = [
     // 不设置 edit，此字段不可编辑
   }
 ]
-
-async function handleSave(data) {
-  // 调用 API 保存数据
-  await userApi.updateItem(data.id, data)
-  userDetail.value = { ...data }
-}
 </script>
 
 <template>
   <StdDetail
-    :record="userDetail"
+    :id="userId"
+    :api="userApi"
     :columns="columns"
     :editable="true"
-    @save="handleSave"
   />
 </template>
 ```

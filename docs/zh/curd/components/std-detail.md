@@ -4,13 +4,11 @@ StdDetail 是一个用于展示和编辑数据详情的组件，基于 Ant Desig
 
 ## 基础用法
 
+### 方式一：通过 ID 自动获取数据
+
 ```vue
 <script setup lang="ts">
-const detailData = {
-  username: 'admin',
-  email: 'admin@example.com',
-  status: 1
-}
+import { userApi } from '~/api/user'
 
 const columns = [
   {
@@ -31,7 +29,46 @@ const columns = [
 
 <template>
   <StdDetail
-    :record="detailData"
+    id="1"
+    :api="userApi"
+    :columns="columns"
+  />
+</template>
+```
+
+### 方式二：手动传入数据
+
+```vue
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const userRecord = ref({
+  id: 1,
+  username: 'admin',
+  email: 'admin@example.com',
+  status: 1
+})
+
+const columns = [
+  {
+    title: '用户名',
+    dataIndex: 'username'
+  },
+  {
+    title: '邮箱',
+    dataIndex: 'email'
+  },
+  {
+    title: '状态',
+    dataIndex: 'status',
+    customRender: ({ text }) => text === 1 ? '启用' : '禁用'
+  }
+]
+</script>
+
+<template>
+  <StdDetail
+    v-model:record="userRecord"
     :columns="columns"
   />
 </template>
@@ -43,13 +80,7 @@ StdDetail 支持可编辑功能，可以直接在详情页面进行数据修改�
 
 ```vue
 <script setup lang="ts">
-const detailData = ref({
-  id: 1,
-  username: 'admin',
-  email: 'admin@example.com',
-  status: 1,
-  bio: '管理员用户'
-})
+import { userApi } from '~/api/user'
 
 const columns = [
   {
@@ -108,29 +139,14 @@ const columns = [
   }
 ]
 
-function handleSave(data) {
-  console.log('保存数据:', data)
-  // 处理保存逻辑
-  detailData.value = { ...data }
-}
-
-function handleCancel() {
-  console.log('取消编辑')
-}
-
-function handleEdit() {
-  console.log('进入编辑模式')
-}
 </script>
 
 <template>
   <StdDetail
-    :record="detailData"
+    id="1"
+    :api="userApi"
     :columns="columns"
     :editable="true"
-    @save="handleSave"
-    @cancel="handleCancel"
-    @edit="handleEdit"
   />
 </template>
 ```
@@ -141,17 +157,19 @@ function handleEdit() {
 
 ```vue
 <script setup lang="ts">
+import { userApi } from '~/api/user'
+
 // 只允许编辑用户名和个人简介
 const editableFields = ['username', 'bio']
 </script>
 
 <template>
   <StdDetail
-    :record="detailData"
+    id="1"
+    :api="userApi"
     :columns="columns"
     :editable="true"
     :editable-fields="editableFields"
-    @save="handleSave"
   />
 </template>
 ```
@@ -162,14 +180,19 @@ const editableFields = ['username', 'bio']
 
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| record | 详情数据 | object | {} |
+| id | 数据 ID，用于自动获取详情数据 | string | - |
 | columns | 列配置 | StdTableColumn[] | [] |
 | detailProps | Descriptions 组件属性 | DescriptionsProps | - |
+| api | CURD API 接口对象 | CurdApi | - |
 | editable | 是否启用可编辑功能 | boolean | false |
 | editableFields | 指定可编辑的字段列表 | string[] | - |
-| mode | 当前模式 | 'view' \| 'edit' | 'view' |
 | loading | 保存时的加载状态 | boolean | false |
-| api | 保存数据的 API 函数 | (...args: any[]) => Promise<any> | - |
+
+### Model
+
+| 属性 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| record | 详情数据（v-model） | object | {} |
 
 ### Events
 
@@ -178,7 +201,6 @@ const editableFields = ['username', 'bio']
 | save | 保存数据时触发 | (data: any) => void |
 | cancel | 取消编辑时触发 | () => void |
 | edit | 进入编辑模式时触发 | () => void |
-| update:mode | 模式变化时触发 | (mode: 'view' \| 'edit') => void |
 
 ## 功能特性
 
@@ -257,22 +279,13 @@ const column = {
 <script setup lang="ts">
 import { ref } from 'vue'
 import { StdDetail } from '@uozi-admin/curd'
-
-const userDetail = ref({
-  id: 1,
-  username: 'admin',
-  email: 'admin@example.com',
-  status: 1,
-  bio: '系统管理员',
-  avatar: ['https://example.com/avatar.jpg'],
-  createTime: '2024-01-01'
-})
+import { userApi } from '~/api/user'
 
 const columns = [
   {
     title: 'ID',
     dataIndex: 'id'
-    // 不设置 edit，此字段不可编辑
+    // 不设置 edit，表示此字段不可编辑，但仍会显示
   },
   {
     title: '用户名',
@@ -344,40 +357,14 @@ const columns = [
   }
 ]
 
-const mode = ref('view')
-const loading = ref(false)
-
-async function handleSave(data) {
-  loading.value = true
-  try {
-    // 模拟 API 请求
-    await new Promise(resolve => setTimeout(resolve, 1000))
-    userDetail.value = { ...data }
-    console.log('保存成功:', data)
-  } finally {
-    loading.value = false
-  }
-}
-
-function handleCancel() {
-  console.log('取消编辑')
-}
-
-function handleEdit() {
-  console.log('进入编辑模式')
-}
 </script>
 
 <template>
   <StdDetail
-    v-model:mode="mode"
-    :record="userDetail"
+    id="1"
+    :api="userApi"
     :columns="columns"
     :editable="true"
-    :loading="loading"
-    @save="handleSave"
-    @cancel="handleCancel"
-    @edit="handleEdit"
   />
 </template>
 ```

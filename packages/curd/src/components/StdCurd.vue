@@ -383,9 +383,10 @@ const modalTitle = computed(() => {
           <div>
             <StdDetail
               v-if="mode === 'view'"
+              :id="itemDetail[rowKey ?? 'id']"
               :row-key
               :columns
-              :record="itemDetail"
+              :api="api"
               :detail-props
             />
             <template v-else-if="mode === 'edit' || mode === 'add'">

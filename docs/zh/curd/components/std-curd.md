@@ -74,13 +74,7 @@ StdCurd 组件内置的详情页是只读的。如果需要在详情页进行编
 ```vue
 <script setup lang="ts">
 import { StdDetail } from '@uozi-admin/curd'
-import { ref } from 'vue'
-
-const userDetail = ref({
-  id: 1,
-  username: 'admin',
-  email: 'admin@example.com'
-})
+import { userApi } from '~/api/user'
 
 const columns = [
   {
@@ -100,19 +94,14 @@ const columns = [
     }
   }
 ]
-
-function handleSave(data) {
-  // 保存逻辑
-  userDetail.value = { ...data }
-}
 </script>
 
 <template>
   <StdDetail
-    :record="userDetail"
+    id="1"
+    :api="userApi"
     :columns="columns"
     :editable="true"
-    @save="handleSave"
   />
 </template>
 ```
