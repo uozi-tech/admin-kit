@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.3.19
+
+### Patch Changes
+
+- [`119626a`](https://github.com/uozi-tech/admin-kit/commit/119626a89a98313004208fab4b49d3198769d0ad) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): add default row-key attribute to StdTable component for improved data handling
+
 ## 4.3.18
 
 ### Patch Changes
