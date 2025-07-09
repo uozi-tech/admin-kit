@@ -366,6 +366,7 @@ function SearchFormExtraRender() {
       :columns="dataColumns"
       :data-source="tableData"
       :loading="tableLoading"
+      row-key="id"
       v-bind="{
         scroll: {
           x: 'max-content',
