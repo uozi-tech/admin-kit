@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.5.0
+
+### Minor Changes
+
+- [`af080d1`](https://github.com/uozi-tech/admin-kit/commit/af080d15c0d987da8762ab74bdad9c7248cfeb42) Thanks [@akinoccc](https://github.com/akinoccc)! - feat(curd): [StdDetail] support auto get and save data
+
 ## 4.4.0
 
 ### Minor Changes
