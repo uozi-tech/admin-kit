@@ -4,7 +4,7 @@ import type { CurdApi } from 'src/types/api'
 import type { CustomRenderArgs, StdTableColumn } from '../types'
 import { Button, Descriptions, DescriptionsItem, Flex, Form, FormItem, message } from 'ant-design-vue'
 import { get } from 'lodash-es'
-import { computed, onMounted, reactive, ref, watch } from 'vue'
+import { computed, onMounted, reactive, ref, watch, watchEffect } from 'vue'
 import { useLocale } from '../composables'
 import { getEditLabel } from '../utils'
 import FormControllerRender from './StdFormController.vue'
@@ -143,7 +143,7 @@ function getRecord() {
   })
 }
 
-onMounted(() => {
+watchEffect(() => {
   if (!record.value && props.api && props.id) {
     getRecord()
   }
@@ -206,7 +206,7 @@ onMounted(() => {
           />
           <!-- 只读字段 -->
           <DataItemRender
-            v-else-if="Object.keys(record || {}).length"
+            v-else-if="record"
             :record="record"
             :column="column"
             :text="get(record, column.dataIndex)"
@@ -232,7 +232,7 @@ onMounted(() => {
         :span="Number(column.edit?.col?.span) ?? 24"
       >
         <DataItemRender
-          v-if="Object.keys(record || {}).length"
+          v-if="record"
           :record="record"
           :column="column"
           :text="get(record, column.dataIndex)"
