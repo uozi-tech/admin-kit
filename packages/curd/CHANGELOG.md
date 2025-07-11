@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.5.1
+
+### Patch Changes
+
+- [`13a6ec0`](https://github.com/uozi-tech/admin-kit/commit/13a6ec0a2c59d399b6bcd6c71f58ec7f5bcb7b5c) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): update StdDetail to use watchEffect for record fetching and improve condition checks
+
 ## 4.5.0
 
 ### Minor Changes
