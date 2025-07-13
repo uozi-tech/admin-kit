@@ -13,7 +13,7 @@ const props = withDefaults(
 const emit = defineEmits<{
   (e: 'selectedRecords', records: any[]): void
 }>()
-const value = defineModel<any>('value')
+const value = defineModel<any>('value', { default: reactive([]) })
 const dataColumns = computed(() => {
   return props.columns.filter(item => item.pure)
 })
@@ -23,6 +23,9 @@ Form.useInjectFormItemContext()
 const visible = defineModel<boolean>('visible', { default: false })
 const selectedRowKeys = ref<any[]>([])
 const selectedRows = defineModel<any[]>('selectedRows', { default: reactive([]) })
+
+// 添加内部临时状态来管理选中的行数据
+const internalSelectedRows = ref<any[]>([])
 
 // 获取全局配置
 const curdConfig = useCurdConfig()
@@ -56,10 +59,12 @@ function setValue() {
   else {
     value.value = selectedRowKeys.value
   }
+  // 只有在点击OK时才更新selectedRows
+  selectedRows.value = [...internalSelectedRows.value]
   visible.value = false
   emit('selectedRecords', selectedRows.value)
   selectedRowKeys.value = []
-  selectedRows.value = []
+  internalSelectedRows.value = []
 }
 
 function removeValue(v: any) {
@@ -81,7 +86,14 @@ async function init() {
       ...props.overwriteParams,
       id: preloadIds,
     })
-    selectedRows.value = data.filter(item => preloadIds.includes(get(item, props.valueKey)))
+    const preloadedRows = data.filter(item => preloadIds.includes(get(item, props.valueKey)))
+    selectedRows.value = preloadedRows
+    // 同步更新内部临时状态
+    internalSelectedRows.value = [...preloadedRows]
+  }
+  else {
+    // 如果没有预加载数据，清空内部状态
+    internalSelectedRows.value = []
   }
 }
 
@@ -144,7 +156,7 @@ const computedValue = computed({
       {{ tips }}
       <StdTable
         v-model:selected-row-keys="selectedRowKeys"
-        v-model:selected-rows="selectedRows"
+        v-model:selected-rows="internalSelectedRows"
         :columns="dataColumns"
         :get-list-api="getListApi"
         only-query
