@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.5.2
+
+### Patch Changes
+
+- [`91f1a6e`](https://github.com/uozi-tech/admin-kit/commit/91f1a6e731787bcadc11d8e5116d09c18aaa2be0) Thanks [@0xJacky](https://github.com/0xJacky)! - fix(curd): [selector] add internal state management for selected rows
+
 ## 4.5.1
 
 ### Patch Changes
