@@ -19,7 +19,7 @@
   "dependencies": {
     "@ant-design/icons-vue": "^7.0.1",
     "@iconify-json/tabler": "^1.2.19",
-    "@uozi-admin/curd": "^4.5.1",
+    "@uozi-admin/curd": "^4.5.2",
     "@uozi-admin/layout-antdv": "^1.2.8",
     "@uozi-admin/request": "^2.8.1",
     "@vueuse/core": "^13.5.0",
