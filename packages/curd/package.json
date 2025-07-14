@@ -46,7 +46,7 @@
   },
   "devDependencies": {
     "@types/lodash-es": "^4.17.12",
-    "@types/node": "^22.16.0",
+    "@types/node": "^22.16.3",
     "@types/sortablejs": "^1.15.8",
     "@uozi-admin/shared-config": "workspace:*",
     "simple-git-hooks": "^2.13.0",
@@ -54,7 +54,7 @@
     "typescript": "^5.8.3",
     "unocss-preset-chinese": "^0.3.3",
     "unocss-preset-ease": "^0.0.4",
-    "vite": "^7.0.2"
+    "vite": "^7.0.4"
   },
   "dependencies": {
     "@vueuse/core": "^13.5.0",
