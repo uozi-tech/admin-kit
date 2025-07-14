@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.5.3
+
+### Patch Changes
+
+- [`ed14d7e`](https://github.com/uozi-tech/admin-kit/commit/ed14d7e203751bfa92ea9edd4f77045f1c475aa6) Thanks [@0xJacky](https://github.com/0xJacky)! - fix(curd): [selector] improve internal state management to prevent infinite loop during init
+
 ## 4.5.2
 
 ### Patch Changes
