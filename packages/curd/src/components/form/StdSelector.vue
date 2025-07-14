@@ -2,7 +2,7 @@
 import type { SelectorConfig } from '../../types'
 import { Form, Modal, Select } from 'ant-design-vue'
 import { get } from 'lodash-es'
-import { computed, nextTick, onMounted, reactive, ref, watch } from 'vue'
+import { computed, nextTick, reactive, ref, watch } from 'vue'
 import { useCurdConfig, useLocale } from '../../composables'
 import StdTable from '../StdTable.vue'
 
@@ -26,6 +26,9 @@ const selectedRows = defineModel<any[]>('selectedRows', { default: reactive([]) 
 
 // 添加内部临时状态来管理选中的行数据
 const internalSelectedRows = ref<any[]>([])
+
+// 添加标志来避免无限循环
+const isInitializing = ref(false)
 
 // 获取全局配置
 const curdConfig = useCurdConfig()
@@ -77,6 +80,10 @@ function removeValue(v: any) {
 }
 
 async function init() {
+  if (isInitializing.value)
+    return // 避免无限循环
+
+  isInitializing.value = true
   const isMulti = props.selectionType === 'checkbox'
   selectedRowKeys.value = isMulti ? arraylizeValue(value.value) : []
   await nextTick()
@@ -87,14 +94,22 @@ async function init() {
       id: preloadIds,
     })
     const preloadedRows = data.filter(item => preloadIds.includes(get(item, props.valueKey)))
-    selectedRows.value = preloadedRows
-    // 同步更新内部临时状态
+    // 更新内部临时状态
     internalSelectedRows.value = [...preloadedRows]
+    // 初始化时设置selectedRows，但要避免循环
+    if (selectedRows.value.length === 0
+      || JSON.stringify(selectedRows.value) !== JSON.stringify(preloadedRows)) {
+      selectedRows.value = [...preloadedRows]
+    }
   }
   else {
-    // 如果没有预加载数据，清空内部状态
+    // 如果没有预加载数据，清空状态
     internalSelectedRows.value = []
+    if (selectedRows.value.length > 0) {
+      selectedRows.value = []
+    }
   }
+  isInitializing.value = false
 }
 
 watch(
@@ -107,8 +122,6 @@ watch(
   init,
   { immediate: true },
 )
-
-onMounted(init)
 
 function clickInput() {
   if (props.disabled) {
