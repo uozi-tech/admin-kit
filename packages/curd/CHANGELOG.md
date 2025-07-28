@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.5.9
+
+### Patch Changes
+
+- [`ec7acbe`](https://github.com/uozi-tech/admin-kit/commit/ec7acbe4cee831e479505fa7238a9675079c712a) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): duplicated item-detail request on view action
+
 ## 4.5.8
 
 ### Patch Changes
