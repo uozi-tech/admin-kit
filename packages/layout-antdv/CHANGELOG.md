@@ -1,5 +1,11 @@
 # @uozi-admin/layout-antdv
 
+## 1.2.9
+
+### Patch Changes
+
+- [`51a58cb`](https://github.com/uozi-tech/admin-kit/commit/51a58cbb7c9aee902bed2bb566b6f61c72c8bbe8) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(package): add "types" field to package.json for type definitions
+
 ## 1.2.8
 
 ### Patch Changes
