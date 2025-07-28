@@ -115,8 +115,8 @@ function handleView(row: Record<string, any>) {
   emit('view', row)
 
   formVisible.value = true
+  itemDetail.value = row
   mode.value = 'view'
-  getDataDetail(row)
 }
 
 // 打开添加弹窗并使用预设数据
