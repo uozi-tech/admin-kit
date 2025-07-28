@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.5.7
+
+### Patch Changes
+
+- [`272bdfc`](https://github.com/uozi-tech/admin-kit/commit/272bdfca3bc06db227ac51bbd87184707eb21be7) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): issue of router updating and form resetting
+
 ## 4.5.6
 
 ### Patch Changes
