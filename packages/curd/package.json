@@ -56,7 +56,7 @@
     "unocss-preset-chinese": "^0.3.3",
     "unocss-preset-ease": "^0.0.4",
     "vite": "^7.0.4",
-    "vue-types": "^3.0.2"
+    "vue-types": "^6.0.0"
   },
   "dependencies": {
     "@vueuse/core": "^13.5.0",
