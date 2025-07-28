@@ -138,7 +138,7 @@ const apiParams = computed(() => {
 
 // 更新路由 query，加入防抖是为了频繁触发时合并更新
 const debouncedUpdateRouteQuery = debounce(async (newQuery: Record<string, any>) => {
-  await router.push({ query: { ...newQuery } })
+  await router.replace({ query: { ...newQuery } })
 }, 200, { leading: false, trailing: true })
 
 watch(() => props.refreshConfig, () => {
@@ -152,7 +152,7 @@ watch(() => props.refreshConfig, () => {
 }, { deep: true })
 
 // 重置搜索表单
-function resetSearchForm() {
+async function resetSearchForm() {
   const searchKeys = Object.keys(searchFormData.value)
   if (searchKeys.length === 0)
     return
@@ -161,7 +161,7 @@ function resetSearchForm() {
   for (const key of searchKeys) {
     delete query[key]
   }
-  router.replace({ query })
+  await router.replace({ query })
 
   searchFormData.value = {}
 
@@ -229,7 +229,8 @@ watch(apiParams, async (newVal, oldVal) => {
     // overwriteParams 不同步到 route query
     // eslint-disable-next-line unused-imports/no-unused-vars
     const { overwriteParams: _, ...rest } = newVal
-    await debouncedUpdateRouteQuery({ ...route.query, ...rest })
+    const query = cloneDeep(route.query)
+    await debouncedUpdateRouteQuery({ ...query, ...rest })
   }
   tableData.value = []
   await debouncedListApi()
