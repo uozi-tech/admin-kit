@@ -26,7 +26,8 @@ export default createViteConfig({
     },
     plugins: [
       dts({
-        rollupTypes: true,
+        entryRoot: 'src',
+        rollupTypes: false,
       }),
     ],
   },
