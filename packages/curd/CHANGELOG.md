@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.5.5
+
+### Patch Changes
+
+- [`0c06b04`](https://github.com/uozi-tech/admin-kit/commit/0c06b0439a0a1705d30de934b5cd1979e65b5ce4) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(vite.config): update dts plugin configuration to set rollupTypes to false
+
 ## 4.5.4
 
 ### Patch Changes
