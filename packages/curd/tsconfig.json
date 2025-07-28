@@ -28,7 +28,8 @@
 
     "types": [
       "vite/client",
-      "vitest/config"
+      "vitest/config",
+      "vue-types"
     ],
     "baseUrl": "."
   },

@@ -151,9 +151,6 @@ importers:
       vue-router:
         specifier: '>=4.5.1'
         version: 4.5.1(vue@3.5.17(typescript@5.8.3))
-      vue-types:
-        specifier: ^6.0.0
-        version: 6.0.0(vue@3.5.17(typescript@5.8.3))
       xlsx:
         specifier: https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz
         version: https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz
@@ -188,6 +185,9 @@ importers:
       vite:
         specifier: ^7.0.4
         version: 7.0.4(@types/node@22.16.3)(jiti@2.4.2)(less@4.3.0)(tsx@4.20.3)(yaml@2.8.0)
+      vue-types:
+        specifier: ^3.0.2
+        version: 3.0.2(vue@3.5.17(typescript@5.8.3))
 
   packages/directives:
     dependencies:
@@ -6060,15 +6060,6 @@ packages:
     engines: {node: '>=10.15.0'}
     peerDependencies:
       vue: ^3.0.0
-
-  vue-types@6.0.0:
-    resolution: {integrity: sha512-fBgCA4nrBrB8SCU/AN40tFq8HUxLGBvU2ds7a5+SEDse6dYc+TJyvy8mWiwwL8oWIC/aGS/8nTqmhwxApgU5eA==}
-    engines: {node: '>=14.0.0'}
-    peerDependencies:
-      vue: ^3.0.0
-    peerDependenciesMeta:
-      vue:
-        optional: true
 
   vue3-gettext@4.0.0-alpha.8:
     resolution: {integrity: sha512-kz8hdgg0LuweeAUDFFH+L9GghfJ46CkmbyVY86xOm/eYi9/pUi5lWtpzDH25B80peUeoNF/uQdcli0wWaajS8g==}
@@ -12717,10 +12708,6 @@ snapshots:
   vue-types@3.0.2(vue@3.5.17(typescript@5.8.3)):
     dependencies:
       is-plain-object: 3.0.1
-      vue: 3.5.17(typescript@5.8.3)
-
-  vue-types@6.0.0(vue@3.5.17(typescript@5.8.3)):
-    optionalDependencies:
       vue: 3.5.17(typescript@5.8.3)
 
   vue3-gettext@4.0.0-alpha.8(@vue/compiler-sfc@3.5.17)(vue@3.5.17(typescript@5.8.3)):

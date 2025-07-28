@@ -55,14 +55,14 @@
     "typescript": "^5.8.3",
     "unocss-preset-chinese": "^0.3.3",
     "unocss-preset-ease": "^0.0.4",
-    "vite": "^7.0.4"
+    "vite": "^7.0.4",
+    "vue-types": "^3.0.2"
   },
   "dependencies": {
     "@vueuse/core": "^13.5.0",
     "scroll-into-view-if-needed": "^3.1.0",
     "sortablejs": "^1.15.6",
     "vue-i18n": "^11.1.9",
-    "vue-types": "^6.0.0",
     "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz"
   }
 }
