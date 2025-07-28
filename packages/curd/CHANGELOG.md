@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.5.6
+
+### Patch Changes
+
+- [`40adee2`](https://github.com/uozi-tech/admin-kit/commit/40adee2f2a7427d82d8f6a532d1932b4e6453ee5) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): type error from ant-design-vue
+
 ## 4.5.5
 
 ### Patch Changes
