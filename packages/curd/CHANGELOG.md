@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.5.8
+
+### Patch Changes
+
+- [`3d5d35a`](https://github.com/uozi-tech/admin-kit/commit/3d5d35a9570f628d36e799d25cb2fb2726e9c5f6) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): slot data type issue
+
 ## 4.5.7
 
 ### Patch Changes
