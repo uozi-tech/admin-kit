@@ -6,6 +6,8 @@
   "files": [
     "dist"
   ],
+  "type": "module",
+  "types": "dist/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/uozi-tech/admin-kit.git",
