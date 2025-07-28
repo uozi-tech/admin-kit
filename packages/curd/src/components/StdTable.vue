@@ -353,7 +353,7 @@ function SearchFormExtraRender() {
       <template #extra="{ formData }">
         <slot
           name="searchFormAction"
-          :form-data="formData"
+          :form-data="formData as any"
         />
         <template v-if="searchFormExtraRender">
           <SearchFormExtraRender />
@@ -386,7 +386,7 @@ function SearchFormExtraRender() {
         <template v-if="!onlyQuery && column?.dataIndex === 'actions' && !column?.customRender">
           <slot
             name="beforeActions"
-            :record="record"
+            :record="record as any"
             :column="column"
           />
           <Button
@@ -445,7 +445,7 @@ function SearchFormExtraRender() {
           </Popconfirm>
           <slot
             name="afterActions"
-            :record="record"
+            :record="record as any"
             :column="column"
           />
         </template>
