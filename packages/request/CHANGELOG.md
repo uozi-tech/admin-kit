@@ -1,5 +1,11 @@
 # @uozi-admin/request
 
+## 2.8.3
+
+### Patch Changes
+
+- [`c9af105`](https://github.com/uozi-tech/admin-kit/commit/c9af105837f29030433c111976f2949a477d8fb1) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(request): remove package.json types field
+
 ## 2.8.2
 
 ### Patch Changes
