@@ -101,7 +101,9 @@ function switchTrashAndList() {
 
 function getDataDetail(row: Record<string, any>) {
   modalLoading.value = true
-  props.api.getItem(row[props.rowKey ?? 'id']).then((res) => {
+  props.api.getItem(row[props.rowKey ?? 'id'], {
+    params: props.overwriteParams,
+  }).then((res) => {
     itemDetail.value = res
     modalLoading.value = false
   }).catch((e) => {
@@ -388,6 +390,7 @@ const modalTitle = computed(() => {
               :columns
               :api="api"
               :detail-props
+              :overwrite-params="overwriteParams"
             />
             <template v-else-if="mode === 'edit' || mode === 'add'">
               <slot
