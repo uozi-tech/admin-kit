@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.5.11
+
+### Patch Changes
+
+- [`42fa8c6`](https://github.com/uozi-tech/admin-kit/commit/42fa8c66d8fc38b023727b89bbc0579237ef26ba) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): incorrect params passing
+
 ## 4.5.10
 
 ### Patch Changes
