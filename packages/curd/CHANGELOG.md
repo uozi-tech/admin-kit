@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.5.10
+
+### Patch Changes
+
+- [`0e8a849`](https://github.com/uozi-tech/admin-kit/commit/0e8a849b3c6ecf2fd704bec790b56748a498bfe4) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): add overwriteParams for StdDetail
+
 ## 4.5.9
 
 ### Patch Changes
