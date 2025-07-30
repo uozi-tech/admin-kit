@@ -101,9 +101,7 @@ function switchTrashAndList() {
 
 function getDataDetail(row: Record<string, any>) {
   modalLoading.value = true
-  props.api.getItem(row[props.rowKey ?? 'id'], {
-    params: props.overwriteParams,
-  }).then((res) => {
+  props.api.getItem(row[props.rowKey ?? 'id'], props.overwriteParams).then((res) => {
     itemDetail.value = res
     modalLoading.value = false
   }).catch((e) => {
