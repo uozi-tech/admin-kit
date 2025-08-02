@@ -2,6 +2,7 @@ import type { ColProps, FormItemProps } from 'ant-design-vue'
 import type { DefineComponent, VNode } from 'vue'
 import type { JSX } from 'vue/jsx-runtime'
 import type {
+  AutoCompleteConfig,
   CascaderConfig,
   CheckboxGroupConfig,
   DatePickerConfig,
@@ -28,6 +29,7 @@ export type FormItemType
     | 'password'
     | 'inputNumber'
     | 'select'
+    | 'autoComplete'
     | 'selector'
     | 'date'
     | 'datetime'
@@ -65,6 +67,7 @@ export interface StdFormConfig extends Record<any, any> {
   inputNumber?: InputNumberConfig
   textarea?: TextareaConfig
   select?: SelectConfig
+  autoComplete?: AutoCompleteConfig
   selector?: SelectorConfig
   cascader?: CascaderConfig
   date?: DatePickerConfig

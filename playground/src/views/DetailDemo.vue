@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { StdTableColumn } from '@uozi-admin/curd'
 import { StdDetail } from '@uozi-admin/curd'
-import { Card, Divider, message, Space } from 'ant-design-vue'
+import { Card, Divider, Space } from 'ant-design-vue'
 import { ref } from 'vue'
 
 // 模拟 API
