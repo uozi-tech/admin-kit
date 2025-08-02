@@ -10,9 +10,9 @@
   "author": "Akino",
   "devDependencies": {
     "vitepress": "^1.6.3",
-    "vitepress-demo-plugin": "^1.4.5"
+    "vitepress-demo-plugin": "^1.4.7"
   },
   "dependencies": {
-    "vue": "^3.5.17"
+    "vue": "^3.5.18"
   }
 }
