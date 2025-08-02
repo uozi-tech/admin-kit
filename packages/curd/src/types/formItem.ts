@@ -1,4 +1,5 @@
 import type {
+  AutoCompleteProps,
   CheckboxGroupProps,
   DatePickerProps,
   InputNumberProps,
@@ -46,6 +47,17 @@ export type PasswordConfig = Omit<InputProps, 'placeholder'> & PlaceholderT & Ba
 }
 
 export type SelectConfig = Omit<SelectProps, 'placeholder'>
+  & PlaceholderT & {
+    remote?: {
+      valueKey: string
+      labelKey: string
+      api: (...args: any[]) => Promise<{ data: any[] }>
+    }
+    mask?: Record<string | number, any>
+    valueKey?: string
+  } & BaseConfig
+
+export type AutoCompleteConfig = Omit<AutoCompleteProps, 'placeholder'>
   & PlaceholderT & {
     remote?: {
       valueKey: string

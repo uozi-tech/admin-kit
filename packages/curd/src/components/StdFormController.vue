@@ -4,6 +4,7 @@ import type { StdTableColumn } from '../types'
 import { get, set } from 'lodash-es'
 import { computed, ref, watch } from 'vue'
 import {
+  StdAutoComplete,
   StdCascader,
   StdCheckboxGroup,
   StdDatePicker,
@@ -87,6 +88,14 @@ function Render() {
           <StdSelect
             v-model:value={value.value}
             props={formConfig?.select}
+            placeholder={placeholder.value}
+          />
+        )
+      case 'autoComplete':
+        return (
+          <StdAutoComplete
+            v-model:value={value.value}
+            props={formConfig?.autoComplete}
             placeholder={placeholder.value}
           />
         )

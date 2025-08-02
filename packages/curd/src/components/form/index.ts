@@ -1,3 +1,4 @@
+import StdAutoComplete from './StdAutoComplete.vue'
 import StdCascader from './StdCascader.vue'
 import StdCheckboxGroup from './StdCheckboxGroup.vue'
 import StdDatePicker from './StdDatePicker.vue'
@@ -15,6 +16,7 @@ import StdTimePicker from './StdTimePicker.vue'
 import StdUpload from './StdUpload.vue'
 
 export {
+  StdAutoComplete,
   StdCascader,
   StdCheckboxGroup,
   StdDatePicker,

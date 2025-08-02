@@ -55,7 +55,7 @@
     "typescript": "^5.8.3",
     "unocss-preset-chinese": "^0.3.3",
     "unocss-preset-ease": "^0.0.4",
-    "vite": "^7.0.4",
+    "vite": "^7.0.6",
     "vue-types": "^3.0.2"
   },
   "dependencies": {

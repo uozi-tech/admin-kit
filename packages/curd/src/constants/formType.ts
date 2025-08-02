@@ -23,5 +23,6 @@ export enum FormType {
   WeekRange = 'weekRange',
   TimeRange = 'timeRange',
   Select = 'select',
+  AutoComplete = 'autoComplete',
   Selector = 'selector',
 }
