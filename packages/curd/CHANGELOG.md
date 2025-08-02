@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.6.0
+
+### Minor Changes
+
+- [`530b1ca`](https://github.com/uozi-tech/admin-kit/commit/530b1caf18701588f5d936faad7f659f8fab14d6) Thanks [@0xJacky](https://github.com/0xJacky)! - feat(curd): add auto-complete component and update form handling
+
 ## 4.5.12
 
 ### Patch Changes
