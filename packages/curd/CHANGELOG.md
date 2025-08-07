@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.6.1
+
+### Patch Changes
+
+- [`11c7b4d`](https://github.com/uozi-tech/admin-kit/commit/11c7b4debb9b590d36aaf479802fcde765728306) Thanks [@0xJacky](https://github.com/0xJacky)! - fix(StdSelector): update preloadIds to use dynamic valueKey for API call
+
 ## 4.6.0
 
 ### Minor Changes
