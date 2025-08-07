@@ -91,7 +91,7 @@ async function init() {
   if (preloadIds.length && props.getListApi) {
     const { data } = await props.getListApi({
       ...props.overwriteParams,
-      id: preloadIds,
+      [props.valueKey]: preloadIds,
     })
     const preloadedRows = data.filter(item => preloadIds.includes(get(item, props.valueKey)))
     // 更新内部临时状态
