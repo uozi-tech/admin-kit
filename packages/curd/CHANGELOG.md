@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.7.1
+
+### Patch Changes
+
+- [`d0a0d6e`](https://github.com/uozi-tech/admin-kit/commit/d0a0d6e6329828fe4de333a19d4850238ea73c42) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): [form] incorrect watcher for linkage deps
+
 ## 4.7.0
 
 ### Minor Changes
