@@ -1,8 +1,8 @@
 <script setup lang="tsx">
 import type { Reactive } from 'vue'
 import type { StdTableColumn } from '../types'
-import { get, set } from 'lodash-es'
-import { computed, ref, watch, watchEffect } from 'vue'
+import { get, set, update } from 'lodash-es'
+import { computed, ref, watch } from 'vue'
 import {
   StdAutoComplete,
   StdCascader,
@@ -67,45 +67,63 @@ function Render() {
 
       return key
     })
-    const value = ref(get(p.formData, valueKey.value) ?? componentConfig?.defaultValue ?? formConfig?.defaultValue)
+    const value = computed({
+      get: () => get(p.formData, valueKey.value)
+        ?? componentConfig?.defaultValue
+        ?? formConfig?.defaultValue,
+      set: (v) => {
+        set(p.formData, valueKey.value, v)
+      },
+    })
 
     // 回传 form 表单数据
-    watch(value, (v) => {
-      set(p.formData, valueKey.value, v)
-    }, { immediate: true })
+    // watch(value, (v) => {
+    //   set(p.formData, valueKey.value, v)
+    // }, { immediate: true })
 
     // 字段联动逻辑
     if (formConfig?.dependencies && formConfig?.onChange) {
       const dependencies = formConfig.dependencies
       const onChangeHandler = formConfig.onChange
 
-      // 监听依赖字段的变化
-      watchEffect(() => {
-        const dependencyValues: Record<string, any> = {}
+      // 计算依赖字段的值
+      const dependencyValues = computed(() => {
+        const values: Record<string, any> = {}
         dependencies.forEach((dep) => {
-          dependencyValues[dep] = get(p.formData, dep)
+          values[dep] = get(p.formData, dep)
         })
+        return values
+      })
 
+      // 监听依赖值的变化
+      watch(dependencyValues, (newDependencyValues) => {
         // 当依赖字段有值时，触发联动函数
         const hasValidDependencies = dependencies.some((dep) => {
-          const depValue = get(p.formData, dep)
+          const depValue = newDependencyValues[dep]
           return depValue !== undefined && depValue !== null && depValue !== ''
         })
 
         if (hasValidDependencies) {
           try {
-            onChangeHandler(value.value, p.formData, dependencyValues)
+            onChangeHandler(value.value, p.formData, newDependencyValues)
           }
           catch (error) {
             console.warn('字段联动处理函数执行出错:', error)
           }
         }
-      })
+      }, { deep: true })
     }
 
     switch (formConfig?.type) {
       case 'input':
-        return <StdInput v-model:value={value.value} props={formConfig?.input} placeholder={placeholder.value} />
+        return (
+          <StdInput
+            v-model:value={value.value}
+            props={formConfig?.input}
+            placeholder={placeholder.value}
+            onUpdate:value={v => value.value = v}
+          />
+        )
       case 'inputNumber':
         return <StdInputNumber v-model:value={value.value} props={formConfig?.inputNumber} placeholder={placeholder.value} />
       case 'textarea':
