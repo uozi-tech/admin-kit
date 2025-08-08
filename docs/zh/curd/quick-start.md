@@ -247,6 +247,48 @@ const columns = [
 - 模式切换（查看/编辑）
 - 自定义渲染
 
+### 表单联动
+
+CRUD 组件还支持字段间的联动功能，例如根据身份证号自动填充出生日期：
+
+```ts
+import { set } from 'lodash-es'
+
+const columns = [
+  {
+    title: '身份证号',
+    dataIndex: 'idCard',
+    edit: {
+      type: 'input',
+      formItem: { required: true }
+    }
+  },
+  {
+    title: '出生日期',
+    dataIndex: 'birthDate',
+    edit: {
+      type: 'date',
+      dependencies: ['idCard'], // 依赖身份证号字段
+      onChange: (value, formData, dependencies) => {
+        const idCard = dependencies.idCard
+        if (idCard && idCard.length === 18) {
+          // 从身份证号提取出生日期
+          const year = idCard.substring(6, 10)
+          const month = idCard.substring(10, 12)
+          const day = idCard.substring(12, 14)
+          const birthDate = `${year}-${month}-${day}`
+          
+          // 手动更新出生日期字段
+          set(formData, 'birthDate', birthDate)
+        }
+      }
+    }
+  }
+]
+```
+
+更多联动功能请参考[表单联动](/zh/curd/advance/form-linkage)章节。
+
 ## 高级用法
 
 ### 自定义 API 配置
@@ -295,5 +337,6 @@ const api = {
 - [基础概念](/zh/curd/basic-concepts) - 了解核心概念
 - [列定义详解](/zh/curd/core/column) - 了解更多列配置选项
 - [表单控件](/zh/curd/form-controls/input) - 学习各种表单控件的使用
+- [表单联动](/zh/curd/advance/form-linkage) - 实现字段间的联动功能
 - [自定义渲染](/zh/curd/advance/custom-render) - 实现复杂的自定义需求
 - [全局配置](/zh/curd/advance/global-config) - 配置全局默认行为

@@ -91,6 +91,10 @@ export interface StdFormConfig extends Record<any, any> {
   upload?: UploadConfig
   customComponent?: Record<string | number | symbol, any>
 
+  // 字段联动配置
+  dependencies?: string[] // 依赖的字段名称数组
+  onChange?: (value: any, formData: Record<string, any>, dependencies: Record<string, any>) => void // 联动处理函数
+
   formItem?: FormItemProps & {
     name?: string | string[]
     label?: string | (() => string)

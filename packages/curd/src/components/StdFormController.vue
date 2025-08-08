@@ -2,7 +2,7 @@
 import type { Reactive } from 'vue'
 import type { StdTableColumn } from '../types'
 import { get, set } from 'lodash-es'
-import { computed, ref, watch } from 'vue'
+import { computed, ref, watch, watchEffect } from 'vue'
 import {
   StdAutoComplete,
   StdCascader,
@@ -73,6 +73,35 @@ function Render() {
     watch(value, (v) => {
       set(p.formData, valueKey.value, v)
     }, { immediate: true })
+
+    // 字段联动逻辑
+    if (formConfig?.dependencies && formConfig?.onChange) {
+      const dependencies = formConfig.dependencies
+      const onChangeHandler = formConfig.onChange
+
+      // 监听依赖字段的变化
+      watchEffect(() => {
+        const dependencyValues: Record<string, any> = {}
+        dependencies.forEach((dep) => {
+          dependencyValues[dep] = get(p.formData, dep)
+        })
+
+        // 当依赖字段有值时，触发联动函数
+        const hasValidDependencies = dependencies.some((dep) => {
+          const depValue = get(p.formData, dep)
+          return depValue !== undefined && depValue !== null && depValue !== ''
+        })
+
+        if (hasValidDependencies) {
+          try {
+            onChangeHandler(value.value, p.formData, dependencyValues)
+          }
+          catch (error) {
+            console.warn('字段联动处理函数执行出错:', error)
+          }
+        }
+      })
+    }
 
     switch (formConfig?.type) {
       case 'input':
