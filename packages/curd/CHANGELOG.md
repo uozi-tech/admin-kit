@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.7.0
+
+### Minor Changes
+
+- [`2c7e084`](https://github.com/uozi-tech/admin-kit/commit/2c7e08454c145a1723c0cbd90433de498afb8fc1) Thanks [@akinoccc](https://github.com/akinoccc)! - feat(curd): [form] add linkage
+
 ## 4.6.1
 
 ### Patch Changes
