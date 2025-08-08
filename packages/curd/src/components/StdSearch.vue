@@ -81,6 +81,7 @@ function onSearch() {
         v-model:form-data="formDataBuffer"
         :column="c"
         :form-config-key="c.search === true ? 'edit' : 'search'"
+        mode="search"
       />
     </FormItem>
     <Flex

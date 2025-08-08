@@ -1,8 +1,8 @@
 <script setup lang="tsx">
 import type { Reactive } from 'vue'
 import type { StdTableColumn } from '../types'
-import { get, set, update } from 'lodash-es'
-import { computed, ref, watch } from 'vue'
+import { get, set } from 'lodash-es'
+import { computed, watch } from 'vue'
 import {
   StdAutoComplete,
   StdCascader,
@@ -29,7 +29,7 @@ const p = defineProps<{
   formData: Reactive<Record<string, any>>
   column: StdTableColumn
   formConfigKey?: 'edit' | 'search'
-  mode?: 'edit' | 'add'
+  mode?: 'edit' | 'add' | 'search'
 }>()
 
 function Render() {
@@ -82,7 +82,7 @@ function Render() {
     // }, { immediate: true })
 
     // 字段联动逻辑
-    if (formConfig?.dependencies && formConfig?.onChange) {
+    if (p.mode !== 'search' && formConfig?.dependencies && formConfig?.onChange) {
       const dependencies = formConfig.dependencies
       const onChangeHandler = formConfig.onChange
 
