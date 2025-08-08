@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.7.2
+
+### Patch Changes
+
+- [`01790b9`](https://github.com/uozi-tech/admin-kit/commit/01790b95f4e561f68192c6a7503efa46f1bea3f1) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): [form] disable linkage on search mode
+
 ## 4.7.1
 
 ### Patch Changes
