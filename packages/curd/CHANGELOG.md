@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.9.2
+
+### Patch Changes
+
+- [`2f82a48`](https://github.com/uozi-tech/admin-kit/commit/2f82a4825b410092770096dae8a3a9ae60616e92) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): column visibility issue
+
 ## 4.9.1
 
 ### Patch Changes
