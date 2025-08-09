@@ -59,5 +59,9 @@
     "size": "大小"
   },
   "Column Settings": "列设置",
-  "Apply": "应用"
+  "Apply": "应用",
+  "Confirm Delete": "确认删除",
+  "Please Input": "请输入",
+  "to comfirm delete": "确认删除",
+  "to confirm deletion": "确认删除"
 }

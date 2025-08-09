@@ -92,6 +92,12 @@ const visible = ref(false)
       console.log(f)
       return true
     }"
+    :delete-confirm-config="{
+      mode: 'modal',
+      confirmText: 'DELETE',
+      modalTitle: '删除用户',
+      modalDescription: '此操作无法撤销。请输入 {confirmText} 来确认删除。',
+    }"
     :search-form-extra-render="() => {
       return h('div', [
         h(Button, { onClick: () => visible = true }, '添加用户'),

@@ -8,6 +8,7 @@ import type { TableRowSelection } from 'ant-design-vue/es/table/interface'
 import type { VNode } from 'vue'
 import type { JSX } from 'vue/jsx-runtime'
 import type { CurdApi } from './api'
+import type { DeleteConfirmConfig } from './config'
 import type { StdTableColumn } from './index'
 
 export interface StdTableProps extends Pick<
@@ -29,6 +30,7 @@ export interface StdTableProps extends Pick<
   | 'hideResetBtn'
   | 'showSearchBtn'
   | 'searchFormExtraRender'
+  | 'deleteConfirmConfig'
 > {
   getListApi: CurdApi['getList']
   refreshConfig?: {
@@ -90,6 +92,7 @@ export interface StdCurdProps {
     }) => void
   }
   searchFormExtraRender?: (searchFormData: any, searchColumns: StdTableColumn[], stdTableConfig: Record<any, any>) => VNode | JSX.Element
+  deleteConfirmConfig?: DeleteConfirmConfig
 
   beforeSave?: (data: Record<string, any>) => Promise<boolean> | boolean
 }

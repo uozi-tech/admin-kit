@@ -59,5 +59,9 @@
     "size": "Size"
   },
   "Column Settings": "Column Settings",
-  "Apply": "Apply"
+  "Apply": "Apply",
+  "Confirm Delete": "Confirm Delete",
+  "Please Input": "Please enter",
+  "to comfirm delete": "to confirm deletion",
+  "to confirm deletion": "to confirm deletion"
 }

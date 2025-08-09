@@ -12,6 +12,7 @@ import { getRealContent } from '..'
 import { useLocale } from '../composables'
 import useCurdConfig from '../composables/useCurdConfig'
 import useDraggableTable from '../composables/useDraggableTable'
+import DeleteConfirmModal from './DeleteConfirmModal.vue'
 import StdSearch from './StdSearch.vue'
 import TableColumnSettings from './TableColumnSettings.vue'
 
@@ -258,6 +259,11 @@ watch(() => props.getListApi, () => {
 const selectedRowKeys = defineModel<any[]>('selectedRowKeys')
 const selectedRows = defineModel<any[]>('selectedRows')
 
+// 删除确认 Modal 相关状态
+const deleteModalVisible = ref(false)
+const deleteModalRecord = ref<any>(null)
+const deleteModalType = ref<'temporary' | 'permanent'>('temporary')
+
 function onSelectedChange(keys: (string | number)[], rows: Record<string | number, unknown>[]) {
   selectedRowKeys.value = keys
   selectedRows.value = rows
@@ -322,8 +328,17 @@ function onEditBtnClick(record: any) {
   emit('editItem', record)
 }
 
+const deletionConfig = computed(() => props.deleteConfirmConfig || curdConfig.deleteConfirmConfig)
+
 function onDeleteBtnClick(record: any) {
-  emit('deleteItemTemporarily', record)
+  if (deletionConfig.value?.mode === 'modal') {
+    deleteModalRecord.value = record
+    deleteModalType.value = 'temporary'
+    deleteModalVisible.value = true
+  }
+  else {
+    emit('deleteItemTemporarily', record)
+  }
 }
 
 function onRestoreBtnClick(record: any) {
@@ -331,7 +346,25 @@ function onRestoreBtnClick(record: any) {
 }
 
 function onDeletePermanentlyBtnClick(record: any) {
-  emit('deleteItemPermanently', record)
+  if (props.deleteConfirmConfig?.mode === 'modal') {
+    deleteModalRecord.value = record
+    deleteModalType.value = 'permanent'
+    deleteModalVisible.value = true
+  }
+  else {
+    emit('deleteItemPermanently', record)
+  }
+}
+
+// 处理 Modal 确认删除
+function handleModalDeleteConfirm(record: any) {
+  if (deleteModalType.value === 'temporary') {
+    emit('deleteItemTemporarily', record)
+  }
+  else {
+    emit('deleteItemPermanently', record)
+  }
+  deleteModalVisible.value = false
 }
 
 /** Table header 渲染函数 */
@@ -436,19 +469,30 @@ function SearchFormExtraRender() {
             >
               {{ t('edit') }}
             </Button>
-            <Popconfirm
-              v-if="!disableDelete && !isTrash"
-              :title="t('deleteConfirm')"
-              @confirm="onDeleteBtnClick(record)"
-            >
+            <template v-if="!disableDelete && !isTrash">
+              <Popconfirm
+                v-if="!deletionConfig || deletionConfig.mode === 'popconfirm'"
+                :title="t('deleteConfirm')"
+                @confirm="onDeleteBtnClick(record)"
+              >
+                <Button
+                  size="small"
+                  type="link"
+                  danger
+                >
+                  {{ t('delete') }}
+                </Button>
+              </Popconfirm>
               <Button
+                v-else
                 size="small"
                 type="link"
                 danger
+                @click="onDeleteBtnClick(record)"
               >
                 {{ t('delete') }}
               </Button>
-            </Popconfirm>
+            </template>
             <Popconfirm
               v-if="!disableTrash && isTrash"
               :title="t('restoreConfirm')"
@@ -461,19 +505,30 @@ function SearchFormExtraRender() {
                 {{ t('restore') }}
               </Button>
             </Popconfirm>
-            <Popconfirm
-              v-if="!disableDelete && isTrash"
-              :title="t('deletePermanentlyConfirm')"
-              @confirm="onDeletePermanentlyBtnClick(record)"
-            >
+            <template v-if="!disableDelete && isTrash">
+              <Popconfirm
+                v-if="!deleteConfirmConfig || deleteConfirmConfig.mode === 'popconfirm'"
+                :title="t('deletePermanentlyConfirm')"
+                @confirm="onDeletePermanentlyBtnClick(record)"
+              >
+                <Button
+                  size="small"
+                  type="link"
+                  danger
+                >
+                  {{ t('deletePermanently') }}
+                </Button>
+              </Popconfirm>
               <Button
+                v-else
                 size="small"
                 type="link"
                 danger
+                @click="onDeletePermanentlyBtnClick(record)"
               >
                 {{ t('deletePermanently') }}
               </Button>
-            </Popconfirm>
+            </template>
             <slot
               name="afterActions"
               :record="record as any"
@@ -483,6 +538,14 @@ function SearchFormExtraRender() {
         </template>
       </Table>
     </div>
+
+    <!-- 删除确认 Modal -->
+    <DeleteConfirmModal
+      v-model:open="deleteModalVisible"
+      :record="deleteModalRecord"
+      :config="deletionConfig"
+      @confirm="handleModalDeleteConfirm"
+    />
   </div>
 </template>
 

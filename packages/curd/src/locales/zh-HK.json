@@ -59,5 +59,9 @@
     "size": "大小"
   },
   "Column Settings": "列設置",
-  "Apply": "應用"
+  "Apply": "應用",
+  "Confirm Delete": "確認刪除",
+  "Please Input": "請輸入",
+  "to comfirm delete": "確認刪除",
+  "to confirm deletion": "確認刪除"
 }

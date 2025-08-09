@@ -50,6 +50,10 @@ export const defaultConfig: Required<CurdConfigT> = {
     showSearchBtn: false,
     hideResetBtn: true,
   },
+  deleteConfirmConfig: {
+    mode: 'popconfirm',
+    valueKey: 'id',
+  },
 }
 
 export const CURD_CONFIG_KEY = Symbol('curdConfig')

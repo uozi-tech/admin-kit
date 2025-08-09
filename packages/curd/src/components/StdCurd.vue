@@ -18,6 +18,9 @@ const props = withDefaults(defineProps<StdCurdProps>(), {
   formRowProps: () => ({
     gutter: 16,
   }),
+  deleteConfirmConfig: () => ({
+    mode: 'popconfirm',
+  }),
 })
 
 const emit = defineEmits<{
@@ -320,6 +323,7 @@ const modalTitle = computed(() => {
         :show-search-btn
         :hide-reset-btn
         :search-form-extra-render
+        :delete-confirm-config="deleteConfirmConfig"
         :table-props="{
           rowKey,
           scroll: {

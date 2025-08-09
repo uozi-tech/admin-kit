@@ -66,6 +66,51 @@ const api = {
 | hideResetBtn | 隐藏重置按钮 | boolean | false |
 | showSearchBtn | 显示搜索按钮 | boolean | false |
 | searchFormExtraRender | 搜索表单额外渲染函数 | (searchFormData: any, searchColumns: StdTableColumn[], stdTableConfig: Record<any, any>) => VNode \| JSX.Element | - |
+| deleteConfirmConfig | 删除确认配置 | DeleteConfirmConfig | { mode: 'popconfirm' } |
+
+## 删除确认配置
+
+StdCurd 组件支持两种删除确认模式：
+
+### 1. Popconfirm 模式（默认）
+
+使用 Ant Design Vue 的 Popconfirm 组件进行删除确认：
+
+```vue
+<template>
+  <StdCurd
+    :columns="columns"
+    :api="api"
+    :delete-confirm-config="{ mode: 'popconfirm' }"
+  />
+</template>
+```
+
+### 2. Modal 模式
+
+使用模态框进行删除确认，用户需要输入指定内容才能确认删除：
+
+```vue
+<template>
+  <StdCurd
+    :columns="columns"
+    :api="api"
+    :delete-confirm-config="{
+      mode: 'modal',
+      valueKey: 'id'  // 用于确认输入的字段，默认为 'id'
+    }"
+  />
+</template>
+```
+
+### DeleteConfirmConfig 配置项
+
+| 属性 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| mode | 删除确认模式 | 'popconfirm' \| 'modal' | 'popconfirm' |
+| valueKey | 用于确认输入的记录字段（仅 modal 模式有效） | string | 'id' |
+
+在 Modal 模式下，用户需要输入记录中 `valueKey` 字段的值才能确认删除，这提供了更高的安全性，防止误删除重要数据。
 
 ## 详情页编辑
 

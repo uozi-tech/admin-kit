@@ -114,6 +114,30 @@ export type I18nToken
 
 export type I18nLanguageObject = Partial<Record<I18nToken, any>>
 
+/**
+ * The delete confirm mode
+ * @description The mode for delete confirmation
+ */
+export type DeleteConfirmMode = 'popconfirm' | 'modal'
+
+/**
+ * The delete confirm config
+ * @description The config for delete confirmation
+ */
+export interface DeleteConfirmConfig {
+  /**
+   * The delete confirm mode
+   * @default 'popconfirm'
+   */
+  mode?: DeleteConfirmMode
+
+  /**
+   * The value key of record used to type confirm (only for modal mode)
+   * @default 'id'
+   */
+  valueKey?: string
+}
+
 // app.use(curdConfigProvider)
 export interface CurdConfigT {
   listApi?: {
@@ -227,5 +251,6 @@ export interface CurdConfigT {
      * The hide reset btn
      */
     hideResetBtn?: boolean
-  }
+  },
+  deleteConfirmConfig?: DeleteConfirmConfig
 }

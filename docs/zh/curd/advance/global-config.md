@@ -36,6 +36,10 @@ CURD 组件支持全局配置,可以统一设置 API 响应格式、分页参数
   },
   selector: {
     omitZeroString: true
+  },
+  deleteConfirmConfig: {
+    mode: 'popconfirm',
+    valueKey: 'id'
   }
 }
 ```
@@ -88,6 +92,12 @@ app.use(createCurdConfig({
   // 选择器配置
   selector: {
     omitZeroString: true
+  },
+  
+  // 删除确认配置
+  deleteConfirmConfig: {
+    mode: 'modal', // 全局设置为 modal 模式
+    valueKey: 'name' // 全局设置确认输入字段
   }
 }))
 ```
@@ -160,3 +170,23 @@ interface SelectorConfig {
   omitZeroString: boolean // 是否过滤掉"0"字符串值，默认为true
 }
 ```
+
+### 删除确认配置
+
+删除确认全局配置:
+
+```ts
+interface DeleteConfirmConfig {
+  mode?: 'popconfirm' | 'modal' // 删除确认模式，默认为 'popconfirm'
+  valueKey?: string // 用于确认输入的记录字段（仅 modal 模式有效），默认为 'id'
+}
+```
+
+**配置说明:**
+
+- `mode`: 删除确认模式
+  - `'popconfirm'`: 使用 Ant Design Vue 的 Popconfirm 组件进行删除确认
+  - `'modal'`: 使用模态框进行删除确认，用户需要输入指定内容才能确认删除
+- `valueKey`: 在 Modal 模式下，用户需要输入记录中此字段的值才能确认删除
+
+**注意:** 组件级别的 `deleteConfirmConfig` 配置会覆盖全局配置。
