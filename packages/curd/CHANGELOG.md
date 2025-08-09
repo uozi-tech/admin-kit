@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.8.0
+
+### Minor Changes
+
+- [`32a12be`](https://github.com/uozi-tech/admin-kit/commit/32a12be07bbf35b263f07eabb34207d0a80aead4) Thanks [@akinoccc](https://github.com/akinoccc)! - feat(curd): [StdTable] add column settings
+
 ## 4.7.4
 
 ### Patch Changes
