@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.7.4
+
+### Patch Changes
+
+- [`ef93671`](https://github.com/uozi-tech/admin-kit/commit/ef9367161f8e91232615c89e58a2abed71cc5354) Thanks [@0xJacky](https://github.com/0xJacky)! - feat(curd): add dropUnpreloadable option to filter non-preloadable options in selector
+
 ## 4.7.3
 
 ### Patch Changes
