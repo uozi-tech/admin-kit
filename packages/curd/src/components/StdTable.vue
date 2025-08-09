@@ -3,7 +3,7 @@ import type { FilterValue, SorterResult, TableRowSelection } from 'ant-design-vu
 import type { TablePaginationConfig } from 'ant-design-vue/lib/table/interface'
 import type { VNode } from 'vue'
 import type { StdTableBodyScope, StdTableHeaderScope, StdTableProps } from '../types'
-import { HolderOutlined } from '@ant-design/icons-vue'
+import { HolderOutlined, ReloadOutlined } from '@ant-design/icons-vue'
 import { Button, Popconfirm, Table } from 'ant-design-vue'
 import { cloneDeep, debounce, get, isArray, isEqual, isNil, isObject } from 'lodash-es'
 import { computed, h, onMounted, ref, watch } from 'vue'
@@ -107,12 +107,12 @@ function onColumnSettingsChange(newColumns: any[]) {
 /** 筛选 table 显示的列，并且获取 title 真实内容 */
 const dataColumns = computed<any>(() => {
   // 使用列设置的结果，如果没有设置则使用默认的
-  const baseColumns = displayColumns.value.length > 0 
-    ? displayColumns.value 
+  const baseColumns = displayColumns.value.length > 0
+    ? displayColumns.value
     : computedColumns.value.filter(item => !item.hiddenInTable)
-  
+
   const cols = [...baseColumns]
-  
+
   if (props.rowDraggable) {
     cols.unshift({
       title: '',
@@ -383,6 +383,13 @@ function SearchFormExtraRender() {
             :table-id="tableId"
             @change="onColumnSettingsChange"
           />
+          <Button
+            type="text"
+            size="small"
+            :loading="tableLoading"
+            :icon="h(ReloadOutlined)"
+            @click="debouncedListApi"
+          />
         </div>
       </div>
       <Table
@@ -401,80 +408,80 @@ function SearchFormExtraRender() {
         }"
         @change="onTableChange"
       >
-      <template #headerCell="{ title, column }: StdTableHeaderScope">
-        <template v-if="column?.customHeaderRender">
-          <CustomHeaderRender :node="column?.customHeaderRender({ title, column })" />
+        <template #headerCell="{ title, column }: StdTableHeaderScope">
+          <template v-if="column?.customHeaderRender">
+            <CustomHeaderRender :node="column?.customHeaderRender({ title, column })" />
+          </template>
         </template>
-      </template>
-      <template #bodyCell="{ record, column }: StdTableBodyScope">
-        <template v-if="!onlyQuery && column?.dataIndex === 'actions' && !column?.customRender">
-          <slot
-            name="beforeActions"
-            :record="record as any"
-            :column="column"
-          />
-          <Button
-            v-if="!disableView && !isTrash"
-            size="small"
-            type="link"
-            @click="onViewBtnClick(record)"
-          >
-            {{ t('view') }}
-          </Button>
-          <Button
-            v-if="!disableEdit && !isTrash"
-            size="small"
-            type="link"
-            @click="onEditBtnClick(record)"
-          >
-            {{ t('edit') }}
-          </Button>
-          <Popconfirm
-            v-if="!disableDelete && !isTrash"
-            :title="t('deleteConfirm')"
-            @confirm="onDeleteBtnClick(record)"
-          >
+        <template #bodyCell="{ record, column }: StdTableBodyScope">
+          <template v-if="!onlyQuery && column?.dataIndex === 'actions' && !column?.customRender">
+            <slot
+              name="beforeActions"
+              :record="record as any"
+              :column="column"
+            />
             <Button
+              v-if="!disableView && !isTrash"
               size="small"
               type="link"
-              danger
+              @click="onViewBtnClick(record)"
             >
-              {{ t('delete') }}
+              {{ t('view') }}
             </Button>
-          </Popconfirm>
-          <Popconfirm
-            v-if="!disableTrash && isTrash"
-            :title="t('restoreConfirm')"
-            @confirm="onRestoreBtnClick(record)"
-          >
             <Button
+              v-if="!disableEdit && !isTrash"
               size="small"
               type="link"
+              @click="onEditBtnClick(record)"
             >
-              {{ t('restore') }}
+              {{ t('edit') }}
             </Button>
-          </Popconfirm>
-          <Popconfirm
-            v-if="!disableDelete && isTrash"
-            :title="t('deletePermanentlyConfirm')"
-            @confirm="onDeletePermanentlyBtnClick(record)"
-          >
-            <Button
-              size="small"
-              type="link"
-              danger
+            <Popconfirm
+              v-if="!disableDelete && !isTrash"
+              :title="t('deleteConfirm')"
+              @confirm="onDeleteBtnClick(record)"
             >
-              {{ t('deletePermanently') }}
-            </Button>
-          </Popconfirm>
-          <slot
-            name="afterActions"
-            :record="record as any"
-            :column="column"
-          />
+              <Button
+                size="small"
+                type="link"
+                danger
+              >
+                {{ t('delete') }}
+              </Button>
+            </Popconfirm>
+            <Popconfirm
+              v-if="!disableTrash && isTrash"
+              :title="t('restoreConfirm')"
+              @confirm="onRestoreBtnClick(record)"
+            >
+              <Button
+                size="small"
+                type="link"
+              >
+                {{ t('restore') }}
+              </Button>
+            </Popconfirm>
+            <Popconfirm
+              v-if="!disableDelete && isTrash"
+              :title="t('deletePermanentlyConfirm')"
+              @confirm="onDeletePermanentlyBtnClick(record)"
+            >
+              <Button
+                size="small"
+                type="link"
+                danger
+              >
+                {{ t('deletePermanently') }}
+              </Button>
+            </Popconfirm>
+            <slot
+              name="afterActions"
+              :record="record as any"
+              :column="column"
+            />
+          </template>
         </template>
-      </template>
-    </Table>
+      </Table>
     </div>
   </div>
 </template>
