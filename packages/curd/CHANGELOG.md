@@ -1,5 +1,13 @@
 # @uozi-admin/curd
 
+## 4.9.0
+
+### Minor Changes
+
+- [`b128d49`](https://github.com/uozi-tech/admin-kit/commit/b128d49f6b4c6e51f951368ecb83a07a60d81174) Thanks [@akinoccc](https://github.com/akinoccc)! - feat(curd): [StdTable] add refresh button
+
+- [`4042fb1`](https://github.com/uozi-tech/admin-kit/commit/4042fb17f56c13f6aa3642fcc7d0fa4203450fe4) Thanks [@akinoccc](https://github.com/akinoccc)! - feat(curd): add modal mode for confirm deletion(close #395)
+
 ## 4.8.0
 
 ### Minor Changes
