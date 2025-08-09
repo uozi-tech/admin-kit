@@ -57,5 +57,7 @@
     "processing": "处理中 {count}/{total}",
     "path": "路径",
     "size": "大小"
-  }
+  },
+  "Column Settings": "列设置",
+  "Apply": "应用"
 }

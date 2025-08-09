@@ -57,5 +57,7 @@
     "processing": "Processing {count}/{total}",
     "path": "Path",
     "size": "Size"
-  }
+  },
+  "Column Settings": "Column Settings",
+  "Apply": "Apply"
 }

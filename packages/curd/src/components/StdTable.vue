@@ -13,6 +13,7 @@ import { useLocale } from '../composables'
 import useCurdConfig from '../composables/useCurdConfig'
 import useDraggableTable from '../composables/useDraggableTable'
 import StdSearch from './StdSearch.vue'
+import TableColumnSettings from './TableColumnSettings.vue'
 
 const props = defineProps<StdTableProps>()
 
@@ -88,6 +89,9 @@ function syncSearchFormDataFromRouteQuery() {
   }, { deep: true })
 }
 
+// 列设置相关状态
+const displayColumns = ref<any[]>([])
+
 const computedColumns = computed(() => {
   return props.columns
     .map(item => ({
@@ -95,10 +99,20 @@ const computedColumns = computed(() => {
       title: getRealContent(item.title),
     }))
 })
+
+// 处理列设置变化
+function onColumnSettingsChange(newColumns: any[]) {
+  displayColumns.value = newColumns
+}
 /** 筛选 table 显示的列，并且获取 title 真实内容 */
 const dataColumns = computed<any>(() => {
-  const cols = computedColumns.value
-    .filter(item => !item.hiddenInTable)
+  // 使用列设置的结果，如果没有设置则使用默认的
+  const baseColumns = displayColumns.value.length > 0 
+    ? displayColumns.value 
+    : computedColumns.value.filter(item => !item.hiddenInTable)
+  
+  const cols = [...baseColumns]
+  
   if (props.rowDraggable) {
     cols.unshift({
       title: '',
@@ -361,22 +375,32 @@ function SearchFormExtraRender() {
       </template>
     </StdSearch>
     <slot name="beforeTable" />
-    <Table
-      :id="`std-table-${tableId}`"
-      v-model:pagination="pagination"
-      :columns="dataColumns"
-      :data-source="tableData"
-      :loading="tableLoading"
-      row-key="id"
-      v-bind="{
-        scroll: {
-          x: 'max-content',
-        },
-        ...tableProps,
-        rowSelection,
-      }"
-      @change="onTableChange"
-    >
+    <div class="table-container">
+      <div class="table-header">
+        <div class="table-actions">
+          <TableColumnSettings
+            :columns="computedColumns"
+            :table-id="tableId"
+            @change="onColumnSettingsChange"
+          />
+        </div>
+      </div>
+      <Table
+        :id="`std-table-${tableId}`"
+        v-model:pagination="pagination"
+        :columns="dataColumns"
+        :data-source="tableData"
+        :loading="tableLoading"
+        row-key="id"
+        v-bind="{
+          scroll: {
+            x: 'max-content',
+          },
+          ...tableProps,
+          rowSelection,
+        }"
+        @change="onTableChange"
+      >
       <template #headerCell="{ title, column }: StdTableHeaderScope">
         <template v-if="column?.customHeaderRender">
           <CustomHeaderRender :node="column?.customHeaderRender({ title, column })" />
@@ -451,6 +475,7 @@ function SearchFormExtraRender() {
         </template>
       </template>
     </Table>
+    </div>
   </div>
 </template>
 
@@ -465,5 +490,21 @@ function SearchFormExtraRender() {
 
 :deep(.ant-pagination-options .ant-select.ant-select-in-form-item) {
   width: fit-content;
+}
+
+.table-container {
+  position: relative;
+}
+
+.table-header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 8px;
+}
+
+.table-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 </style>

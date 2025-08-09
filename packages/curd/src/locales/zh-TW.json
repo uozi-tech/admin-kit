@@ -57,5 +57,7 @@
     "processing": "處理中 {count}/{total}",
     "path": "路徑",
     "size": "大小"
-  }
+  },
+  "Column Settings": "列設置",
+  "Apply": "應用"
 }
