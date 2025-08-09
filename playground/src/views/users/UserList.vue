@@ -20,6 +20,7 @@ const columns: StdTableColumn[] = [
       formItem: { rules: [{ required: true }] },
       col: { span: 12 },
     },
+    hiddenInTable: true,
   },
   {
     title: '邮箱',

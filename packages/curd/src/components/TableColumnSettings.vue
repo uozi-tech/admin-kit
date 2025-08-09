@@ -26,7 +26,7 @@ const localColumns = ref<StdTableColumn[]>([])
 const tempColumns = ref<StdTableColumn[]>([])
 
 // 获取存储键 - 基于页面路径，确保配置持久化
-const storageKey = computed(() => `table-column-config-${window.location.pathname.replace(/\//g, '-')}`)
+const storageKey = computed(() => `table-column-config-${window.location.href.replace(/\//g, '-')}`)
 
 // 初始化列配置
 function initializeColumns() {

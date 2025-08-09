@@ -108,9 +108,7 @@ function onColumnSettingsChange(newColumns: any[]) {
 /** 筛选 table 显示的列，并且获取 title 真实内容 */
 const dataColumns = computed<any>(() => {
   // 使用列设置的结果，如果没有设置则使用默认的
-  const baseColumns = displayColumns.value.length > 0
-    ? displayColumns.value
-    : computedColumns.value.filter(item => !item.hiddenInTable)
+  const baseColumns = computedColumns.value.filter(item => !item.hiddenInTable)
 
   const cols = [...baseColumns]
 
@@ -412,7 +410,7 @@ function SearchFormExtraRender() {
       <div class="table-header">
         <div class="table-actions">
           <TableColumnSettings
-            :columns="computedColumns"
+            :columns="dataColumns"
             :table-id="tableId"
             @change="onColumnSettingsChange"
           />
