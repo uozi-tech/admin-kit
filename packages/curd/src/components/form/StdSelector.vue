@@ -1,14 +1,15 @@
 <script setup lang="ts">
 import type { SelectorConfig } from '../../types'
+import { watchPausable } from '@vueuse/core'
 import { Form, Modal, Select } from 'ant-design-vue'
 import { get } from 'lodash-es'
-import { computed, nextTick, reactive, ref, watch } from 'vue'
+import { computed, nextTick, reactive, ref } from 'vue'
 import { useCurdConfig, useLocale } from '../../composables'
 import StdTable from '../StdTable.vue'
 
 const props = withDefaults(
-  defineProps<SelectorConfig & { placeholder?: string | number }>(),
-  { valueKey: 'id', selectionType: 'radio', omitZeroString: undefined },
+  defineProps<SelectorConfig & { placeholder?: string | number, dropUnpreloadable?: boolean }>(),
+  { valueKey: 'id', selectionType: 'radio', omitZeroString: undefined, dropUnpreloadable: false },
 )
 const emit = defineEmits<{
   (e: 'selectedRecords', records: any[]): void
@@ -29,6 +30,8 @@ const internalSelectedRows = ref<any[]>([])
 
 // 添加标志来避免无限循环
 const isInitializing = ref(false)
+// 记录上次处理的参数，避免重复请求
+const lastRequestParams = ref('')
 
 // 获取全局配置
 const curdConfig = useCurdConfig()
@@ -88,6 +91,7 @@ async function init() {
   selectedRowKeys.value = isMulti ? arraylizeValue(value.value) : []
   await nextTick()
   const preloadIds = arraylizeValue(value.value).filter(Boolean)
+  let filteredValue: any = null
   if (preloadIds.length && props.getListApi) {
     const { data } = await props.getListApi({
       ...props.overwriteParams,
@@ -95,6 +99,28 @@ async function init() {
     })
     const dataMap = new Map(data.map(item => [get(item, props.valueKey), item]))
     const preloadedRows = preloadIds.map(id => dataMap.get(id)).filter(Boolean)
+
+    // 如果启用了 dropUnpreloadable，则过滤掉无法预加载的 valueKey
+    if (props.dropUnpreloadable) {
+      const preloadableIds = preloadedRows.map(row => get(row, props.valueKey))
+      const originalPreloadIds = [...preloadIds]
+      const filteredPreloadIds = preloadIds.filter(id => preloadableIds.includes(id))
+
+      // 只有当过滤后的结果与原始值不同时才准备更新 value
+      if (JSON.stringify(originalPreloadIds) !== JSON.stringify(filteredPreloadIds)) {
+        if (isMulti) {
+          selectedRowKeys.value = filteredPreloadIds
+          filteredValue = filteredPreloadIds
+        }
+        else if (filteredPreloadIds.length > 0) {
+          filteredValue = filteredPreloadIds[0]
+        }
+        else {
+          filteredValue = props.selectionType === 'radio' ? '' : []
+        }
+      }
+    }
+
     // 更新内部临时状态
     internalSelectedRows.value = [...preloadedRows]
     // 初始化时设置selectedRows，但要避免循环
@@ -111,14 +137,23 @@ async function init() {
     }
   }
   isInitializing.value = false
+
+  // 在完成初始化后，如果需要更新 value，则暂停监听后更新
+  if (filteredValue !== null) {
+    pause()
+    value.value = filteredValue
+    await nextTick()
+    resume()
+  }
 }
 
-watch(
+const { pause, resume } = watchPausable(
   [
     () => value.value,
     () => props.getListApi,
     () => props.overwriteParams,
     () => props.valueKey,
+    () => props.dropUnpreloadable,
   ],
   init,
   { immediate: true },

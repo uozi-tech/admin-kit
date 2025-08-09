@@ -48,6 +48,7 @@ const config = {
 | overwriteParams | 覆盖请求参数 | Record<string, any> | - |
 | labelRender | 自定义 label 渲染函数 | (row: any) => string | - |
 | omitZeroString | 是否过滤掉值为 "0" 的字符串 | boolean | 全局配置 |
+| dropUnpreloadable | 是否过滤掉无法预加载的选项，只保留能成功加载数据的 valueKey | boolean | false |
 
 ### 事件
 
@@ -73,6 +74,7 @@ export type SelectorConfig = {
   overwriteParams?: Record<string, any>
   labelRender?: (row: any) => string
   omitZeroString?: boolean
+  dropUnpreloadable?: boolean
 } & PlaceholderT
 ```
 
