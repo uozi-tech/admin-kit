@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.7.3
+
+### Patch Changes
+
+- [`848ec89`](https://github.com/uozi-tech/admin-kit/commit/848ec89bc366e471d8052b254f1e6494aa3a4f93) Thanks [@0xJacky](https://github.com/0xJacky)! - fix(curd): [selector] optimize preloading order of selected rows
+
 ## 4.7.2
 
 ### Patch Changes
