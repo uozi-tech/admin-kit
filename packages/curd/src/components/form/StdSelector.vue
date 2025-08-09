@@ -93,7 +93,8 @@ async function init() {
       ...props.overwriteParams,
       [props.valueKey]: preloadIds,
     })
-    const preloadedRows = data.filter(item => preloadIds.includes(get(item, props.valueKey)))
+    const dataMap = new Map(data.map(item => [get(item, props.valueKey), item]))
+    const preloadedRows = preloadIds.map(id => dataMap.get(id)).filter(Boolean)
     // 更新内部临时状态
     internalSelectedRows.value = [...preloadedRows]
     // 初始化时设置selectedRows，但要避免循环
