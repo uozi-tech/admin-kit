@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.9.3
+
+### Patch Changes
+
+- [`3ba2061`](https://github.com/uozi-tech/admin-kit/commit/3ba20615d7fbb6dde30d8f273b5a4ac74a0f588e) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): store key issue for column settings
+
 ## 4.9.2
 
 ### Patch Changes
