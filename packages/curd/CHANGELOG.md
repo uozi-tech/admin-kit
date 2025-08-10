@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.9.4
+
+### Patch Changes
+
+- [`b76fd56`](https://github.com/uozi-tech/admin-kit/commit/b76fd560524bcdd55cd8424a57bf90cdc82276e3) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): hidden column issue
+
 ## 4.9.3
 
 ### Patch Changes
