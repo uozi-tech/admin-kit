@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.9.5
+
+### Patch Changes
+
+- [`72f0292`](https://github.com/uozi-tech/admin-kit/commit/72f02925ae23559bf73f51d66279c7f047c35438) Thanks [@akinoccc](https://github.com/akinoccc)! - refactor(curd): adjust search actions layout
+
 ## 4.9.4
 
 ### Patch Changes
