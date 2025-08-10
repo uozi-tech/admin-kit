@@ -23,6 +23,16 @@ const columns: StdTableColumn[] = [
     hiddenInTable: true,
   },
   {
+    title: '手机号',
+    dataIndex: 'mobile',
+    search: true,
+    edit: {
+      type: 'input',
+      formItem: { rules: [{ required: true }] },
+      col: { span: 12 },
+    },
+  },
+  {
     title: '邮箱',
     dataIndex: 'email',
     search: true,
@@ -30,6 +40,27 @@ const columns: StdTableColumn[] = [
       type: 'input',
       formItem: { rules: [{ required: true }] },
       col: { span: 12 },
+    },
+  },
+  {
+    title: '性别',
+    dataIndex: 'gender',
+    search: true,
+    edit: {
+      type: 'select',
+      select: { options: [{ label: '男', value: 1 }, { label: '女', value: -1 }] },
+      formItem: { rules: [{ required: true }] },
+    },
+    batchEdit: true,
+  },
+  {
+    title: '角色',
+    dataIndex: 'role',
+    search: true,
+    edit: {
+      type: 'select',
+      select: { options: [{ label: '管理员', value: 1 }, { label: '普通用户', value: -1 }] },
+      formItem: { rules: [{ required: true }] },
     },
   },
   {
@@ -81,7 +112,6 @@ const visible = ref(false)
 </script>
 
 <template>
-  {{ selectedRowKeys }}
   <StdCurd
     v-model:selected-row-keys="selectedRowKeys"
     :api="userApi"
@@ -100,21 +130,7 @@ const visible = ref(false)
       modalDescription: '此操作无法撤销。请输入 {confirmText} 来确认删除。',
     }"
     :search-form-extra-render="() => {
-      return h('div', [
-        h(Button, { onClick: () => visible = true }, '添加用户'),
-        h(Drawer, { title: '添加用户', open: visible, onClose: () => visible = false }),
-      ])
+      return h('div')
     }"
-  >
-    <template #beforeSearch>
-      <Button>
-        按钮
-      </Button>
-    </template>
-    <template #beforeTable>
-      <Button>
-        按钮
-      </Button>
-    </template>
-  </StdCurd>
+  />
 </template>

@@ -4,7 +4,7 @@ import type { TablePaginationConfig } from 'ant-design-vue/lib/table/interface'
 import type { VNode } from 'vue'
 import type { StdTableBodyScope, StdTableHeaderScope, StdTableProps } from '../types'
 import { HolderOutlined, ReloadOutlined } from '@ant-design/icons-vue'
-import { Button, Popconfirm, Table } from 'ant-design-vue'
+import { Button, Flex, Popconfirm, Table } from 'ant-design-vue'
 import { cloneDeep, debounce, get, isArray, isEqual, isNil, isObject } from 'lodash-es'
 import { computed, h, onMounted, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
@@ -391,10 +391,18 @@ function SearchFormExtraRender() {
       v-model:data="searchFormData"
       :show-search-btn
       :hide-reset-btn
-      class="mb-6"
+      class="mb-4"
       :columns="searchColumns"
       @reset="resetSearchForm"
     >
+      <template #search-actions-left>
+        <TableColumnSettings
+          :columns="computedColumns"
+          :table-id="tableId"
+          @change="onColumnSettingsChange"
+        />
+        <slot name="search-actions-left" />
+      </template>
       <template #extra="{ formData }">
         <slot
           name="searchFormAction"
@@ -403,139 +411,128 @@ function SearchFormExtraRender() {
         <template v-if="searchFormExtraRender">
           <SearchFormExtraRender />
         </template>
+        <Button
+          :loading="tableLoading"
+          :icon="h(ReloadOutlined)"
+          @click="debouncedListApi"
+        >
+          刷新
+        </Button>
       </template>
     </StdSearch>
     <slot name="beforeTable" />
-    <div class="table-container">
-      <div class="table-header">
-        <div class="table-actions">
-          <TableColumnSettings
-            :columns="computedColumns"
-            :table-id="tableId"
-            @change="onColumnSettingsChange"
+    <Table
+      :id="`std-table-${tableId}`"
+      v-model:pagination="pagination"
+      :columns="dataColumns"
+      :data-source="tableData"
+      :loading="tableLoading"
+      row-key="id"
+      v-bind="{
+        scroll: {
+          x: 'max-content',
+        },
+        ...tableProps,
+        rowSelection,
+      }"
+      @change="onTableChange"
+    >
+      <template #headerCell="{ title, column }: StdTableHeaderScope">
+        <template v-if="column?.customHeaderRender">
+          <CustomHeaderRender :node="column?.customHeaderRender({ title, column })" />
+        </template>
+      </template>
+      <template #bodyCell="{ record, column }: StdTableBodyScope">
+        <template v-if="!onlyQuery && column?.dataIndex === 'actions' && !column?.customRender">
+          <slot
+            name="beforeActions"
+            :record="record as any"
+            :column="column"
           />
           <Button
-            type="text"
+            v-if="!disableView && !isTrash"
             size="small"
-            :loading="tableLoading"
-            :icon="h(ReloadOutlined)"
-            @click="debouncedListApi"
-          />
-        </div>
-      </div>
-      <Table
-        :id="`std-table-${tableId}`"
-        v-model:pagination="pagination"
-        :columns="dataColumns"
-        :data-source="tableData"
-        :loading="tableLoading"
-        row-key="id"
-        v-bind="{
-          scroll: {
-            x: 'max-content',
-          },
-          ...tableProps,
-          rowSelection,
-        }"
-        @change="onTableChange"
-      >
-        <template #headerCell="{ title, column }: StdTableHeaderScope">
-          <template v-if="column?.customHeaderRender">
-            <CustomHeaderRender :node="column?.customHeaderRender({ title, column })" />
-          </template>
-        </template>
-        <template #bodyCell="{ record, column }: StdTableBodyScope">
-          <template v-if="!onlyQuery && column?.dataIndex === 'actions' && !column?.customRender">
-            <slot
-              name="beforeActions"
-              :record="record as any"
-              :column="column"
-            />
-            <Button
-              v-if="!disableView && !isTrash"
-              size="small"
-              type="link"
-              @click="onViewBtnClick(record)"
+            type="link"
+            @click="onViewBtnClick(record)"
+          >
+            {{ t('view') }}
+          </Button>
+          <Button
+            v-if="!disableEdit && !isTrash"
+            size="small"
+            type="link"
+            @click="onEditBtnClick(record)"
+          >
+            {{ t('edit') }}
+          </Button>
+          <template v-if="!disableDelete && !isTrash">
+            <Popconfirm
+              v-if="!deletionConfig || deletionConfig.mode === 'popconfirm'"
+              :title="t('deleteConfirm')"
+              @confirm="onDeleteBtnClick(record)"
             >
-              {{ t('view') }}
-            </Button>
-            <Button
-              v-if="!disableEdit && !isTrash"
-              size="small"
-              type="link"
-              @click="onEditBtnClick(record)"
-            >
-              {{ t('edit') }}
-            </Button>
-            <template v-if="!disableDelete && !isTrash">
-              <Popconfirm
-                v-if="!deletionConfig || deletionConfig.mode === 'popconfirm'"
-                :title="t('deleteConfirm')"
-                @confirm="onDeleteBtnClick(record)"
-              >
-                <Button
-                  size="small"
-                  type="link"
-                  danger
-                >
-                  {{ t('delete') }}
-                </Button>
-              </Popconfirm>
               <Button
-                v-else
                 size="small"
                 type="link"
                 danger
-                @click="onDeleteBtnClick(record)"
               >
                 {{ t('delete') }}
               </Button>
-            </template>
+            </Popconfirm>
+            <Button
+              v-else
+              size="small"
+              type="link"
+              danger
+              @click="onDeleteBtnClick(record)"
+            >
+              {{ t('delete') }}
+            </Button>
+          </template>
+          <Popconfirm
+            v-if="!disableTrash && isTrash"
+            :title="t('restoreConfirm')"
+            @confirm="onRestoreBtnClick(record)"
+          >
+            <Button
+              size="small"
+              type="link"
+            >
+              {{ t('restore') }}
+            </Button>
+          </Popconfirm>
+          <template v-if="!disableDelete && isTrash">
             <Popconfirm
-              v-if="!disableTrash && isTrash"
-              :title="t('restoreConfirm')"
-              @confirm="onRestoreBtnClick(record)"
+              v-if="!deleteConfirmConfig || deleteConfirmConfig.mode === 'popconfirm'"
+              :title="t('deletePermanentlyConfirm')"
+              @confirm="onDeletePermanentlyBtnClick(record)"
             >
               <Button
                 size="small"
                 type="link"
-              >
-                {{ t('restore') }}
-              </Button>
-            </Popconfirm>
-            <template v-if="!disableDelete && isTrash">
-              <Popconfirm
-                v-if="!deleteConfirmConfig || deleteConfirmConfig.mode === 'popconfirm'"
-                :title="t('deletePermanentlyConfirm')"
-                @confirm="onDeletePermanentlyBtnClick(record)"
-              >
-                <Button
-                  size="small"
-                  type="link"
-                  danger
-                >
-                  {{ t('deletePermanently') }}
-                </Button>
-              </Popconfirm>
-              <Button
-                v-else
-                size="small"
-                type="link"
                 danger
-                @click="onDeletePermanentlyBtnClick(record)"
               >
                 {{ t('deletePermanently') }}
               </Button>
-            </template>
-            <slot
-              name="afterActions"
-              :record="record as any"
-              :column="column"
-            />
+            </Popconfirm>
+            <Button
+              v-else
+              size="small"
+              type="link"
+              danger
+              @click="onDeletePermanentlyBtnClick(record)"
+            >
+              {{ t('deletePermanently') }}
+            </Button>
           </template>
+          <slot
+            name="afterActions"
+            :record="record as any"
+            :column="column"
+          />
         </template>
-      </Table>
-    </div>
+      </template>
+    </Table>
 
     <!-- 删除确认 Modal -->
     <DeleteConfirmModal

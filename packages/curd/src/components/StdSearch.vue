@@ -65,46 +65,62 @@ function onSearch() {
 </script>
 
 <template>
-  <Form
-    class="flex flex-wrap gap-y-4"
-    :model="formDataBuffer"
-    label-width="auto"
-    layout="inline"
+  <Flex
+    vertical
+    gap="16"
   >
-    <FormItem
-      v-for="c in columns"
-      :key="getColumnKey(c)"
-      :label="getSearchLabel(c)"
-      :name="`${getConfig(c)?.formItem?.name ?? c.dataIndex}__search`"
+    <Form
+      v-if="columns.length"
+      class="flex flex-wrap gap-y-4"
+      :model="formDataBuffer"
+      label-width="auto"
+      layout="inline"
     >
-      <FormControllerRender
-        v-model:form-data="formDataBuffer"
-        :column="c"
-        :form-config-key="c.search === true ? 'edit' : 'search'"
-        mode="search"
-      />
-    </FormItem>
+      <FormItem
+        v-for="c in columns"
+        :key="getColumnKey(c)"
+        :label="getSearchLabel(c)"
+        :name="`${getConfig(c)?.formItem?.name ?? c.dataIndex}__search`"
+      >
+        <FormControllerRender
+          v-model:form-data="formDataBuffer"
+          :column="c"
+          :form-config-key="c.search === true ? 'edit' : 'search'"
+          mode="search"
+        />
+      </FormItem>
+    </Form>
+
     <Flex
       wrap="wrap"
       gap="small"
+      justify="space-between"
+      class="w-full"
     >
-      <Button
-        v-if="columns.length && showSearchBtn"
-        type="primary"
-        @click="onSearch"
+      <slot name="search-actions-left" />
+      <Flex
+        class="flex-1"
+        justify="flex-end"
+        gap="small"
       >
-        {{ t('search') }}
-      </Button>
-      <Button
-        v-if="columns.length && !hideResetBtn"
-        @click="emit('reset')"
-      >
-        {{ t('reset') }}
-      </Button>
-      <slot
-        name="extra"
-        :form-data="formDataBuffer"
-      />
+        <Button
+          v-if="columns.length && showSearchBtn"
+          type="primary"
+          @click="onSearch"
+        >
+          {{ t('search') }}
+        </Button>
+        <Button
+          v-if="columns.length && !hideResetBtn"
+          @click="emit('reset')"
+        >
+          {{ t('reset') }}
+        </Button>
+        <slot
+          name="extra"
+          :form-data="formDataBuffer"
+        />
+      </Flex>
     </Flex>
-  </Form>
+  </Flex>
 </template>
