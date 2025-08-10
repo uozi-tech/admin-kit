@@ -37,7 +37,9 @@ function initializeColumns() {
 
   if (savedColumnKeys && savedColumnKeys.length > 0) {
     // 使用保存的配置：基于保存的key数组重新排序和筛选
-    const columnsMap = new Map(props.columns.map(col => [getColumnKey(col), col]))
+    const columnsMap = new Map(props.columns
+      .filter(item => !item.hiddenInTable)
+      .map(col => [getColumnKey(col), col]))
     const orderedColumns: StdTableColumn[] = []
     // 按保存的顺序添加列
     savedColumnKeys.forEach((col) => {
@@ -136,7 +138,7 @@ let sortableInstance: Sortable | null = null
 // 重置列配置
 function resetColumns() {
   const defaultColumns = props.columns
-    .filter(column => !isSystemColumn(column))
+    .filter(column => !isSystemColumn(column) && !column.hiddenInTable)
   tempColumns.value = cloneDeep(defaultColumns)
 }
 
