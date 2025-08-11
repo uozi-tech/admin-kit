@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { StdTableColumn } from '@uozi-admin/curd'
 import { StdCurd } from '@uozi-admin/curd'
-import { Button, Drawer } from 'ant-design-vue'
 import { h, ref } from 'vue'
 import { userApi } from '~/api'
 

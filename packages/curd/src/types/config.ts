@@ -251,6 +251,6 @@ export interface CurdConfigT {
      * The hide reset btn
      */
     hideResetBtn?: boolean
-  },
+  }
   deleteConfirmConfig?: DeleteConfirmConfig
 }

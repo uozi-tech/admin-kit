@@ -4,7 +4,7 @@ import type { TablePaginationConfig } from 'ant-design-vue/lib/table/interface'
 import type { VNode } from 'vue'
 import type { StdTableBodyScope, StdTableHeaderScope, StdTableProps } from '../types'
 import { HolderOutlined, ReloadOutlined } from '@ant-design/icons-vue'
-import { Button, Flex, Popconfirm, Table } from 'ant-design-vue'
+import { Button, Popconfirm, Table } from 'ant-design-vue'
 import { cloneDeep, debounce, get, isArray, isEqual, isNil, isObject } from 'lodash-es'
 import { computed, h, onMounted, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
@@ -16,7 +16,9 @@ import DeleteConfirmModal from './DeleteConfirmModal.vue'
 import StdSearch from './StdSearch.vue'
 import TableColumnSettings from './TableColumnSettings.vue'
 
-const props = defineProps<StdTableProps>()
+const props = withDefaults(defineProps<StdTableProps>(), {
+  showSearchBtn: undefined,
+})
 
 const emit = defineEmits<{
   (e: 'change', payload: { pagination: TablePaginationConfig, filters: Record<string, FilterValue>, sorter: SorterResult | SorterResult<any>[] }): void
@@ -396,28 +398,26 @@ function SearchFormExtraRender() {
       @reset="resetSearchForm"
     >
       <template #search-actions-left>
-        <TableColumnSettings
-          :columns="computedColumns"
-          :table-id="tableId"
-          @change="onColumnSettingsChange"
-        />
         <slot name="search-actions-left" />
       </template>
       <template #extra="{ formData }">
         <slot
           name="searchFormAction"
-          :form-data="formData as any"
+          :form-data="(formData as any)"
         />
         <template v-if="searchFormExtraRender">
           <SearchFormExtraRender />
         </template>
+        <TableColumnSettings
+          :columns="computedColumns"
+          :table-id="tableId"
+          @change="onColumnSettingsChange"
+        />
         <Button
           :loading="tableLoading"
           :icon="h(ReloadOutlined)"
           @click="debouncedListApi"
-        >
-          刷新
-        </Button>
+        />
       </template>
     </StdSearch>
     <slot name="beforeTable" />
@@ -446,7 +446,7 @@ function SearchFormExtraRender() {
         <template v-if="!onlyQuery && column?.dataIndex === 'actions' && !column?.customRender">
           <slot
             name="beforeActions"
-            :record="record as any"
+            :record="(record as any)"
             :column="column"
           />
           <Button
@@ -527,7 +527,7 @@ function SearchFormExtraRender() {
           </template>
           <slot
             name="afterActions"
-            :record="record as any"
+            :record="(record as any)"
             :column="column"
           />
         </template>

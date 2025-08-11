@@ -30,8 +30,6 @@ const internalSelectedRows = ref<any[]>([])
 
 // 添加标志来避免无限循环
 const isInitializing = ref(false)
-// 记录上次处理的参数，避免重复请求
-const lastRequestParams = ref('')
 
 // 获取全局配置
 const curdConfig = useCurdConfig()

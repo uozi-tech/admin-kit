@@ -197,9 +197,7 @@ watch(visible, async (newVisible) => {
     <Button
       :icon="h(SettingOutlined)"
       @click.stop="visible = !visible"
-    >
-      {{ t('Column Settings') }}
-    </Button>
+    />
     <template #overlay>
       <div class="table-column-settings">
         <div class="settings-header">

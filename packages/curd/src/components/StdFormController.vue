@@ -108,7 +108,7 @@ function Render() {
             onChangeHandler(value.value, p.formData, newDependencyValues)
           }
           catch (error) {
-            console.warn('字段联动处理函数执行出错:', error)
+            console.error(error)
           }
         }
       }, { deep: true })

@@ -21,7 +21,7 @@ export function createCustomLinkage(
         }
       }
       catch (error) {
-        console.warn(`字段 ${targetField} 联动计算出错:`, error)
+        console.error(error)
       }
     })
   }
