@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.9.6
+
+### Patch Changes
+
+- [`42425bd`](https://github.com/uozi-tech/admin-kit/commit/42425bdfd7b955261d5e99363b2a9348f3a9420c) Thanks [@0xJacky](https://github.com/0xJacky)! - enhance(search): add collapsible functionality and improved layout
+
 ## 4.9.5
 
 ### Patch Changes
