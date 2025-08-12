@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.10.0
+
+### Minor Changes
+
+- [`e4bf1fb`](https://github.com/uozi-tech/admin-kit/commit/e4bf1fb3750c09bbdff4f351197b99fb0b22a7c6) Thanks [@0xJacky](https://github.com/0xJacky)! - refactor: route query handling in StdTable
+
 ## 4.9.6
 
 ### Patch Changes
