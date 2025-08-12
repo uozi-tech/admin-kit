@@ -60,6 +60,7 @@
   },
   "dependencies": {
     "@vueuse/core": "^13.5.0",
+    "@vueuse/router": "^13.6.0",
     "scroll-into-view-if-needed": "^3.1.0",
     "sortablejs": "^1.15.6",
     "vue-i18n": "^11.1.9",

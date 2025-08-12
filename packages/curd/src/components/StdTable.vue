@@ -4,10 +4,10 @@ import type { TablePaginationConfig } from 'ant-design-vue/lib/table/interface'
 import type { VNode } from 'vue'
 import type { StdTableBodyScope, StdTableHeaderScope, StdTableProps } from '../types'
 import { HolderOutlined, ReloadOutlined } from '@ant-design/icons-vue'
+import { useRouteQuery } from '@vueuse/router'
 import { Button, Popconfirm, Table } from 'ant-design-vue'
-import { cloneDeep, debounce, get, isArray, isEqual, isNil, isObject } from 'lodash-es'
-import { computed, h, onMounted, ref, watch } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
+import { cloneDeep, debounce, get, isArray, isEqual, isNil } from 'lodash-es'
+import { computed, h, nextTick, onMounted, ref, watch } from 'vue'
 import { getRealContent } from '..'
 import { useLocale } from '../composables'
 import useCurdConfig from '../composables/useCurdConfig'
@@ -31,66 +31,86 @@ const emit = defineEmits<{
 
 const { tableId, initSortable, buildIndexMap, resetIndexMap } = useDraggableTable(props.rowDraggableOptions)
 
-onMounted(() => {
-  syncSearchFormDataFromRouteQuery()
-  initSortable(tableData)
-  debouncedListApi()
+onMounted(async () => {
+  try {
+    // 等待下一帧确保 searchColumns 已经计算完成
+    await nextTick()
+
+    // 从 URL 的 search 参数中解析搜索条件
+    if (searchQuery.value) {
+      try {
+        const parsedSearch = JSON.parse(searchQuery.value)
+        if (parsedSearch && typeof parsedSearch === 'object') {
+          searchFormData.value = { ...parsedSearch }
+        }
+      }
+      catch {
+        // 如果解析失败，保持空对象
+        searchFormData.value = {}
+      }
+    }
+
+    initSortable(tableData)
+    debouncedListApi()
+
+    // 标记初始化完成
+    isInitialized.value = true
+  }
+  catch (error) {
+    console.error('Error in onMounted:', error)
+    // 即使初始化失败，也要执行必要的初始化
+    initSortable(tableData)
+    debouncedListApi()
+    isInitialized.value = true
+  }
 })
 
 const tableLoading = defineModel<boolean>('tableLoading')
 
-const router = useRouter()
-const route = useRoute()
-
 const { t } = useLocale()
 
 const curdConfig = useCurdConfig()
-const pagination = ref<TablePaginationConfig>(initializePagination(props.tableProps?.pagination))
 
-function initializePagination(paginationProps: any): TablePaginationConfig {
-  return {
-    current: route.query[curdConfig.listApi!.paginationMap!.params!.current!] ?? 1,
-    pageSize: route.query[curdConfig.listApi!.paginationMap!.params!.pageSize!] ?? 20,
-    showSizeChanger: true,
-    showQuickJumper: true,
-    hideOnSinglePage: false,
-    responsive: true,
-    showTotal: (total: number) => `${t('total')}: ${total} ${t('item(s)')}`,
-    ...paginationProps,
-  }
+// 使用 useRouteQuery 管理分页参数
+let currentPageParam: string
+let pageSizeParam: string
+
+try {
+  currentPageParam = curdConfig.listApi?.paginationMap?.params?.current || 'page'
+  pageSizeParam = curdConfig.listApi?.paginationMap?.params?.pageSize || 'pageSize'
+}
+catch {
+  currentPageParam = 'page'
+  pageSizeParam = 'pageSize'
 }
 
-function syncSearchFormDataFromRouteQuery() {
-  const v = route.query
-  pagination.value.current = Number(v[curdConfig.listApi!.paginationMap!.params!.current!]) || 1
-  pagination.value.pageSize = Number(v[curdConfig.listApi!.paginationMap!.params!.pageSize!]) || 20
-  searchColumns.value.forEach((c) => {
-    const dataIndex = c.dataIndex
-    let key = dataIndex
-    if (isObject(c.search) && c.search.formItem?.name) {
-      key = c.search.formItem.name
-    }
+const currentPage = useRouteQuery(currentPageParam, 1, {
+  transform: Number,
+  mode: 'replace',
+})
+const currentPageSize = useRouteQuery(pageSizeParam, 20, {
+  transform: Number,
+  mode: 'replace',
+})
 
-    if (isArray(key)) {
-      key = key.join('.')
-    }
+// 使用 useRouteQuery 管理排序参数
+const sortBy = useRouteQuery<string>('sort_by', '', { mode: 'replace' })
+const order = useRouteQuery<string>('order', '', { mode: 'replace' })
 
-    if (v[key] === 'true') {
-      searchFormData.value[key] = true
-    }
-    else if (v[key] === 'false') {
-      searchFormData.value[key] = false
-    }
-    else {
-      searchFormData.value[key] = v[key]
-    }
-  })
+// 分页数据总数
+const paginationTotal = ref<number>(0)
 
-  // 监听 search form 数据变化，如果数据变化，则重置分页
-  watch(() => searchFormData.value, () => {
-    pagination.value.current = 1
-  }, { deep: true })
-}
+const pagination = computed<TablePaginationConfig>(() => ({
+  current: currentPage.value,
+  pageSize: currentPageSize.value,
+  total: paginationTotal.value,
+  showSizeChanger: true,
+  showQuickJumper: true,
+  hideOnSinglePage: false,
+  responsive: true,
+  showTotal: (total: number) => `${t('total')}: ${total} ${t('item(s)')}`,
+  ...props.tableProps?.pagination,
+}))
 
 // 列设置相关状态
 const displayColumns = ref<any[]>([])
@@ -132,10 +152,55 @@ const searchColumns = computed(() => {
   return computedColumns.value.filter(item => item?.search)
 })
 
-const searchFormData = ref<Record<string, any>>({
-  sort_by: undefined,
-  order: undefined,
+// 搜索表单数据 - 保持简单的响应式管理
+const searchFormData = ref<Record<string, any>>({})
+
+// 监听 search form 数据变化，重置分页并序列化到单一参数
+watch(searchFormData, async (newVal, oldVal) => {
+  try {
+    // 跳过初始化期间的变化
+    if (!isInitialized.value)
+      return
+    if (isEqual(newVal, oldVal))
+      return
+
+    // 重置分页
+    currentPage.value = 1
+
+    // 同步搜索参数到路由
+    if (!props.disableRouterQuery) {
+      try {
+        // 过滤掉空值
+        const filteredSearch = Object.entries(newVal).reduce((acc, [key, value]) => {
+          if (value !== '' && value !== undefined && value !== null) {
+            acc[key] = value
+          }
+          return acc
+        }, {} as Record<string, any>)
+
+        // 如果有搜索条件，序列化为 JSON，否则清空
+        if (Object.keys(filteredSearch).length > 0) {
+          searchQuery.value = JSON.stringify(filteredSearch)
+        }
+        else {
+          searchQuery.value = ''
+        }
+      }
+      catch (serializeError) {
+        console.error('Error serializing search parameters:', serializeError)
+      }
+    }
+  }
+  catch (error) {
+    console.error('Error in searchFormData watcher:', error)
+  }
 })
+
+// 初始化标志，避免在初始化期间触发不必要的副作用
+const isInitialized = ref(false)
+
+// 使用单一的 search 参数存储所有搜索条件
+const searchQuery = useRouteQuery<string>('search', '', { mode: 'replace' })
 
 const apiParams = computed(() => {
   const overwriteParams = cloneDeep(props.overwriteParams)
@@ -144,17 +209,14 @@ const apiParams = computed(() => {
   return {
     ...searchFormData.value,
     trash: props.isTrash,
-    [curdConfig.listApi!.paginationMap!.params!.current!]: pagination.value.current ?? 1,
-    [curdConfig.listApi!.paginationMap!.params!.pageSize!]: pagination.value?.pageSize ?? 20,
+    sort_by: sortBy.value || undefined,
+    order: order.value || undefined,
+    [currentPageParam]: currentPage.value ?? 1,
+    [pageSizeParam]: currentPageSize.value ?? 20,
     ...customQueryParams,
     overwriteParams,
   }
 })
-
-// 更新路由 query，加入防抖是为了频繁触发时合并更新
-const debouncedUpdateRouteQuery = debounce(async (newQuery: Record<string, any>) => {
-  await router.replace({ query: { ...newQuery } })
-}, 200, { leading: false, trailing: true })
 
 watch(() => props.refreshConfig, () => {
   if (!props.refreshConfig?.timestamp) {
@@ -167,20 +229,13 @@ watch(() => props.refreshConfig, () => {
 }, { deep: true })
 
 // 重置搜索表单
-async function resetSearchForm() {
-  const searchKeys = Object.keys(searchFormData.value)
-  if (searchKeys.length === 0)
+function resetSearchForm() {
+  if (Object.keys(searchFormData.value).length === 0)
     return
 
-  const query = cloneDeep(route.query)
-  for (const key of searchKeys) {
-    delete query[key]
-  }
-  await router.replace({ query })
-
   searchFormData.value = {}
-
-  pagination.value.current = 1
+  searchQuery.value = ''
+  currentPage.value = 1
 }
 
 // 表格数据
@@ -206,18 +261,29 @@ const debouncedListApi = debounce(async () => {
     }
 
     // 获取分页数据
-    const paginationPath = curdConfig.listApi.paginationPath!
+    const paginationPath = curdConfig.listApi?.paginationPath
+    if (!paginationPath) {
+      console.warn('paginationPath is not configured in curdConfig.listApi')
+      return
+    }
+
     const paginationData = get(formattedRes, paginationPath.replace(/^\$\./, ''))
-    const { total, current, pageSize } = curdConfig.listApi!.paginationMap!.response
+    const paginationResponseMap = curdConfig.listApi?.paginationMap?.response
+    if (!paginationResponseMap) {
+      console.warn('paginationMap.response is not configured in curdConfig.listApi')
+      return
+    }
+
+    const { total, current, pageSize } = paginationResponseMap
 
     // 更新分页信息
     if (paginationData) {
       if (!isNil(paginationData[total]))
-        pagination.value.total = paginationData[total]
+        paginationTotal.value = paginationData[total]
       if (!isNil(paginationData[current]))
-        pagination.value.current = paginationData[current]
+        currentPage.value = paginationData[current]
       if (!isNil(paginationData[pageSize]))
-        pagination.value.pageSize = paginationData[pageSize]
+        currentPageSize.value = paginationData[pageSize]
     }
 
     // 更新表格数据
@@ -228,24 +294,24 @@ const debouncedListApi = debounce(async () => {
       buildIndexMap(tableData.value)
     }
   }
+  catch (error) {
+    console.error('Error in debouncedListApi:', error)
+    // Set tableData to empty array on error to prevent further issues
+    tableData.value = []
+  }
   finally {
-    tableLoading.value = false
+    if (tableLoading?.value !== undefined) {
+      tableLoading.value = false
+    }
   }
 }, 200, { leading: false, trailing: true })
 
-// apiParams 改变时，同步到 route query，并重新请求数据
+// apiParams 改变时，重新请求数据
 watch(apiParams, async (newVal, oldVal) => {
   // apiParams 是个 Object，可能存在 Object 指针发生变化，实际内部属性没有变化的情况
   // 如果内部属性没有变化，则不触发请求
   if (isEqual(newVal, oldVal)) {
     return
-  }
-  if (!props.disableRouterQuery) {
-    // overwriteParams 不同步到 route query
-    // eslint-disable-next-line unused-imports/no-unused-vars
-    const { overwriteParams: _, ...rest } = newVal
-    const query = cloneDeep(route.query)
-    await debouncedUpdateRouteQuery({ ...query, ...rest })
   }
   tableData.value = []
   await debouncedListApi()
@@ -291,16 +357,16 @@ function onTableChange(p: TablePaginationConfig, filters: Record<string, FilterV
       sorter = sorter[0]
     }
     selectedRowKeys.value = []
-    searchFormData.value.sort_by = sorter.field
+    sortBy.value = String(sorter.field || '')
     switch (sorter.order) {
       case 'ascend':
-        searchFormData.value.order = 'asc'
+        order.value = 'asc'
         break
       case 'descend':
-        searchFormData.value.order = 'desc'
+        order.value = 'desc'
         break
       default:
-        searchFormData.value.order = undefined
+        order.value = ''
         break
     }
   }
@@ -312,8 +378,8 @@ function onTableChange(p: TablePaginationConfig, filters: Record<string, FilterV
 
   if (p) {
     selectedRowKeys.value = []
-    pagination.value.current = p.current
-    pagination.value.pageSize = p.pageSize
+    currentPage.value = p.current || 1
+    currentPageSize.value = p.pageSize || 20
   }
 }
 

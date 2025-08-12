@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { StdCurdProps } from '../types'
+import { useRouteQuery } from '@vueuse/router'
 import { Button, Card, Checkbox, Divider, Flex, message, Modal, Spin } from 'ant-design-vue'
 import { cloneDeep } from 'lodash-es'
 import { computed, getCurrentInstance, reactive, ref } from 'vue'
@@ -78,7 +79,12 @@ const hasBatchEditColumns = computed(() => {
 const mode = ref<'add' | 'view' | 'edit'>('add')
 
 // 回收站标记
-const isTrash = ref(JSON.parse(route?.query?.trash as string ?? 'false'))
+const isTrash = useRouteQuery('trash', 'false', {
+  transform: {
+    set: (val: boolean) => val.toString(),
+    get: (val: string) => val === 'true',
+  },
+})
 
 // 数据项详情
 const itemDetail = ref<Record<string, any>>({})
