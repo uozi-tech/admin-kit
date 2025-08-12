@@ -4,7 +4,6 @@ import { useRouteQuery } from '@vueuse/router'
 import { Button, Card, Checkbox, Divider, Flex, message, Modal, Spin } from 'ant-design-vue'
 import { cloneDeep } from 'lodash-es'
 import { computed, getCurrentInstance, reactive, ref } from 'vue'
-import { useRoute } from 'vue-router'
 import { useExport, useLocale } from '../composables'
 import { ApiActions } from '../constants'
 import { getRealContent } from '../utils'
@@ -33,7 +32,6 @@ const emit = defineEmits<{
   (e: 'deleteItemPermanently', record: any): void
 }>()
 
-const route = useRoute()
 const { t } = useLocale()
 const instance = getCurrentInstance()
 
