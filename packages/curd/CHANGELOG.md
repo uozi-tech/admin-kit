@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.10.1
+
+### Patch Changes
+
+- [`7e84d70`](https://github.com/uozi-tech/admin-kit/commit/7e84d70fe980cd9ef6dd537c334e6b4da82dd0e1) Thanks [@0xJacky](https://github.com/0xJacky)! - fix(TableColumnSettings): update default column initialization to exclude hidden columns
+
 ## 4.10.0
 
 ### Minor Changes
