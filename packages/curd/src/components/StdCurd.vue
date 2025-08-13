@@ -352,7 +352,10 @@ const modalTitle = computed(() => {
         </template>
         <template #search-actions-left>
           <slot name="search-actions-left" />
-
+        </template>
+        <template #searchFormAction>
+          <slot name="searchFormAction" />
+          
           <Button
             v-if="hasBatchEditColumns && !isTrash"
             :disabled="selectedRowKeys.length === 0"
@@ -360,9 +363,6 @@ const modalTitle = computed(() => {
           >
             {{ t('batchEdit') }}
           </Button>
-        </template>
-        <template #searchFormAction>
-          <slot name="searchFormAction" />
         </template>
         <template #beforeTable>
           <slot name="beforeTable" />
