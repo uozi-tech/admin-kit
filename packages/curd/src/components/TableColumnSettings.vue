@@ -54,8 +54,8 @@ function initializeColumns() {
     tempColumns.value = cloneDeep(orderedColumns)
   }
   else {
-    // 首次使用，使用默认配置（过滤掉系统列）
-    const defaultColumns = props.columns.filter(column => !isSystemColumn(column))
+    // 首次使用，使用默认配置（过滤掉系统列和隐藏列）
+    const defaultColumns = props.columns.filter(column => !isSystemColumn(column) && !column.hiddenInTable)
     localColumns.value = defaultColumns
     tempColumns.value = cloneDeep(defaultColumns)
   }
