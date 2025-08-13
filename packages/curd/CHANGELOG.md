@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.10.2
+
+### Patch Changes
+
+- [`4f795ea`](https://github.com/uozi-tech/admin-kit/commit/4f795ea28a8f550ee232dbceb9913236ecc18eb0) Thanks [@0xJacky](https://github.com/0xJacky)! - feat(StdCurd): move batch edit btn to search form action slot
+
 ## 4.10.1
 
 ### Patch Changes
