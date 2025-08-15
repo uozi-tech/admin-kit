@@ -1,5 +1,13 @@
 # @uozi-admin/curd
 
+## 4.10.4
+
+### Patch Changes
+
+- [`0823ba6`](https://github.com/uozi-tech/admin-kit/commit/0823ba6d372bbf6fe8101210c2f61adc339d9302) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): [StdSearch] align bottom between form and actions
+
+- [`71db075`](https://github.com/uozi-tech/admin-kit/commit/71db075c736f777fa80ec32f06a9f98b16e89bd5) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): [TableColumnSettings] check all not take effect
+
 ## 4.10.3
 
 ### Patch Changes
