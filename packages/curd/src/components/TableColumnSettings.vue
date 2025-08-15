@@ -118,14 +118,10 @@ const checkAll = computed({
   get: (): boolean => (tempColumns.value as any[]).every(column => !column.hiddenInTable),
   set: (value: boolean): void => {
     (tempColumns.value as any[]).forEach((column) => {
-      column.hiddenInTable = value
+      column.hiddenInTable = !value // 修复：全选时应该显示所有列（hiddenInTable为false）
     })
   },
 })
-
-function onCheckAllChange() {
-  // 由于使用了 computed 的 setter，这里不需要额外逻辑
-}
 
 // 半选状态
 const indeterminate = computed(() => {
@@ -238,7 +234,6 @@ watch(visible, async (newVisible) => {
             <Checkbox
               v-model:checked="checkAll"
               :indeterminate="indeterminate"
-              @change="onCheckAllChange"
             >
               {{ t('selectAll') }}
             </Checkbox>
