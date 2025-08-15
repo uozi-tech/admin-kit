@@ -77,7 +77,7 @@ function onSearch() {
   >
     <Form
       v-if="columns.length"
-      class="flex flex-wrap gap-2"
+      class="flex flex-wrap gap-2 items-end"
       :model="formDataBuffer"
       label-width="auto"
       layout="vertical"
@@ -97,7 +97,7 @@ function onSearch() {
         />
       </FormItem>
 
-      <div class="pt-30px flex justify-between flex-1">
+      <div class="flex justify-between flex-1 w-fit mb-4px">
         <div class="flex items-center gap-2">
           <slot name="search-actions-left" />
           <Button

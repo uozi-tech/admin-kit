@@ -355,7 +355,7 @@ const modalTitle = computed(() => {
         </template>
         <template #searchFormAction>
           <slot name="searchFormAction" />
-          
+
           <Button
             v-if="hasBatchEditColumns && !isTrash"
             :disabled="selectedRowKeys.length === 0"
