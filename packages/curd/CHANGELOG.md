@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.10.5
+
+### Patch Changes
+
+- [`09b2c97`](https://github.com/uozi-tech/admin-kit/commit/09b2c97cca21696e52621c92e9e8d63a817aef9c) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): [StdSearch] form actions style issue
+
 ## 4.10.4
 
 ### Patch Changes
