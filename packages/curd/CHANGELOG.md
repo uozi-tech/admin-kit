@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.10.3
+
+### Patch Changes
+
+- [`e8ce36e`](https://github.com/uozi-tech/admin-kit/commit/e8ce36e7791f48517a7b736a761298047bc502cf) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): default value not take effect
+
 ## 4.10.2
 
 ### Patch Changes
