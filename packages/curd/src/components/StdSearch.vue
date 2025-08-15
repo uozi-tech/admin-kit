@@ -97,8 +97,8 @@ function onSearch() {
         />
       </FormItem>
 
-      <div class="flex justify-between flex-1 w-fit mb-4px">
-        <div class="flex items-center gap-2">
+      <div class="flex justify-between flex-1 w-fit gap-2 mb-4px">
+        <div class="flex items-center gap-2 min-h-fit">
           <slot name="search-actions-left" />
           <Button
             v-if="columns.length && showSearchBtn"
@@ -115,7 +115,7 @@ function onSearch() {
           </Button>
           <a
             v-if="columns.length > maxVisibleItems"
-            class="text-12px"
+            class="flex items-center w-fit min-w-fit text-12px"
             @click="expand = !expand"
           >
             <template v-if="expand">
@@ -124,10 +124,10 @@ function onSearch() {
             <template v-else>
               <DownOutlined />
             </template>
-            {{ expand ? '收起' : '展开' }}
+            {{ expand ? t('collapse') : t('expand') }}
           </a>
         </div>
-        <div class="flex gap-2">
+        <div class="flex gap-2 w-fit">
           <slot
             name="extra"
             :form-data="formDataBuffer"
