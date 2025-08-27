@@ -1,5 +1,13 @@
 # @uozi-admin/curd
 
+## 4.10.6
+
+### Patch Changes
+
+- [`b6cd4c4`](https://github.com/uozi-tech/admin-kit/commit/b6cd4c477cf8a93dce5d22b9b4a810f2cd36478f) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): add immediate option to deep watcher in StdFormController
+
+- [`ce678a3`](https://github.com/uozi-tech/admin-kit/commit/ce678a3bc5e618c0b4e6a55b947f99863ab538eb) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): update StdForm to use FormInstance for form reference
+
 ## 4.10.5
 
 ### Patch Changes
