@@ -111,7 +111,7 @@ function Render() {
             console.error(error)
           }
         }
-      }, { deep: true })
+      }, { deep: true, immediate: true })
     }
 
     switch (formConfig?.type) {
