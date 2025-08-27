@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { RowProps } from 'ant-design-vue'
+import type { FormInstance, RowProps } from 'ant-design-vue'
 import type { StdCurdProps, StdTableColumn } from '../types'
 import { Col, Form, FormItemRest, Row } from 'ant-design-vue'
 import { reactive, ref } from 'vue'
@@ -42,7 +42,7 @@ for (const column of props.columns) {
   }
 }
 
-const formRef = ref()
+const formRef = ref<FormInstance>()
 defineExpose({
   formRef,
 })
