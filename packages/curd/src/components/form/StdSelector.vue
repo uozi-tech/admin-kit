@@ -198,24 +198,27 @@ const computedValue = computed({
       destroy-on-close
       v-bind="modalProps"
       :z-index="3000"
+      class="std-selector-modal"
       @ok="setValue"
     >
       {{ tips }}
-      <StdTable
-        v-model:selected-row-keys="selectedRowKeys"
-        v-model:selected-rows="internalSelectedRows"
-        :columns="dataColumns"
-        :get-list-api="getListApi"
-        only-query
-        disable-router-query
-        :row-selection-type="selectionType"
-        :row-selection="selectionConfig"
-        :table-props="{
-          rowKey: props.valueKey,
-          ...tableProps,
-        }"
-        :overwrite-params="overwriteParams"
-      />
+      <div class="std-selector-table-container">
+        <StdTable
+          v-model:selected-row-keys="selectedRowKeys"
+          v-model:selected-rows="internalSelectedRows"
+          :columns="dataColumns"
+          :get-list-api="getListApi"
+          only-query
+          disable-router-query
+          :row-selection-type="selectionType"
+          :row-selection="selectionConfig"
+          :table-props="{
+            rowKey: props.valueKey,
+            ...tableProps,
+          }"
+          :overwrite-params="overwriteParams"
+        />
+      </div>
     </Modal>
   </div>
 </template>
@@ -223,5 +226,43 @@ const computedValue = computed({
 <style scoped>
 :deep(.selector) {
   display: none!important;
+}
+
+/* 限制选择器模态框中表格的高度，确保确认按钮始终可见 */
+.std-selector-modal :deep(.ant-modal-body) {
+  max-height: 60vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.std-selector-table-container {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.std-selector-table-container :deep(.std-table) {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.std-selector-table-container :deep(.ant-table-wrapper) {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.std-selector-table-container :deep(.ant-table) {
+  flex: 1;
+}
+
+.std-selector-table-container :deep(.ant-table-tbody) {
+  overflow-y: auto;
+  max-height: 40vh;
 }
 </style>

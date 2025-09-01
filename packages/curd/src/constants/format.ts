@@ -42,5 +42,5 @@ export function getDateFormat(type: keyof typeof globalDateFormats) {
 export const Format = new Proxy({} as Record<string, string>, {
   get(_target, prop) {
     return globalDateFormats[prop as keyof typeof globalDateFormats]
-  }
+  },
 })
