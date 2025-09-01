@@ -60,6 +60,19 @@ export interface RequestFormatFn {
 export type I18nLanguage = 'zh-CN' | 'zh-HK' | 'zh-TW' | 'en-US'
 
 /**
+ * The date format config
+ * @description The config for the date format
+ */
+export interface DateFormatConfig {
+  date?: string
+  datetime?: string
+  time?: string
+  year?: string
+  month?: string
+  week?: string
+}
+
+/**
  * The time config
  * @description The config for the time
  */
@@ -217,6 +230,12 @@ export interface CurdConfigT {
   i18n?: I18nOptions<{
     message: I18nLanguageObject
   }>
+
+  /**
+   * The date format config
+   * @description The config for the date format
+   */
+  dateFormat?: DateFormatConfig
 
   /**
    * The time config

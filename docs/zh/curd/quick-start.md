@@ -70,6 +70,15 @@ createApp(App)
       // 时间字段是否是 timestamp 类型
       timestamp: false,
     },
+    // 可选，自定义日期格式
+    dateFormat: {
+      date: 'YYYY-MM-DD',
+      datetime: 'YYYY-MM-DD HH:mm:ss',
+      time: 'HH:mm:ss',
+      year: 'YYYY',
+      month: 'YYYY-MM',
+      week: 'YYYY-wo',
+    },
     // 可选
     selector: {
       // 忽略 '0' 的字符串

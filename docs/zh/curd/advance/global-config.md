@@ -1,6 +1,6 @@
 # 全局配置
 
-CURD 组件支持全局配置,可以统一设置 API 响应格式、分页参数等。
+CURD 组件支持全局配置,可以统一设置 API 响应格式、分页参数、日期格式等。
 
 ::: details 默认配置
 
@@ -33,6 +33,14 @@ CURD 组件支持全局配置,可以统一设置 API 响应格式、分页参数
   },
   time: {
     timestamp: false
+  },
+  dateFormat: {
+    date: 'YYYY-MM-DD',
+    datetime: 'YYYY-MM-DD HH:mm:ss',
+    time: 'HH:mm:ss',
+    year: 'YYYY',
+    month: 'YYYY-MM',
+    week: 'YYYY-wo'
   },
   selector: {
     omitZeroString: true
@@ -87,6 +95,16 @@ app.use(createCurdConfig({
     time: {
       timestamp: true
     }
+  },
+
+  // 日期格式配置
+  dateFormat: {
+    date: 'YYYY-MM-DD',
+    datetime: 'YYYY-MM-DD HH:mm:ss',
+    time: 'HH:mm:ss',
+    year: 'YYYY',
+    month: 'YYYY-MM',
+    week: 'YYYY-wo'
   },
   
   // 选择器配置
@@ -190,3 +208,48 @@ interface DeleteConfirmConfig {
 - `valueKey`: 在 Modal 模式下，用户需要输入记录中此字段的值才能确认删除
 
 **注意:** 组件级别的 `deleteConfirmConfig` 配置会覆盖全局配置。
+
+### 日期格式配置
+
+日期格式全局配置:
+
+```ts
+interface DateFormatConfig {
+  date?: string      // 日期格式，默认为 'YYYY-MM-DD'
+  datetime?: string  // 日期时间格式，默认为 'YYYY-MM-DD HH:mm:ss'
+  time?: string      // 时间格式，默认为 'HH:mm:ss'
+  year?: string      // 年份格式，默认为 'YYYY'
+  month?: string     // 月份格式，默认为 'YYYY-MM'
+  week?: string      // 周格式，默认为 'YYYY-wo'
+}
+```
+
+**配置说明:**
+
+- `date`: 日期选择器的默认格式
+- `datetime`: 日期时间选择器的默认格式
+- `time`: 时间选择器的默认格式
+- `year`: 年份选择器的默认格式
+- `month`: 月份选择器的默认格式
+- `week`: 周选择器的默认格式
+
+**动态格式使用:**
+
+配置后，可以通过 `Format` 对象动态获取当前的格式配置：
+
+```ts
+import { Format, setGlobalDateFormats, getDateFormat } from '@uozi-admin/curd'
+
+// 动态获取格式
+console.log(Format.date)     // 输出当前日期格式
+console.log(Format.datetime) // 输出当前日期时间格式
+
+// 运行时修改格式
+setGlobalDateFormats({
+  date: 'DD/MM/YYYY',
+  datetime: 'DD/MM/YYYY HH:mm'
+})
+
+// 获取特定格式
+const dateFormat = getDateFormat('date')
+```
