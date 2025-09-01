@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.11.0
+
+### Minor Changes
+
+- [`291ab8e`](https://github.com/uozi-tech/admin-kit/commit/291ab8e1ef1f1304dca1e40d0ee7e202b9c20a54) Thanks [@akinoccc](https://github.com/akinoccc)! - feat(curd): add global date format
+
 ## 4.10.6
 
 ### Patch Changes
