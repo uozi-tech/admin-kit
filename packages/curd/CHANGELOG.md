@@ -4,6 +4,18 @@
 
 ### Minor Changes
 
+- [`4fab61a`](https://github.com/uozi-tech/admin-kit/commit/4fab61a978a9ae18da7f78cbfffb03cd99d7c8d4) Thanks [@akinoccc](https://github.com/akinoccc)! - feat: add dynamic field visibility and required calculation for forms
+
+### Patch Changes
+
+- [`3b3bfc8`](https://github.com/uozi-tech/admin-kit/commit/3b3bfc84e1b2ad51fcb8b4f4baece9ecf3eedd50) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): typedef error
+
+- [`e781f54`](https://github.com/uozi-tech/admin-kit/commit/e781f54d7da9d9d43855b3a507c815d3ce2ccfe7) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): typedef error
+
+## 4.12.0
+
+### Minor Changes
+
 - [#431](https://github.com/uozi-tech/admin-kit/pull/431) [`027cc7a`](https://github.com/uozi-tech/admin-kit/commit/027cc7ad398ba795f6a5a99d56f3c438bb3a3e51) Thanks [@copilot-swe-agent](https://github.com/apps/copilot-swe-agent)! - feat: set max height for ant design modal and selector table
 
 ## 4.11.1
