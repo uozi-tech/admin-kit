@@ -6,6 +6,7 @@ import DefaultTheme from 'vitepress/theme'
 import { h } from 'vue'
 // import 'virtual:uno.css'
 import { createMemoryHistory, createRouter, createWebHistory } from 'vue-router'
+import Breadcrumb from './components/Breadcrumb.vue'
 import 'ant-design-vue/dist/reset.css'
 import './style.css'
 import './custom.css'
@@ -15,6 +16,7 @@ export default {
   Layout: () => {
     return h(DefaultTheme.Layout, null, {
       // https://vitepress.dev/guide/extending-default-theme#layout-slots
+      'doc-before': () => [h(Breadcrumb)],
     })
   },
   enhanceApp({ app }) {

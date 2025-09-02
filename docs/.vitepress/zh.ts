@@ -18,6 +18,32 @@ export default defineConfig({
       '/zh/shared-config/': { base: '/zh/shared-config/', items: sidebarSharedConfig() },
     },
 
+    // 搜索配置优化
+    search: {
+      provider: 'local',
+      options: {
+        locales: {
+          zh: {
+            translations: {
+              button: {
+                buttonText: '搜索文档',
+                buttonAriaLabel: '搜索文档',
+              },
+              modal: {
+                noResultsText: '无法找到相关结果',
+                resetButtonTitle: '清除查询条件',
+                footer: {
+                  selectText: '选择',
+                  navigateText: '切换',
+                  closeText: '关闭',
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+
     editLink: {
       pattern: 'https://github.com/uozi-tech/admin-kit/edit/main/docs/:path',
       text: '在 GitHub 上编辑此页',
@@ -66,7 +92,7 @@ function nav(): DefaultTheme.NavItem[] {
     },
     {
       text: 'CURD',
-      link: '/zh/curd/introduction',
+      link: '/zh/curd/',
       activeMatch: '/zh/curd/',
     },
     {
@@ -100,74 +126,53 @@ function nav(): DefaultTheme.NavItem[] {
 function sidebarGuide() {
   return [
     {
-      text: '指南',
+      text: '开始使用',
       items: [
-        { text: '介绍', link: 'introduction' },
-        { text: '快速开始', link: 'quick-start' },
-        { text: '基础概念', link: 'basic-concepts' },
+        { text: '概述', link: '' },
+        { text: '快速开始', link: 'getting-started' },
       ],
     },
     {
-      text: '核心功能',
+      text: '基础知识',
       items: [
-        { text: '列配置', link: 'core/column' },
-        { text: '表单配置', link: 'core/form' },
-        { text: '搜索配置', link: 'core/search' },
-        { text: '接口配置', link: 'core/api' },
+        { text: '核心概念', link: 'fundamentals/concepts' },
+        { text: '配置指南', link: 'fundamentals/configuration' },
+        { text: '使用示例', link: 'fundamentals/examples' },
       ],
     },
     {
-      text: '进阶',
+      text: '高级特性',
       items: [
-        { text: '全局配置', link: 'advance/global-config' },
-        { text: '自定义渲染', link: 'advance/custom-render' },
-        { text: '自定义表单控件', link: 'advance/custom-form-control' },
-        { text: '表单联动', link: 'advance/form-linkage' },
-        { text: '批量操作', link: 'advance/batch-operations' },
-        { text: '国际化', link: 'advance/i18n' },
+        { text: '自定义扩展', link: 'advanced/customization' },
+        { text: '表单交互', link: 'advanced/form-interactions' },
+        { text: '批量操作', link: 'advanced/batch-operations' },
+        { text: '国际化', link: 'advanced/internationalization' },
       ],
     },
     {
-      text: '核心组件',
+      text: '组件参考',
       items: [
         { text: 'StdCurd', link: 'components/std-curd' },
-        { text: 'StdDetail', link: 'components/std-detail' },
         { text: 'StdTable', link: 'components/std-table' },
         { text: 'StdForm', link: 'components/std-form' },
         { text: 'StdSearch', link: 'components/std-search' },
-        { text: 'StdPagination', link: 'components/std-pagination' },
       ],
     },
     {
       text: '表单控件',
       items: [
-        { text: '输入框', link: 'form-controls/input' },
-        { text: '文本域', link: 'form-controls/textarea' },
-        { text: '密码框', link: 'form-controls/password' },
-        { text: '数字输入框', link: 'form-controls/number' },
-        { text: '单选框', link: 'form-controls/radio-group' },
-        { text: '复选框', link: 'form-controls/checkbox-group' },
-        { text: '下拉列表选择器', link: 'form-controls/select' },
-        { text: '表格列表选择器', link: 'form-controls/selector' },
-        { text: '级联选择器', link: 'form-controls/cascader' },
-        { text: '滑块', link: 'form-controls/slider' },
-        { text: '评分', link: 'form-controls/rate' },
-        { text: '开关', link: 'form-controls/switch' },
-        { text: '日期选择器', link: 'form-controls/date' },
-        { text: '日期范围选择器', link: 'form-controls/date-range' },
-        { text: '日期时间选择器', link: 'form-controls/datetime' },
-        { text: '日期时间范围选择器', link: 'form-controls/datetime-range' },
-        { text: '时间选择器', link: 'form-controls/time' },
-        { text: '时间范围选择器', link: 'form-controls/time-range' },
-        { text: '月份选择器', link: 'form-controls/month' },
-        { text: '月份范围选择器', link: 'form-controls/month-range' },
-        { text: '周选择器', link: 'form-controls/week' },
-        { text: '周范围选择器', link: 'form-controls/week-range' },
-        { text: '年份选择器', link: 'form-controls/year' },
-        { text: '年份范围选择器', link: 'form-controls/year-range' },
-        { text: '文件选择器', link: 'form-controls/upload' },
+        { text: '基础控件', link: 'form-controls/basic-controls' },
+        { text: '选择控件', link: 'form-controls/selection-controls' },
+        { text: '日期控件', link: 'form-controls/date-controls' },
+        { text: '高级控件', link: 'form-controls/advanced-controls' },
       ],
     },
+    // {
+    //   text: 'API 参考',
+    //   items: [
+    //     { text: '完整 API 文档', link: 'api-reference' },
+    //   ],
+    // },
   ]
 }
 

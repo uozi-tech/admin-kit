@@ -1,30 +1,48 @@
 # StdSearch 组件
 
-StdSearch 是一个搜索表单组件,用于配置表格的搜索条件。
+StdSearch 是搜索组件，根据列配置自动生成搜索表单，支持多种搜索控件。
 
 ## 基础用法
 
 ```vue
-<script setup lang="ts">
-const searchData = ref({})
-
-function resetSearch() {
-  searchData.value = {}
-}
-</script>
-
 <template>
   <StdSearch
-    v-model:data="searchData"
     :columns="columns"
-  >
-    <template #extra="{ formData }">
-      <Button @click="resetSearch">
-        重置
-      </Button>
-    </template>
-  </StdSearch>
+    @search="handleSearch"
+    @reset="handleReset"
+  />
 </template>
+
+<script setup lang="ts">
+import { StdSearch } from '@uozi-admin/curd'
+
+const columns = [
+  {
+    title: '用户名',
+    dataIndex: 'username',
+    search: { control: 'input' }
+  },
+  {
+    title: '状态',
+    dataIndex: 'status',
+    search: {
+      control: 'select',
+      options: [
+        { label: '启用', value: 1 },
+        { label: '禁用', value: 0 }
+      ]
+    }
+  }
+]
+
+const handleSearch = (params) => {
+  console.log('搜索参数:', params)
+}
+
+const handleReset = () => {
+  console.log('重置搜索')
+}
+</script>
 ```
 
 ## API
@@ -32,66 +50,16 @@ function resetSearch() {
 ### Props
 
 | 属性 | 说明 | 类型 | 默认值 |
-| --- | --- | --- | --- |
-| columns | 列配置 | StdTableColumn[] | [] |
+|------|------|------|--------|
+| columns | 列配置 | StdTableColumn[] | - |
+| initialValues | 初始搜索值 | object | - |
+| collapsed | 是否折叠 | boolean | false |
 
-### Model
+### Events
 
-| 属性 | 说明 | 类型 | 默认值 |
-| --- | --- | --- | --- |
-| data | 搜索数据 | object | {} |
+| 事件名 | 说明 | 回调参数 |
+|--------|------|----------|
+| search | 搜索时触发 | (params: object) |
+| reset | 重置时触发 | () |
 
-### Slots
-
-| 插槽名 | 说明 | 参数 |
-| --- | --- | --- |
-| extra | 额外的操作区域 | { formData } |
-
-## 搜索配置
-
-通过 column 的 search 属性配置搜索:
-
-### 开启搜索
-```vue
-<script setup>
-const column = {
-  title: '用户名',
-  dataIndex: 'username',
-  search: true // 使用与 edit 相同的控件类型
-}
-</script>
-```
-
-### 自定义搜索控件
-```vue
-<script setup>
-const column = {
-  title: '创建时间',
-  dataIndex: 'created_at',
-  search: {
-    type: 'dateRange',
-    dateRange: {
-      format: 'YYYY-MM-DD'
-    }
-  }
-}
-</script>
-```
-
-### 配置验证规则
-```vue
-<script setup>
-const column = {
-  title: '手机号',
-  dataIndex: 'mobile',
-  search: {
-    type: 'input',
-    formItem: {
-      rules: [
-        { pattern: /^1[3-9]\d{9}$/, message: '请输入正确的手机号' }
-      ]
-    }
-  }
-}
-</script>
-```
+更多详细配置请参考完整 API 文档。

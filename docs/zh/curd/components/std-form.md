@@ -1,46 +1,56 @@
 # StdForm 组件
 
-StdForm 是一个基于 Ant Design Vue Form 的表单组件,支持多种表单控件和验证规则。
+StdForm 是表单组件，用于数据的新增和编辑，支持各种表单控件和验证规则。
 
 ## 基础用法
 
-<demo vue="../demos/curd/std-form/basic.vue" title="基础表单" description="展示 StdForm 基础功能，包含各种表单控件、验证规则和布局配置"></demo>
+```vue
+<template>
+  <StdForm
+    :api="userApi"
+    :columns="columns"
+    :id="editId"
+    @success="handleSuccess"
+  />
+</template>
 
-## 字段联动
+<script setup lang="ts">
+import { StdForm } from '@uozi-admin/curd'
+import { useCurdApi } from '@uozi-admin/request'
 
-<demo vue="../demos/curd/std-form/form-linkage.vue" title="表单联动" description="展示表单字段间的联动功能：身份证号联动出生日期、性别、年龄；省市区三级联动"></demo>
+const userApi = useCurdApi('/users')
+const editId = ref()
 
-StdForm 支持强大的字段间联动功能，当依赖字段值发生变化时可以自动更新其他字段。
+const columns = [
+  {
+    title: '用户名',
+    dataIndex: 'username',
+    form: { control: 'input', required: true }
+  }
+]
 
-更多联动功能请参考[表单联动](../advance/form-linkage)章节。
+const handleSuccess = () => {
+  console.log('保存成功')
+}
+</script>
+```
 
 ## API
 
 ### Props
 
 | 属性 | 说明 | 类型 | 默认值 |
-| --- | --- | --- | --- |
-| columns | 列配置 | StdTableColumn[] | [] |
-| labelAlign | 标签对齐方式 | 'left' \| 'right' | 'left' |
-| formRowProps | Row 组件属性，用于自定义表单布局 | RowProps | - |
-| layout | 布局方式 | 'horizontal' \| 'vertical' \| 'inline' | 'vertical' |
+|------|------|------|--------|
+| api | API 接口对象 | StdApi | - |
+| columns | 列配置 | StdTableColumn[] | - |
+| id | 编辑时的记录ID | string \| number | - |
+| initialValues | 初始值 | object | - |
 
-### Model
+### Events
 
-| 属性 | 说明 | 类型 | 默认值 |
-| --- | --- | --- | --- |
-| data | 表单数据 | object | {} |
+| 事件名 | 说明 | 回调参数 |
+|--------|------|----------|
+| success | 保存成功时触发 | (data: any) |
+| error | 保存失败时触发 | (error: Error) |
 
-### Methods
-
-| 方法名 | 说明 | 参数 |
-| --- | --- | --- |
-| validate | 验证表单 | (payload: \{ name: string \| number \| string[] \| number[], status: boolean, errors: string[] \}) => void |
-
-## Slots
-
-- 无
-
-## Events
-
-- `save`: 保存事件。
+更多详细配置请参考完整 API 文档。
