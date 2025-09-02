@@ -11,6 +11,7 @@ on:
       - eslint.config.mjs
       - 'scripts/**'
       - '.github/**'
+  workflow_dispatch:
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
