@@ -76,7 +76,7 @@ importers:
   docs:
     dependencies:
       '@uozi-admin/curd':
-        specifier: workspace:^
+        specifier: ^4.12.0
         version: link:../packages/curd
       '@vueuse/router':
         specifier: ^13.8.0
