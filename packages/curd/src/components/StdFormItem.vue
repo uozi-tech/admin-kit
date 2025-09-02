@@ -16,7 +16,7 @@ export interface Props {
   error?: string
   required?: boolean
   noValidate?: boolean
-  formItem?: FormItemProps
+  formItem?: Omit<FormItemProps, 'required'>
   formData?: Record<string, any>
 }
 
@@ -34,7 +34,7 @@ const computedRequired = computed(() => {
     }
     return formItemRequired
   }
-  
+
   // 回退到 props 中的 required
   return props.required ?? false
 })
