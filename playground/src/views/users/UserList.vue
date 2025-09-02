@@ -101,6 +101,10 @@ const columns: StdTableColumn[] = [
     },
   },
   {
+    title: '创建时间',
+    dataIndex: 'created_at',
+  },
+  {
     title: '操作',
     dataIndex: 'actions',
   },

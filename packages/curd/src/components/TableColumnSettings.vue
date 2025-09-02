@@ -34,18 +34,29 @@ const storageKey = computed(() => {
 // 初始化列配置
 function initializeColumns() {
   const savedColumnKeys = getSavedConfig()
+  const availableColumns = props.columns.filter(column => !isSystemColumn(column) && !column.hiddenInTable)
 
   if (savedColumnKeys && savedColumnKeys.length > 0) {
     // 使用保存的配置：基于保存的key数组重新排序和筛选
-    const columnsMap = new Map(props.columns
-      .filter(item => !item.hiddenInTable)
-      .map(col => [getColumnKey(col), col]))
+    const columnsMap = new Map(availableColumns.map(col => [getColumnKey(col), col]))
+    const savedKeysSet = new Set(savedColumnKeys.map(col => col.key))
     const orderedColumns: StdTableColumn[] = []
-    // 按保存的顺序添加列
+
+    // 按保存的顺序添加已保存的列
     savedColumnKeys.forEach((col) => {
       const column = columnsMap.get(col.key)
-      if (column && !isSystemColumn(column)) {
+      if (column) {
         column.hiddenInTable = col.hiddenInTable
+        orderedColumns.push(column)
+      }
+    })
+
+    // 添加新增的列（不在保存配置中的列）
+    availableColumns.forEach((column) => {
+      const key = getColumnKey(column)
+      if (!savedKeysSet.has(key as string)) {
+        // 新列默认显示
+        column.hiddenInTable = false
         orderedColumns.push(column)
       }
     })
@@ -55,9 +66,8 @@ function initializeColumns() {
   }
   else {
     // 首次使用，使用默认配置（过滤掉系统列和隐藏列）
-    const defaultColumns = props.columns.filter(column => !isSystemColumn(column) && !column.hiddenInTable)
-    localColumns.value = defaultColumns
-    tempColumns.value = cloneDeep(defaultColumns)
+    localColumns.value = availableColumns
+    tempColumns.value = cloneDeep(availableColumns)
   }
 }
 
