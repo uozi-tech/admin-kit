@@ -33,7 +33,7 @@ async function computedOptions() {
   options.value = p.props?.options
 }
 
-watch(value, computedOptions, { immediate: true })
+watch([value, () => p.props], computedOptions, { immediate: true, deep: true })
 </script>
 
 <template>
