@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.12.0
+
+### Minor Changes
+
+- [#431](https://github.com/uozi-tech/admin-kit/pull/431) [`027cc7a`](https://github.com/uozi-tech/admin-kit/commit/027cc7ad398ba795f6a5a99d56f3c438bb3a3e51) Thanks [@copilot-swe-agent](https://github.com/apps/copilot-swe-agent)! - feat: set max height for ant design modal and selector table
+
 ## 4.11.1
 
 ### Patch Changes
