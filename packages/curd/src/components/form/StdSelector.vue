@@ -198,24 +198,30 @@ const computedValue = computed({
       destroy-on-close
       v-bind="modalProps"
       :z-index="3000"
+      wrap-class-name="std-selector-modal"
       @ok="setValue"
     >
       {{ tips }}
-      <StdTable
-        v-model:selected-row-keys="selectedRowKeys"
-        v-model:selected-rows="internalSelectedRows"
-        :columns="dataColumns"
-        :get-list-api="getListApi"
-        only-query
-        disable-router-query
-        :row-selection-type="selectionType"
-        :row-selection="selectionConfig"
-        :table-props="{
-          rowKey: props.valueKey,
-          ...tableProps,
-        }"
-        :overwrite-params="overwriteParams"
-      />
+      <div>
+        <StdTable
+          v-model:selected-row-keys="selectedRowKeys"
+          v-model:selected-rows="internalSelectedRows"
+          :columns="dataColumns"
+          :get-list-api="getListApi"
+          only-query
+          disable-router-query
+          :row-selection-type="selectionType"
+          :row-selection="selectionConfig"
+          :table-props="{
+            rowKey: props.valueKey,
+            scroll: {
+              y: '40vh',
+            },
+            ...tableProps,
+          }"
+          :overwrite-params="overwriteParams"
+        />
+      </div>
     </Modal>
   </div>
 </template>
