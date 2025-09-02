@@ -8,9 +8,6 @@ import { useLocale } from '../composables'
 import { getFormErrors } from '../constants/formErrors'
 import { getDataIndexStr } from '../utils'
 
-const props = defineProps<Props>()
-const FormErrors = getFormErrors()
-const { t } = useLocale()
 export interface Props {
   dataIndex?: StdTableColumn['dataIndex']
   label?: string
@@ -21,6 +18,10 @@ export interface Props {
   noValidate?: boolean
   formItem?: FormItemProps
 }
+
+const props = defineProps<Props>()
+const FormErrors = getFormErrors()
+const { t } = useLocale()
 
 const help = computed(() => {
   const rules = props.error?.split(',')

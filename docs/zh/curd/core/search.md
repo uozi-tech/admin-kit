@@ -73,6 +73,10 @@
 }
 ```
 
+## 高级搜索演示
+
+<demo vue="../demos/search/advanced-search.vue" title="高级搜索示例" description="演示各种搜索控件的使用，包括文本搜索、选择器、日期范围等"></demo>
+
 ## 完整示例
 
 ```ts

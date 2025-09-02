@@ -306,6 +306,14 @@ const formConfig = [
 ]
 ```
 
+## 表单联动演示
+
+<demo vue="../demos/advanced/form-linkage.vue" title="表单联动示例" description="演示根据用户类型动态显示不同字段的表单联动功能"></demo>
+
+## 表单控件演示
+
+<demo vue="../demos/form/form-controls.vue" title="表单控件示例" description="演示各种表单控件的使用方法和配置"></demo>
+
 ## 完整示例
 
 ```ts

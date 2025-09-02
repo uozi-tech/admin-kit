@@ -9,7 +9,7 @@ import { userColumns } from './columns'
     :columns="userColumns"
     :api="userApi"
     disable-router-query
-    scroll-x="2400"
+    scroll-x="max-content"
   />
 </template>
 

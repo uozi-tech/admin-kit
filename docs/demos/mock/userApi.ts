@@ -1,3 +1,5 @@
+import type { CurdApi } from '@uozi-admin/curd/dist/types/api'
+
 // 模拟的初始数据
 const mockData = [
   {
@@ -6,9 +8,9 @@ const mockData = [
     email: 'admin@uozi.com',
     phone: '123456789',
     status: 1, // 1: Active, -1: Banned
-    created_at: '2023-05-01T12:00:00Z',
-    updated_at: '2023-05-01T12:00:00Z',
-    deleted_at: null,
+    created_at: 1769856000000,
+    updated_at: 1769856000000,
+    deleted_at: 0,
   },
   {
     id: 2,
@@ -16,9 +18,9 @@ const mockData = [
     email: 'user@uozi.com',
     phone: '987654321',
     status: -1,
-    created_at: '2023-06-01T12:00:00Z',
-    updated_at: '2023-06-01T12:00:00Z',
-    deleted_at: null,
+    created_at: 1769856000000,
+    updated_at: 1769856000000,
+    deleted_at: 0,
   },
 ]
 
@@ -93,7 +95,7 @@ export function getUserDetail(id) {
   const user = mockData.find(item => item.id === Number.parseInt(id))
   if (!user)
     return simulateDelay({ message: 'User not found', error: true })
-  return simulateDelay({ message: 'User detail retrieved', data: user })
+  return simulateDelay(user)
 }
 
 // 新增用户 API
@@ -102,12 +104,12 @@ export function createUser(newUser) {
   const createdUser = {
     id,
     ...newUser,
-    created_at: new Date().toISOString(),
-    updated_at: new Date().toISOString(),
+    created_at: 1769856000000,
+    updated_at: 1769856000000,
     deleted_at: null,
   }
   mockData.push(createdUser)
-  return simulateDelay({ message: 'User created', data: createdUser })
+  return simulateDelay(createdUser)
 }
 
 // 更新用户 API
@@ -116,8 +118,8 @@ export function updateUser(id, updatedData) {
   if (!user)
     return simulateDelay({ message: 'User not found', error: true })
 
-  Object.assign(user, updatedData, { updated_at: new Date().toISOString() })
-  return simulateDelay({ message: 'User updated', data: user })
+  Object.assign(user, updatedData, { updated_at: 1769856000000 })
+  return simulateDelay(user)
 }
 
 // 删除用户 API（软删除和永久删除合并为一个 API）
@@ -132,7 +134,7 @@ export function deleteUser(id, permanently = false) {
   }
   else {
     const user = mockData[userIndex]
-    user.deleted_at = new Date().toISOString()
+    user.deleted_at = 1769856000000
     return simulateDelay({ message: 'User soft deleted' })
   }
 }
@@ -143,15 +145,16 @@ export function restoreUser(id) {
   if (!user)
     return simulateDelay({ message: 'User not found or not in trash', error: true })
 
-  user.deleted_at = null
-  user.updated_at = new Date().toISOString()
-  return simulateDelay({ message: 'User restored', data: user })
+  user.deleted_at = 0
+  user.updated_at = 1769856000000
+  return simulateDelay(user)
 }
 
 export const userApi = {
   getList: getUsers,
-  getDetail: getUserDetail,
-  create: createUser,
-  update: updateUser,
-  delete: deleteUser,
-}
+  getItem: getUserDetail,
+  createItem: createUser,
+  updateItem: updateUser,
+  deleteItem: deleteUser,
+  restoreItem: restoreUser,
+} as CurdApi

@@ -13,6 +13,10 @@
     "vitepress-demo-plugin": "^1.4.7"
   },
   "dependencies": {
-    "vue": "^3.5.20"
+    "@uozi-admin/curd": "workspace:^",
+    "@vueuse/router": "^13.8.0",
+    "ant-design-vue": "^4.2.6",
+    "vue": "^3.5.20",
+    "vue-router": "^4.5.1"
   }
 }

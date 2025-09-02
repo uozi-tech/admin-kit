@@ -91,6 +91,8 @@ createApp(App)
 
 下面通过一个用户管理页面，展示如何使用 CRUD 组件库：
 
+<demo vue="../demos/basic/basic.vue" title="基础示例" description="这是一个最简单的CRUD示例，展示了基本的增删改查功能"></demo>
+
 ### 1. 定义 API 接口
 
 ```ts

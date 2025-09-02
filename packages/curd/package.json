@@ -1,6 +1,6 @@
 {
   "name": "@uozi-admin/curd",
-  "version": "4.12.0",
+  "version": "4.11.0",
   "description": "Easy to implement curd.",
   "type": "module",
   "main": "dist/index.js",
@@ -39,6 +39,8 @@
   },
   "peerDependencies": {
     "@ant-design/icons-vue": ">=7.0.1",
+    "@vueuse/core": "^13.8.0",
+    "@vueuse/router": "^13.8.0",
     "ant-design-vue": ">=4.2.6",
     "dayjs": ">=1.11.18",
     "lodash-es": ">=4.17.21",
@@ -59,8 +61,6 @@
     "vue-types": "^3.0.2"
   },
   "dependencies": {
-    "@vueuse/core": "^13.8.0",
-    "@vueuse/router": "^13.8.0",
     "scroll-into-view-if-needed": "^3.1.0",
     "sortablejs": "^1.15.6",
     "vue-i18n": "^11.1.11",

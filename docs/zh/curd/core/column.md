@@ -25,6 +25,10 @@ export interface StdTableColumn<T = any> extends Omit<TableColumnType, 'customRe
 }
 ```
 
+## 自定义渲染演示
+
+<demo vue="../demos/table/custom-render.vue" title="自定义渲染示例" description="演示如何使用customRender实现复杂的表格列渲染效果"></demo>
+
 ## 搜索配置
 
 通过 `search` 配置搜索表单:
