@@ -2,7 +2,7 @@
 import type { FormInstance, RowProps } from 'ant-design-vue'
 import type { StdCurdProps, StdTableColumn } from '../types'
 import { Col, Form, FormItemRest, Row } from 'ant-design-vue'
-import { reactive, ref } from 'vue'
+import { computed, reactive, ref } from 'vue'
 import { getColumnKey, getDataIndexStr, getEditLabel } from '../utils'
 import FormControllerRender from './StdFormController.vue'
 import StdFormItem from './StdFormItem.vue'
@@ -42,6 +42,17 @@ for (const column of props.columns) {
   }
 }
 
+// 检查字段是否应该显示在表单中
+function shouldShowInForm(column: StdTableColumn): boolean {
+  if (!column.edit?.showInForm) return true
+  
+  if (typeof column.edit.showInForm === 'function') {
+    return column.edit.showInForm({ formData: formData.value })
+  }
+  
+  return column.edit.showInForm
+}
+
 const formRef = ref<FormInstance>()
 defineExpose({
   formRef,
@@ -66,7 +77,7 @@ defineExpose({
           :key="getColumnKey(c)"
         >
           <Col
-            v-if="!mode || (mode && mode === 'edit' && !c.hiddenInEdit) || (mode && mode === 'add' && !c.hiddenInAdd)"
+            v-if="shouldShowInForm(c) && (!mode || (mode && mode === 'edit' && !c.hiddenInEdit) || (mode && mode === 'add' && !c.hiddenInAdd))"
             span="24"
             v-bind="c.edit?.col"
           >
@@ -76,6 +87,7 @@ defineExpose({
               :label="getEditLabel(c)"
               :name="c.edit?.valueKey ?? c.edit?.formItem?.name ?? getDataIndexStr(c.dataIndex)"
               :error="errors?.[getDataIndexStr(c.dataIndex)]"
+              :form-data="formData"
             >
               <FormControllerRender
                 :column="c"

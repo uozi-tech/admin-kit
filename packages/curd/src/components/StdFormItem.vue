@@ -17,11 +17,27 @@ export interface Props {
   required?: boolean
   noValidate?: boolean
   formItem?: FormItemProps
+  formData?: Record<string, any>
 }
 
 const props = defineProps<Props>()
 const FormErrors = getFormErrors()
 const { t } = useLocale()
+
+// 计算动态 required 值
+const computedRequired = computed(() => {
+  // 优先使用 formItem 中的 required 配置
+  const formItemRequired = (props.formItem as any)?.required
+  if (formItemRequired !== undefined) {
+    if (typeof formItemRequired === 'function') {
+      return props.formData ? formItemRequired({ formData: props.formData }) : false
+    }
+    return formItemRequired
+  }
+  
+  // 回退到 props 中的 required
+  return props.required ?? false
+})
 
 const help = computed(() => {
   const rules = props.error?.split(',')
@@ -38,7 +54,7 @@ const help = computed(() => {
 
 async function validator(_: Rule, value: any): Promise<any> {
   return new Promise((resolve, reject) => {
-    if (props.required && !props.noValidate && (!value && value !== 0)) {
+    if (computedRequired.value && !props.noValidate && (!value && value !== 0)) {
       reject(help.value ?? t('This field should not be empty'))
 
       return
@@ -54,7 +70,7 @@ async function validator(_: Rule, value: any): Promise<any> {
     :name="getDataIndexStr(dataIndex)"
     :label="label"
     :help="help"
-    :rules="{ required, validator }"
+    :rules="{ required: computedRequired, validator }"
     :validate-status="error ? 'error' : undefined"
     :auto-link="false"
     v-bind="formItem"

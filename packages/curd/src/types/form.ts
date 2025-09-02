@@ -61,6 +61,7 @@ export interface StdFormConfig extends Record<any, any> {
   defaultValue?: any
   valueKey?: string
   col?: ColProps
+  showInForm?: boolean | ((context: { formData: Record<string, any> }) => boolean)
 
   password?: PasswordConfig
   input?: InputConfig
@@ -95,11 +96,12 @@ export interface StdFormConfig extends Record<any, any> {
   dependencies?: string[] // 依赖的字段名称数组
   onChange?: (value: any, formData: Record<string, any>, dependencies: Record<string, any>) => void // 联动处理函数
 
-  formItem?: FormItemProps & {
+  formItem?: Omit<FormItemProps, 'required'> | {
     name?: string | string[]
     label?: string | (() => string)
     hiddenLabelInEdit?: boolean
     hiddenLabelInSearch?: boolean
     hiddenLabelInDetail?: boolean
+    required?: boolean | ((context: { formData: Record<string, any> }) => boolean)
   }
 }
