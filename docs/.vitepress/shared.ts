@@ -52,5 +52,17 @@ export default defineConfig({
       // }),
       // createUnoCSSPluginConfig(),
     ],
+    optimizeDeps: {
+      include: [
+        'ant-design-vue',
+        '@ant-design/icons-vue',
+        '@uozi-admin/curd',
+        'vue-router',
+      ],
+      exclude: ['@uozi-admin/curd'],
+    },
+    ssr: {
+      noExternal: ['ant-design-vue', '@ant-design/icons-vue', '@uozi-admin/curd'],
+    },
   },
 })
