@@ -3,21 +3,24 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "vitepress dev",
+    "dev": "vitepress dev --force",
     "build": "vitepress build",
     "preview": "vitepress preview"
   },
   "author": "Akino",
   "devDependencies": {
+    "mermaid": "^11.10.1",
     "postcss": "^8.5.6",
     "vitepress": "^1.6.4",
-    "vitepress-demo-plugin": "^1.4.7"
+    "vitepress-demo-plugin": "^1.4.7",
+    "vitepress-plugin-mermaid": "^2.0.17"
   },
   "dependencies": {
     "@ant-design/icons-vue": "^7.0.1",
-    "@uozi-admin/curd": "4.13.0",
+    "@uozi-admin/curd": "workspace:*",
     "@vueuse/router": "^13.8.0",
     "ant-design-vue": "^4.2.6",
+    "lodash-es": "^4.17.21",
     "vue": "^3.5.20",
     "vue-router": "^4.5.1"
   }

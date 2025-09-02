@@ -124,7 +124,6 @@ function sidebarGuide() {
         { text: '自定义表单控件', link: 'advance/custom-form-control' },
         { text: '表单联动', link: 'advance/form-linkage' },
         { text: '批量操作', link: 'advance/batch-operations' },
-        { text: '响应式设计', link: 'advance/responsive-design' },
         { text: '国际化', link: 'advance/i18n' },
       ],
     },

@@ -4,6 +4,8 @@
 
 ## 基础用法
 
+<demo vue="../../../demos/curd/form-controls/select-demo.vue" title="选择器控件" description="展示各种选择器的配置选项，包括单选、多选、搜索、标签模式、远程数据等功能"></demo>
+
 ```ts
 const config = {
   type: 'select',

@@ -4,6 +4,8 @@
 
 ## 基础用法
 
+<demo vue="../../../demos/curd/form-controls/other-controls.vue" title="其他表单控件" description="展示数字输入、滑块、开关、评分、文本域、单选/多选框组、级联选择、自动完成、文件上传等控件"></demo>
+
 ```ts
 const config = {
   type: 'number',

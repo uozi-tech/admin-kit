@@ -1,5 +1,6 @@
 import type { Theme } from 'vitepress'
 import { createCurdConfig } from '@uozi-admin/curd'
+import mermaid from 'mermaid'
 import DefaultTheme from 'vitepress/theme'
 // https://vitepress.dev/guide/custom-theme
 import { h } from 'vue'
@@ -17,6 +18,7 @@ export default {
     })
   },
   enhanceApp({ app }) {
+    mermaid.initialize({ startOnLoad: true })
     // 配置CURD组件的i18n
     app.use(createCurdConfig({}))
 

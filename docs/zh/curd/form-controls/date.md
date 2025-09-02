@@ -4,6 +4,8 @@
 
 ## 基础用法
 
+<demo vue="../../../demos/curd/form-controls/date-demo.vue" title="日期时间控件" description="展示各种日期时间选择器的配置选项，包括单日期、范围日期、时间选择等功能"></demo>
+
 ```ts
 const config = {
   type: 'date',

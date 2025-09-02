@@ -154,7 +154,7 @@ interface SelectorConfig {
 
 ## 完整演示
 
-<demo vue="../demos/integration/selector-demo.vue" title="选择器综合示例" description="演示各种选择器的使用场景，包括部门选择、角色多选、上级选择等"></demo>
+<demo vue="../demos/curd/integration/selector-demo.vue" title="选择器综合示例" description="演示各种选择器的使用场景，包括部门选择、角色多选、上级选择等"></demo>
 
 ## API 数据格式
 

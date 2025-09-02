@@ -4,96 +4,73 @@ outline: deep
 
 # 快速开始
 
-本节将帮助你快速上手 CRUD 组件库，学会如何构建一个完整的数据管理页面。
+本节将通过 4 个渐进式的例子，帮助您从零开始掌握 CURD 组件库的使用方法。
 
-## 核心概念
+## 🎯 学习目标
 
-在开始之前，了解几个核心概念：
+通过本节学习，您将掌握：
+- 安装和配置 CURD 组件库
+- 创建最简单的数据表格
+- 添加搜索和表单功能
+- 使用一站式 StdCurd 组件
 
-- **API 层** - 使用 `@uozi-admin/request` 定义数据接口
-- **列定义** - 定义表格列、搜索字段和表单字段
-- **CRUD 组件** - 提供完整的增删改查功能
+## 🏗️ 核心理念
 
-## 安装
+在开始之前，先理解 CURD 的核心设计理念：
+
+### 📋 统一的列定义
+一个配置对象同时定义：
+- 📊 **表格列** - 如何在表格中显示数据
+- 🔍 **搜索字段** - 如何搜索数据  
+- 📝 **表单字段** - 如何编辑数据
+
+### 🔗 API 驱动
+通过标准的 API 接口自动处理：
+- 📜 列表查询
+- ➕ 数据新增
+- ✏️ 数据编辑
+- 🗑️ 数据删除
+
+## 📦 第一步：安装和配置
+
+### 安装依赖
 
 ::: code-group
+```bash [pnpm (推荐)]
+pnpm add @uozi-admin/curd @uozi-admin/request
+```
+
 ```bash [npm]
-npm install @uozi-admin/curd
+npm install @uozi-admin/curd @uozi-admin/request
 ```
 
 ```bash [yarn]
-yarn add @uozi-admin/curd
-```
-
-```bash [pnpm]
-pnpm add @uozi-admin/curd
+yarn add @uozi-admin/curd @uozi-admin/request
 ```
 :::
 
-## 配置
+### 全局配置
+
+在你的 `main.ts` 中添加配置：
 
 ```ts
-import { createCurdConfig } from '@uozi-admin/curd'
 import { createApp } from 'vue'
+import { createCurdConfig } from '@uozi-admin/curd'
+import App from './App.vue'
 
-createApp(App)
-  .use(createCurdConfig({
-    // 可选，如果你需要自定义分页
-    listApi: {
-      paginationMap: {
-        params: {
-          current: 'page',
-          pageSize: 'page_size',
-        },
-        response: {
-          total: 'total',
-          current: 'current_page',
-          pageSize: 'per_page',
-          totalPages: 'total_pages',
-        },
-      },
-    },
-    // 可选，如果你需要自定义国际化
-    i18n: {
-      legacy: false,
-      locale: 'zh-CN',
-      fallbackLocale: 'en-US',
-      messages: {
-        'zh-CN': 'your-zh-CN-messages',
-        'zh-HK': 'your-zh-HK-messages',
-        'zh-TW': 'your-zh-TW-messages',
-        'en-US': 'your-en-US-messages',
-      },
-    },
-    // 可选
-    time: {
-      // 时间字段是否是 timestamp 类型
-      timestamp: false,
-    },
-    // 可选，自定义日期格式
-    dateFormat: {
-      date: 'YYYY-MM-DD',
-      datetime: 'YYYY-MM-DD HH:mm:ss',
-      time: 'HH:mm:ss',
-      year: 'YYYY',
-      month: 'YYYY-MM',
-      week: 'YYYY-wo',
-    },
-    // 可选
-    selector: {
-      // 忽略 '0' 的字符串
-      omitZeroString: true,
-    },
-  }))
+const app = createApp(App)
+
+// 使用默认配置
+app.use(createCurdConfig())
+
+app.mount('#app')
 ```
 
-## 完整示例
+## 🚀 第二步：创建你的第一个数据表格
 
-下面通过一个用户管理页面，展示如何使用 CRUD 组件库：
+让我们从最简单的只读表格开始：
 
-<demo vue="../demos/basic/basic.vue" title="基础示例" description="这是一个最简单的CRUD示例，展示了基本的增删改查功能"></demo>
-
-### 1. 定义 API 接口
+### 定义 API
 
 ```ts
 // src/api/user.ts
@@ -102,7 +79,7 @@ import { useCurdApi } from '@uozi-admin/request'
 export const userApi = useCurdApi('/users')
 ```
 
-### 2. 定义列配置
+### 定义列配置
 
 ```ts
 // src/views/user/columns.ts
@@ -112,11 +89,125 @@ export const columns: StdTableColumn[] = [
   {
     title: '用户名',
     dataIndex: 'username',
-    search: { control: 'input' }, // 启用搜索
-    form: {
+  },
+  {
+    title: '邮箱',
+    dataIndex: 'email',
+  },
+  {
+    title: '状态',
+    dataIndex: 'status',
+    customRender: ({ value }) => value === 1 ? '启用' : '禁用'
+  },
+  {
+    title: '创建时间',
+    dataIndex: 'created_at',
+  }
+]
+```
+
+### 创建页面
+
+```vue
+<!-- src/views/user/index.vue -->
+<script setup lang="ts">
+import { StdTable } from '@uozi-admin/curd'
+import { userApi } from '~/api/user'
+import { columns } from './columns'
+</script>
+
+<template>
+  <StdTable 
+    :api="userApi"
+    :columns="columns"
+  />
+</template>
+```
+
+🎉 **恭喜！** 你已经创建了第一个数据表格，具备了列表展示和分页功能。
+
+## 🔍 第三步：添加搜索功能
+
+现在让我们为表格添加搜索功能：
+
+```ts
+// 更新 columns.ts
+export const columns: StdTableColumn[] = [
+  {
+    title: '用户名',
+    dataIndex: 'username',
+    search: { control: 'input' }, // 👈 添加搜索配置
+  },
+  {
+    title: '邮箱',
+    dataIndex: 'email',
+  },
+  {
+    title: '状态',
+    dataIndex: 'status',
+    search: { 
+      control: 'select',
+      options: [
+        { label: '启用', value: 1 },
+        { label: '禁用', value: 0 }
+      ]
+    }, // 👈 添加下拉搜索
+    customRender: ({ value }) => value === 1 ? '启用' : '禁用'
+  },
+  {
+    title: '创建时间',
+    dataIndex: 'created_at',
+    search: { control: 'date-range' } // 👈 添加日期范围搜索
+  }
+]
+```
+
+```vue
+<!-- 更新页面组件 -->
+<template>
+  <div>
+    <StdSearch 
+      :columns="columns" 
+      :api="userApi"
+      @search="handleSearch"
+    />
+    <StdTable 
+      :api="userApi"
+      :columns="columns"
+      :search-params="searchParams"
+    />
+  </div>
+</template>
+
+<script setup lang="ts">
+import { StdTable, StdSearch } from '@uozi-admin/curd'
+import { ref } from 'vue'
+
+const searchParams = ref({})
+
+function handleSearch(params: any) {
+  searchParams.value = params
+}
+</script>
+```
+
+✨ 现在你的表格具备了强大的搜索功能！
+
+## 📝 第四步：添加表单功能
+
+让我们添加新增和编辑功能：
+
+```ts
+// 继续更新 columns.ts
+export const columns: StdTableColumn[] = [
+  {
+    title: '用户名',
+    dataIndex: 'username',
+    search: { control: 'input' },
+    form: { 
       control: 'input',
-      required: true
-    }
+      required: true 
+    } // 👈 添加表单配置
   },
   {
     title: '邮箱',
@@ -124,216 +215,199 @@ export const columns: StdTableColumn[] = [
     form: {
       control: 'input',
       required: true,
-      rules: [{ type: 'email', message: '请输入正确的邮箱格式' }]
-    }
+      rules: [
+        { type: 'email', message: '请输入正确的邮箱格式' }
+      ]
+    } // 👈 添加验证规则
   },
   {
     title: '状态',
     dataIndex: 'status',
-    search: { control: 'select' },
-    form: {
+    search: { 
       control: 'select',
       options: [
         { label: '启用', value: 1 },
         { label: '禁用', value: 0 }
       ]
     },
-    render: (value) => value === 1 ? '启用' : '禁用'
+    form: {
+      control: 'select',
+      options: [
+        { label: '启用', value: 1 },
+        { label: '禁用', value: 0 }
+      ],
+      defaultValue: 1
+    }, // 👈 添加表单选择
+    customRender: ({ value }) => value === 1 ? '启用' : '禁用'
   },
   {
     title: '创建时间',
     dataIndex: 'created_at',
     search: { control: 'date-range' }
+    // 👆 创建时间通常不需要表单配置
   }
 ]
 ```
 
-### 3. 创建页面组件
+现在使用独立的表单组件：
 
 ```vue
-<!-- src/views/user/index.vue -->
-<script setup lang="ts">
-import { userApi } from '~/api/user'
-import { StdCurd } from '@uozi-admin/curd'
-import { columns } from './columns'
-</script>
-
 <template>
-  <StdCurd
-    title="用户管理"
-    :api="userApi"
-    :columns="columns"
-  />
+  <div>
+    <div style="margin-bottom: 16px;">
+      <Button @click="showAddForm = true">新增用户</Button>
+    </div>
+    
+    <StdSearch 
+      :columns="columns" 
+      :api="userApi"
+      @search="handleSearch"
+    />
+    
+    <StdTable 
+      :api="userApi"
+      :columns="columns"
+      :search-params="searchParams"
+      @edit="handleEdit"
+    />
+
+    <!-- 新增/编辑表单弹窗 -->
+    <Modal v-model:open="showAddForm" title="新增用户">
+      <StdForm 
+        :columns="columns"
+        :api="userApi"
+        @success="handleSuccess"
+      />
+    </Modal>
+
+    <Modal v-model:open="showEditForm" title="编辑用户">
+      <StdForm 
+        :columns="columns"
+        :api="userApi"
+        :id="editId"
+        @success="handleSuccess"
+      />
+    </Modal>
+  </div>
 </template>
+
+<script setup lang="ts">
+import { StdTable, StdSearch, StdForm } from '@uozi-admin/curd'
+import { Modal, Button } from 'ant-design-vue'
+import { ref } from 'vue'
+
+const showAddForm = ref(false)
+const showEditForm = ref(false)
+const editId = ref<number>()
+const searchParams = ref({})
+
+function handleSearch(params: any) {
+  searchParams.value = params
+}
+
+function handleEdit(record: any) {
+  editId.value = record.id
+  showEditForm.value = true
+}
+
+function handleSuccess() {
+  showAddForm.value = false
+  showEditForm.value = false
+  // 刷新表格...
+}
+</script>
 ```
 
-这样就完成了一个功能完整的用户管理页面，包含：
-- 数据列表展示
-- 搜索功能
-- 新增/编辑表单
-- 删除功能
-- 分页功能
+🎯 现在你已经掌握了完整的 CRUD 功能！
 
-## 独立的可编辑详情页
+## ⚡ 第五步：一站式解决方案
 
-除了 StdCurd 的完整解决方案，你也可以单独使用 StdDetail 组件创建可编辑的详情页面：
+上面的步骤让你了解了各个组件的工作原理。在实际开发中，你可以使用 `StdCurd` 一站式解决方案：
 
-```vue
-<!-- src/views/user/detail.vue -->
-<script setup lang="ts">
-import { StdDetail } from '@uozi-admin/curd'
-import { userApi } from '~/api/user'
-import { useRoute } from 'vue-router'
+<demo vue="../demos/curd/basic/basic.vue" title="基础示例" description="完整的CRUD功能，包含列表、搜索、新增、编辑、删除等"></demo>
 
-const route = useRoute()
-const userId = route.params.id
+仅仅几行代码，你就得到了一个功能完整的用户管理页面，包含：
 
-const columns = [
-  {
-    title: '用户名',
-    dataIndex: 'username',
-    edit: {
-      type: 'input',
-      formItem: {
-        rules: [{ required: true, min: 3, max: 20 }]
-      }
-    }
-  },
-  {
-    title: '邮箱',
-    dataIndex: 'email',
-    edit: {
-      type: 'input',
-      formItem: {
-        rules: [
-          { required: true },
-          { type: 'email', message: '请输入有效邮箱' }
-        ]
-      }
-    }
-  },
-  {
-    title: '状态',
-    dataIndex: 'status',
-    edit: {
-      type: 'switch',
-      switch: {
-        checkedValue: 1,
-        unCheckedValue: 0,
-        checkedChildren: '启用',
-        unCheckedChildren: '禁用'
-      }
-    },
-    customRender: ({ value }) => value === 1 ? '启用' : '禁用'
-  },
-  {
-    title: '个人简介',
-    dataIndex: 'bio',
-    edit: {
-      type: 'textarea',
-      textarea: { maxLength: 200, showCount: true }
-    }
-  },
-  {
-    title: 'ID',
-    dataIndex: 'id'
-    // 不设置 edit，此字段不可编辑
-  }
-]
-</script>
+✅ **数据列表展示** - 自动分页、排序  
+✅ **智能搜索** - 根据列配置自动生成搜索表单  
+✅ **表单操作** - 新增、编辑、删除  
+✅ **数据验证** - 自动表单验证  
+✅ **响应式设计** - 适配各种屏幕尺寸  
+✅ **国际化支持** - 内置中英文
 
-<template>
-  <StdDetail
-    :id="userId"
-    :api="userApi"
-    :columns="columns"
-    :editable="true"
-  />
-</template>
-```
+## 💪 高级配置示例
 
-这个详情页面支持：
-- 字段级别的编辑控制
-- 表单验证
-- 模式切换（查看/编辑）
-- 自定义渲染
+### 自定义全局配置
 
-### 表单联动
-
-CRUD 组件还支持字段间的联动功能，例如根据身份证号自动填充出生日期：
+如果你的后端 API 格式不是标准格式，可以进行自定义配置：
 
 ```ts
-import { set } from 'lodash-es'
-
-const columns = [
-  {
-    title: '身份证号',
-    dataIndex: 'idCard',
-    edit: {
-      type: 'input',
-      formItem: { required: true }
-    }
+// main.ts
+app.use(createCurdConfig({
+  // 自定义分页字段映射
+  listApi: {
+    paginationMap: {
+      params: {
+        current: 'page',      // 发送给后端的当前页字段名
+        pageSize: 'page_size', // 发送给后端的每页条数字段名
+      },
+      response: {
+        total: 'total',         // 后端返回的总数字段名
+        current: 'current_page', // 后端返回的当前页字段名
+        pageSize: 'per_page',   // 后端返回的每页条数字段名
+        totalPages: 'total_pages', // 后端返回的总页数字段名
+      },
+    },
   },
-  {
-    title: '出生日期',
-    dataIndex: 'birthDate',
-    edit: {
-      type: 'date',
-      dependencies: ['idCard'], // 依赖身份证号字段
-      onChange: (value, formData, dependencies) => {
-        const idCard = dependencies.idCard
-        if (idCard && idCard.length === 18) {
-          // 从身份证号提取出生日期
-          const year = idCard.substring(6, 10)
-          const month = idCard.substring(10, 12)
-          const day = idCard.substring(12, 14)
-          const birthDate = `${year}-${month}-${day}`
-          
-          // 手动更新出生日期字段
-          set(formData, 'birthDate', birthDate)
-        }
-      }
-    }
-  }
-]
+  
+  // 自定义国际化
+  i18n: {
+    locale: 'zh-CN',
+    fallbackLocale: 'en-US',
+  },
+  
+  // 自定义日期格式
+  dateFormat: {
+    date: 'YYYY-MM-DD',
+    datetime: 'YYYY-MM-DD HH:mm:ss',
+  },
+}))
 ```
 
-更多联动功能请参考[表单联动](/zh/curd/advance/form-linkage)章节。
-
-## 高级用法
-
-### 自定义 API 配置
+### 自定义 API 接口
 
 如果不使用 `@uozi-admin/request`，也可以手动定义 API：
 
 ```ts
-// 手动定义 API
-const api = {
-  getList: (params) => {
-    return fetch('/api/users', {
-      method: 'GET',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(params)
-    }).then(res => res.json())
+// 自定义 API 接口
+const customApi = {
+  getList: (params: any) => {
+    return fetch('/api/users?' + new URLSearchParams(params))
+      .then(res => res.json())
   },
-  getItem: (id) => {
-    return fetch(`/api/users/${id}`).then(res => res.json())
+  
+  getItem: (id: string) => {
+    return fetch(`/api/users/${id}`)
+      .then(res => res.json())
   },
-  createItem: (data) => {
+  
+  createItem: (data: any) => {
     return fetch('/api/users', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
     }).then(res => res.json())
   },
-  updateItem: (id, data) => {
+  
+  updateItem: (id: string, data: any) => {
     return fetch(`/api/users/${id}`, {
-      method: 'PUT',
+      method: 'PUT', 
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
     }).then(res => res.json())
   },
-  deleteItem: (id) => {
+  
+  deleteItem: (id: string) => {
     return fetch(`/api/users/${id}`, {
       method: 'DELETE'
     }).then(res => res.json())
@@ -341,13 +415,32 @@ const api = {
 }
 ```
 
-## 下一步
+## 🚀 下一步学习指南
 
-现在你已经学会了基础用法，可以继续学习：
+恭喜完成快速入门！现在你可以按照以下路径深入学习：
 
-- [基础概念](/zh/curd/basic-concepts) - 了解核心概念
-- [列定义详解](/zh/curd/core/column) - 了解更多列配置选项
-- [表单控件](/zh/curd/form-controls/input) - 学习各种表单控件的使用
-- [表单联动](/zh/curd/advance/form-linkage) - 实现字段间的联动功能
-- [自定义渲染](/zh/curd/advance/custom-render) - 实现复杂的自定义需求
-- [全局配置](/zh/curd/advance/global-config) - 配置全局默认行为
+### 🔰 基础篇
+- [基础概念](/zh/curd/basic-concepts) - 深入理解设计理念和核心概念
+
+### 📚 核心功能
+- [列配置详解](/zh/curd/core/column) - 掌握强大的列配置选项
+- [表单配置](/zh/curd/core/form) - 学习表单验证和配置
+- [搜索配置](/zh/curd/core/search) - 了解搜索功能的各种用法
+
+### 🧩 组件详解  
+- [StdCurd 组件](/zh/curd/components/std-curd) - 一站式解决方案
+- [StdTable 组件](/zh/curd/components/std-table) - 数据表格组件
+- [StdForm 组件](/zh/curd/components/std-form) - 表单组件
+
+### 🎛️ 表单控件
+- [基础控件](/zh/curd/form-controls/input) - 输入框、选择器等
+- [日期时间](/zh/curd/form-controls/date) - 日期时间选择器
+- [高级控件](/zh/curd/form-controls/selector) - 复杂选择器、上传等
+
+### ⚡ 高级特性
+- [表单联动](/zh/curd/advance/form-linkage) - 实现字段间的交互
+- [自定义渲染](/zh/curd/advance/custom-render) - 个性化显示和交互  
+- [批量操作](/zh/curd/advance/batch-operations) - 批量编辑和删除
+- [国际化](/zh/curd/advance/i18n) - 多语言支持
+
+选择你感兴趣的主题开始深入学习吧！🎓

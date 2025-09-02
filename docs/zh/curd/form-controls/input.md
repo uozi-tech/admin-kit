@@ -4,6 +4,8 @@
 
 ## 基础用法
 
+<demo vue="../../../demos/curd/form-controls/input-demo.vue" title="输入框控件" description="展示各种输入框的配置选项和使用场景，包括基础输入框、密码框、带图标的输入框等"></demo>
+
 ```ts
 const config = {
   type: 'input',
