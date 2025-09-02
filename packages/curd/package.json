@@ -3,7 +3,7 @@
   "version": "4.11.0",
   "description": "Easy to implement curd.",
   "type": "module",
-  "main": "src/index.ts",
+  "main": "dist/index.js",
   "files": [
     "dist",
     "dist/scripts"

@@ -67,6 +67,7 @@ async function ok() {
   <Modal
     v-model:open="visible"
     class="std-curd-edit-modal"
+    wrap-class-name="std-modal"
     :mask="false"
     :title="t('batchModify')"
     :cancel-text="t('no')"
@@ -99,4 +100,10 @@ async function ok() {
   </Modal>
 </template>
 
-<style scoped></style>
+<style>
+/* 限制选择器模态框中表格的高度，确保确认按钮始终可见 */
+.std-modal .ant-modal-body {
+  max-height: 70vh;
+  overflow: auto;
+}
+</style>

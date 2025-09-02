@@ -198,11 +198,11 @@ const computedValue = computed({
       destroy-on-close
       v-bind="modalProps"
       :z-index="3000"
-      class="std-selector-modal"
+      wrap-class-name="std-selector-modal"
       @ok="setValue"
     >
       {{ tips }}
-      <div class="std-selector-table-container">
+      <div>
         <StdTable
           v-model:selected-row-keys="selectedRowKeys"
           v-model:selected-rows="internalSelectedRows"
@@ -214,6 +214,9 @@ const computedValue = computed({
           :row-selection="selectionConfig"
           :table-props="{
             rowKey: props.valueKey,
+            scroll: {
+              y: '40vh',
+            },
             ...tableProps,
           }"
           :overwrite-params="overwriteParams"
@@ -226,43 +229,5 @@ const computedValue = computed({
 <style scoped>
 :deep(.selector) {
   display: none!important;
-}
-
-/* 限制选择器模态框中表格的高度，确保确认按钮始终可见 */
-.std-selector-modal :deep(.ant-modal-body) {
-  max-height: 60vh;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-
-.std-selector-table-container {
-  flex: 1;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-
-.std-selector-table-container :deep(.std-table) {
-  flex: 1;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-
-.std-selector-table-container :deep(.ant-table-wrapper) {
-  flex: 1;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-
-.std-selector-table-container :deep(.ant-table) {
-  flex: 1;
-}
-
-.std-selector-table-container :deep(.ant-table-tbody) {
-  overflow-y: auto;
-  max-height: 40vh;
 }
 </style>
