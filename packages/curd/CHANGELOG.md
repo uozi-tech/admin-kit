@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.11.1
+
+### Patch Changes
+
+- [`8cf6c25`](https://github.com/uozi-tech/admin-kit/commit/8cf6c2550e9a7cfca71fa8433f150552d06e5c2f) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): new table columns do not display in table if exist storage
+
 ## 4.11.0
 
 ### Minor Changes
