@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.13.0
+
+### Minor Changes
+
+- [`15cb032`](https://github.com/uozi-tech/admin-kit/commit/15cb032819beef93f6ea9e57aaac9f9e3425fe32) Thanks [@akinoccc](https://github.com/akinoccc)! - feat: add dynamic field visibility and required calculation for forms
+
 ## 4.12.0
 
 ### Minor Changes
