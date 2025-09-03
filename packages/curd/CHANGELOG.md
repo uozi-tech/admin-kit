@@ -1,5 +1,15 @@
 # @uozi-admin/curd
 
+## 4.14.0
+
+### Minor Changes
+
+- [`2a225d8`](https://github.com/uozi-tech/admin-kit/commit/2a225d84540b0f86e7967b694ec270d6f67012f1) Thanks [@akinoccc](https://github.com/akinoccc)! - feat(curd): add dynamic disable and improve typedef
+
+### Patch Changes
+
+- [`29d06ac`](https://github.com/uozi-tech/admin-kit/commit/29d06ac9acf8bb1543eca556dc86b41fae848db0) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): [StdSelector] options do not update when props options changed
+
 ## 4.13.0
 
 ### Minor Changes
