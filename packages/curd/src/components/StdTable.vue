@@ -2,7 +2,7 @@
 import type { FilterValue, SorterResult, TableRowSelection } from 'ant-design-vue/es/table/interface'
 import type { TablePaginationConfig } from 'ant-design-vue/lib/table/interface'
 import type { VNode } from 'vue'
-import type { StdTableBodyScope, StdTableHeaderScope, StdTableProps } from '../types'
+import type { StdTableBodyScope, StdTableColumn, StdTableHeaderScope, StdTableProps } from '../types'
 import { HolderOutlined, ReloadOutlined } from '@ant-design/icons-vue'
 import { useRouteQuery } from '@vueuse/router'
 import { Button, Popconfirm, Table } from 'ant-design-vue'
@@ -132,7 +132,19 @@ const dataColumns = computed<any>(() => {
   // 使用列设置的结果，如果没有设置则使用默认的
   const baseColumns = displayColumns.value.length > 0 ? displayColumns.value : computedColumns.value.filter(item => !item?.hiddenInTable)
 
-  const cols = [...baseColumns]
+  const cols = baseColumns.map((item: StdTableColumn) => {
+    if (item.dataIndex === sortBy.value) {
+      switch (order.value) {
+        case 'asc':
+          item.sortOrder = 'ascend'
+          break
+        case 'desc':
+          item.sortOrder = 'descend'
+          break
+      }
+    }
+    return item
+  })
 
   if (props.rowDraggable) {
     cols.unshift({
@@ -241,6 +253,10 @@ function resetSearchForm() {
 // 表格数据
 const tableData = ref<Record<string, any>[]>([])
 const debouncedListApi = debounce(async () => {
+  if (!props.getListApi) {
+    return
+  }
+
   tableLoading.value = true
 
   const { overwriteParams, ...rest } = apiParams.value

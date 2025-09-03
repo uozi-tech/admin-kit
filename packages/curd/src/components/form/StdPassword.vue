@@ -4,7 +4,11 @@ import { Button, Input, InputGroup, InputPassword } from 'ant-design-vue'
 import { ref } from 'vue'
 import { useLocale } from '../../composables'
 
-const p = defineProps<{ props?: PasswordConfig & { placeholder?: string | number } }>()
+const p = defineProps<{
+  props?: Omit<PasswordConfig, 'placeholder'>
+  placeholder?: string | number
+  disabled?: boolean
+}>()
 
 const modelValue = defineModel<PasswordConfig['value']>('value')
 
@@ -37,6 +41,8 @@ function handleGenerate() {
         v-model:value="modelValue"
         :class="{ compact: props?.generate }"
         :maxlength="20"
+        :disabled="disabled"
+        :placeholder
         v-bind="props"
       />
       <Input
@@ -44,11 +50,14 @@ function handleGenerate() {
         v-model:value="modelValue"
         :class="{ compact: props?.generate }"
         :maxlength="20"
+        :disabled="disabled"
+        :placeholder
         v-bind="props"
       />
       <Button
         v-if="props?.generate"
         type="primary"
+        :disabled="disabled"
         @click="handleGenerate"
       >
         {{ t('generate') }}

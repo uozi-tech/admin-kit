@@ -8,7 +8,12 @@ import { computed } from 'vue'
 import { Format } from '../../constants'
 import { isUsingTimestamp } from './helper'
 
-const p = defineProps<{ props?: RangePickerConfig & { placeholder?: string | number } & TimeT, type: PanelMode | 'datetime' }>()
+const p = defineProps<{
+  props?: RangePickerConfig & TimeT
+  placeholder?: string | number
+  type: PanelMode | 'datetime'
+  disabled?: boolean
+}>()
 
 const value = defineModel<RangePickerConfig['value'] & [number, number] & [string, string]>('value')
 
@@ -44,6 +49,8 @@ const computedValue = computed<[string, string] | [Dayjs, Dayjs] | undefined>({
     :value-format="Format[type]"
     :show-time="type === 'datetime'"
     :get-popup-container="(triggerNode: any) => triggerNode.parentNode"
+    :disabled
+    :placeholder
     v-bind="{
       ...props as any,
       value: computedValue,

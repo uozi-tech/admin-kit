@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { StdTableColumn } from '@uozi-admin/curd'
 import { StdForm } from '@uozi-admin/curd'
-import { Col, message, Row } from 'ant-design-vue'
+import { Col, Row } from 'ant-design-vue'
 import { computed, ref } from 'vue'
 
 // 用于强制重新渲染表单的键值

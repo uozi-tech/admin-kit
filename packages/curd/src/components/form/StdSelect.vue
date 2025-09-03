@@ -5,7 +5,11 @@ import { isNumber } from 'lodash-es'
 import { computed, ref, watch } from 'vue'
 import { getPopupContainer } from '../../utils'
 
-const p = defineProps<{ props?: SelectConfig & { placeholder?: string | number } }>()
+const p = defineProps<{
+  props?: SelectConfig
+  placeholder?: string | number
+  disabled?: boolean
+}>()
 
 const value = defineModel<SelectConfig['value']>('value')
 
@@ -43,6 +47,8 @@ watch([value, () => p.props], computedOptions, { immediate: true, deep: true })
     :dropdown-match-select-width="false"
     :get-popup-container="getPopupContainer"
     allow-clear
+    :placeholder
+    :disabled
     v-bind="props"
     :options="options"
   />

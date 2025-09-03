@@ -2,7 +2,7 @@
 import type { FormInstance, RowProps } from 'ant-design-vue'
 import type { StdCurdProps, StdTableColumn } from '../types'
 import { Col, Form, FormItemRest, Row } from 'ant-design-vue'
-import { computed, reactive, ref } from 'vue'
+import { reactive, ref } from 'vue'
 import { getColumnKey, getDataIndexStr, getEditLabel } from '../utils'
 import FormControllerRender from './StdFormController.vue'
 import StdFormItem from './StdFormItem.vue'
@@ -44,12 +44,13 @@ for (const column of props.columns) {
 
 // 检查字段是否应该显示在表单中
 function shouldShowInForm(column: StdTableColumn): boolean {
-  if (!column.edit?.showInForm) return true
-  
+  if (!column.edit?.showInForm)
+    return true
+
   if (typeof column.edit.showInForm === 'function') {
     return column.edit.showInForm({ formData: formData.value })
   }
-  
+
   return column.edit.showInForm
 }
 

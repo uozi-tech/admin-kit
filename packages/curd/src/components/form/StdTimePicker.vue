@@ -3,7 +3,7 @@ import type { TimePickerConfig } from '../../types'
 import { TimePicker } from 'ant-design-vue'
 import { Format } from '../../constants'
 
-defineProps<{ props?: TimePickerConfig & { placeholder?: string | number } }>()
+defineProps<{ props?: TimePickerConfig, placeholder?: string | number, disabled?: boolean }>()
 
 const value = defineModel<TimePickerConfig['value']>('value')
 </script>
@@ -14,6 +14,8 @@ const value = defineModel<TimePickerConfig['value']>('value')
     :format="Format.time as any"
     :value-format="Format.time"
     :get-popup-container="(triggerNode: any) => triggerNode.parentNode"
+    :placeholder
+    :disabled
     v-bind="props as any"
   />
 </template>

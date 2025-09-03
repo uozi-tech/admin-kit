@@ -8,7 +8,7 @@ import { useCurdConfig, useLocale } from '../../composables'
 import StdTable from '../StdTable.vue'
 
 const props = withDefaults(
-  defineProps<SelectorConfig & { placeholder?: string | number, dropUnpreloadable?: boolean }>(),
+  defineProps<SelectorConfig & { placeholder?: string | number, dropUnpreloadable?: boolean, disabled?: boolean }>(),
   { valueKey: 'id', selectionType: 'radio', omitZeroString: undefined, dropUnpreloadable: false },
 )
 const emit = defineEmits<{
@@ -183,7 +183,7 @@ const computedValue = computed({
         :options="options"
         :dropdown-menu-style="{ display: 'none' }"
         mode="tags"
-        :placeholder="placeholder"
+        :placeholder
         popup-class-name="selector"
         :get-popup-container="node => node.parentNode"
         @deselect="removeValue"

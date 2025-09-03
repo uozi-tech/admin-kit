@@ -2,7 +2,11 @@
 import type { InputNumberConfig } from '../../types'
 import { InputNumber } from 'ant-design-vue'
 
-defineProps<{ props?: Omit<InputNumberConfig, 'placeholder'> & { placeholder?: string } }>()
+defineProps<{
+  props?: Omit<InputNumberConfig, 'placeholder'>
+  placeholder?: string
+  disabled?: boolean
+}>()
 
 const value = defineModel<InputNumberConfig['value']>('value')
 </script>
@@ -10,6 +14,8 @@ const value = defineModel<InputNumberConfig['value']>('value')
 <template>
   <InputNumber
     v-model:value="value"
+    :disabled
+    :placeholder
     v-bind="props"
   />
 </template>

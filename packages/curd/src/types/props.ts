@@ -32,7 +32,7 @@ export interface StdTableProps extends Pick<
   | 'searchFormExtraRender'
   | 'deleteConfirmConfig'
 > {
-  getListApi: CurdApi['getList']
+  getListApi?: CurdApi['getList']
   refreshConfig?: {
     // 刷新时间戳
     timestamp: number

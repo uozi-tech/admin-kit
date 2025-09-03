@@ -3,7 +3,10 @@ import type { CheckboxGroupProps } from 'ant-design-vue'
 import type { CheckboxGroupConfig } from '../../types'
 import { CheckboxGroup } from 'ant-design-vue'
 
-defineProps<{ props?: CheckboxGroupConfig }>()
+defineProps<{
+  props?: CheckboxGroupConfig
+  disabled?: boolean
+}>()
 
 const value = defineModel<CheckboxGroupProps['value']>('value')
 </script>
@@ -11,6 +14,7 @@ const value = defineModel<CheckboxGroupProps['value']>('value')
 <template>
   <CheckboxGroup
     v-model:value="value"
+    :disabled="disabled"
     v-bind="props"
   />
 </template>

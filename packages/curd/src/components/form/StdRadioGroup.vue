@@ -2,7 +2,10 @@
 import type { RadioGroupConfig } from '../../types'
 import { RadioGroup } from 'ant-design-vue'
 
-defineProps<{ props?: RadioGroupConfig }>()
+defineProps<{
+  props?: RadioGroupConfig
+  disabled?: boolean
+}>()
 
 const value = defineModel<RadioGroupConfig['value']>('value')
 </script>
@@ -10,6 +13,7 @@ const value = defineModel<RadioGroupConfig['value']>('value')
 <template>
   <RadioGroup
     v-model:value="value"
+    :disabled="disabled"
     v-bind="props"
   />
 </template>

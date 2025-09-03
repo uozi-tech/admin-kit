@@ -1,6 +1,6 @@
 name: Deploy Docs Site
 
-on: 
+on:
   push:
     branches:
       - main

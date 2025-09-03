@@ -62,6 +62,7 @@ export interface StdFormConfig extends Record<any, any> {
   valueKey?: string
   col?: ColProps
   showInForm?: boolean | ((context: { formData: Record<string, any> }) => boolean)
+  disabled?: boolean | ((context: { formData: Record<string, any> }) => boolean)
 
   password?: PasswordConfig
   input?: InputConfig

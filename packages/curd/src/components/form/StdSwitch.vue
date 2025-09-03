@@ -2,7 +2,7 @@
 import type { SwitchConfig } from '../../types'
 import { Switch } from 'ant-design-vue'
 
-defineProps<{ props?: SwitchConfig & { placeholder?: string | number } }>()
+defineProps<{ props?: SwitchConfig, placeholder?: string | number, disabled?: boolean }>()
 
 const checked = defineModel<SwitchConfig['checked']>('value')
 </script>
@@ -12,6 +12,8 @@ const checked = defineModel<SwitchConfig['checked']>('value')
   <div>
     <Switch
       v-model:checked="checked"
+      :placeholder
+      :disabled
       v-bind="props"
     />
   </div>

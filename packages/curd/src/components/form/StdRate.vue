@@ -2,7 +2,11 @@
 import type { RateConfig } from '../../types'
 import { Rate } from 'ant-design-vue'
 
-defineProps<{ props?: RateConfig & { placeholder?: string | number } }>()
+defineProps<{
+  props?: Omit<RateConfig, 'placeholder'>
+  placeholder?: string | number
+  disabled?: boolean
+}>()
 
 const value = defineModel<RateConfig['value']>('value')
 </script>
@@ -10,6 +14,8 @@ const value = defineModel<RateConfig['value']>('value')
 <template>
   <Rate
     v-model:value="value"
+    :disabled
+    :placeholder
     v-bind="props"
   />
 </template>
