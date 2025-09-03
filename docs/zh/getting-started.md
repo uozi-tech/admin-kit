@@ -117,7 +117,12 @@ export const columns: StdTableColumn[] = [
     title: '用户名',
     dataIndex: 'username',
     search: { type:'input' },  // 搜索配置
-    edit: { type:'input', required: true }  // 表单配置
+    edit: { 
+      type:'input', 
+      formItem: {
+        required: true,
+      },
+    }  // 表单配置
   }
 ]
 ```

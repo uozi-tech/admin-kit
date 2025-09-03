@@ -27,7 +27,7 @@ UOZI Admin 是一个现代化的 Vue 3 后台管理系统开发框架，提供�
 - 交互式项目配置
 
 ```bash
-npm create uozi-admin@latest
+pnpm create uozi-admin@latest
 ```
 
 #### `@uozi-admin/shared-config`
@@ -68,10 +68,10 @@ npm create uozi-admin@latest
 
 ```bash
 # 使用脚手架创建新项目
-npm create uozi-admin@latest my-admin
+pnpm create uozi-admin@latest my-admin
 cd my-admin
-npm install
-npm run dev
+pnpm install
+pnpm run dev
 ```
 
 ### 2. 项目结构
@@ -157,13 +157,8 @@ export const columns: StdTableColumn[] = [
 
 ### 🔧 进阶使用
 1. [布局组件](/zh/layout/quick-start) - 自定义布局
-2. [表单控件](/zh/curd/form-controls/input) - 丰富的表单组件
-3. [自定义渲染](/zh/curd/advance/custom-render) - 高级定制
-
-### 🎯 最佳实践
-1. [项目结构](/zh/cli/project-structure) - 推荐的项目组织方式
-2. [全局配置](/zh/curd/advance/global-config) - 统一配置管理
-3. [国际化](/zh/curd/advance/i18n) - 多语言支持
+2. [表单控件](/zh/curd/form-controls/basic-controls) - 丰富的表单组件
+3. [自定义渲染](/zh/curd/advance/customization) - 高级定制
 
 ## 🔄 数据流
 
@@ -211,5 +206,4 @@ graph TD
 ## 📖 下一步
 
 - 🚀 [开始创建项目](/zh/cli/quick-start)
-- 📚 [了解核心概念](/zh/curd/basic-concepts)
-- 🎯 [查看完整示例](https://github.com/uozi-tech/admin-kit/tree/main/playground)
+- 📚 [了解核心概念](/zh/curd/fundamentals/concepts)

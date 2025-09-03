@@ -87,7 +87,6 @@ function nav(): DefaultTheme.NavItem[] {
       items: [
         { text: '框架总览', link: '/zh/overview' },
         { text: '入门指南', link: '/zh/getting-started' },
-        { text: '文档导航', link: '/zh/guide' },
       ],
     },
     {
