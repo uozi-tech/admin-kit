@@ -24,16 +24,18 @@ interface StdTableColumn {
   search?: boolean | StdFormConfig         // 搜索表单配置
   
   // 📝 表单配置
-  form?: StdFormConfig                     // 表单控件配置
+  edit?: StdFormConfig                     // 表单控件配置
   
   // 🎨 自定义渲染
   customRender?: CustomRenderFn<T>         // 表格单元格自定义渲染
   
   // 👁️ 显示控制
-  hide?: boolean                           // 是否完全隐藏此列
+  hide?: boolean                           // 是否完全隐藏此列, 包括表格、搜索表单、表单、详情页
   hiddenInTable?: boolean                  // 在表格中隐藏
   hiddenInSearch?: boolean                 // 在搜索表单中隐藏  
-  hiddenInForm?: boolean                   // 在表单中隐藏
+  hiddenInEdit?: boolean                   // 在表单中隐藏
+  hiddenInAdd?: boolean                   // 在新增表单中隐藏
+  hiddenInDetail?: boolean                   // 在详情页中隐藏
 }
 ```
 
@@ -73,7 +75,7 @@ const columns = [
     title: '邮箱',
     dataIndex: 'email',
     search: {
-      control: 'input',
+      type:'input',
       placeholder: '请输入邮箱'
     }
   }
@@ -92,7 +94,7 @@ const columns = [
     
     // 搜索中使用下拉选择
     search: {
-      control: 'select',
+      type:'select',
       options: [
         { label: '全部', value: '' },
         { label: '启用', value: 1 },
@@ -101,8 +103,8 @@ const columns = [
     },
     
     // 表单中使用开关
-    form: {
-      control: 'switch',
+    edit: {
+      type:'switch',
       checkedChildren: '启用',
       unCheckedChildren: '禁用'
     }
@@ -119,6 +121,15 @@ const columns = [
 | `date` | 单个日期筛选 | 创建日期、生日 |
 | `dateRange` | 日期范围筛选 | 注册时间范围 |
 | `inputNumber` | 数值范围搜索 | 年龄、价格 |
+| `selector` | 列表选择器 | 用户、订单 |
+| `cascader` | 级联选择器 | 地区、分类 |
+| `dateRange` | 日期范围筛选 | 创建日期范围 |
+| `datetimeRange` | 日期时间范围筛选 | 创建日期时间范围 |
+| `timeRange` | 时间范围筛选 | 创建时间范围 |
+| `switch` | 开关 | 是否启用 |
+| ... | ... | ... |
+
+> **与表单控件类型一致**
 
 ### 表单配置
 
@@ -126,7 +137,7 @@ const columns = [
 
 ```ts
 interface StdFormConfig {
-  control: FormControlType                 // 控件类型
+  type:FormControlType                 // 控件类型
   label?: string                          // 表单标签
   required?: boolean                      // 是否必填
   disabled?: boolean                      // 是否禁用
@@ -140,7 +151,7 @@ interface StdFormConfig {
   formItem?: FormItemProps                // 表单项属性
   
   // 控件特定配置
-  [key: string]: any                      // 控件特定属性
+  [key: string]: any                      // 控件特定属性, key 为控件类型名称
 }
 ```
 
@@ -157,6 +168,7 @@ type BasicControls =
 // 选择控件
 type SelectControls =
   | 'select'       // 下拉选择
+  | 'selector'     // 列表选择器
   | 'radioGroup'   // 单选按钮组
   | 'checkboxGroup'// 多选框组
   | 'cascader'     // 级联选择
@@ -181,8 +193,8 @@ const columns = [
   {
     title: '邮箱',
     dataIndex: 'email',
-    form: {
-      control: 'input',
+    edit: {
+      type:'input',
       required: true,
       rules: [
         { type: 'email', message: '请输入正确的邮箱格式' },
@@ -194,8 +206,8 @@ const columns = [
   {
     title: '年龄',
     dataIndex: 'age',
-    form: {
-      control: 'inputNumber',
+    edit: {
+      type:'inputNumber',
       required: true,
       rules: [
         { type: 'number', min: 18, max: 65, message: '年龄必须在18-65之间' }
@@ -266,7 +278,8 @@ const columns = [
   dataIndex: 'remark',
   hiddenInTable: true,     // 在表格中隐藏
   hiddenInSearch: true,    // 在搜索表单中隐藏
-  hiddenInForm: false,     // 在编辑表单中显示
+  hiddenInEdit: false,     // 在编辑表单中显示
+  hiddenInAdd: false,     // 在新增表单中显示
   hiddenInDetail: false    // 在详情页中显示
 }
 ```
@@ -438,7 +451,7 @@ app.use(createCurdConfig({
 
 ```ts
 app.use(createCurdConfig({
-  form: {
+  edit: {
     layout: 'vertical',        // 表单布局
     labelCol: { span: 6 },     // 标签列宽
     wrapperCol: { span: 18 },  // 控件列宽

@@ -77,15 +77,15 @@ interface StdTableColumn {
   
   // 搜索配置
   search?: {
-    control: FormControlType       // 搜索控件类型
+    type:FormControlType       // 搜索控件类型
     label?: string                 // 搜索标签
     options?: Array<{label: string, value: any}> // 选项数据
     placeholder?: string           // 占位符
   }
   
   // 表单配置
-  form?: {
-    control: FormControlType       // 表单控件类型
+  edit?: {
+    type:FormControlType       // 表单控件类型
     required?: boolean             // 是否必填
     rules?: ValidationRule[]       // 验证规则
     defaultValue?: any             // 默认值
@@ -113,7 +113,7 @@ const columns: StdTableColumn[] = [
     
     // 🔍 搜索中使用：下拉选择
     search: {
-      control: 'select',
+      type:'select',
       options: [
         { label: '启用', value: 1 },
         { label: '禁用', value: 0 }
@@ -121,8 +121,8 @@ const columns: StdTableColumn[] = [
     },
     
     // 📝 表单中使用：开关控件
-    form: {
-      control: 'switch',
+    edit: {
+      type:'switch',
       required: true,
       defaultValue: 1,
       checkedChildren: '启用',
@@ -147,6 +147,7 @@ type BasicControls =
 // 选择控件
 type SelectControls =
   | 'select'       // 下拉选择
+  | 'selector'     // 列表选择器
   | 'radioGroup'   // 单选按钮组
   | 'checkboxGroup'// 多选框组
   | 'cascader'     // 级联选择
@@ -169,17 +170,9 @@ type AdvancedControls =
 CURD 组件通过标准化的 API 接口与后端交互：
 
 ```ts
-interface StdApi {
-  // 📋 获取列表数据
-  getList: (params: {
-    [key: string]: any      // 搜索参数
-    current?: number        // 当前页码
-    pageSize?: number       // 每页条数
-    sorter?: {
-      field: string         // 排序字段
-      order: 'ascend' | 'descend'  // 排序方向  
-    }
-  }) => Promise<{
+interface CurdApi {
+  // 📋 获取列表数据, 这里数据结构不固定，根据你的配置来
+  getList: (params: {}) => Promise<{
     data: any[]             // 数据列表
     pagination: {
       total: number         // 总记录数
@@ -214,13 +207,6 @@ interface StdApi {
 ├── 📄 StdDetail (详情页面)
 └── 📃 StdPagination (分页组件)
 ```
-
-### 使用方式对比
-
-| 使用方式 | 适用场景 | 优势 | 劣势 |
-|---------|---------|------|------|
-| **StdCurd 一站式** | 标准 CRUD 页面 | 开箱即用，代码简洁 | 定制化有限 |
-| **组合使用** | 复杂业务场景 | 高度灵活，完全控制 | 代码量较多 |
 
 ## 🔄 数据流转
 
@@ -294,11 +280,17 @@ const columns = [
   {
     title: '复杂字段',
     dataIndex: 'complex',
-    form: {
+    edit: {
       // 自定义 Vue 组件
-      control: MyCustomComponent,
+      type:MyCustomComponent,
       // 或自定义渲染函数
-      control: (formData, column, config) => {
+      type:(formData, column, componentProps, mode) => {
+        /**
+         * formData: 表单数据
+         * column: 列配置
+         * componentProps: 自行传递的组件 props
+         * mode: 模式，add 新增模式，edit 编辑模式，search 搜索模式
+         */
         return h(MyComponent, { 
           modelValue: formData.complex,
           'onUpdate:modelValue': (val) => formData.complex = val

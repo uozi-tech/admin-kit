@@ -10,8 +10,8 @@
 {
   title: '用户状态',
   dataIndex: 'status',
-  form: {
-    control: 'select',
+  edit: {
+    type:'select',
     options: [
       { label: '启用', value: 1 },
       { label: '禁用', value: 0 }
@@ -27,8 +27,8 @@
 {
   title: '用户角色',
   dataIndex: 'roles',
-  form: {
-    control: 'select',
+  edit: {
+    type:'select',
     mode: 'multiple',
     options: [
       { label: '管理员', value: 'admin' },
@@ -59,8 +59,8 @@
 {
   title: '性别',
   dataIndex: 'gender',
-  form: {
-    control: 'radioGroup',
+  edit: {
+    type:'radioGroup',
     options: [
       { label: '男', value: 'male' },
       { label: '女', value: 'female' },
@@ -76,8 +76,8 @@
 {
   title: '优先级',
   dataIndex: 'priority',
-  form: {
-    control: 'radioGroup',
+  edit: {
+    type:'radioGroup',
     optionType: 'button',
     buttonStyle: 'solid',
     options: [
@@ -106,8 +106,8 @@
 {
   title: '兴趣爱好',
   dataIndex: 'hobbies',
-  form: {
-    control: 'checkboxGroup',
+  edit: {
+    type:'checkboxGroup',
     options: [
       { label: '阅读', value: 'reading' },
       { label: '运动', value: 'sports' },
@@ -133,8 +133,8 @@
 {
   title: '所在地区',
   dataIndex: 'region',
-  form: {
-    control: 'cascader',
+  edit: {
+    type:'cascader',
     options: [
       {
         label: '浙江省',
@@ -162,8 +162,8 @@
 {
   title: '业务范围',
   dataIndex: 'business_scope',
-  form: {
-    control: 'cascader',
+  edit: {
+    type:'cascader',
     multiple: true,
     options: [
       {
@@ -352,8 +352,8 @@ interface SelectorConfig {
 {
   title: '所属部门',
   dataIndex: 'department_id',
-  form: {
-    control: 'select',
+  edit: {
+    type:'select',
     options: async () => {
       const response = await fetch('/api/departments')
       const departments = await response.json()
@@ -373,8 +373,8 @@ interface SelectorConfig {
 {
   title: '地区选择',
   dataIndex: 'region',
-  form: {
-    control: 'cascader',
+  edit: {
+    type:'cascader',
     loadData: async (selectedOptions) => {
       const targetOption = selectedOptions[selectedOptions.length - 1]
       const response = await fetch(`/api/regions?parent=${targetOption.value}`)
@@ -405,8 +405,8 @@ const columns = [
   {
     title: '用户状态',
     dataIndex: 'status',
-    form: {
-      control: 'select',
+    edit: {
+      type:'select',
       required: true,
       options: [
         { label: '启用', value: 1 },
@@ -418,8 +418,8 @@ const columns = [
   {
     title: '性别',
     dataIndex: 'gender',
-    form: {
-      control: 'radioGroup',
+    edit: {
+      type:'radioGroup',
       options: [
         { label: '男', value: 'male' },
         { label: '女', value: 'female' }
@@ -429,8 +429,8 @@ const columns = [
   {
     title: '用户角色',
     dataIndex: 'roles',
-    form: {
-      control: 'checkboxGroup',
+    edit: {
+      type:'checkboxGroup',
       options: [
         { label: '管理员', value: 'admin' },
         { label: '编辑者', value: 'editor' },
@@ -441,8 +441,8 @@ const columns = [
   {
     title: '所在地区',
     dataIndex: 'region',
-    form: {
-      control: 'cascader',
+    edit: {
+      type:'cascader',
       options: [
         {
           label: '浙江省',
@@ -469,6 +469,10 @@ const columns = [
 </template>
 ```
 
+
+<demo vue="../demos/curd/form-controls/selection-controls.vue" />
+
+## 相关内容
 
 - [基础控件](./basic-controls) - 文本输入、数字输入等
 - [日期控件](./date-controls) - 日期时间选择器

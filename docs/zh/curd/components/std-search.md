@@ -20,13 +20,13 @@ const columns = [
   {
     title: '用户名',
     dataIndex: 'username',
-    search: { control: 'input' }
+    search: { type:'input' }
   },
   {
     title: '状态',
     dataIndex: 'status',
     search: {
-      control: 'select',
+      type:'select',
       options: [
         { label: '启用', value: 1 },
         { label: '禁用', value: 0 }
@@ -63,3 +63,7 @@ const handleReset = () => {
 | reset | 重置时触发 | () |
 
 更多详细配置请参考完整 API 文档。
+
+## 演示示例
+
+<demo vue="../demos/curd/components/std-search.vue" />

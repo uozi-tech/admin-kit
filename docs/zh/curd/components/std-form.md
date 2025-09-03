@@ -25,7 +25,7 @@ const columns = [
   {
     title: '用户名',
     dataIndex: 'username',
-    form: { control: 'input', required: true }
+    edit: { type:'input', required: true }
   }
 ]
 
@@ -54,3 +54,7 @@ const handleSuccess = () => {
 | error | 保存失败时触发 | (error: Error) |
 
 更多详细配置请参考完整 API 文档。
+
+## 演示示例
+
+<demo vue="../demos/curd/components/std-form.vue" />

@@ -145,8 +145,6 @@ function sidebarGuide() {
       items: [
         { text: '自定义扩展', link: 'advanced/customization' },
         { text: '表单交互', link: 'advanced/form-interactions' },
-        { text: '批量操作', link: 'advanced/batch-operations' },
-        { text: '国际化', link: 'advanced/internationalization' },
       ],
     },
     {

@@ -30,13 +30,13 @@ const columns = [
   {
     title: '用户名',
     dataIndex: 'username',
-    search: { control: 'input' },
-    form: { control: 'input', required: true }
+    search: { type:'input' },
+    edit: { type:'input', required: true }
   },
   {
     title: '邮箱', 
     dataIndex: 'email',
-    form: { control: 'input', required: true }
+    edit: { type:'input', required: true }
   }
 ]
 </script>

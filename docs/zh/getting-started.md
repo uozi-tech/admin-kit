@@ -116,8 +116,8 @@ export const columns: StdTableColumn[] = [
   {
     title: '用户名',
     dataIndex: 'username',
-    search: { control: 'input' },  // 搜索配置
-    form: { control: 'input', required: true }  // 表单配置
+    search: { type:'input' },  // 搜索配置
+    edit: { type:'input', required: true }  // 表单配置
   }
 ]
 ```

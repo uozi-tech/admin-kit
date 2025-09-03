@@ -10,8 +10,8 @@
 {
   title: '用户头像',
   dataIndex: 'avatar',
-  form: {
-    control: 'upload',
+  edit: {
+    type:'upload',
     accept: 'image/*',
     maxCount: 1,
     listType: 'picture-card',
@@ -38,8 +38,8 @@
 {
   title: '商品图片',
   dataIndex: 'images',
-  form: {
-    control: 'upload',
+  edit: {
+    type:'upload',
     accept: 'image/png,image/jpeg,image/jpg',
     maxCount: 5,
     maxSize: 2, // 2MB
@@ -62,8 +62,8 @@
 {
   title: '附件',
   dataIndex: 'attachments',
-  form: {
-    control: 'upload',
+  edit: {
+    type:'upload',
     accept: '.pdf,.doc,.docx,.xls,.xlsx',
     multiple: true,
     maxCount: 10,
@@ -81,8 +81,8 @@
 {
   title: '启用状态',
   dataIndex: 'is_active',
-  form: {
-    control: 'switch',
+  edit: {
+    type:'switch',
     checkedChildren: '启用',
     unCheckedChildren: '禁用',
     defaultValue: true
@@ -109,8 +109,8 @@
 {
   title: '价格范围',
   dataIndex: 'price_range',
-  form: {
-    control: 'slider',
+  edit: {
+    type:'slider',
     range: true,
     min: 0,
     max: 10000,
@@ -146,8 +146,8 @@
 {
   title: '服务评分',
   dataIndex: 'rating',
-  form: {
-    control: 'rate',
+  edit: {
+    type:'rate',
     count: 5,
     allowHalf: true,
     tooltips: ['很差', '较差', '一般', '较好', '很好']
@@ -173,8 +173,8 @@
 {
   title: '邮箱',
   dataIndex: 'email',
-  form: {
-    control: 'autoComplete',
+  edit: {
+    type:'autoComplete',
     options: [
       { value: '@gmail.com' },
       { value: '@163.com' },
@@ -193,8 +193,8 @@
 {
   title: '用户名',
   dataIndex: 'username',
-  form: {
-    control: 'autoComplete',
+  edit: {
+    type:'autoComplete',
     onSearch: async (searchText) => {
       if (searchText) {
         const response = await fetch(`/api/users/search?q=${searchText}`)
@@ -215,8 +215,8 @@
 {
   title: '主题色',
   dataIndex: 'theme_color',
-  form: {
-    control: 'colorPicker',
+  edit: {
+    type:'colorPicker',
     showText: true,
     presets: [
       { label: '推荐', colors: ['#1890ff', '#52c41a', '#faad14', '#f5222d'] },
@@ -242,16 +242,16 @@ const columns = [
   {
     title: '商品名称',
     dataIndex: 'name',
-    form: {
-      control: 'input',
+    edit: {
+      type:'input',
       required: true
     }
   },
   {
     title: '商品图片',
     dataIndex: 'images',
-    form: {
-      control: 'upload',
+    edit: {
+      type:'upload',
       accept: 'image/*',
       maxCount: 5,
       maxSize: 2,
@@ -273,8 +273,8 @@ const columns = [
   {
     title: '价格范围',
     dataIndex: 'price_range',
-    form: {
-      control: 'slider',
+    edit: {
+      type:'slider',
       range: true,
       min: 0,
       max: 10000,
@@ -290,8 +290,8 @@ const columns = [
   {
     title: '推荐等级',
     dataIndex: 'recommend_level',
-    form: {
-      control: 'rate',
+    edit: {
+      type:'rate',
       count: 5,
       allowHalf: true,
       tooltips: ['不推荐', '一般', '推荐', '强烈推荐', '必买']
@@ -300,8 +300,8 @@ const columns = [
   {
     title: '是否上架',
     dataIndex: 'is_published',
-    form: {
-      control: 'switch',
+    edit: {
+      type:'switch',
       checkedChildren: '上架',
       unCheckedChildren: '下架',
       defaultValue: false
@@ -310,8 +310,8 @@ const columns = [
   {
     title: '商品说明书',
     dataIndex: 'manual',
-    form: {
-      control: 'upload',
+    edit: {
+      type:'upload',
       accept: '.pdf',
       maxCount: 1,
       maxSize: 5,
@@ -339,8 +339,8 @@ const columns = [
   {
     title: '头像',
     dataIndex: 'avatar',
-    form: {
-      control: 'upload',
+    edit: {
+      type:'upload',
       accept: 'image/*',
       maxCount: 1,
       listType: 'picture-card',
@@ -361,8 +361,8 @@ const columns = [
   {
     title: '邮箱通知',
     dataIndex: 'email_notification',
-    form: {
-      control: 'switch',
+    edit: {
+      type:'switch',
       checkedChildren: '开启',
       unCheckedChildren: '关闭',
       defaultValue: true
@@ -371,8 +371,8 @@ const columns = [
   {
     title: '短信通知',
     dataIndex: 'sms_notification',
-    form: {
-      control: 'switch',
+    edit: {
+      type:'switch',
       checkedChildren: '开启',
       unCheckedChildren: '关闭',
       defaultValue: false
@@ -381,8 +381,8 @@ const columns = [
   {
     title: '音量设置',
     dataIndex: 'volume',
-    form: {
-      control: 'slider',
+    edit: {
+      type:'slider',
       min: 0,
       max: 100,
       step: 1,
@@ -398,8 +398,8 @@ const columns = [
   {
     title: '界面主题色',
     dataIndex: 'theme_color',
-    form: {
-      control: 'colorPicker',
+    edit: {
+      type:'colorPicker',
       showText: true,
       defaultValue: '#1890ff',
       presets: [
@@ -416,8 +416,8 @@ const columns = [
   {
     title: '服务评价',
     dataIndex: 'service_rating',
-    form: {
-      control: 'rate',
+    edit: {
+      type:'rate',
       allowHalf: true,
       tooltips: ['很差', '较差', '一般', '较好', '很好']
     }
@@ -440,6 +440,8 @@ const columns = [
 | **rate** | 评分 | number | 服务评价、商品评分 |
 | **autoComplete** | 输入建议 | string | 邮箱、用户名提示 |
 | **colorPicker** | 颜色选择 | string | 主题色、标签颜色 |
+
+<demo vue="../demos/curd/form-controls/advanced-controls.vue" />
 
 ## 相关内容
 

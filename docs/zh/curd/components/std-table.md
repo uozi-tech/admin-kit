@@ -43,3 +43,7 @@ const columns = [
 | delete | 删除行时触发 | (record: any) |
 
 更多详细配置请参考完整 API 文档。
+
+## 演示示例
+
+<demo vue="../demos/curd/components/std-table.vue" />

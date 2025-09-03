@@ -10,8 +10,8 @@
 {
   title: '出生日期',
   dataIndex: 'birth_date',
-  form: {
-    control: 'date',
+  edit: {
+    type:'date',
     format: 'YYYY-MM-DD',
     placeholder: '请选择出生日期'
   }
@@ -36,8 +36,8 @@
 {
   title: '营业时间',
   dataIndex: 'business_time',
-  form: {
-    control: 'time',
+  edit: {
+    type:'time',
     format: 'HH:mm:ss',
     placeholder: '请选择时间'
   }
@@ -62,8 +62,8 @@
 {
   title: '预约时间',
   dataIndex: 'appointment_time',
-  form: {
-    control: 'datetime',
+  edit: {
+    type:'datetime',
     format: 'YYYY-MM-DD HH:mm:ss',
     placeholder: '请选择预约时间'
   }
@@ -78,8 +78,8 @@
 {
   title: '活动时间',
   dataIndex: 'activity_period',
-  form: {
-    control: 'dateRange',
+  edit: {
+    type:'dateRange',
     format: 'YYYY-MM-DD',
     placeholder: ['开始日期', '结束日期']
   }
@@ -102,8 +102,8 @@
 {
   title: '工作时间',
   dataIndex: 'work_hours',
-  form: {
-    control: 'timeRange',
+  edit: {
+    type:'timeRange',
     format: 'HH:mm',
     placeholder: ['开始时间', '结束时间']
   }
@@ -118,8 +118,8 @@
 {
   title: '会议时间',
   dataIndex: 'meeting_period',
-  form: {
-    control: 'datetimeRange',
+  edit: {
+    type:'datetimeRange',
     format: 'YYYY-MM-DD HH:mm',
     placeholder: ['开始时间', '结束时间']
   }
@@ -134,8 +134,8 @@
 {
   title: '毕业年份',
   dataIndex: 'graduation_year',
-  form: {
-    control: 'year',
+  edit: {
+    type:'year',
     placeholder: '请选择年份'
   }
 }
@@ -147,8 +147,8 @@
 {
   title: '统计月份',
   dataIndex: 'stat_month',
-  form: {
-    control: 'month',
+  edit: {
+    type:'month',
     format: 'YYYY-MM',
     placeholder: '请选择月份'
   }
@@ -161,8 +161,8 @@
 {
   title: '统计周',
   dataIndex: 'stat_week',
-  form: {
-    control: 'week',
+  edit: {
+    type:'week',
     format: 'YYYY-wo',
     placeholder: '请选择周'
   }
@@ -177,8 +177,8 @@
 {
   title: '预约日期',
   dataIndex: 'booking_date',
-  form: {
-    control: 'date',
+  edit: {
+    type:'date',
     disabledDate: (current) => {
       // 禁用过去的日期和周末
       const today = dayjs().startOf('day')
@@ -195,8 +195,8 @@
 {
   title: '查询时间',
   dataIndex: 'query_period',
-  form: {
-    control: 'dateRange',
+  edit: {
+    type:'dateRange',
     ranges: {
       '今天': [dayjs(), dayjs()],
       '本周': [dayjs().startOf('week'), dayjs().endOf('week')],
@@ -214,8 +214,8 @@
 {
   title: '创建时间',
   dataIndex: 'created_at',
-  form: {
-    control: 'datetime',
+  edit: {
+    type:'datetime',
     format: 'YYYY年MM月DD日 HH:mm',
     valueFormat: 'YYYY-MM-DD HH:mm:ss'  // 提交给后端的格式
   }
@@ -235,8 +235,8 @@ dayjs.locale('zh-cn')
 {
   title: '日期',
   dataIndex: 'date',
-  form: {
-    control: 'date',
+  edit: {
+    type:'date',
     locale: 'zh-cn'
   }
 }
@@ -248,8 +248,8 @@ dayjs.locale('zh-cn')
 {
   title: '日期',
   dataIndex: 'date',
-  form: {
-    control: 'date',
+  edit: {
+    type:'date',
     locale: {
       lang: {
         placeholder: '请选择日期',
@@ -285,16 +285,16 @@ const columns = [
   {
     title: '活动名称',
     dataIndex: 'name',
-    form: {
-      control: 'input',
+    edit: {
+      type:'input',
       required: true
     }
   },
   {
     title: '活动日期',
     dataIndex: 'activity_date',
-    form: {
-      control: 'date',
+    edit: {
+      type:'date',
       required: true,
       disabledDate: (current) => current < dayjs().startOf('day')
     }
@@ -302,8 +302,8 @@ const columns = [
   {
     title: '活动时间',
     dataIndex: 'activity_time',
-    form: {
-      control: 'timeRange',
+    edit: {
+      type:'timeRange',
       required: true,
       placeholder: ['开始时间', '结束时间']
     }
@@ -311,8 +311,8 @@ const columns = [
   {
     title: '报名截止时间',
     dataIndex: 'registration_deadline',
-    form: {
-      control: 'datetime',
+    edit: {
+      type:'datetime',
       required: true,
       disabledDate: (current) => current < dayjs().startOf('day')
     }
@@ -320,8 +320,8 @@ const columns = [
   {
     title: '统计周期',
     dataIndex: 'stat_period',
-    form: {
-      control: 'dateRange',
+    edit: {
+      type:'dateRange',
       ranges: {
         '本周': [dayjs().startOf('week'), dayjs().endOf('week')],
         '本月': [dayjs().startOf('month'), dayjs().endOf('month')],
@@ -351,8 +351,8 @@ const columns = [
   {
     title: '出生日期',
     dataIndex: 'birth_date',
-    form: {
-      control: 'date',
+    edit: {
+      type:'date',
       required: true,
       disabledDate: (current) => {
         // 年龄必须在18-65岁之间
@@ -365,8 +365,8 @@ const columns = [
   {
     title: '入职日期',
     dataIndex: 'hire_date',
-    form: {
-      control: 'date',
+    edit: {
+      type:'date',
       required: true,
       disabledDate: (current) => current > dayjs()
     }
@@ -374,8 +374,8 @@ const columns = [
   {
     title: '工作时间',
     dataIndex: 'work_hours',
-    form: {
-      control: 'timeRange',
+    edit: {
+      type:'timeRange',
       placeholder: ['上班时间', '下班时间'],
       defaultValue: [dayjs('09:00', 'HH:mm'), dayjs('18:00', 'HH:mm')]
     }
@@ -383,8 +383,8 @@ const columns = [
   {
     title: '合同期限',
     dataIndex: 'contract_period',
-    form: {
-      control: 'dateRange',
+    edit: {
+      type:'dateRange',
       required: true,
       placeholder: ['合同开始日期', '合同结束日期']
     }
@@ -410,6 +410,8 @@ const columns = [
 | **year** | 年份 | 2023 | 毕业年份、统计年度 |
 | **month** | 月份 | 2023-12 | 统计月份、账期 |
 | **week** | 周 | 2023-52周 | 统计周、排班周 |
+
+<demo vue="../demos/curd/form-controls/date-controls.vue" />
 
 ## 相关内容
 

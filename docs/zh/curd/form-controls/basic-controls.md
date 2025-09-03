@@ -10,8 +10,8 @@
 {
   title: '用户名',
   dataIndex: 'username',
-  form: {
-    control: 'input',
+  edit: {
+    type:'input',
     placeholder: '请输入用户名',
     maxLength: 20,
     showCount: true
@@ -38,8 +38,8 @@
 {
   title: '密码',
   dataIndex: 'password',
-  form: {
-    control: 'password',
+  edit: {
+    type:'password',
     placeholder: '请输入密码',
     visibilityToggle: true
   }
@@ -61,8 +61,8 @@
 {
   title: '备注',
   dataIndex: 'remark',
-  form: {
-    control: 'textarea',
+  edit: {
+    type:'textarea',
     placeholder: '请输入备注信息',
     rows: 4,
     maxLength: 500,
@@ -88,8 +88,8 @@
 {
   title: '价格',
   dataIndex: 'price',
-  form: {
-    control: 'inputNumber',
+  edit: {
+    type:'inputNumber',
     min: 0,
     max: 999999,
     precision: 2,
@@ -125,8 +125,8 @@ const columns = [
   {
     title: '用户名',
     dataIndex: 'username',
-    form: {
-      control: 'input',
+    edit: {
+      type:'input',
       required: true,
       placeholder: '请输入用户名',
       rules: [
@@ -138,8 +138,8 @@ const columns = [
   {
     title: '密码',
     dataIndex: 'password',
-    form: {
-      control: 'password',
+    edit: {
+      type:'password',
       required: true,
       placeholder: '请输入密码',
       rules: [
@@ -150,8 +150,8 @@ const columns = [
   {
     title: '确认密码',
     dataIndex: 'confirmPassword',
-    form: {
-      control: 'password',
+    edit: {
+      type:'password',
       required: true,
       placeholder: '请再次输入密码',
       rules: [
@@ -170,8 +170,8 @@ const columns = [
   {
     title: '年龄',
     dataIndex: 'age',
-    form: {
-      control: 'inputNumber',
+    edit: {
+      type:'inputNumber',
       min: 18,
       max: 65,
       placeholder: '请输入年龄'
@@ -180,8 +180,8 @@ const columns = [
   {
     title: '个人简介',
     dataIndex: 'bio',
-    form: {
-      control: 'textarea',
+    edit: {
+      type:'textarea',
       rows: 4,
       maxLength: 200,
       showCount: true,
@@ -227,6 +227,8 @@ const columns = [
   }
 }
 ```
+
+<demo vue="../demos/curd/form-controls/basic-controls.vue" />
 
 ## 相关内容
 

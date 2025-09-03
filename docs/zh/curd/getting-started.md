@@ -6,7 +6,7 @@ outline: deep
 
 本指南将通过渐进式示例，帮助您快速掌握 CURD 组件库的使用方法。
 
-## 📦 安装配置
+## 📦 起步
 
 ### 安装依赖
 
@@ -41,232 +41,46 @@ app.use(createCurdConfig())
 app.mount('#app')
 ```
 
-## 🚀 第一个示例：只读表格
+## 📚 示例
+
+### 第一个示例：只读表格
 
 让我们从最简单的数据表格开始：
 
-```vue
-<script setup lang="ts">
-import { StdTable } from '@uozi-admin/curd'
-import { useCurdApi } from '@uozi-admin/request'
+<demo vue="../demos/curd/getting-started/readonly-table.vue" />
 
-// 定义 API
-const userApi = useCurdApi('/users')
-
-// 定义列配置
-const columns = [
-  { title: '用户名', dataIndex: 'username' },
-  { title: '邮箱', dataIndex: 'email' },
-  { title: '状态', dataIndex: 'status' },
-  { title: '创建时间', dataIndex: 'created_at' }
-]
-</script>
-
-<template>
-  <StdTable :api="userApi" :columns="columns" />
-</template>
-```
-
-🎉 恭喜！您已经创建了第一个数据表格。
-
-## 🔍 第二个示例：添加搜索
+### 第二个示例：添加搜索
 
 为表格添加搜索功能：
 
-```vue
-<script setup lang="ts">
-import { StdCurd } from '@uozi-admin/curd'
-import { useCurdApi } from '@uozi-admin/request'
+<demo vue="../demos/curd/getting-started/with-search.vue" />
 
-const userApi = useCurdApi('/users')
-
-const columns = [
-  {
-    title: '用户名',
-    dataIndex: 'username',
-    search: { control: 'input' } // 👈 添加搜索
-  },
-  {
-    title: '状态',
-    dataIndex: 'status',
-    search: { 
-      control: 'select',
-      options: [
-        { label: '启用', value: 1 },
-        { label: '禁用', value: 0 }
-      ]
-    } // 👈 下拉搜索
-  },
-  { title: '邮箱', dataIndex: 'email' },
-  { title: '创建时间', dataIndex: 'created_at' }
-]
-</script>
-
-<template>
-  <StdCurd :api="userApi" :columns="columns" />
-</template>
-```
-
-✨ 现在您的表格具备了搜索功能！
-
-## 📝 第三个示例：完整 CRUD
+### 第三个示例：完整 CRUD
 
 添加新增、编辑、删除功能：
 
-```vue
-<script setup lang="ts">
-import { StdCurd } from '@uozi-admin/curd'
-import { useCurdApi } from '@uozi-admin/request'
+<demo vue="../demos/curd/getting-started/full-crud.vue" />
 
-const userApi = useCurdApi('/users')
-
-const columns = [
-  {
-    title: '用户名',
-    dataIndex: 'username',
-    search: { control: 'input' },
-    form: { 
-      control: 'input',
-      required: true 
-    } // 👈 添加表单配置
-  },
-  {
-    title: '邮箱',
-    dataIndex: 'email',
-    form: {
-      control: 'input',
-      required: true,
-      rules: [
-        { type: 'email', message: '请输入正确的邮箱格式' }
-      ]
-    } // 👈 添加验证规则
-  },
-  {
-    title: '状态',
-    dataIndex: 'status',
-    search: { 
-      control: 'select',
-      options: [
-        { label: '启用', value: 1 },
-        { label: '禁用', value: 0 }
-      ]
-    },
-    form: {
-      control: 'switch',
-      checkedChildren: '启用',
-      unCheckedChildren: '禁用',
-      defaultValue: 1
-    } // 👈 表单使用开关控件
-  },
-  { title: '创建时间', dataIndex: 'created_at' }
-]
-</script>
-
-<template>
-  <StdCurd 
-    title="用户管理"
-    :api="userApi" 
-    :columns="columns" 
-  />
-</template>
-```
-
-🎯 现在您拥有了功能完整的用户管理页面！
-
-## ⚡ 第四个示例：高级定制
+### 第四个示例：高级定制
 
 添加自定义渲染和高级功能：
 
-```vue
-<script setup lang="ts">
-import { StdCurd } from '@uozi-admin/curd'
-import { useCurdApi } from '@uozi-admin/request'
-import { Tag } from 'ant-design-vue'
-import { h } from 'vue'
+<demo vue="../demos/curd/getting-started/advanced-custom.vue" />
 
-const userApi = useCurdApi('/users')
-
-const columns = [
-  {
-    title: '用户名',
-    dataIndex: 'username',
-    search: { control: 'input' },
-    form: { control: 'input', required: true }
-  },
-  {
-    title: '头像',
-    dataIndex: 'avatar',
-    customRender: ({ value }) => 
-      h('img', { src: value, style: 'width: 32px; height: 32px; border-radius: 50%;' }),
-    form: {
-      control: 'upload',
-      accept: 'image/*',
-      maxCount: 1
-    }
-  },
-  {
-    title: '状态',
-    dataIndex: 'status',
-    customRender: ({ value }) => 
-      h(Tag, { color: value === 1 ? 'green' : 'red' }, 
-        () => value === 1 ? '启用' : '禁用'),
-    search: { 
-      control: 'select',
-      options: [
-        { label: '启用', value: 1 },
-        { label: '禁用', value: 0 }
-      ]
-    },
-    form: {
-      control: 'switch',
-      checkedChildren: '启用',
-      unCheckedChildren: '禁用'
-    }
-  },
-  {
-    title: '角色',
-    dataIndex: 'roles',
-    form: {
-      control: 'checkboxGroup',
-      options: [
-        { label: '管理员', value: 'admin' },
-        { label: '编辑者', value: 'editor' },
-        { label: '查看者', value: 'viewer' }
-      ]
-    }
-  }
-]
-</script>
-
-<template>
-  <StdCurd 
-    title="用户管理"
-    :api="userApi" 
-    :columns="columns"
-    :table-props="{ 
-      rowSelection: { type: 'checkbox' },
-      scroll: { x: 800 }
-    }"
-  />
-</template>
-```
-
-🚀 您已经掌握了 CURD 的核心功能！
-
-## 🎓 下一步学习
+## 📖 下一步学习
 
 恭喜完成快速入门！现在您可以：
 
-### 📖 深入学习基础知识
+### 深入学习基础知识
 - [核心概念](./fundamentals/concepts) - 理解设计理念和架构
 - [配置指南](./fundamentals/configuration) - 掌握配置选项
 - [使用示例](./fundamentals/examples) - 学习最佳实践
 
-### 🧩 探索组件功能
+### 探索组件功能
 - [StdCurd 组件](./components/std-curd) - 一站式解决方案详解
 - [表单控件](./form-controls/basic-controls) - 丰富的表单控件
 
-### ⚡ 学习高级特性
+### 学习高级特性
 - [自定义扩展](./advanced/customization) - 个性化定制
 - [表单交互](./advanced/form-interactions) - 复杂表单逻辑
 
@@ -301,8 +115,8 @@ app.use(createCurdConfig({
 {
   title: '自定义字段',
   dataIndex: 'custom',
-  form: {
-    control: MyCustomComponent
+  edit: {
+    type:MyCustomComponent
   }
 }
 ```
