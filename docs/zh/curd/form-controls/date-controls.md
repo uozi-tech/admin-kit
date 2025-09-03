@@ -2,6 +2,10 @@
 
 日期时间控件用于选择日期、时间或日期时间范围，支持多种格式和本地化配置。
 
+## 演示
+
+<demo vue="../demos/curd/form-controls/date-controls.vue" />
+
 ## 日期选择器 (date)
 
 用于选择单个日期。
@@ -12,7 +16,9 @@
   dataIndex: 'birth_date',
   edit: {
     type:'date',
-    format: 'YYYY-MM-DD',
+    date: {
+      format: 'YYYY-MM-DD',
+    },
     placeholder: '请选择出生日期'
   }
 }
@@ -22,11 +28,11 @@
 
 | 属性 | 说明 | 类型 | 默认值 |
 |------|------|------|--------|
-| format | 日期格式 | string | 'YYYY-MM-DD' |
+| date.format | 日期格式 | string | 'YYYY-MM-DD' |
 | placeholder | 占位符 | string | - |
-| disabledDate | 禁用日期 | (date: Dayjs) => boolean | - |
-| showToday | 显示今天按钮 | boolean | true |
-| allowClear | 允许清空 | boolean | true |
+| date.disabledDate | 禁用日期 | (date: Dayjs) => boolean | - |
+| date.showToday | 显示今天按钮 | boolean | true |
+| date.allowClear | 允许清空 | boolean | true |
 
 ## 时间选择器 (time)
 
@@ -38,7 +44,9 @@
   dataIndex: 'business_time',
   edit: {
     type:'time',
-    format: 'HH:mm:ss',
+    time: {
+      format: 'HH:mm:ss',
+    },
     placeholder: '请选择时间'
   }
 }
@@ -48,7 +56,7 @@
 
 | 属性 | 说明 | 类型 | 默认值 |
 |------|------|------|--------|
-| format | 时间格式 | string | 'HH:mm:ss' |
+| time.format | 时间格式 | string | 'HH:mm:ss' |
 | hourStep | 小时步长 | number | 1 |
 | minuteStep | 分钟步长 | number | 1 |
 | secondStep | 秒步长 | number | 1 |
@@ -64,7 +72,9 @@
   dataIndex: 'appointment_time',
   edit: {
     type:'datetime',
-    format: 'YYYY-MM-DD HH:mm:ss',
+    datetime: {
+      format: 'YYYY-MM-DD HH:mm:ss',
+    },
     placeholder: '请选择预约时间'
   }
 }
@@ -80,7 +90,9 @@
   dataIndex: 'activity_period',
   edit: {
     type:'dateRange',
-    format: 'YYYY-MM-DD',
+    dateRange: {
+      format: 'YYYY-MM-DD',
+    },
     placeholder: ['开始日期', '结束日期']
   }
 }
@@ -104,7 +116,9 @@
   dataIndex: 'work_hours',
   edit: {
     type:'timeRange',
-    format: 'HH:mm',
+    timeRange: {
+      format: 'HH:mm',
+    },
     placeholder: ['开始时间', '结束时间']
   }
 }
@@ -120,7 +134,9 @@
   dataIndex: 'meeting_period',
   edit: {
     type:'datetimeRange',
-    format: 'YYYY-MM-DD HH:mm',
+    datetimeRange: {
+      format: 'YYYY-MM-DD HH:mm',
+    },
     placeholder: ['开始时间', '结束时间']
   }
 }
@@ -149,7 +165,9 @@
   dataIndex: 'stat_month',
   edit: {
     type:'month',
-    format: 'YYYY-MM',
+    month: {
+      format: 'YYYY-MM',
+    },
     placeholder: '请选择月份'
   }
 }
@@ -163,7 +181,9 @@
   dataIndex: 'stat_week',
   edit: {
     type:'week',
-    format: 'YYYY-wo',
+    week: {
+      format: 'YYYY-wo',
+    },
     placeholder: '请选择周'
   }
 }
@@ -179,11 +199,13 @@
   dataIndex: 'booking_date',
   edit: {
     type:'date',
-    disabledDate: (current) => {
-      // 禁用过去的日期和周末
-      const today = dayjs().startOf('day')
-      const isWeekend = current.day() === 0 || current.day() === 6
-      return current < today || isWeekend
+    date: {
+      disabledDate: (current) => {
+        // 禁用过去的日期和周末
+        const today = dayjs().startOf('day')
+        const isWeekend = current.day() === 0 || current.day() === 6
+        return current < today || isWeekend
+      }
     }
   }
 }
@@ -197,12 +219,14 @@
   dataIndex: 'query_period',
   edit: {
     type:'dateRange',
-    ranges: {
-      '今天': [dayjs(), dayjs()],
-      '本周': [dayjs().startOf('week'), dayjs().endOf('week')],
-      '本月': [dayjs().startOf('month'), dayjs().endOf('month')],
-      '最近7天': [dayjs().subtract(6, 'day'), dayjs()],
-      '最近30天': [dayjs().subtract(29, 'day'), dayjs()]
+    dateRange: {
+      ranges: {
+        '今天': [dayjs(), dayjs()],
+        '本周': [dayjs().startOf('week'), dayjs().endOf('week')],
+        '本月': [dayjs().startOf('month'), dayjs().endOf('month')],
+        '最近7天': [dayjs().subtract(6, 'day'), dayjs()],
+        '最近30天': [dayjs().subtract(29, 'day'), dayjs()]
+      }
     }
   }
 }
@@ -216,8 +240,10 @@
   dataIndex: 'created_at',
   edit: {
     type:'datetime',
-    format: 'YYYY年MM月DD日 HH:mm',
-    valueFormat: 'YYYY-MM-DD HH:mm:ss'  // 提交给后端的格式
+    datetime: {
+      format: 'YYYY年MM月DD日 HH:mm',
+      valueFormat: 'YYYY-MM-DD HH:mm:ss'  // 提交给后端的格式
+    },
   }
 }
 ```
@@ -237,7 +263,9 @@ dayjs.locale('zh-cn')
   dataIndex: 'date',
   edit: {
     type:'date',
-    locale: 'zh-cn'
+    date: {
+      locale: 'zh-cn'
+    }
   }
 }
 ```
@@ -250,19 +278,21 @@ dayjs.locale('zh-cn')
   dataIndex: 'date',
   edit: {
     type:'date',
-    locale: {
-      lang: {
-        placeholder: '请选择日期',
-        rangePlaceholder: ['开始日期', '结束日期'],
-        today: '今天',
-        now: '此刻',
-        backToToday: '返回今天',
-        ok: '确定',
-        clear: '清除',
-        month: '月',
-        year: '年',
-        timeSelect: '选择时间',
-        dateSelect: '选择日期'
+    date: {
+      locale: {
+        lang: {
+          placeholder: '请选择日期',
+          rangePlaceholder: ['开始日期', '结束日期'],
+          today: '今天',
+          now: '此刻',
+          backToToday: '返回今天',
+          ok: '确定',
+          clear: '清除',
+          month: '月',
+          year: '年',
+          timeSelect: '选择时间',
+          dateSelect: '选择日期',
+        }
       }
     }
   }
@@ -287,7 +317,9 @@ const columns = [
     dataIndex: 'name',
     edit: {
       type:'input',
-      required: true
+      formItem: {
+        required: true
+      }
     }
   },
   {
@@ -295,8 +327,12 @@ const columns = [
     dataIndex: 'activity_date',
     edit: {
       type:'date',
-      required: true,
-      disabledDate: (current) => current < dayjs().startOf('day')
+      formItem: {
+        required: true,
+      },
+      date: {
+        disabledDate: (current) => current < dayjs().startOf('day')
+      }
     }
   },
   {
@@ -304,7 +340,9 @@ const columns = [
     dataIndex: 'activity_time',
     edit: {
       type:'timeRange',
-      required: true,
+      formItem: {
+        required: true,
+      },
       placeholder: ['开始时间', '结束时间']
     }
   },
@@ -313,8 +351,12 @@ const columns = [
     dataIndex: 'registration_deadline',
     edit: {
       type:'datetime',
-      required: true,
-      disabledDate: (current) => current < dayjs().startOf('day')
+      formItem: {
+        required: true,
+      },
+      datetime: {
+        disabledDate: (current) => current < dayjs().startOf('day')
+      }
     }
   },
   {
@@ -322,10 +364,15 @@ const columns = [
     dataIndex: 'stat_period',
     edit: {
       type:'dateRange',
-      ranges: {
-        '本周': [dayjs().startOf('week'), dayjs().endOf('week')],
-        '本月': [dayjs().startOf('month'), dayjs().endOf('month')],
-        '本季度': [dayjs().startOf('quarter'), dayjs().endOf('quarter')]
+      formItem: {
+        required: true,
+      },
+      dateRange: {
+        ranges: {
+          '本周': [dayjs().startOf('week'), dayjs().endOf('week')],
+          '本月': [dayjs().startOf('month'), dayjs().endOf('month')],
+          '本季度': [dayjs().startOf('quarter'), dayjs().endOf('quarter')]
+        }
       }
     }
   }
@@ -333,7 +380,7 @@ const columns = [
 </script>
 
 <template>
-  <StdForm :api="activityApi" :columns="columns" />
+  <StdForm :columns="columns" />
 </template>
 ```
 
@@ -353,12 +400,16 @@ const columns = [
     dataIndex: 'birth_date',
     edit: {
       type:'date',
-      required: true,
-      disabledDate: (current) => {
-        // 年龄必须在18-65岁之间
-        const minDate = dayjs().subtract(65, 'year')
-        const maxDate = dayjs().subtract(18, 'year')
-        return current < minDate || current > maxDate
+      formItem: {
+        required: true,
+      },
+      date: {
+        disabledDate: (current) => {
+          // 年龄必须在18-65岁之间
+          const minDate = dayjs().subtract(65, 'year')
+          const maxDate = dayjs().subtract(18, 'year')
+          return current < minDate || current > maxDate
+        }
       }
     }
   },
@@ -367,8 +418,12 @@ const columns = [
     dataIndex: 'hire_date',
     edit: {
       type:'date',
-      required: true,
-      disabledDate: (current) => current > dayjs()
+      formItem: {
+        required: true,
+      },
+      date: {
+        disabledDate: (current) => current > dayjs()
+      }
     }
   },
   {
@@ -376,8 +431,13 @@ const columns = [
     dataIndex: 'work_hours',
     edit: {
       type:'timeRange',
-      placeholder: ['上班时间', '下班时间'],
-      defaultValue: [dayjs('09:00', 'HH:mm'), dayjs('18:00', 'HH:mm')]
+      formItem: {
+        required: true,
+      },
+      timeRange: {
+        placeholder: ['上班时间', '下班时间'],
+        defaultValue: [dayjs('09:00', 'HH:mm'), dayjs('18:00', 'HH:mm')]
+      }
     }
   },
   {
@@ -385,15 +445,19 @@ const columns = [
     dataIndex: 'contract_period',
     edit: {
       type:'dateRange',
-      required: true,
-      placeholder: ['合同开始日期', '合同结束日期']
+      formItem: {
+        required: true,
+      },
+      dateRange: {
+        placeholder: ['合同开始日期', '合同结束日期']
+      }
     }
   }
 ]
 </script>
 
 <template>
-  <StdForm :api="employeeApi" :columns="columns" />
+  <StdForm :columns="columns" />
 </template>
 ```
 
@@ -410,8 +474,6 @@ const columns = [
 | **year** | 年份 | 2023 | 毕业年份、统计年度 |
 | **month** | 月份 | 2023-12 | 统计月份、账期 |
 | **week** | 周 | 2023-52周 | 统计周、排班周 |
-
-<demo vue="../demos/curd/form-controls/date-controls.vue" />
 
 ## 相关内容
 

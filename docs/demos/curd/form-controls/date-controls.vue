@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { StdTableColumn } from '@uozi-admin/curd'
 import { StdForm } from '@uozi-admin/curd'
-import { userApi } from '../mock/userApi'
 
 const columns: StdTableColumn[] = [
   {
@@ -62,19 +61,11 @@ const columns: StdTableColumn[] = [
     },
   },
 ]
-
-function handleSuccess(data) {
-  console.log('表单提交成功:', data)
-}
 </script>
 
 <template>
-  <div style="max-width: 600px; margin: 0 auto;">
+  <div style="margin: 0 auto;">
     <h3>日期时间控件示例</h3>
-    <StdForm
-      :api="userApi"
-      :columns="columns"
-      @success="handleSuccess"
-    />
+    <StdForm :columns="columns" />
   </div>
 </template>

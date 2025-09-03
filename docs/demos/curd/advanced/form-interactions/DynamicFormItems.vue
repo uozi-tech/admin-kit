@@ -22,7 +22,9 @@ const dynamicFormColumns = computed<StdTableColumn[]>(() => {
       dataIndex: 'name',
       edit: {
         type: 'input',
-        required: true,
+        formItem: {
+          required: true,
+        },
         placeholder: '请输入姓名',
       },
     },

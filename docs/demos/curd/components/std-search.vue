@@ -28,10 +28,12 @@ const columns: StdTableColumn[] = [
     search: {
       type: 'select',
       placeholder: '请选择状态',
-      options: [
-        { label: '启用', value: 1 },
-        { label: '禁用', value: 0 },
-      ],
+      select: {
+        options: [
+          { label: '启用', value: 1 },
+          { label: '禁用', value: 0 },
+        ],
+      },
     },
   },
   {
@@ -41,11 +43,13 @@ const columns: StdTableColumn[] = [
       type: 'select',
       mode: 'multiple',
       placeholder: '请选择角色',
-      options: [
-        { label: '管理员', value: 'admin' },
-        { label: '编辑者', value: 'editor' },
-        { label: '查看者', value: 'viewer' },
-      ],
+      select: {
+        options: [
+          { label: '管理员', value: 'admin' },
+          { label: '编辑者', value: 'editor' },
+          { label: '查看者', value: 'viewer' },
+        ],
+      },
     },
   },
   {
@@ -59,12 +63,10 @@ const columns: StdTableColumn[] = [
 ]
 
 function handleSearch(values) {
-  console.log('搜索参数:', values)
   searchValue.value = values
 }
 
 function handleReset() {
-  console.log('重置搜索')
   searchValue.value = {}
 }
 </script>
@@ -73,7 +75,7 @@ function handleReset() {
   <div>
     <h3>StdSearch 组件示例</h3>
     <StdSearch
-      :data="searchValue"
+      v-model:data="searchValue"
       :columns="columns"
       @search="handleSearch"
       @reset="handleReset"

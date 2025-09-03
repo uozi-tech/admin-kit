@@ -54,11 +54,6 @@ const columns: StdTableColumn[] = [
       :get-list-api="userApi.getList"
       :columns="columns"
       :scroll="{ x: 1000 }"
-      :pagination="{
-        showSizeChanger: true,
-        showQuickJumper: true,
-        showTotal: (total, range) => `第 ${range[0]}-${range[1]} 条/共 ${total} 条`,
-      }"
       row-key="id"
     />
   </div>

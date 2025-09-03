@@ -16,5 +16,6 @@ const columns: StdTableColumn[] = [
   <StdTable
     :get-list-api="userApi.getList"
     :columns="columns"
+    only-query
   />
 </template>

@@ -10,7 +10,9 @@ const columns: StdTableColumn[] = [
     search: { type: 'input' },
     edit: {
       type: 'input',
-      required: true,
+      formItem: {
+        required: true,
+      },
     }, // 👈 添加表单配置
   },
   {
@@ -18,10 +20,12 @@ const columns: StdTableColumn[] = [
     dataIndex: 'email',
     edit: {
       type: 'input',
-      required: true,
-      rules: [
-        { type: 'email', message: '请输入正确的邮箱格式' },
-      ],
+      formItem: {
+        required: true,
+        rules: [
+          { type: 'email', message: '请输入正确的邮箱格式' },
+        ],
+      },
     }, // 👈 添加验证规则
   },
   {
@@ -29,16 +33,20 @@ const columns: StdTableColumn[] = [
     dataIndex: 'status',
     search: {
       type: 'select',
-      options: [
-        { label: '启用', value: 1 },
-        { label: '禁用', value: 0 },
-      ],
+      select: {
+        options: [
+          { label: '启用', value: 1 },
+          { label: '禁用', value: 0 },
+        ],
+      },
     },
     edit: {
       type: 'switch',
-      checkedChildren: '启用',
-      unCheckedChildren: '禁用',
-      defaultValue: 1,
+      switch: {
+        checkedChildren: '启用',
+        unCheckedChildren: '禁用',
+        defaultValue: 1,
+      },
     }, // 👈 表单使用开关控件
   },
   { title: '创建时间', dataIndex: 'created_at' },

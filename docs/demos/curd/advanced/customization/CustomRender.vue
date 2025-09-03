@@ -89,7 +89,7 @@ const renderColumns = [
     title: '状态',
     dataIndex: 'status',
     width: 100,
-    render: ({ record }) => {
+    customRender: ({ record }) => {
       const statusConfig = {
         active: { color: 'success', text: '活跃' },
         inactive: { color: 'error', text: '非活跃' },

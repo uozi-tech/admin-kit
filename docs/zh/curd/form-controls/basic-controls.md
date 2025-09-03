@@ -2,6 +2,10 @@
 
 基础表单控件包括文本输入、数字输入、密码输入和多行文本等常用输入控件。
 
+## 使用示例
+
+<demo vue="../demos/curd/form-controls/basic-controls.vue" />
+
 ## 文本输入框 (input)
 
 用于单行文本输入。
@@ -13,8 +17,10 @@
   edit: {
     type:'input',
     placeholder: '请输入用户名',
-    maxLength: 20,
-    showCount: true
+    input: {
+      maxlength: 20,
+      showCount: true
+    }
   }
 }
 ```
@@ -24,7 +30,7 @@
 | 属性 | 说明 | 类型 | 默认值 |
 |------|------|------|--------|
 | placeholder | 占位符 | string | - |
-| maxLength | 最大长度 | number | - |
+| maxlength | 最大长度 | number | - |
 | showCount | 显示字数统计 | boolean | false |
 | allowClear | 显示清除按钮 | boolean | false |
 | addonBefore | 前置标签 | string \| VNode | - |
@@ -41,7 +47,9 @@
   edit: {
     type:'password',
     placeholder: '请输入密码',
-    visibilityToggle: true
+    password: {
+      visibilityToggle: true
+    }
   }
 }
 ```
@@ -64,9 +72,11 @@
   edit: {
     type:'textarea',
     placeholder: '请输入备注信息',
-    rows: 4,
-    maxLength: 500,
-    showCount: true
+    textarea: {
+      rows: 4,
+      maxlength: 500,
+      showCount: true
+    }
   }
 }
 ```
@@ -76,7 +86,7 @@
 | 属性 | 说明 | 类型 | 默认值 |
 |------|------|------|--------|
 | rows | 行数 | number | 4 |
-| maxLength | 最大长度 | number | - |
+| maxlength | 最大长度 | number | - |
 | showCount | 显示字数统计 | boolean | false |
 | autoSize | 自适应高度 | boolean \| object | false |
 
@@ -90,11 +100,13 @@
   dataIndex: 'price',
   edit: {
     type:'inputNumber',
-    min: 0,
-    max: 999999,
-    precision: 2,
-    step: 0.01,
-    addonBefore: '¥'
+    inputNumber: {
+      min: 0,
+      max: 999999,
+      precision: 2,
+      step: 0.01,
+      addonBefore: '¥'
+    }
   }
 }
 ```
@@ -127,12 +139,14 @@ const columns = [
     dataIndex: 'username',
     edit: {
       type:'input',
-      required: true,
+      formItem: {
+        required: true,
+        rules: [
+          { min: 3, message: '用户名至少3个字符' },
+          { max: 20, message: '用户名不能超过20个字符' }
+        ]
+      },
       placeholder: '请输入用户名',
-      rules: [
-        { min: 3, message: '用户名至少3个字符' },
-        { max: 20, message: '用户名不能超过20个字符' }
-      ]
     }
   },
   {
@@ -140,11 +154,13 @@ const columns = [
     dataIndex: 'password',
     edit: {
       type:'password',
-      required: true,
+      formItem: {
+        required: true,
+        rules: [
+          { min: 6, message: '密码至少6个字符' }
+        ]
+      },
       placeholder: '请输入密码',
-      rules: [
-        { min: 6, message: '密码至少6个字符' }
-      ]
     }
   },
   {
@@ -152,19 +168,21 @@ const columns = [
     dataIndex: 'confirmPassword',
     edit: {
       type:'password',
-      required: true,
-      placeholder: '请再次输入密码',
-      rules: [
-        {
-          validator: (rule, value, callback) => {
-            if (value && value !== formData.password) {
-              callback(new Error('两次输入的密码不一致'))
-            } else {
-              callback()
+      formItem: {
+        required: true,
+        rules: [
+          {
+            validator: (rule, value, callback) => {
+              if (value && value !== formData.password) {
+                callback(new Error('两次输入的密码不一致'))
+              } else {
+                callback()
+              }
             }
           }
-        }
-      ]
+        ]
+      },
+      placeholder: '请再次输入密码',
     }
   },
   {
@@ -172,8 +190,10 @@ const columns = [
     dataIndex: 'age',
     edit: {
       type:'inputNumber',
-      min: 18,
-      max: 65,
+      inputNumber: {
+        min: 18,
+        max: 65,
+      },
       placeholder: '请输入年龄'
     }
   },
@@ -182,9 +202,11 @@ const columns = [
     dataIndex: 'bio',
     edit: {
       type:'textarea',
-      rows: 4,
-      maxLength: 200,
-      showCount: true,
+      textarea: {
+        rows: 4,
+        maxlength: 200,
+        showCount: true,
+      },
       placeholder: '请输入个人简介'
     }
   }
@@ -227,8 +249,6 @@ const columns = [
   }
 }
 ```
-
-<demo vue="../demos/curd/form-controls/basic-controls.vue" />
 
 ## 相关内容
 

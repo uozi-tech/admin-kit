@@ -8,7 +8,6 @@ StdSearch 是搜索组件，根据列配置自动生成搜索表单，支持多�
 <template>
   <StdSearch
     :columns="columns"
-    @search="handleSearch"
     @reset="handleReset"
   />
 </template>
@@ -35,15 +34,15 @@ const columns = [
   }
 ]
 
-const handleSearch = (params) => {
-  console.log('搜索参数:', params)
-}
-
 const handleReset = () => {
   console.log('重置搜索')
 }
 </script>
 ```
+
+## 演示示例
+
+<demo vue="../demos/curd/components/std-search.vue" />
 
 ## API
 
@@ -63,7 +62,3 @@ const handleReset = () => {
 | reset | 重置时触发 | () |
 
 更多详细配置请参考完整 API 文档。
-
-## 演示示例
-
-<demo vue="../demos/curd/components/std-search.vue" />

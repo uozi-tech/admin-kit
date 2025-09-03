@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { StdTableColumn } from '@uozi-admin/curd'
 import { StdForm } from '@uozi-admin/curd'
+import { Button } from 'ant-design-vue'
 import { ref } from 'vue'
 import { userApi } from '../mock/userApi'
 
@@ -13,12 +14,14 @@ const columns: StdTableColumn[] = [
     dataIndex: 'username',
     edit: {
       type: 'input',
-      required: true,
+      formItem: {
+        required: true,
+        rules: [
+          { min: 3, message: '用户名至少3个字符' },
+          { max: 20, message: '用户名不能超过20个字符' },
+        ],
+      },
       placeholder: '请输入用户名',
-      rules: [
-        { min: 3, message: '用户名至少3个字符' },
-        { max: 20, message: '用户名不能超过20个字符' },
-      ],
     },
   },
   {
@@ -26,11 +29,13 @@ const columns: StdTableColumn[] = [
     dataIndex: 'email',
     edit: {
       type: 'input',
-      required: true,
+      formItem: {
+        required: true,
+        rules: [
+          { type: 'email', message: '请输入正确的邮箱格式' },
+        ],
+      },
       placeholder: '请输入邮箱',
-      rules: [
-        { type: 'email', message: '请输入正确的邮箱格式' },
-      ],
     },
   },
   {
@@ -38,9 +43,11 @@ const columns: StdTableColumn[] = [
     dataIndex: 'status',
     edit: {
       type: 'switch',
-      checkedChildren: '启用',
-      unCheckedChildren: '禁用',
-      defaultValue: 1,
+      switch: {
+        checkedChildren: '启用',
+        unCheckedChildren: '禁用',
+        defaultValue: 1,
+      },
     },
   },
   {
@@ -48,11 +55,13 @@ const columns: StdTableColumn[] = [
     dataIndex: 'roles',
     edit: {
       type: 'checkboxGroup',
-      options: [
-        { label: '管理员', value: 'admin' },
-        { label: '编辑者', value: 'editor' },
-        { label: '查看者', value: 'viewer' },
-      ],
+      checkboxGroup: {
+        options: [
+          { label: '管理员', value: 'admin' },
+          { label: '编辑者', value: 'editor' },
+          { label: '查看者', value: 'viewer' },
+        ],
+      },
     },
   },
   {
@@ -60,9 +69,11 @@ const columns: StdTableColumn[] = [
     dataIndex: 'avatar',
     edit: {
       type: 'upload',
-      accept: 'image/*',
-      maxCount: 1,
-      listType: 'picture-card',
+      upload: {
+        accept: 'image/*',
+        maxCount: 1,
+        listType: 'picture-card',
+      },
     },
   },
 ]
@@ -91,25 +102,25 @@ function resetForm() {
     <h3>StdForm 组件示例</h3>
 
     <div style="margin-bottom: 16px;">
-      <a-button
+      <Button
         style="margin-right: 8px;"
         @click="resetForm"
       >
         新增模式
-      </a-button>
-      <a-button
+      </Button>
+      <Button
         type="primary"
         @click="loadEditData"
       >
         编辑模式
-      </a-button>
+      </Button>
     </div>
 
     <div style="max-width: 600px;">
       <StdForm
         :id="editId"
+        v-model:data="formData"
         :api="userApi"
-        :form-data="formData"
         :columns="columns"
         @success="handleSuccess"
         @error="handleError"

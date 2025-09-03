@@ -6,34 +6,30 @@ StdForm 是表单组件，用于数据的新增和编辑，支持各种表单控
 
 ```vue
 <template>
-  <StdForm
-    :api="userApi"
-    :columns="columns"
-    :id="editId"
-    @success="handleSuccess"
-  />
+  <StdForm :columns="columns" />
 </template>
 
 <script setup lang="ts">
 import { StdForm } from '@uozi-admin/curd'
-import { useCurdApi } from '@uozi-admin/request'
-
-const userApi = useCurdApi('/users')
-const editId = ref()
 
 const columns = [
   {
     title: '用户名',
     dataIndex: 'username',
-    edit: { type:'input', required: true }
+    edit: { 
+      type:'input',
+      formItem: {
+        required: true,
+      },
+    },
   }
 ]
-
-const handleSuccess = () => {
-  console.log('保存成功')
-}
 </script>
 ```
+
+## 演示示例
+
+<demo vue="../demos/curd/components/std-form.vue" />
 
 ## API
 
@@ -54,7 +50,3 @@ const handleSuccess = () => {
 | error | 保存失败时触发 | (error: Error) |
 
 更多详细配置请参考完整 API 文档。
-
-## 演示示例
-
-<demo vue="../demos/curd/components/std-form.vue" />

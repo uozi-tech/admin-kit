@@ -114,19 +114,25 @@ const columns: StdTableColumn[] = [
     // 🔍 搜索中使用：下拉选择
     search: {
       type:'select',
-      options: [
-        { label: '启用', value: 1 },
-        { label: '禁用', value: 0 }
-      ]
+      select: {
+        options: [
+          { label: '启用', value: 1 },
+          { label: '禁用', value: 0 }
+        ],
+      },
     },
     
     // 📝 表单中使用：开关控件
     edit: {
       type:'switch',
-      required: true,
       defaultValue: 1,
-      checkedChildren: '启用',
-      unCheckedChildren: '禁用'
+      formItem: {
+        required: true,
+      },
+      switch: {
+        checkedChildren: '启用',
+        unCheckedChildren: '禁用',
+      },
     }
   }
 ]
@@ -165,7 +171,7 @@ type AdvancedControls =
   | 'rate'         // 评分
 ```
 
-### API 接口 (StdApi)
+### API 接口 (CurdApi)
 
 CURD 组件通过标准化的 API 接口与后端交互：
 

@@ -23,11 +23,18 @@ const columns = [
     title: '用户名',
     dataIndex: 'username',
     search: { type:'input' },
-    edit: { type:'input', required: true }
+    edit: { 
+      type:'input', 
+      formItem: { required: true } 
+    }
   }
 ]
 </script>
 ```
+
+## 演示示例
+
+<demo vue="../demos/curd/components/std-curd.vue" />
 
 ## API
 
@@ -50,7 +57,3 @@ const columns = [
 | error | 操作失败时触发 | (error: Error) |
 
 更多详细配置请参考完整 API 文档。
-
-## 演示示例
-
-<demo vue="../demos/curd/components/std-curd.vue" />

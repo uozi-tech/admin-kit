@@ -15,5 +15,3 @@
 ## 相关内容
 
 - [自定义扩展](./customization) - 自定义渲染和控件
-- [批量操作](./batch-operations) - 批量编辑和删除
-- [国际化](./internationalization) - 多语言支持

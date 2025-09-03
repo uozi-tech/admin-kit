@@ -7,7 +7,7 @@ StdTable 是数据表格组件，提供列表展示、分页、排序、选择�
 ```vue
 <template>
   <StdTable
-    :api="userApi"
+    :get-list-api="userApi.getList"
     :columns="columns"
   />
 </template>
@@ -23,6 +23,10 @@ const columns = [
 ]
 </script>
 ```
+
+## 演示示例
+
+<demo vue="../demos/curd/components/std-table.vue" />
 
 ## API
 
@@ -43,7 +47,3 @@ const columns = [
 | delete | 删除行时触发 | (record: any) |
 
 更多详细配置请参考完整 API 文档。
-
-## 演示示例
-
-<demo vue="../demos/curd/components/std-table.vue" />

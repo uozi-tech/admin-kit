@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import type { StdTableColumn } from '@uozi-admin/curd'
 import { StdForm } from '@uozi-admin/curd'
-import { message, RadioButton, RadioGroup } from 'ant-design-vue'
+import { Button, message, RadioButton, RadioGroup } from 'ant-design-vue'
 import { computed, ref } from 'vue'
 
 const formType = ref('personal')
 const formData = ref({})
+
+const formRef = ref<InstanceType<typeof StdForm>>()
 
 // 动态表单列配置
 const dynamicFormColumns = computed(() => {
@@ -15,7 +17,9 @@ const dynamicFormColumns = computed(() => {
       dataIndex: 'name',
       edit: {
         type: 'input',
-        required: true,
+        formItem: {
+          required: true,
+        },
         placeholder: '请输入姓名',
       },
     },
@@ -24,7 +28,9 @@ const dynamicFormColumns = computed(() => {
       dataIndex: 'phone',
       edit: {
         type: 'input',
-        required: true,
+        formItem: {
+          required: true,
+        },
         placeholder: '请输入手机号',
         rules: [
           { required: true, message: '请输入手机号' },
@@ -42,7 +48,9 @@ const dynamicFormColumns = computed(() => {
         dataIndex: 'id_card',
         edit: {
           type: 'input',
-          required: true,
+          formItem: {
+            required: true,
+          },
           placeholder: '请输入身份证号',
         },
       },
@@ -70,7 +78,9 @@ const dynamicFormColumns = computed(() => {
         dataIndex: 'business_license',
         edit: {
           type: 'input',
-          required: true,
+          formItem: {
+            required: true,
+          },
           placeholder: '请输入营业执照号',
         },
       },
@@ -79,11 +89,13 @@ const dynamicFormColumns = computed(() => {
         dataIndex: 'company_type',
         edit: {
           type: 'select',
-          options: [
-            { label: '有限责任公司', value: 'llc' },
-            { label: '股份有限公司', value: 'corp' },
-            { label: '个体工商户', value: 'individual' },
-          ],
+          select: {
+            options: [
+              { label: '有限责任公司', value: 'llc' },
+              { label: '股份有限公司', value: 'corp' },
+              { label: '个体工商户', value: 'individual' },
+            ],
+          },
         },
       },
     ] as StdTableColumn[]
@@ -100,12 +112,12 @@ function phoneValidator(rule: any, value: string) {
   return Promise.resolve()
 }
 
-function handleFormSubmit(formData) {
-  message.success('表单提交成功')
-}
-
-function handleDynamicFormSubmit(formData) {
-  message.success(`${formType.value === 'personal' ? '个人' : '企业'}用户信息提交成功`)
+function handleDynamicFormSubmit() {
+  formRef.value?.formRef?.validate().then(() => {
+    message.success(`${formType.value === 'personal' ? '个人' : '企业'}用户信息提交成功`)
+  }).catch(() => {
+    message.error('请填写完整表单')
+  })
 }
 
 function handleFormTypeChange() {
@@ -129,9 +141,17 @@ function handleFormTypeChange() {
   </RadioGroup>
 
   <StdForm
+    ref="formRef"
     :key="formType"
     v-model:data="formData"
     :columns="dynamicFormColumns"
     @submit="handleDynamicFormSubmit"
   />
+
+  <Button
+    type="primary"
+    @click="handleDynamicFormSubmit"
+  >
+    提交
+  </Button>
 </template>

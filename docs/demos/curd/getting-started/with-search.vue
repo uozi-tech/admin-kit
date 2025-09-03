@@ -14,10 +14,12 @@ const columns: StdTableColumn[] = [
     dataIndex: 'status',
     search: {
       type: 'select',
-      options: [
-        { label: '启用', value: 1 },
-        { label: '禁用', value: 0 },
-      ],
+      select: {
+        options: [
+          { label: '启用', value: 1 },
+          { label: '禁用', value: 0 },
+        ],
+      },
     }, // 👈 下拉搜索
   },
   { title: '邮箱', dataIndex: 'email' },

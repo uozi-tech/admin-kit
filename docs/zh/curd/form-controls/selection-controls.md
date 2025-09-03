@@ -2,6 +2,10 @@
 
 选择控件用于从预定义的选项中选择一个或多个值，包括下拉选择、单选按钮组、多选框组和级联选择等。
 
+## 使用示例
+
+<demo vue="../demos/curd/form-controls/selection-controls.vue" />
+
 ## 下拉选择 (select)
 
 用于从下拉列表中选择一个或多个选项。
@@ -12,10 +16,12 @@
   dataIndex: 'status',
   edit: {
     type:'select',
-    options: [
-      { label: '启用', value: 1 },
-      { label: '禁用', value: 0 }
-    ],
+    select: {
+      options: [
+        { label: '启用', value: 1 },
+        { label: '禁用', value: 0 }
+      ],
+    },
     placeholder: '请选择状态'
   }
 }
@@ -29,12 +35,14 @@
   dataIndex: 'roles',
   edit: {
     type:'select',
-    mode: 'multiple',
-    options: [
-      { label: '管理员', value: 'admin' },
-      { label: '编辑者', value: 'editor' },
-      { label: '查看者', value: 'viewer' }
-    ],
+    select: {
+      mode: 'multiple',
+      options: [
+        { label: '管理员', value: 'admin' },
+        { label: '编辑者', value: 'editor' },
+        { label: '查看者', value: 'viewer' }
+      ],
+    },
     placeholder: '请选择角色'
   }
 }
@@ -44,12 +52,12 @@
 
 | 属性 | 说明 | 类型 | 默认值 |
 |------|------|------|--------|
-| options | 选项数据 | Array<{label: string, value: any}> | [] |
-| mode | 选择模式 | 'multiple' \| 'tags' | - |
-| allowClear | 允许清空 | boolean | false |
-| showSearch | 显示搜索框 | boolean | false |
-| filterOption | 过滤选项 | boolean \| function | true |
-| optionFilterProp | 搜索时过滤对应的 option 属性 | string | 'label' |
+| select.options | 选项数据 | Array<{label: string, value: any}> | [] |
+| select.mode | 选择模式 | 'multiple' \| 'tags' | - |
+| select.allowClear | 允许清空 | boolean | false |
+| select.showSearch | 显示搜索框 | boolean | false |
+| select.filterOption | 过滤选项 | boolean \| function | true |
+| select.optionFilterProp | 搜索时过滤对应的 option 属性 | string | 'label' |
 
 ## 单选按钮组 (radioGroup)
 
@@ -61,11 +69,13 @@
   dataIndex: 'gender',
   edit: {
     type:'radioGroup',
-    options: [
-      { label: '男', value: 'male' },
-      { label: '女', value: 'female' },
-      { label: '其他', value: 'other' }
-    ]
+    radioGroup: {
+      options: [
+        { label: '男', value: 'male' },
+        { label: '女', value: 'female' },
+        { label: '其他', value: 'other' }
+      ],
+    },
   }
 }
 ```
@@ -78,13 +88,15 @@
   dataIndex: 'priority',
   edit: {
     type:'radioGroup',
-    optionType: 'button',
-    buttonStyle: 'solid',
-    options: [
-      { label: '低', value: 'low' },
-      { label: '中', value: 'medium' },
-      { label: '高', value: 'high' }
-    ]
+    radioGroup: {
+      optionType: 'button',
+      buttonStyle: 'solid',
+      options: [
+        { label: '低', value: 'low' },
+        { label: '中', value: 'medium' },
+        { label: '高', value: 'high' }
+      ],
+    },
   }
 }
 ```
@@ -93,10 +105,10 @@
 
 | 属性 | 说明 | 类型 | 默认值 |
 |------|------|------|--------|
-| options | 选项数据 | Array<{label: string, value: any}> | [] |
-| optionType | 选项类型 | 'default' \| 'button' | 'default' |
-| buttonStyle | 按钮样式 | 'outline' \| 'solid' | 'outline' |
-| size | 尺寸 | 'large' \| 'middle' \| 'small' | 'middle' |
+| radioGroup.options | 选项数据 | Array<{label: string, value: any}> | [] |
+| radioGroup.optionType | 选项类型 | 'default' \| 'button' | 'default' |
+| radioGroup.buttonStyle | 按钮样式 | 'outline' \| 'solid' | 'outline' |
+| radioGroup.size | 尺寸 | 'large' \| 'middle' \| 'small' | 'middle' |
 
 ## 多选框组 (checkboxGroup)
 
@@ -108,12 +120,14 @@
   dataIndex: 'hobbies',
   edit: {
     type:'checkboxGroup',
-    options: [
-      { label: '阅读', value: 'reading' },
-      { label: '运动', value: 'sports' },
-      { label: '旅行', value: 'travel' },
-      { label: '音乐', value: 'music' }
-    ]
+    checkboxGroup: {
+      options: [
+        { label: '阅读', value: 'reading' },
+        { label: '运动', value: 'sports' },
+        { label: '旅行', value: 'travel' },
+        { label: '音乐', value: 'music' }
+      ],
+    },
   }
 }
 ```
@@ -122,7 +136,7 @@
 
 | 属性 | 说明 | 类型 | 默认值 |
 |------|------|------|--------|
-| options | 选项数据 | Array<{label: string, value: any}> | [] |
+| checkboxGroup.options | 选项数据 | Array<{label: string, value: any}> | [] |
 | disabled | 是否禁用 | boolean | false |
 
 ## 级联选择 (cascader)
@@ -135,22 +149,24 @@
   dataIndex: 'region',
   edit: {
     type:'cascader',
-    options: [
-      {
-        label: '浙江省',
-        value: 'zhejiang',
-        children: [
-          {
-            label: '杭州市',
-            value: 'hangzhou',
-            children: [
-              { label: '西湖区', value: 'xihu' },
-              { label: '余杭区', value: 'yuhang' }
-            ]
-          }
-        ]
-      }
-    ],
+    cascader: {
+      options: [
+        {
+          label: '浙江省',
+          value: 'zhejiang',
+          children: [
+            {
+              label: '杭州市',
+              value: 'hangzhou',
+              children: [
+                { label: '西湖区', value: 'xihu' },
+                { label: '余杭区', value: 'yuhang' }
+              ]
+            }
+          ]
+        }
+      ],
+    },
     placeholder: '请选择地区'
   }
 }
@@ -164,17 +180,19 @@
   dataIndex: 'business_scope',
   edit: {
     type:'cascader',
-    multiple: true,
-    options: [
-      {
-        label: '技术',
-        value: 'tech',
-        children: [
-          { label: '前端开发', value: 'frontend' },
-          { label: '后端开发', value: 'backend' }
-        ]
-      }
-    ]
+    cascader: {
+      multiple: true,
+      options: [
+        {
+          label: '技术',
+          value: 'tech',
+          children: [
+            { label: '前端开发', value: 'frontend' },
+            { label: '后端开发', value: 'backend' }
+          ]
+        }
+      ],
+    },
   }
 }
 ```
@@ -183,11 +201,11 @@
 
 | 属性 | 说明 | 类型 | 默认值 |
 |------|------|------|--------|
-| options | 选项数据 | CascaderOption[] | [] |
-| multiple | 是否多选 | boolean | false |
-| showSearch | 显示搜索框 | boolean | false |
-| changeOnSelect | 选择即改变 | boolean | false |
-| displayRender | 自定义显示 | function | - |
+| cascader.options | 选项数据 | CascaderOption[] | [] |
+| cascader.multiple | 是否多选 | boolean | false |
+| cascader.showSearch | 显示搜索框 | boolean | false |
+| cascader.changeOnSelect | 选择即改变 | boolean | false |
+| cascader.displayRender | 自定义显示 | function | - |
 
 
 ## 表格列表选择器（selector）
@@ -230,73 +248,13 @@ interface SelectorConfig {
   // 表格配置
   columns: TableColumn[] // 表格列配置
   title?: string // 弹窗标题
+  tableProps?: TableProps // 表格配置
   
   // 功能配置
-  multiple?: boolean // 是否多选
-  searchable?: boolean // 是否可搜索
-  searchFields?: string[] // 搜索字段
-  filterCurrentRow?: boolean // 过滤当前行（避免选择自己）
-  
-  // 界面配置
-  width?: number // 弹窗宽度
-  height?: number // 表格高度
+  selectionType?: 'radio' | 'checkbox' // 选择类型
+  selectionConfig?: TableRowSelection // 选择配置
 }
 ```
-
-### 搜索功能
-
-启用搜索功能，支持多字段搜索：
-
-```ts
-{
-  edit: {
-    type: 'selector',
-    selector: {
-      getListApi: userApi.getList,
-      columns: [
-        { title: '姓名', dataIndex: 'name' },
-        { title: '邮箱', dataIndex: 'email' },
-        { title: '手机号', dataIndex: 'phone' },
-      ],
-      valueKey: 'id',
-      displayKey: 'name',
-      title: '选择用户',
-      searchable: true,
-      searchFields: ['name', 'email'], // 支持按姓名和邮箱搜索
-    },
-  },
-}
-```
-
-### 多选模式
-
-启用多选功能：
-
-```ts
-{
-  title: '角色',
-  dataIndex: 'roleIds',
-  edit: {
-    type: 'selector',
-    selector: {
-      getListApi: roleApi.getList,
-      columns: [
-        { title: '角色名称', dataIndex: 'name' },
-        { title: '角色编码', dataIndex: 'code' },
-        { title: '权限', dataIndex: 'permissions', 
-          customRender: ({ value }) => value.join(', ') 
-        },
-      ],
-      valueKey: 'id',
-      displayKey: 'name',
-      title: '选择角色',
-      multiple: true, // 启用多选
-    },
-  },
-}
-```
-
-### 在搜索中使用
 
 选择器也可以在搜索表单中使用：
 
@@ -320,30 +278,6 @@ interface SelectorConfig {
 }
 ```
 
-### 自定义渲染
-
-配合自定义渲染显示选中的值：
-
-```ts
-{
-  title: '部门',
-  dataIndex: 'departmentId',
-  edit: {
-    type: 'selector',
-    // ... selector 配置
-  },
-  customRender: ({ value }) => {
-    // 根据 ID 显示部门名称
-    const deptMap = {
-      1: '技术部',
-      2: '产品部',
-      3: '运营部'
-    }
-    return deptMap[value] || '-'
-  },
-}
-```
-
 ## 动态选项加载
 
 ### 异步加载选项
@@ -354,38 +288,17 @@ interface SelectorConfig {
   dataIndex: 'department_id',
   edit: {
     type:'select',
-    options: async () => {
-      const response = await fetch('/api/departments')
-      const departments = await response.json()
-      return departments.map(dept => ({
-        label: dept.name,
-        value: dept.id
-      }))
+    select: {
+      remote: {
+        api: async () => {
+          const response = await fetch('/api/departments')
+          return response.json()
+        },
+        valueKey: 'id',
+        labelKey: 'name',
+      }
     },
     placeholder: '请选择部门'
-  }
-}
-```
-
-### 级联动态加载
-
-```ts
-{
-  title: '地区选择',
-  dataIndex: 'region',
-  edit: {
-    type:'cascader',
-    loadData: async (selectedOptions) => {
-      const targetOption = selectedOptions[selectedOptions.length - 1]
-      const response = await fetch(`/api/regions?parent=${targetOption.value}`)
-      const children = await response.json()
-      
-      targetOption.children = children.map(item => ({
-        label: item.name,
-        value: item.id,
-        isLeaf: item.level === 3
-      }))
-    }
   }
 }
 ```
@@ -407,11 +320,15 @@ const columns = [
     dataIndex: 'status',
     edit: {
       type:'select',
-      required: true,
-      options: [
-        { label: '启用', value: 1 },
-        { label: '禁用', value: 0 }
-      ],
+      formItem: {
+        required: true,
+      },
+      select: {
+        options: [
+          { label: '启用', value: 1 },
+          { label: '禁用', value: 0 }
+        ],
+      },
       defaultValue: 1
     }
   },
@@ -420,10 +337,12 @@ const columns = [
     dataIndex: 'gender',
     edit: {
       type:'radioGroup',
-      options: [
-        { label: '男', value: 'male' },
-        { label: '女', value: 'female' }
-      ]
+      radioGroup: {
+        options: [
+          { label: '男', value: 'male' },
+          { label: '女', value: 'female' }
+        ]
+      }
     }
   },
   {
@@ -431,11 +350,13 @@ const columns = [
     dataIndex: 'roles',
     edit: {
       type:'checkboxGroup',
-      options: [
-        { label: '管理员', value: 'admin' },
-        { label: '编辑者', value: 'editor' },
-        { label: '查看者', value: 'viewer' }
-      ]
+      checkboxGroup: {
+        options: [
+          { label: '管理员', value: 'admin' },
+          { label: '编辑者', value: 'editor' },
+          { label: '查看者', value: 'viewer' }
+        ]
+      }
     }
   },
   {
@@ -443,34 +364,33 @@ const columns = [
     dataIndex: 'region',
     edit: {
       type:'cascader',
-      options: [
-        {
-          label: '浙江省',
-          value: 'zhejiang',
-          children: [
-            {
-              label: '杭州市',
-              value: 'hangzhou',
-              children: [
-                { label: '西湖区', value: 'xihu' },
-                { label: '余杭区', value: 'yuhang' }
-              ]
-            }
-          ]
-        }
-      ]
+      cascader: {
+        options: [
+          {
+            label: '浙江省',
+            value: 'zhejiang',
+            children: [
+              {
+                label: '杭州市',
+                value: 'hangzhou',
+                children: [
+                  { label: '西湖区', value: 'xihu' },
+                  { label: '余杭区', value: 'yuhang' }
+                ]
+              }
+            ]
+          }
+        ]
+      }
     }
   }
 ]
 </script>
 
 <template>
-  <StdForm :api="userApi" :columns="columns" />
+  <StdForm :columns="columns" />
 </template>
 ```
-
-
-<demo vue="../demos/curd/form-controls/selection-controls.vue" />
 
 ## 相关内容
 

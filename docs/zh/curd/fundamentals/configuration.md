@@ -95,18 +95,22 @@ const columns = [
     // 搜索中使用下拉选择
     search: {
       type:'select',
-      options: [
+      select: {
+        options: [
         { label: '全部', value: '' },
         { label: '启用', value: 1 },
         { label: '禁用', value: 0 }
-      ]
+        ],
+      },
     },
     
     // 表单中使用开关
     edit: {
       type:'switch',
-      checkedChildren: '启用',
-      unCheckedChildren: '禁用'
+      switch: {
+        checkedChildren: '启用',
+        unCheckedChildren: '禁用',
+      },
     }
   }
 ]
