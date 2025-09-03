@@ -1,5 +1,6 @@
 
 @import '@uozi-admin/curd/dist/index.css';
+@import '@uozi-admin/layout-antdv/dist/index.css';
 
 :root {
   --vp-c-brand-1: #ef847d;

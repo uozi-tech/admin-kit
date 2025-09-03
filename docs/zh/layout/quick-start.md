@@ -29,39 +29,15 @@ pnpm add @uozi-admin/layout-antdv
 
 ## 基础用法
 
-```vue
-<script setup lang="ts">
-import { HomeOutlined } from '@ant-design/icons-vue'
-import { AdminLayout } from '@uozi-admin/layout-antdv'
+### 在线演示
 
-const sidebarItems = [
-  {
-    title: '首页',
-    path: '/home',
-    icon: HomeOutlined
-  },
-  {
-    title: '用户管理',
-    path: '/users',
-    children: [
-      {
-        title: '用户列表',
-        path: '/users/list'
-      }
-    ]
-  }
-]
-</script>
+#### 基础用法演示
 
-<template>
-  <AdminLayout
-    site-title="管理后台"
-    :sidebar-items="sidebarItems"
-  >
-    <router-view />
-  </AdminLayout>
-</template>
-```
+<demo vue="../demos/layout/basic.vue" />
+
+#### 高级用法演示
+
+<demo vue="../demos/layout/advanced.vue" />
 
 ## 配置选项
 
