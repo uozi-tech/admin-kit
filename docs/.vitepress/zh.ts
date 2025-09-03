@@ -92,7 +92,7 @@ function nav(): DefaultTheme.NavItem[] {
     },
     {
       text: 'CURD',
-      link: '/zh/curd/',
+      link: '/zh/curd/index',
       activeMatch: '/zh/curd/',
     },
     {
@@ -128,7 +128,7 @@ function sidebarGuide() {
     {
       text: '开始使用',
       items: [
-        { text: '概述', link: '' },
+        { text: '概述', link: 'index' },
         { text: '快速开始', link: 'getting-started' },
       ],
     },
