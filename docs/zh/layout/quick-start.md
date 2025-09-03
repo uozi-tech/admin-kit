@@ -57,13 +57,8 @@ pnpm add @uozi-admin/layout-antdv
 interface SidebarItem {
   title: string          // 菜单标题
   path?: string         // 路由路径
-  icon?: Component      // 图标组件
+  icon?: VNode      // 图标组件
   children?: SidebarItem[]  // 子菜单
-  meta?: {
-    hidden?: boolean    // 是否隐藏
-    disabled?: boolean  // 是否禁用
-    badge?: string | number  // 徽章
-  }
 }
 ```
 
@@ -99,98 +94,8 @@ interface SidebarItem {
 </template>
 ```
 
-### 自定义侧边栏底部
-
-```vue
-<template>
-  <AdminLayout :sidebar-items="sidebarItems">
-    <template #sidebar-footer>
-      <div class="sidebar-footer">
-        <a-button block type="primary">
-          升级到专业版
-        </a-button>
-      </div>
-    </template>
-    
-    <router-view />
-  </AdminLayout>
-</template>
-```
-
-### 响应式配置
-
-```vue
-<script setup lang="ts">
-import { ref, onMounted } from 'vue'
-import { AdminLayout } from '@uozi-admin/layout-antdv'
-
-const collapsed = ref(false)
-const isMobile = ref(false)
-
-// 响应式处理
-onMounted(() => {
-  const handleResize = () => {
-    isMobile.value = window.innerWidth < 768
-    if (isMobile.value) {
-      collapsed.value = true
-    }
-  }
-  
-  window.addEventListener('resize', handleResize)
-  handleResize()
-})
-</script>
-
-<template>
-  <AdminLayout
-    :sidebar-items="sidebarItems"
-    :collapsed="collapsed"
-    :layout-mode="isMobile ? 'side' : 'mix'"
-    @update:collapsed="collapsed = $event"
-  >
-    <router-view />
-  </AdminLayout>
-</template>
-```
-
-## 主题定制
-
-### CSS 变量
-
-```css
-:root {
-  --layout-header-height: 64px;
-  --layout-sidebar-width: 256px;
-  --layout-sidebar-collapsed-width: 80px;
-  --layout-primary-color: #1890ff;
-  --layout-bg-color: #f0f2f5;
-}
-```
-
-### 暗色主题
-
-```vue
-<template>
-  <AdminLayout
-    theme="dark"
-    :sidebar-items="sidebarItems"
-  >
-    <router-view />
-  </AdminLayout>
-</template>
-```
-
-## 事件
-
-| 事件名 | 参数 | 说明 |
-|--------|------|------|
-| `update:collapsed` | `(collapsed: boolean)` | 侧边栏折叠状态变化 |
-| `menu-click` | `(item: SidebarItem)` | 菜单项点击 |
-| `theme-change` | `(theme: string)` | 主题切换 |
-
 ## 下一步
 
 - [布局配置](/zh/layout/configuration) - 了解详细配置选项
 - [主题定制](/zh/layout/theming) - 学习如何定制主题
-- [响应式布局](/zh/layout/responsive) - 适配不同设备
 - [国际化](/zh/layout/i18n) - 多语言支持
