@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.15.0
+
+### Minor Changes
+
+- [`0ef4b25`](https://github.com/uozi-tech/admin-kit/commit/0ef4b25476c9f6bda9463f8dd8006e3199210409) Thanks [@akinoccc](https://github.com/akinoccc)! - feat(curd): add custom render with slot
+
 ## 4.14.0
 
 ### Minor Changes
