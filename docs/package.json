@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@ant-design/icons-vue": "^7.0.1",
-    "@uozi-admin/curd": "^4.15.0",
+    "@uozi-admin/curd": "^4.14.0",
     "@uozi-admin/layout-antdv": "^1.2.10",
     "@vueuse/router": "^13.8.0",
     "ant-design-vue": "^4.2.6",
