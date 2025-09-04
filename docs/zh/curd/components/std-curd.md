@@ -32,6 +32,14 @@ const columns = [
 </script>
 ```
 
+## 自定义列渲染
+
+StdCurd 支持通过 slot 自定义表格列的渲染内容，用法与 StdTable 相同。使用 `#col-{dataIndex}` 格式的 slot 来自定义特定列的渲染。
+
+列 slot 会自动透传到内部的 StdTable 组件，支持所有 StdTable 的列渲染功能。
+
+具体使用参考 [StdTable 自定义列渲染](/zh/curd/components/std-table#自定义列渲染)。
+
 ## 演示示例
 
 <demo vue="../demos/curd/components/std-curd.vue" />

@@ -155,16 +155,6 @@ const userApi = {
     row-selection-type="checkbox"
     row-key="id"
     row-draggable
-    :before-save="f => {
-      console.log(f)
-      return true
-    }"
-    :delete-confirm-config="{
-      mode: 'modal',
-    }"
-    :search-form-extra-render="() => {
-      return h('div')
-    }"
   >
     <template #col-name="{ record }">
       <span class="text-red-500">{{ record.name }}</span>

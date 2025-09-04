@@ -24,9 +24,78 @@ const columns = [
 </script>
 ```
 
+## 自定义列渲染
+
+### 通过 Ant Design Vue 原有的 customRender 渲染
+
+```vue
+<script setup lang="ts">
+const columns = [
+  { 
+    title: '邮箱', 
+    dataIndex: 'email',
+    customRender: ({ value }) => {
+      return h('a', { href: `mailto:${value}` }, value)
+    }
+  },
+]
+</script>
+```
+
+### 通过 slot 自定义列渲染
+
+StdTable 支持通过 slot 自定义列的渲染内容。你可以使用 `#col-{dataIndex}` 格式的 slot 来自定义特定列的渲染。
+
+```vue
+<template>
+  <StdTable
+    :get-list-api="userApi.getList"
+    :columns="columns"
+  >
+    <!-- 自定义用户名列渲染 -->
+    <template #col-username="{ record, text }">
+      <a-tag color="blue">{{ text }}</a-tag>
+    </template>
+    
+    <!-- 自定义邮箱列渲染 -->
+    <template #col-email="{ record, text }">
+      <a :href="`mailto:${text}`">{{ text }}</a>
+    </template>
+    
+    <!-- 自定义状态列渲染 -->
+    <template #col-status="{ record, text }">
+      <a-badge 
+        :status="text === 1 ? 'success' : 'error'"
+        :text="text === 1 ? '启用' : '禁用'"
+      />
+    </template>
+  </StdTable>
+</template>
+```
+
+<demo vue="../demos/curd/components/std-table-slots.vue" />
+
+### Slot 参数
+
+每个列 slot 都会接收以下参数：
+
+- `record`: 当前行的完整数据对象
+- `text`: 当前列的值（等同于 `record[dataIndex]`）
+- `value`: 当前列的值（等同于 `record[dataIndex]`）
+- `column`: 当前列的配置对象
+- `index`: 当前行的索引
+
+### 优先级
+
+如果同时定义了 `customRender` 函数和对应的列 slot，`customRender` 函数会优先生效。
+
 ## 演示示例
 
 <demo vue="../demos/curd/components/std-table.vue" />
+
+## 列 Slot 渲染示例
+
+<demo vue="../demos/curd/components/std-table-slots.vue" />
 
 ## API
 
