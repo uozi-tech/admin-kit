@@ -6,6 +6,8 @@ import { router } from './router'
 import { store, useSettingsStore } from './store'
 import './style.css'
 import 'virtual:uno.css'
+import '@uozi-admin/curd/dist/index.css'
+import '@uozi-admin/layout-antdv/dist/index.css'
 
 createApp(App)
   .use(createCosyProCurd())

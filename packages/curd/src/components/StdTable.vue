@@ -525,7 +525,19 @@ function SearchFormExtraRender() {
         </template>
       </template>
       <template #bodyCell="{ record, column }: StdTableBodyScope">
-        <template v-if="!onlyQuery && column?.dataIndex === 'actions' && !column?.customRender">
+        <!-- 通用列 slot 支持 -->
+        <template v-if="$slots[`col-${column.dataIndex}`] && !column?.customRender">
+          <slot
+            :name="`col-${column.dataIndex}`"
+            :record="(record as any)"
+            :column="column"
+            :text="record[column.dataIndex]"
+            :value="record[column.dataIndex]"
+            :index="record.index"
+          />
+        </template>
+        <!-- Actions 列特殊处理 -->
+        <template v-else-if="!onlyQuery && column?.dataIndex === 'actions' && !column?.customRender">
           <slot
             name="beforeActions"
             :record="(record as any)"

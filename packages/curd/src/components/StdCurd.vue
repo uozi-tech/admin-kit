@@ -381,6 +381,18 @@ const modalTitle = computed(() => {
             :column="column"
           />
         </template>
+        <!-- 透传所有列 slot -->
+        <template
+          v-for="(_, slotName) in $slots"
+          :key="slotName"
+          #[slotName]="slotData"
+        >
+          <slot
+            v-if="typeof slotName === 'string' && slotName.startsWith('col-')"
+            :name="slotName"
+            v-bind="slotData"
+          />
+        </template>
       </StdTable>
 
       <Modal

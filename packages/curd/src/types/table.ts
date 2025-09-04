@@ -17,6 +17,14 @@ export interface StdTableBodyScope {
   column: any
 }
 
+export interface StdTableColumnSlotScope {
+  record: Record<string, any>
+  column: any
+  text: any
+  value: any
+  index: number
+}
+
 type CustomHeaderRenderFn = (data: StdTableHeaderScope) => VNode | JSX.Element
 type CustomRenderFn<T> = ((props: CustomRenderArgs<T>, source?: 'table' | 'edit' | 'add' | 'detail') => VNode | VNode[] | JSX.Element | JSX.Element[] | string | string[])
 

@@ -2,7 +2,6 @@
 import type { StdTableColumn } from '@uozi-admin/curd'
 import { StdCurd } from '@uozi-admin/curd'
 import { h, ref } from 'vue'
-import { userApi } from '~/api'
 
 const columns: StdTableColumn[] = [
   {
@@ -19,7 +18,6 @@ const columns: StdTableColumn[] = [
       formItem: { rules: [{ required: true }] },
       col: { span: 12 },
     },
-    hiddenInTable: true,
   },
   {
     title: '手机号',
@@ -112,6 +110,41 @@ const columns: StdTableColumn[] = [
 
 const selectedRowKeys = ref<any[]>([])
 const visible = ref(false)
+
+const userApi = {
+  getList: async () => {
+    return {
+      data: [{
+        id: 1,
+        name: '张三',
+        mobile: '13800138000',
+        email: 'zhangsan@example.com',
+        gender: 1,
+        role: 1,
+        age: 20,
+        password: '123456',
+        status: 1,
+        avatar: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+        created_at: '2021-01-01',
+      }, {
+        id: 2,
+        name: '李四',
+        mobile: '13800138001',
+        email: 'lisi@example.com',
+        gender: -1,
+        role: -1,
+        age: 21,
+        password: '123456',
+        status: -1,
+        avatar: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+        created_at: '2021-01-02',
+      }],
+      pagination: {
+        total: 0,
+      },
+    }
+  },
+}
 </script>
 
 <template>
@@ -128,12 +161,13 @@ const visible = ref(false)
     }"
     :delete-confirm-config="{
       mode: 'modal',
-      confirmText: 'DELETE',
-      modalTitle: '删除用户',
-      modalDescription: '此操作无法撤销。请输入 {confirmText} 来确认删除。',
     }"
     :search-form-extra-render="() => {
       return h('div')
     }"
-  />
+  >
+    <template #col-name="{ record }">
+      <span class="text-red-500">{{ record.name }}</span>
+    </template>
+  </StdCurd>
 </template>
