@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.15.4
+
+### Patch Changes
+
+- [`aaaeaea`](https://github.com/uozi-tech/admin-kit/commit/aaaeaeae3e929ad10e4b1726b0fe4c1727dd756b) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): update StdTable component to handle undefined values for sorting parameters and improve sorting logic
+
 ## 4.15.3
 
 ### Patch Changes
