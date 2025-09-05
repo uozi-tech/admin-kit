@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.15.1
+
+### Patch Changes
+
+- [`c447d5a`](https://github.com/uozi-tech/admin-kit/commit/c447d5a1c1d7e7c00171b00e0deba961c49a02a7) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): enhance StdFormController with computed value handling and dependency tracking
+
 ## 4.15.0
 
 ### Minor Changes
