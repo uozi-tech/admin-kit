@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.15.3
+
+### Patch Changes
+
+- [`bc8a000`](https://github.com/uozi-tech/admin-kit/commit/bc8a0005790ac827e3a573c2da99c8ccc94f8ccb) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): handle undefined sortOrder in StdTable component for better sorting logic
+
 ## 4.15.2
 
 ### Patch Changes
