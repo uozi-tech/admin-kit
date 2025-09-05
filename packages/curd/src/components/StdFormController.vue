@@ -74,7 +74,6 @@ function Render() {
 
   // 回传 form 表单数据
   watch(value, (v) => {
-    console.log('value', v)
     set(p.formData, valueKey.value, v)
   }, { immediate: true })
 
