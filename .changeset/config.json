@@ -7,6 +7,5 @@
   "baseBranch": "main",
   "commit": false,
   "access": "public",
-  "updateInternalDependents": "always",
-  "ignore": ["@uozi-admin/docs"]
+  "updateInternalDependents": "always"
 }

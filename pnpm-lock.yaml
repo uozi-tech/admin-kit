@@ -79,7 +79,7 @@ importers:
         specifier: ^7.0.1
         version: 7.0.1(vue@3.5.20(typescript@5.9.2))
       '@uozi-admin/curd':
-        specifier: ^4.15.2
+        specifier: '*'
         version: link:../packages/curd
       '@uozi-admin/layout-antdv':
         specifier: ^1.2.10
