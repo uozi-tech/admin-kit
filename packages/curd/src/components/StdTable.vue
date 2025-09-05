@@ -382,6 +382,7 @@ function onTableChange(p: TablePaginationConfig, filters: Record<string, FilterV
         order.value = 'desc'
         break
       default:
+        sortBy.value = ''
         order.value = ''
         break
     }
