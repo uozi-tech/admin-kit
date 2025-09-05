@@ -94,8 +94,8 @@ const currentPageSize = useRouteQuery(pageSizeParam, 20, {
 })
 
 // 使用 useRouteQuery 管理排序参数
-const sortBy = useRouteQuery<string>('sort_by', '', { mode: 'replace' })
-const order = useRouteQuery<string>('order', '', { mode: 'replace' })
+const sortBy = useRouteQuery<string | undefined>('sort_by', undefined, { mode: 'replace' })
+const order = useRouteQuery<string | undefined>('order', undefined, { mode: 'replace' })
 
 // 分页数据总数
 const paginationTotal = ref<number>(0)
@@ -131,7 +131,6 @@ function onColumnSettingsChange(newColumns: any[]) {
 const dataColumns = computed<any>(() => {
   // 使用列设置的结果，如果没有设置则使用默认的
   const baseColumns = displayColumns.value.length > 0 ? displayColumns.value : computedColumns.value.filter(item => !item?.hiddenInTable)
-
   const cols = baseColumns.map((item: StdTableColumn) => {
     if (item.dataIndex === sortBy.value) {
       switch (order.value) {
@@ -224,7 +223,7 @@ const apiParams = computed(() => {
   return {
     ...searchFormData.value,
     trash: props.isTrash,
-    sort_by: sortBy.value || undefined,
+    sort_by: order.value ? sortBy.value : undefined,
     order: order.value || undefined,
     [currentPageParam]: currentPage.value ?? 1,
     [pageSizeParam]: currentPageSize.value ?? 20,
@@ -376,7 +375,7 @@ function onTableChange(p: TablePaginationConfig, filters: Record<string, FilterV
       sorter = sorter[0]
     }
     selectedRowKeys.value = []
-    sortBy.value = String(sorter.field || '')
+    sortBy.value = String(sorter.field || undefined)
     switch (sorter.order) {
       case 'ascend':
         order.value = 'asc'
@@ -385,8 +384,7 @@ function onTableChange(p: TablePaginationConfig, filters: Record<string, FilterV
         order.value = 'desc'
         break
       default:
-        sortBy.value = ''
-        order.value = ''
+        order.value = undefined
         break
     }
   }

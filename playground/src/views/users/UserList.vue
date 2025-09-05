@@ -13,6 +13,7 @@ const columns: StdTableColumn[] = [
         name: 'name_fz',
       },
     },
+    sorter: true,
     edit: {
       type: 'input',
       formItem: { rules: [{ required: true }] },
