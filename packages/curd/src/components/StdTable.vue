@@ -141,6 +141,9 @@ const dataColumns = computed<any>(() => {
         case 'desc':
           item.sortOrder = 'descend'
           break
+        default:
+          item.sortOrder = undefined
+          break
       }
     }
     return item
