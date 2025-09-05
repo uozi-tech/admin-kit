@@ -49,6 +49,68 @@ function Render() {
     return formConfig?.disabled
   })
 
+  const componentConfig = computed(() => {
+    if (isFunction(formConfig?.type) || (isPlainObject(formConfig?.type) && formConfig?.type?.__name)) {
+      return formConfig?.customComponent
+    }
+    return formConfig?.[formConfig?.type]
+  })
+  const valueKey = computed(() => {
+    const key = formConfig?.valueKey ?? formConfig?.formItem?.name ?? dataIndex
+    if (Array.isArray(key)) {
+      return key.join('.')
+    }
+
+    return key
+  })
+  const value = computed({
+    get: () => get(p.formData, valueKey.value)
+      ?? componentConfig?.value?.defaultValue
+      ?? formConfig?.defaultValue,
+    set: (v) => {
+      set(p.formData, valueKey.value, v)
+    },
+  })
+
+  // 回传 form 表单数据
+  watch(value, (v) => {
+    console.log('value', v)
+    set(p.formData, valueKey.value, v)
+  }, { immediate: true })
+
+  // 字段联动逻辑
+  if (p.mode !== 'search' && formConfig?.dependencies && formConfig?.onChange) {
+    const dependencies = formConfig.dependencies
+    const onChangeHandler = formConfig.onChange
+
+    // 计算依赖字段的值
+    const dependencyValues = computed(() => {
+      const values: Record<string, any> = {}
+      dependencies.forEach((dep) => {
+        values[dep] = get(p.formData, dep)
+      })
+      return values
+    })
+
+    // 监听依赖值的变化
+    watch(dependencyValues, (newDependencyValues) => {
+      // 当依赖字段有值时，触发联动函数
+      const hasValidDependencies = dependencies.some((dep) => {
+        const depValue = newDependencyValues[dep]
+        return depValue !== undefined && depValue !== null && depValue !== ''
+      })
+
+      if (hasValidDependencies) {
+        try {
+          onChangeHandler(value.value, p.formData, newDependencyValues)
+        }
+        catch (error) {
+          console.error(error)
+        }
+      }
+    }, { deep: true, immediate: true })
+  }
+
   if (isFunction(formConfig?.type)) {
     // Support custom render function
     return formConfig?.type({
@@ -63,7 +125,7 @@ function Render() {
   // Support custom component, but need to pass column to component and define model for it
     return (
       <formConfig.type
-        v-model:value={p.formData[formConfig?.formItem?.name ?? dataIndex]}
+        v-model:value={value.value}
         column={p.column}
         {...formConfig?.customComponent}
         mode={p.mode}
@@ -72,62 +134,6 @@ function Render() {
     )
   }
   else {
-    const componentConfig = formConfig?.[formConfig?.type]
-    const valueKey = computed(() => {
-      const key = formConfig?.valueKey ?? formConfig?.formItem?.name ?? dataIndex
-      if (Array.isArray(key)) {
-        return key.join('.')
-      }
-
-      return key
-    })
-    const value = computed({
-      get: () => get(p.formData, valueKey.value)
-        ?? componentConfig?.defaultValue
-        ?? formConfig?.defaultValue,
-      set: (v) => {
-        set(p.formData, valueKey.value, v)
-      },
-    })
-
-    // 回传 form 表单数据
-    watch(value, (v) => {
-      set(p.formData, valueKey.value, v)
-    }, { immediate: true })
-
-    // 字段联动逻辑
-    if (p.mode !== 'search' && formConfig?.dependencies && formConfig?.onChange) {
-      const dependencies = formConfig.dependencies
-      const onChangeHandler = formConfig.onChange
-
-      // 计算依赖字段的值
-      const dependencyValues = computed(() => {
-        const values: Record<string, any> = {}
-        dependencies.forEach((dep) => {
-          values[dep] = get(p.formData, dep)
-        })
-        return values
-      })
-
-      // 监听依赖值的变化
-      watch(dependencyValues, (newDependencyValues) => {
-        // 当依赖字段有值时，触发联动函数
-        const hasValidDependencies = dependencies.some((dep) => {
-          const depValue = newDependencyValues[dep]
-          return depValue !== undefined && depValue !== null && depValue !== ''
-        })
-
-        if (hasValidDependencies) {
-          try {
-            onChangeHandler(value.value, p.formData, newDependencyValues)
-          }
-          catch (error) {
-            console.error(error)
-          }
-        }
-      }, { deep: true, immediate: true })
-    }
-
     switch (formConfig?.type) {
       case 'input':
         return (
