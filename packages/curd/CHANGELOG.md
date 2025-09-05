@@ -1,5 +1,13 @@
 # @uozi-admin/curd
 
+## 4.15.2
+
+### Patch Changes
+
+- [`0f06c6e`](https://github.com/uozi-tech/admin-kit/commit/0f06c6e69926e19cbb7ae13cfb7ca57e51a34dbe) Thanks [@akinoccc](https://github.com/akinoccc)! - chore(curd): remove console log from value watcher for cleaner output
+
+- [`7bb0c9c`](https://github.com/uozi-tech/admin-kit/commit/7bb0c9c51b26f3491fbf2bc9d8f7b45abe6cc17a) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): reset sorting values in StdTable component on table change
+
 ## 4.15.1
 
 ### Patch Changes
