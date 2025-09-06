@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.15.5
+
+### Patch Changes
+
+- [`f600493`](https://github.com/uozi-tech/admin-kit/commit/f600493494a6f6089876882b6b7de916cb6b7afd) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): slots passing issue
+
 ## 4.15.4
 
 ### Patch Changes
