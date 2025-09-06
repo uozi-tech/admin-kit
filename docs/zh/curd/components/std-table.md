@@ -93,10 +93,6 @@ StdTable 支持通过 slot 自定义列的渲染内容。你可以使用 `#col-{
 
 <demo vue="../demos/curd/components/std-table.vue" />
 
-## 列 Slot 渲染示例
-
-<demo vue="../demos/curd/components/std-table-slots.vue" />
-
 ## API
 
 ### Props
