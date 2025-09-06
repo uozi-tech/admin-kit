@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { StdTableColumn } from '@uozi-admin/curd'
 import { StdCurd } from '@uozi-admin/curd'
-import { h, ref } from 'vue'
+import { ref } from 'vue'
 
 const columns: StdTableColumn[] = [
   {
@@ -159,10 +159,6 @@ const userApi = {
   >
     <template #col-name="{ record }">
       <span class="text-red-500">{{ record.name }}</span>
-    </template>
-
-    <template #beforeActions="{ record, column }">
-      test
     </template>
   </StdCurd>
 </template>

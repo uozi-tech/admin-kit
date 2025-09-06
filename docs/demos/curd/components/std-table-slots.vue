@@ -2,8 +2,7 @@
 import type { StdTableColumn } from '@uozi-admin/curd'
 import { MailOutlined, PhoneOutlined, UserOutlined } from '@ant-design/icons-vue'
 import { StdTable } from '@uozi-admin/curd'
-import { Avatar, Badge, Button, Space, Tag } from 'ant-design-vue'
-import { h } from 'vue'
+import { Avatar, Badge, Space, Tag } from 'ant-design-vue'
 
 // 模拟用户数据
 const mockUsers = [
