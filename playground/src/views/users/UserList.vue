@@ -160,5 +160,9 @@ const userApi = {
     <template #col-name="{ record }">
       <span class="text-red-500">{{ record.name }}</span>
     </template>
+
+    <template #beforeActions="{ record, column }">
+      test
+    </template>
   </StdCurd>
 </template>

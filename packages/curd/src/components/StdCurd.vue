@@ -1,9 +1,10 @@
 <script setup lang="ts">
+import type { Slot } from 'vue'
 import type { StdCurdProps } from '../types'
 import { useRouteQuery } from '@vueuse/router'
 import { Button, Card, Checkbox, Divider, Flex, message, Modal, Spin } from 'ant-design-vue'
 import { cloneDeep } from 'lodash-es'
-import { computed, getCurrentInstance, reactive, ref } from 'vue'
+import { computed, getCurrentInstance, reactive, ref, useSlots } from 'vue'
 import { useExport, useLocale } from '../composables'
 import { ApiActions } from '../constants'
 import { getRealContent } from '../utils'
@@ -248,6 +249,16 @@ defineExpose({
   handleAdd,
 })
 
+const colSlots = computed(() => {
+  const slots = useSlots()
+  const colSlotKeys = Object.keys(slots).filter(slot => slot.startsWith('col-'))
+  // 筛选出 slots 中以 col- 开头的 slot
+  return colSlotKeys.reduce((acc, slot) => {
+    acc[slot] = slots[slot] as Slot
+    return acc
+  }, {} as Record<string, Slot>)
+})
+
 const title = computed(() => {
   return getRealContent(props.title) || t('list')
 })
@@ -344,6 +355,18 @@ const modalTitle = computed(() => {
         @delete-item-permanently="row => handleDataById(ApiActions.DELETE_ITEM_PERMANENTLY, row)"
         @restore-item="row => handleDataById(ApiActions.RESTORE_ITEM, row)"
       >
+        <!-- 透传所有列 slot -->
+        {{ colSlots }}
+        <template
+          v-for="(_, slotName) in colSlots"
+          :key="slotName"
+          #[slotName]="slotData"
+        >
+          <slot
+            :name="slotName"
+            v-bind="slotData"
+          />
+        </template>
         <template #beforeSearch="data">
           <slot
             name="beforeSearch"
@@ -379,18 +402,6 @@ const modalTitle = computed(() => {
             name="afterActions"
             :record="record"
             :column="column"
-          />
-        </template>
-        <!-- 透传所有列 slot -->
-        <template
-          v-for="(_, slotName) in $slots"
-          :key="slotName"
-          #[slotName]="slotData"
-        >
-          <slot
-            v-if="typeof slotName === 'string' && slotName.startsWith('col-')"
-            :name="slotName"
-            v-bind="slotData"
           />
         </template>
       </StdTable>
