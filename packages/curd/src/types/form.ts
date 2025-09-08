@@ -52,7 +52,7 @@ export type FormItemType
     | 'monthRange'
     | 'weekRange'
     | 'timeRange'
-    | ((formData: any, column: StdTableColumn, config: Record<any, any>, mode: 'edit' | 'add') => VNode | JSX.Element)
+    | ((context: { formData: any, column: StdTableColumn, config: Record<any, any>, mode: 'edit' | 'add' }) => VNode | JSX.Element)
     | JSX.Element
     | DefineComponent<any, any, any>
 

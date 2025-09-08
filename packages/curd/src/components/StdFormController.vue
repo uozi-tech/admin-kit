@@ -73,9 +73,9 @@ function Render() {
   })
 
   // 回传 form 表单数据
-  watch(value, (v) => {
-    set(p.formData, valueKey.value, v)
-  }, { immediate: true })
+  // watch(value, (v) => {
+  //   set(p.formData, valueKey.value, v)
+  // }, { immediate: true, deep: true })
 
   // 字段联动逻辑
   if (p.mode !== 'search' && formConfig?.dependencies && formConfig?.onChange) {
@@ -129,6 +129,7 @@ function Render() {
         {...formConfig?.customComponent}
         mode={p.mode}
         disabled={disabled.value}
+        onUpdate:value={v => value.value = v}
       />
     )
   }
