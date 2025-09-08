@@ -55,7 +55,6 @@ export type FormItemType
     | ((context: { formData: any, column: StdTableColumn, config: Record<any, any>, mode: 'edit' | 'add' }) => VNode | JSX.Element)
     | JSX.Element
     | DefineComponent<any, any, any>
-    | any
 
 export interface StdFormConfig extends Record<any, any> {
   type: FormItemType
