@@ -1,5 +1,5 @@
 import type { ColProps, FormItemProps } from 'ant-design-vue'
-import type { DefineComponent, VNode } from 'vue'
+import type { DefineComponent, VNode, VNodeChild } from 'vue'
 import type { JSX } from 'vue/jsx-runtime'
 import type {
   AutoCompleteConfig,
@@ -52,8 +52,9 @@ export type FormItemType
     | 'monthRange'
     | 'weekRange'
     | 'timeRange'
-    | ((context: { formData: any, column: StdTableColumn, config: Record<any, any>, mode: 'edit' | 'add' }) => VNode | JSX.Element)
+    | ((context: { formData: any, column: StdTableColumn, config: Record<any, any>, mode: 'edit' | 'add' }) => VNodeChild)
     | JSX.Element
+    | VNodeChild
     | DefineComponent<any, any, any>
 
 export interface StdFormConfig extends Record<any, any> {

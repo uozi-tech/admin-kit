@@ -1,5 +1,5 @@
 import type { TableColumnType } from 'ant-design-vue'
-import type { VNode } from 'vue'
+import type { VNode, VNodeChild } from 'vue'
 import type { JSX } from 'vue/jsx-runtime'
 import type { StdFormConfig } from './form'
 import type { CustomRenderArgs } from './props'
@@ -26,7 +26,7 @@ export interface StdTableColumnSlotScope {
 }
 
 type CustomHeaderRenderFn = (data: StdTableHeaderScope) => VNode | JSX.Element
-type CustomRenderFn<T> = ((props: CustomRenderArgs<T>, source?: 'table' | 'edit' | 'add' | 'detail') => VNode | VNode[] | JSX.Element | JSX.Element[] | string | string[])
+type CustomRenderFn<T> = ((props: CustomRenderArgs<T>, source?: 'table' | 'edit' | 'add' | 'detail') => VNodeChild)
 
 export interface StdTableColumn<T = any> extends Omit<TableColumnType, 'customRender'> {
   title: string | (() => string)
