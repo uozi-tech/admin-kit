@@ -36,7 +36,7 @@ jobs:
           cache: pnpm
 
       - name: Install Dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install --frozen-lockfile --no-link-workspace-packages
 
       - name: Build with VitePress
         run: pnpm docs:build
