@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.15.7
+
+### Patch Changes
+
+- [`040d583`](https://github.com/uozi-tech/admin-kit/commit/040d58308381244c461a80514693f7d58c0ca770) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(types): extend FormItemType to include any type for improved flexibility
+
 ## 4.15.6
 
 ### Patch Changes
