@@ -1,5 +1,5 @@
 import type { ColProps, FormItemProps } from 'ant-design-vue'
-import type { DefineComponent, VNode, VNodeChild } from 'vue'
+import type { DefineComponent, VNodeChild } from 'vue'
 import type { JSX } from 'vue/jsx-runtime'
 import type {
   AutoCompleteConfig,
@@ -57,6 +57,15 @@ export type FormItemType
     | VNodeChild
     | DefineComponent<any, any, any>
 
+export type StdFormItemConfig = Omit<FormItemProps, 'required'> & {
+  name?: string | string[]
+  label?: string | (() => string)
+  hiddenLabelInEdit?: boolean
+  hiddenLabelInSearch?: boolean
+  hiddenLabelInDetail?: boolean
+  required?: boolean | ((context: { formData: Record<string, any> }) => boolean)
+}
+
 export interface StdFormConfig extends Record<any, any> {
   type: FormItemType
   defaultValue?: any
@@ -64,6 +73,8 @@ export interface StdFormConfig extends Record<any, any> {
   col?: ColProps
   showInForm?: boolean | ((context: { formData: Record<string, any> }) => boolean)
   disabled?: boolean | ((context: { formData: Record<string, any> }) => boolean)
+  required?: boolean | ((context: { formData: Record<string, any> }) => boolean)
+  rules?: FormItemProps['rules']
 
   password?: PasswordConfig
   input?: InputConfig
@@ -98,12 +109,5 @@ export interface StdFormConfig extends Record<any, any> {
   dependencies?: string[] // 依赖的字段名称数组
   onChange?: (value: any, formData: Record<string, any>, dependencies: Record<string, any>) => void // 联动处理函数
 
-  formItem?: Omit<FormItemProps, 'required'> & {
-    name?: string | string[]
-    label?: string | (() => string)
-    hiddenLabelInEdit?: boolean
-    hiddenLabelInSearch?: boolean
-    hiddenLabelInDetail?: boolean
-    required?: boolean | ((context: { formData: Record<string, any> }) => boolean)
-  }
+  formItem?: StdFormItemConfig
 }

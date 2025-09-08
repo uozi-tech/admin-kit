@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { FormItemProps } from 'ant-design-vue'
 import type { Rule } from 'ant-design-vue/es/form'
-import type { StdTableColumn } from '../types'
+import type { StdFormItemConfig, StdTableColumn } from '../types'
 import { FormItem } from 'ant-design-vue'
 import { computed } from 'vue'
 import { useLocale } from '../composables'
@@ -15,8 +15,9 @@ export interface Props {
   hint?: string | (() => string)
   error?: string
   required?: boolean
+  rules?: FormItemProps['rules']
   noValidate?: boolean
-  formItem?: Omit<FormItemProps, 'required'>
+  formItem?: StdFormItemConfig
   formData?: Record<string, any>
 }
 
@@ -63,6 +64,15 @@ async function validator(_: Rule, value: any): Promise<any> {
     resolve(true)
   })
 }
+
+const formItemProps = computed(() => {
+  if (!props.formItem)
+    return {}
+
+  const { required, rules, ...rest } = props.formItem
+
+  return rest
+})
 </script>
 
 <template>
@@ -70,10 +80,10 @@ async function validator(_: Rule, value: any): Promise<any> {
     :name="getDataIndexStr(dataIndex)"
     :label="label"
     :help="help"
-    :rules="{ required: computedRequired, validator }"
+    :rules="[{ required: computedRequired, validator }, ...(formItem?.rules ?? rules ?? [])]"
     :validate-status="error ? 'error' : undefined"
     :auto-link="false"
-    v-bind="formItem"
+    v-bind="formItemProps"
   >
     <slot />
   </FormItem>
