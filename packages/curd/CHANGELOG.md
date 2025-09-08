@@ -1,5 +1,15 @@
 # @uozi-admin/curd
 
+## 4.15.9
+
+### Patch Changes
+
+- [`8034135`](https://github.com/uozi-tech/admin-kit/commit/80341356cab54203618bcf51e812136173be88a9) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): add optional chaining for API method calls in StdBatchEdit and StdDetail components
+
+- [`c6d956c`](https://github.com/uozi-tech/admin-kit/commit/c6d956c7b96a07b3fdf492894667f8a828f6e558) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): make API methods optional in CurdApi interface and add null checks in StdCurd component
+
+- [`8365491`](https://github.com/uozi-tech/admin-kit/commit/83654913b7a9e4fad87d711780d2c80b768fcda8) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): enhance StdFormItem type definitions and improve form item props handling
+
 ## 4.15.8
 
 ### Patch Changes
