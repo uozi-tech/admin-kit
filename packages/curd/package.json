@@ -1,6 +1,6 @@
 {
   "name": "@uozi-admin/curd",
-  "version": "4.15.5",
+  "version": "4.15.6",
   "description": "Easy to implement curd.",
   "type": "module",
   "main": "dist/index.js",
