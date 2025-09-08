@@ -288,18 +288,17 @@ const columns = [
     dataIndex: 'complex',
     edit: {
       // 自定义 Vue 组件
-      type:MyCustomComponent,
+      type: MyCustomComponent,
       // 或自定义渲染函数
-      type:(formData, column, componentProps, mode) => {
+      type: (context: { formData: any, column: StdTableColumn, mode: 'edit' | 'add' | 'search' }) => {
         /**
          * formData: 表单数据
          * column: 列配置
-         * componentProps: 自行传递的组件 props
          * mode: 模式，add 新增模式，edit 编辑模式，search 搜索模式
          */
         return h(MyComponent, { 
-          modelValue: formData.complex,
-          'onUpdate:modelValue': (val) => formData.complex = val
+          modelValue: context.formData.complex,
+          'onUpdate:modelValue': (val) => context.formData.complex = val
         })
       }
     }

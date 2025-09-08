@@ -69,7 +69,7 @@ const columns = [
   {
     title: '用户名',
     dataIndex: 'username',
-    search: true  // 使用 form 配置作为搜索配置
+    search: true  // 使用 edit 配置作为搜索配置
   },
   {
     title: '邮箱',
@@ -148,7 +148,6 @@ interface StdFormConfig {
   placeholder?: string                    // 占位符
   defaultValue?: any                      // 默认值
   rules?: ValidationRule[]                // 验证规则
-  options?: Array<{label: string, value: any}> // 选项数据
   
   // 布局配置
   col?: ColProps                          // 栅格布局
@@ -156,6 +155,7 @@ interface StdFormConfig {
   
   // 控件特定配置
   [key: string]: any                      // 控件特定属性, key 为控件类型名称
+  customComponent?: Record<string | number | symbol, any> // 自定义组件的属性
 }
 ```
 
