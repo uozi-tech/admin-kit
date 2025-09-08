@@ -86,7 +86,7 @@ async function handleSave() {
   try {
     await formRef.value.validateFields()
     if (props.api) {
-      await props.api.updateItem(formData.value.id, formData.value, props.overwriteParams)
+      await props.api?.updateItem?.(formData.value.id, formData.value, props.overwriteParams)
     }
     else {
       emit('save', { ...formData.value })
@@ -138,7 +138,7 @@ function getRecord() {
   if (!props.api || !props.id)
     return
 
-  props.api.getItem(props.id, props.overwriteParams).then((res) => {
+  props.api?.getItem?.(props.id, props.overwriteParams).then((res) => {
     record.value = res
     formData.value = reactive({ ...res })
   })

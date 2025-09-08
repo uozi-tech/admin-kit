@@ -51,7 +51,7 @@ async function ok() {
 
   await props.beforeSave?.()
 
-  await props.api.batchSave(selectedRowKeys.value, data.value)
+  await props.api?.batchSave?.(selectedRowKeys.value, data.value)
     .then(async () => {
       message.success(t('saveSuccessfully'))
       emit('save')
