@@ -1,5 +1,13 @@
 # @uozi-admin/curd
 
+## 4.15.8
+
+### Patch Changes
+
+- [`490bf13`](https://github.com/uozi-tech/admin-kit/commit/490bf1311287561b02b3ec2d7971ffba83a56ae7) Thanks [@akinoccc](https://github.com/akinoccc)! - chore: update vue and related dependencies to version 3.5.21, enhance type definitions in form and table modules
+
+- [`51c1e67`](https://github.com/uozi-tech/admin-kit/commit/51c1e67ca251fa8c347ea21520776b8f2a85b68d) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): restore form data watch functionality in StdFormController and clean up FormItemType definition
+
 ## 4.15.7
 
 ### Patch Changes
