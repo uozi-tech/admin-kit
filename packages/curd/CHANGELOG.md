@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.15.6
+
+### Patch Changes
+
+- [`acd3bdd`](https://github.com/uozi-tech/admin-kit/commit/acd3bddcf7ef2c6749cc5cd4883d72db86743bda) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): update StdFormController to improve form data handling and enhance type definition for form item
+
 ## 4.15.5
 
 ### Patch Changes
