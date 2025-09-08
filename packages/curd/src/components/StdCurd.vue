@@ -109,7 +109,7 @@ function switchTrashAndList() {
 
 function getDataDetail(row: Record<string, any>) {
   modalLoading.value = true
-  props.api.getItem(row[props.rowKey ?? 'id'], props.overwriteParams).then((res) => {
+  props.api?.getItem?.(row[props.rowKey ?? 'id'], props.overwriteParams).then((res) => {
     itemDetail.value = res
     modalLoading.value = false
   }).catch((e) => {
@@ -173,20 +173,20 @@ async function handleSave(data: Record<string, any>) {
     ...props.overwriteParams,
   }
 
-  let promise: Promise<unknown>
+  let promise: Promise<unknown> | undefined
   if (mode.value === 'add') {
-    promise = props.api.createItem(payload, {
+    promise = props.api?.createItem?.(payload, {
       params: props.overwriteParams,
     })
   }
   else {
-    promise = props.api.updateItem(itemDetail.value[props.rowKey ?? 'id'], payload, {
+    promise = props.api?.updateItem?.(itemDetail.value[props.rowKey ?? 'id'], payload, {
       params: props.overwriteParams,
     })
   }
 
   promise
-    .then(() => {
+    ?.then(() => {
       refresh()
       formVisible.value = false
       message.success(t('savedSuccessfully'))
@@ -204,7 +204,7 @@ function handleDataById(action: string, record: Record<string, any>) {
   const apiKey = action.startsWith('delete') ? 'deleteItem' : 'restoreItem'
   emit(action as any, record)
 
-  props.api[apiKey](record[props.rowKey ?? 'id'], {
+  props.api?.[apiKey]?.(record[props.rowKey ?? 'id'], {
     permanent: action === ApiActions.DELETE_ITEM_PERMANENTLY,
     ...props.overwriteParams,
   })
