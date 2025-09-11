@@ -21,6 +21,13 @@ const columns: StdTableColumn[] = [
     },
   },
   {
+    title: '日期范围',
+    dataIndex: 'date_range',
+    search: {
+      type: 'dateRange',
+    },
+  },
+  {
     title: '手机号',
     dataIndex: 'mobile',
     search: true,
