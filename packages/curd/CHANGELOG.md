@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.15.10
+
+### Patch Changes
+
+- [`da52bed`](https://github.com/uozi-tech/admin-kit/commit/da52bed683244b0d546de47cda3db6d8ff9cd8e5) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): [date-range] dayjs error
+
 ## 4.15.9
 
 ### Patch Changes
