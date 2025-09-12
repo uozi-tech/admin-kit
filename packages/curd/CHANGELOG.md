@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.16.0
+
+### Minor Changes
+
+- [`9cb1706`](https://github.com/uozi-tech/admin-kit/commit/9cb1706de573fbb19a5e957af843ff08a0ea5551) Thanks [@akinoccc](https://github.com/akinoccc)! - feat(curd): add new component of `ConfigProvider`
+
 ## 4.15.11
 
 ### Patch Changes
