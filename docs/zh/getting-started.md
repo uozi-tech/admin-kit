@@ -323,6 +323,8 @@ export default createRouter({
 
 ### 1. 全局配置
 
+UOZI Admin 提供了两种配置方式来满足不同的使用场景：
+
 在 `main.ts` 中配置全局选项：
 
 ```ts
@@ -336,7 +338,7 @@ setRequestConfig({
   timeout: 10000
 })
 
-// 配置 CRUD
+// 方式一：使用插件方式（推荐用于全局配置）
 app.use(createCurdConfig({
   listApi: {
     paginationMap: {
@@ -351,6 +353,62 @@ app.use(createCurdConfig({
       }
     }
   }
+}))
+
+// 方式二：使用 ConfigProvider 组件（推荐用于局部配置）
+// 在 App.vue 或特定页面中使用
+/*
+<script setup>
+import { ConfigProvider } from '@uozi-admin/curd'
+
+const config = {
+  listApi: {
+    paginationMap: {
+      params: { current: 'page', pageSize: 'page_size' },
+      response: { total: 'total', current: 'current_page' }
+    }
+  }
+}
+</script>
+
+<template>
+  <ConfigProvider :config="config" :init-dayjs="true">
+    <!-- 你的应用内容 -->
+    <router-view />
+  </ConfigProvider>
+</template>
+*/
+```
+
+### ConfigProvider 组件特性
+
+- **嵌套配置**：支持配置继承，子级 ConfigProvider 会合并父级配置
+- **响应式更新**：配置变化时自动应用到子组件
+- **Dayjs 初始化**：可选择是否初始化 dayjs 插件
+- **灵活布局**：可以在应用的任意层级使用
+
+### 使用场景对比
+
+| 配置方式 | 适用场景 | 优点 | 缺点 |
+|---------|---------|------|------|
+| `createCurdConfig` | 全局统一配置 | 一次配置，全局生效 | 不够灵活，难以局部定制 |
+| `ConfigProvider` | 局部定制配置 | 灵活配置，支持嵌套 | 需要在模板中包装组件 |
+
+### 预设配置函数
+
+框架还提供了一些预设的配置函数，适用于常见的后端框架：
+
+```ts
+import { createCosyConfig, createCosyProConfig } from '@uozi-admin/curd'
+
+// 适用于 Cosy 框架
+app.use(createCosyConfig({
+  // 自定义配置...
+}))
+
+// 适用于 Cosy Pro 框架（包含时间戳和字符串优化）
+app.use(createCosyProConfig({
+  // 自定义配置...
 }))
 ```
 

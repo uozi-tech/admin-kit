@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { StdTableColumn } from '@uozi-admin/curd'
-import { StdCurd } from '@uozi-admin/curd'
+import { ConfigProvider, StdCurd } from '@uozi-admin/curd'
 import { ref } from 'vue'
 
 const userApi = {
@@ -163,16 +163,18 @@ const visible = ref(false)
 </script>
 
 <template>
-  <StdCurd
-    v-model:selected-row-keys="selectedRowKeys"
-    :api="userApi"
-    :columns="columns"
-    row-selection-type="checkbox"
-    row-key="id"
-    row-draggable
-  >
-    <template #col-name="{ record }">
-      <span class="text-red-500">{{ record.name }}</span>
-    </template>
-  </StdCurd>
+  <ConfigProvider :config="{ modal: { width: 800, bodyHeight: '70vh' } }">
+    <StdCurd
+      v-model:selected-row-keys="selectedRowKeys"
+      :api="userApi"
+      :columns="columns"
+      row-selection-type="checkbox"
+      row-key="id"
+      row-draggable
+    >
+      <template #col-name="{ record }">
+        <span class="text-red-500">{{ record.name }}</span>
+      </template>
+    </StdCurd>
+  </ConfigProvider>
 </template>

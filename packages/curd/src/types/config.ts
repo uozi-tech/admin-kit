@@ -272,4 +272,17 @@ export interface CurdConfigT {
     hideResetBtn?: boolean
   }
   deleteConfirmConfig?: DeleteConfirmConfig
+  modal: {
+    /**
+     * The modal width
+     * @description The width of the modal
+     */
+    width?: number | string
+
+    /**
+     * The modal props
+     * @description The props of the modal
+     */
+    bodyHeight?: number | string
+  }
 }

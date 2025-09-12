@@ -3,7 +3,7 @@ import type { StdTableColumn } from 'src/types'
 import type { CurdApi } from 'src/types/api'
 import { message, Modal, Table } from 'ant-design-vue'
 import { computed, ref } from 'vue'
-import { useLocale } from '../composables'
+import { useCurdConfig, useLocale } from '../composables'
 import StdForm from './StdForm.vue'
 
 const props = defineProps<{
@@ -61,19 +61,21 @@ async function ok() {
       loading.value = false
     })
 }
+
+const curdConfig = useCurdConfig()
 </script>
 
 <template>
   <Modal
     v-model:open="visible"
     class="std-curd-edit-modal"
-    wrap-class-name="std-modal"
+    :body-style="{ height: curdConfig.modal.bodyHeight, overflow: 'auto' }"
     :mask="false"
     :title="t('batchModify')"
     :cancel-text="t('no')"
     :ok-text="t('save')"
     :confirm-loading="loading"
-    :width="600"
+    :width="curdConfig.modal.width"
     destroy-on-close
     @ok="ok"
   >

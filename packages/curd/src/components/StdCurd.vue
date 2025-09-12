@@ -5,7 +5,7 @@ import { useRouteQuery } from '@vueuse/router'
 import { Button, Card, Checkbox, Divider, Flex, message, Modal, Spin } from 'ant-design-vue'
 import { cloneDeep } from 'lodash-es'
 import { computed, getCurrentInstance, reactive, ref, useSlots } from 'vue'
-import { useExport, useLocale } from '../composables'
+import { useCurdConfig, useExport, useLocale } from '../composables'
 import { ApiActions } from '../constants'
 import { getRealContent } from '../utils'
 import StdBatchEdit from './StdBatchEdit.vue'
@@ -15,7 +15,7 @@ import StdTable from './StdTable.vue'
 
 const props = withDefaults(defineProps<StdCurdProps>(), {
   rowKey: 'id',
-  showSearchBtn: undefined,
+  showSearchBtn: false,
   formRowProps: () => ({
     gutter: 16,
   }),
@@ -270,6 +270,8 @@ const modalTitle = computed(() => {
     return t('view')
   return t('edit')
 })
+
+const curdConfig = useCurdConfig()
 </script>
 
 <template>
@@ -410,8 +412,9 @@ const modalTitle = computed(() => {
         v-model:open="formVisible"
         destroy-on-close
         :closable="!modalLoading"
-        :width="modalWidth"
+        :width="curdConfig.modal.width"
         :title="modalTitle"
+        :body-style="{ height: curdConfig.modal.bodyHeight, overflow: 'auto' }"
         :mask-closable="false"
       >
         <Spin :spinning="modalLoading">
@@ -466,9 +469,9 @@ const modalTitle = computed(() => {
 
       <Modal
         v-model:open="exportVisible"
-        wrap-class-name="std-modal"
+        :body-style="{ height: curdConfig.modal.bodyHeight, overflow: 'auto' }"
         :closable="!modalLoading"
-        :width="props.modalWidth"
+        :width="curdConfig.modal.width"
         :title="t('exportExcel')"
         :ok-text="t('ok')"
         @ok="exportExcel(selectedRowKeys, selectedRows)"

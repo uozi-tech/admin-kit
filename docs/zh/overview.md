@@ -52,6 +52,7 @@ pnpm create uozi-admin@latest
 - 搜索组件
 - 分页组件
 - 丰富的表单控件
+- ConfigProvider 配置组件
 
 ### 🌐 数据层
 
@@ -107,16 +108,24 @@ export const userApi = useCurdApi('/users')
 <!-- src/views/user/index.vue -->
 <script setup lang="ts">
 import { userApi } from '~/api/user'
-import { StdCurd } from '@uozi-admin/curd'
+import { StdCurd, ConfigProvider } from '@uozi-admin/curd'
 import { columns } from './columns'
+
+const pageConfig = {
+  dateFormat: {
+    date: 'YYYY/MM/DD'
+  }
+}
 </script>
 
 <template>
-  <StdCurd
-    title="用户管理"
-    :api="userApi"
-    :columns="columns"
-  />
+  <ConfigProvider :config="pageConfig">
+    <StdCurd
+      title="用户管理"
+      :api="userApi"
+      :columns="columns"
+    />
+  </ConfigProvider>
 </template>
 ```
 

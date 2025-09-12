@@ -7,6 +7,7 @@ import StdPagination from './StdPagination.vue'
 import StdSearch from './StdSearch.vue'
 import StdTable from './StdTable.vue'
 
+export * from './ConfigProvider'
 export * from './form'
 
 export {

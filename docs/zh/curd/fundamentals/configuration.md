@@ -365,9 +365,11 @@ const customApi = {
 
 ## ⚙️ 全局配置
 
-### 基础全局配置
+UOZI Admin 提供了两种方式来配置 CURD 组件：插件配置和 ConfigProvider 组件配置。
 
-在 `main.ts` 中配置全局选项：
+### 方式一：插件配置
+
+在 `main.ts` 中使用插件方式配置全局选项：
 
 ```ts
 import { createCurdConfig } from '@uozi-admin/curd'
@@ -401,6 +403,177 @@ app.use(createCurdConfig({
     datetime: 'YYYY-MM-DD HH:mm:ss',
   },
 }))
+```
+
+### 方式二：ConfigProvider 组件配置
+
+使用 `ConfigProvider` 组件可以为特定区域提供配置，支持配置嵌套和继承：
+
+#### 基础用法
+
+```vue
+<script setup lang="ts">
+import { ConfigProvider } from '@uozi-admin/curd'
+
+const config = {
+  listApi: {
+    paginationMap: {
+      params: {
+        current: 'page',
+        pageSize: 'page_size'
+      },
+      response: {
+        total: 'total',
+        current: 'current_page',
+        pageSize: 'per_page'
+      }
+    }
+  },
+  dateFormat: {
+    date: 'YYYY-MM-DD',
+    datetime: 'YYYY-MM-DD HH:mm:ss'
+  }
+}
+</script>
+
+<template>
+  <ConfigProvider :config="config" :init-dayjs="true">
+    <!-- 在这个区域内的所有 CURD 组件都会使用这个配置 -->
+    <StdCurd :api="userApi" :columns="userColumns" />
+    <StdCurd :api="orderApi" :columns="orderColumns" />
+  </ConfigProvider>
+</template>
+```
+
+#### 配置嵌套和继承
+
+ConfigProvider 支持嵌套使用，子级配置会与父级配置合并：
+
+```vue
+<template>
+  <!-- 全局配置 -->
+  <ConfigProvider :config="globalConfig">
+    <div class="layout">
+      <!-- 用户管理模块特定配置 -->
+      <ConfigProvider :config="userModuleConfig">
+        <StdCurd title="用户管理" :api="userApi" :columns="userColumns" />
+        
+        <!-- 管理员用户特定配置 -->
+        <ConfigProvider :config="adminConfig">
+          <StdCurd title="管理员管理" :api="adminApi" :columns="adminColumns" />
+        </ConfigProvider>
+      </ConfigProvider>
+    </div>
+  </ConfigProvider>
+</template>
+
+<script setup lang="ts">
+const globalConfig = {
+  dateFormat: { date: 'YYYY-MM-DD' },
+  listApi: { 
+    paginationMap: { 
+      params: { current: 'page', pageSize: 'size' } 
+    } 
+  }
+}
+
+const userModuleConfig = {
+  // 会与 globalConfig 合并
+  time: { timestamp: true },
+  selector: { omitZeroString: true }
+}
+
+const adminConfig = {
+  // 会与 globalConfig 和 userModuleConfig 合并
+  dateFormat: { date: 'YYYY/MM/DD' } // 覆盖全局的日期格式
+}
+</script>
+```
+
+#### ConfigProvider 属性
+
+| 属性 | 类型 | 默认值 | 说明 |
+|------|------|--------|------|
+| `config` | `Partial<CurdConfigT>` | `{}` | CURD 配置对象 |
+| `initDayjs` | `boolean` | `false` | 是否初始化 dayjs 插件 |
+
+#### ConfigProvider 特性
+
+1. **配置继承**：子级 ConfigProvider 会继承父级配置并进行合并
+2. **响应式更新**：配置变化时会自动应用到所有子组件
+3. **局部作用域**：仅影响其子组件树中的 CURD 组件
+4. **插件初始化**：可选择性初始化 dayjs 相关插件
+
+### 预设配置函数
+
+框架提供了一些预设的配置函数，适用于不同的后端框架：
+
+```ts
+import { 
+  createCurdConfig,
+  createCosyConfig, 
+  createCosyProConfig,
+  mergeConfigs
+} from '@uozi-admin/curd'
+
+// 基础配置
+app.use(createCurdConfig({
+  // 自定义配置...
+}))
+
+// Cosy 框架预设
+app.use(createCosyConfig({
+  // 自定义配置...
+}))
+
+// Cosy Pro 框架预设（包含时间戳和字符串优化）
+app.use(createCosyProConfig({
+  // 自定义配置...
+}))
+
+// 合并多个配置
+const mergedConfig = mergeConfigs(
+  { dateFormat: { date: 'YYYY-MM-DD' } },
+  { listApi: { paginationMap: { params: { current: 'page' } } } },
+  { time: { timestamp: true } }
+)
+app.use(createCurdConfig(mergedConfig))
+```
+
+### 配置方式对比
+
+| 配置方式 | 适用场景 | 优点 | 缺点 | 推荐使用 |
+|---------|---------|------|------|---------|
+| `createCurdConfig` | 全局统一配置 | 一次配置，全局生效 | 不够灵活，难以局部定制 | ✅ 全局基础配置 |
+| `ConfigProvider` | 局部定制配置 | 灵活配置，支持嵌套继承 | 需要在模板中包装组件 | ✅ 模块级或页面级配置 |
+
+### 最佳实践
+
+1. **分层配置**：在 main.ts 中设置基础全局配置，在具体模块中使用 ConfigProvider 进行定制
+2. **配置复用**：将常用的配置抽取为常量，避免重复定义
+3. **按需初始化**：只在需要使用 dayjs 功能的地方设置 `initDayjs: true`
+
+```ts
+// configs/curd.ts
+export const BASE_CONFIG = {
+  listApi: {
+    paginationMap: {
+      params: { current: 'page', pageSize: 'size' },
+      response: { total: 'total', current: 'page' }
+    }
+  }
+}
+
+export const USER_MODULE_CONFIG = {
+  ...BASE_CONFIG,
+  time: { timestamp: true },
+  dateFormat: { datetime: 'YYYY-MM-DD HH:mm' }
+}
+
+// 在组件中使用
+<ConfigProvider :config="USER_MODULE_CONFIG">
+  <StdCurd ... />
+</ConfigProvider>
 ```
 
 ### 分页配置
