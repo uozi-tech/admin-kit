@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.16.1
+
+### Patch Changes
+
+- [`50ee849`](https://github.com/uozi-tech/admin-kit/commit/50ee849774a4c3c5059792eda08983f885730e16) Thanks [@akinoccc](https://github.com/akinoccc)! - refactor(curd): simplify StdUpload
+
 ## 4.16.0
 
 ### Minor Changes
