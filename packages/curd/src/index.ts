@@ -1,6 +1,10 @@
 import type { App, ObjectPlugin } from 'vue'
 import type { I18nOptions } from 'vue-i18n'
 import type { CurdConfigT } from './types'
+import dayjs from 'dayjs'
+import localeData from 'dayjs/plugin/localeData'
+import relativeTime from 'dayjs/plugin/relativeTime'
+import weekday from 'dayjs/plugin/weekday'
 import { merge } from 'lodash-es'
 import { reactive } from 'vue'
 import { createI18n } from 'vue-i18n'
@@ -69,6 +73,10 @@ export const CURD_CONFIG_KEY = Symbol('curdConfig')
 
 // app.use(createCurdConfig(config))
 export function createCurdConfig(config: Partial<CurdConfigT>): ObjectPlugin {
+  dayjs.extend(weekday)
+  dayjs.extend(localeData)
+  dayjs.extend(relativeTime)
+
   return {
     install(app: App) {
       const mergedConfig = merge({}, defaultConfig, config)

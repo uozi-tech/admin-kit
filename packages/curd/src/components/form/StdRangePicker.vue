@@ -4,8 +4,6 @@ import type { Dayjs } from 'dayjs'
 import type { RangePickerConfig, TimeT } from '../../types'
 import { RangePicker } from 'ant-design-vue'
 import dayjs from 'dayjs'
-import localeData from 'dayjs/plugin/localeData'
-import weekday from 'dayjs/plugin/weekday'
 import { computed } from 'vue'
 
 import { Format } from '../../constants'
@@ -17,9 +15,6 @@ const p = defineProps<{
   type: PanelMode | 'datetime'
   disabled?: boolean
 }>()
-
-dayjs.extend(weekday)
-dayjs.extend(localeData)
 
 const value = defineModel<RangePickerConfig['value'] & [number, number] & [string, string]>('value')
 
