@@ -1,5 +1,13 @@
 # @uozi-admin/curd
 
+## 4.15.11
+
+### Patch Changes
+
+- [`7578e0d`](https://github.com/uozi-tech/admin-kit/commit/7578e0dc979163d189d21bdd80619d94d2110238) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): extend dayjs plugins for enhanced date handling in CurdConfig
+
+- [`d0002c6`](https://github.com/uozi-tech/admin-kit/commit/d0002c608404d573b487156195baedcaeaaf60fb) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): remove fixed height for modal
+
 ## 4.15.10
 
 ### Patch Changes
