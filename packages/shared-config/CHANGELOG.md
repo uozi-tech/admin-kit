@@ -1,5 +1,11 @@
 # @uozi-admin/shared-config
 
+## 0.4.9
+
+### Patch Changes
+
+- [`cdfa79a`](https://github.com/uozi-tech/admin-kit/commit/cdfa79a338e749dca72cef286eface9b498751ae) Thanks [@akinoccc](https://github.com/akinoccc)! - chore: update deps
+
 ## 0.4.8
 
 ### Patch Changes
