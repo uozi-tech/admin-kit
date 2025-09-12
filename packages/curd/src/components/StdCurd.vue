@@ -408,7 +408,6 @@ const modalTitle = computed(() => {
 
       <Modal
         v-model:open="formVisible"
-        wrap-class-name="std-modal"
         destroy-on-close
         :closable="!modalLoading"
         :width="modalWidth"
@@ -495,11 +494,3 @@ const modalTitle = computed(() => {
     />
   </div>
 </template>
-
-<style>
-/* 限制选择器模态框中表格的高度，确保确认按钮始终可见 */
-.std-modal .ant-modal-body {
-  max-height: 70vh;
-  overflow: auto;
-}
-</style>

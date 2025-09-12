@@ -99,11 +99,3 @@ async function ok() {
     <slot name="extra" />
   </Modal>
 </template>
-
-<style>
-/* 限制选择器模态框中表格的高度，确保确认按钮始终可见 */
-.std-modal .ant-modal-body {
-  max-height: 70vh;
-  overflow: auto;
-}
-</style>

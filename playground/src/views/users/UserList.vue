@@ -3,14 +3,56 @@ import type { StdTableColumn } from '@uozi-admin/curd'
 import { StdCurd } from '@uozi-admin/curd'
 import { ref } from 'vue'
 
+const userApi = {
+  getList: async () => {
+    return {
+      data: [{
+        id: 1,
+        name: '张三',
+        mobile: '13800138000',
+        email: 'zhangsan@example.com',
+        gender: 1,
+        role: 1,
+        age: 20,
+        password: '123456',
+        status: 1,
+        avatar: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+        created_at: '2021-01-01',
+      }, {
+        id: 2,
+        name: '李四',
+        mobile: '13800138001',
+        email: 'lisi@example.com',
+        gender: -1,
+        role: -1,
+        age: 21,
+        password: '123456',
+        status: -1,
+        avatar: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+        created_at: '2021-01-02',
+      }],
+      pagination: {
+        total: 0,
+      },
+    }
+  },
+}
+
 const columns: StdTableColumn[] = [
   {
     title: () =>
       '姓名',
     dataIndex: 'name',
     search: {
+      type: 'selector',
       formItem: {
         name: 'name_fz',
+      },
+      selector: {
+        getListApi: userApi.getList,
+        columns: [{ title: '姓名', dataIndex: 'name' }],
+        valueKey: 'id',
+        displayKey: 'name',
       },
     },
     sorter: true,
@@ -118,41 +160,6 @@ const columns: StdTableColumn[] = [
 
 const selectedRowKeys = ref<any[]>([])
 const visible = ref(false)
-
-const userApi = {
-  getList: async () => {
-    return {
-      data: [{
-        id: 1,
-        name: '张三',
-        mobile: '13800138000',
-        email: 'zhangsan@example.com',
-        gender: 1,
-        role: 1,
-        age: 20,
-        password: '123456',
-        status: 1,
-        avatar: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-        created_at: '2021-01-01',
-      }, {
-        id: 2,
-        name: '李四',
-        mobile: '13800138001',
-        email: 'lisi@example.com',
-        gender: -1,
-        role: -1,
-        age: 21,
-        password: '123456',
-        status: -1,
-        avatar: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-        created_at: '2021-01-02',
-      }],
-      pagination: {
-        total: 0,
-      },
-    }
-  },
-}
 </script>
 
 <template>

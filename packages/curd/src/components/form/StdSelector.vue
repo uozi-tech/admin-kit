@@ -198,7 +198,6 @@ const computedValue = computed({
       destroy-on-close
       v-bind="modalProps"
       :z-index="3000"
-      wrap-class-name="std-selector-modal"
       @ok="setValue"
     >
       {{ tips }}
