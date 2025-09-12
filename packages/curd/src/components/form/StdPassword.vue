@@ -21,7 +21,7 @@ function handleGenerate() {
   modelValue.value = 'xxxx'
 
   const chars = '0123456789abcdefghijklmnopqrstuvwxyz!@#$%^&*()ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-  const passwordLength = p.props?.maxLength || 12
+  const passwordLength = p.props?.maxlength || 12
   let password = ''
   for (let i = 0; i <= passwordLength; i++) {
     const randomNumber = Math.floor(Math.random() * chars.length)

@@ -19,6 +19,8 @@ import type {
 import type { CascaderProps } from 'ant-design-vue/es/cascader'
 import type { MonthPickerProps, RangePickerProps, WeekPickerProps } from 'ant-design-vue/es/date-picker'
 import type { TableRowSelection } from 'ant-design-vue/es/table/interface'
+import type { FileType } from 'ant-design-vue/es/upload/interface'
+import type { Ref } from 'vue'
 import type { CurdApi } from './api'
 import type { StdTableColumn } from './index'
 
@@ -43,7 +45,6 @@ export type TextareaConfig = Omit<TextAreaProps, 'placeholder'> & PlaceholderT &
 
 export type PasswordConfig = Omit<InputProps, 'placeholder'> & PlaceholderT & BaseConfig & {
   generate?: boolean
-  maxLength?: number
 }
 
 export type SelectConfig = Omit<SelectProps, 'placeholder'>
@@ -110,6 +111,6 @@ export type SwitchConfig = SwitchProps & BaseConfig
 
 export type TransferConfig = Omit<TransferProps, 'placeholder'> & PlaceholderT & BaseConfig
 
-export type UploadConfig = Omit<UploadProps, 'placeholder'> & PlaceholderT & BaseConfig & {
-  multiple?: boolean
+export type UploadConfig = Omit<UploadProps, 'placeholder' | 'beforeUpload'> & PlaceholderT & BaseConfig & {
+  beforeUpload?: (file: FileType, fileList: FileType[], value: Ref<any>) => boolean
 }

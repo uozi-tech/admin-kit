@@ -36,6 +36,21 @@ const userApi = {
       },
     }
   },
+  getItem: async () => {
+    return {
+      id: 1,
+      name: '张三',
+      mobile: '13800138000',
+      email: 'zhangsan@example.com',
+      gender: 1,
+      role: 1,
+      age: 20,
+      password: '123456',
+      status: 1,
+      avatar: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+      created_at: '2021-01-01',
+    }
+  },
 }
 
 const columns: StdTableColumn[] = [
@@ -144,7 +159,11 @@ const columns: StdTableColumn[] = [
       type: 'upload',
       formItem: { required: true },
       upload: {
-        multiple: true,
+        multiple: false,
+        beforeUpload: (file, fileList, value) => {
+          // 阻止自动上传
+          return false
+        },
       },
     },
   },

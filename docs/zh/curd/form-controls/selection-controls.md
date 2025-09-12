@@ -52,12 +52,14 @@
 
 | 属性 | 说明 | 类型 | 默认值 |
 |------|------|------|--------|
-| select.options | 选项数据 | Array<{label: string, value: any}> | [] |
-| select.mode | 选择模式 | 'multiple' \| 'tags' | - |
-| select.allowClear | 允许清空 | boolean | false |
-| select.showSearch | 显示搜索框 | boolean | false |
-| select.filterOption | 过滤选项 | boolean \| function | true |
-| select.optionFilterProp | 搜索时过滤对应的 option 属性 | string | 'label' |
+| options | 选项数据 | Array<{label: string, value: any}> | [] |
+| mode | 选择模式 | 'multiple' \| 'tags' | - |
+| allowClear | 允许清空 | boolean | false |
+| showSearch | 显示搜索框 | boolean | false |
+| filterOption | 过滤选项 | boolean \| function | true |
+| optionFilterProp | 搜索时过滤对应的 option 属性 | string | 'label' |
+
+> 更多配置请参考 [SelectProps](https://antdv.com/components/select#api)
 
 ## 单选按钮组 (radioGroup)
 
@@ -105,10 +107,12 @@
 
 | 属性 | 说明 | 类型 | 默认值 |
 |------|------|------|--------|
-| radioGroup.options | 选项数据 | Array<{label: string, value: any}> | [] |
-| radioGroup.optionType | 选项类型 | 'default' \| 'button' | 'default' |
-| radioGroup.buttonStyle | 按钮样式 | 'outline' \| 'solid' | 'outline' |
-| radioGroup.size | 尺寸 | 'large' \| 'middle' \| 'small' | 'middle' |
+| options | 选项数据 | Array<{label: string, value: any}> | [] |
+| optionType | 选项类型 | 'default' \| 'button' | 'default' |
+| buttonStyle | 按钮样式 | 'outline' \| 'solid' | 'outline' |
+| size | 尺寸 | 'large' \| 'middle' \| 'small' | 'middle' |
+
+> 更多配置请参考 [RadioGroupProps](https://antdv.com/components/radio#api)
 
 ## 多选框组 (checkboxGroup)
 
@@ -136,8 +140,10 @@
 
 | 属性 | 说明 | 类型 | 默认值 |
 |------|------|------|--------|
-| checkboxGroup.options | 选项数据 | Array<{label: string, value: any}> | [] |
+| options | 选项数据 | Array<{label: string, value: any}> | [] |
 | disabled | 是否禁用 | boolean | false |
+
+> 更多配置请参考 [CheckboxGroupProps](https://antdv.com/components/checkbox#api)
 
 ## 级联选择 (cascader)
 
@@ -201,11 +207,13 @@
 
 | 属性 | 说明 | 类型 | 默认值 |
 |------|------|------|--------|
-| cascader.options | 选项数据 | CascaderOption[] | [] |
-| cascader.multiple | 是否多选 | boolean | false |
-| cascader.showSearch | 显示搜索框 | boolean | false |
-| cascader.changeOnSelect | 选择即改变 | boolean | false |
-| cascader.displayRender | 自定义显示 | function | - |
+| options | 选项数据 | CascaderOption[] | [] |
+| multiple | 是否多选 | boolean | false |
+| showSearch | 显示搜索框 | boolean | false |
+| changeOnSelect | 选择即改变 | boolean | false |
+| displayRender | 自定义显示 | function | - |
+
+> 更多配置请参考 [CascaderProps](https://antdv.com/components/cascader#api)
 
 
 ## 表格列表选择器（selector）

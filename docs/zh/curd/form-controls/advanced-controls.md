@@ -26,6 +26,29 @@
 }
 ```
 
+### 特别说明
+
+若需要自行处理上传逻辑，可以使用 `beforeUpload` 属性。
+
+```ts
+{
+  title: '用户头像',
+  dataIndex: 'avatar',
+  edit: {
+    type:'upload',
+    upload: {
+      beforeUpload: (file: FileType, fileList: FileType[], value: Ref<any>) => {
+        // file 是上传的文件
+        // fileList 是上传的文件列表
+        // value 是 form data 中对应字段的值，可以修改它来改变 form data 对应 dataIndex 的值
+        // 返回 false 阻止自动上传
+        return false
+      }
+    }
+  }
+}
+```
+
 ### 配置选项
 
 | 属性 | 说明 | 类型 | 默认值 |
@@ -36,7 +59,8 @@
 | maxSize | 最大文件大小(MB) | number | - |
 | listType | 上传列表样式 | 'text' \| 'picture' \| 'picture-card' | 'text' |
 | multiple | 是否多选 | boolean | false |
-| directory | 支持上传文件夹 | boolean | false |
+
+> 更多配置请参考 [UploadProps](https://antdv.com/components/upload#api)
 
 ### 图片上传示例
 
@@ -52,13 +76,6 @@
       maxSize: 2,
       listType: 'picture-card',
       action: '/api/upload/images',
-      beforeUpload: (file) => {
-        const isImage = file.type.startsWith('image/')
-        if (!isImage) {
-          message.error('只能上传图片文件!')
-        }
-        return isImage
-      }
     }
   }
 }
@@ -113,6 +130,8 @@
 | size | 开关大小 | 'default' \| 'small' | 'default' |
 | loading | 加载状态 | boolean | false |
 
+> 更多配置请参考 [SwitchProps](https://antdv.com/components/switch#api)
+
 ## 滑块 (slider)
 
 用于数值范围选择。
@@ -152,6 +171,8 @@
 | vertical | 是否垂直 | boolean | false |
 | tooltipVisible | 是否显示提示 | boolean | - |
 
+> 更多配置请参考 [SliderProps](https://antdv.com/components/slider#api)
+
 ## 评分 (rate)
 
 用于评分选择。
@@ -180,6 +201,8 @@
 | allowClear | 是否允许清除 | boolean | true |
 | tooltips | 自定义提示信息 | string[] | - |
 | character | 自定义字符 | string \| VNode | ⭐ |
+
+> 更多配置请参考 [RateProps](https://antdv.com/components/rate#api)
 
 ## 自动完成 (autoComplete)
 
@@ -248,6 +271,8 @@
   }
 }
 ```
+
+> 更多配置请参考 [AutoCompleteProps](https://antdv.com/components/auto-complete#api)
 
 ## 相关内容
 

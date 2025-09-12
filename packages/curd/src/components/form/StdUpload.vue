@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import type { UploadChangeParam, UploadFile, UploadProps } from 'ant-design-vue'
+import type { FileType } from 'ant-design-vue/es/upload/interface'
+import type { Ref } from 'vue'
 import type { UploadConfig } from '../../types'
 import { DeleteOutlined, FileOutlined, FolderOutlined, InboxOutlined } from '@ant-design/icons-vue'
 import { Button, Flex, Form, FormItemRest, Progress, RadioButton, RadioGroup, UploadDragger } from 'ant-design-vue'
@@ -12,6 +14,8 @@ const { props } = defineProps<{
   disabled?: boolean
 }>()
 
+const { beforeUpload, ...restProps } = props ?? {}
+
 const { t } = useLocale()
 
 const formContext = Form.useInjectFormItemContext()
@@ -22,6 +26,37 @@ const modelValue = defineModel<string | string[] | UploadFile[]>('value', { defa
 // 内部文件列表状态
 const internalFileList = ref<UploadFile[]>([])
 
+watch(modelValue, (value) => {
+  internalFileList.value = convertToFileList(value)
+})
+
+function convertToFileList(value: string | string[] | UploadFile[]) {
+  if (Array.isArray(value)) {
+    return value.map((item) => {
+      if (typeof item === 'string') {
+        return {
+          uid: item,
+          name: item,
+          status: 'done',
+          thumbUrl: item,
+          url: item,
+        }
+      }
+      return item
+    })
+  }
+  else if (typeof value === 'string') {
+    return [{
+      uid: value,
+      name: value,
+      status: 'done',
+      thumbUrl: value,
+      url: value,
+    }]
+  }
+  return [value]
+}
+
 // 文件上传相关
 const uploadLoading = ref<boolean>(false)
 const uploadProgress = ref<number>(0)
@@ -30,77 +65,17 @@ const totalFiles = ref<number>(0)
 const uploadStatus = ref<string>('')
 const uploadMode = ref<'file' | 'directory'>('file') // 上传模式控制
 
-// 将外部值转换为内部文件列表
-function convertToFileList(value: string | string[] | UploadFile[]): UploadFile[] {
-  if (!value)
-    return []
-
-  if (typeof value === 'string') {
-    return [{
-      uid: value,
-      name: value.split('/').pop() || value,
-      status: 'done',
-      url: value,
-    }]
-  }
-
-  if (Array.isArray(value)) {
-    return value.map((item, index) => {
-      if (typeof item === 'string') {
-        return {
-          uid: item + index,
-          name: item.split('/').pop() || item,
-          status: 'done' as const,
-          url: item,
-        }
-      }
-      return item
-    })
-  }
-
-  return []
-}
-
-// 将内部文件列表转换为外部值
-function convertFromFileList(fileList: UploadFile[]): string | string[] | UploadFile[] {
-  if (!fileList || fileList.length === 0)
-    return []
-
-  // 如果原始值是字符串，返回单个URL
-  const originalValue = modelValue.value
-  if (typeof originalValue === 'string') {
-    return fileList[0]?.url || fileList[0]?.response?.url || ''
-  }
-
-  // 如果原始值是字符串数组，返回URL数组
-  if (Array.isArray(originalValue) && originalValue.every(item => typeof item === 'string')) {
-    return fileList.map(file => file.url || file.response?.url || '').filter(Boolean)
-  }
-
-  // 否则返回完整的文件对象数组
-  return fileList
-}
-
-// 监听外部值变化，更新内部文件列表
-watch(() => modelValue.value, (newValue) => {
-  internalFileList.value = convertToFileList(newValue)
-}, { immediate: true })
-
-// 监听内部文件列表变化，更新外部值
-watch(internalFileList, (newFileList) => {
-  const convertedValue = convertFromFileList(newFileList)
-  if (JSON.stringify(convertedValue) !== JSON.stringify(modelValue.value)) {
-    modelValue.value = convertedValue
-  }
-}, { deep: true })
-
 const uploadProps = computed<UploadProps>(() => ({
-  multiple: props?.multiple,
   directory: uploadMode.value === 'directory', // 根据模式决定是否支持文件夹
   fileList: internalFileList.value,
-  beforeUpload: () => false, // 阻止自动上传
+  beforeUpload: (file: FileType, fileList: FileType[]) => beforeUpload?.(file, fileList, modelValue),
   onChange(info: UploadChangeParam) {
-    internalFileList.value = info.fileList
+    if (props?.multiple) {
+      internalFileList.value = info.fileList
+    }
+    else {
+      internalFileList.value = [info.file]
+    }
     formContext.onFieldChange()
   },
   onRemove: (file) => {
@@ -115,6 +90,7 @@ const uploadProps = computed<UploadProps>(() => ({
     return true
   },
   showUploadList: false, // 不使用默认的上传列表，我们自定义展示
+  ...restProps,
 }))
 
 // 从上传文件列表中移除指定索引的文件
@@ -172,7 +148,7 @@ function removeFile(index: number) {
 
     <!-- 已选文件列表 -->
     <div
-      v-if="internalFileList.length > 0"
+      v-if="!props?.showUploadList && internalFileList.length > 0"
       class="mt-4"
     >
       <div class="flex justify-between items-center mb-2">

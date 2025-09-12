@@ -61,6 +61,7 @@ defineExpose({
 </script>
 
 <template>
+  {{ formData }}
   <Form
     ref="formRef"
     :model="formData"

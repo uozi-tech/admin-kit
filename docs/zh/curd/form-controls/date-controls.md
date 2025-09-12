@@ -28,11 +28,13 @@
 
 | 属性 | 说明 | 类型 | 默认值 |
 |------|------|------|--------|
-| date.format | 日期格式 | string | 'YYYY-MM-DD' |
+| format | 日期格式 | string | 'YYYY-MM-DD' |
 | placeholder | 占位符 | string | - |
-| date.disabledDate | 禁用日期 | (date: Dayjs) => boolean | - |
-| date.showToday | 显示今天按钮 | boolean | true |
-| date.allowClear | 允许清空 | boolean | true |
+| disabledDate | 禁用日期 | (date: Dayjs) => boolean | - |
+| showToday | 显示今天按钮 | boolean | true |
+| allowClear | 允许清空 | boolean | true |
+
+> 更多配置请参考 [DatePickerProps](https://antdv.com/components/date-picker#api)
 
 ## 时间选择器 (time)
 
@@ -52,15 +54,18 @@
 }
 ```
 
+
 ### 配置选项
 
 | 属性 | 说明 | 类型 | 默认值 |
 |------|------|------|--------|
-| time.format | 时间格式 | string | 'HH:mm:ss' |
+| format | 时间格式 | string | 'HH:mm:ss' |
 | hourStep | 小时步长 | number | 1 |
 | minuteStep | 分钟步长 | number | 1 |
 | secondStep | 秒步长 | number | 1 |
 | use12Hours | 12小时制 | boolean | false |
+
+> 更多配置请参考 [TimePickerProps](https://antdv.com/components/time-picker#api)
 
 ## 日期时间选择器 (datetime)
 
@@ -105,6 +110,8 @@
 | placeholder | 占位符 | [string, string] | - |
 | separator | 分隔符 | string | '~' |
 | ranges | 预设范围 | object | - |
+
+> 更多配置请参考 [RangePickerProps](https://antdv.com/components/date-picker#api)
 
 ## 时间范围选择器 (timeRange)
 

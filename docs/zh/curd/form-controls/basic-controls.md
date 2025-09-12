@@ -36,6 +36,8 @@
 | addonBefore | 前置标签 | string \| VNode | - |
 | addonAfter | 后置标签 | string \| VNode | - |
 
+> 更多配置请参考 [InputProps](https://antdv.com/components/input#api)
+
 ## 密码输入框 (password)
 
 用于密码输入，自动隐藏输入内容。
@@ -48,7 +50,7 @@
     type:'password',
     placeholder: '请输入密码',
     password: {
-      visibilityToggle: true
+      generate: true
     }
   }
 }
@@ -58,8 +60,9 @@
 
 | 属性 | 说明 | 类型 | 默认值 |
 |------|------|------|--------|
-| visibilityToggle | 显示切换按钮 | boolean | true |
-| iconRender | 自定义切换图标 | (visible: boolean) => VNode | - |
+| generate | 生成密码 | boolean | false |
+
+> 更多配置请参考 [InputProps](https://antdv.com/components/input#api)
 
 ## 多行文本 (textarea)
 
@@ -90,6 +93,8 @@
 | showCount | 显示字数统计 | boolean | false |
 | autoSize | 自适应高度 | boolean \| object | false |
 
+> 更多配置请参考 [TextAreaProps](https://antdv.com/components/input#components-input-demo-textarea)
+
 ## 数字输入框 (inputNumber)
 
 用于数字输入，支持精度控制和范围限制。
@@ -110,6 +115,8 @@
   }
 }
 ```
+
+> 更多配置请参考 [InputNumberProps](https://antdv.com/components/input-number#api)
 
 ### 配置选项
 
