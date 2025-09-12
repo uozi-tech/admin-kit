@@ -37,15 +37,15 @@
 
 | 包名 | 版本 | 描述 | 文档 |
 | --- | --- | --- | --- |
-| `create-uozi-admin` | [![npm](https://img.shields.io/npm/v/create-uozi-admin.svg)](https://www.npmjs.com/package/create-uozi-admin) | 项目脚手架工具 | [文档](https://uozi-tech.github.io/admin-kit/zh/cli/quick-start) |
-| `@uozi-admin/curd` | [![npm](https://img.shields.io/npm/v/@uozi-admin/curd.svg)](https://www.npmjs.com/package/@uozi-admin/curd) | CRUD 组件库 | [文档](https://uozi-tech.github.io/admin-kit/zh/curd/quick-start) |
-| `@uozi-admin/request` | [![npm](https://img.shields.io/npm/v/@uozi-admin/request.svg)](https://www.npmjs.com/package/@uozi-admin/request) | 请求库封装 | [文档](https://uozi-tech.github.io/admin-kit/zh/request/quick-start) |
-| `@uozi-admin/layout-antdv` | [![npm](https://img.shields.io/npm/v/@uozi-admin/layout-antdv.svg)](https://www.npmjs.com/package/@uozi-admin/layout-antdv) | 基于 Ant Design Vue 的后台布局组件 | [文档](https://uozi-tech.github.io/admin-kit/zh/layout/quick-start) |
-| `@uozi-admin/shared-config` | [![npm](https://img.shields.io/npm/v/@uozi-admin/shared-config.svg)](https://www.npmjs.com/package/@uozi-admin/shared-config) | vite 共享配置 | [文档](https://uozi-tech.github.io/admin-kit/zh/shared-config/quick-start) |
+| `create-uozi-admin` | [![npm](https://img.shields.io/npm/v/create-uozi-admin.svg)](https://www.npmjs.com/package/create-uozi-admin) | 项目脚手架工具 | [文档](https://admin-kit.uozi.com/zh/cli/quick-start) |
+| `@uozi-admin/curd` | [![npm](https://img.shields.io/npm/v/@uozi-admin/curd.svg)](https://www.npmjs.com/package/@uozi-admin/curd) | CRUD 组件库 | [文档](https://admin-kit.uozi.com/zh/curd/intro) |
+| `@uozi-admin/request` | [![npm](https://img.shields.io/npm/v/@uozi-admin/request.svg)](https://www.npmjs.com/package/@uozi-admin/request) | 请求库封装 | [文档](https://admin-kit.uozi.com/zh/request/quick-start) |
+| `@uozi-admin/layout-antdv` | [![npm](https://img.shields.io/npm/v/@uozi-admin/layout-antdv.svg)](https://www.npmjs.com/package/@uozi-admin/layout-antdv) | 基于 Ant Design Vue 的后台布局组件 | [文档](https://admin-kit.uozi.com/zh/layout/quick-start) |
+| `@uozi-admin/shared-config` | [![npm](https://img.shields.io/npm/v/@uozi-admin/shared-config.svg)](https://www.npmjs.com/package/@uozi-admin/shared-config) | vite 共享配置 | [文档](https://admin-kit.uozi.com/zh/shared-config/quick-start) |
 
 ## 📖 文档
 
-访问 [Admin Kit 文档](https://uozi-tech.github.io/admin-kit/) 查看详细使用方法。
+访问 [Admin Kit 文档](https://admin-kit.uozi.com/) 查看详细使用方法。
 
 ## 🤝 贡献
 

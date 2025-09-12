@@ -37,15 +37,15 @@
 
 | Package Name | Version | Description | Documentation |
 | --- | --- | --- | --- |
-| `create-uozi-admin` | [![npm](https://img.shields.io/npm/v/create-uozi-admin.svg)](https://www.npmjs.com/package/create-uozi-admin) | Project scaffolding tool | [Docs](https://uozi-tech.github.io/admin-kit/en/cli/quick-start) |
-| `@uozi-admin/curd` | [![npm](https://img.shields.io/npm/v/@uozi-admin/curd.svg)](https://www.npmjs.com/package/@uozi-admin/curd) | CRUD component library | [Docs](https://uozi-tech.github.io/admin-kit/en/curd/quick-start) |
-| `@uozi-admin/request` | [![npm](https://img.shields.io/npm/v/@uozi-admin/request.svg)](https://www.npmjs.com/package/@uozi-admin/request) | Request library encapsulation | [Docs](https://uozi-tech.github.io/admin-kit/en/request/quick-start) |
-| `@uozi-admin/layout-antdv` | [![npm](https://img.shields.io/npm/v/@uozi-admin/layout-antdv.svg)](https://www.npmjs.com/package/@uozi-admin/layout-antdv) | Admin layout components based on Ant Design Vue | [Docs](https://uozi-tech.github.io/admin-kit/en/layout/quick-start) |
-| `@uozi-admin/shared-config` | [![npm](https://img.shields.io/npm/v/@uozi-admin/shared-config.svg)](https://www.npmjs.com/package/@uozi-admin/shared-config) | Vite shared configuration | [Docs](https://uozi-tech.github.io/admin-kit/en/shared-config/quick-start) |
+| `create-uozi-admin` | [![npm](https://img.shields.io/npm/v/create-uozi-admin.svg)](https://www.npmjs.com/package/create-uozi-admin) | Project scaffolding tool | [Docs](https://admin-kit.uozi.com/cli/quick-start) |
+| `@uozi-admin/curd` | [![npm](https://img.shields.io/npm/v/@uozi-admin/curd.svg)](https://www.npmjs.com/package/@uozi-admin/curd) | CRUD component library | [Docs](https://admin-kit.uozi.com/curd/intro) |
+| `@uozi-admin/request` | [![npm](https://img.shields.io/npm/v/@uozi-admin/request.svg)](https://www.npmjs.com/package/@uozi-admin/request) | Request library encapsulation | [Docs](https://admin-kit.uozi.com/request/quick-start) |
+| `@uozi-admin/layout-antdv` | [![npm](https://img.shields.io/npm/v/@uozi-admin/layout-antdv.svg)](https://www.npmjs.com/package/@uozi-admin/layout-antdv) | Admin layout components based on Ant Design Vue | [Docs](https://admin-kit.uozi.com/layout/quick-start) |
+| `@uozi-admin/shared-config` | [![npm](https://img.shields.io/npm/v/@uozi-admin/shared-config.svg)](https://www.npmjs.com/package/@uozi-admin/shared-config) | Vite shared configuration | [Docs](https://admin-kit.uozi.com/shared-config/quick-start) |
 
 ## 📖 Documentation
 
-Visit [Admin Kit Documentation](https://uozi-tech.github.io/admin-kit/) for detailed usage instructions.
+Visit [Admin Kit Documentation](https://admin-kit.uozi.com/) for detailed usage instructions.
 
 ## 🤝 Contributing
 
