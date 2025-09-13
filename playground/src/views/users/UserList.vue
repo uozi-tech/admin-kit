@@ -112,6 +112,7 @@ const columns: StdTableColumn[] = [
       type: 'select',
       select: { options: [{ label: '男', value: 1 }, { label: '女', value: -1 }] },
       formItem: { rules: [{ required: true }] },
+      defaultValue: 1,
     },
     batchEdit: true,
   },

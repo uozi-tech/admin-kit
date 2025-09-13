@@ -64,9 +64,17 @@ function Render() {
     return key
   })
   const value = computed({
-    get: () => get(p.formData, valueKey.value)
-      ?? componentConfig?.value?.defaultValue
-      ?? formConfig?.defaultValue,
+    get: () => {
+      const v = get(p.formData, valueKey.value)
+      if (v) {
+        return v
+      }
+      const defaultValue = formConfig.defaultValue ?? componentConfig.value?.defaultValue
+      if (p.mode === 'search') {
+        return typeof formConfig.search === 'object' ? defaultValue : undefined
+      }
+      return defaultValue
+    },
     set: (v) => {
       set(p.formData, valueKey.value, v)
     },
