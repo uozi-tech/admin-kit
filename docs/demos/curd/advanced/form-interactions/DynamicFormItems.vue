@@ -70,7 +70,7 @@ const dynamicFormColumns = computed<StdTableColumn[]>(() => {
 })
 
 // 事件处理函数
-function handleDynamicSubmit(data) {
+function handleDynamicSubmit() {
   message.success('动态表单提交成功')
 }
 

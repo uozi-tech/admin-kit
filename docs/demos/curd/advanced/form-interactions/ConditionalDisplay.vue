@@ -116,11 +116,11 @@ const complexConditionalColumns = computed(() => [
 ] as StdTableColumn[])
 
 // 事件处理函数
-function handleConditionalSubmit(data) {
+function handleConditionalSubmit() {
   message.success('条件显示表单提交成功')
 }
 
-function handleComplexSubmit(data) {
+function handleComplexSubmit() {
   message.success('复杂条件表单提交成功')
 }
 </script>

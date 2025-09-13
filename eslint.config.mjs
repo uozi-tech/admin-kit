@@ -35,7 +35,7 @@ export default antfu({
   'ts/no-non-null-asserted-optional-chain': 'warn',
   'ts/explicit-function-return-type': 'off',
   'ts/no-unsafe-function-type': 'off',
-  'no-console': ['warn', { allow: ['error'] }],
+  'no-console': ['warn', { allow: ['error', 'warn'] }],
   'no-new': 'off',
   'jsonc/sort-keys': 'off',
   'node/handle-callback-err': 'off',

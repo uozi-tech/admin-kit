@@ -1,61 +1,66 @@
-import { defineConfig, presetAttributify, presetIcons, presetUno, transformerDirectives, transformerVariantGroup } from 'unocss'
-import presetChinese, { chineseTypography } from 'unocss-preset-chinese'
-import presetEase from 'unocss-preset-ease'
+// uno.config.ts
+import {
+  defineConfig,
+  presetAttributify,
+  presetIcons,
+  presetTypography,
+  presetWebFonts,
+  presetWind3,
+  transformerDirectives,
+  transformerVariantGroup,
+} from 'unocss'
 
 export default defineConfig({
-  content: {
-    pipeline: {
-      include: ['**/*.{ts,jsx,tsx,vue}'],
-      exclude: ['node_modules', '.git', 'dist'],
+  shortcuts: [],
+  rules: [],
+  variants: [
+    // 使用工具函数
+    (matcher) => {
+      if (!matcher.endsWith('!'))
+        return matcher
+      return {
+        matcher: matcher.slice(0, -1),
+        selector: s => `${s}!important`,
+      }
+    },
+  ],
+  theme: {
+    colors: {
+      // ...
     },
   },
   presets: [
-    presetUno({ dark: 'class' }),
+    presetWind3(),
     presetAttributify(),
-    chineseTypography(),
-    presetChinese({
-      chineseType: 'simplified',
-    }),
-    presetEase(),
     presetIcons({
-      scale: 1.2,
-      warn: true,
+      collections: {
+        tabler: () => import('@iconify-json/tabler/icons.json', { with: { type: 'json' } }).then(i => i.default),
+      },
+      extraProperties: {
+        'display': 'inline-block',
+        'height': '1.2em',
+        'width': '1.2em',
+        'vertical-align': 'text-bottom',
+      },
     }),
+    presetTypography(),
+    presetWebFonts(),
   ],
-  shortcuts: {
-    // position
-    'common-bg': 'bg-truegray-100 dark:bg-truegray-900',
-    'bg-base': 'bg-white dark:bg-[#141414]',
-    'text-color-base': 'text-black dark:text-white',
-
-    'pr': 'relative',
-    'pa': 'absolute',
-    'pf': 'fixed',
-    'ps': 'sticky',
-
-    // position layout
-    'position-x-center': 'absolute left-1/2 -translate-x-1/2',
-    'pxc': 'position-x-center',
-    'position-y-center': 'absolute top-1/2 -translate-y-1/2',
-    'pyc': 'position-y-center',
-    'position-center': 'position-x-center position-y-center',
-    'pc': 'position-center',
-
-    // size
-    'size-0': 'w-0 h-0',
-    'size-full': 'w-full h-full',
-    'size-screen': 'w-screen h-screen',
-    'size-1/2': 'w-1/2 h-1/2',
-
-    // flex layout
-    'flex-center': 'flex justify-center items-center',
-    'flex-col-center': 'flex-center flex-col',
-    'flex-x-center': 'flex justify-center',
-    'flex-y-center': 'flex items-center',
-  },
-  theme: {},
   transformers: [
     transformerDirectives(),
     transformerVariantGroup(),
   ],
+  content: {
+    pipeline: {
+      include: [
+        // default
+        /\.(vue|[jt]sx|ts)($|\?)/,
+
+        // 参考：https://unocss.dev/guide/extracting#extracting-from-build-tools-pipeline
+      ],
+
+      // exclude files
+      // exclude: []
+    },
+  },
 })

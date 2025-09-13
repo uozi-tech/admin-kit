@@ -6,7 +6,7 @@ import { ref } from 'vue'
 
 // 模拟 API
 const mockApi = {
-  getItem: (id: string) => {
+  getItem: () => {
     return Promise.resolve({
       id: 1,
       name: '张三',
@@ -21,8 +21,8 @@ const mockApi = {
       tags: [1, 2],
     })
   },
-  updateItem: (id: string, data: any) => {
-    console.log('更新数据:', id, data)
+  updateItem: (_id: string, data: any) => {
+    console.error('更新数据:', _id, data)
     return Promise.resolve(data)
   },
 }

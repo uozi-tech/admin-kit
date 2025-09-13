@@ -129,7 +129,7 @@ async function nextStep() {
       handleStepsSubmit()
     }
   }
-  catch (error) {
+  catch {
     message.error('请填写完整表单')
   }
 }

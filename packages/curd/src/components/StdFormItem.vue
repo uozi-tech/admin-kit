@@ -69,6 +69,7 @@ const formItemProps = computed(() => {
   if (!props.formItem)
     return {}
 
+  // eslint-disable-next-line unused-imports/no-unused-vars
   const { required, rules, ...rest } = props.formItem
 
   return rest

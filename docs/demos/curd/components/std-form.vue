@@ -79,7 +79,7 @@ const columns: StdTableColumn[] = [
 ]
 
 function handleSuccess(data) {
-  console.log('保存成功:', data)
+  console.error('保存成功:', data)
   formData.value = data
 }
 

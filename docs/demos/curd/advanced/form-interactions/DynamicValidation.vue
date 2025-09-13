@@ -130,7 +130,7 @@ const validationColumns = computed(() => [
 function handleValidationSubmit() {
   formRef.value?.formRef?.validate().then(() => {
     message.success('验证表单提交成功')
-  }).catch((error) => {
+  }).catch(() => {
     message.error('请填写完整表单')
   })
 }

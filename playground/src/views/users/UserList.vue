@@ -111,7 +111,7 @@ const columns: StdTableColumn[] = [
       formItem: { required: true },
       upload: {
         multiple: false,
-        beforeUpload: (file, fileList, value) => {
+        beforeUpload: () => {
           // 阻止自动上传
           return false
         },
@@ -129,7 +129,6 @@ const columns: StdTableColumn[] = [
 ]
 
 const selectedRowKeys = ref<any[]>([])
-const visible = ref(false)
 </script>
 
 <template>

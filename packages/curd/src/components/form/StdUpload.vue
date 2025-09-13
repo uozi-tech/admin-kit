@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { UploadChangeParam, UploadFile, UploadProps } from 'ant-design-vue'
 import type { FileType } from 'ant-design-vue/es/upload/interface'
-import type { Ref } from 'vue'
 import type { UploadConfig } from '../../types'
 import { DeleteOutlined, FileOutlined, FolderOutlined, InboxOutlined } from '@ant-design/icons-vue'
 import { Button, Flex, Form, FormItemRest, Progress, RadioButton, RadioGroup, UploadDragger } from 'ant-design-vue'
