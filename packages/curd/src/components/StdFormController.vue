@@ -1,7 +1,7 @@
 <script setup lang="tsx">
 import type { Reactive } from 'vue'
 import type { StdTableColumn } from '../types'
-import { get, set } from 'lodash-es'
+import { cloneDeep, get, set } from 'lodash-es'
 import { computed, watch } from 'vue'
 import {
   StdAutoComplete,
@@ -51,9 +51,9 @@ function Render() {
 
   const componentConfig = computed(() => {
     if (isFunction(formConfig?.type) || (isPlainObject(formConfig?.type) && formConfig?.type?.__name)) {
-      return formConfig?.customComponent
+      return cloneDeep(formConfig?.customComponent) || {}
     }
-    return formConfig?.[formConfig?.type]
+    return cloneDeep(formConfig?.[formConfig?.type]) || {}
   })
   const valueKey = computed(() => {
     const key = formConfig?.valueKey ?? formConfig?.formItem?.name ?? dataIndex
@@ -73,6 +73,7 @@ function Render() {
       if (p.mode === 'search') {
         return typeof formConfig.search === 'object' ? defaultValue : undefined
       }
+      console.log(p.mode, defaultValue, formConfig, 'defaultValue')
       return defaultValue
     },
     set: (v) => {
@@ -142,28 +143,31 @@ function Render() {
     )
   }
   else {
+    if (p.mode === 'search' && typeof formConfig.search !== 'object' && componentConfig) {
+      componentConfig.value.defaultValue = undefined
+    }
     switch (formConfig?.type) {
       case 'input':
         return (
           <StdInput
             v-model:value={value.value}
-            props={formConfig?.input}
+            props={componentConfig.value}
             placeholder={placeholder.value}
             disabled={disabled.value}
             onUpdate:value={v => value.value = v}
           />
         )
       case 'inputNumber':
-        return <StdInputNumber v-model:value={value.value} props={formConfig?.inputNumber} placeholder={placeholder.value} disabled={disabled.value} />
+        return <StdInputNumber v-model:value={value.value} props={componentConfig.value} placeholder={placeholder.value} disabled={disabled.value} />
       case 'textarea':
-        return <StdTextarea v-model:value={value.value} props={formConfig?.textarea} placeholder={placeholder.value} disabled={disabled.value} />
+        return <StdTextarea v-model:value={value.value} props={componentConfig.value} placeholder={placeholder.value} disabled={disabled.value} />
       case 'password':
-        return <StdPassword v-model:value={value.value} props={formConfig?.password} placeholder={placeholder.value} disabled={disabled.value} />
+        return <StdPassword v-model:value={value.value} props={componentConfig.value} placeholder={placeholder.value} disabled={disabled.value} />
       case 'select':
         return (
           <StdSelect
             v-model:value={value.value}
-            props={formConfig?.select}
+            props={componentConfig.value}
             placeholder={placeholder.value}
             disabled={disabled.value}
           />
@@ -172,17 +176,17 @@ function Render() {
         return (
           <StdAutoComplete
             v-model:value={value.value}
-            props={formConfig?.autoComplete}
+            props={componentConfig.value}
             placeholder={placeholder.value}
             disabled={disabled.value}
           />
         )
       case 'cascader':
-        return <StdCascader v-model:value={value.value} props={formConfig?.cascader} placeholder={placeholder.value} disabled={disabled.value} />
+        return <StdCascader v-model:value={value.value} props={componentConfig.value} placeholder={placeholder.value} disabled={disabled.value} />
       case 'checkboxGroup':
-        return <StdCheckboxGroup v-model:value={value.value} props={formConfig?.checkboxGroup} placeholder={placeholder.value} disabled={disabled.value} />
+        return <StdCheckboxGroup v-model:value={value.value} props={componentConfig.value} placeholder={placeholder.value} disabled={disabled.value} />
       case 'radioGroup':
-        return <StdRadioGroup v-model:value={value.value} props={formConfig?.radioGroup} placeholder={placeholder.value} disabled={disabled.value} />
+        return <StdRadioGroup v-model:value={value.value} props={componentConfig.value} placeholder={placeholder.value} disabled={disabled.value} />
       case 'date':
       case 'datetime':
       case 'year':
@@ -191,7 +195,7 @@ function Render() {
         return (
           <StdDatePicker
             v-model:value={value.value}
-            props={formConfig[formConfig?.type]}
+            props={componentConfig.value}
             type={formConfig.type}
             placeholder={placeholder.value}
             disabled={disabled.value}
@@ -201,7 +205,7 @@ function Render() {
         return (
           <StdTimePicker
             v-model:value={value.value}
-            props={formConfig?.time as any}
+            props={componentConfig.value}
             placeholder={placeholder.value}
             disabled={disabled.value}
           />
@@ -217,27 +221,27 @@ function Render() {
         return (
           <StdRangePicker
             v-model:value={value.value}
-            props={{ ...formConfig[formConfig?.type], placeholder: undefined }}
+            props={{ ...componentConfig.value, placeholder: undefined }}
             type={pickerType}
             disabled={disabled.value}
           />
         )
       }
       case 'switch':
-        return <StdSwitch v-model:value={value.value} props={formConfig?.switch} disabled={disabled.value} />
+        return <StdSwitch v-model:value={value.value} props={componentConfig.value} disabled={disabled.value} />
       case 'slider':
         return (
           <div style="padding: 0 6px">
-            <StdSlider v-model:value={value.value} props={formConfig?.slider} disabled={disabled.value} />
+            <StdSlider v-model:value={value.value} props={componentConfig.value} disabled={disabled.value} />
           </div>
         )
       case 'rate':
-        return <StdRate v-model:value={value.value} props={formConfig?.rate} disabled={disabled.value} />
+        return <StdRate v-model:value={value.value} props={componentConfig.value} disabled={disabled.value} />
       case 'upload': {
-        return <StdUpload v-model:value={value.value} props={formConfig?.upload} disabled={disabled.value} />
+        return <StdUpload v-model:value={value.value} props={componentConfig.value} disabled={disabled.value} />
       }
       case 'selector': {
-        return <StdSelector v-model:value={value.value} {...formConfig?.selector} placeholder={placeholder.value} disabled={disabled.value} />
+        return <StdSelector v-model:value={value.value} {...componentConfig.value} placeholder={placeholder.value} disabled={disabled.value} />
       }
       default:
         return null

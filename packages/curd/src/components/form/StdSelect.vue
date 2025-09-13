@@ -50,7 +50,6 @@ watch([value, () => p.props], computedOptions, { immediate: true, deep: true })
     :placeholder
     :disabled
     v-bind="props"
-    :default-value="undefined"
     :options="options"
   />
 </template>
