@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.16.8
+
+### Patch Changes
+
+- [`df01ae6`](https://github.com/uozi-tech/admin-kit/commit/df01ae6f7d1c7e3c507c3388dd6a881c4df4df6c) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): update modal body style configuration in StdCurd and UserList components
+
 ## 4.16.7
 
 ### Patch Changes
