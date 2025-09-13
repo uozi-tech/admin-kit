@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.16.6
+
+### Patch Changes
+
+- [`ff19302`](https://github.com/uozi-tech/admin-kit/commit/ff19302b9fe4810a018d01642dac288ae5255b7d) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): remove unnecessary console log in StdFormController for cleaner code
+
 ## 4.16.5
 
 ### Patch Changes
