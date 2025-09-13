@@ -1,5 +1,13 @@
 # @uozi-admin/curd
 
+## 4.16.5
+
+### Patch Changes
+
+- [`7f8b3f9`](https://github.com/uozi-tech/admin-kit/commit/7f8b3f98cb9fecf2e1b62ec2837f9934ec596d00) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): update StdCurd and StdSelect components to handle default values more effectively
+
+- [`59d1879`](https://github.com/uozi-tech/admin-kit/commit/59d18791844a09f2e01659a46393966f594c274f) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): enhance StdFormController and StdSelect components to utilize cloneDeep for better default value handling
+
 ## 4.16.4
 
 ### Patch Changes
