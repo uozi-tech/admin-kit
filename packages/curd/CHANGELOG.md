@@ -1,5 +1,13 @@
 # @uozi-admin/curd
 
+## 4.16.3
+
+### Patch Changes
+
+- [`3e36e02`](https://github.com/uozi-tech/admin-kit/commit/3e36e021eb8f824da11af3c39d11b72b45c221e1) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): enhance value retrieval logic in StdFormController for better default handling
+
+- [`5ab9af4`](https://github.com/uozi-tech/admin-kit/commit/5ab9af4adc64313d5e4c9908be77202048d7b06a) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): allow dynamic modal width in StdCurd component
+
 ## 4.16.2
 
 ### Patch Changes
