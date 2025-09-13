@@ -143,12 +143,51 @@ StdCurd 会自动透传所有以 `col-` 开头的插槽到内部的 StdTable 组
 
 | 属性 | 说明 | 类型 | 默认值 |
 |------|------|------|--------|
-| title | 页面标题 | string | - |
-| api | API 接口对象 | StdApi | - |
+| **基础配置** | | | |
+| title | 页面标题 | string \| (() => string) | - |
+| api | API 接口对象 | CurdApi | - |
 | columns | 列配置 | StdTableColumn[] | - |
-| tableProps | 表格组件属性 | object | - |
-| formProps | 表单组件属性 | object | - |
-| searchProps | 搜索组件属性 | object | - |
+| rowKey | 行数据的 Key | string | 'id' |
+| **组件属性** | | | |
+| detailProps | 详情描述组件属性 | DescriptionsProps | - |
+| formRowProps | 表单行属性 | RowProps | `{ gutter: 16 }` |
+| tableProps | 表格组件属性 | TableProps | - |
+| **表格选择** | | | |
+| rowSelectionType | 选择类型 | 'checkbox' \| 'radio' | - |
+| rowSelection | 表格行选择配置 | TableRowSelection | - |
+| **滚动配置** | | | |
+| scrollX | 表格横向滚动 | number \| string | - |
+| scrollY | 表格纵向滚动 | number \| string | - |
+| **查询参数** | | | |
+| customQueryParams | 自定义查询参数 | Record<string, any> | - |
+| overwriteParams | 覆盖查询参数 | Record<string, any> | - |
+| **模态框配置** | | | |
+| modalWidth | 模态框宽度 | string \| number | - |
+| formClass | 表单样式类 | string \| string[] \| Record<string, boolean> | - |
+| **功能开关** | | | |
+| disableRouterQuery | 禁用路由查询 | boolean | false |
+| disableSearch | 禁用搜索功能 | boolean | false |
+| disableAdd | 禁用新增功能 | boolean | false |
+| disableView | 禁用查看功能 | boolean | false |
+| disableEdit | 禁用编辑功能 | boolean | false |
+| disableDelete | 禁用删除功能 | boolean | false |
+| disableExport | 禁用导出功能 | boolean | false |
+| disableTrash | 禁用回收站功能 | boolean | false |
+| **UI 显示控制** | | | |
+| hideResetBtn | 隐藏重置按钮 | boolean | false |
+| showSearchBtn | 显示搜索按钮 | boolean | false |
+| hideTitle | 隐藏标题 | boolean | false |
+| hideExtra | 隐藏额外内容 | boolean | false |
+| hideHeader | 隐藏头部 | boolean | false |
+| **拖拽功能** | | | |
+| rowDraggable | 启用行拖拽 | boolean | false |
+| rowDraggableOptions | 拖拽配置 | object | - |
+| **扩展渲染** | | | |
+| searchFormExtraRender | 搜索表单扩展渲染 | function | - |
+| **删除确认配置** | | | |
+| deleteConfirmConfig | 删除确认配置 | DeleteConfirmConfig | `{ mode: 'popconfirm' }` |
+| **钩子函数** | | | |
+| beforeSave | 保存前钩子 | (data: Record<string, any>) => Promise<boolean> \| boolean | - |
 
 ### Events
 

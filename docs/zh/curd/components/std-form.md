@@ -37,10 +37,17 @@ const columns = [
 
 | 属性 | 说明 | 类型 | 默认值 |
 |------|------|------|--------|
-| api | API 接口对象 | StdApi | - |
+| **基础配置** | | | |
 | columns | 列配置 | StdTableColumn[] | - |
-| id | 编辑时的记录ID | string \| number | - |
-| initialValues | 初始值 | object | - |
+| mode | 表单模式 | 'add' \| 'edit' | - |
+| layout | 表单布局 | 'horizontal' \| 'vertical' \| 'inline' | - |
+| labelAlign | 标签对齐方式 | 'left' \| 'right' | - |
+| **表单属性** | | | |
+| formClass | 表单样式类 | string \| string[] \| Record<string, boolean> | - |
+| formRowProps | 表单行属性 | RowProps | `{ gutter: 16 }` |
+| errors | 错误信息 | Record<string, string> | - |
+| **数据绑定** | | | |
+| data | 表单数据（v-model） | Record<string, any> | `reactive({})` |
 
 ### Events
 

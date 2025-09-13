@@ -171,10 +171,38 @@ StdTable 提供了多个插槽来自定义表格的不同部分：
 
 | 属性 | 说明 | 类型 | 默认值 |
 |------|------|------|--------|
-| api | API 接口对象 | StdApi | - |
+| **基础配置** | | | |
+| getListApi | 获取列表的 API 方法 | CurdApi['getList'] | - |
 | columns | 列配置 | StdTableColumn[] | - |
-| searchParams | 搜索参数 | object | - |
-| rowSelection | 行选择配置 | object | - |
+| **表格属性** | | | |
+| tableProps | 表格组件属性 | TableProps | - |
+| **查询参数** | | | |
+| customQueryParams | 自定义查询参数 | Record<string, any> | - |
+| overwriteParams | 覆盖查询参数 | Record<string, any> | - |
+| **表格选择** | | | |
+| rowSelectionType | 选择类型 | 'checkbox' \| 'radio' | - |
+| rowSelection | 表格行选择配置 | TableRowSelection | - |
+| **功能开关** | | | |
+| disableRouterQuery | 禁用路由查询 | boolean | false |
+| disableView | 禁用查看功能 | boolean | false |
+| disableEdit | 禁用编辑功能 | boolean | false |
+| disableSearch | 禁用搜索功能 | boolean | false |
+| disableDelete | 禁用删除功能 | boolean | false |
+| disableTrash | 禁用回收站功能 | boolean | false |
+| **拖拽功能** | | | |
+| rowDraggable | 启用行拖拽 | boolean | false |
+| rowDraggableOptions | 拖拽配置 | object | - |
+| **UI 显示控制** | | | |
+| hideResetBtn | 隐藏重置按钮 | boolean | false |
+| showSearchBtn | 显示搜索按钮 | boolean | undefined |
+| **扩展渲染** | | | |
+| searchFormExtraRender | 搜索表单扩展渲染 | function | - |
+| **删除确认配置** | | | |
+| deleteConfirmConfig | 删除确认配置 | DeleteConfirmConfig | - |
+| **刷新配置** | | | |
+| refreshConfig | 刷新配置 | { timestamp: number, reset?: boolean } | - |
+| onlyQuery | 仅查询模式 | boolean | false |
+| isTrash | 是否为回收站模式 | boolean | false |
 
 ### Events
 

@@ -95,9 +95,13 @@ const handleImport = () => {
 
 | 属性 | 说明 | 类型 | 默认值 |
 |------|------|------|--------|
+| **基础配置** | | | |
 | columns | 列配置 | StdTableColumn[] | - |
-| initialValues | 初始搜索值 | object | - |
-| collapsed | 是否折叠 | boolean | false |
+| data | 搜索数据 | Record<string, any> | - |
+| maxVisibleItems | 最大可见项数 | number | - |
+| **按钮配置** | | | |
+| hideResetBtn | 隐藏重置按钮 | boolean | false |
+| showSearchBtn | 显示搜索按钮 | boolean | - |
 
 ### Events
 
