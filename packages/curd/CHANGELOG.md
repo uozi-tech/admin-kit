@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.16.7
+
+### Patch Changes
+
+- [`4e5929a`](https://github.com/uozi-tech/admin-kit/commit/4e5929a9018799530a38df70ad549b970d07ad22) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): update StdCurd component to conditionally set overflowY style based on bodyHeight
+
 ## 4.16.6
 
 ### Patch Changes
