@@ -414,7 +414,7 @@ const curdConfig = useCurdConfig()
         :closable="!modalLoading"
         :width="props.modalWidth ?? curdConfig.modal.width"
         :title="modalTitle"
-        :body-style="{ height: curdConfig.modal.bodyHeight, overflowY: 'auto', overflowX: 'hidden' }"
+        :body-style="{ height: curdConfig.modal.bodyHeight, overflowY: curdConfig.modal.bodyHeight ? 'auto' : undefined }"
         :mask-closable="false"
       >
         <Spin :spinning="modalLoading">
@@ -466,10 +466,9 @@ const curdConfig = useCurdConfig()
           </Button>
         </template>
       </Modal>
-
       <Modal
         v-model:open="exportVisible"
-        :body-style="{ height: curdConfig.modal.bodyHeight, overflowY: curdConfig.modal.bodyHeight ? 'auto' : undefined, }"
+        :body-style="{ height: curdConfig.modal.bodyHeight, overflowY: curdConfig.modal.bodyHeight ? 'auto' : undefined }"
         :closable="!modalLoading"
         :width="props.modalWidth ?? curdConfig.modal.width"
         :title="t('exportExcel')"

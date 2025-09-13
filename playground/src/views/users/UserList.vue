@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { StdTableColumn } from '@uozi-admin/curd'
-import { StdCurd } from '@uozi-admin/curd'
+import { ConfigProvider, StdCurd } from '@uozi-admin/curd'
 import { ref } from 'vue'
 
 const userApi = {
@@ -185,7 +185,7 @@ const selectedRowKeys = ref<any[]>([])
 </script>
 
 <template>
-  <ConfigProvider :config="{ modal: { bodyHeight: '70vh' } }">
+  <ConfigProvider :config="{ modal: { width: 800 } }">
     <StdCurd
       v-model:selected-row-keys="selectedRowKeys"
       :api="userApi"
