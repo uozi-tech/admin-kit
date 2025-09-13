@@ -73,7 +73,6 @@ function Render() {
       if (p.mode === 'search') {
         return typeof formConfig.search === 'object' ? defaultValue : undefined
       }
-      console.log(p.mode, defaultValue, formConfig, 'defaultValue')
       return defaultValue
     },
     set: (v) => {
