@@ -469,7 +469,7 @@ const curdConfig = useCurdConfig()
 
       <Modal
         v-model:open="exportVisible"
-        :body-style="{ height: curdConfig.modal.bodyHeight, overflowY: 'auto', overflowX: 'hidden' }"
+        :body-style="{ height: curdConfig.modal.bodyHeight, overflowY: curdConfig.modal.bodyHeight ? 'auto' : undefined, }"
         :closable="!modalLoading"
         :width="props.modalWidth ?? curdConfig.modal.width"
         :title="t('exportExcel')"
