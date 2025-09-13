@@ -1,35 +1,57 @@
 {
-  "extends": "@vue/tsconfig/tsconfig.dom.json",
   "compilerOptions": {
-    "composite": true,
-    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
-
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+    "module": "ESNext",
+    "lib": [
+      "ESNext",
+      "DOM",
+      "DOM.Iterable"
+    ],
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": false,
     "resolveJsonModule": true,
-
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "preserve",
+    "jsxImportSource": "vue",
+    "jsxFactory": "h",
+    "jsxFragmentFactory": "Fragment",
+    "allowJs": false,
+    "noImplicitAny": false,
     /* Linting */
     "strict": true,
-    "allowSyntheticDefaultImports": true,
-    "allowImportingTsExtensions": false,
     "noUnusedLocals": false,
     "noUnusedParameters": false,
-    "noEmit": true,
-
+    "noFallthroughCasesInSwitch": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "~/*": [
+        "./src/*"
+      ]
+    },
     "types": [
       "vite/client"
-    ],
-
-    "paths": {
-      "~/*": ["./src/*"]
-    }
+    ]
   },
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
-    "auto-imports.d.ts",
-    "components.d.ts"
+    "src/vite-env.d.ts",
+    "components.d.ts",
+    "auto-imports.d.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
   ],
   "references": [
-    { "path": "./tsconfig.node.json" }
+    {
+      "path": "./tsconfig.node.json"
+    }
   ]
 }
