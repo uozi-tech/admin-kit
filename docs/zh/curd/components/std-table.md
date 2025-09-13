@@ -89,6 +89,78 @@ StdTable 支持通过 slot 自定义列的渲染内容。你可以使用 `#col-{
 
 如果同时定义了 `customRender` 函数和对应的列 slot，`customRender` 函数会优先生效。
 
+## 插槽（Slots）
+
+### 结构插槽
+
+StdTable 提供了多个插槽来自定义表格的不同部分：
+
+```vue
+<template>
+  <StdTable
+    :get-list-api="api.getList"
+    :columns="columns"
+  >
+    <!-- 搜索相关插槽 -->
+    <template #beforeSearch>
+      <div>搜索表单前的自定义内容</div>
+    </template>
+
+    <template #search-actions-left>
+      <a-button>自定义搜索按钮</a-button>
+    </template>
+
+    <template #searchFormAction="{ formData }">
+      <a-button @click="handleCustomAction(formData)">自定义操作</a-button>
+    </template>
+
+    <!-- 表格相关插槽 -->
+    <template #beforeTable>
+      <div>表格前的自定义内容</div>
+    </template>
+
+    <!-- 操作列插槽 -->
+    <template #beforeActions="{ record, column }">
+      <a-button size="small" type="link">自定义操作</a-button>
+    </template>
+
+    <template #afterActions="{ record, column }">
+      <a-button size="small" type="link">更多操作</a-button>
+    </template>
+
+    <!-- 自定义列渲染 -->
+    <template #col-status="{ record, text }">
+      <a-badge
+        :status="text === 1 ? 'success' : 'error'"
+        :text="text === 1 ? '启用' : '禁用'"
+      />
+    </template>
+  </StdTable>
+</template>
+```
+
+### 插槽参数
+
+| 插槽名 | 参数 | 说明 |
+|--------|------|------|
+| beforeSearch | - | 搜索表单前的自定义内容 |
+| search-actions-left | - | 搜索操作按钮左侧的自定义内容 |
+| searchFormAction | `{ formData }` | 搜索表单操作区域的自定义内容 |
+| beforeTable | - | 表格前的自定义内容 |
+| beforeActions | `{ record, column }` | 操作列前的自定义操作按钮 |
+| afterActions | `{ record, column }` | 操作列后的自定义操作按钮 |
+| col-\{dataIndex\} | `{ record, text, value, column, index }` | 自定义列渲染内容 |
+
+### 列插槽参数详解
+
+每个 `col-{dataIndex}` 插槽都会接收以下参数：
+
+- **record**: `any` - 当前行的完整数据对象
+- **text**: `any` - 当前列的值（等同于 `record[dataIndex]`）
+- **value**: `any` - 当前列的值（等同于 `record[dataIndex]`）
+- **column**: `StdTableColumn` - 当前列的配置对象
+- **index**: `number` - 当前行的索引
+
 ## 演示示例
 
 <demo vue="../demos/curd/components/std-table.vue" />

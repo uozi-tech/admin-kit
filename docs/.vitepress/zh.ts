@@ -164,12 +164,12 @@ function sidebarGuide() {
         { text: '高级控件', link: 'form-controls/advanced-controls' },
       ],
     },
-    // {
-    //   text: 'API 参考',
-    //   items: [
-    //     { text: '完整 API 文档', link: 'api-reference' },
-    //   ],
-    // },
+    {
+      text: 'API 参考',
+      items: [
+        { text: 'TS 类型定义', link: 'types' },
+      ],
+    },
   ]
 }
 

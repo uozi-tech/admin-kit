@@ -58,6 +58,11 @@ export default defineConfig({
         '@ant-design/icons-vue',
         '@uozi-admin/curd',
         'vue-router',
+        'mermaid',
+        'cytoscape',
+        'cytoscape-cose-bilkent',
+        '@braintree/sanitize-url',
+        'debug',
       ],
     },
     ssr: {

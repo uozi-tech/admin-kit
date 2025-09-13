@@ -32,13 +32,106 @@ const columns = [
 </script>
 ```
 
-## 自定义列渲染
+## 插槽（Slots）
 
-StdCurd 支持通过 slot 自定义表格列的渲染内容，用法与 StdTable 相同。使用 `#col-{dataIndex}` 格式的 slot 来自定义特定列的渲染。
+### 页面结构插槽
 
-列 slot 会自动透传到内部的 StdTable 组件，支持所有 StdTable 的列渲染功能。
+StdCurd 提供了丰富的插槽来自定义页面的各个部分：
+
+```vue
+<template>
+  <StdCurd
+    :api="api"
+    :columns="columns"
+  >
+    <!-- 标题区域插槽 -->
+    <template #titleLeft>
+      <span>左侧标题内容</span>
+    </template>
+    <template #title>
+      <span>自定义标题</span>
+    </template>
+    <template #titleRight>
+      <span>右侧标题内容</span>
+    </template>
+
+    <!-- 操作按钮区域插槽 -->
+    <template #beforeListActions>
+      <a-button>自定义按钮1</a-button>
+    </template>
+    <template #afterListActions>
+      <a-button>自定义按钮2</a-button>
+    </template>
+
+    <!-- 卡片内容插槽 -->
+    <template #beforeCardBody>
+      <div>卡片内容前的自定义内容</div>
+    </template>
+
+    <!-- 表格相关插槽 -->
+    <template #beforeTable>
+      <div>表格前的自定义内容</div>
+    </template>
+
+    <!-- 操作列插槽 -->
+    <template #beforeActions="{ record, column }">
+      <a-button size="small" type="link">自定义操作</a-button>
+    </template>
+    <template #afterActions="{ record, column }">
+      <a-button size="small" type="link">更多操作</a-button>
+    </template>
+
+    <!-- 表单相关插槽 -->
+    <template #beforeForm="{ record }">
+      <div>表单前的自定义内容</div>
+    </template>
+    <template #afterForm="{ record }">
+      <div>表单后的自定义内容</div>
+    </template>
+
+    <!-- 自定义列渲染 -->
+    <template #col-status="{ record, text }">
+      <a-badge
+        :status="text === 1 ? 'success' : 'error'"
+        :text="text === 1 ? '启用' : '禁用'"
+      />
+    </template>
+  </StdCurd>
+</template>
+```
+
+### 透传的表格插槽
+
+StdCurd 会自动透传所有以 `col-` 开头的插槽到内部的 StdTable 组件，用法与 StdTable 相同。
+
+#### 自定义列渲染
+
+使用 `#col-{dataIndex}` 格式的插槽来自定义特定列的渲染：
+
+```vue
+<template #col-username="{ record, text, value, column, index }">
+  <a-tag color="blue">{{ text }}</a-tag>
+</template>
+```
 
 具体使用参考 [StdTable 自定义列渲染](/zh/curd/components/std-table#自定义列渲染)。
+
+### 插槽参数
+
+| 插槽名 | 参数 | 说明 |
+|--------|------|------|
+| titleLeft | - | 标题左侧内容 |
+| title | - | 自定义标题 |
+| titleRight | - | 标题右侧内容 |
+| beforeListActions | - | 列表操作按钮前的内容 |
+| afterListActions | - | 列表操作按钮后的内容 |
+| beforeCardBody | - | 卡片内容前的自定义内容 |
+| beforeTable | - | 表格前的自定义内容 |
+| beforeActions | `{ record, column }` | 操作列前的自定义操作 |
+| afterActions | `{ record, column }` | 操作列后的自定义操作 |
+| beforeForm | `{ record }` | 表单前的自定义内容 |
+| afterForm | `{ record }` | 表单后的自定义内容 |
+| col-\{dataIndex\} | `{ record, text, value, column, index }` | 自定义列渲染 |
 
 ## 演示示例
 
