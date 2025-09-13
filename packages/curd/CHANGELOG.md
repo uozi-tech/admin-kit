@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.16.4
+
+### Patch Changes
+
+- [`828a549`](https://github.com/uozi-tech/admin-kit/commit/828a54908c244002f4be3ec23ba9a758cd9c473d) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): update modal body style to prevent horizontal overflow in StdCurd component
+
 ## 4.16.3
 
 ### Patch Changes
