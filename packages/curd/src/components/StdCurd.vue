@@ -412,7 +412,7 @@ const curdConfig = useCurdConfig()
         v-model:open="formVisible"
         destroy-on-close
         :closable="!modalLoading"
-        :width="curdConfig.modal.width"
+        :width="props.modalWidth ?? curdConfig.modal.width"
         :title="modalTitle"
         :body-style="{ height: curdConfig.modal.bodyHeight, overflow: 'auto' }"
         :mask-closable="false"
