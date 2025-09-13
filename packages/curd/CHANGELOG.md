@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.16.2
+
+### Patch Changes
+
+- [`add6b0b`](https://github.com/uozi-tech/admin-kit/commit/add6b0b13795f4d8d5e491eef36c92bb5fa6adbc) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): remove debug output from StdForm component
+
 ## 4.16.1
 
 ### Patch Changes
