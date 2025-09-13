@@ -187,7 +187,7 @@ StdCurd 会自动透传所有以 `col-` 开头的插槽到内部的 StdTable 组
 | **删除确认配置** | | | |
 | deleteConfirmConfig | 删除确认配置 | DeleteConfirmConfig | `{ mode: 'popconfirm' }` |
 | **钩子函数** | | | |
-| beforeSave | 保存前钩子 | (data: Record<string, any>) => Promise<boolean> \| boolean | - |
+| beforeSave | 保存前钩子 | (data: Record\<string, any\>) => Promise\<boolean\> \| boolean | - |
 
 ### Events
 
