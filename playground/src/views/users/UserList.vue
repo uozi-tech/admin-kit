@@ -183,7 +183,7 @@ const visible = ref(false)
 </script>
 
 <template>
-  <ConfigProvider :config="{ modal: { width: 800, bodyHeight: '70vh' } }">
+  <ConfigProvider :config="{ modal: { bodyHeight: '70vh' } }">
     <StdCurd
       v-model:selected-row-keys="selectedRowKeys"
       :api="userApi"
