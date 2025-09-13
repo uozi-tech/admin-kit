@@ -15,7 +15,7 @@ import StdTable from './StdTable.vue'
 
 const props = withDefaults(defineProps<StdCurdProps>(), {
   rowKey: 'id',
-  showSearchBtn: false,
+  showSearchBtn: undefined,
   formRowProps: () => ({
     gutter: 16,
   }),

@@ -10,7 +10,11 @@ import '@uozi-admin/curd/dist/index.css'
 import '@uozi-admin/layout-antdv/dist/index.css'
 
 createApp(App)
-  .use(createCosyProCurd())
+  .use(createCosyProCurd({
+    search: {
+      showSearchBtn: true,
+    },
+  }))
   .use(gettext)
   .use(store)
   .use(router)

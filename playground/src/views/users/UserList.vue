@@ -99,7 +99,7 @@ const columns: StdTableColumn[] = [
     search: true,
     edit: {
       type: 'select',
-      select: { options: [{ label: '启用', value: 1 }, { label: '禁用', value: -1 }] },
+      select: { options: [{ label: '启用', value: 1 }, { label: '禁用', value: -1 }], defaultValue: 1 },
       formItem: { rules: [{ required: true }] },
     },
   },

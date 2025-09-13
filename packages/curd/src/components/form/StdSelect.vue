@@ -6,7 +6,7 @@ import { computed, ref, watch } from 'vue'
 import { getPopupContainer } from '../../utils'
 
 const p = defineProps<{
-  props?: SelectConfig
+  props?: Omit<SelectConfig, 'defaultValue'>
   placeholder?: string | number
   disabled?: boolean
 }>()
@@ -50,6 +50,7 @@ watch([value, () => p.props], computedOptions, { immediate: true, deep: true })
     :placeholder
     :disabled
     v-bind="props"
+    :default-value="undefined"
     :options="options"
   />
 </template>
