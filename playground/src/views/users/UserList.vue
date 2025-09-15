@@ -89,6 +89,7 @@ const columns: StdTableColumn[] = [
     dataIndex: 'mobile',
     search: true,
     edit: {
+      disabled: true,
       type: 'input',
       formItem: { rules: [{ required: true }] },
       col: { span: 12 },

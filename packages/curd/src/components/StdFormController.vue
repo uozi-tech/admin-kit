@@ -43,6 +43,9 @@ function Render() {
 
   const placeholder = computed(() => getPlaceholder(p.column, formConfig))
   const disabled = computed(() => {
+    if (p.mode === 'search' && typeof p.column.search !== 'object') {
+      return false
+    }
     if (isFunction(formConfig?.disabled)) {
       return formConfig?.disabled({ formData: p.formData })
     }
