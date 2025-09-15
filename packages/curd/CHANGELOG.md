@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.16.9
+
+### Patch Changes
+
+- [`de719f5`](https://github.com/uozi-tech/admin-kit/commit/de719f5e1e51cf166dc4b2e0f281b33f71914edf) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): adjust disabled state logic in StdFormController and set edit disabled in UserList
+
 ## 4.16.8
 
 ### Patch Changes
