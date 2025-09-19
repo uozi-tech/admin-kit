@@ -4,7 +4,8 @@ import { ConfigProvider, StdCurd } from '@uozi-admin/curd'
 import { ref } from 'vue'
 
 const userApi = {
-  getList: async () => {
+  getList: async (p) => {
+    console.log(p)
     return {
       data: [{
         id: 1,
@@ -183,10 +184,18 @@ const columns: StdTableColumn[] = [
 ]
 
 const selectedRowKeys = ref<any[]>([])
+
+const customQueryParams = ref({
+  name: '张三',
+  role: 1,
+})
 </script>
 
 <template>
   <ConfigProvider :config="{ modal: { width: 800 } }">
+    <AButton @click="customQueryParams.role = -1">
+      {{ customQueryParams.role }}
+    </AButton>
     <StdCurd
       v-model:selected-row-keys="selectedRowKeys"
       :api="userApi"
@@ -194,6 +203,7 @@ const selectedRowKeys = ref<any[]>([])
       row-selection-type="checkbox"
       row-key="id"
       row-draggable
+      :custom-query-params="customQueryParams"
     >
       <template #col-name="{ record }">
         <span class="text-red-500">{{ record.name }}</span>

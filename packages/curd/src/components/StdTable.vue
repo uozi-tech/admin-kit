@@ -50,6 +50,8 @@ onMounted(async () => {
       }
     }
 
+    searchQuery.value = JSON.stringify(searchFormData.value)
+
     initSortable(tableData)
     debouncedListApi()
 
@@ -167,7 +169,7 @@ const searchColumns = computed(() => {
 })
 
 // 搜索表单数据 - 保持简单的响应式管理
-const searchFormData = ref<Record<string, any>>({})
+const searchFormData = ref<Record<string, any>>({ ...props.customQueryParams })
 
 // 监听 search form 数据变化，重置分页并序列化到单一参数
 watch(searchFormData, async (newVal, oldVal) => {
@@ -190,7 +192,7 @@ watch(searchFormData, async (newVal, oldVal) => {
             acc[key] = value
           }
           return acc
-        }, {} as Record<string, any>)
+        }, { ...props.customQueryParams } as Record<string, any>)
 
         // 如果有搜索条件，序列化为 JSON，否则清空
         if (Object.keys(filteredSearch).length > 0) {
@@ -209,6 +211,11 @@ watch(searchFormData, async (newVal, oldVal) => {
     console.error('Error in searchFormData watcher:', error)
   }
 })
+
+// 监听 customQueryParams 变化
+watch(() => props.customQueryParams, (newVal) => {
+  searchFormData.value = { ...searchFormData.value, ...newVal }
+}, { deep: true })
 
 // 初始化标志，避免在初始化期间触发不必要的副作用
 const isInitialized = ref(false)
