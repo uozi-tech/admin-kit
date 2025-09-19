@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.16.10
+
+### Patch Changes
+
+- [`1b265cd`](https://github.com/uozi-tech/admin-kit/commit/1b265cd701a891f18c20633f435cac4e4ab60e05) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): custom route query not sync to route query
+
 ## 4.16.9
 
 ### Patch Changes
