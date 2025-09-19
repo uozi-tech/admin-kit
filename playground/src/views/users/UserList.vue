@@ -52,6 +52,15 @@ const userApi = {
       created_at: '2021-01-01',
     }
   },
+  updateItem: async (id, data) => {
+    console.log(data)
+    return {
+      id: 1,
+      name: '张三',
+      mobile: '13800138000',
+      email: 'zhangsan@example.com',
+    }
+  },
 }
 
 const columns: StdTableColumn[] = [
