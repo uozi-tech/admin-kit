@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.16.11
+
+### Patch Changes
+
+- [`a6ab532`](https://github.com/uozi-tech/admin-kit/commit/a6ab532d6962a77da995fd0525566d43704b3590) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): update payload handling in StdCurd and improve form data reactivity in StdFormController
+
 ## 4.16.10
 
 ### Patch Changes

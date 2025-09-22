@@ -1,5 +1,11 @@
 # @uozi-admin/create-admin
 
+## 1.4.48
+
+### Patch Changes
+
+- [`6991ccd`](https://github.com/uozi-tech/admin-kit/commit/6991ccdbb961aa7f12ea04a2c9d0807b05f7d0b6) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(template): incorrect default language
+
 ## 1.4.47
 
 ### Patch Changes
