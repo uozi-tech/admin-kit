@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.16.12
+
+### Patch Changes
+
+- [`5762db4`](https://github.com/uozi-tech/admin-kit/commit/5762db4107a16605ab95bcb68bfa87c1a386e66a) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): refine value handling in StdFormController and StdSelect, add maskIsNumberKey to SelectConfig, and fixed zero issue
+
 ## 4.16.11
 
 ### Patch Changes
