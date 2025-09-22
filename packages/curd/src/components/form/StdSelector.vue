@@ -90,13 +90,22 @@ async function init() {
   await nextTick()
   const preloadIds = arraylizeValue(value.value).filter(Boolean)
   let filteredValue: any = null
-  if (preloadIds.length && props.getListApi) {
-    const { data } = await props.getListApi({
-      ...props.overwriteParams,
-      [props.valueKey]: preloadIds,
-    })
-    const dataMap = new Map(data.map(item => [get(item, props.valueKey), item]))
-    const preloadedRows = preloadIds.map(id => dataMap.get(id)).filter(Boolean)
+  if (preloadIds.length && (props.preloadedData || props.getListApi)) {
+    // 若提供 preloadedData，则优先用它进行本地匹配；否则走接口
+    let preloadedRows: any[] = []
+    if (props.preloadedData) {
+      const dataset = Array.isArray(props.preloadedData) ? props.preloadedData : [props.preloadedData]
+      const dataMap = new Map(dataset.map(item => [get(item, props.valueKey), item]))
+      preloadedRows = preloadIds.map(id => dataMap.get(id)).filter(Boolean)
+    }
+    else if (props.getListApi) {
+      const { data } = await props.getListApi({
+        ...props.overwriteParams,
+        [props.valueKey]: preloadIds,
+      })
+      const dataMap = new Map(data.map(item => [get(item, props.valueKey), item]))
+      preloadedRows = preloadIds.map(id => dataMap.get(id)).filter(Boolean)
+    }
 
     // 如果启用了 dropUnpreloadable，则过滤掉无法预加载的 valueKey
     if (props.dropUnpreloadable) {
@@ -149,6 +158,7 @@ const { pause, resume } = watchPausable(
   [
     () => value.value,
     () => props.getListApi,
+    () => props.preloadedData,
     () => props.overwriteParams,
     () => props.valueKey,
     () => props.dropUnpreloadable,

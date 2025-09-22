@@ -87,6 +87,7 @@ export type SelectorConfig = {
   overwriteParams?: Record<string, any>
   labelRender?: (row: any) => string
   omitZeroString?: boolean
+  preloadedData?: any | any[]
 } & PlaceholderT & BaseConfig
 
 export type CascaderConfig = Omit<CascaderProps, 'placeholder'> & PlaceholderT & BaseConfig
