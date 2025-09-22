@@ -69,7 +69,7 @@ function Render() {
   const value = computed({
     get: () => {
       const v = get(formData.value, valueKey.value)
-      if (v) {
+      if (v !== undefined) {
         return v
       }
       const defaultValue = formConfig.defaultValue ?? componentConfig.value?.defaultValue

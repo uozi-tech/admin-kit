@@ -55,6 +55,7 @@ export type SelectConfig = Omit<SelectProps, 'placeholder'>
       api: (...args: any[]) => Promise<{ data: any[] }>
     }
     mask?: Record<string | number, any>
+    maskIsNumberKey?: boolean
     valueKey?: string
   } & BaseConfig
 
@@ -66,6 +67,7 @@ export type AutoCompleteConfig = Omit<AutoCompleteProps, 'placeholder'>
       api: (...args: any[]) => Promise<{ data: any[] }>
     }
     mask?: Record<string | number, any>
+    maskIsNumberKey?: boolean
     valueKey?: string
   } & BaseConfig
 
