@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.16.13
+
+### Patch Changes
+
+- [`ae8d1bd`](https://github.com/uozi-tech/admin-kit/commit/ae8d1bdd1f69656972571e22f496f957b62a3f2c) Thanks [@0xJacky](https://github.com/0xJacky)! - feat(curd): add preloading logic in StdSelector to prioritize preloadedData over API calls
+
 ## 4.16.12
 
 ### Patch Changes
