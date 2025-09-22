@@ -91,8 +91,8 @@ defineExpose({
               :form-data="formData"
             >
               <FormControllerRender
+                v-model:form-data="formData"
                 :column="c"
-                :form-data="formData"
                 :mode="mode"
               />
             </StdFormItem>

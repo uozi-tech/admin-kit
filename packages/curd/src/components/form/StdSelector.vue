@@ -14,7 +14,7 @@ const props = withDefaults(
 const emit = defineEmits<{
   (e: 'selectedRecords', records: any[]): void
 }>()
-const value = defineModel<any>('value', { default: reactive([]) })
+const value = defineModel<any>('value', { default: () => reactive([]) })
 const dataColumns = computed(() => {
   return props.columns.filter(item => item.pure)
 })
@@ -73,7 +73,7 @@ function setValue() {
 
 function removeValue(v: any) {
   if (props.selectionType === 'radio') {
-    value.value = ''
+    value.value = undefined
   }
   else {
     value.value = arraylizeValue(value.value).filter(item => item !== v)
@@ -114,7 +114,7 @@ async function init() {
           filteredValue = filteredPreloadIds[0]
         }
         else {
-          filteredValue = props.selectionType === 'radio' ? '' : []
+          filteredValue = props.selectionType === 'radio' ? undefined : []
         }
       }
     }

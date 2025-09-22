@@ -1,8 +1,7 @@
 <script setup lang="tsx">
-import type { Reactive } from 'vue'
 import type { StdTableColumn } from '../types'
 import { cloneDeep, get, set } from 'lodash-es'
-import { computed, watch } from 'vue'
+import { computed, reactive, watch } from 'vue'
 import {
   StdAutoComplete,
   StdCascader,
@@ -26,11 +25,12 @@ import { isFunction, isPlainObject } from '../utils/util'
 import StdTextarea from './form/StdTextarea.vue'
 
 const p = defineProps<{
-  formData: Reactive<Record<string, any>>
   column: StdTableColumn
   formConfigKey?: 'edit' | 'search'
   mode?: 'edit' | 'add' | 'search'
 }>()
+
+const formData = defineModel<Record<string, any>>('formData', { default: reactive({}) })
 
 function Render() {
   const { dataIndex } = p.column
@@ -47,7 +47,7 @@ function Render() {
       return false
     }
     if (isFunction(formConfig?.disabled)) {
-      return formConfig?.disabled({ formData: p.formData })
+      return formConfig?.disabled({ formData: formData.value })
     }
     return formConfig?.disabled
   })
@@ -68,7 +68,7 @@ function Render() {
   })
   const value = computed({
     get: () => {
-      const v = get(p.formData, valueKey.value)
+      const v = get(formData.value, valueKey.value)
       if (v) {
         return v
       }
@@ -79,13 +79,13 @@ function Render() {
       return defaultValue
     },
     set: (v) => {
-      set(p.formData, valueKey.value, v)
+      set(formData.value, valueKey.value, v)
     },
   })
 
   // 回传 form 表单数据
   watch(value, (v) => {
-    set(p.formData, valueKey.value, v)
+    set(formData.value, valueKey.value, v)
   }, { immediate: true, deep: true })
 
   // 字段联动逻辑
@@ -97,7 +97,7 @@ function Render() {
     const dependencyValues = computed(() => {
       const values: Record<string, any> = {}
       dependencies.forEach((dep) => {
-        values[dep] = get(p.formData, dep)
+        values[dep] = get(formData.value, dep)
       })
       return values
     })
@@ -112,7 +112,7 @@ function Render() {
 
       if (hasValidDependencies) {
         try {
-          onChangeHandler(value.value, p.formData, newDependencyValues)
+          onChangeHandler(value.value, formData.value, newDependencyValues)
         }
         catch (error) {
           console.error(error)
@@ -124,11 +124,12 @@ function Render() {
   if (isFunction(formConfig?.type)) {
     // Support custom render function
     return formConfig?.type({
-      formData: p.formData,
+      formData: formData.value,
       column: p.column,
       customComponent: formConfig?.customComponent,
       mode: p.mode,
       disabled: disabled.value,
+      value,
     })
   }
   else if (isPlainObject(formConfig?.type) && formConfig?.type?.__name) {

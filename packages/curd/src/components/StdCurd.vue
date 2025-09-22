@@ -168,10 +168,17 @@ async function handleSave(data: Record<string, any>) {
     }
   }
 
-  const payload = {
-    ...data,
-    ...props.overwriteParams,
-  }
+  const payload = Object.assign({}, props.overwriteParams)
+
+  // 将 data 中的值赋值给 payload，并且将 undefined 的字段设为 null，防止被 axios 拦截器忽略
+  Object.keys(data).forEach((key) => {
+    if (data[key] === undefined) {
+      payload[key] = null
+    }
+    else {
+      payload[key] = data[key]
+    }
+  })
 
   let promise: Promise<unknown> | undefined
   if (mode.value === 'add') {
