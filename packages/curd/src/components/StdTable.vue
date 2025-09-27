@@ -7,7 +7,7 @@ import { HolderOutlined, ReloadOutlined } from '@ant-design/icons-vue'
 import { useRouteQuery } from '@vueuse/router'
 import { Button, Popconfirm, Table } from 'ant-design-vue'
 import { cloneDeep, debounce, get, isArray, isEqual, isNil } from 'lodash-es'
-import { computed, h, nextTick, onMounted, ref, watch } from 'vue'
+import { computed, h, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { getRealContent } from '..'
 import { useLocale } from '../composables'
 import useCurdConfig from '../composables/useCurdConfig'
@@ -261,6 +261,14 @@ function resetSearchForm() {
 
 // 表格数据
 const tableData = ref<Record<string, any>[]>([])
+function isRequestCanceled(error: any): boolean {
+  // Axios v1 通过 AbortController 取消时的标准标识
+  return error?.code === 'ERR_CANCELED'
+}
+// 仅保留最新的一次请求：新的请求到来时中断旧的请求
+let listAbortController: AbortController | null = null
+let latestRequestId = 0
+
 const debouncedListApi = debounce(async () => {
   if (!props.getListApi) {
     return
@@ -276,8 +284,18 @@ const debouncedListApi = debounce(async () => {
     finialParams = curdConfig.listApi.requestFormat(finialParams)
   }
 
+  // 在发起新请求前，取消旧请求
+  if (listAbortController)
+    listAbortController.abort()
+
+  listAbortController = new AbortController()
+  const currentRequestId = ++latestRequestId
+
   try {
-    const res = await props.getListApi(finialParams)
+    const res = await props.getListApi(finialParams, { signal: listAbortController.signal })
+    // 如果该响应不是最新请求的结果，则忽略
+    if (currentRequestId !== latestRequestId)
+      return
     let formattedRes = res
 
     // 格式化响应数据
@@ -319,15 +337,16 @@ const debouncedListApi = debounce(async () => {
       buildIndexMap(tableData.value)
     }
   }
-  catch (error) {
-    console.error('Error in debouncedListApi:', error)
-    // Set tableData to empty array on error to prevent further issues
-    tableData.value = []
+  catch (error: any) {
+    // 取消请求静默忽略；其他错误仅输出精简日志
+    if (!isRequestCanceled(error))
+      console.error('debouncedListApi error:', error?.message || error)
+    // 非取消错误时，为避免闪烁，不清空既有数据
   }
   finally {
-    if (tableLoading?.value !== undefined) {
+    // 仅当这是最新的一次请求时，才结束 loading 状态
+    if (currentRequestId === latestRequestId && tableLoading?.value !== undefined)
       tableLoading.value = false
-    }
   }
 }, 200, { leading: false, trailing: true })
 
@@ -466,6 +485,11 @@ function CustomHeaderRender(props: { node: VNode }) {
 defineExpose({
   refresh: debouncedListApi,
   tableData,
+})
+
+onBeforeUnmount(() => {
+  if (listAbortController)
+    listAbortController.abort()
 })
 
 function SearchFormExtraRender() {

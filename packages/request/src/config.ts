@@ -3,6 +3,8 @@ import { merge } from 'lodash-es'
 
 export type RequestConfig = AxiosRequestConfig & {
   curd?: {
+    /** 是否在同一路径上自动取消前一个 GET 请求，默认 true */
+    autoCancelPrevious?: boolean
     methods?: {
       getList?: Method
       getItem?: Method
