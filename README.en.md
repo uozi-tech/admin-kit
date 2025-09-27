@@ -30,7 +30,7 @@
 - 📦 **Shared Config** - Provides vite shared configuration for quick integration of admin-kit suite
 - 📦 **Scaffolding** - Provides project scaffolding tools for quick integration of admin-kit suite
 - 🎯 **TypeScript** - Written in TypeScript with complete type definitions
-- 🚀 **Latest Tech Stack** - Developed with Vue 3, Vite 6, pnpm and other latest technologies
+- 🚀 **Latest Tech Stack** - Developed with Vue 3, Vite 7, pnpm and other latest technologies
 - 🌍 **Internationalization** - Built-in i18n support
 
 ## 📦 Packages
