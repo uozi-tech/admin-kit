@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.17.0
+
+### Minor Changes
+
+- [`ae2a64b`](https://github.com/uozi-tech/admin-kit/commit/ae2a64b0a12311f11f76aa19f79a77afd9e28e1f) Thanks [@0xJacky](https://github.com/0xJacky)! - feat: implement request cancellation for GET requests
+
 ## 4.16.13
 
 ### Patch Changes
