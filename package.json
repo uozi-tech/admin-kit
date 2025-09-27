@@ -6,7 +6,7 @@
     "dev": "pnpm -F playground dev",
     "build": "tsx scripts/build.ts --parallel",
     "docs:dev": "pnpm -F docs dev",
-    "docs:build": "pnpm -F docs build",
+    "docs:build": "pnpm build && pnpm -F docs build",
     "version-packages": "changeset version",
     "release": "pnpm build && changeset publish",
     "lint": "eslint . --fix",
