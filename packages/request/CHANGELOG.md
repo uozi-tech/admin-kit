@@ -1,5 +1,11 @@
 # @uozi-admin/request
 
+## 2.9.1
+
+### Patch Changes
+
+- [`9175c21`](https://github.com/uozi-tech/admin-kit/commit/9175c21274446163ecf331a7680d434a3f8f707e) Thanks [@0xJacky](https://github.com/0xJacky)! - refactor(request): remove autoCancelPrevious option and related logic from GET request handling
+
 ## 2.9.0
 
 ### Minor Changes
