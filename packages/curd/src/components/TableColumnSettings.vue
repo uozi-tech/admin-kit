@@ -339,4 +339,37 @@ watch(visible, async (newVisible) => {
     }
   }
 }
+
+.dark {
+  .table-column-settings {
+    background: #141414;
+    box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.32), 0 3px 6px -4px rgba(0, 0, 0, 0.48), 0 9px 28px 8px rgba(0, 0, 0, 0.2);
+
+    .settings-header {
+      border-bottom: 1px solid #424242;
+
+      .settings-title {
+        color: rgba(255, 255, 255, 0.85);
+      }
+    }
+
+    .settings-content {
+      .column-list {
+        .column-item {
+          &:hover {
+            background-color: #1f1f1f;
+          }
+
+          .column-drag-handle {
+            color: #595959;
+          }
+        }
+      }
+    }
+
+    .settings-footer {
+      border-top: 1px solid #424242;
+    }
+  }
+}
 </style>
