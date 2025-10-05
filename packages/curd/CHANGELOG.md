@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.17.1
+
+### Patch Changes
+
+- [`db4eae2`](https://github.com/uozi-tech/admin-kit/commit/db4eae2d65bb03eda4f4195dc250d6af4c2ec0ed) Thanks [@0xJacky](https://github.com/0xJacky)! - feat(TableColumnSettings): add dark mode styles
+
 ## 4.17.0
 
 ### Minor Changes
