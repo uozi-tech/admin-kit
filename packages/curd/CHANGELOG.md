@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.17.2
+
+### Patch Changes
+
+- [`f66cd97`](https://github.com/uozi-tech/admin-kit/commit/f66cd972a73618dd580b4af9b51bcb6abec019a1) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): [types] extend FormItemType to include DefineSetupFnComponent for enhanced component definition
+
 ## 4.17.1
 
 ### Patch Changes
