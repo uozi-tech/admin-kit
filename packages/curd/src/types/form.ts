@@ -1,5 +1,5 @@
 import type { ColProps, FormItemProps } from 'ant-design-vue'
-import type { DefineComponent, VNodeChild } from 'vue'
+import type { DefineComponent, DefineSetupFnComponent, VNodeChild } from 'vue'
 import type { JSX } from 'vue/jsx-runtime'
 import type {
   AutoCompleteConfig,
@@ -56,6 +56,7 @@ export type FormItemType
     | JSX.Element
     | VNodeChild
     | DefineComponent<any, any, any>
+    | DefineSetupFnComponent<any, any, any>
 
 export type StdFormItemConfig = Omit<FormItemProps, 'required'> & {
   name?: string | string[]
