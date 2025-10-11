@@ -73,7 +73,7 @@ function setValue() {
 
 function removeValue(v: any) {
   if (props.selectionType === 'radio') {
-    value.value = undefined
+    value.value = ''
   }
   else {
     value.value = arraylizeValue(value.value).filter(item => item !== v)
