@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.17.3
+
+### Patch Changes
+
+- [`5697420`](https://github.com/uozi-tech/admin-kit/commit/569742075d70b218f9481e6a43c24180aaf57d4e) Thanks [@0xJacky](https://github.com/0xJacky)! - fix(curd): update StdSelector to set value as an empty string instead of undefined for radio selection
+
 ## 4.17.2
 
 ### Patch Changes
