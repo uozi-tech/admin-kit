@@ -42,7 +42,7 @@
     "@uozi-admin/shared-config": "^0.4.9",
     "@vue/tsconfig": "^0.8.1",
     "eslint": "^9.37.0",
-    "less": "^4.4.1",
+    "less": "^4.4.2",
     "simple-git-hooks": "^2.13.1",
     "typescript": "^5.9.3",
     "unocss": "^66.5.2",
