@@ -29,8 +29,8 @@
     "typecheck": "vue-tsc --noEmit"
   },
   "peerDependencies": {
-    "unocss": ">=66.5.2",
-    "vite": ">=7.1.9"
+    "unocss": ">=66.5.4",
+    "vite": ">=7.1.10"
   },
   "dependencies": {
     "@vitejs/plugin-vue": "^6.0.1",

@@ -29,7 +29,7 @@
     "pinia": "^3.0.3",
     "pinia-plugin-persistedstate": "^4.5.0",
     "vue": "^3.5.22",
-    "vue-router": "^4.5.1",
+    "vue-router": "^4.6.2",
     "vue3-gettext": "3.0.0-beta.6",
     "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz"
   },
@@ -42,7 +42,7 @@
     "@uozi-admin/shared-config": "^0.4.9",
     "@vue/tsconfig": "^0.8.1",
     "eslint": "^9.37.0",
-    "less": "^4.4.1",
+    "less": "^4.4.2",
     "simple-git-hooks": "^2.13.1",
     "typescript": "^5.9.3",
     "unocss": "^66.5.2",
