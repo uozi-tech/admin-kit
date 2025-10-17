@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.17.4
+
+### Patch Changes
+
+- [`d0383a7`](https://github.com/uozi-tech/admin-kit/commit/d0383a76487152e3fa1c0d84a78cc77d86caafa9) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): improve column initialization logic in TableColumnSettings and StdTable components
+
 ## 4.17.3
 
 ### Patch Changes
