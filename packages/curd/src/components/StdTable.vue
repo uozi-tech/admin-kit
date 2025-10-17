@@ -133,6 +133,7 @@ function onColumnSettingsChange(newColumns: any[]) {
 const dataColumns = computed<any>(() => {
   // 使用列设置的结果，如果没有设置则使用默认的
   const baseColumns = displayColumns.value.length > 0 ? displayColumns.value : computedColumns.value.filter(item => !item?.hiddenInTable)
+
   const cols = baseColumns.map((item: StdTableColumn) => {
     if (item.dataIndex === sortBy.value) {
       switch (order.value) {

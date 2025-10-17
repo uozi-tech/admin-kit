@@ -34,28 +34,56 @@ const storageKey = computed(() => {
 // 初始化列配置
 function initializeColumns() {
   const savedColumnKeys = getSavedConfig()
-  const availableColumns = props.columns.filter(column => !isSystemColumn(column) && !column.hiddenInTable)
+  const availableColumns = props.columns.filter(column => !isSystemColumn(column))
 
   if (savedColumnKeys && savedColumnKeys.length > 0) {
     // 使用保存的配置：基于保存的key数组重新排序和筛选
     const columnsMap = new Map(availableColumns.map(col => [getColumnKey(col), col]))
-    const savedKeysSet = new Set(savedColumnKeys.map(col => col.key))
-    const orderedColumns: StdTableColumn[] = []
 
-    // 按保存的顺序添加已保存的列
-    savedColumnKeys.forEach((col) => {
-      const column = columnsMap.get(col.key)
-      if (column) {
-        column.hiddenInTable = col.hiddenInTable
-        orderedColumns.push(column)
-      }
+    // 创建已保存列的顺序和可见性映射
+    const savedOrderMap = new Map<string, number>()
+    const savedVisibilityMap = new Map<string, boolean>()
+    savedColumnKeys.forEach((col, index) => {
+      savedOrderMap.set(col.key, index)
+      savedVisibilityMap.set(col.key, col.hiddenInTable)
     })
 
-    // 添加新增的列（不在保存配置中的列）
+    // 追踪已处理的保存列索引
+    const processedSavedIndices = new Set<number>()
+    const orderedColumns: StdTableColumn[] = []
+
+    // 遍历原始列顺序，保持新列在原始位置
     availableColumns.forEach((column) => {
       const key = getColumnKey(column)
-      if (!savedKeysSet.has(key as string)) {
-        // 新列默认显示
+      const savedIndex = savedOrderMap.get(key as string)
+
+      if (savedIndex !== undefined) {
+        // 这是一个已保存的列
+        // 检查是否已经被处理过（可能在之前的循环中被插入了）
+        if (processedSavedIndices.has(savedIndex)) {
+          return // 跳过已处理的列
+        }
+
+        // 先插入所有应该在它之前但还未处理的已保存列
+        for (let i = 0; i < savedIndex; i++) {
+          if (!processedSavedIndices.has(i)) {
+            const savedKey = savedColumnKeys[i].key
+            const savedColumn = columnsMap.get(savedKey)
+            if (savedColumn) {
+              savedColumn.hiddenInTable = savedColumnKeys[i].hiddenInTable
+              orderedColumns.push(savedColumn)
+              processedSavedIndices.add(i)
+            }
+          }
+        }
+
+        // 插入当前列
+        column.hiddenInTable = savedVisibilityMap.get(key as string) ?? false
+        orderedColumns.push(column)
+        processedSavedIndices.add(savedIndex)
+      }
+      else {
+        // 这是一个新列，按原始顺序直接插入
         column.hiddenInTable = false
         orderedColumns.push(column)
       }
@@ -65,9 +93,14 @@ function initializeColumns() {
     tempColumns.value = cloneDeep(orderedColumns)
   }
   else {
-    // 首次使用，使用默认配置（过滤掉系统列和隐藏列）
-    localColumns.value = availableColumns
-    tempColumns.value = cloneDeep(availableColumns)
+    // 首次使用，使用默认配置（所有非系统列默认显示）
+    const defaultColumns = availableColumns.map((column) => {
+      const col = cloneDeep(column)
+      col.hiddenInTable = false
+      return col
+    })
+    localColumns.value = defaultColumns
+    tempColumns.value = cloneDeep(defaultColumns)
   }
 }
 
@@ -144,8 +177,14 @@ let sortableInstance: Sortable | null = null
 // 重置列配置
 function resetColumns() {
   const defaultColumns = props.columns
-    .filter(column => !isSystemColumn(column) && !column.hiddenInTable)
-  tempColumns.value = cloneDeep(defaultColumns)
+    .filter(column => !isSystemColumn(column))
+    .map((column) => {
+      // 重置时所有列都默认显示
+      const col = cloneDeep(column)
+      col.hiddenInTable = false
+      return col
+    })
+  tempColumns.value = defaultColumns
 }
 
 function getPopupContainer(triggerNode?: Element) {
