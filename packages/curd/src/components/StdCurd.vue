@@ -31,6 +31,7 @@ const emit = defineEmits<{
   (e: 'deleteItemTemporarily', record: any): void
   (e: 'restoreItem', record: any): void
   (e: 'deleteItemPermanently', record: any): void
+  (e: 'resetSearchForm'): void
 }>()
 
 const { t } = useLocale()
@@ -363,6 +364,7 @@ const curdConfig = useCurdConfig()
         @delete-item-temporarily="row => handleDataById(ApiActions.DELETE_ITEM_TEMPORARY, row)"
         @delete-item-permanently="row => handleDataById(ApiActions.DELETE_ITEM_PERMANENTLY, row)"
         @restore-item="row => handleDataById(ApiActions.RESTORE_ITEM, row)"
+        @reset-search-form="emit('resetSearchForm')"
       >
         <!-- 透传所有列 slot -->
         {{ colSlots }}

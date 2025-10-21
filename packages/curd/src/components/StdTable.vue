@@ -27,6 +27,7 @@ const emit = defineEmits<{
   (e: 'deleteItemTemporarily', record: any): void
   (e: 'restoreItem', record: any): void
   (e: 'deleteItemPermanently', record: any): void
+  (e: 'resetSearchForm'): void
 }>()
 
 const { tableId, initSortable, buildIndexMap, resetIndexMap } = useDraggableTable(props.rowDraggableOptions)
@@ -252,6 +253,7 @@ watch(() => props.refreshConfig, () => {
 
 // 重置搜索表单
 function resetSearchForm() {
+  emit('resetSearchForm')
   if (Object.keys(searchFormData.value).length === 0)
     return
 
