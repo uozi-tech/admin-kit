@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.18.0
+
+### Minor Changes
+
+- [`d117d9d`](https://github.com/uozi-tech/admin-kit/commit/d117d9d706d70e7e224bb0bde7a16e1a95de2a5c) Thanks [@akinoccc](https://github.com/akinoccc)! - feat(curd): add resetSearchForm event to StdCurd and StdTable components
+
 ## 4.17.4
 
 ### Patch Changes
