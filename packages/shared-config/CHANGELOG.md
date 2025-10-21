@@ -1,5 +1,11 @@
 # @uozi-admin/shared-config
 
+## 0.4.10
+
+### Patch Changes
+
+- [`be094fc`](https://github.com/uozi-tech/admin-kit/commit/be094fc434cd01f45e142f8d14d7c1de961e2671) Thanks [@akinoccc](https://github.com/akinoccc)! - chore(deps): update vite-plugin-vue-devtools to version 8.0.3 and remove deprecated dependencies from pnpm-lock.yaml
+
 ## 0.4.9
 
 ### Patch Changes
