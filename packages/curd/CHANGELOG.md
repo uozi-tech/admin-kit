@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.18.2
+
+### Patch Changes
+
+- [`9d675a2`](https://github.com/uozi-tech/admin-kit/commit/9d675a25770008c2b024dd52664478a65ff65032) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): remove hiddenInTable property handling in StdTable and TableColumnSettings components
+
 ## 4.18.1
 
 ### Patch Changes
