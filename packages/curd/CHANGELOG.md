@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.18.1
+
+### Patch Changes
+
+- [`c46e3e7`](https://github.com/uozi-tech/admin-kit/commit/c46e3e7f92c4c6c720421c6d2f8a8743cbcfd947) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): filter out hidden columns in StdTable component
+
 ## 4.18.0
 
 ### Minor Changes
