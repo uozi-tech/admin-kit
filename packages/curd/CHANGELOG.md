@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.18.4
+
+### Patch Changes
+
+- [`57dd8db`](https://github.com/uozi-tech/admin-kit/commit/57dd8dbe51e0035db640d4dc5c3f124f6a130192) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): simplify column initialization by using availableColumns directly
+
 ## 4.18.3
 
 ### Patch Changes
