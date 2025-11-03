@@ -84,7 +84,6 @@ function initializeColumns() {
       }
       else {
         // 这是一个新列，按原始顺序直接插入
-        column.hiddenInTable = false
         orderedColumns.push(column)
       }
     })

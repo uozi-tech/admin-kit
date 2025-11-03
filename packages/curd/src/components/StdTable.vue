@@ -120,7 +120,6 @@ const displayColumns = ref<any[]>([])
 
 const computedColumns = computed(() => {
   return props.columns
-    .filter(item => !item?.hiddenInTable)
     .map(item => ({
       ...item,
       title: getRealContent(item.title),

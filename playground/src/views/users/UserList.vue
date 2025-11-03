@@ -94,6 +94,7 @@ const columns: StdTableColumn[] = [
     search: {
       type: 'dateRange',
     },
+    hiddenInTable: true,
   },
   {
     title: '日期范围',
