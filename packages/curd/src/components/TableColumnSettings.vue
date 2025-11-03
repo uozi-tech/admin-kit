@@ -92,14 +92,8 @@ function initializeColumns() {
     tempColumns.value = cloneDeep(orderedColumns)
   }
   else {
-    // 首次使用，使用默认配置（所有非系统列默认显示）
-    const defaultColumns = availableColumns.map((column) => {
-      const col = cloneDeep(column)
-      col.hiddenInTable = false
-      return col
-    })
-    localColumns.value = defaultColumns
-    tempColumns.value = cloneDeep(defaultColumns)
+    localColumns.value = availableColumns
+    tempColumns.value = availableColumns
   }
 }
 
