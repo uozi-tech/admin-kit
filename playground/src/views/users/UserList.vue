@@ -80,11 +80,19 @@ const columns: StdTableColumn[] = [
         displayKey: 'name',
       },
     },
+    hiddenInTable: true,
     sorter: true,
     edit: {
       type: 'input',
       formItem: { rules: [{ required: true }] },
       col: { span: 12 },
+    },
+  },
+  {
+    title: '日期范围24',
+    dataIndex: 'date_range225',
+    search: {
+      type: 'dateRange',
     },
   },
   {
