@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.18.3
+
+### Patch Changes
+
+- [`e3d0153`](https://github.com/uozi-tech/admin-kit/commit/e3d015309f3fbc16caf3aec4185408f949934289) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): failed to release v4.18.2
+
 ## 4.18.2
 
 ### Patch Changes
