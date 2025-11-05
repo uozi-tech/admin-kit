@@ -154,6 +154,9 @@ importers:
       prompts:
         specifier: ^2.4.2
         version: 2.4.2
+      typescript:
+        specifier: 5.9.3
+        version: 5.9.3
       unbuild:
         specifier: ^3.6.1
         version: 3.6.1(typescript@5.9.3)(vue-tsc@2.2.10(typescript@5.9.3))(vue@3.5.22(typescript@5.9.3))

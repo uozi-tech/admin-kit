@@ -38,6 +38,7 @@
     "ora": "^9.0.0",
     "picocolors": "^1.1.1",
     "prompts": "^2.4.2",
+    "typescript": "5.9.3",
     "unbuild": "^3.6.1"
   }
 }

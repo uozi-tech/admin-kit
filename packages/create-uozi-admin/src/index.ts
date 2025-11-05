@@ -203,15 +203,15 @@ async function createProject(options: {
       }
     }
 
-    // 异步读取模板文件
-    const files = await fs.readdir(templateDir)
-    for (const file of files.filter(f => f !== 'package.json')) {
+    // 异步读取模板文件（确保以字符串编码返回，避免 Buffer 联合类型）
+    const files = await fs.readdir(templateDir, { encoding: 'utf8' })
+    for (const file of files.filter((f): f is string => typeof f === 'string' && f !== 'package.json')) {
       await write(file) // 异步写入文件
     }
 
     // 异步读取并修改 package.json
     const pkg = JSON.parse(
-      await fs.readFile(path.join(templateDir, 'package.json'), 'utf-8') as string, // 异步读取文件
+      await fs.readFile(path.join(templateDir, 'package.json'), 'utf8'), // 异步读取文件
     )
 
     pkg.name = packageName || getProjectName(options.targetDir)
