@@ -87,18 +87,77 @@ catch {
   pageSizeParam = 'pageSize'
 }
 
-const currentPage = useRouteQuery(currentPageParam, 1, {
+// 路由参数与内部状态的双轨实现：当禁用路由时走内部 ref
+const currentPageRoute = useRouteQuery(currentPageParam, 1, {
   transform: Number,
   mode: 'replace',
 })
-const currentPageSize = useRouteQuery(pageSizeParam, 20, {
+const currentPageSizeRoute = useRouteQuery(pageSizeParam, 20, {
   transform: Number,
   mode: 'replace',
+})
+const currentPageRef = ref<number>(1)
+const currentPageSizeRef = ref<number>(20)
+const currentPage = computed<number>({
+  get: () => (props.disableRouterQuery ? currentPageRef.value : currentPageRoute.value),
+  set: (val: number) => {
+    if (props.disableRouterQuery)
+      currentPageRef.value = val
+    else
+      currentPageRoute.value = val
+  },
+})
+const currentPageSize = computed<number>({
+  get: () => (props.disableRouterQuery ? currentPageSizeRef.value : currentPageSizeRoute.value),
+  set: (val: number) => {
+    if (props.disableRouterQuery)
+      currentPageSizeRef.value = val
+    else
+      currentPageSizeRoute.value = val
+  },
 })
 
-// 使用 useRouteQuery 管理排序参数
-const sortBy = useRouteQuery<string | undefined>('sort_by', undefined, { mode: 'replace' })
-const order = useRouteQuery<string | undefined>('order', undefined, { mode: 'replace' })
+// 排序参数：禁用路由时使用内部 ref
+const sortByRoute = useRouteQuery<string | undefined>('sort_by', undefined, { mode: 'replace' })
+const orderRoute = useRouteQuery<string | undefined>('order', undefined, { mode: 'replace' })
+const sortByRef = ref<string | undefined>(undefined)
+const orderRef = ref<string | undefined>(undefined)
+const sortBy = computed<string | undefined>({
+  get: () => (props.disableRouterQuery ? sortByRef.value : sortByRoute.value),
+  set: (val: string | undefined) => {
+    if (props.disableRouterQuery)
+      sortByRef.value = val
+    else
+      sortByRoute.value = val
+  },
+})
+const order = computed<string | undefined>({
+  get: () => (props.disableRouterQuery ? orderRef.value : orderRoute.value),
+  set: (val: string | undefined) => {
+    if (props.disableRouterQuery)
+      orderRef.value = val
+    else
+      orderRoute.value = val
+  },
+})
+
+// 当禁用开关切换时，同步当前值，避免状态跳变
+watch(() => props.disableRouterQuery, (disabled) => {
+  if (disabled) {
+    currentPageRef.value = currentPageRoute.value
+    currentPageSizeRef.value = currentPageSizeRoute.value
+    sortByRef.value = sortByRoute.value
+    orderRef.value = orderRoute.value
+    searchQueryRef.value = searchQueryRoute.value
+  }
+  else {
+    currentPageRoute.value = currentPageRef.value
+    currentPageSizeRoute.value = currentPageSizeRef.value
+    sortByRoute.value = sortByRef.value
+    orderRoute.value = orderRef.value
+    searchQueryRoute.value = searchQueryRef.value
+  }
+})
 
 // 分页数据总数
 const paginationTotal = ref<number>(0)
@@ -185,28 +244,26 @@ watch(searchFormData, async (newVal, oldVal) => {
     // 重置分页
     currentPage.value = 1
 
-    // 同步搜索参数到路由
-    if (!props.disableRouterQuery) {
-      try {
-        // 过滤掉空值
-        const filteredSearch = Object.entries(newVal).reduce((acc, [key, value]) => {
-          if (value !== '' && value !== undefined && value !== null) {
-            acc[key] = value
-          }
-          return acc
-        }, { ...props.customQueryParams } as Record<string, any>)
+    // 同步搜索参数到状态（路由或内部）
+    try {
+      // 过滤掉空值
+      const filteredSearch = Object.entries(newVal).reduce((acc, [key, value]) => {
+        if (value !== '' && value !== undefined && value !== null) {
+          acc[key] = value
+        }
+        return acc
+      }, { ...props.customQueryParams } as Record<string, any>)
 
-        // 如果有搜索条件，序列化为 JSON，否则清空
-        if (Object.keys(filteredSearch).length > 0) {
-          searchQuery.value = JSON.stringify(filteredSearch)
-        }
-        else {
-          searchQuery.value = ''
-        }
+      // 如果有搜索条件，序列化为 JSON，否则清空
+      if (Object.keys(filteredSearch).length > 0) {
+        searchQuery.value = JSON.stringify(filteredSearch)
       }
-      catch (serializeError) {
-        console.error('Error serializing search parameters:', serializeError)
+      else {
+        searchQuery.value = ''
       }
+    }
+    catch (serializeError) {
+      console.error('Error serializing search parameters:', serializeError)
     }
   }
   catch (error) {
@@ -222,8 +279,18 @@ watch(() => props.customQueryParams, (newVal) => {
 // 初始化标志，避免在初始化期间触发不必要的副作用
 const isInitialized = ref(false)
 
-// 使用单一的 search 参数存储所有搜索条件
-const searchQuery = useRouteQuery<string>('search', '', { mode: 'replace' })
+// 使用单一的 search 参数存储所有搜索条件（禁用路由时使用内部 ref）
+const searchQueryRoute = useRouteQuery<string>('search', '', { mode: 'replace' })
+const searchQueryRef = ref<string>('')
+const searchQuery = computed<string>({
+  get: () => (props.disableRouterQuery ? searchQueryRef.value : searchQueryRoute.value),
+  set: (val: string) => {
+    if (props.disableRouterQuery)
+      searchQueryRef.value = val
+    else
+      searchQueryRoute.value = val
+  },
+})
 
 const apiParams = computed(() => {
   const overwriteParams = cloneDeep(props.overwriteParams)
