@@ -14,10 +14,10 @@
     "@uozi-admin/layout-antdv": "workspace:*",
     "@uozi-admin/request": "workspace:*",
     "ant-design-vue": "^4.2.6",
-    "dayjs": "^1.11.18",
+    "dayjs": "^1.11.19",
     "pinia": "^3.0.3",
     "vue": "^3.5.22",
-    "vue-router": "^4.6.2",
+    "vue-router": "^4.6.3",
     "vue3-gettext": "4.0.0-beta.1"
   },
   "devDependencies": {
