@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.18.5
+
+### Patch Changes
+
+- [`4453192`](https://github.com/uozi-tech/admin-kit/commit/445319247487a5fa6a10a2f2b2ca1ba6672ebdb6) Thanks [@0xJacky](https://github.com/0xJacky)! - fix(table): dual-track state management for query with optional router integration
+
 ## 4.18.4
 
 ### Patch Changes
