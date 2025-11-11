@@ -22,7 +22,7 @@
     "@ant-design/icons-vue": "^7.0.1",
     "@uozi-admin/curd": "workspace:*",
     "@uozi-admin/layout-antdv": "workspace:*",
-    "@vueuse/router": "^13.9.0",
+    "@vueuse/router": "^14.0.0",
     "ant-design-vue": "^4.2.6",
     "dayjs": "^1.11.19",
     "lodash-es": "^4.17.21",
