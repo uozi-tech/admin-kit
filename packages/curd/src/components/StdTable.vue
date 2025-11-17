@@ -183,6 +183,7 @@ const computedColumns = computed(() => {
       ...item,
       title: getRealContent(item.title),
     }))
+    .filter(item => !item?.hiddenInTable)
 })
 
 // 处理列设置变化
