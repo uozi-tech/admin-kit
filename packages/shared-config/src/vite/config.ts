@@ -6,7 +6,7 @@ import { configVitePlugins } from './plugins'
 
 export async function createApplicationViteConfig(mode: string, root: string, pluginsOptions: PluginsCustomOptions): Promise<UserConfig> {
   const env = loadEnv(mode, root, '')
-  const plugins = configVitePlugins(pluginsOptions)
+  const plugins = await configVitePlugins(pluginsOptions)
 
   const applicationConfig: UserConfig = {
     resolve: {

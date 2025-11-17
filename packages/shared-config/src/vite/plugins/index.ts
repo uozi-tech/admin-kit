@@ -8,7 +8,7 @@ import { createUnoCSSPluginConfig } from './unocss'
 import { createAutoImportPluginConfig } from './unpluginAutoImport'
 import { createVueComponentsPluginConfig } from './unpluginVueComponents'
 
-export function configVitePlugins(pluginOptions: PluginsCustomOptions = {}): (PluginOption | PluginOption[])[] {
+export async function configVitePlugins(pluginOptions: PluginsCustomOptions = {}): Promise<(PluginOption | PluginOption[])[]> {
   const vitePlugins: (PluginOption | PluginOption[])[] = []
 
   // Add the Vue plugin.
@@ -35,7 +35,10 @@ export function configVitePlugins(pluginOptions: PluginsCustomOptions = {}): (Pl
 
   // Add the vue dev tools plugin
   // https://github.com/webfansplz/vite-plugin-vue-devtools
-  pluginOptions.devTools !== false && vitePlugins.push(createVueDevToolsPluginConfig(pluginOptions.devTools))
+  // 使用动态导入避免在 CI 环境中加载配置文件时访问 localStorage
+  if (pluginOptions.devTools !== false) {
+    vitePlugins.push(await createVueDevToolsPluginConfig(pluginOptions.devTools))
+  }
 
   return vitePlugins
 }
