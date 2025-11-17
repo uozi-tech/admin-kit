@@ -44,6 +44,7 @@ export default createViteConfig({
   pluginOptions: {
     vueComponents: false,
     autoImport: false,
+    devTools: false, // 禁用 DevTools，避免在构建库时访问 localStorage
     unocss: {
       mode: 'vue-scoped',
     },
