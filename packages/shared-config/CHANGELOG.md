@@ -1,5 +1,11 @@
 # @uozi-admin/shared-config
 
+## 0.4.11
+
+### Patch Changes
+
+- [`206ed2d`](https://github.com/uozi-tech/admin-kit/commit/206ed2d56ff3134a6f400d0a449cf4598523a781) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(shared-config): update Vite plugin configuration to use async functions for dynamic imports and prevent localStorage access errors
+
 ## 0.4.10
 
 ### Patch Changes
