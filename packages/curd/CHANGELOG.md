@@ -1,5 +1,13 @@
 # @uozi-admin/curd
 
+## 4.18.6
+
+### Patch Changes
+
+- [`51d8703`](https://github.com/uozi-tech/admin-kit/commit/51d870305362492deb96b44264ae20ea4f18ba4c) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(curd): filter out hidden columns in StdTable component
+
+- [`5a74d2f`](https://github.com/uozi-tech/admin-kit/commit/5a74d2f2f0a4cd477995d6cf848c5529f95e3b95) Thanks [@0xJacky](https://github.com/0xJacky)! - fix(table): dual-track state management for query with optional router integration
+
 ## 4.18.5
 
 ### Patch Changes
