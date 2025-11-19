@@ -1,5 +1,11 @@
 # @uozi-admin/layout-antdv
 
+## 1.3.0
+
+### Minor Changes
+
+- [`a1b6d91`](https://github.com/uozi-tech/admin-kit/commit/a1b6d915b3b68d44cfd5b83a77975c695987202e) Thanks [@0xJacky](https://github.com/0xJacky)! - feat: add back navigation support to PageHeader and Layout components
+
 ## 1.2.10
 
 ### Patch Changes
