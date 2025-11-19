@@ -20,7 +20,7 @@
     "@ant-design/icons-vue": "^7.0.1",
     "@iconify-json/tabler": "^1.2.23",
     "@uozi-admin/curd": "^4.18.1",
-    "@uozi-admin/layout-antdv": "^1.2.10",
+    "@uozi-admin/layout-antdv": "^1.3.0",
     "@uozi-admin/request": "^2.9.1",
     "@vueuse/core": "^14.0.0",
     "ant-design-vue": "^4.2.6",
