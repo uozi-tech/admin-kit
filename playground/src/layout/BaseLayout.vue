@@ -43,6 +43,8 @@ const sidebarItems = computed<SidebarItem[]>(() => {
     :sidebar-items="sidebarItems"
     :languages="languageAvailable"
     :current-language="gettext.current"
+    page-title="aa"
+    :back="() => {}"
     @toggle-theme="toggleTheme"
     @change-language="changeLanguage"
   >

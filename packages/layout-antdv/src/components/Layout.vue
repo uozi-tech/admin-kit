@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { MouseEventHandler } from 'ant-design-vue/es/_util/EventInterface'
 import type { AppBreadcrumbItem, Languages, LanguageValue, SidebarItem, Text, Theme } from '../props'
 import { Layout, LayoutContent, LayoutFooter, LayoutHeader } from 'ant-design-vue'
 import { provide, ref } from 'vue'
@@ -27,6 +28,7 @@ withDefaults(
     showLanguageSelect?: boolean
     currentLanguage?: LanguageValue
     languages?: Languages
+    back?: MouseEventHandler
   }>(),
   {
     siteTitle: 'Admin Dashboard',
@@ -128,6 +130,7 @@ provide('breadList', breadList)
           <PageHeader
             v-if="showPageHeader && pageTitle"
             :page-title="getRealTitle(pageTitle)"
+            :back="back"
           >
             <slot name="page-header-extra" />
           </PageHeader>
