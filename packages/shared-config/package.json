@@ -29,15 +29,15 @@
     "typecheck": "vue-tsc --noEmit"
   },
   "peerDependencies": {
-    "unocss": ">=66.5.4",
-    "vite": ">=7.1.12"
+    "unocss": ">=66.5.9",
+    "vite": ">=7.2.4"
   },
   "dependencies": {
-    "@vitejs/plugin-vue": "^6.0.1",
-    "@vitejs/plugin-vue-jsx": "^5.1.1",
+    "@vitejs/plugin-vue": "^6.0.2",
+    "@vitejs/plugin-vue-jsx": "^5.1.2",
     "unplugin-auto-import": "^20.2.0",
     "unplugin-vue-components": "^29.2.0",
     "unplugin-vue-define-options": "^3.1.1",
-    "vite-plugin-vue-devtools": "^8.0.3"
+    "vite-plugin-vue-devtools": "^8.0.5"
   }
 }

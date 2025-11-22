@@ -34,7 +34,7 @@
   "peerDependencies": {
     "@ant-design/icons-vue": "^7.0.1",
     "ant-design-vue": "^4.2.6",
-    "vue": "^3.5.22",
+    "vue": "^3.5.24",
     "vue-router": "^4.6.3",
     "lodash-es": "^4.17.21"
   },
