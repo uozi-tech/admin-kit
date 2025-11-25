@@ -65,6 +65,8 @@ const columns: StdTableColumn[] = [
         ],
       },
     },
+    customRender: ({ value }) =>
+      value?.map(role => h(Tag, { color: 'blue', key: role }, () => role)),
   },
   { title: '操作', dataIndex: 'actions' },
 ]
