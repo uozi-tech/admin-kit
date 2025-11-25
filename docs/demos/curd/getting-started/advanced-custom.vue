@@ -66,6 +66,7 @@ const columns: StdTableColumn[] = [
       },
     },
   },
+  { title: '操作', dataIndex: 'actions' },
 ]
 </script>
 

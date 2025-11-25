@@ -50,6 +50,7 @@ const columns: StdTableColumn[] = [
     }, // 👈 表单使用开关控件
   },
   { title: '创建时间', dataIndex: 'created_at' },
+  { title: '操作', dataIndex: 'actions' },
 ]
 </script>
 
