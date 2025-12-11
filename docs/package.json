@@ -10,7 +10,7 @@
   },
   "author": "Akino",
   "devDependencies": {
-    "glob": "^11.0.3",
+    "glob": "^13.0.0",
     "mermaid": "^11.12.2",
     "postcss": "^8.5.6",
     "tsx": "^4.21.0",
