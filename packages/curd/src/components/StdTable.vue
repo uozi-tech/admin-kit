@@ -15,6 +15,7 @@ import useDraggableTable from '../composables/useDraggableTable'
 import DeleteConfirmModal from './DeleteConfirmModal.vue'
 import StdSearch from './StdSearch.vue'
 import TableColumnSettings from './TableColumnSettings.vue'
+import TableTopScrollbar from './TableTopScrollbar.vue'
 
 const props = withDefaults(defineProps<StdTableProps>(), {
   showSearchBtn: undefined,
@@ -607,6 +608,7 @@ function SearchFormExtraRender() {
       </template>
     </StdSearch>
     <slot name="beforeTable" />
+    <TableTopScrollbar />
     <Table
       :id="`std-table-${tableId}`"
       v-model:pagination="pagination"

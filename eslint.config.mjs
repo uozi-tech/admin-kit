@@ -43,4 +43,5 @@ export default antfu({
   'antfu/no-import-dist': 'off',
   'unused-imports/no-unused-vars': 'warn',
   'unused-imports/no-unused-imports': 'warn',
+  'pnpm/json-valid-catalog': 'off',
 })

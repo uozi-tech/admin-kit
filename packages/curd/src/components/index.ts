@@ -6,6 +6,7 @@ import StdFormItem from './StdFormItem.vue'
 import StdPagination from './StdPagination.vue'
 import StdSearch from './StdSearch.vue'
 import StdTable from './StdTable.vue'
+import TableTopScrollbar from './TableTopScrollbar.vue'
 
 export * from './ConfigProvider'
 export * from './form'
@@ -19,4 +20,5 @@ export {
   StdPagination,
   StdSearch,
   StdTable,
+  TableTopScrollbar,
 }
