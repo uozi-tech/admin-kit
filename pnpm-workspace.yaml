@@ -1,5 +1,19 @@
+catalogMode: prefer
+shellEmulator: true
+trustPolicy: no-downgrade
+
 packages:
   - 'packages/*'
   - '!packages/create-admin/template'
   - playground
   - docs
+
+onlyBuiltDependencies:
+  - core-js
+  - esbuild
+  - simple-git-hooks
+  - typescript
+  - vite
+  - vitest
+  - vue
+  - vue-tsc
