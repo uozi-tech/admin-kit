@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.19.0
+
+### Minor Changes
+
+- [`9d34f2e`](https://github.com/uozi-tech/admin-kit/commit/9d34f2efb3bde28d5ba356644a52a7f883b3e1df) Thanks [@0xJacky](https://github.com/0xJacky)! - feat(curd): add TableTopScrollbar component
+
 ## 4.18.6
 
 ### Patch Changes
