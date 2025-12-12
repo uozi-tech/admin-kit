@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { nextTick, onMounted, onUnmounted, ref } from 'vue'
 /**
  * 表格顶部滚动条组件
  * 用于在表格顶部显示一个横向滚动条，与表格内容同步滚动
