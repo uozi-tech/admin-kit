@@ -33,7 +33,7 @@
     "vite": ">=7.2.7"
   },
   "dependencies": {
-    "@vitejs/plugin-vue": "^6.0.2",
+    "@vitejs/plugin-vue": "^6.0.3",
     "@vitejs/plugin-vue-jsx": "^5.1.2",
     "unplugin-auto-import": "^20.3.0",
     "unplugin-vue-components": "^29.2.0",
