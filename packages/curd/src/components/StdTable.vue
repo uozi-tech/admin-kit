@@ -184,7 +184,10 @@ const computedColumns = computed(() => {
       ...item,
       title: getRealContent(item.title),
     }))
-    .filter(item => !item?.hiddenInTable)
+})
+
+const tableColumns = computed(() => {
+  return computedColumns.value.filter(item => !item?.hiddenInTable)
 })
 
 // 处理列设置变化
@@ -194,7 +197,7 @@ function onColumnSettingsChange(newColumns: any[]) {
 /** 筛选 table 显示的列，并且获取 title 真实内容 */
 const dataColumns = computed<any>(() => {
   // 使用列设置的结果，如果没有设置则使用默认的
-  const baseColumns = displayColumns.value.length > 0 ? displayColumns.value : computedColumns.value
+  const baseColumns = displayColumns.value.length > 0 ? displayColumns.value : tableColumns.value
 
   const cols = baseColumns.filter(item => !item?.hiddenInTable).map((item: StdTableColumn) => {
     if (item.dataIndex === sortBy.value) {
@@ -596,7 +599,7 @@ function SearchFormExtraRender() {
           <SearchFormExtraRender />
         </template>
         <TableColumnSettings
-          :columns="computedColumns"
+          :columns="tableColumns"
           :table-id="tableId"
           @change="onColumnSettingsChange"
         />
