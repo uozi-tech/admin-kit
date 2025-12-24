@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.19.1
+
+### Patch Changes
+
+- [`0354595`](https://github.com/uozi-tech/admin-kit/commit/0354595b5180bd0d1feb9ec5b516de919d18f48a) Thanks [@0xJacky](https://github.com/0xJacky)! - refactor(StdTable): streamline column filtering logic by introducing tableColumns computed property
+
 ## 4.19.0
 
 ### Minor Changes
