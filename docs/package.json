@@ -25,8 +25,8 @@
     "@vueuse/router": "^14.1.0",
     "ant-design-vue": "^4.2.6",
     "dayjs": "^1.11.19",
-    "lodash-es": "^4.17.21",
-    "vue": "^3.5.25",
+    "lodash-es": "^4.17.22",
+    "vue": "^3.5.26",
     "vue-router": "^4.6.4"
   }
 }
