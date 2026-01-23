@@ -5,7 +5,7 @@ import { ref } from 'vue'
 
 const userApi = {
   getList: async (p) => {
-    console.log(p)
+    void p
     return {
       data: [{
         id: 1,
@@ -53,7 +53,8 @@ const userApi = {
     }
   },
   updateItem: async (id, data) => {
-    console.log(data)
+    void id
+    void data
     return {
       id: 1,
       name: '张三',
