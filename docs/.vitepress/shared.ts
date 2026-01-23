@@ -38,6 +38,9 @@ export default defineConfig({
     },
   },
   vite: {
+    build: {
+      chunkSizeWarningLimit: 5000,
+    },
     plugins: [
       // AutoImport({
       //   imports: ['vue', 'vue-router', 'pinia'],

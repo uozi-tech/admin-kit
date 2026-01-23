@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { MouseEventHandler } from 'ant-design-vue/es/_util/EventInterface'
-import { PageHeader } from 'ant-design-vue'
+import { PageHeader as AntPageHeader } from 'ant-design-vue'
 
 defineProps<{
   pageTitle: string
@@ -9,14 +9,14 @@ defineProps<{
 </script>
 
 <template>
-  <PageHeader
+  <AntPageHeader
     class="p-0"
     :title="pageTitle"
     @back="back"
   >
     <slot />
     <slot name="extra" />
-  </PageHeader>
+  </AntPageHeader>
 </template>
 
 <style scoped>

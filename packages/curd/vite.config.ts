@@ -21,6 +21,7 @@ export default createViteConfig({
           'vue',
           'vue-router',
           'vue3-gettext',
+          'vue-i18n',
           'xlsx',
           'ant-design-vue',
           'ant-design-vue/es/config-provider/context',
