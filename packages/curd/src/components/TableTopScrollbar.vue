@@ -10,6 +10,9 @@ const topScrollRef = ref<HTMLDivElement>()
 const topScrollContentRef = ref<HTMLDivElement>()
 const tableScrollRef = ref<HTMLDivElement>()
 
+// 是否有横向滚动条
+const hasScroll = ref(false)
+
 // Observer 引用
 let resizeObserver: ResizeObserver | null = null
 let mutationObserver: MutationObserver | null = null
@@ -38,17 +41,38 @@ function updateTopScrollWidth() {
 
 // 更新顶部滚动条显示状态
 function updateScrollbarVisibility() {
-  if (topScrollRef.value && tableScrollRef.value) {
-    const hasHorizontalScroll = tableScrollRef.value.scrollWidth > tableScrollRef.value.clientWidth
-    topScrollRef.value.style.display = hasHorizontalScroll ? 'block' : 'none'
+  if (tableScrollRef.value) {
+    hasScroll.value = tableScrollRef.value.scrollWidth > tableScrollRef.value.clientWidth
   }
+}
+
+/**
+ * 查找与当前滚动条组件关联的表格容器
+ * 从组件自身向上查找最近的父级表格包装器，然后在其中查找 .ant-table-content
+ */
+function findAssociatedTableContainer(): HTMLDivElement | null {
+  if (!topScrollRef.value) {
+    return null
+  }
+
+  // 向上查找最近的 .std-table 或 .ant-table-wrapper 父元素
+  const parentWrapper = topScrollRef.value.closest('.std-table')
+    || topScrollRef.value.closest('.ant-table-wrapper')
+    || topScrollRef.value.parentElement
+
+  if (parentWrapper) {
+    // 在父容器范围内查找 .ant-table-content
+    return parentWrapper.querySelector('.ant-table-content') as HTMLDivElement
+  }
+
+  return null
 }
 
 // 初始化滚动同步
 function initScrollSync() {
   // 使用 setTimeout 确保表格已渲染
   setTimeout(() => {
-    const tableContainer = document.querySelector('.ant-table-content') as HTMLDivElement
+    const tableContainer = findAssociatedTableContainer()
     if (tableContainer) {
       tableScrollRef.value = tableContainer
       tableScrollRef.value.addEventListener('scroll', onTableScroll)
@@ -97,6 +121,7 @@ onUnmounted(() => {
   <div
     ref="topScrollRef"
     class="table-top-scrollbar"
+    :class="{ 'has-scroll': hasScroll }"
     @scroll="onTopScroll"
   >
     <div
@@ -115,37 +140,38 @@ onUnmounted(() => {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: #fff;
+  background: transparent;
   transition: background-color 0.3s ease;
+  scrollbar-width: none;
 
-  // 只在有滚动内容时显示
-  &:empty {
-    display: none;
-  }
+  // 有滚动条时显示背景和滚动条样式
+  &.has-scroll {
+    background: #fff;
 
-  // 自定义滚动条样式 - 浅色模式
-  &::-webkit-scrollbar {
-    height: 10px;
-  }
-
-  &::-webkit-scrollbar-track {
-    background: #f5f5f5;
-    border-radius: 5px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background: #bfbfbf;
-    border-radius: 5px;
-    transition: background-color 0.2s ease;
-
-    &:hover {
-      background: #999;
+    // 自定义滚动条样式 - 浅色模式
+    &::-webkit-scrollbar {
+      height: 10px;
     }
-  }
 
-  // Firefox 滚动条样式 - 浅色模式
-  scrollbar-width: thin;
-  scrollbar-color: #bfbfbf #f5f5f5;
+    &::-webkit-scrollbar-track {
+      background: #f5f5f5;
+      border-radius: 5px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #bfbfbf;
+      border-radius: 5px;
+      transition: background-color 0.2s ease;
+
+      &:hover {
+        background: #999;
+      }
+    }
+
+    // Firefox 滚动条样式 - 浅色模式
+    scrollbar-width: thin;
+    scrollbar-color: #bfbfbf #f5f5f5;
+  }
 }
 
 .table-top-scrollbar-content {
@@ -155,7 +181,7 @@ onUnmounted(() => {
 }
 
 // 暗夜模式适配
-.dark .table-top-scrollbar {
+.dark .table-top-scrollbar.has-scroll {
   background: #1f1f1f;
 
   // WebKit 浏览器暗夜模式滚动条
