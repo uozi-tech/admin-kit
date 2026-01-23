@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.19.2
+
+### Patch Changes
+
+- [`bebd451`](https://github.com/uozi-tech/admin-kit/commit/bebd451283d09f9774a1f0b3aca3024f49914fc4) Thanks [@0xJacky](https://github.com/0xJacky)! - feat(TableTopScrollbar): add horizontal scrollbar detection and improve styling
+
 ## 4.19.1
 
 ### Patch Changes
