@@ -316,7 +316,7 @@ const curdConfig = useCurdConfig()
             @click="handleAdd"
           >{{ t('add') }}</a>
           <a
-            v-if="!disableTrash && !disableDelete"
+            v-if="!disableTrash"
             :class="{ 'cursor-not-allowed text-truegray-3 hover:text-truegray-3': tableLoading }"
             @click="switchTrashAndList"
           >
