@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.19.5
+
+### Patch Changes
+
+- [`1b6d550`](https://github.com/uozi-tech/admin-kit/commit/1b6d550dd92a4fc39b4662a262186e299429b5ba) Thanks [@akinoccc](https://github.com/akinoccc)! - feat(StdCurd): add isTrash prop to beforeActions and afterActions templates for enhanced conditional rendering
+
 ## 4.19.4
 
 ### Patch Changes
