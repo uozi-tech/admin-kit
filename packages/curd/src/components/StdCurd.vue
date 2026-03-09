@@ -406,6 +406,7 @@ const curdConfig = useCurdConfig()
             name="beforeActions"
             :record="record"
             :column="column"
+            :is-trash="isTrash"
           />
         </template>
         <template #afterActions="{ record, column }">
@@ -413,6 +414,7 @@ const curdConfig = useCurdConfig()
             name="afterActions"
             :record="record"
             :column="column"
+            :is-trash="isTrash"
           />
         </template>
       </StdTable>
