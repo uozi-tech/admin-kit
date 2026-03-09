@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.19.4
+
+### Patch Changes
+
+- [`66ac73b`](https://github.com/uozi-tech/admin-kit/commit/66ac73b8e30741a8b92cb2a88b31a9bcd4dd8dac) Thanks [@akinoccc](https://github.com/akinoccc)! - feat(StdTable): pass isTrash prop to action components for conditional rendering
+
 ## 4.19.3
 
 ### Patch Changes
