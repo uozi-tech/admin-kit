@@ -651,6 +651,7 @@ function SearchFormExtraRender() {
             name="beforeActions"
             :record="(record as any)"
             :column="column"
+            :is-trash="isTrash"
           />
           <Button
             v-if="!disableView && !isTrash"
@@ -732,6 +733,7 @@ function SearchFormExtraRender() {
             name="afterActions"
             :record="(record as any)"
             :column="column"
+            :is-trash="isTrash"
           />
         </template>
       </template>
