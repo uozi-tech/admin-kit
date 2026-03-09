@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 4.19.3
+
+### Patch Changes
+
+- [`8eb5720`](https://github.com/uozi-tech/admin-kit/commit/8eb57208b12ed13b5df9ec2c422c2b48edfdbf25) Thanks [@akinoccc](https://github.com/akinoccc)! - fix(StdCurd): update delete button visibility logic to only depend on trash state
+
 ## 4.19.2
 
 ### Patch Changes
