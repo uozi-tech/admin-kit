@@ -41,7 +41,7 @@
     "@types/nprogress": "^0.2.3",
     "@uozi-admin/shared-config": "^0.4.11",
     "@vue/tsconfig": "^0.8.1",
-    "eslint": "^9.39.2",
+    "eslint": "^10.0.3",
     "less": "^4.5.1",
     "simple-git-hooks": "^2.13.1",
     "typescript": "^5.9.3",
