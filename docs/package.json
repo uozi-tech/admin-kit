@@ -10,9 +10,9 @@
   },
   "author": "Akino",
   "devDependencies": {
-    "glob": "^13.0.0",
-    "mermaid": "^11.12.2",
-    "postcss": "^8.5.6",
+    "glob": "^13.0.6",
+    "mermaid": "^11.13.0",
+    "postcss": "^8.5.8",
     "tsx": "^4.21.0",
     "vitepress": "^1.6.4",
     "vitepress-demo-plugin": "^1.5.1",
@@ -22,11 +22,11 @@
     "@ant-design/icons-vue": "^7.0.1",
     "@uozi-admin/curd": "workspace:*",
     "@uozi-admin/layout-antdv": "workspace:*",
-    "@vueuse/router": "^14.1.0",
+    "@vueuse/router": "^14.2.1",
     "ant-design-vue": "^4.2.6",
-    "dayjs": "^1.11.19",
+    "dayjs": "^1.11.20",
     "lodash-es": "^4.17.23",
-    "vue": "^3.5.27",
+    "vue": "^3.5.31",
     "vue-router": "^4.6.4"
   }
 }
