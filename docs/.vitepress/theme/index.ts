@@ -5,16 +5,24 @@ import DefaultTheme from 'vitepress/theme'
 import { h } from 'vue'
 import { createMemoryHistory, createRouter, createWebHistory } from 'vue-router'
 import Breadcrumb from './components/Breadcrumb.vue'
+import DocsAuthGate from './components/DocsAuthGate.vue'
 import 'ant-design-vue/dist/reset.css'
 import './style.css'
 import './custom.css'
 
+const docsAuthHash = import.meta.env.VITE_DOCS_AUTH_SHA256?.trim().toLowerCase() ?? ''
+
 export default {
   extends: DefaultTheme,
   Layout: () => {
-    return h(DefaultTheme.Layout, null, {
-      // https://vitepress.dev/guide/extending-default-theme#layout-slots
-      'doc-before': () => [h(Breadcrumb)],
+    return h(DocsAuthGate, {
+      expectedHash: docsAuthHash,
+      storageKey: 'admin-kit-docs-auth',
+    }, {
+      default: () => h(DefaultTheme.Layout, null, {
+        // https://vitepress.dev/guide/extending-default-theme#layout-slots
+        'doc-before': () => [h(Breadcrumb)],
+      }),
     })
   },
   enhanceApp({ app }) {

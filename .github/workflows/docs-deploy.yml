@@ -39,6 +39,8 @@ jobs:
         run: pnpm install --no-link-workspace-packages
 
       - name: Build with VitePress
+        env:
+          VITE_DOCS_AUTH_SHA256: ${{ secrets.VITE_DOCS_AUTH_SHA256 }}
         run: pnpm docs:build
 
       - name: Upload Artifact
