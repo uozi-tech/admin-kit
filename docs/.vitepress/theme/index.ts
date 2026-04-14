@@ -17,7 +17,6 @@ export default {
   Layout: () => {
     return h(DocsAuthGate, {
       expectedHash: docsAuthHash,
-      storageKey: 'admin-kit-docs-auth',
     }, {
       default: () => h(DefaultTheme.Layout, null, {
         // https://vitepress.dev/guide/extending-default-theme#layout-slots

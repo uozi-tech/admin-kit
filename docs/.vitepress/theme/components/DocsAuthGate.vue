@@ -3,12 +3,10 @@ import { computed, onMounted, ref } from 'vue'
 
 interface Props {
   expectedHash?: string
-  storageKey?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
   expectedHash: '',
-  storageKey: 'docs-auth-unlocked',
 })
 
 const inputPassword = ref('')
@@ -21,13 +19,7 @@ const isEnabled = computed(() => Boolean(props.expectedHash))
 onMounted(() => {
   if (!isEnabled.value) {
     isUnlocked.value = true
-    return
   }
-
-  if (typeof window === 'undefined')
-    return
-
-  isUnlocked.value = window.sessionStorage.getItem(props.storageKey) === '1'
 })
 
 async function toSha256(value: string) {
@@ -57,8 +49,6 @@ async function unlock() {
     const hashedInput = await toSha256(inputPassword.value)
     if (hashedInput === props.expectedHash.toLowerCase()) {
       isUnlocked.value = true
-      if (typeof window !== 'undefined')
-        window.sessionStorage.setItem(props.storageKey, '1')
       return
     }
 
