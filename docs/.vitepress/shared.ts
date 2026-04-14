@@ -1,10 +1,11 @@
 import type { DefaultTheme } from 'vitepress'
+// import { createUnoCSSPluginConfig } from './unocss'
+import { Buffer } from 'node:buffer'
 import * as path from 'node:path'
 // import AutoImport from 'unplugin-auto-import/vite'
 // import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers'
 import { defineConfig } from 'vitepress'
 import { vitepressDemoPlugin } from 'vitepress-demo-plugin'
-// import { createUnoCSSPluginConfig } from './unocss'
 
 function createBasicAuthPlugin() {
   const authUser = process.env.DOCS_AUTH_USER
@@ -58,7 +59,7 @@ function createBasicAuthPlugin() {
 const basicAuthPlugin = createBasicAuthPlugin()
 
 export default defineConfig({
-  base: '/',
+  base: '/admin-kit/',
   title: 'Admin Kit',
   head: [
     ['link', { rel: 'icon', href: './logo.svg' }],
