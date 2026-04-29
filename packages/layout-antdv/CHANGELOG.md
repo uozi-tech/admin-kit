@@ -1,5 +1,11 @@
 # @uozi-admin/layout-antdv
 
+## 2.0.0
+
+### Major Changes
+
+- [`46efd57`](https://github.com/uozi-tech/admin-kit/commit/46efd57f972bba919e0190689e50dc654b1ea5df) Thanks [@akinoccc](https://github.com/akinoccc)! - refactor: migrate to ant-design-vue-next
+
 ## 1.3.0
 
 ### Minor Changes
