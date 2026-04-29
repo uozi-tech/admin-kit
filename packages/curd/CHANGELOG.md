@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 5.1.0
+
+### Minor Changes
+
+- [`673b034`](https://github.com/uozi-tech/admin-kit/commit/673b034e810cadfb8648ad5d7d6486ccb1899e3b) Thanks [@akinoccc](https://github.com/akinoccc)! - feat: update StdSearch component to handle form submission with @finish event
+
 ## 5.0.1
 
 ### Patch Changes
