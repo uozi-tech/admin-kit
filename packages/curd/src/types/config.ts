@@ -1,5 +1,5 @@
-import type { I18nOptions } from 'vue-i18n'
 import type { MaybeRefOrGetter } from 'vue'
+import type { I18nOptions } from 'vue-i18n'
 
 /**
  * The pagination map

@@ -1,8 +1,8 @@
 import type {
   DescriptionsProps,
   RowProps,
-  TableRowSelection,
   TableProps,
+  TableRowSelection,
 } from 'antdv-next'
 
 import type { VNode } from 'vue'

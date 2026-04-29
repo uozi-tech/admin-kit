@@ -1,6 +1,6 @@
 import type { CurdConfigT } from '../types'
-import { inject } from 'vue'
 import { merge } from 'lodash-es'
+import { inject } from 'vue'
 import { DEFAULT_DATE_FORMAT, DEFAULT_DATE_TIME_FORMAT, DEFAULT_MONTH_FORMAT, DEFAULT_TIME_FORMAT, DEFAULT_WEEK_FORMAT, DEFAULT_YEAR_FORMAT } from '../constants/format'
 import { enUS, zhCN, zhHK, zhTW } from '../locales'
 

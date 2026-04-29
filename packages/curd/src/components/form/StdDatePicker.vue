@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { TimeT } from '../../types'
 import type { Component } from 'vue'
+import type { TimeT } from '../../types'
 import { DatePicker } from 'antdv-next'
 import dayjs from 'dayjs'
 import localeData from 'dayjs/plugin/localeData'
@@ -9,14 +9,15 @@ import { computed } from 'vue'
 import { Format } from '../../constants'
 import { isUsingTimestamp } from './helper'
 
-const AntDatePicker = DatePicker as unknown as Component
-
 const p = defineProps<{
   props?: Record<string, any> & TimeT
   placeholder?: string | number
   disabled?: boolean
   type: 'date' | 'datetime' | 'week' | 'month' | 'quarter' | 'year' | 'decade'
 }>()
+
+const AntDatePicker = DatePicker as unknown as Component
+
 dayjs.extend(weekday)
 dayjs.extend(localeData)
 

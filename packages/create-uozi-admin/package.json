@@ -29,16 +29,16 @@
     "build": "unbuild"
   },
   "devDependencies": {
-    "@types/fs-extra": "^11.0.4",
-    "@types/minimist": "^1.2.5",
-    "@types/prompts": "^2.4.9",
-    "cross-spawn": "^7.0.6",
-    "fs-extra": "^11.3.3",
-    "minimist": "^1.2.8",
-    "ora": "^9.1.0",
-    "picocolors": "^1.1.1",
-    "prompts": "^2.4.2",
-    "typescript": "5.9.3",
-    "unbuild": "^3.6.1"
+    "@types/fs-extra": "catalog:",
+    "@types/minimist": "catalog:",
+    "@types/prompts": "catalog:",
+    "cross-spawn": "catalog:",
+    "fs-extra": "catalog:",
+    "minimist": "catalog:",
+    "ora": "catalog:",
+    "picocolors": "catalog:",
+    "prompts": "catalog:",
+    "typescript": "catalog:",
+    "unbuild": "catalog:"
   }
 }

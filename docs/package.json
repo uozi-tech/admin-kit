@@ -10,23 +10,23 @@
   },
   "author": "Akino",
   "devDependencies": {
-    "glob": "^13.0.0",
-    "mermaid": "^11.12.2",
-    "postcss": "^8.5.6",
-    "tsx": "^4.21.0",
-    "vitepress": "^1.6.4",
-    "vitepress-demo-plugin": "^1.5.1",
-    "vitepress-plugin-mermaid": "^2.0.17"
+    "glob": "catalog:",
+    "mermaid": "catalog:",
+    "postcss": "catalog:",
+    "tsx": "catalog:",
+    "vitepress": "catalog:",
+    "vitepress-demo-plugin": "catalog:",
+    "vitepress-plugin-mermaid": "catalog:"
   },
   "dependencies": {
     "@uozi-admin/curd": "workspace:*",
     "@uozi-admin/layout-antdv": "workspace:*",
-    "@vueuse/router": "^14.1.0",
-    "dayjs": "^1.11.19",
-    "lodash-es": "^4.17.23",
-    "vue": "^3.5.27",
-    "vue-router": "^4.6.4",
-    "antdv-next": "^1.2.2",
-    "@antdv-next/icons": "^1.0.6"
+    "@vueuse/router": "catalog:",
+    "dayjs": "catalog:",
+    "lodash-es": "catalog:",
+    "vue": "catalog:",
+    "vue-router": "catalog:",
+    "antdv-next": "catalog:",
+    "@antdv-next/icons": "catalog:"
   }
 }

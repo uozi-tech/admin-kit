@@ -12,16 +12,16 @@
     "@uozi-admin/curd": "workspace:*",
     "@uozi-admin/layout-antdv": "workspace:*",
     "@uozi-admin/request": "workspace:*",
-    "dayjs": "^1.11.19",
-    "pinia": "^3.0.4",
-    "vue": "^3.5.27",
-    "vue-router": "^4.6.4",
-    "vue3-gettext": "4.0.0-beta.1",
-    "antdv-next": "^1.2.2",
-    "@antdv-next/icons": "^1.0.6"
+    "dayjs": "catalog:",
+    "pinia": "catalog:",
+    "vue": "catalog:",
+    "vue-router": "catalog:",
+    "vue3-gettext": "catalog:",
+    "antdv-next": "catalog:",
+    "@antdv-next/icons": "catalog:"
   },
   "devDependencies": {
     "@uozi-admin/shared-config": "workspace:^",
-    "jsonx-mock": "1.1.0-beta.3"
+    "jsonx-mock": "catalog:"
   }
 }

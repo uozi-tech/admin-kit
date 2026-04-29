@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { TimeT } from '../../types'
 import type { Component } from 'vue'
+import type { TimeT } from '../../types'
 import { DateRangePicker } from 'antdv-next'
 import dayjs from 'dayjs'
 import { computed } from 'vue'
@@ -8,14 +8,14 @@ import { computed } from 'vue'
 import { Format } from '../../constants'
 import { isUsingTimestamp } from './helper'
 
-const AntDateRangePicker = DateRangePicker as unknown as Component
-
 const p = defineProps<{
   props?: Record<string, any> & TimeT
   placeholder?: string | number
   type: 'date' | 'datetime' | 'week' | 'month' | 'quarter' | 'year' | 'decade'
   disabled?: boolean
 }>()
+
+const AntDateRangePicker = DateRangePicker as unknown as Component
 
 const value = defineModel<any>('value')
 

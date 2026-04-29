@@ -20,8 +20,6 @@ const props = withDefaults(defineProps<StdTableProps>(), {
   showSearchBtn: undefined,
 })
 
-type FilterValue = (string | number | boolean)[] | null
-
 const emit = defineEmits<{
   (e: 'change', payload: { pagination: TablePaginationConfig, filters: Record<string, FilterValue>, sorter: TableSorterResult | TableSorterResult<any>[] }): void
   (e: 'view', record: any): void
@@ -31,6 +29,8 @@ const emit = defineEmits<{
   (e: 'deleteItemPermanently', record: any): void
   (e: 'resetSearchForm'): void
 }>()
+
+type FilterValue = (string | number | boolean)[] | null
 
 const { tableId, initSortable, buildIndexMap, resetIndexMap } = useDraggableTable(props.rowDraggableOptions)
 

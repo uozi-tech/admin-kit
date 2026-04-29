@@ -10,7 +10,7 @@ export function createVueComponentsPluginConfig(customConfig?: VueComponentsOpti
     dts: 'components.d.ts',
     exclude: [/[\\/]node_modules[\\/]/, /[\\/]\.git[\\/]/, /[\\/]\.nuxt[\\/]/],
     resolvers: [
-      AntdvNextResolver,
+      AntdvNextResolver(),
     ],
     ...customConfig,
   }) as PluginOption
