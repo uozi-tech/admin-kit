@@ -3,6 +3,7 @@ import type { SelectConfig } from '../../types'
 import { Select } from 'antdv-next'
 import { ref, watch } from 'vue'
 import { getPopupContainer } from '../../utils'
+import { isFunction } from 'lodash-es';
 
 const p = defineProps<{
   props?: Omit<SelectConfig, 'defaultValue'>
@@ -26,7 +27,7 @@ async function computedOptions() {
   }
   if (p.props?.mask) {
     options.value = Object.entries(p.props.mask).map(([v, label]) => ({
-      label,
+      label: isFunction(label) ? label() : label,
       value: p.props?.maskIsNumberKey ? Number(v) : v,
     }))
     return
