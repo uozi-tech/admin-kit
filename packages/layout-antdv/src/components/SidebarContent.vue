@@ -5,7 +5,7 @@ import { h, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { getRealTitle } from '../utils'
 
-withDefaults(defineProps<{
+const props = withDefaults(defineProps<{
   logo?: string
   headerTitle?: Text
   items?: SidebarItem[]
@@ -29,11 +29,42 @@ function isSameKeys(left: string[], right: string[]) {
   return left.length === right.length && left.every((key, index) => key === right[index])
 }
 
+function normalizePath(path: string) {
+  if (path === '/')
+    return path
+
+  return path.replace(/\/+$/, '')
+}
+
+function resolveMenuItemPath(parentPath: string, childPath: string) {
+  if (childPath.startsWith('/'))
+    return normalizePath(childPath)
+
+  return normalizePath(`${normalizePath(parentPath)}/${childPath.replace(/^\/+/, '')}`)
+}
+
 function getSelectedKeys() {
   return route.name ? [String(route.name)] : []
 }
 
+function getOpenKeysFromItems() {
+  const routePath = normalizePath(route.path)
+
+  const activeItem = props.items.find(item => item.children?.some((child) => {
+    return child.name === route.name
+      || resolveMenuItemPath(item.path, child.path) === routePath
+  }))
+
+  return activeItem ? [activeItem.path] : []
+}
+
 function getOpenKeys() {
+  const openKeysFromItems = getOpenKeysFromItems()
+
+  if (openKeysFromItems.length) {
+    return openKeysFromItems
+  }
+
   const matchedOpenKeys = route.matched
     .slice(1, -1)
     .map(record => record.path)
@@ -69,6 +100,13 @@ watch(
 function handleMenuItemClick({ key }: { key: string }) {
   emit('selectMenuItem', key)
 }
+
+function handleOpenChange(keys: string[]) {
+  if (props.collapsed)
+    return
+
+  openKeys.value = keys
+}
 </script>
 
 <template>
@@ -102,8 +140,9 @@ function handleMenuItemClick({ key }: { key: string }) {
     </div>
     <Menu
       v-model:selected-keys="selectedKeys"
-      v-model:open-keys="openKeys"
+      :open-keys="collapsed ? [] : openKeys"
       mode="inline"
+      @open-change="handleOpenChange"
       @click="handleMenuItemClick"
     >
       <template
@@ -123,7 +162,7 @@ function handleMenuItemClick({ key }: { key: string }) {
               v-for="child in item.children"
               :key="child.name"
             >
-              <RouterLink :to="`${item.path}/${child.path}`">
+              <RouterLink :to="resolveMenuItemPath(item.path, child.path)">
                 {{ getRealTitle(child.title) }}
               </RouterLink>
             </MenuItem>

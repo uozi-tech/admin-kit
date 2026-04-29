@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { ConfigProvider, theme } from 'antdv-next'
-import { configProviderKey } from 'antdv-next/config-provider/context'
+// import { configProviderKey } from 'antdv-next/config-provider/context'
 import en_US from 'antdv-next/locale/en_US'
 import zh_CN from 'antdv-next/locale/zh_CN'
 import zh_HK from 'antdv-next/locale/zh_HK'
 import zh_TW from 'antdv-next/locale/zh_TW'
-import { computed, provide } from 'vue'
+import { computed } from 'vue'
 import gettext from './gettext'
 import { useSettingsStore } from './store'
 
@@ -24,15 +24,15 @@ const lang = computed(() => {
   }
 })
 
-provide('key', configProviderKey)
+// provide('key', configProviderKey)
 
-provide(configProviderKey, {
-  getPrefixCls(): string {
-    return ''
-  },
-  iconPrefixCls: computed(() => 'anticon'),
-  locale: computed(() => lang.value),
-})
+// provide(configProviderKey, {
+//   getPrefixCls(): string {
+//     return ''
+//   },
+//   iconPrefixCls: computed(() => 'anticon'),
+//   locale: computed(() => lang.value),
+// })
 </script>
 
 <template>
