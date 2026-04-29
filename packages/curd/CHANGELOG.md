@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 5.0.1
+
+### Patch Changes
+
+- [`357dc55`](https://github.com/uozi-tech/admin-kit/commit/357dc5538172d9d2949fa6cfc3dfb66c6cde38b2) Thanks [@akinoccc](https://github.com/akinoccc)! - fix: functional label issue of StdSelect
+
 ## 5.0.0
 
 ### Major Changes
