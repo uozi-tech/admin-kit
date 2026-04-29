@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import type { SelectConfig } from '../../types'
 import { Select } from 'antdv-next'
+import { isFunction } from 'lodash-es'
 import { ref, watch } from 'vue'
 import { getPopupContainer } from '../../utils'
-import { isFunction } from 'lodash-es';
 
 const p = defineProps<{
   props?: Omit<SelectConfig, 'defaultValue'>
