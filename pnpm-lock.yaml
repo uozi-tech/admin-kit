@@ -5,10 +5,6 @@ settings:
   excludeLinksFromLockfile: false
 
 catalogs:
-  conflicts_vite_h7_3_1:
-    vite:
-      specifier: ^7.3.1
-      version: 7.3.1
   default:
     '@antdv-next/auto-import-resolver':
       specifier: ^1.0.7
@@ -418,7 +414,7 @@ importers:
         specifier: 'catalog:'
         version: 0.0.4(unocss@66.6.0(postcss@8.5.6)(vite@7.3.1(@types/node@22.19.7)(jiti@2.6.1)(less@4.3.0)(tsx@4.21.0)(yaml@2.8.2)))
       vite:
-        specifier: catalog:conflicts_vite_h7_3_1
+        specifier: 'catalog:'
         version: 7.3.1(@types/node@22.19.7)(jiti@2.6.1)(less@4.3.0)(tsx@4.21.0)(yaml@2.8.2)
       vue-types:
         specifier: 'catalog:'

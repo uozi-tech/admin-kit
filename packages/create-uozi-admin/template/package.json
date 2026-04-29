@@ -48,7 +48,7 @@
     "unocss": "catalog:",
     "unocss-preset-chinese": "catalog:",
     "unocss-preset-ease": "catalog:",
-    "vite": "catalog:conflicts_vite_h7_3_1",
+    "vite": "catalog:",
     "vue-tsc": "catalog:"
   }
 }

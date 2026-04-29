@@ -16,6 +16,12 @@ export default antfu({
     'no-console': 'off',
     'ts/no-require-imports': 'off',
   },
+}, {
+  files: ['pnpm-workspace.yaml'],
+  rules: {
+    // Some catalog entries are consumed by the scaffold template, which is not a workspace package.
+    'pnpm/yaml-no-unused-catalog-item': 'off',
+  },
 }).overrideRules({
   'vue/no-dupe-keys': 'off',
   'vue/html-indent': ['error', 2],
