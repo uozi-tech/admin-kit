@@ -81,6 +81,7 @@ function onSearch() {
       :model="formDataBuffer"
       label-width="auto"
       layout="vertical"
+      @finish="onSearch"
     >
       <FormItem
         v-for="(c, index) in columns"
@@ -103,7 +104,7 @@ function onSearch() {
           <Button
             v-if="columns.length && showSearchBtn"
             type="primary"
-            @click="onSearch"
+            html-type="submit"
           >
             {{ t('search') }}
           </Button>
