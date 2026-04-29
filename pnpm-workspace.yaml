@@ -1,10 +1,15 @@
-# trustPolicy: no-downgrade
+catalogMode: prefer
+
+shellEmulator: true
+trustPolicy: no-downgrade
 
 packages:
   - 'packages/*'
   - '!packages/create-admin/template'
   - playground
   - docs
+# trustPolicy: no-downgrade
+
 catalog:
   '@antdv-next/auto-import-resolver': ^1.0.7
   '@antdv-next/icons': ^1.0.6
@@ -81,8 +86,9 @@ catalog:
   vue-types: ^3.0.2
   vue3-gettext: 4.0.0-beta.1
   xlsx: https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz
-catalogMode: prefer
-
+catalogs:
+  conflicts_vite_h7_3_1:
+    vite: ^7.3.1
 # overrides:
 #   undici-types: 6.20.0
 #   vitepress>vite: 7.3.1
@@ -96,7 +102,3 @@ onlyBuiltDependencies:
   - vitest
   - vue
   - vue-tsc
-shellEmulator: true
-catalogs:
-  conflicts_vite_h7_3_1:
-    vite: ^7.3.1
