@@ -8,7 +8,7 @@ export function isPlainObject(value: any): value is object {
   return Object.prototype.toString.call(value) === '[object Object]'
 }
 
-export function getColumnKey(column: StdTableColumn) {
+export function getColumnKey(column: StdTableColumn): string | number {
   if (column.key)
     return column.key
 

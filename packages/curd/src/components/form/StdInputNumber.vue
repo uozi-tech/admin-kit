@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { InputNumberConfig } from '../../types'
-import { InputNumber } from 'ant-design-vue'
+import { InputNumber } from 'antdv-next'
 
 defineProps<{
   props?: Omit<InputNumberConfig, 'placeholder'>

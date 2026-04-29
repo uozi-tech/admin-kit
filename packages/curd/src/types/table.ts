@@ -1,4 +1,4 @@
-import type { TableColumnType } from 'ant-design-vue'
+import type { TableColumnType } from 'antdv-next'
 import type { VNode, VNodeChild } from 'vue'
 import type { JSX } from 'vue/jsx-runtime'
 import type { StdFormConfig } from './form'

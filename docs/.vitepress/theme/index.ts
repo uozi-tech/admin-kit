@@ -6,7 +6,7 @@ import { h } from 'vue'
 import { createMemoryHistory, createRouter, createWebHistory } from 'vue-router'
 import Breadcrumb from './components/Breadcrumb.vue'
 import DocsAuthGate from './components/DocsAuthGate.vue'
-import 'ant-design-vue/dist/reset.css'
+import 'antdv-next/dist/reset.css'
 import './style.css'
 import './custom.css'
 

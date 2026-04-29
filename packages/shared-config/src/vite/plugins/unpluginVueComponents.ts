@@ -1,6 +1,6 @@
 import type { Options as VueComponentsOptions } from 'unplugin-vue-components'
 import type { PluginOption } from 'vite'
-import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers'
+import { AntdvNextResolver } from '@antdv-next/auto-import-resolver'
 import Components from 'unplugin-vue-components/vite'
 
 export function createVueComponentsPluginConfig(customConfig?: VueComponentsOptions): PluginOption {
@@ -10,7 +10,7 @@ export function createVueComponentsPluginConfig(customConfig?: VueComponentsOpti
     dts: 'components.d.ts',
     exclude: [/[\\/]node_modules[\\/]/, /[\\/]\.git[\\/]/, /[\\/]\.nuxt[\\/]/],
     resolvers: [
-      AntDesignVueResolver({ importStyle: false, resolveIcons: true }),
+      AntdvNextResolver,
     ],
     ...customConfig,
   }) as PluginOption

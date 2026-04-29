@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { StdTableColumn } from '@uozi-admin/curd'
 import { StdForm } from '@uozi-admin/curd'
-import { Button, message, RadioButton, RadioGroup } from 'ant-design-vue'
+import { Button, message, RadioButton, RadioGroup } from 'antdv-next'
 import { computed, ref } from 'vue'
 
 const formType = ref('personal')

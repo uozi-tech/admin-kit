@@ -24,9 +24,9 @@
 
 ## ✨ 特性
 
-- 📦 **CURD组件** - 基于 ant-design-vue 二次封装，快速生成 CURD 页面
+- 📦 **CURD组件** - 基于 antdv-next 二次封装，快速生成 CURD 页面
 - 📦 **请求库** - 基于 axios 封装，一行代码搞定 CURD API, 搭配 `@uozi-admin/curd` 使用
-- 📦 **布局组件** - 基于 ant-design-vue 二次封装，快速生成后台布局组件
+- 📦 **布局组件** - 基于 antdv-next 二次封装，快速生成后台布局组件
 - 📦 **共享配置** - 提供 vite 共享配置，快速集成 admin-kit 套件
 - 📦 **脚手架** - 提供项目脚手架工具，快速集成 admin-kit 套件
 - 🎯 **TypeScript** - 使用 TypeScript 编写，提供完整的类型定义

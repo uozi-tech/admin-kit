@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { RadioGroupConfig } from '../../types'
-import { RadioGroup } from 'ant-design-vue'
+import { RadioGroup } from 'antdv-next'
 
 defineProps<{
   props?: RadioGroupConfig

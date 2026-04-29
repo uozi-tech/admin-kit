@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { AppBreadcrumbItem, Text } from '../props'
-import { Breadcrumb, BreadcrumbItem } from 'ant-design-vue'
+import { Breadcrumb, BreadcrumbItem } from 'antdv-next'
 import { computed, onMounted, watch } from 'vue'
 import { RouterLink, useRoute, useRouter } from 'vue-router'
 import { useBreadcrumbs } from '../composables'

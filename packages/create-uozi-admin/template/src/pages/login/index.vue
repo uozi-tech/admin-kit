@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { LockOutlined, UserOutlined } from '@ant-design/icons-vue'
+import { LockOutlined, UserOutlined } from '@antdv-next/icons'
 import { getAppConfig, LanguageSelect, ThemeSwitch } from '@uozi-admin/layout-antdv'
-import { Form } from 'ant-design-vue'
+import { Form } from 'antdv-next'
 import gettext from '~/language/gettext'
 import { useSettingsStore } from '~/store'
 

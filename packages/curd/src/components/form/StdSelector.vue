@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { SelectorConfig } from '../../types'
 import { watchPausable } from '@vueuse/core'
-import { Form, Modal, Select } from 'ant-design-vue'
+import { Modal, Select } from 'antdv-next'
 import { get } from 'lodash-es'
 import { computed, nextTick, reactive, ref } from 'vue'
 import { useCurdConfig, useLocale } from '../../composables'
@@ -18,8 +18,6 @@ const value = defineModel<any>('value', { default: () => reactive([]) })
 const dataColumns = computed(() => {
   return props.columns.filter(item => item.pure)
 })
-
-Form.useInjectFormItemContext()
 
 const visible = defineModel<boolean>('visible', { default: false })
 const selectedRowKeys = ref<any[]>([])
@@ -86,7 +84,7 @@ async function init() {
 
   isInitializing.value = true
   const isMulti = props.selectionType === 'checkbox'
-  selectedRowKeys.value = isMulti ? arraylizeValue(value.value) : []
+  selectedRowKeys.value = arraylizeValue(value.value).slice(0, isMulti ? undefined : 1)
   await nextTick()
   const preloadIds = arraylizeValue(value.value).filter(Boolean)
   let filteredValue: any = null
@@ -174,6 +172,20 @@ function clickInput() {
   visible.value = true
 }
 
+function isSelectRemoveTarget(target: EventTarget | null) {
+  return target instanceof Element && !!target.closest('.ant-select-selection-item-remove, .ant-select-clear')
+}
+
+function openSelector(event: MouseEvent) {
+  if (isSelectRemoveTarget(event.target)) {
+    return
+  }
+
+  event.preventDefault()
+  event.stopPropagation()
+  clickInput()
+}
+
 const computedValue = computed({
   get: () => arraylizeValue(value.value),
   set: v => value.value = props.selectionType === 'checkbox' ? v : v[0],
@@ -184,18 +196,29 @@ const computedValue = computed({
   <div>
     <div
       v-if="!hideInputContainer"
-      @click="clickInput"
+      @mousedown.capture="openSelector"
+      @click.capture="openSelector"
     >
       <Select
         v-model:value="computedValue"
         :disabled
-        class="min-w-184px"
         :options="options"
-        :dropdown-menu-style="{ display: 'none' }"
+        :open="false"
+        :show-search="false"
+        :styles="{
+          popup: { root: { display: 'none' } },
+          root: {
+            minWidth: '120px',
+            width: '100%',
+          },
+        }"
         mode="tags"
         :placeholder
-        popup-class-name="selector"
+        :classes="{
+          popup: { root: 'selector' },
+        }"
         :get-popup-container="node => node.parentNode"
+        @focus="clickInput"
         @deselect="removeValue"
       />
     </div>
@@ -205,7 +228,7 @@ const computedValue = computed({
       :ok-text="t('ok')"
       :title="t('selectorTitle')"
       :width="modalWidth || 800"
-      destroy-on-close
+      destroy-on-hidden
       v-bind="modalProps"
       :z-index="3000"
       @ok="setValue"

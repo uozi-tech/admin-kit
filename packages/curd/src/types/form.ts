@@ -1,4 +1,4 @@
-import type { ColProps, FormItemProps } from 'ant-design-vue'
+import type { ColProps, FormItemProps } from 'antdv-next'
 import type { DefineComponent, DefineSetupFnComponent, VNodeChild } from 'vue'
 import type { JSX } from 'vue/jsx-runtime'
 import type {

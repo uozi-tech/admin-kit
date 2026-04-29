@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { StdTableColumn } from '@uozi-admin/curd'
 import { StdTable } from '@uozi-admin/curd'
-import { Tag } from 'ant-design-vue'
+import { Tag } from 'antdv-next'
 import { h } from 'vue'
 import { userApi } from '../mock/userApi'
 

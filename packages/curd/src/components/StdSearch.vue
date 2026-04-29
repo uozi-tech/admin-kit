@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import type { StdTableColumn } from '../types'
-import { DownOutlined, UpOutlined } from '@ant-design/icons-vue'
+import { DownOutlined, UpOutlined } from '@antdv-next/icons'
 import { watchPausable } from '@vueuse/core'
-import { Button, Flex, Form, FormItem } from 'ant-design-vue'
+import { Button, Flex, Form, FormItem } from 'antdv-next'
 import { cloneDeep } from 'lodash-es'
 import { computed, nextTick, ref, watch } from 'vue'
 import { useCurdConfig, useLocale } from '../composables'

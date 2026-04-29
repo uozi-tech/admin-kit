@@ -110,8 +110,8 @@ export default defineConfig({
     ],
     optimizeDeps: {
       include: [
-        'ant-design-vue',
-        '@ant-design/icons-vue',
+        'antdv-next',
+        '@antdv-next/icons',
         '@uozi-admin/curd',
         'vue-router',
         'mermaid',
@@ -122,7 +122,7 @@ export default defineConfig({
       ],
     },
     ssr: {
-      noExternal: ['ant-design-vue', '@ant-design/icons-vue', '@uozi-admin/curd'],
+      noExternal: ['antdv-next', '@antdv-next/icons', '@uozi-admin/curd'],
     },
   },
 })

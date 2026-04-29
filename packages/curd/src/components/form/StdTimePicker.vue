@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { TimePickerConfig } from '../../types'
-import { TimePicker } from 'ant-design-vue'
+import { TimePicker } from 'antdv-next'
 import { Format } from '../../constants'
 
 defineProps<{ props?: TimePickerConfig, placeholder?: string | number, disabled?: boolean }>()

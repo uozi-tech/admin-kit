@@ -2,7 +2,7 @@
 import type { Slot } from 'vue'
 import type { StdCurdProps } from '../types'
 import { useRouteQuery } from '@vueuse/router'
-import { Button, Card, Checkbox, Divider, Flex, message, Modal, Spin } from 'ant-design-vue'
+import { Button, Card, Checkbox, Divider, Flex, message, Modal, Spin } from 'antdv-next'
 import { cloneDeep } from 'lodash-es'
 import { computed, getCurrentInstance, reactive, ref, useSlots } from 'vue'
 import { useCurdConfig, useExport, useLocale } from '../composables'
@@ -421,12 +421,12 @@ const curdConfig = useCurdConfig()
 
       <Modal
         v-model:open="formVisible"
-        destroy-on-close
+        destroy-on-hidden
         :closable="!modalLoading"
         :width="props.modalWidth ?? curdConfig.modal.width"
         :title="modalTitle"
-        :body-style="{ height: curdConfig.modal.bodyHeight, overflowY: curdConfig.modal.bodyHeight ? 'auto' : undefined }"
-        :mask-closable="false"
+        :styles="{ body: { height: curdConfig.modal.bodyHeight, overflowY: curdConfig.modal.bodyHeight ? 'auto' : undefined } }"
+        :mask="{ closable: false }"
       >
         <Spin :spinning="modalLoading">
           <div>
@@ -479,7 +479,7 @@ const curdConfig = useCurdConfig()
       </Modal>
       <Modal
         v-model:open="exportVisible"
-        :body-style="{ height: curdConfig.modal.bodyHeight, overflowY: curdConfig.modal.bodyHeight ? 'auto' : undefined }"
+        :styles="{ body: { height: curdConfig.modal.bodyHeight, overflowY: curdConfig.modal.bodyHeight ? 'auto' : undefined } }"
         :closable="!modalLoading"
         :width="props.modalWidth ?? curdConfig.modal.width"
         :title="t('exportExcel')"

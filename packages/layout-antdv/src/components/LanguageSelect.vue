@@ -1,6 +1,7 @@
 <script setup lang="ts">
+import type { SelectProps } from 'antdv-next'
 import type { Languages, LanguageValue } from '../props'
-import { Select, SelectOption } from 'ant-design-vue'
+import { Select } from 'antdv-next'
 import { isArray, isObject } from 'lodash-es'
 import { computed, ref } from 'vue'
 
@@ -11,19 +12,18 @@ const props = defineProps<{
 
 const emit = defineEmits(['changeLanguage'])
 
-const AvailableLanguages = computed(() => {
-  if (isArray(props.languages)) {
-    // 格式化为 key-value 对象
-    const languageMap: Record<string, LanguageValue> = {}
-    props.languages.forEach((language) => {
-      languageMap[language] = language
-    })
-    return languageMap
+const AvailableLanguages = computed<SelectProps['options']>(() => {
+  if (isObject(props.languages)) {
+    // 格式化为 { label: string, value: string } 数组
+    return Object.entries(props.languages).map(([value, label]) => ({
+      label,
+      value,
+    }))
   }
-  if (isObject(props.languages))
-    return props.languages
+  if (isArray(props.languages))
+    return props.languages as SelectProps['options']
 
-  return {}
+  return []
 })
 
 const currentSelectedLanguage = ref(props.currentLanguage)
@@ -40,16 +40,9 @@ function changeLanguage() {
     size="small"
     class="min-w-60px"
     :dropdown-match-select-width="false"
+    :options="AvailableLanguages"
     @select="changeLanguage"
-  >
-    <SelectOption
-      v-for="(language, key) in AvailableLanguages"
-      :key="key"
-      :value="key"
-    >
-      {{ language }}
-    </SelectOption>
-  </Select>
+  />
 </template>
 
 <style scoped>

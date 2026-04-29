@@ -1,16 +1,18 @@
-catalogMode: prefer
-shellEmulator: true
-trustPolicy: no-downgrade
+# trustPolicy: no-downgrade
 
 packages:
   - 'packages/*'
   - '!packages/create-admin/template'
   - playground
   - docs
+catalog:
+  '@antdv-next/auto-import-resolver': ^1.0.7
+  vite: ^6.4.2
+catalogMode: prefer
 
-overrides:
-  undici-types: 6.20.0
-  vitepress>vite: 7.3.1
+# overrides:
+#   undici-types: 6.20.0
+#   vitepress>vite: 7.3.1
 
 onlyBuiltDependencies:
   - core-js
@@ -21,3 +23,4 @@ onlyBuiltDependencies:
   - vitest
   - vue
   - vue-tsc
+shellEmulator: true

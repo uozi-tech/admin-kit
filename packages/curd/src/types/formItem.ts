@@ -1,25 +1,26 @@
 import type {
   AutoCompleteProps,
+  CascaderProps,
   CheckboxGroupProps,
   DatePickerProps,
   InputNumberProps,
   InputProps,
   ModalProps,
+  MonthPickerProps,
   RadioGroupProps,
+  RangePickerProps,
   RateProps,
   SelectProps,
   SliderProps,
   SwitchProps,
   TableProps,
+  TableRowSelection,
   TextAreaProps,
   TimePickerProps,
   TransferProps,
   UploadProps,
-} from 'ant-design-vue'
-import type { CascaderProps } from 'ant-design-vue/es/cascader'
-import type { MonthPickerProps, RangePickerProps, WeekPickerProps } from 'ant-design-vue/es/date-picker'
-import type { TableRowSelection } from 'ant-design-vue/es/table/interface'
-import type { FileType } from 'ant-design-vue/es/upload/interface'
+  WeekPickerProps,
+} from 'antdv-next'
 import type { Ref } from 'vue'
 import type { CurdApi } from './api'
 import type { StdTableColumn } from './index'
@@ -115,5 +116,5 @@ export type SwitchConfig = SwitchProps & BaseConfig
 export type TransferConfig = Omit<TransferProps, 'placeholder'> & PlaceholderT & BaseConfig
 
 export type UploadConfig = Omit<UploadProps, 'placeholder' | 'beforeUpload'> & PlaceholderT & BaseConfig & {
-  beforeUpload?: (file: FileType, fileList: FileType[], value: Ref<any>) => boolean
+  beforeUpload?: (file: File, fileList: File[], value: Ref<any>) => boolean
 }

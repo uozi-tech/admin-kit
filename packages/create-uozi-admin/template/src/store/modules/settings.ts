@@ -1,7 +1,7 @@
 import type { Theme } from '@uozi-admin/layout-antdv'
 import { useColorMode } from '@vueuse/core'
-import enUS from 'ant-design-vue/es/locale/en_US'
-import zhCN from 'ant-design-vue/es/locale/zh_CN'
+import enUS from 'antdv-next/locale/en_US'
+import zhCN from 'antdv-next/locale/zh_CN'
 import gettext from '~/language/gettext'
 
 export const useSettingsStore = defineStore('settings', () => {

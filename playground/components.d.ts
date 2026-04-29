@@ -11,8 +11,8 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
-    AButton: typeof import('ant-design-vue/es')['Button']
-    ArrowLeftOutlined: typeof import('@ant-design/icons-vue')['ArrowLeftOutlined']
+    AButton: typeof import('antdv-next')['Button']
+    ArrowLeftOutlined: typeof import('@antdv-next/icons')['ArrowLeftOutlined']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }

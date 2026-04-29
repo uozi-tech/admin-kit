@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { StdTableColumn } from '@uozi-admin/curd'
 import { StdForm } from '@uozi-admin/curd'
-import { Button, message, Space, Step, Steps } from 'ant-design-vue'
+import { Button, message, Space, Steps } from 'antdv-next'
 import { computed, ref } from 'vue'
 
 // 分步表单数据
@@ -146,14 +146,9 @@ function prevStep() {
     <h4>分步表单演示</h4>
     <Steps
       :current="currentStep"
+      :items="steps"
       style="margin-bottom: 24px;"
-    >
-      <Step
-        v-for="step in steps"
-        :key="step.key"
-        :title="step.title"
-      />
-    </Steps>
+    />
 
     <StdForm
       ref="formRef"

@@ -9,7 +9,7 @@ import {
   ShoppingOutlined,
   TagsOutlined,
   UserOutlined,
-} from '@ant-design/icons-vue'
+} from '@antdv-next/icons'
 import { createRouter, createWebHistory } from 'vue-router'
 import { $gettext } from '../gettext'
 

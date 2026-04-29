@@ -1,6 +1,6 @@
 import type { RouteRecordRaw } from 'vue-router'
 
-import { HomeOutlined } from '@ant-design/icons-vue'
+import { HomeOutlined } from '@antdv-next/icons'
 import { createRouter, createWebHistory } from 'vue-router'
 import { setupRouterGuard } from './guard'
 import { constantRoutes } from './modules/constantRoutes'

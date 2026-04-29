@@ -5,10 +5,10 @@ import dayjs from 'dayjs'
 import localeData from 'dayjs/plugin/localeData'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import weekday from 'dayjs/plugin/weekday'
-import { assign, merge } from 'lodash-es'
+import { assign } from 'lodash-es'
 import { onMounted, provide, reactive, watchEffect } from 'vue'
 import { createI18n } from 'vue-i18n'
-import { CURD_CONFIG_KEY, DEFAULT_CONFIG } from '../../composables'
+import { CURD_CONFIG_KEY, DEFAULT_CONFIG, mergeCurdConfig } from '../../composables'
 import { useParentCurdConfig } from '../../composables/useCurdConfig'
 import { setGlobalDateFormats } from '../../constants/format'
 
@@ -34,10 +34,10 @@ onMounted(() => {
 const parentConfig = useParentCurdConfig()
 
 // 合并配置：父级配置 -> 默认配置 -> 当前props配置
-const mergedConfig = reactive(DEFAULT_CONFIG)
+const mergedConfig = reactive(mergeCurdConfig(DEFAULT_CONFIG) as Required<CurdConfigT>)
 
 watchEffect(() => {
-  assign(mergedConfig, merge({}, DEFAULT_CONFIG, parentConfig, props.config))
+  assign(mergedConfig, mergeCurdConfig(DEFAULT_CONFIG, parentConfig, props.config))
 })
 
 // 监听配置变化并应用副作用

@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import type { StdTableColumn } from '@uozi-admin/curd'
-import { MailOutlined, PhoneOutlined, UserOutlined } from '@ant-design/icons-vue'
+import { MailOutlined, PhoneOutlined, UserOutlined } from '@antdv-next/icons'
 import { StdTable } from '@uozi-admin/curd'
-import { Avatar, Badge, Space, Tag } from 'ant-design-vue'
+import { Avatar, Badge, Space, Tag } from 'antdv-next'
 
 // 模拟用户数据
 const mockUsers = [
@@ -158,7 +158,7 @@ function getRoleName(role: string) {
       <!-- 联系方式列：邮箱 + 电话 -->
       <template #col-email="{ record, text }">
         <Space
-          direction="vertical"
+          orientation="vertical"
           size="small"
         >
           <a

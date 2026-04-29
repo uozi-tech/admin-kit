@@ -1,10 +1,10 @@
 import type {
   DescriptionsProps,
   RowProps,
+  TableRowSelection,
   TableProps,
-} from 'ant-design-vue'
+} from 'antdv-next'
 
-import type { TableRowSelection } from 'ant-design-vue/es/table/interface'
 import type { VNode } from 'vue'
 import type { JSX } from 'vue/jsx-runtime'
 import type { CurdApi } from './api'

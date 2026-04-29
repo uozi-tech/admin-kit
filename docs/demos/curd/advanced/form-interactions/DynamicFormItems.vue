@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import type { StdTableColumn } from '@uozi-admin/curd'
-import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons-vue'
+import { MinusCircleOutlined, PlusOutlined } from '@antdv-next/icons'
 import { StdForm } from '@uozi-admin/curd'
-import { Button, message } from 'ant-design-vue'
+import { Button, message } from 'antdv-next'
 import { computed, h, ref } from 'vue'
 
 // 用于强制重新渲染表单的键值

@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import type { SidebarItem } from '@uozi-admin/layout-antdv'
-import { HomeOutlined, SettingOutlined, TableOutlined, UserOutlined } from '@ant-design/icons-vue'
+import { HomeOutlined, SettingOutlined, TableOutlined, UserOutlined } from '@antdv-next/icons'
 import { AdminLayout } from '@uozi-admin/layout-antdv'
-import { Alert, Card, Space, Tag } from 'ant-design-vue'
+import { Alert, Card, Space, Tag } from 'antdv-next'
 import { h } from 'vue'
 
 const sidebarItems: SidebarItem[] = [
@@ -74,7 +74,7 @@ const sidebarItems: SidebarItem[] = [
         <Card title="欢迎使用 Admin Layout">
           <p>这是一个基础的布局演示，展示了 AdminLayout 组件的基本用法。</p>
           <Space
-            direction="vertical"
+            orientation="vertical"
             size="middle"
             style="width: 100%;"
           >

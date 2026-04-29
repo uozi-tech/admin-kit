@@ -1,4 +1,3 @@
-import type { AntdIconType } from '@ant-design/icons-vue/es/components/AntdIcon'
 import type { Component, FunctionalComponent, VNode } from 'vue'
 
 export type Text = string | (() => string)
@@ -6,7 +5,7 @@ export type Text = string | (() => string)
 export interface AppBreadcrumbItem {
   title: Text
   path: string
-  icon?: AntdIconType | FunctionalComponent | Component
+  icon?: FunctionalComponent | Component
   lastRouteName?: Text
 }
 

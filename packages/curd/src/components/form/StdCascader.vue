@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { CascaderConfig } from '../../types'
-import { Cascader } from 'ant-design-vue'
+import { Cascader } from 'antdv-next'
 
 defineProps<{
   props?: CascaderConfig

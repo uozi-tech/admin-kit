@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Radio, RadioGroup } from 'ant-design-vue'
+import { Radio, RadioGroup } from 'antdv-next'
 import { ref } from 'vue'
 import CustomRangeInput from './customization/CustomRangeInput.vue'
 import CustomRender from './customization/CustomRender.vue'

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { InputNumber, message } from 'ant-design-vue'
+import { InputNumber, message } from 'antdv-next'
 import { ref } from 'vue'
 
 const minValue = ref(0)

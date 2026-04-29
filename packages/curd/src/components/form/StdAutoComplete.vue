@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { AutoCompleteConfig } from '../../types'
-import { AutoComplete } from 'ant-design-vue'
+import { AutoComplete } from 'antdv-next'
 import { isNumber } from 'lodash-es'
 import { computed, ref, watch } from 'vue'
 import { getPopupContainer } from '../../utils'

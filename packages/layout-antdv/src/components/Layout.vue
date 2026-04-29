@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import type { MouseEventHandler } from 'ant-design-vue/es/_util/EventInterface'
 import type { AppBreadcrumbItem, Languages, LanguageValue, SidebarItem, Text, Theme } from '../props'
-import { Layout, LayoutContent, LayoutFooter, LayoutHeader } from 'ant-design-vue'
+import { Layout, LayoutContent, LayoutFooter, LayoutHeader } from 'antdv-next'
 import { provide, ref } from 'vue'
 import { getRealTitle } from '../utils'
 import AppFooter from './AppFooter.vue'
@@ -28,7 +27,7 @@ withDefaults(
     showLanguageSelect?: boolean
     currentLanguage?: LanguageValue
     languages?: Languages
-    back?: MouseEventHandler
+    back?: (event: MouseEvent) => void
   }>(),
   {
     siteTitle: 'Admin Dashboard',
@@ -155,7 +154,8 @@ provide('breadList', breadList)
 
 <style scoped lang="less">
 :deep(.ant-layout-header), :deep(.ant-layout-sider), :deep(.ant-layout-sider-trigger) {
-  @apply bg-white bg-base text-color-base;
+  background-color: var(--ant-color-bg-container) !important;
+  @apply text-color-base;
 }
 :deep(.ant-layout-sider .ant-menu-root) {
   border-inline-end: none !important;

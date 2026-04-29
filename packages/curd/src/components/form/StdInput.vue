@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { InputConfig } from '../../types'
-import { Input } from 'ant-design-vue'
+import { Input } from 'antdv-next'
 
 defineProps<{
   props?: Omit<InputConfig, 'placeholder'>
@@ -14,7 +14,7 @@ const value = defineModel<InputConfig['value']>('value')
   <Input
     v-model:value="value"
     :disabled
-    :placeholder
+    :placeholder="placeholder?.toString()"
     v-bind="props"
   />
 </template>

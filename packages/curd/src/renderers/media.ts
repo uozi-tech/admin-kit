@@ -1,5 +1,5 @@
 import type { CustomRenderArgs } from '../types/props'
-import { Image } from 'ant-design-vue'
+import { Image } from 'antdv-next'
 import { h } from 'vue'
 
 export function image(props: CustomRenderArgs) {

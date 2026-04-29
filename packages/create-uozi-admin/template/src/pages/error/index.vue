@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ResultStatusType } from 'ant-design-vue/es/result'
+import type { ResultStatusType } from 'antdv-next'
 
 const route = useRoute()
 

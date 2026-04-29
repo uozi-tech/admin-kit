@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { StdTableColumn } from '@uozi-admin/curd'
 import { StdDetail } from '@uozi-admin/curd'
-import { Card, Divider, Space } from 'ant-design-vue'
+import { Card, Divider, Space } from 'antdv-next'
 import { ref } from 'vue'
 
 // 模拟 API
@@ -157,7 +157,7 @@ const restrictedEditableFields = ['name', 'bio', 'rating']
 <template>
   <div style="padding: 24px;">
     <Space
-      direction="vertical"
+      orientation="vertical"
       size="large"
       style="width: 100%;"
     >

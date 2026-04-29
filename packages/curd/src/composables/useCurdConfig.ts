@@ -1,5 +1,6 @@
 import type { CurdConfigT } from '../types'
 import { inject } from 'vue'
+import { merge } from 'lodash-es'
 import { DEFAULT_DATE_FORMAT, DEFAULT_DATE_TIME_FORMAT, DEFAULT_MONTH_FORMAT, DEFAULT_TIME_FORMAT, DEFAULT_WEEK_FORMAT, DEFAULT_YEAR_FORMAT } from '../constants/format'
 import { enUS, zhCN, zhHK, zhTW } from '../locales'
 
@@ -19,6 +20,7 @@ export const DEFAULT_CONFIG: Required<CurdConfigT> = {
       },
     },
   },
+  locale: 'zh-CN',
   i18n: {
     legacy: false,
     locale: 'zh-CN',
@@ -58,6 +60,18 @@ export const DEFAULT_CONFIG: Required<CurdConfigT> = {
 }
 
 export const CURD_CONFIG_KEY = Symbol('curdConfig')
+
+export function mergeCurdConfig(...configs: Partial<CurdConfigT>[]): Partial<CurdConfigT> {
+  const mergedConfig = merge({}, ...configs) as Partial<CurdConfigT>
+
+  for (const config of configs) {
+    if (Object.prototype.hasOwnProperty.call(config, 'locale') && config.locale !== undefined) {
+      mergedConfig.locale = config.locale
+    }
+  }
+
+  return mergedConfig
+}
 
 export function useCurdConfig() {
   return inject<Required<CurdConfigT>>(CURD_CONFIG_KEY, DEFAULT_CONFIG as Required<CurdConfigT>)

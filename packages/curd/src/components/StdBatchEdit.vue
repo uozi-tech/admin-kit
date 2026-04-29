@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { StdTableColumn } from 'src/types'
 import type { CurdApi } from 'src/types/api'
-import { message, Modal, Table } from 'ant-design-vue'
+import { message, Modal, Table } from 'antdv-next'
 import { computed, ref } from 'vue'
 import { useCurdConfig, useLocale } from '../composables'
 import StdForm from './StdForm.vue'
@@ -69,14 +69,14 @@ const curdConfig = useCurdConfig()
   <Modal
     v-model:open="visible"
     class="std-curd-edit-modal"
-    :body-style="{ height: curdConfig.modal.bodyHeight, overflow: 'auto' }"
+    :styles="{ body: { height: curdConfig.modal.bodyHeight, overflow: 'auto' } }"
     :mask="false"
     :title="t('batchModify')"
     :cancel-text="t('no')"
     :ok-text="t('save')"
     :confirm-loading="loading"
     :width="curdConfig.modal.width"
-    destroy-on-close
+    destroy-on-hidden
     @ok="ok"
   >
     <p>{{ t('belowsAreSelectedItems') }}</p>

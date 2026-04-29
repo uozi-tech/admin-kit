@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { PasswordConfig } from '../../types'
-import { Button, Input, InputGroup, InputPassword } from 'ant-design-vue'
+import { Button, Input, InputPassword, SpaceCompact } from 'antdv-next'
 import { ref } from 'vue'
 import { useLocale } from '../../composables'
 
@@ -35,14 +35,14 @@ function handleGenerate() {
 
 <template>
   <div>
-    <InputGroup compact>
+    <SpaceCompact block>
       <InputPassword
         v-if="!visibility"
         v-model:value="modelValue"
         :class="{ compact: props?.generate }"
         :maxlength="20"
         :disabled="disabled"
-        :placeholder
+        :placeholder="placeholder?.toString()"
         v-bind="props"
       />
       <Input
@@ -51,7 +51,7 @@ function handleGenerate() {
         :class="{ compact: props?.generate }"
         :maxlength="20"
         :disabled="disabled"
-        :placeholder
+        :placeholder="placeholder?.toString()"
         v-bind="props"
       />
       <Button
@@ -62,7 +62,7 @@ function handleGenerate() {
       >
         {{ t('generate') }}
       </Button>
-    </InputGroup>
+    </SpaceCompact>
   </div>
 </template>
 

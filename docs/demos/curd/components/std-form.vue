@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { StdTableColumn } from '@uozi-admin/curd'
 import { StdForm } from '@uozi-admin/curd'
-import { Button } from 'ant-design-vue'
+import { Button } from 'antdv-next'
 import { ref } from 'vue'
 import { userApi } from '../mock/userApi'
 

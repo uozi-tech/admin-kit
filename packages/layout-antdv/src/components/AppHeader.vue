@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { MenuUnfoldOutlined } from '@ant-design/icons-vue'
+import { MenuUnfoldOutlined } from '@antdv-next/icons'
 
 const emit = defineEmits(['clickUnFold'])
 </script>
@@ -30,6 +30,7 @@ const emit = defineEmits(['clickUnFold'])
   align-items: center;
   height: 64px;
   padding: 0 24px;
+  background-color: var(--ant-color-bg-container);
 }
 
 .logo {

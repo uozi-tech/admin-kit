@@ -5,10 +5,9 @@ import dayjs from 'dayjs'
 import localeData from 'dayjs/plugin/localeData'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import weekday from 'dayjs/plugin/weekday'
-import { merge } from 'lodash-es'
 import { reactive } from 'vue'
 import { createI18n } from 'vue-i18n'
-import { CURD_CONFIG_KEY, DEFAULT_CONFIG } from '../composables'
+import { CURD_CONFIG_KEY, DEFAULT_CONFIG, mergeCurdConfig } from '../composables'
 import { setGlobalDateFormats } from '../constants'
 
 // app.use(createCurdConfig(config))
@@ -21,7 +20,7 @@ export function createCurdConfig(config: Partial<CurdConfigT>, initDayjs = true)
 
   return {
     install(app: App) {
-      const mergedConfig = merge({}, DEFAULT_CONFIG, config)
+      const mergedConfig = mergeCurdConfig(DEFAULT_CONFIG, config) as Required<CurdConfigT>
 
       // 应用全局日期格式配置
       if (mergedConfig.dateFormat) {
@@ -101,5 +100,5 @@ export function createCosyProCurd(config: Partial<CurdConfigT> = {}): ObjectPlug
  * 用于组合不同的配置预设
  */
 export function mergeConfigs(...configs: Partial<CurdConfigT>[]): Partial<CurdConfigT> {
-  return configs.reduce((result, config) => merge(result, config), {})
+  return mergeCurdConfig(...configs)
 }

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { DeleteConfirmConfig } from '../types'
-import { Input, Modal } from 'ant-design-vue'
+import { Input, Modal } from 'antdv-next'
 import { get } from 'lodash-es'
 import { computed, ref, watch } from 'vue'
 import { useLocale } from '../composables'

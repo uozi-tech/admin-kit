@@ -1,31 +1,32 @@
 <script setup lang="ts">
-import type { PanelMode } from 'ant-design-vue/es/vc-picker/interface'
-import type { Dayjs } from 'dayjs'
-import type { RangePickerConfig, TimeT } from '../../types'
-import { RangePicker } from 'ant-design-vue'
+import type { TimeT } from '../../types'
+import type { Component } from 'vue'
+import { DateRangePicker } from 'antdv-next'
 import dayjs from 'dayjs'
 import { computed } from 'vue'
 
 import { Format } from '../../constants'
 import { isUsingTimestamp } from './helper'
 
+const AntDateRangePicker = DateRangePicker as unknown as Component
+
 const p = defineProps<{
-  props?: RangePickerConfig & TimeT
+  props?: Record<string, any> & TimeT
   placeholder?: string | number
-  type: PanelMode | 'datetime'
+  type: 'date' | 'datetime' | 'week' | 'month' | 'quarter' | 'year' | 'decade'
   disabled?: boolean
 }>()
 
-const value = defineModel<RangePickerConfig['value'] & [number, number] & [string, string]>('value')
+const value = defineModel<any>('value')
 
 const usingTimestamp = isUsingTimestamp(p.props)
 
-const computedValue = computed<[string, string] | [Dayjs, Dayjs] | undefined>({
+const computedValue = computed<any>({
   get() {
     if (!value.value)
       return undefined
     if (usingTimestamp) {
-      return value.value.map((v: any) => dayjs.unix(Number(v))) as [Dayjs, Dayjs]
+      return value.value.map((v: any) => dayjs.unix(Number(v)))
     }
     return value.value as [string, string]
   },
@@ -45,7 +46,7 @@ const computedValue = computed<[string, string] | [Dayjs, Dayjs] | undefined>({
 </script>
 
 <template>
-  <RangePicker
+  <AntDateRangePicker
     :format="Format[type]"
     :value-format="Format[type]"
     :show-time="type === 'datetime'"

@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import type { FormItemProps } from 'ant-design-vue'
-import type { Rule } from 'ant-design-vue/es/form'
+import type { FormItemProps } from 'antdv-next'
 import type { StdFormItemConfig, StdTableColumn } from '../types'
-import { FormItem } from 'ant-design-vue'
+import { FormItem } from 'antdv-next'
 import { computed } from 'vue'
 import { useLocale } from '../composables'
 import { getFormErrors } from '../constants/formErrors'
@@ -53,7 +52,7 @@ const help = computed(() => {
   return props.hint
 })
 
-async function validator(_: Rule, value: any): Promise<any> {
+async function validator(_: unknown, value: any): Promise<any> {
   return new Promise((resolve, reject) => {
     if (computedRequired.value && !props.noValidate && (!value && value !== 0)) {
       reject(help.value ?? t('This field should not be empty'))

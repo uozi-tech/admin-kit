@@ -173,7 +173,7 @@ export default createViteConfig({
           // 将 Vue 相关库打包到一个 chunk
           vue: ['vue', 'vue-router', 'pinia'],
           // 将 Ant Design Vue 单独打包
-          antd: ['ant-design-vue'],
+          antd: ['antdv-next'],
           // 将工具库打包到一个 chunk
           utils: ['lodash-es', 'dayjs']
         }

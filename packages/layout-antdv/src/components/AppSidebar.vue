@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { SidebarItem, Text } from '../props'
-import { Drawer, LayoutSider } from 'ant-design-vue'
+import { MenuFoldOutlined, MenuUnfoldOutlined } from '@antdv-next/icons'
+import { Drawer, LayoutSider } from 'antdv-next'
 import { throttle } from 'lodash-es'
 import { onMounted, onUnmounted, ref, useSlots } from 'vue'
 import SidebarContent from './SidebarContent.vue'
@@ -14,7 +15,10 @@ withDefaults(defineProps<{
   items: () => [],
 })
 
-const emit = defineEmits(['clickMenuItem', 'collapseSidebar'])
+const emit = defineEmits<{
+  selectMenuItem: [key: string]
+  collapseSidebar: [collapsed: boolean]
+}>()
 
 const drawerVisible = defineModel<boolean>('drawerVisible', {
   default: false,
@@ -52,9 +56,13 @@ function handleCollapse(val: boolean) {
   emit('collapseSidebar', val)
 }
 
+function toggleCollapse() {
+  handleCollapse(!collapsed.value)
+}
+
 // 点击菜单
-function handleMenuItemClick({ item }) {
-  emit('clickMenuItem', item)
+function handleMenuItemClick(key: string) {
+  emit('selectMenuItem', key)
 }
 
 onUnmounted(() => {
@@ -69,7 +77,7 @@ onUnmounted(() => {
         v-model:open="drawerVisible"
         :closable="false"
         placement="left"
-        width="256"
+        size="256"
         @close="handleCollapse(false)"
       >
         <SidebarContent
@@ -93,9 +101,10 @@ onUnmounted(() => {
     </div>
     <LayoutSider
       v-if="!hideLayoutSidebar"
-      class="z-11 bg-base! h-full"
+      class="app-sidebar z-11 bg-base! h-full"
       :collapsed="collapsed"
       collapsible
+      :trigger="null"
       @collapse="handleCollapse"
     >
       <SidebarContent
@@ -116,11 +125,26 @@ onUnmounted(() => {
           />
         </template>
       </SidebarContent>
+      <button
+        type="button"
+        class="sidebar-collapse-trigger"
+        :aria-label="collapsed ? 'Expand sidebar' : 'Collapse sidebar'"
+        @click="toggleCollapse"
+      >
+        <MenuUnfoldOutlined v-if="collapsed" />
+        <MenuFoldOutlined v-else />
+      </button>
     </LayoutSider>
   </div>
 </template>
 
 <style scoped lang="less">
+.app-sidebar {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
 .logo {
   height: 64px;
   display: flex;
@@ -130,6 +154,38 @@ onUnmounted(() => {
 
 :deep(.ant-layout-sider-trigger) {
   color: inherit;
+}
+
+.sidebar-collapse-trigger {
+  position: absolute;
+  inset-inline-start: 0;
+  bottom: 0;
+  z-index: 1;
+  width: 100%;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-top: 1px solid #e8e8e8;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+  }
+}
+
+.dark {
+  .sidebar-collapse-trigger {
+    border-top-color: #404040 !important;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.08);
+    }
+  }
 }
 
 :deep(.ant-menu-inline, .ant-menu-vertical, .ant-menu-vertical-left) {

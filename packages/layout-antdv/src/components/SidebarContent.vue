@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { SidebarItem, Text } from '../props'
-import { Avatar, Image, Menu, MenuItem, SubMenu } from 'ant-design-vue'
-import { h, ref } from 'vue'
+import { Avatar, Image, Menu, MenuItem, SubMenu } from 'antdv-next'
+import { h, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { getRealTitle } from '../utils'
 
@@ -16,25 +16,65 @@ withDefaults(defineProps<{
   collapsed: false,
 })
 
-const emit = defineEmits(['clickMenuItem'])
+const emit = defineEmits<{
+  selectMenuItem: [key: string]
+}>()
 
 const route = useRoute()
 
-const selectedKeys = ref<string[]>([route.name as string])
+const selectedKeys = ref<string[]>(getSelectedKeys())
+const openKeys = ref<string[]>(getOpenKeys())
 
-const lastSepIndex = route.path.lastIndexOf('/')
-const openKeys = ref<string[]>([route.path.substring(0, lastSepIndex)])
+function isSameKeys(left: string[], right: string[]) {
+  return left.length === right.length && left.every((key, index) => key === right[index])
+}
+
+function getSelectedKeys() {
+  return route.name ? [String(route.name)] : []
+}
+
+function getOpenKeys() {
+  const matchedOpenKeys = route.matched
+    .slice(1, -1)
+    .map(record => record.path)
+    .filter(key => key && key !== '/')
+
+  if (matchedOpenKeys.length) {
+    return matchedOpenKeys
+  }
+
+  const lastSepIndex = route.path.lastIndexOf('/')
+  const parentPath = lastSepIndex > 0 ? route.path.substring(0, lastSepIndex) : ''
+
+  return parentPath ? [parentPath] : []
+}
+
+watch(
+  () => [route.name, route.path, route.matched.map(record => record.path).join('|')],
+  () => {
+    const nextSelectedKeys = getSelectedKeys()
+    const nextOpenKeys = getOpenKeys()
+
+    if (!isSameKeys(selectedKeys.value, nextSelectedKeys)) {
+      selectedKeys.value = nextSelectedKeys
+    }
+
+    if (!isSameKeys(openKeys.value, nextOpenKeys)) {
+      openKeys.value = nextOpenKeys
+    }
+  },
+)
 
 // 点击菜单
-function handleMenuItemClick({ item }) {
-  emit('clickMenuItem', item)
+function handleMenuItemClick({ key }: { key: string }) {
+  emit('selectMenuItem', key)
 }
 </script>
 
 <template>
   <div>
     <!-- 可自定义 Logo 区域 -->
-    <div class="logo mb-1">
+    <div class="logo">
       <slot
         name="logo"
         :collapsed="collapsed"
@@ -110,7 +150,7 @@ function handleMenuItemClick({ item }) {
 <style scoped>
 .dark {
   .logo {
-    background-color: transparent;
+    background-color: transparent !important;
     -webkit-box-shadow: 1px 1px 0 0 #404040;
     box-shadow: 1px 1px 0 0 #404040;
   }

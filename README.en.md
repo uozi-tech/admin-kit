@@ -24,9 +24,9 @@
 
 ## ✨ Features
 
-- 📦 **CRUD Components** - Secondary encapsulation based on ant-design-vue, quickly generate CRUD pages
+- 📦 **CRUD Components** - Secondary encapsulation based on antdv-next, quickly generate CRUD pages
 - 📦 **Request Library** - Encapsulated based on axios, handle CRUD API with one line of code, works with `@uozi-admin/curd`
-- 📦 **Layout Components** - Secondary encapsulation based on ant-design-vue, quickly generate admin layout components
+- 📦 **Layout Components** - Secondary encapsulation based on antdv-next, quickly generate admin layout components
 - 📦 **Shared Config** - Provides vite shared configuration for quick integration of admin-kit suite
 - 📦 **Scaffolding** - Provides project scaffolding tools for quick integration of admin-kit suite
 - 🎯 **TypeScript** - Written in TypeScript with complete type definitions

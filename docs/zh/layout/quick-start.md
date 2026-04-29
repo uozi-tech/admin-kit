@@ -78,7 +78,7 @@ interface SidebarItem {
               用户菜单
               <DownOutlined />
             </a-button>
-            <template #overlay>
+            <template #popupRender>
               <a-menu>
                 <a-menu-item>个人设置</a-menu-item>
                 <a-menu-item>退出登录</a-menu-item>

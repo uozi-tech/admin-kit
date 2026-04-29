@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { theme } from 'ant-design-vue'
+import { theme } from 'antdv-next'
 import gettext from '~/language/gettext'
 import { useSettingsStore } from '~/store'
 

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Pagination } from 'ant-design-vue'
+import { Pagination } from 'antdv-next'
 import { computed } from 'vue'
 import { useCurdConfig, useLocale } from '../composables'
 
@@ -48,6 +48,8 @@ const pagination = computed({
 const totalText = computed(() => {
   return `${t('total')}: ${pagination.value.total} ${t('item(s)')}`
 })
+
+const paginationSize = computed(() => props.size === 'default' ? undefined : props.size)
 </script>
 
 <template>
@@ -61,7 +63,7 @@ const totalText = computed(() => {
       :current="pagination.current"
       :show-size-changer="showSizeChanger"
       :show-total="() => totalText"
-      :size="size"
+      :size="paginationSize"
       :total="pagination.total"
       @change="change"
     />

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { SelectConfig } from '../../types'
-import { Select } from 'ant-design-vue'
+import { Select } from 'antdv-next'
 import { ref, watch } from 'vue'
 import { getPopupContainer } from '../../utils'
 
@@ -40,7 +40,12 @@ watch([value, () => p.props], computedOptions, { immediate: true, deep: true })
 <template>
   <Select
     v-model:value="value as any"
-    class="min-w-180px"
+    :styles="{
+      root: {
+        minWidth: '120px',
+        width: '100%',
+      },
+    }"
     :dropdown-match-select-width="false"
     :get-popup-container="getPopupContainer"
     allow-clear

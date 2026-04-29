@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { DeleteOutlined, EditOutlined, EyeOutlined } from '@ant-design/icons-vue'
+import { DeleteOutlined, EditOutlined, EyeOutlined } from '@antdv-next/icons'
 import { StdTable } from '@uozi-admin/curd'
-import { Avatar, Button, message, Space, Tag } from 'ant-design-vue'
+import { Avatar, Button, message, Space, Tag } from 'antdv-next'
 import { h, ref } from 'vue'
 
 // 自定义渲染数据

@@ -1,8 +1,8 @@
 <script setup lang="tsx">
-import type { DescriptionsProps } from 'ant-design-vue'
+import type { DescriptionsProps } from 'antdv-next'
 import type { CurdApi } from 'src/types/api'
 import type { CustomRenderArgs, StdTableColumn } from '../types'
-import { Button, Descriptions, DescriptionsItem, Flex, Form, FormItem, message } from 'ant-design-vue'
+import { Button, Descriptions, DescriptionsItem, Flex, Form, FormItem, message } from 'antdv-next'
 import { get } from 'lodash-es'
 import { computed, reactive, ref, watch, watchEffect } from 'vue'
 import { useLocale } from '../composables'

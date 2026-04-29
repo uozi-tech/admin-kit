@@ -1,26 +1,35 @@
 import type { Composer } from 'vue-i18n'
-import { useConfigContextInject } from 'ant-design-vue/es/config-provider/context'
-import { watchEffect } from 'vue'
+import type { CurdLocaleValue, I18nLanguage } from '../types'
+import { toValue, watchEffect } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { useCurdConfig } from './useCurdConfig'
+
+function normalizeLocale(locale?: CurdLocaleValue): I18nLanguage {
+  const localeValue = typeof locale === 'string' ? locale : locale?.locale
+
+  switch (localeValue?.replace('_', '-').toLowerCase()) {
+    case 'zh-cn':
+      return 'zh-CN'
+    case 'zh-hk':
+      return 'zh-HK'
+    case 'zh-tw':
+      return 'zh-TW'
+    case 'en-us':
+      return 'en-US'
+    default:
+      return 'en-US'
+  }
+}
 
 export function useLocale(): Composer {
   const i18n = useI18n()
-  const { locale: lang } = useConfigContextInject()
+  const curdConfig = useCurdConfig()
 
   watchEffect(() => {
-    switch (lang?.value.locale) {
-      case 'zh-cn':
-        i18n.locale.value = 'zh-CN'
-        break
-      case 'zh-hk':
-        i18n.locale.value = 'zh-HK'
-        break
-      case 'zh-tw':
-        i18n.locale.value = 'zh-TW'
-        break
-      default:
-        i18n.locale.value = 'en-US'
-    }
+    const locale = toValue(curdConfig.locale)
+    const fallbackLocale = toValue(curdConfig.i18n?.locale)
+
+    i18n.locale.value = normalizeLocale(locale ?? fallbackLocale)
   })
 
   return i18n

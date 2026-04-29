@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { StdTable } from '@uozi-admin/curd'
-import { Card } from 'ant-design-vue'
+import { Card } from 'antdv-next'
 import { $gettext } from '~/gettext'
 
 const columns = [

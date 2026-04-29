@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { TextareaConfig } from '../../types'
-import { Textarea } from 'ant-design-vue'
+import { TextArea } from 'antdv-next'
 
 defineProps<{
   props?: Omit<TextareaConfig, 'placeholder'>
@@ -11,9 +11,9 @@ const value = defineModel<TextareaConfig['value']>('value')
 </script>
 
 <template>
-  <Textarea
+  <TextArea
     v-model:value="value"
-    :placeholder
+    :placeholder="placeholder?.toString()"
     :disabled
     v-bind="props"
   />

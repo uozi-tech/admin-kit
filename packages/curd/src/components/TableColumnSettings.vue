@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { StdTableColumn } from '../types'
-import { HolderOutlined, SettingOutlined } from '@ant-design/icons-vue'
-import { Button, Checkbox, Dropdown } from 'ant-design-vue'
+import { HolderOutlined, SettingOutlined } from '@antdv-next/icons'
+import { Button, Checkbox, Dropdown } from 'antdv-next'
 import { cloneDeep } from 'lodash-es'
 import Sortable from 'sortablejs'
 import { computed, h, nextTick, onMounted, ref, watch } from 'vue'
@@ -228,7 +228,7 @@ watch(visible, async (newVisible) => {
 <template>
   <Dropdown
     v-model:open="visible"
-    trigger="click"
+    :trigger="['click']"
     placement="bottomRight"
     :get-popup-container="getPopupContainer"
   >
@@ -236,7 +236,7 @@ watch(visible, async (newVisible) => {
       :icon="h(SettingOutlined)"
       @click.stop="visible = !visible"
     />
-    <template #overlay>
+    <template #popupRender>
       <div class="table-column-settings">
         <div class="settings-header">
           <span class="settings-title">{{ t('Column Settings') }}</span>

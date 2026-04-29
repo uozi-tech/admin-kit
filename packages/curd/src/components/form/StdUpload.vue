@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import type { UploadChangeParam, UploadFile, UploadProps } from 'ant-design-vue'
-import type { FileType } from 'ant-design-vue/es/upload/interface'
+import type { UploadChangeParam, UploadFile, UploadProps } from 'antdv-next'
 import type { UploadConfig } from '../../types'
-import { DeleteOutlined, FileOutlined, FolderOutlined, InboxOutlined } from '@ant-design/icons-vue'
-import { Button, Flex, Form, FormItemRest, Progress, RadioButton, RadioGroup, UploadDragger } from 'ant-design-vue'
+import { DeleteOutlined, FileOutlined, FolderOutlined, InboxOutlined } from '@antdv-next/icons'
+import { Button, Flex, Progress, RadioButton, RadioGroup, UploadDragger } from 'antdv-next'
 import { computed, ref, watch } from 'vue'
 import { useLocale } from '../../composables'
 
@@ -16,8 +15,6 @@ const { props } = defineProps<{
 const { beforeUpload, ...restProps } = props ?? {}
 
 const { t } = useLocale()
-
-const formContext = Form.useInjectFormItemContext()
 
 // 支持字符串、字符串数组或文件对象数组
 const modelValue = defineModel<string | string[] | UploadFile[]>('value', { default: () => [] })
@@ -67,7 +64,7 @@ const uploadMode = ref<'file' | 'directory'>('file') // 上传模式控制
 const uploadProps = computed<UploadProps>(() => ({
   directory: uploadMode.value === 'directory', // 根据模式决定是否支持文件夹
   fileList: internalFileList.value,
-  beforeUpload: (file: FileType, fileList: FileType[]) => beforeUpload?.(file, fileList, modelValue),
+  beforeUpload: (file: File, fileList: File[]) => beforeUpload?.(file, fileList, modelValue),
   onChange(info: UploadChangeParam) {
     if (props?.multiple) {
       internalFileList.value = info.fileList
@@ -75,7 +72,6 @@ const uploadProps = computed<UploadProps>(() => ({
     else {
       internalFileList.value = [info.file]
     }
-    formContext.onFieldChange()
   },
   onRemove: (file) => {
     // 从fileList中移除选中的文件
@@ -85,7 +81,6 @@ const uploadProps = computed<UploadProps>(() => ({
       newFileList.splice(index, 1)
       internalFileList.value = newFileList
     }
-    formContext.onFieldChange()
     return true
   },
   showUploadList: false, // 不使用默认的上传列表，我们自定义展示
@@ -97,12 +92,11 @@ function removeFile(index: number) {
   const newFileList = internalFileList.value.slice()
   newFileList.splice(index, 1)
   internalFileList.value = newFileList
-  formContext.onFieldChange()
 }
 </script>
 
 <template>
-  <FormItemRest>
+  <div>
     <RadioGroup
       v-if="props?.multiple"
       v-model:value="uploadMode"
@@ -211,5 +205,5 @@ function removeFile(index: number) {
         {{ t('upload.processing', { count: processingFiles, total: totalFiles }) }}
       </div>
     </div>
-  </FormItemRest>
+  </div>
 </template>

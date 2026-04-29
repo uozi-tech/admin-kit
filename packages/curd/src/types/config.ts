@@ -1,4 +1,5 @@
 import type { I18nOptions } from 'vue-i18n'
+import type { MaybeRefOrGetter } from 'vue'
 
 /**
  * The pagination map
@@ -58,6 +59,10 @@ export interface RequestFormatFn {
  * @description The Languages built-in in the curd
  */
 export type I18nLanguage = 'zh-CN' | 'zh-HK' | 'zh-TW' | 'en-US'
+
+export type CurdLocaleValue = string | I18nLanguage | { locale?: string }
+
+export type CurdLocaleSource = MaybeRefOrGetter<CurdLocaleValue>
 
 /**
  * The date format config
@@ -205,6 +210,13 @@ export interface CurdConfigT {
      */
     requestFormat?: RequestFormatFn
   }
+
+  /**
+   * The external locale source
+   * @description Used to sync CURD i18n locale with host app language state
+   * @default 'zh-CN'
+   */
+  locale?: CurdLocaleSource
 
   /**
    * The i18n options

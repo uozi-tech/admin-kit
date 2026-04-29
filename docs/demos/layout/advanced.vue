@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { SidebarItem } from '@uozi-admin/layout-antdv'
-import type { MenuInfo } from 'ant-design-vue/es/menu/src/interface'
 import {
   BarChartOutlined,
   BellOutlined,
@@ -11,10 +10,14 @@ import {
   SettingOutlined,
   TableOutlined,
   UserOutlined,
-} from '@ant-design/icons-vue'
+} from '@antdv-next/icons'
 import { AdminLayout } from '@uozi-admin/layout-antdv'
-import { Alert, Button, Card, Col, Dropdown, Menu, MenuDivider, MenuItem, message, Modal, Row, Space, Statistic, Tag } from 'ant-design-vue'
+import { Alert, Button, Card, Col, Dropdown, Menu, MenuDivider, MenuItem, message, Modal, Row, Space, Statistic, Tag } from 'antdv-next'
 import { h, ref } from 'vue'
+
+interface MenuInfo {
+  key: string | number
+}
 
 // 状态管理
 const theme = ref<'light' | 'dark'>('light')
@@ -193,7 +196,7 @@ function showConfirm() {
                 管理员
                 <DownOutlined />
               </Button>
-              <template #overlay>
+              <template #popupRender>
                 <Menu @click="handleUserMenu">
                   <MenuItem key="profile">
                     <UserOutlined />
@@ -221,7 +224,7 @@ function showConfirm() {
           <Col :span="24">
             <Card
               title="高级功能演示"
-              :bordered="false"
+              variant="borderless"
             >
               <template #extra>
                 <Space>
@@ -232,7 +235,7 @@ function showConfirm() {
               </template>
 
               <Space
-                direction="vertical"
+                orientation="vertical"
                 size="large"
                 style="width: 100%;"
               >

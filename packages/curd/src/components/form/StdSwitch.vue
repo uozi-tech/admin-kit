@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { SwitchConfig } from '../../types'
-import { Switch } from 'ant-design-vue'
+import { Switch } from 'antdv-next'
 
 defineProps<{ props?: SwitchConfig, placeholder?: string | number, disabled?: boolean }>()
 

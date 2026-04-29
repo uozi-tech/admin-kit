@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { RateConfig } from '../../types'
-import { Rate } from 'ant-design-vue'
+import { Rate } from 'antdv-next'
 
 defineProps<{
   props?: Omit<RateConfig, 'placeholder'>

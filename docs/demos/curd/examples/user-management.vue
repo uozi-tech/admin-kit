@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { StdTableColumn } from '@uozi-admin/curd'
 import { datetimeRender, StdCurd } from '@uozi-admin/curd'
-import { Avatar, Tag } from 'ant-design-vue'
+import { Avatar, Tag } from 'antdv-next'
 import { h } from 'vue'
 import { userApi } from '../mock/userApi'
 

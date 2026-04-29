@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import type { FilterValue, SorterResult, TableRowSelection } from 'ant-design-vue/es/table/interface'
-import type { TablePaginationConfig } from 'ant-design-vue/lib/table/interface'
+import type { TablePaginationConfig, TableRowSelection, TableSorterResult } from 'antdv-next'
 import type { VNode } from 'vue'
-import type { StdTableBodyScope, StdTableColumn, StdTableHeaderScope, StdTableProps } from '../types'
-import { HolderOutlined, ReloadOutlined } from '@ant-design/icons-vue'
+import type { StdTableBodyScope, StdTableColumn, StdTableProps } from '../types'
+import { HolderOutlined, ReloadOutlined } from '@antdv-next/icons'
 import { useRouteQuery } from '@vueuse/router'
-import { Button, Popconfirm, Table } from 'ant-design-vue'
+import { Button, Popconfirm, Table } from 'antdv-next'
 import { cloneDeep, debounce, get, isArray, isEqual, isNil } from 'lodash-es'
 import { computed, h, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { getRealContent } from '..'
@@ -21,8 +20,10 @@ const props = withDefaults(defineProps<StdTableProps>(), {
   showSearchBtn: undefined,
 })
 
+type FilterValue = (string | number | boolean)[] | null
+
 const emit = defineEmits<{
-  (e: 'change', payload: { pagination: TablePaginationConfig, filters: Record<string, FilterValue>, sorter: SorterResult | SorterResult<any>[] }): void
+  (e: 'change', payload: { pagination: TablePaginationConfig, filters: Record<string, FilterValue>, sorter: TableSorterResult | TableSorterResult<any>[] }): void
   (e: 'view', record: any): void
   (e: 'editItem', record: any): void
   (e: 'deleteItemTemporarily', record: any): void
@@ -457,7 +458,7 @@ function onSelectedChange(keys: (string | number)[], rows: Record<string | numbe
 const rowSelection = computed(() => {
   if (props.rowSelectionType || props.rowSelection || props.tableProps?.rowSelection) {
     return {
-      selectedRowKeys,
+      selectedRowKeys: selectedRowKeys.value ?? [],
       onChange: onSelectedChange,
       type: props.rowSelectionType || 'radio',
       ...props.rowSelection,
@@ -468,7 +469,7 @@ const rowSelection = computed(() => {
 })
 
 /** Table 分页，排序，筛选发生改变时触发 */
-function onTableChange(p: TablePaginationConfig, filters: Record<string, FilterValue>, sorter: SorterResult | SorterResult<any>[]) {
+function onTableChange(p: TablePaginationConfig, filters: Record<string, FilterValue>, sorter: TableSorterResult | TableSorterResult<any>[]) {
   emit('change', { pagination: p, filters, sorter })
 
   if (sorter) {
@@ -557,6 +558,20 @@ function CustomHeaderRender(props: { node: VNode }) {
   return props.node
 }
 
+/** Table body 渲染函数，兼容 Uozi Admin 既有的 customRender 配置 */
+function CustomBodyRender(renderProps: StdTableBodyScope) {
+  const column = renderProps.column as StdTableColumn
+
+  return column.customRender?.({
+    column,
+    record: renderProps.record,
+    text: renderProps.text,
+    value: renderProps.value ?? renderProps.text,
+    index: renderProps.index,
+    renderIndex: renderProps.index,
+  }, 'table')
+}
+
 defineExpose({
   refresh: debouncedListApi,
   tableData,
@@ -628,25 +643,35 @@ function SearchFormExtraRender() {
       }"
       @change="onTableChange"
     >
-      <template #headerCell="{ title, column }: StdTableHeaderScope">
-        <template v-if="column?.customHeaderRender">
-          <CustomHeaderRender :node="column?.customHeaderRender({ title, column })" />
+      <template #headerCell="{ text, column }">
+        <template v-if="(column as any)?.customHeaderRender">
+          <CustomHeaderRender :node="(column as any)?.customHeaderRender({ title: text, column })" />
         </template>
       </template>
-      <template #bodyCell="{ record, column }: StdTableBodyScope">
-        <!-- 通用列 slot 支持 -->
-        <template v-if="$slots[`col-${column.dataIndex}`] && !column?.customRender">
-          <slot
-            :name="`col-${column.dataIndex}`"
+      <template #bodyCell="{ text, record, column, index }">
+        <template v-if="(column as any)?.customRender">
+          <CustomBodyRender
             :record="(record as any)"
             :column="column"
-            :text="record[column.dataIndex]"
-            :value="record[column.dataIndex]"
-            :index="record.index"
+            :text="text"
+            :value="text"
+            :index="index"
+            :render-index="index"
+          />
+        </template>
+        <!-- 通用列 slot 支持 -->
+        <template v-else-if="$slots[`col-${(column as any).dataIndex}`]">
+          <slot
+            :name="`col-${(column as any).dataIndex}`"
+            :record="(record as any)"
+            :column="column"
+            :text="text"
+            :value="text"
+            :index="index"
           />
         </template>
         <!-- Actions 列特殊处理 -->
-        <template v-else-if="!onlyQuery && column?.dataIndex === 'actions' && !column?.customRender">
+        <template v-else-if="!onlyQuery && (column as any)?.dataIndex === 'actions'">
           <slot
             name="beforeActions"
             :record="(record as any)"

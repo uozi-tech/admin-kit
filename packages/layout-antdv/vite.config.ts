@@ -18,8 +18,8 @@ export default createViteConfig({
         external: [
           'vue',
           'vue-router',
-          'ant-design-vue',
-          '@ant-design/icons-vue',
+          'antdv-next',
+          '@antdv-next/icons',
           'lodash-es',
         ],
       },
