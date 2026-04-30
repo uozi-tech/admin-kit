@@ -1,5 +1,11 @@
 # @uozi-admin/layout-antdv
 
+## 2.0.2
+
+### Patch Changes
+
+- [`6ff8c27`](https://github.com/uozi-tech/admin-kit/commit/6ff8c2754dea23359926a1b7ef0113fcee640afc) Thanks [@akinoccc](https://github.com/akinoccc)! - fix: enhance SidebarContent component with path normalization and menu item resolution functions
+
 ## 2.0.1
 
 ### Patch Changes
