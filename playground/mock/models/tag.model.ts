@@ -9,6 +9,6 @@ export class Tag {
   @Field({ type: 'string', required: true, unique: true, min: 2, max: 20 })
   name?: string
 
-  @Field({ type: 'array', itemType: 'number', ref: 'posts' })
+  @Field({ type: 'array', ref: 'posts' })
   postIds?: number[]
 }

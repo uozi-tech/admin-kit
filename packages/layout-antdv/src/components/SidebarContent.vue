@@ -29,6 +29,10 @@ function isSameKeys(left: string[], right: string[]) {
   return left.length === right.length && left.every((key, index) => key === right[index])
 }
 
+function mergeKeys(baseKeys: string[], nextKeys: string[]) {
+  return Array.from(new Set([...baseKeys, ...nextKeys]))
+}
+
 function normalizePath(path: string) {
   if (path === '/')
     return path
@@ -90,8 +94,10 @@ watch(
       selectedKeys.value = nextSelectedKeys
     }
 
-    if (!isSameKeys(openKeys.value, nextOpenKeys)) {
-      openKeys.value = nextOpenKeys
+    const mergedOpenKeys = mergeKeys(openKeys.value, nextOpenKeys)
+
+    if (!isSameKeys(openKeys.value, mergedOpenKeys)) {
+      openKeys.value = mergedOpenKeys
     }
   },
 )

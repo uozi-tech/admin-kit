@@ -15,6 +15,6 @@ export class Comment {
   @Field({ type: 'number', ref: 'users' })
   userId?: number
 
-  @Field({ type: 'date', defaultValue: () => new Date() })
+  @Field({ type: 'date' })
   createdAt?: Date
 }

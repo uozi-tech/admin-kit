@@ -4,10 +4,21 @@
 
 import { extendCurdApi, useCurdApi } from '@uozi-admin/request/src/useCurdApi.js'
 
-export const userApi = useCurdApi<{ aa: string }>('/aass', {
-  getLis2t: async () => {
+interface UserApiExtra {
+  getCustomList: () => Promise<{
+    data: { aa: string }[]
+    pagination: {
+      total: number
+      page: number
+      pageSize: number
+    }
+  }>
+}
+
+export const userApi = useCurdApi<{ aa: string }, any, UserApiExtra>('/aass', {
+  getCustomList: async () => {
     // eslint-disable-next-line no-console
-    console.log('getList')
+    console.log('getCustomList')
     return {
       data: [],
       pagination: {
@@ -20,9 +31,9 @@ export const userApi = useCurdApi<{ aa: string }>('/aass', {
 })
 
 const userApi2 = extendCurdApi(userApi, {
-  getLis2t: async () => {
+  getArchivedList: async () => {
     // eslint-disable-next-line no-console
-    console.log('getList')
+    console.log('getArchivedList')
     return {
       data: [],
       pagination: {
@@ -34,5 +45,5 @@ const userApi2 = extendCurdApi(userApi, {
   },
 })
 
-userApi2.getLis2t()
-userApi.getLis2t()
+userApi2.getArchivedList()
+userApi.getCustomList()

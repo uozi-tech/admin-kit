@@ -32,16 +32,62 @@ export const routes: RouteRecordRaw[] = [
         },
       },
       {
-        path: '/aaa',
-        name: 'aaa',
+        path: '/content',
+        name: 'content',
         meta: {
-          title: () => $gettext('Home'),
+          icon: FileTextOutlined,
+          title: () => $gettext('Content Management'),
         },
         children: [
           {
-            path: 'users',
-            name: 'users',
-            component: () => import('../views/users/UserList.vue'),
+            path: 'posts',
+            name: 'content-posts',
+            component: () => import('../views/posts/PostList.vue'),
+            meta: {
+              title: () => $gettext('Post Management'),
+            },
+          },
+          {
+            path: 'comments',
+            name: 'content-comments',
+            component: () => import('../views/comments/CommentList.vue'),
+            meta: {
+              title: () => $gettext('Comment Management'),
+            },
+          },
+          {
+            path: 'tags',
+            name: 'content-tags',
+            component: () => import('../views/tags/TagList.vue'),
+            meta: {
+              title: () => $gettext('Tag Management'),
+            },
+          },
+        ],
+      },
+      {
+        path: '/catalog',
+        name: 'catalog',
+        meta: {
+          icon: AppstoreOutlined,
+          title: () => $gettext('Catalog Management'),
+        },
+        children: [
+          {
+            path: 'products',
+            name: 'catalog-products',
+            component: () => import('../views/products/ProductList.vue'),
+            meta: {
+              title: () => $gettext('Product Management'),
+            },
+          },
+          {
+            path: 'categories',
+            name: 'catalog-categories',
+            component: () => import('../views/categories/CategoryList.vue'),
+            meta: {
+              title: () => $gettext('Category Management'),
+            },
           },
         ],
       },

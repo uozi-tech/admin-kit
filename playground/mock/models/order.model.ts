@@ -9,18 +9,15 @@ export class Order {
   @Field({ type: 'number', ref: 'users' })
   userId?: number
 
-  @Field({ type: 'number', min: 0, precision: 2 })
+  @Field({ type: 'number', min: 0 })
   total?: number
 
-  @Field({
-    type: 'string',
-    allowed: ['pending', 'processing', 'shipped', 'cancelled'],
-  })
+  @Field({ type: 'string' })
   status?: string
 
-  @Field({ type: 'date', defaultValue: () => new Date() })
+  @Field({ type: 'date' })
   createdAt?: Date
 
-  @Field({ type: 'date', onUpdate: () => new Date() })
+  @Field({ type: 'date' })
   updatedAt?: Date
 }

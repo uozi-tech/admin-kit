@@ -1,8 +1,10 @@
 <script setup lang="ts">
+import type { StdTableColumn } from '@uozi-admin/curd'
 import { StdCurd } from '@uozi-admin/curd'
+import { h } from 'vue'
 import { categoryApi, productApi } from '~/api'
 
-const columns = [
+const columns: StdTableColumn[] = [
   {
     title: '产品名称',
     dataIndex: 'name',

@@ -12,7 +12,6 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     AButton: typeof import('antdv-next')['Button']
-    ArrowLeftOutlined: typeof import('@antdv-next/icons')['ArrowLeftOutlined']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }

@@ -1,24 +1,30 @@
 <script setup lang="ts">
+import type { StdTableColumn } from '@uozi-admin/curd'
+import type { CurdApi } from '@uozi-admin/request'
 import { StdTable } from '@uozi-admin/curd'
 import { Card } from 'antdv-next'
 import { $gettext } from '~/gettext'
 
-const columns = [
+const columns: StdTableColumn[] = [
   {
     title: $gettext('Name'),
     dataIndex: 'name',
   },
   {
+    title: $gettext('Actions'),
     dataIndex: 'actions',
   },
 ]
 
-const curdApi = {
-  getList: () => {
+const curdApi: Pick<CurdApi<{ name: string }>, 'getList'> = {
+  getList: async () => {
     return {
       data: [
         { name: 'John Doe' },
       ],
+      pagination: {
+        total: 1,
+      },
     }
   },
 }
