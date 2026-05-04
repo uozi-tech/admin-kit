@@ -5,7 +5,8 @@ import { DatePicker } from 'antdv-next'
 import dayjs from 'dayjs'
 import localeData from 'dayjs/plugin/localeData'
 import weekday from 'dayjs/plugin/weekday'
-import { computed } from 'vue'
+import { cloneDeep, isEqual } from 'lodash-es'
+import { computed, shallowRef, watch } from 'vue'
 import { Format } from '../../constants'
 import { isUsingTimestamp } from './helper'
 
@@ -24,6 +25,43 @@ dayjs.extend(localeData)
 const value = defineModel<any>('value')
 
 const usingTimestamp = isUsingTimestamp(p.props)
+const resolvedFormat = computed(() => p.props?.format ?? Format[p.type])
+const resolvedValueFormat = computed(() => {
+  if (usingTimestamp) {
+    return undefined
+  }
+  return p.props?.valueFormat ?? resolvedFormat.value
+})
+const stableShowTime = shallowRef<any>(p.type === 'datetime' ? true : undefined)
+const resolvedShowTime = computed(() => stableShowTime.value)
+const pickerProps = computed(() => {
+  const {
+    value: _value,
+    format: _format,
+    valueFormat: _valueFormat,
+    showTime: _showTime,
+    ...rest
+  } = (p.props ?? {}) as Record<string, any>
+
+  return {
+    ...rest,
+    value: computedValue.value,
+  }
+})
+
+watch(() => p.props?.showTime, (newValue, oldValue) => {
+  const fallbackValue = p.type === 'datetime'
+    ? true
+    : undefined
+  const nextValue = newValue ?? fallbackValue
+  const shouldReuseStableRef = isEqual(stableShowTime.value, nextValue)
+
+  if (!shouldReuseStableRef) {
+    stableShowTime.value = typeof nextValue === 'object' && nextValue !== null
+      ? cloneDeep(nextValue)
+      : nextValue
+  }
+}, { immediate: true })
 
 const computedValue = computed<any>({
   get() {
@@ -48,16 +86,13 @@ const computedValue = computed<any>({
 <template>
   <AntDatePicker
     :picker="type === 'datetime' ? undefined : type as any"
-    :format="Format[type]"
-    :value-format="Format[type]"
-    :show-time="type === 'datetime'"
+    :format="resolvedFormat"
+    :value-format="resolvedValueFormat"
+    :show-time="resolvedShowTime"
     :get-popup-container="(triggerNode: any) => triggerNode.parentNode"
     :disabled
     :placeholder
-    v-bind="{
-      ...props as any,
-      value: computedValue,
-    }"
+    v-bind="pickerProps"
     @update:value="v => computedValue = v"
   />
 </template>
