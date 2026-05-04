@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 5.1.1
+
+### Patch Changes
+
+- [`02a5f3d`](https://github.com/uozi-tech/admin-kit/commit/02a5f3d0bdc4eaef7e7e5b54e4e4266d16a9726c) Thanks [@akinoccc](https://github.com/akinoccc)! - fix: format conflict issue
+
 ## 5.1.0
 
 ### Minor Changes
