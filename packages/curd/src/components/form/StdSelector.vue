@@ -218,7 +218,7 @@ const computedValue = computed({
           popup: { root: 'selector' },
         }"
         :get-popup-container="node => node.parentNode"
-        @focus="clickInput"
+        @click="clickInput"
         @deselect="removeValue"
       />
     </div>
