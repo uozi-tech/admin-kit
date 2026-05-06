@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 6.0.0
+
+### Major Changes
+
+- [`f51da2c`](https://github.com/uozi-tech/admin-kit/commit/f51da2cf5f5f4128af859a1d614e03d661d65b7f) Thanks [@akinoccc](https://github.com/akinoccc)! - fix: change event handler from focus to click in StdSelector component
+
 ## 5.1.1
 
 ### Patch Changes
