@@ -5,12 +5,12 @@
   "type": "module",
   "main": "dist/index.js",
   "files": [
-    "dist",
-    "dist/scripts"
+    "bin",
+    "dist"
   ],
   "types": "dist/index.d.ts",
   "bin": {
-    "generate-curd-translations": "./dist/scripts/scripts/generateTranslations.js"
+    "generate-curd-translations": "./bin/generate-curd-translations.mjs"
   },
   "keywords": [
     "uozi-admin",
