@@ -90,12 +90,13 @@ catalog:
 #   undici-types: 6.20.0
 #   vitepress>vite: 7.3.1
 
-onlyBuiltDependencies:
-  - core-js
-  - esbuild
-  - simple-git-hooks
-  - typescript
-  - vite
-  - vitest
-  - vue
-  - vue-tsc
+# pnpm ≥10.26 / v11：用 allowBuilds 显式允许依赖的 install 脚本（替代已移除的 onlyBuiltDependencies）
+allowBuilds:
+  core-js: true
+  esbuild: true
+  simple-git-hooks: true
+  typescript: true
+  vite: true
+  vitest: true
+  vue: true
+  vue-tsc: true
