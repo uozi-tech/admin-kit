@@ -144,9 +144,10 @@ function handleOpenChange(keys: string[]) {
         </h1>
       </slot>
     </div>
+    <!-- 折叠时勿传 open-keys：[] 在 JS 中为 truthy，@v-c/menu 会视为受控且永远为 []，hover 无法展开弹出子菜单 -->
     <Menu
       v-model:selected-keys="selectedKeys"
-      :open-keys="collapsed ? [] : openKeys"
+      :open-keys="collapsed ? undefined : openKeys"
       mode="inline"
       @open-change="handleOpenChange"
       @click="handleMenuItemClick"
