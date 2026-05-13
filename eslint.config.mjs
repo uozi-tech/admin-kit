@@ -9,6 +9,7 @@ export default antfu({
     '**/vite.config.ts.timestamp*',
     '**/.pnpm-store/*',
     '**/locales/**.json',
+    '**/bin/**',
   ],
 }, {
   files: ['playground/mock/**/*.ts'],
