@@ -1,5 +1,11 @@
 # @uozi-admin/layout-antdv
 
+## 2.0.3
+
+### Patch Changes
+
+- [`f636774`](https://github.com/uozi-tech/admin-kit/commit/f6367744787fd0bb42a47313dd5dc53a66d8d1a8) Thanks [@akinoccc](https://github.com/akinoccc)! - fix: update SidebarContent component to handle open-keys correctly when collapsed
+
 ## 2.0.2
 
 ### Patch Changes
