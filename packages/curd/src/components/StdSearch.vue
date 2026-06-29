@@ -3,7 +3,7 @@ import type { StdTableColumn } from '../types'
 import { DownOutlined, UpOutlined } from '@antdv-next/icons'
 import { watchPausable } from '@vueuse/core'
 import { Button, Flex, Form, FormItem } from 'antdv-next'
-import { cloneDeep } from 'lodash-es'
+import { cloneDeep, get, set } from 'lodash-es'
 import { computed, nextTick, ref, watch } from 'vue'
 import { useCurdConfig, useLocale } from '../composables'
 import { getColumnKey, getSearchLabel } from '../utils'
@@ -26,6 +26,7 @@ const { t } = useLocale()
 
 const curdConfig = useCurdConfig()
 const formDataBuffer = ref<Record<string, any>>({})
+const manualInputTypes = new Set(['input', 'textarea', 'password', 'autoComplete', 'inputNumber'])
 
 // {{ AURA-X: Add - 添加折叠功能状态管理. Approval: 寸止(ID:1723363200). }}
 const expand = ref(false)
@@ -41,7 +42,7 @@ const hideResetBtn = computed(() => {
 
 const { pause, resume } = watchPausable(formDataBuffer, (v) => {
   if (!showSearchBtn.value) {
-    emit('update:data', v)
+    emit('update:data', getTrimmedSearchData(v))
   }
 }, { deep: true })
 
@@ -65,8 +66,36 @@ function getConfig(c: StdTableColumn) {
   return c.search
 }
 
+function getValueKey(c: StdTableColumn) {
+  const config = getConfig(c)
+  const key = config?.valueKey ?? config?.formItem?.name ?? c.dataIndex
+  if (Array.isArray(key)) {
+    return key.join('.')
+  }
+
+  return key
+}
+
+function getTrimmedSearchData(data: Record<string, any>) {
+  const clonedData = cloneDeep(data)
+  props.columns.forEach((c) => {
+    const config = getConfig(c)
+    if (typeof config?.type !== 'string' || !manualInputTypes.has(config.type)) {
+      return
+    }
+
+    const valueKey = getValueKey(c)
+    const value = get(clonedData, valueKey)
+    if (typeof value === 'string') {
+      set(clonedData, valueKey, value.trim())
+    }
+  })
+
+  return clonedData
+}
+
 function onSearch() {
-  emit('update:data', formDataBuffer.value)
+  emit('update:data', getTrimmedSearchData(formDataBuffer.value))
 }
 </script>
 

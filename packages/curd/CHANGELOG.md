@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 6.0.1
+
+### Patch Changes
+
+- fix(search): 搜索表单手动输入类型提交前自动去除首尾空格，并补充 less 构建依赖配置。
+
 ## 6.0.0
 
 ### Major Changes

@@ -1,5 +1,11 @@
 # @uozi-admin/layout-antdv
 
+## 2.0.4
+
+### Patch Changes
+
+- fix(build): 补充 less 构建依赖配置。
+
 ## 2.0.3
 
 ### Patch Changes

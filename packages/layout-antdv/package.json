@@ -1,6 +1,6 @@
 {
   "name": "@uozi-admin/layout-antdv",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "Easy to implement admin layout",
   "type": "module",
   "main": "src/index.ts",
@@ -40,6 +40,7 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@uozi-admin/shared-config": "workspace:*"
+    "@uozi-admin/shared-config": "workspace:*",
+    "less": "catalog:"
   }
 }
