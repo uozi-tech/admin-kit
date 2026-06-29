@@ -11,6 +11,7 @@ const validationFormKey = ref(0)
 const validationFormData = ref<Record<string, any>>({})
 
 const formRef = ref<InstanceType<typeof StdForm>>()
+const emailRegex = /^[^\s@]+@[^\s@][^\s.@]*\.[^\s@]+$/
 
 // 动态验证列配置
 const validationColumns = computed(() => [
@@ -114,7 +115,7 @@ const validationColumns = computed(() => [
               if (hasEmailNotification && !value) {
                 return Promise.reject(new Error('选择邮箱通知时，邮箱为必填项'))
               }
-              if (value && !/^[^\s@]+@[^\s@][^\s.@]*\.[^\s@]+$/.test(value)) {
+              if (value && !emailRegex.test(value)) {
                 return Promise.reject(new Error('请输入正确的邮箱格式'))
               }
               return Promise.resolve()

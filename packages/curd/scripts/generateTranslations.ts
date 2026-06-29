@@ -66,6 +66,8 @@ if (hasFlag('--help')) {
 const outputPath = getArg('--output', 'src/curd_translations.ts')
 const wrapperFn = getArg('--wrapper', '$gettext')
 const outputFile = path.resolve(process.cwd(), outputPath)
+const identifierRegex = /^[a-z_$][\w$]*$/i
+const singleQuoteRegex = /'/g
 
 // Create output directory if it doesn't exist
 const outputDir = path.dirname(outputFile)
@@ -87,9 +89,9 @@ try {
     const entries = Object.entries(obj)
     entries.forEach(([key, value], index) => {
       // Convert key to a valid JS property name if needed
-      const sanitizedKey = /^[a-z_$][\w$]*$/i.test(key)
+      const sanitizedKey = identifierRegex.test(key)
         ? key
-        : `'${key.replace(/'/g, '\\\'')}'`
+        : `'${key.replace(singleQuoteRegex, '\\\'')}'`
 
       const isLast = index === entries.length - 1
 
@@ -99,7 +101,7 @@ try {
       }
       else {
         // Escape single quotes in the translation string
-        const escapedValue = String(value).replace(/'/g, '\\\'')
+        const escapedValue = String(value).replace(singleQuoteRegex, '\\\'')
         result += `${spaces}${sanitizedKey}: ${wrapperFn}('${escapedValue}')`
         result += isLast ? '\n' : ',\n'
       }

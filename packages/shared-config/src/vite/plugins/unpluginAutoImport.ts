@@ -2,6 +2,8 @@ import type { Options as AutoImportOptions } from 'unplugin-auto-import/types'
 import type { PluginOption } from 'vite'
 import AutoImport from 'unplugin-auto-import/vite'
 
+const ignoreDtsRegex = /^ignore_/
+
 export function createAutoImportPluginConfig(customConfig?: AutoImportOptions): PluginOption {
   // https://github.com/antfu/unplugin-auto-import
   return AutoImport({
@@ -11,7 +13,7 @@ export function createAutoImportPluginConfig(customConfig?: AutoImportOptions): 
       'pinia',
     ],
     ignoreDts: [
-      /^ignore_/,
+      ignoreDtsRegex,
     ],
     vueTemplate: true,
     eslintrc: {

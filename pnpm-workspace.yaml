@@ -8,6 +8,28 @@ packages:
   - '!packages/create-admin/template'
   - playground
   - docs
+overrides:
+  '@antdv-next/auto-import-resolver': 1.0.7
+  '@antdv-next/icons': 1.0.6
+  '@v-c/slider': 1.0.10
+  '@vue/compiler-core': 3.5.27
+  '@vue/compiler-dom': 3.5.27
+  '@vue/compiler-sfc': 3.5.27
+  '@vue/compiler-ssr': 3.5.27
+  '@vue/runtime-core': 3.5.27
+  '@vue/runtime-dom': 3.5.27
+  '@vue/server-renderer': 3.5.27
+  '@vue/shared': 3.5.27
+  antdv-next: 1.2.2
+  chokidar: ^5.0.0
+  semver: ^7.8.5
+  undici-types: 6.27.0
+  vite: 7.3.6
+  vitepress>@vitejs/plugin-vue: ^6.0.7
+  vitepress>vite: 7.3.6
+  vue: 3.5.27
+  vue-router: 4.6.4
+
 # trustPolicy: no-downgrade
 
 catalog:
@@ -86,27 +108,6 @@ catalog:
   vue-types: ^3.0.2
   vue3-gettext: 4.0.0-beta.1
   xlsx: https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz
-overrides:
-  '@vue/compiler-core': 3.5.27
-  '@vue/compiler-dom': 3.5.27
-  '@vue/compiler-sfc': 3.5.27
-  '@vue/compiler-ssr': 3.5.27
-  '@vue/runtime-core': 3.5.27
-  '@vue/runtime-dom': 3.5.27
-  '@vue/server-renderer': 3.5.27
-  '@vue/shared': 3.5.27
-  '@antdv-next/auto-import-resolver': 1.0.7
-  '@antdv-next/icons': 1.0.6
-  '@v-c/slider': 1.0.10
-  antdv-next: 1.2.2
-  vue: 3.5.27
-  chokidar: ^5.0.0
-  semver: ^7.8.5
-  undici-types: 6.27.0
-  vite: 7.3.6
-  vue-router: 4.6.4
-  vitepress>@vitejs/plugin-vue: ^6.0.7
-  vitepress>vite: 7.3.6
 
 # pnpm 10.3–10.25：仅识别 onlyBuiltDependencies（strictDepBuilds 默认 true）
 # pnpm ≥10.26 / v11：使用 allowBuilds；v11 起不再读取 onlyBuiltDependencies，两处都写以兼容 CI 上的旧 pnpm

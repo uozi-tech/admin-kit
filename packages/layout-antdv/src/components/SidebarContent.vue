@@ -24,6 +24,8 @@ const route = useRoute()
 
 const selectedKeys = ref<string[]>(getSelectedKeys())
 const openKeys = ref<string[]>(getOpenKeys())
+const leadingSlashRegex = /^\/+/
+const trailingSlashRegex = /\/+$/
 
 function isSameKeys(left: string[], right: string[]) {
   return left.length === right.length && left.every((key, index) => key === right[index])
@@ -37,14 +39,14 @@ function normalizePath(path: string) {
   if (path === '/')
     return path
 
-  return path.replace(/\/+$/, '')
+  return path.replace(trailingSlashRegex, '')
 }
 
 function resolveMenuItemPath(parentPath: string, childPath: string) {
   if (childPath.startsWith('/'))
     return normalizePath(childPath)
 
-  return normalizePath(`${normalizePath(parentPath)}/${childPath.replace(/^\/+/, '')}`)
+  return normalizePath(`${normalizePath(parentPath)}/${childPath.replace(leadingSlashRegex, '')}`)
 }
 
 function getSelectedKeys() {

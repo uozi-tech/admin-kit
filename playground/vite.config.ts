@@ -1,6 +1,8 @@
 import { fileURLToPath } from 'node:url'
 import { createViteConfig } from '@uozi-admin/shared-config'
 
+const apiPrefixRegex = /^\/api/
+
 export default createViteConfig({
   overrides: {
     resolve: {
@@ -14,7 +16,7 @@ export default createViteConfig({
         '/api': {
           target: 'http://localhost:10040',
           changeOrigin: true,
-          rewrite: path => path.replace(/^\/api/, '/api'),
+          rewrite: path => path.replace(apiPrefixRegex, '/api'),
         },
       },
     },

@@ -8,6 +8,7 @@ const formType = ref('personal')
 const formData = ref({})
 
 const formRef = ref<InstanceType<typeof StdForm>>()
+const phoneNumberRegex = /^1[3-9]\d{9}$/
 
 // 动态表单列配置
 const dynamicFormColumns = computed(() => {
@@ -106,7 +107,7 @@ const dynamicFormColumns = computed(() => {
 
 // 手机号验证器
 function phoneValidator(rule: any, value: string) {
-  if (value && !/^1[3-9]\d{9}$/.test(value)) {
+  if (value && !phoneNumberRegex.test(value)) {
     return Promise.reject(new Error('请输入正确的手机号格式'))
   }
   return Promise.resolve()

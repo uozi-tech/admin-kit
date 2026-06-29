@@ -22,13 +22,14 @@ const { t } = useLocale()
 const visible = ref(false)
 const sortableContainer = ref<HTMLElement>()
 const localColumns = ref<StdTableColumn[]>([])
+const slashRegex = /\//g
 // 临时配置（用于在确认前预览）
 const tempColumns = ref<StdTableColumn[]>([])
 
 // 获取存储键 - 基于页面路径，确保配置持久化（去除查询参数）
 const storageKey = computed(() => {
   const urlWithoutQuery = window.location.href.split('?')[0]
-  return `table-column-config-${urlWithoutQuery.replace(/\//g, '-')}`
+  return `table-column-config-${urlWithoutQuery.replace(slashRegex, '-')}`
 })
 
 // 初始化列配置

@@ -1,5 +1,7 @@
 import type { CurdApi } from '@uozi-admin/curd/dist/types/api'
 
+const dateSeparatorRegex = /-/g
+
 // Mock order data
 const mockOrders = [
   {
@@ -85,7 +87,7 @@ export const orderApi = {
     await new Promise(resolve => setTimeout(resolve, 300))
     const newOrder = {
       id: Math.max(...mockOrders.map(o => o.id)) + 1,
-      order_no: `ORD${new Date().toISOString().slice(0, 10).replace(/-/g, '')}${String(Math.max(...mockOrders.map(o => o.id)) + 1).padStart(3, '0')}`,
+      order_no: `ORD${new Date().toISOString().slice(0, 10).replace(dateSeparatorRegex, '')}${String(Math.max(...mockOrders.map(o => o.id)) + 1).padStart(3, '0')}`,
       ...data,
       created_at: new Date().toISOString(),
     }

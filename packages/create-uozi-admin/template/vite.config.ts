@@ -1,6 +1,8 @@
 import { createViteConfig } from '@uozi-admin/shared-config'
 import { loadEnv } from 'vite'
 
+const apiPrefixRegex = /^\/api/
+
 // https://vite.dev/config/
 export default createViteConfig({
   overrides: ({ mode }) => {
@@ -14,7 +16,7 @@ export default createViteConfig({
             changeOrigin: true,
             secure: false,
             ws: true,
-            rewrite: path => path.replace(/^\/api/, ''),
+            rewrite: path => path.replace(apiPrefixRegex, ''),
           },
         },
       },

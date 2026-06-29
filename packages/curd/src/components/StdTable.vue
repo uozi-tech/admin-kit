@@ -32,6 +32,7 @@ const emit = defineEmits<{
 
 type FilterValue = (string | number | boolean)[] | null
 
+const jsonPathPrefixRegex = /^\$\./
 const { tableId, initSortable, buildIndexMap, resetIndexMap } = useDraggableTable(props.rowDraggableOptions)
 
 onMounted(async () => {
@@ -386,7 +387,7 @@ const debouncedListApi = debounce(async () => {
       return
     }
 
-    const paginationData = get(formattedRes, paginationPath.replace(/^\$\./, ''))
+    const paginationData = get(formattedRes, paginationPath.replace(jsonPathPrefixRegex, ''))
     const paginationResponseMap = curdConfig.listApi?.paginationMap?.response
     if (!paginationResponseMap) {
       console.warn('paginationMap.response is not configured in curdConfig.listApi')

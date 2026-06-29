@@ -18,6 +18,11 @@ const renameFiles: Record<string, string | undefined> = {
 }
 
 const defaultTargetDir = 'uozi-admin-project'
+const leadingDotOrUnderscoreRegex = /^[._]/
+const packageNameRegex = /^(?:@[a-z\d\-*~][a-z\d\-*._~]*\/)?[a-z\d\-~][a-z\d\-._~]*$/
+const slashSuffixRegex = /\/+$/g
+const unsupportedPackageNameCharsRegex = /[^a-z\d\-~]+/g
+const whitespaceRegex = /\s+/g
 
 const getProjectName = (targetDir: string) => path.basename(path.resolve(targetDir))
 
@@ -224,7 +229,7 @@ async function createProject(options: {
 }
 
 function formatTargetDir(targetDir: string | undefined) {
-  return targetDir?.trim().replace(/\/+$/g, '')
+  return targetDir?.trim().replace(slashSuffixRegex, '')
 }
 
 function copy(src: string, dest: string) {
@@ -236,18 +241,16 @@ function copy(src: string, dest: string) {
 }
 
 function isValidPackageName(projectName: string) {
-  return /^(?:@[a-z\d\-*~][a-z\d\-*._~]*\/)?[a-z\d\-~][a-z\d\-._~]*$/.test(
-    projectName,
-  )
+  return packageNameRegex.test(projectName)
 }
 
 function toValidPackageName(projectName: string) {
   return projectName
     .trim()
     .toLowerCase()
-    .replace(/\s+/g, '-')
-    .replace(/^[._]/, '')
-    .replace(/[^a-z\d\-~]+/g, '-')
+    .replace(whitespaceRegex, '-')
+    .replace(leadingDotOrUnderscoreRegex, '')
+    .replace(unsupportedPackageNameCharsRegex, '-')
 }
 
 function copyDir(srcDir: string, destDir: string) {

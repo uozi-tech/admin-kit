@@ -65,7 +65,7 @@ export function mergeCurdConfig(...configs: Partial<CurdConfigT>[]): Partial<Cur
   const mergedConfig = merge({}, ...configs) as Partial<CurdConfigT>
 
   for (const config of configs) {
-    if (Object.prototype.hasOwnProperty.call(config, 'locale') && config.locale !== undefined) {
+    if (Object.hasOwn(config, 'locale') && config.locale !== undefined) {
       mergedConfig.locale = config.locale
     }
   }
