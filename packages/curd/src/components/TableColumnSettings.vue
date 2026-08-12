@@ -1,16 +1,23 @@
 <script setup lang="ts">
 import type { StdTableColumn } from '../types'
+import type { ManagedTableColumn, StoredColumnSetting } from '../utils'
 import { HolderOutlined, SettingOutlined } from '@antdv-next/icons'
 import { Button, Checkbox, Dropdown } from 'antdv-next'
 import { cloneDeep } from 'lodash-es'
 import Sortable from 'sortablejs'
-import { computed, h, nextTick, onMounted, ref, watch } from 'vue'
+import { computed, h, nextTick, onMounted, ref, shallowRef, toRaw, watch } from 'vue'
 import { useLocale } from '../composables'
-import { getColumnKey, getRealContent } from '../utils'
+import {
+  createManagedColumns,
+  getRealContent,
+  normalizeTableColumnKeys,
+  parseColumnSettings,
+  restoreColumnSettings,
+  serializeColumnSettings,
+} from '../utils'
 
 const props = defineProps<{
   columns: StdTableColumn[]
-  tableId: string
 }>()
 
 const emit = defineEmits<{
@@ -21,10 +28,11 @@ const { t } = useLocale()
 
 const visible = ref(false)
 const sortableContainer = ref<HTMLElement>()
-const localColumns = ref<StdTableColumn[]>([])
+const localColumns = shallowRef<ManagedTableColumn[]>([])
 const slashRegex = /\//g
 // 临时配置（用于在确认前预览）
-const tempColumns = ref<StdTableColumn[]>([])
+const tempColumns = shallowRef<ManagedTableColumn[]>([])
+const orphanedSettings = shallowRef<StoredColumnSetting[]>([])
 
 // 获取存储键 - 基于页面路径，确保配置持久化（去除查询参数）
 const storageKey = computed(() => {
@@ -34,68 +42,25 @@ const storageKey = computed(() => {
 
 // 初始化列配置
 function initializeColumns() {
-  const savedColumnKeys = getSavedConfig()
-  const availableColumns = props.columns.filter(column => !isSystemColumn(column))
+  const availableColumns = createManagedColumns(
+    props.columns.filter(column => !isSystemColumn(column)),
+  )
+  const savedConfig = getSavedConfig()
 
-  if (savedColumnKeys && savedColumnKeys.length > 0) {
-    // 使用保存的配置：基于保存的key数组重新排序和筛选
-    const columnsMap = new Map(availableColumns.map(col => [getColumnKey(col), col]))
-
-    // 创建已保存列的顺序和可见性映射
-    const savedOrderMap = new Map<string, number>()
-    const savedVisibilityMap = new Map<string, boolean>()
-    savedColumnKeys.forEach((col, index) => {
-      savedOrderMap.set(col.key, index)
-      savedVisibilityMap.set(col.key, col.hiddenInTable)
-    })
-
-    // 追踪已处理的保存列索引
-    const processedSavedIndices = new Set<number>()
-    const orderedColumns: StdTableColumn[] = []
-
-    // 遍历原始列顺序，保持新列在原始位置
-    availableColumns.forEach((column) => {
-      const key = getColumnKey(column)
-      const savedIndex = savedOrderMap.get(key as string)
-
-      if (savedIndex !== undefined) {
-        // 这是一个已保存的列
-        // 检查是否已经被处理过（可能在之前的循环中被插入了）
-        if (processedSavedIndices.has(savedIndex)) {
-          return // 跳过已处理的列
-        }
-
-        // 先插入所有应该在它之前但还未处理的已保存列
-        for (let i = 0; i < savedIndex; i++) {
-          if (!processedSavedIndices.has(i)) {
-            const savedKey = savedColumnKeys[i].key
-            const savedColumn = columnsMap.get(savedKey)
-            if (savedColumn) {
-              savedColumn.hiddenInTable = savedColumnKeys[i].hiddenInTable
-              orderedColumns.push(savedColumn)
-              processedSavedIndices.add(i)
-            }
-          }
-        }
-
-        // 插入当前列
-        column.hiddenInTable = savedVisibilityMap.get(key as string) ?? false
-        orderedColumns.push(column)
-        processedSavedIndices.add(savedIndex)
-      }
-      else {
-        // 这是一个新列，按原始顺序直接插入
-        orderedColumns.push(column)
-      }
-    })
-
-    localColumns.value = orderedColumns
-    tempColumns.value = cloneDeep(orderedColumns)
-  }
-  else {
+  if (!savedConfig) {
     localColumns.value = availableColumns
-    tempColumns.value = availableColumns
+    tempColumns.value = cloneDeep(availableColumns)
+    orphanedSettings.value = []
+    return
   }
+
+  const restored = restoreColumnSettings(availableColumns, savedConfig.columns)
+  localColumns.value = restored.columns
+  tempColumns.value = cloneDeep(restored.columns)
+  orphanedSettings.value = restored.orphaned
+
+  if (savedConfig.needsMigration)
+    saveConfig()
 }
 
 // 判断是否为系统列（如操作列、拖拽列等）
@@ -104,36 +69,29 @@ function isSystemColumn(column: StdTableColumn): boolean {
   return dataIndex === 'actions' || dataIndex === 'drag' || column.key === 'actions'
 }
 
-// 获取保存的配置 - 现在返回字符串数组
-function getSavedConfig(): { key: string, hiddenInTable: boolean }[] | null {
-  try {
-    const saved = localStorage.getItem(storageKey.value)
-    return saved ? JSON.parse(saved) : null
-  }
-  catch {
-    return null
-  }
+// 同时读取旧数组格式与当前版本配置
+function getSavedConfig() {
+  return parseColumnSettings(localStorage.getItem(storageKey.value))
 }
 
-// 保存配置 - 现在只保存显示列的key数组
+// 原位置升级配置，保留未出现在当前列定义中的历史设置
 function saveConfig() {
-  const visibleColumnKeys = (localColumns.value as any[])
-    .map(column => ({
-      key: getColumnKey(column) as string,
-      hiddenInTable: column.hiddenInTable,
-    }))
-
-  localStorage.setItem(storageKey.value, JSON.stringify(visibleColumnKeys))
+  const columns = toRaw(localColumns.value) as ManagedTableColumn[]
+  const orphaned = toRaw(orphanedSettings.value) as StoredColumnSetting[]
+  const config = serializeColumnSettings(columns, orphaned)
+  localStorage.setItem(storageKey.value, JSON.stringify(config))
 }
 
 // 生成最终的列配置
 function generateFinalColumns(): StdTableColumn[] {
-  const visibleColumns = (localColumns.value as any[]).filter(column => !column.hiddenInTable)
+  const visibleColumns = localColumns.value
+    .filter(column => !column.column.hiddenInTable)
+    .map(column => column.column)
 
   // 添加系统列
   const systemColumns = props.columns.filter(column => isSystemColumn(column))
 
-  return [...visibleColumns, ...systemColumns]
+  return normalizeTableColumnKeys([...visibleColumns, ...systemColumns])
 }
 
 // 确认应用设置
@@ -152,32 +110,46 @@ function cancelSettings() {
 
 // 全选/取消全选
 const checkAll = computed({
-  get: (): boolean => (tempColumns.value as any[]).every(column => !column.hiddenInTable),
+  get: (): boolean => tempColumns.value.every(column => !column.column.hiddenInTable),
   set: (value: boolean): void => {
-    (tempColumns.value as any[]).forEach((column) => {
-      column.hiddenInTable = !value // 修复：全选时应该显示所有列（hiddenInTable为false）
-    })
+    tempColumns.value = tempColumns.value.map(column => ({
+      ...column,
+      column: {
+        ...column.column,
+        hiddenInTable: !value,
+      },
+    }))
   },
 })
 
 // 半选状态
 const indeterminate = computed(() => {
-  const visibleCount = (tempColumns.value as any[]).filter(column => !column.hiddenInTable).length
+  const visibleCount = tempColumns.value.filter(column => !column.column.hiddenInTable).length
   return visibleCount > 0 && visibleCount < tempColumns.value.length
 })
+
+function updateColumnVisibility(id: string, checked: boolean) {
+  tempColumns.value = tempColumns.value.map(column => column.id === id
+    ? {
+        ...column,
+        column: {
+          ...column.column,
+          hiddenInTable: !checked,
+        },
+      }
+    : column)
+}
 
 let sortableInstance: Sortable | null = null
 
 // 重置列配置
 function resetColumns() {
-  const defaultColumns = props.columns
-    .filter(column => !isSystemColumn(column))
-    .map((column) => {
-      // 重置时所有列都默认显示
-      const col = cloneDeep(column)
-      col.hiddenInTable = false
-      return col
-    })
+  const defaultColumns = createManagedColumns(
+    props.columns.filter(column => !isSystemColumn(column)),
+  )
+  defaultColumns.forEach((column) => {
+    column.column.hiddenInTable = false
+  })
   tempColumns.value = defaultColumns
 }
 
@@ -195,8 +167,10 @@ function initSortable() {
         const { oldIndex, newIndex } = evt
         if (oldIndex !== undefined && newIndex !== undefined && oldIndex !== newIndex) {
           // 更新临时列顺序
-          const movedColumn = tempColumns.value.splice(oldIndex, 1)[0]
-          tempColumns.value.splice(newIndex, 0, movedColumn)
+          const reorderedColumns = [...tempColumns.value]
+          const movedColumn = reorderedColumns.splice(oldIndex, 1)[0]
+          reorderedColumns.splice(newIndex, 0, movedColumn)
+          tempColumns.value = reorderedColumns
         }
       },
     })
@@ -255,19 +229,19 @@ watch(visible, async (newVisible) => {
             class="column-list"
           >
             <div
-              v-for="column in tempColumns"
-              :key="String(column.key || column.dataIndex)"
+              v-for="managedColumn in tempColumns"
+              :key="managedColumn.id"
               class="column-item"
-              :data-key="String(column.key || column.dataIndex)"
+              :data-key="managedColumn.id"
             >
               <div class="column-drag-handle">
                 <HolderOutlined />
               </div>
               <Checkbox
-                :checked="!column.hiddenInTable"
-                @change="(e) => column.hiddenInTable = !e.target.checked"
+                :checked="!managedColumn.column.hiddenInTable"
+                @change="(e) => updateColumnVisibility(managedColumn.id, e.target.checked)"
               >
-                <span class="column-title">{{ getRealContent(column.title) }}</span>
+                <span class="column-title">{{ getRealContent(managedColumn.column.title) }}</span>
               </Checkbox>
             </div>
           </div>

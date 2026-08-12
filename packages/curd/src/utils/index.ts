@@ -1,3 +1,4 @@
+export * from './columnSettings'
 export * from './configProvider'
 export * from './formLinkage'
 export * from './helper'

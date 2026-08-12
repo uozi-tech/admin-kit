@@ -7,7 +7,7 @@ import { useRouteQuery } from '@vueuse/router'
 import { Button, Popconfirm, Table } from 'antdv-next'
 import { cloneDeep, debounce, get, isArray, isEqual, isNil } from 'lodash-es'
 import { computed, h, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
-import { getRealContent } from '..'
+import { getColumnKey, getRealContent, normalizeTableColumnKeys } from '..'
 import { useLocale } from '../composables'
 import useCurdConfig from '../composables/useCurdConfig'
 import useDraggableTable from '../composables/useDraggableTable'
@@ -229,7 +229,11 @@ const dataColumns = computed<any>(() => {
       },
     })
   }
-  return cols
+  return normalizeTableColumnKeys(cols)
+})
+
+const tableStructureKey = computed(() => {
+  return JSON.stringify(dataColumns.value.map((column: StdTableColumn) => getColumnKey(column)))
 })
 
 const searchColumns = computed(() => {
@@ -616,7 +620,6 @@ function SearchFormExtraRender() {
         </template>
         <TableColumnSettings
           :columns="tableColumns"
-          :table-id="tableId"
           @change="onColumnSettingsChange"
         />
         <Button
@@ -630,6 +633,7 @@ function SearchFormExtraRender() {
     <TableTopScrollbar />
     <Table
       :id="`std-table-${tableId}`"
+      :key="tableStructureKey"
       v-model:pagination="pagination"
       :columns="dataColumns"
       :data-source="tableData"

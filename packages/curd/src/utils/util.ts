@@ -9,7 +9,7 @@ export function isPlainObject(value: any): value is object {
 }
 
 export function getColumnKey(column: StdTableColumn): string | number {
-  if (column.key)
+  if (column.key !== undefined && column.key !== null)
     return column.key
 
   return getDataIndexStr(column.dataIndex)
