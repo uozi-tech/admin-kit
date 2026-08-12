@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 6.0.2
+
+### Patch Changes
+
+- [`3d63bb0`](https://github.com/uozi-tech/admin-kit/commit/3d63bb0433661cc368b0bad7ee87a2a4ff866ef9) Thanks [@akinoccc](https://github.com/akinoccc)! - 修复列设置后表头与表体错位，并兼容迁移已有用户的列顺序与显隐配置。
+
 ## 6.0.1
 
 ### Patch Changes
