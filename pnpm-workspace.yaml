@@ -1,13 +1,14 @@
 catalogMode: prefer
-
-shellEmulator: true
+minimumReleaseAgeExcludePrune: true
 trustPolicy: no-downgrade
+shellEmulator: true
 
 packages:
   - 'packages/*'
   - '!packages/create-uozi-admin/template'
   - playground
   - docs
+
 overrides:
   '@antdv-next/auto-import-resolver': 1.2.0
   '@antdv-next/icons': 1.1.2
@@ -29,6 +30,28 @@ overrides:
   vitepress>vite: 7.3.6
   vue: 3.5.43
   vue-router: 5.3.1
+
+# pnpm 10.3–10.25：仅识别 onlyBuiltDependencies（strictDepBuilds 默认 true）
+# pnpm ≥10.26 / v11：使用 allowBuilds；v11 起不再读取 onlyBuiltDependencies，两处都写以兼容 CI 上的旧 pnpm
+allowBuilds:
+  core-js: true
+  esbuild: true
+  simple-git-hooks: true
+  typescript: true
+  vite: true
+  vitest: true
+  vue: true
+  vue-tsc: true
+
+onlyBuiltDependencies:
+  - core-js
+  - esbuild
+  - simple-git-hooks
+  - typescript
+  - vite
+  - vitest
+  - vue
+  - vue-tsc
 
 # trustPolicy: no-downgrade
 
@@ -104,25 +127,3 @@ catalog:
   vue-types: ^3.0.2
   vue3-gettext: 4.0.1
   xlsx: https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz
-
-# pnpm 10.3–10.25：仅识别 onlyBuiltDependencies（strictDepBuilds 默认 true）
-# pnpm ≥10.26 / v11：使用 allowBuilds；v11 起不再读取 onlyBuiltDependencies，两处都写以兼容 CI 上的旧 pnpm
-onlyBuiltDependencies:
-  - core-js
-  - esbuild
-  - simple-git-hooks
-  - typescript
-  - vite
-  - vitest
-  - vue
-  - vue-tsc
-
-allowBuilds:
-  core-js: true
-  esbuild: true
-  simple-git-hooks: true
-  typescript: true
-  vite: true
-  vitest: true
-  vue: true
-  vue-tsc: true
