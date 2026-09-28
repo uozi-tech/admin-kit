@@ -23,7 +23,7 @@ overrides:
   antdv-next: 1.5.6
   chokidar: ^5.0.0
   semver: ^7.8.5
-  undici-types: 6.29.0
+  undici-types: 8.11.2
   vite: 7.3.6
   vitepress>@vitejs/plugin-vue: ^6.0.9
   vitepress>vite: 7.3.6

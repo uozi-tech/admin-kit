@@ -190,7 +190,7 @@ overrides:
   antdv-next: 1.5.6
   chokidar: ^5.0.0
   semver: ^7.8.5
-  undici-types: 6.29.0
+  undici-types: 8.11.2
   vite: 7.3.6
   vitepress>@vitejs/plugin-vue: ^6.0.9
   vitepress>vite: 7.3.6
@@ -6385,8 +6385,8 @@ packages:
   unconfig@7.5.0:
     resolution: {integrity: sha512-oi8Qy2JV4D3UQ0PsopR28CzdQ3S/5A1zwsUwp/rosSbfhJ5z7b90bIyTwi/F7hCLD4SGcZVjDzd4XoUQcEanvA==}
 
-  undici-types@6.29.0:
-    resolution: {integrity: sha512-yzE4aF6qGj7fE8lu8fE8LonY07kmMXs20QR1bG3JGJ+jXrVTLtgUBieEr74AQRChYyqHrhJm9IktT337qOQhng==}
+  undici-types@8.11.2:
+    resolution: {integrity: sha512-iMVNmWZ0leK/goS6eXMizSzmm9CDWtyphwbaCms3DNLqRxDL+mMoNVcZMTyyVgXP0N+Z8neAMzDoUOUJL8veKg==}
 
   unimport@6.5.0:
     resolution: {integrity: sha512-t0KLJLRbebz3f7NrQe+vy2ObeugVeM1XqI2oeYnauddmHSglYj3U6bxOJ65IbXmOFkcAGFJK2OyGH7aqHPM6Ug==}
@@ -8608,11 +8608,11 @@ snapshots:
 
   '@types/node@22.20.4':
     dependencies:
-      undici-types: 6.29.0
+      undici-types: 8.11.2
 
   '@types/node@26.0.1':
     dependencies:
-      undici-types: 6.29.0
+      undici-types: 8.11.2
 
   '@types/prompts@2.4.9':
     dependencies:
@@ -13346,7 +13346,7 @@ snapshots:
       quansync: 1.0.0
       unconfig-core: 7.5.0
 
-  undici-types@6.29.0: {}
+  undici-types@8.11.2: {}
 
   unimport@6.5.0(esbuild@0.28.1)(oxc-parser@0.150.0)(rollup@4.62.2)(vite@7.3.6(@types/node@26.0.1)(jiti@2.7.0)(less@4.9.1(supports-color@8.1.1))(lightningcss@1.32.0)(tsx@4.23.15)(yaml@2.9.0)):
     dependencies:
