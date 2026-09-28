@@ -1,6 +1,6 @@
 import { fireEvent, render } from '@testing-library/vue'
 import { describe, expect, it } from 'vitest'
-import StdInput from '../components/form/StdInput.vue'
+import StdInput from '../../components/form/StdInput.vue'
 
 describe('stdInput 组件', () => {
   it('应该正确渲染输入框', () => {
@@ -20,10 +20,8 @@ describe('stdInput 组件', () => {
   it('应该正确应用 props', () => {
     const { getByPlaceholderText } = render(StdInput, {
       props: {
-        props: {
-          placeholder: '请输入',
-          disabled: true,
-        },
+        placeholder: '请输入',
+        disabled: true,
       },
     })
 

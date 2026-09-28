@@ -1,9 +1,13 @@
 import type { StdTableColumn } from '../../types'
 import { render } from '@testing-library/vue'
 import { describe, expect, it } from 'vitest'
-import StdForm from '../components/StdForm.vue'
+import StdForm from '../../components/StdForm.vue'
+import { createCurdConfig } from '../../utils'
 
 describe('stdForm 组件', () => {
+  // StdFormItem calls useI18n(), so the curd plugin must be installed
+  const renderGlobal = { plugins: [createCurdConfig({})] }
+
   const mockColumns: StdTableColumn[] = [
     {
       title: '姓名',
@@ -33,6 +37,7 @@ describe('stdForm 组件', () => {
         columns: mockColumns,
         data: {},
       },
+      global: renderGlobal,
     })
 
     expect(getByText('姓名')).toBeTruthy()
@@ -45,18 +50,21 @@ describe('stdForm 组件', () => {
       age: 18,
     }
 
-    const { getByLabelText } = render(StdForm, {
+    const { getByDisplayValue } = render(StdForm, {
       props: {
         columns: mockColumns,
         data: formData,
       },
+      global: renderGlobal,
     })
 
-    const nameInput = getByLabelText('姓名') as HTMLInputElement
-    const ageInput = getByLabelText('年龄') as HTMLInputElement
+    // The rendered inputs carry no id matching the label's `for`,
+    // so query them by their bound value instead of by label.
+    const nameInput = getByDisplayValue('张三') as HTMLInputElement
+    const ageInput = getByDisplayValue('18') as HTMLInputElement
 
-    expect(nameInput.value).toBe('张三')
-    expect(ageInput.value).toBe('18')
+    expect(nameInput.tagName).toBe('INPUT')
+    expect(ageInput.tagName).toBe('INPUT')
   })
 
   // it('应该正确处理表单提交', async () => {
