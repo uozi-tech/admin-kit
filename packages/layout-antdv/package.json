@@ -29,7 +29,8 @@
   "scripts": {
     "watch": "vite build --watch",
     "build": "vite build",
-    "typecheck": "vue-tsc --noEmit"
+    "typecheck": "vue-tsc --noEmit",
+    "test": "vitest"
   },
   "peerDependencies": {
     "vue": "^3.5.43",
