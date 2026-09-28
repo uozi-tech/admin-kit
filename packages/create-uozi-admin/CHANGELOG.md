@@ -1,5 +1,22 @@
 # @uozi-admin/create-admin
 
+## 1.4.55
+
+### Patch Changes
+
+- [#603](https://github.com/uozi-tech/admin-kit/pull/603) [`a2f1e66`](https://github.com/uozi-tech/admin-kit/commit/a2f1e6623778bcd82d41aae77886bbdac7af2938) Thanks [@renovate](https://github.com/apps/renovate)! - 脚手架模板的 `@antfu/eslint-config` 升级到 `^9.5.1`，并按其新的 `pnpm-workspace.yaml` 规则调整模板的 `pnpm-workspace.yaml`：补充 `minimumReleaseAgeExcludePrune: true`（pnpm ≥ 11.21 生效，`@uozi-admin/*` 这类名称模式不会被清理），并按规则要求重新排列设置项，新项目 `pnpm lint` 可直接通过。
+
+- [#606](https://github.com/uozi-tech/admin-kit/pull/606) [`3207725`](https://github.com/uozi-tech/admin-kit/commit/32077251f668e974eca912c844306d63074d56ce) Thanks [@github-actions](https://github.com/apps/github-actions)! - Update template dependencies:
+  
+  - @uozi-admin/curd: `^6.0.3` -> `^6.1.0`
+  - @uozi-admin/layout-antdv: `^2.0.5` -> `^2.1.0`
+
+- [#612](https://github.com/uozi-tech/admin-kit/pull/612) [`02036b9`](https://github.com/uozi-tech/admin-kit/commit/02036b991dc0ac865345c8af1f1ef9ec298cb65c) Thanks [@renovate](https://github.com/apps/renovate)! - 脚手架模板的 `pinia` 升级到 `^4.0.3`。Pinia 4 起 `@vue/devtools-api` 改为必须由项目自行安装的 peer 依赖，模板因此新增 `@vue/devtools-api: ^8.2.1`，避免在不会自动安装 peer 的包管理器（如 Yarn）下缺依赖。`pinia-plugin-persistedstate@4.7.1` 的 peer 范围为 `pinia >=3.0.0`，无需调整。
+
+- [#600](https://github.com/uozi-tech/admin-kit/pull/600) [`3298f0d`](https://github.com/uozi-tech/admin-kit/commit/3298f0d8d9afbf7b710130a275116f84f1868d25) Thanks [@renovate](https://github.com/apps/renovate)! - Update template dependencies:
+  
+  - vite: `^7.3.6` -> `^8.3.1`
+
 ## 1.4.54
 
 ### Patch Changes
