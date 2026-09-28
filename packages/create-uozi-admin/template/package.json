@@ -20,8 +20,8 @@
   "dependencies": {
     "@antdv-next/icons": "1.1.2",
     "@iconify-json/tabler": "^1.2.40",
-    "@uozi-admin/curd": "^6.0.3",
-    "@uozi-admin/layout-antdv": "^2.0.5",
+    "@uozi-admin/curd": "^6.1.0",
+    "@uozi-admin/layout-antdv": "^2.1.0",
     "@uozi-admin/request": "^2.9.1",
     "@vueuse/core": "14.4.0",
     "antdv-next": "1.5.6",
