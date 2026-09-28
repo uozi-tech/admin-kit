@@ -33,7 +33,7 @@ function onValidate(name: string | number | (string | number)[], status: boolean
   emit('validate', { name, status, errors })
 }
 
-const formData = defineModel<Record<string, any>>('data', { default: reactive({}) })
+const formData = defineModel<Record<string, any>>('data', { default: () => reactive({}) })
 
 for (const column of props.columns) {
   const key = (column.edit?.formItem?.name ?? column.dataIndex) as string

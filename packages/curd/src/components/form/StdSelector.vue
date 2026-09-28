@@ -21,7 +21,7 @@ const dataColumns = computed(() => {
 
 const visible = defineModel<boolean>('visible', { default: false })
 const selectedRowKeys = ref<any[]>([])
-const selectedRows = defineModel<any[]>('selectedRows', { default: reactive([]) })
+const selectedRows = defineModel<any[]>('selectedRows', { default: () => reactive([]) })
 
 // 添加内部临时状态来管理选中的行数据
 const internalSelectedRows = ref<any[]>([])
