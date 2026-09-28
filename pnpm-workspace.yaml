@@ -99,7 +99,7 @@ catalog:
   eslint: ^10.11.0
   fs-extra: ^11.4.1
   glob: ^13.0.6
-  jsdom: ^27.4.0
+  jsdom: ^30.1.1
   jsonx-mock: 1.1.0-beta.3
   less: ^4.9.1
   lodash: ^4.18.1
