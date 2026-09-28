@@ -1,21 +1,23 @@
+# @uozi-admin/curd installs SheetJS (xlsx) from its official CDN tarball.
+# pnpm >= 11 rejects tarball URLs in subdependencies unless this is disabled.
+blockExoticSubdeps: false
+
+minimumReleaseAgeExcludePrune: true
 # The template tracks the newest @uozi-admin releases, which may be younger
 # than pnpm's minimumReleaseAge (pnpm >= 11) right after they are published.
 minimumReleaseAgeExclude:
   - '@uozi-admin/*'
-shellEmulator: true
+
 trustPolicy: no-downgrade
 # @babel/core (via @vitejs/plugin-vue-jsx) needs semver@6, whose last release
 # predates npm provenance and would otherwise fail the trust policy.
 trustPolicyExclude:
   - semver@6.3.1
 
+shellEmulator: true
 # pnpm 9 requires a packages field; this project is the only package.
 packages:
   - .
-
-# @uozi-admin/curd installs SheetJS (xlsx) from its official CDN tarball.
-# pnpm >= 11 rejects tarball URLs in subdependencies unless this is disabled.
-blockExoticSubdeps: false
 
 # Dependencies allowed to run install scripts (pnpm >= 10.26).
 allowBuilds:
