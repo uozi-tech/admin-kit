@@ -1,5 +1,11 @@
 # @uozi-admin/layout-antdv
 
+## 2.0.5
+
+### Patch Changes
+
+- [#597](https://github.com/uozi-tech/admin-kit/pull/597) [`a388d8b`](https://github.com/uozi-tech/admin-kit/commit/a388d8bfbc9fe08f789692b67058551730e50b6f) Thanks [@0xJacky](https://github.com/0xJacky)! - 放宽 vue-router 的 peerDependency 范围为 `^4.6.4 || ^5.0.0`，同时兼容 vue-router 4 与 5。
+
 ## 2.0.4
 
 ### Patch Changes

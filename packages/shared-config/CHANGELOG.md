@@ -1,5 +1,11 @@
 # @uozi-admin/shared-config
 
+## 1.0.1
+
+### Patch Changes
+
+- [#597](https://github.com/uozi-tech/admin-kit/pull/597) [`1ebc1ae`](https://github.com/uozi-tech/admin-kit/commit/1ebc1aed095fff25784a24947d3ca34ce4ec9478) Thanks [@0xJacky](https://github.com/0xJacky)! - 将依赖 unplugin-vue-components 升级到 ^32.1.0（内部改用 unplugin v3）。插件配置项与 AntdvNextResolver 用法均无变化，Node 要求仍为 >=20.19，消费方无需修改配置。
+
 ## 1.0.0
 
 ### Major Changes

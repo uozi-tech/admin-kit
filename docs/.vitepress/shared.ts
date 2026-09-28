@@ -122,7 +122,10 @@ export default defineConfig({
       ],
     },
     ssr: {
-      noExternal: ['antdv-next', '@antdv-next/icons', '@uozi-admin/curd'],
+      // dayjs: vitepress-plugin-mermaid aliases `dayjs/plugin/*.js` to
+      // `dayjs/esm/plugin/*`, whose extensionless internal imports Node ESM
+      // rejects when externalized; bundling dayjs lets Vite resolve them.
+      noExternal: ['antdv-next', '@antdv-next/icons', '@uozi-admin/curd', 'dayjs'],
     },
   },
 })

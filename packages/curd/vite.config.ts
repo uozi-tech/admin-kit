@@ -40,6 +40,14 @@ export default createViteConfig({
       environment: 'jsdom',
       globals: true,
       setupFiles: ['../../vitest.setup.ts'],
+      server: {
+        deps: {
+          // @v-c/picker (pulled in by antdv-next) imports extensionless
+          // subpaths such as `dayjs/plugin/advancedFormat`, which Node ESM
+          // rejects. Inlining lets Vite resolve them instead.
+          inline: [/[\\/]antdv-next[\\/]/, /[\\/]@v-c[\\/]/],
+        },
+      },
     },
   },
   pluginOptions: {
