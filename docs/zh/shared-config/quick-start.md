@@ -162,24 +162,28 @@ export default createViteConfig((env) => ({
 
 ### 分包策略
 
+Vite 8 使用 Rolldown 打包，不再支持对象形式的 `manualChunks`，改用 `build.rolldownOptions.output.codeSplitting`：
+
 ```ts
 import { createViteConfig } from '@uozi-admin/shared-config'
 
 export default createViteConfig({
   build: {
-    rollupOptions: {
+    rolldownOptions: {
       output: {
-        manualChunks: {
-          // 将 Vue 相关库打包到一个 chunk
-          vue: ['vue', 'vue-router', 'pinia'],
-          // 将 Ant Design Vue 单独打包
-          antd: ['antdv-next'],
-          // 将工具库打包到一个 chunk
-          utils: ['lodash-es', 'dayjs']
-        }
-      }
-    }
-  }
+        codeSplitting: {
+          groups: [
+            // 将 Vue 相关库打包到一个 chunk
+            { name: 'vue', test: /[\\/]node_modules[\\/](vue|vue-router|pinia)[\\/]/ },
+            // 将 Ant Design Vue 单独打包
+            { name: 'antd', test: /[\\/]node_modules[\\/]antdv-next[\\/]/ },
+            // 将工具库打包到一个 chunk
+            { name: 'utils', test: /[\\/]node_modules[\\/](lodash-es|dayjs)[\\/]/ },
+          ],
+        },
+      },
+    },
+  },
 })
 ```
 

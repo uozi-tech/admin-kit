@@ -1,6 +1,15 @@
 catalogMode: prefer
 minimumReleaseAgeExcludePrune: true
 trustPolicy: no-downgrade
+
+# overrides 中的 vite: 8.3.1 也会改写 peer 范围；文档站用到的这些插件本身支持 Vite 7，
+# 放行 vitepress>vite 固定的 7.3.6，避免安装时报 unmet peer。
+peerDependencyRules:
+  allowedVersions:
+    '@vitejs/plugin-vue>vite': 7.3.6
+    unplugin>vite: 7.3.6
+    vue-router>vite: 7.3.6
+
 shellEmulator: true
 
 packages:
@@ -25,8 +34,11 @@ overrides:
   chokidar: ^5.0.0
   semver: ^7.8.5
   undici-types: 8.11.2
-  vite: 7.3.6
+  vite: 8.3.1
   vitepress>@vitejs/plugin-vue: ^6.0.9
+  # VitePress 1.x 的 generateBundle 通过直接写 bundle 对象生成 *.lean.js，
+  # Rolldown（Vite 8）会忽略这种写法，构建成功但页面首屏加载的 lean chunk 全部 404。
+  # 升级到支持 Vite 8 的 VitePress 2 之前，文档站保持使用 Vite 7。
   vitepress>vite: 7.3.6
   vue: 3.5.43
   vue-router: 5.3.1
@@ -114,7 +126,7 @@ catalog:
   unplugin-auto-import: ^21.1.0
   unplugin-vue-components: ^32.1.0
   unplugin-vue-define-options: ^3.1.4
-  vite: ^7.3.6
+  vite: ^8.3.1
   vite-plugin-dts: ^4.5.4
   vite-plugin-vue-devtools: ^8.2.1
   vitepress: ^1.6.4
