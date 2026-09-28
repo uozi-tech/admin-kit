@@ -13,7 +13,7 @@ export default createViteConfig({
         fileName: 'index',
         formats: ['es'],
       },
-      rollupOptions: {
+      rolldownOptions: {
         output: {
           exports: 'named',
         },

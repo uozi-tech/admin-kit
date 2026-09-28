@@ -24,6 +24,7 @@
     "@antfu/eslint-config": "catalog:",
     "@changesets/changelog-github": "catalog:",
     "@changesets/cli": "catalog:",
+    "@testing-library/dom": "catalog:",
     "@testing-library/jest-dom": "catalog:",
     "@testing-library/vue": "catalog:",
     "@types/lodash-es": "catalog:",
