@@ -39,7 +39,9 @@ jobs:
         run: pnpm build
 
       - name: Test
-        run: pnpm -F curd exec vitest --run
+        run: |
+          pnpm -F curd exec vitest --run
+          pnpm -F @uozi-admin/layout-antdv exec vitest --run
 
       - name: Build Docs
         run: pnpm -F docs build

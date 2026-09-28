@@ -30,6 +30,18 @@ export default createViteConfig({
         rollupTypes: false,
       }),
     ],
+    test: {
+      environment: 'jsdom',
+      globals: true,
+      setupFiles: ['../../vitest.setup.ts'],
+      server: {
+        deps: {
+          // antdv-next pulls in @v-c packages with extensionless ESM
+          // subpath imports; inline them so Vite resolves those.
+          inline: [/[\\/]antdv-next[\\/]/, /[\\/]@v-c[\\/]/],
+        },
+      },
+    },
   },
   pluginOptions: {
     vueComponents: false,

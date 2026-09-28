@@ -22,10 +22,13 @@ const emit = defineEmits<{
 
 const route = useRoute()
 
-const selectedKeys = ref<string[]>(getSelectedKeys())
-const openKeys = ref<string[]>(getOpenKeys())
+// Declared before the refs below: getOpenKeys() runs during setup and reaches
+// these through normalizePath(), so declaring them later hits the TDZ.
 const leadingSlashRegex = /^\/+/
 const trailingSlashRegex = /\/+$/
+
+const selectedKeys = ref<string[]>(getSelectedKeys())
+const openKeys = ref<string[]>(getOpenKeys())
 
 function isSameKeys(left: string[], right: string[]) {
   return left.length === right.length && left.every((key, index) => key === right[index])
