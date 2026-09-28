@@ -21,7 +21,7 @@
     "@antdv-next/icons": "1.1.2",
     "@iconify-json/tabler": "^1.2.40",
     "@uozi-admin/curd": "^6.1.0",
-    "@uozi-admin/layout-antdv": "^2.1.0",
+    "@uozi-admin/layout-antdv": "^2.1.1",
     "@uozi-admin/request": "^2.9.1",
     "@vue/devtools-api": "^8.2.1",
     "@vueuse/core": "14.4.0",
