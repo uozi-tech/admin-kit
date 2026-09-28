@@ -63,6 +63,20 @@ async function ok() {
 }
 
 const curdConfig = useCurdConfig()
+
+/** 预览表格只读展示已选数据，按 'detail' 来源调用列的 customRender */
+function PreviewBodyRender(renderProps: { column: StdTableColumn, record: any, text: any, index: number }) {
+  const { column } = renderProps
+
+  return column.customRender?.({
+    column,
+    record: renderProps.record,
+    text: renderProps.text,
+    value: renderProps.text,
+    index: renderProps.index,
+    renderIndex: renderProps.index,
+  }, 'detail')
+}
 </script>
 
 <template>
@@ -86,7 +100,18 @@ const curdConfig = useCurdConfig()
       :columns
       :data-source="selectedRows"
       :pagination="{ showSizeChanger: false, pageSize: 5, size: 'small' }"
-    />
+    >
+      <template #bodyCell="{ text, record, column, index }">
+        <template v-if="(column as any)?.customRender">
+          <PreviewBodyRender
+            :column="(column as StdTableColumn)"
+            :record="record"
+            :text="text"
+            :index="index"
+          />
+        </template>
+      </template>
+    </Table>
 
     <p>{{ t('leaveBlankIfDoNotWantToModify') }}</p>
 
