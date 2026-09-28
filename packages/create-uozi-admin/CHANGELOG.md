@@ -1,5 +1,11 @@
 # @uozi-admin/create-admin
 
+## 1.4.54
+
+### Patch Changes
+
+- [#562](https://github.com/uozi-tech/admin-kit/pull/562) [`2c32651`](https://github.com/uozi-tech/admin-kit/commit/2c3265165efbe8c9fad9fd08c681b9c3bff84e4a) Thanks [@github-actions](https://github.com/apps/github-actions)! - 修复脚手架模板无法独立安装的问题：模板不是 workspace 成员，此前 `package.json` 中的 `catalog:` 依赖会导致新项目 `pnpm install` 报 `ERR_PNPM_CATALOG_ENTRY_NOT_FOUND_FOR_SPEC`。现在所有依赖都写成具体的 semver 范围（`@uozi-admin/curd@^6.0.3`、`@uozi-admin/layout-antdv@^2.0.5`、`@uozi-admin/request@^2.9.1`、`@uozi-admin/shared-config@^1.0.1`，其余与仓库 catalog 保持一致）。同时新增 `pnpm-workspace.yaml`，让 pnpm 11/12 在默认的供应链安全策略下也能安装；补充 `commitlint.config.js`，并通过 `prepare` 脚本安装 git hooks，使 commit-msg 校验真正生效。
+
 ## 1.4.53
 
 ### Patch Changes
