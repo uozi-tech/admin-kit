@@ -41,6 +41,7 @@ catalog:
   '@commitlint/cli': ^21.2.3
   '@commitlint/config-conventional': ^21.2.3
   '@iconify-json/tabler': ^1.2.40
+  '@testing-library/dom': ^10.4.2
   '@testing-library/jest-dom': ^7.0.1
   '@testing-library/vue': ^8.1.0
   '@types/fs-extra': ^11.0.4
