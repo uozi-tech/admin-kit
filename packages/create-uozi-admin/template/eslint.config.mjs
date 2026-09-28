@@ -35,4 +35,8 @@ export default antfu({
   'node/handle-callback-err': 'off',
   'ts/no-unsafe-function-type': 'off',
   'node/prefer-global/process': 'off',
+  // Dependencies use plain semver ranges, not a pnpm catalog. antfu enables this
+  // rule whenever a parent pnpm-workspace.yaml defines a catalog; overrideRules
+  // only touches configs that already contain it, so this is safe without pnpm.
+  'pnpm/json-enforce-catalog': 'off',
 })
