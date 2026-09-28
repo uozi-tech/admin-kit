@@ -40,13 +40,22 @@ jobs:
       - name: Type Check
         run: pnpm typecheck
 
+      # changesets/action v2 no longer writes ~/.npmrc from NPM_TOKEN,
+      # so write it here the same way v1 did (skipped when the secret is unset,
+      # leaving trusted publishing via id-token untouched).
+      - name: Configure npm Auth
+        run: |
+          if [ -n "$NPM_TOKEN" ]; then
+            echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" >> ~/.npmrc
+          fi
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
       - name: Create Release Pull Request or Publish to npm
         # https://github.com/changesets/action
-        uses: changesets/action@v1
+        # github-token defaults to github.token (v2 ignores the GITHUB_TOKEN env var)
+        uses: changesets/action@v2.1.2
         with:
           # this expects you to have a script called release which does a build for your packages and calls changeset publish
-          publish: pnpm release
-          version: pnpm version-packages
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          publish-script: pnpm release
+          version-script: pnpm version-packages
