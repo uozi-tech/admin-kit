@@ -25,7 +25,7 @@ overrides:
   chokidar: ^5.0.0
   semver: ^7.8.5
   undici-types: 8.11.2
-  vite: 7.3.6
+  vite: 8.3.1
   vitepress>@vitejs/plugin-vue: ^6.0.9
   vitepress>vite: 7.3.6
   vue: 3.5.43
@@ -114,7 +114,7 @@ catalog:
   unplugin-auto-import: ^21.1.0
   unplugin-vue-components: ^32.1.0
   unplugin-vue-define-options: ^3.1.4
-  vite: ^7.3.6
+  vite: ^8.3.1
   vite-plugin-dts: ^4.5.4
   vite-plugin-vue-devtools: ^8.2.1
   vitepress: ^1.6.4
