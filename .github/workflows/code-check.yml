@@ -17,5 +17,8 @@ jobs:
       - name: Check Style
         run: pnpm lint
 
+      - name: Check Template Dependencies
+        run: pnpm check:template
+
       - name: Check Type
         run: pnpm typecheck

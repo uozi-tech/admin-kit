@@ -26,7 +26,8 @@
   "scripts": {
     "dev": "unbuild --stub",
     "typecheck": "tsc --noEmit",
-    "build": "unbuild"
+    "build": "unbuild",
+    "prepack": "node scripts/sync-template-deps.mjs --check"
   },
   "devDependencies": {
     "@types/fs-extra": "catalog:",

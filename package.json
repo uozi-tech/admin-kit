@@ -11,6 +11,8 @@
     "release": "pnpm build && changeset publish",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
+    "sync:template": "node packages/create-uozi-admin/scripts/sync-template-deps.mjs",
+    "check:template": "node packages/create-uozi-admin/scripts/sync-template-deps.mjs --check",
     "typecheck": "pnpm --parallel typecheck",
     "postinstall": "tsx scripts/postinstall.ts",
     "test": "pnpm -F curd test"
