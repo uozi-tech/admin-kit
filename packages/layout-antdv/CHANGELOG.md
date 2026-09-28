@@ -1,5 +1,11 @@
 # @uozi-admin/layout-antdv
 
+## 2.1.1
+
+### Patch Changes
+
+- [#613](https://github.com/uozi-tech/admin-kit/pull/613) [`e977228`](https://github.com/uozi-tech/admin-kit/commit/e977228db298ab7daa6482c398d82b8d2e264c3f) Thanks [@0xJacky](https://github.com/0xJacky)! - 修复 SidebarContent 初始化时计算展开菜单访问尚未声明的正则常量，导致侧边栏抛出 `Cannot access ... before initialization` 而无法渲染的问题。
+
 ## 2.1.0
 
 ### Minor Changes
