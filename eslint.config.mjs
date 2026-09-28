@@ -20,7 +20,8 @@ export default antfu({
 }, {
   files: ['pnpm-workspace.yaml'],
   rules: {
-    // Some catalog entries are consumed by the scaffold template, which is not a workspace package.
+    // Some catalog entries are only consumed by the scaffold template, which is not a workspace package;
+    // `pnpm sync:template` copies their versions into packages/create-uozi-admin/template/package.json.
     'pnpm/yaml-no-unused-catalog-item': 'off',
   },
 }).overrideRules({
