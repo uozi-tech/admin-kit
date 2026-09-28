@@ -21,6 +21,16 @@
       "enabled": false
     },
     {
+      "description": "shared-config's peer ranges decide which Vite/UnoCSS versions consumer apps may use; keep them wide and raise the lower bound only on purpose (with a changeset), never as a side effect of a dependency bump.",
+      "matchFileNames": [
+        "packages/shared-config/package.json"
+      ],
+      "matchDepTypes": [
+        "peerDependencies"
+      ],
+      "rangeStrategy": "widen"
+    },
+    {
       "matchUpdateTypes": [
         "minor",
         "patch",
