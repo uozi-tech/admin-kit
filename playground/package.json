@@ -12,6 +12,7 @@
     "@uozi-admin/curd": "workspace:*",
     "@uozi-admin/layout-antdv": "workspace:*",
     "@uozi-admin/request": "workspace:*",
+    "@vue/devtools-api": "catalog:",
     "dayjs": "catalog:",
     "pinia": "catalog:",
     "vue": "catalog:",
