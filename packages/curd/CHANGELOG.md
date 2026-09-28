@@ -1,5 +1,13 @@
 # @uozi-admin/curd
 
+## 6.0.3
+
+### Patch Changes
+
+- [#592](https://github.com/uozi-tech/admin-kit/pull/592) [`e81239d`](https://github.com/uozi-tech/admin-kit/commit/e81239d6c04566b0b7f31af9638dc015791bbc1a) Thanks [@0xJacky](https://github.com/0xJacky)! - 修复批量编辑弹窗的预览表格未调用列的 customRender，导致显示原始值（如 id、枚举值、ISO 时间）的问题。
+
+- [#597](https://github.com/uozi-tech/admin-kit/pull/597) [`8a2261b`](https://github.com/uozi-tech/admin-kit/commit/8a2261b75a9f2c75fbb7ab2c14543464baead946) Thanks [@0xJacky](https://github.com/0xJacky)! - StdForm、StdFormController、StdSelector 的 defineModel 对象/数组默认值改为工厂函数，避免多个实例共享同一个默认对象，并兼容新版 Vue 的类型检查。
+
 ## 6.0.2
 
 ### Patch Changes
