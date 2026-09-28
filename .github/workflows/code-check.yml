@@ -1,15 +1,27 @@
 name: Code Check
 
+# 与 release.yml 在 main 上执行的检查保持一致，让合入 main 的 PR 先过同一道门禁。
+# 仓库的改动都经 PR 合入 main（包括 renovate 与 update-template-deps），
+# 因此只监听 pull_request，避免分支 push 与 PR 对同一个 commit 各跑一遍；
+# 没有开 PR 的分支可以通过 workflow_dispatch 手动触发。
 on:
-  push:
+  pull_request:
     branches:
-      # 检查非 main 分支
-      - '!main'
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   code-check:
     name: Code Check
     runs-on: macos-latest
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v7
       - uses: ./.github/actions/ci-setup
@@ -22,3 +34,12 @@ jobs:
 
       - name: Check Type
         run: pnpm typecheck
+
+      - name: Build Packages
+        run: pnpm build
+
+      - name: Test
+        run: pnpm -F curd exec vitest --run
+
+      - name: Build Docs
+        run: pnpm -F docs build
