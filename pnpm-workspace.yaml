@@ -138,6 +138,6 @@ catalog:
   vue-i18n: ^11.4.12
   vue-router: 5.3.1
   vue-tsc: 3.3.11
-  vue-types: ^3.0.2
+  vue-types: ^7.0.0
   vue3-gettext: 4.0.1
   xlsx: https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz
