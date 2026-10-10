@@ -30,18 +30,18 @@ overrides:
   '@vue/runtime-dom': 3.5.43
   '@vue/server-renderer': 3.5.43
   '@vue/shared': 3.5.43
-  antdv-next: 1.5.6
+  antdv-next: 1.6.0
   chokidar: ^5.0.0
   semver: ^7.8.5
   undici-types: 8.11.2
-  vite: 8.3.1
-  vitepress>@vitejs/plugin-vue: ^6.0.9
+  vite: 8.3.4
+  vitepress>@vitejs/plugin-vue: ^6.0.10
   # VitePress 1.x 的 generateBundle 通过直接写 bundle 对象生成 *.lean.js，
   # Rolldown（Vite 8）会忽略这种写法，构建成功但页面首屏加载的 lean chunk 全部 404。
   # 升级到支持 Vite 8 的 VitePress 2 之前，文档站保持使用 Vite 7。
-  vitepress>vite: 7.3.6
+  vitepress>vite: 7.3.7
   vue: 3.5.43
-  vue-router: 5.3.1
+  vue-router: 5.4.0
 
 # pnpm 10.3–10.25：仅识别 onlyBuiltDependencies（strictDepBuilds 默认 true）
 # pnpm ≥10.26 / v11：使用 allowBuilds；v11 起不再读取 onlyBuiltDependencies，两处都写以兼容 CI 上的旧 pnpm
@@ -75,44 +75,44 @@ catalog:
   '@changesets/cli': ^3.0.3
   '@commitlint/cli': ^21.2.3
   '@commitlint/config-conventional': ^21.2.3
-  '@iconify-json/tabler': ^1.2.40
+  '@iconify-json/tabler': ^1.2.42
   '@testing-library/dom': ^10.4.2
   '@testing-library/jest-dom': ^7.0.1
   '@testing-library/vue': ^8.1.0
   '@types/fs-extra': ^11.0.4
   '@types/lodash-es': ^4.17.12
   '@types/minimist': ^1.2.5
-  '@types/node': ^24.19.0
+  '@types/node': ^24.19.2
   '@types/nprogress': ^0.2.3
   '@types/prompts': ^2.4.9
   '@types/sortablejs': ^1.15.9
-  '@vitejs/plugin-vue': ^6.0.9
+  '@vitejs/plugin-vue': ^6.0.10
   '@vitejs/plugin-vue-jsx': ^5.1.6
   '@vue/devtools-api': ^8.2.1
   '@vue/tsconfig': ^0.9.1
   '@vueuse/core': 14.4.0
   '@vueuse/router': 14.4.0
-  antdv-next: 1.5.6
+  antdv-next: 1.6.0
   axios: ^1.20.0
   chalk: ^6.0.1
   cross-spawn: ^7.0.6
   dayjs: ^1.11.23
-  eslint: ^10.11.0
+  eslint: ^10.12.0
   fs-extra: ^11.4.1
   glob: ^13.0.6
-  jsdom: ^30.1.1
+  jsdom: ^30.1.2
   jsonx-mock: 1.1.0-beta.3
   less: ^4.9.1
   lodash: ^4.18.1
   lodash-es: ^4.18.1
-  mermaid: ^11.12.2
+  mermaid: ^11.17.2
   minimist: ^1.2.8
   nprogress: ^0.2.0
   ora: ^9.4.1
   picocolors: ^1.1.1
   pinia: ^4.0.3
   pinia-plugin-persistedstate: ^4.7.1
-  postcss: ^8.5.6
+  postcss: ^8.5.29
   prompts: ^2.4.2
   scroll-into-view-if-needed: ^3.1.0
   simple-git-hooks: ^2.14.0
@@ -127,17 +127,17 @@ catalog:
   unplugin-auto-import: ^21.1.0
   unplugin-vue-components: ^32.1.0
   unplugin-vue-define-options: ^3.1.4
-  vite: ^8.3.1
+  vite: ^8.3.4
   vite-plugin-dts: ^4.5.4
   vite-plugin-vue-devtools: ^8.2.1
   vitepress: ^1.6.4
   vitepress-demo-plugin: ^1.8.0
   vitepress-plugin-mermaid: ^2.0.17
-  vitest: ^4.0.18
+  vitest: ^4.1.11
   vue: 3.5.43
-  vue-i18n: ^11.4.12
-  vue-router: 5.3.1
-  vue-tsc: 3.3.11
+  vue-i18n: ^11.4.14
+  vue-router: 5.4.0
+  vue-tsc: 3.3.13
   vue-types: ^3.0.2
   vue3-gettext: 4.0.1
   xlsx: https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz
