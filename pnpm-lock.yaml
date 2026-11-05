@@ -194,7 +194,7 @@ overrides:
   '@vue/server-renderer': 3.5.43
   '@vue/shared': 3.5.43
   antdv-next: 1.5.6
-  chokidar: ^5.0.0
+  chokidar: ^6.0.0
   semver: ^7.8.5
   undici-types: 8.11.2
   vite: 8.3.3
@@ -3445,9 +3445,9 @@ packages:
   character-entities@2.0.2:
     resolution: {integrity: sha512-shx7oQ0Awen/BRIdkjkvz54PnEEI/EjwXDSIZp86/KKdbafHh1Df/RYGBhn4hbe2+uKC9FnT5UCEdyPz3ai9hQ==}
 
-  chokidar@5.0.0:
-    resolution: {integrity: sha512-TQMmc3w+5AxjpL8iIiwebF73dRDF4fBIieAqGn9RGCWaEVwQ6Fb2cGe31Yns0RRIzii5goJ1Y7xbMwo1TxMplw==}
-    engines: {node: '>= 20.19.0'}
+  chokidar@6.0.0:
+    resolution: {integrity: sha512-Ec2Z7wpcKBiMpR7DxteoqS/sq5G5d2A4fpxzPv6+fD7xNNdrTghn7L11YwV5EN1B3i72Erc3XVT5FkWIDx90+A==}
+    engines: {node: '>= 22.22'}
 
   ci-info@4.4.0:
     resolution: {integrity: sha512-77PSwercCZU2Fc4sX94eF8k8Pxte6JAwL4/ICZLFjJLqegs7kCuAsqqj/70NQF6TvDpgFjkubQB2FW2ZZddvQg==}
@@ -5899,8 +5899,8 @@ packages:
   react-is@17.0.2:
     resolution: {integrity: sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==}
 
-  readdirp@5.0.0:
-    resolution: {integrity: sha512-9u/XQ1pvrQtYyMpZe7DXKv2p5CNvyVwzUB6uhLAnQwHMSgKMBR62lc7AHljaeteeHXn11XTAaLLUVZYVZyuRBQ==}
+  readdirp@5.1.1:
+    resolution: {integrity: sha512-Kko+Y5XQ6fM+Ce3dq3m9YGxnacYZYl9cA1wZjaF3Vbry2L3i1qVg8+CAgNPsXRArPMUMCaOR7oa9Nqntc43JKA==}
     engines: {node: '>= 20.19.0'}
 
   redent@3.0.0:
@@ -8852,7 +8852,7 @@ snapshots:
       '@unocss/preset-wind4': 66.10.5
       '@unocss/transformer-directives': 66.10.5
       cac: 7.0.0
-      chokidar: 5.0.0
+      chokidar: 6.0.0
       colorette: 2.0.20
       consola: 3.4.2
       magic-string: 1.4.2
@@ -8957,7 +8957,7 @@ snapshots:
       '@jridgewell/remapping': 2.3.5
       '@unocss/config': 66.10.5
       '@unocss/core': 66.10.5
-      chokidar: 5.0.0
+      chokidar: 6.0.0
       magic-string: 1.4.2
       pathe: 2.0.3
       tinyglobby: 0.2.17
@@ -9002,7 +9002,7 @@ snapshots:
       '@unocss/config': 66.10.5
       '@unocss/core': 66.10.5
       '@unocss/inspector': 66.10.5(cac@7.0.0)(srvx@1.0.5)
-      chokidar: 5.0.0
+      chokidar: 6.0.0
       magic-string: 1.4.2
       pathe: 2.0.3
       tinyglobby: 0.2.17
@@ -9021,7 +9021,7 @@ snapshots:
       '@unocss/config': 66.10.5
       '@unocss/core': 66.10.5
       '@unocss/inspector': 66.10.5(cac@7.0.0)(srvx@1.0.5)
-      chokidar: 5.0.0
+      chokidar: 6.0.0
       magic-string: 1.4.2
       pathe: 2.0.3
       tinyglobby: 0.2.17
@@ -9039,7 +9039,7 @@ snapshots:
       '@unocss/config': 66.10.5
       '@unocss/core': 66.10.5
       '@unocss/inspector': 66.10.5(cac@7.0.0)(srvx@1.0.5)
-      chokidar: 5.0.0
+      chokidar: 6.0.0
       magic-string: 1.4.2
       pathe: 2.0.3
       tinyglobby: 0.2.17
@@ -9999,9 +9999,9 @@ snapshots:
 
   character-entities@2.0.2: {}
 
-  chokidar@5.0.0:
+  chokidar@6.0.0:
     dependencies:
-      readdirp: 5.0.0
+      readdirp: 5.1.1
 
   ci-info@4.4.0: {}
 
@@ -12805,7 +12805,7 @@ snapshots:
 
   react-is@17.0.2: {}
 
-  readdirp@5.0.0: {}
+  readdirp@5.1.1: {}
 
   redent@3.0.0:
     dependencies:
@@ -13309,7 +13309,7 @@ snapshots:
     dependencies:
       bundle-require: 5.1.0(esbuild@0.27.7)
       cac: 6.7.14
-      chokidar: 5.0.0
+      chokidar: 6.0.0
       consola: 3.4.2
       debug: 4.4.3(supports-color@8.1.1)
       esbuild: 0.27.7
@@ -13617,7 +13617,7 @@ snapshots:
 
   unplugin-vue-components@32.1.0(esbuild@0.28.1)(rolldown@1.2.11)(rollup@4.62.2)(vite@8.3.3(@types/node@26.0.1)(esbuild@0.28.1)(jiti@2.7.0)(less@4.9.1(supports-color@8.1.1))(tsx@4.23.15)(yaml@2.9.0))(vue@3.5.43(typescript@5.9.3)):
     dependencies:
-      chokidar: 5.0.0
+      chokidar: 6.0.0
       local-pkg: 1.2.1
       magic-string: 0.30.21
       mlly: 1.8.2
@@ -13991,7 +13991,7 @@ snapshots:
       '@vue-macros/common': 3.1.4(vue@3.5.43(typescript@5.9.3))
       '@vue/devtools-api': 8.2.1
       ast-walker-scope: 0.9.0
-      chokidar: 5.0.0
+      chokidar: 6.0.0
       confbox: 0.2.4
       local-pkg: 1.2.1
       magic-string: 0.30.21
@@ -14025,7 +14025,7 @@ snapshots:
       '@vue-macros/common': 3.1.4(vue@3.5.43(typescript@5.9.3))
       '@vue/devtools-api': 8.2.1
       ast-walker-scope: 0.9.0
-      chokidar: 5.0.0
+      chokidar: 6.0.0
       confbox: 0.2.4
       local-pkg: 1.2.1
       magic-string: 0.30.21
@@ -14059,7 +14059,7 @@ snapshots:
       '@vue-macros/common': 3.1.4(vue@3.5.43(typescript@5.9.3))
       '@vue/devtools-api': 8.2.1
       ast-walker-scope: 0.9.0
-      chokidar: 5.0.0
+      chokidar: 6.0.0
       confbox: 0.2.4
       local-pkg: 1.2.1
       magic-string: 0.30.21
