@@ -172,8 +172,8 @@ catalogs:
       specifier: 3.3.11
       version: 3.3.11
     vue-types:
-      specifier: ^3.0.2
-      version: 3.0.2
+      specifier: ^7.0.1
+      version: 7.0.1
     vue3-gettext:
       specifier: 4.0.1
       version: 4.0.1
@@ -437,7 +437,7 @@ importers:
         version: 8.3.3(@types/node@24.19.0)(esbuild@0.28.1)(jiti@2.7.0)(less@4.9.1(supports-color@8.1.1))(tsx@4.23.15)(yaml@2.9.0)
       vue-types:
         specifier: 'catalog:'
-        version: 3.0.2(vue@3.5.43(typescript@5.9.3))
+        version: 7.0.1(vue@3.5.43(typescript@5.9.3))
 
   packages/directives:
     dependencies:
@@ -4726,10 +4726,6 @@ packages:
     resolution: {integrity: sha512-lZhclumE1G6VYD8VHe35wFaIif+CTy5SJIi5+3y4psDgWu4wPDoBhF8NxUOinEc7pHgiTsT6MaBb92rKhhD+Xw==}
     engines: {node: '>= 0.4'}
 
-  is-plain-object@3.0.1:
-    resolution: {integrity: sha512-Xnpx182SBMrr/aBik8y+GuR4U1L9FqMSojwDQwPMmxyC6bvEqly9UBCxhauBF5vNh2gwWJNX6oDV7O+OM4z34g==}
-    engines: {node: '>=0.10.0'}
-
   is-potential-custom-element-name@1.0.1:
     resolution: {integrity: sha512-bCYeRA2rVibKZd+s2625gGnGF/t7DSqDs4dP7CrLA1m7jKWz6pps0LpYLJN8Q64HtmPKJ1hrN3nzPNKFEKOUiQ==}
 
@@ -6848,11 +6844,14 @@ packages:
     peerDependencies:
       typescript: '>=5.0.0'
 
-  vue-types@3.0.2:
-    resolution: {integrity: sha512-IwUC0Aq2zwaXqy74h4WCvFCUtoV0iSWr0snWnE9TnU18S66GAQyqQbRf2qfJtUuiFsBf6qp0MEwdonlwznlcrw==}
-    engines: {node: '>=10.15.0'}
+  vue-types@7.0.1:
+    resolution: {integrity: sha512-zQ6sD/YVYYX/S3ntvUkzuJd3ULMX7bx9yBSGWFOoDFZz9DoREDKchWMlktb4CKIeyOhpKJ/3mBB7V6DCNS+HdA==}
+    engines: {node: '>=14.0.0'}
     peerDependencies:
       vue: 3.5.43
+    peerDependenciesMeta:
+      vue:
+        optional: true
 
   vue3-gettext@4.0.1:
     resolution: {integrity: sha512-dbqBv0X7L8EOnEjL78sNfAelig96lOBVnVN7zIJs8kekXaOQ+xUlYCyc4epFBFyXoFtYGzMCLS5uCJn9KozmWg==}
@@ -11435,8 +11434,6 @@ snapshots:
       call-bound: 1.0.4
       has-tostringtag: 1.0.2
 
-  is-plain-object@3.0.1: {}
-
   is-potential-custom-element-name@1.0.1: {}
 
   is-reference@1.2.1:
@@ -14094,9 +14091,8 @@ snapshots:
       '@vue/language-core': 3.3.11
       typescript: 5.9.3
 
-  vue-types@3.0.2(vue@3.5.43(typescript@5.9.3)):
-    dependencies:
-      is-plain-object: 3.0.1
+  vue-types@7.0.1(vue@3.5.43(typescript@5.9.3)):
+    optionalDependencies:
       vue: 3.5.43(typescript@5.9.3)
 
   vue3-gettext@4.0.1(vue@3.5.43(typescript@5.9.3)):
