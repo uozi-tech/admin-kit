@@ -1,5 +1,11 @@
 # @uozi-admin/curd
 
+## 6.1.1
+
+### Patch Changes
+
+- [#632](https://github.com/uozi-tech/admin-kit/pull/632) [`667f7e1`](https://github.com/uozi-tech/admin-kit/commit/667f7e1f264614594592791dd9b7832d21369ea9) Thanks [@0xJacky](https://github.com/0xJacky)! - fix(curd): 修复表格横向滚动时顶部滚动条与表格互相回写导致的抖动；peer 依赖 @vueuse/core、@vueuse/router 放宽为 ^14.4.0 || ^15.0.0
+
 ## 6.1.0
 
 ### Minor Changes
