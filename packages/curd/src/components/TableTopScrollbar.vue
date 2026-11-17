@@ -17,18 +17,51 @@ const hasScroll = ref(false)
 let resizeObserver: ResizeObserver | null = null
 let mutationObserver: MutationObserver | null = null
 
+// 双向同步时，写入对侧 scrollLeft 会在对侧异步触发一次 scroll 事件。
+// 若不识别这次回声，惯性滚动期间对侧会把已过期的位置写回来源，表格来回拉扯产生抖动。
+// 记下写给每一侧的值，对侧事件到达时位置仍等于该值即视为回声并忽略。
+let echoTop: number | null = null
+let echoTable: number | null = null
+
+function isEcho(el: HTMLDivElement, expected: number | null) {
+  // 高分屏下 scrollLeft 可能是小数，写入后会被取整
+  return expected !== null && Math.abs(el.scrollLeft - expected) < 1
+}
+
+function syncScrollLeft(source: HTMLDivElement, target: HTMLDivElement) {
+  const next = source.scrollLeft
+  if (Math.abs(target.scrollLeft - next) < 1)
+    return null
+  target.scrollLeft = next
+  return target.scrollLeft
+}
+
 // 同步顶部滚动条到表格
 function onTopScroll() {
-  if (tableScrollRef.value && topScrollRef.value) {
-    tableScrollRef.value.scrollLeft = topScrollRef.value.scrollLeft
+  const top = topScrollRef.value
+  const table = tableScrollRef.value
+  if (!top || !table)
+    return
+  if (isEcho(top, echoTop)) {
+    echoTop = null
+    return
   }
+  echoTop = null
+  echoTable = syncScrollLeft(top, table)
 }
 
 // 同步表格到顶部滚动条
 function onTableScroll() {
-  if (topScrollRef.value && tableScrollRef.value) {
-    topScrollRef.value.scrollLeft = tableScrollRef.value.scrollLeft
+  const top = topScrollRef.value
+  const table = tableScrollRef.value
+  if (!top || !table)
+    return
+  if (isEcho(table, echoTable)) {
+    echoTable = null
+    return
   }
+  echoTable = null
+  echoTop = syncScrollLeft(table, top)
 }
 
 // 更新顶部滚动条宽度
