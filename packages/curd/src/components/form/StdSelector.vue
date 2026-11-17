@@ -9,19 +9,28 @@ import StdTable from '../StdTable.vue'
 
 const props = withDefaults(
   defineProps<SelectorConfig & { placeholder?: string | number, dropUnpreloadable?: boolean, disabled?: boolean }>(),
-  { valueKey: 'id', selectionType: 'radio', omitZeroString: undefined, dropUnpreloadable: false },
+  {
+    valueKey: 'id',
+    selectionType: 'radio',
+    omitZeroString: undefined,
+    dropUnpreloadable: false,
+  },
 )
 const emit = defineEmits<{
   (e: 'selectedRecords', records: any[]): void
 }>()
-const value = defineModel<any>('value', { default: () => reactive([]) })
+const value = defineModel<any>('value', {
+  default: () => reactive([]),
+})
 const dataColumns = computed(() => {
   return props.columns.filter(item => item.pure)
 })
 
 const visible = defineModel<boolean>('visible', { default: false })
 const selectedRowKeys = ref<any[]>([])
-const selectedRows = defineModel<any[]>('selectedRows', { default: () => reactive([]) })
+const selectedRows = defineModel<any[]>('selectedRows', {
+  default: () => reactive([]),
+})
 
 // 添加内部临时状态来管理选中的行数据
 const internalSelectedRows = ref<any[]>([])
@@ -33,7 +42,11 @@ const isInitializing = ref(false)
 const curdConfig = useCurdConfig()
 
 function arraylizeValue(val: any) {
-  let result = Array.isArray(val) ? val : val ? [val] : []
+  let result = Array.isArray(val)
+    ? val
+    : val
+      ? [val]
+      : []
 
   // 应用 omitZeroString，优先使用组件 props 设置，否则使用全局配置
   const shouldOmitZeroString = props.omitZeroString !== undefined
@@ -92,8 +105,13 @@ async function init() {
     // 若提供 preloadedData，则优先用它进行本地匹配；否则走接口
     let preloadedRows: any[] = []
     if (props.preloadedData) {
-      const dataset = Array.isArray(props.preloadedData) ? props.preloadedData : [props.preloadedData]
-      const dataMap = new Map(dataset.map(item => [get(item, props.valueKey), item]))
+      const dataset = Array.isArray(props.preloadedData)
+        ? props.preloadedData
+        : [props.preloadedData]
+      const dataMap = new Map(dataset.map(item => [
+        get(item, props.valueKey),
+        item,
+      ]))
       preloadedRows = preloadIds.map(id => dataMap.get(id)).filter(Boolean)
     }
     else if (props.getListApi) {
@@ -101,7 +119,10 @@ async function init() {
         ...props.overwriteParams,
         [props.valueKey]: preloadIds,
       })
-      const dataMap = new Map(data.map(item => [get(item, props.valueKey), item]))
+      const dataMap = new Map(data.map(item => [
+        get(item, props.valueKey),
+        item,
+      ]))
       preloadedRows = preloadIds.map(id => dataMap.get(id)).filter(Boolean)
     }
 
@@ -121,7 +142,9 @@ async function init() {
           filteredValue = filteredPreloadIds[0]
         }
         else {
-          filteredValue = props.selectionType === 'radio' ? undefined : []
+          filteredValue = props.selectionType === 'radio'
+            ? undefined
+            : []
         }
       }
     }
@@ -188,7 +211,9 @@ function openSelector(event: MouseEvent) {
 
 const computedValue = computed({
   get: () => arraylizeValue(value.value),
-  set: v => value.value = props.selectionType === 'checkbox' ? v : v[0],
+  set: v => value.value = props.selectionType === 'checkbox'
+    ? v
+    : v[0],
 })
 </script>
 

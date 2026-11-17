@@ -8,7 +8,14 @@ const columns: StdTableColumn[] = [
     title: '标题',
     dataIndex: 'title',
     search: true,
-    edit: { type: 'input', formItem: { rules: [{ required: true }] } },
+    edit: {
+      type: 'input',
+      formItem: {
+        rules: [
+          { required: true },
+        ],
+      },
+    },
   },
   {
     title: '作者',
@@ -17,7 +24,9 @@ const columns: StdTableColumn[] = [
       type: 'selector',
       selector: {
         getListApi: userApi.getList,
-        columns: [{ title: '姓名', dataIndex: 'name' }],
+        columns: [
+          { title: '姓名', dataIndex: 'name' },
+        ],
         valueKey: 'id',
         displayKey: 'name',
       },
@@ -30,7 +39,9 @@ const columns: StdTableColumn[] = [
       type: 'selector',
       selector: {
         getListApi: tagApi.getList,
-        columns: [{ title: '标签名', dataIndex: 'name' }],
+        columns: [
+          { title: '标签名', dataIndex: 'name' },
+        ],
         valueKey: 'id',
         displayKey: 'name',
         selectionType: 'checkbox',

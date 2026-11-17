@@ -23,14 +23,18 @@ async function computedOptions() {
     const resp = await api()
     options.value = resp.data.map(item => ({
       label: item[labelKey],
-      value: isNumberValue.value ? Number(item[valueKey]) : item[valueKey],
+      value: isNumberValue.value
+        ? Number(item[valueKey])
+        : item[valueKey],
     }))
     return
   }
   if (p.props?.mask) {
     options.value = Object.entries(p.props.mask).map(([v, label]) => ({
       label,
-      value: isNumberValue.value ? Number(v) : v,
+      value: isNumberValue.value
+        ? Number(v)
+        : v,
     }))
     return
   }

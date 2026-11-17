@@ -6,7 +6,12 @@ export class Product {
   @Field({ type: 'number' })
   id?: number
 
-  @Field({ type: 'string', required: true, min: 2, max: 100 })
+  @Field({
+    type: 'string',
+    required: true,
+    min: 2,
+    max: 100,
+  })
   name?: string
 
   @Field({ type: 'number', min: 0 })

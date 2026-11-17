@@ -49,7 +49,9 @@ const totalText = computed(() => {
   return `${t('total')}: ${pagination.value.total} ${t('item(s)')}`
 })
 
-const paginationSize = computed(() => props.size === 'default' ? undefined : props.size)
+const paginationSize = computed(() => props.size === 'default'
+  ? undefined
+  : props.size)
 </script>
 
 <template>

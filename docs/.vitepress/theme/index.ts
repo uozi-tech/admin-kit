@@ -20,7 +20,9 @@ export default {
     }, {
       default: () => h(DefaultTheme.Layout, null, {
         // https://vitepress.dev/guide/extending-default-theme#layout-slots
-        'doc-before': () => [h(Breadcrumb)],
+        'doc-before': () => [
+          h(Breadcrumb),
+        ],
       }),
     })
   },

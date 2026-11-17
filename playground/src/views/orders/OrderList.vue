@@ -14,7 +14,11 @@ const columns: StdTableColumn[] = [
     dataIndex: 'total',
     edit: {
       type: 'inputNumber',
-      formItem: { rules: [{ type: 'number', min: 0 }] },
+      formItem: {
+        rules: [
+          { type: 'number', min: 0 },
+        ],
+      },
     },
   },
   {

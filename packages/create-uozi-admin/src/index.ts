@@ -53,7 +53,9 @@ async function init() {
         },
         {
           type: () =>
-            !fs.existsSync(targetDir) || isEmpty(targetDir) ? null : 'select',
+            !fs.existsSync(targetDir) || isEmpty(targetDir)
+              ? null
+              : 'select',
           name: 'overwrite',
           message: () =>
             green(`${targetDir === '.'
@@ -77,7 +79,9 @@ async function init() {
           ],
         },
         {
-          type: () => (isValidPackageName(getProjectName(targetDir)) ? null : 'text'),
+          type: () => (isValidPackageName(getProjectName(targetDir))
+            ? null
+            : 'text'),
           name: 'packageName',
           message: green('Package name:'),
           initial: () => toValidPackageName(getProjectName(targetDir)),
@@ -145,7 +149,9 @@ async function init() {
     if (root !== cwd) {
       // eslint-disable-next-line no-console
       console.log(green(
-        `  cd ${cdProjectName.includes(' ') ? `"${cdProjectName}"` : cdProjectName}`,
+        `  cd ${cdProjectName.includes(' ')
+          ? `"${cdProjectName}"`
+          : cdProjectName}`,
       ))
     }
 

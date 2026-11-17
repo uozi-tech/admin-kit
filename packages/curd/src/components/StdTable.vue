@@ -199,7 +199,9 @@ function onColumnSettingsChange(newColumns: any[]) {
 /** 筛选 table 显示的列，并且获取 title 真实内容 */
 const dataColumns = computed<any>(() => {
   // 使用列设置的结果，如果没有设置则使用默认的
-  const baseColumns = displayColumns.value.length > 0 ? displayColumns.value : tableColumns.value
+  const baseColumns = displayColumns.value.length > 0
+    ? displayColumns.value
+    : tableColumns.value
 
   const cols = baseColumns.filter(item => !item?.hiddenInTable).map((item: StdTableColumn) => {
     if (item.dataIndex === sortBy.value) {
@@ -284,7 +286,10 @@ watch(searchFormData, async (newVal, oldVal) => {
 
 // 监听 customQueryParams 变化
 watch(() => props.customQueryParams, (newVal) => {
-  searchFormData.value = { ...searchFormData.value, ...newVal }
+  searchFormData.value = {
+    ...searchFormData.value,
+    ...newVal,
+  }
 }, { deep: true })
 
 // 初始化标志，避免在初始化期间触发不必要的副作用
@@ -358,7 +363,10 @@ const debouncedListApi = debounce(async () => {
   tableLoading.value = true
 
   const { overwriteParams, ...rest } = apiParams.value
-  let finialParams: Record<string, any> = { ...rest, ...overwriteParams }
+  let finialParams: Record<string, any> = {
+    ...rest,
+    ...overwriteParams,
+  }
 
   // 格式化请求参数
   if (curdConfig.listApi?.requestFormat) {

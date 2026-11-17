@@ -11,11 +11,26 @@ export default defineConfig({
       // '/zh/overview': { base: '/zh/', items: sidebarOverview() },
       // '/zh/getting-started': { base: '/zh/', items: sidebarGettingStarted() },
       // '/zh/guide': { base: '/zh/', items: sidebarGuideNav() },
-      '/zh/curd/': { base: '/zh/curd/', items: sidebarGuide() },
-      '/zh/request/': { base: '/zh/request/', items: sidebarRequest() },
-      '/zh/layout/': { base: '/zh/layout/', items: sidebarLayout() },
-      '/zh/cli/': { base: '/zh/cli/', items: sidebarCli() },
-      '/zh/shared-config/': { base: '/zh/shared-config/', items: sidebarSharedConfig() },
+      '/zh/curd/': {
+        base: '/zh/curd/',
+        items: sidebarGuide(),
+      },
+      '/zh/request/': {
+        base: '/zh/request/',
+        items: sidebarRequest(),
+      },
+      '/zh/layout/': {
+        base: '/zh/layout/',
+        items: sidebarLayout(),
+      },
+      '/zh/cli/': {
+        base: '/zh/cli/',
+        items: sidebarCli(),
+      },
+      '/zh/shared-config/': {
+        base: '/zh/shared-config/',
+        items: sidebarSharedConfig(),
+      },
     },
 
     // 搜索配置优化

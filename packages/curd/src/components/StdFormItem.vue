@@ -30,7 +30,9 @@ const computedRequired = computed(() => {
   const formItemRequired = (props.formItem as any)?.required
   if (formItemRequired !== undefined) {
     if (typeof formItemRequired === 'function') {
-      return props.formData ? formItemRequired({ formData: props.formData }) : false
+      return props.formData
+        ? formItemRequired({ formData: props.formData })
+        : false
     }
     return formItemRequired
   }

@@ -90,7 +90,10 @@ function useDraggableTable(options?: StdTableProps['rowDraggableOptions']) {
 
     // 递归处理子行
     if (row.children?.length) {
-      return [rowId, ...row.children.map(child => processRowIndexChanges(child, true, newLevelIndex, direction))]
+      return [
+        rowId,
+        ...row.children.map(child => processRowIndexChanges(child, true, newLevelIndex, direction)),
+      ]
     }
 
     return rowId
@@ -135,7 +138,9 @@ function useDraggableTable(options?: StdTableProps['rowDraggableOptions']) {
 
         // 计算方向和索引差值
         const indexDelta = oldIndex - newIndex
-        const direction = indexDelta > 0 ? 1 : -1
+        const direction = indexDelta > 0
+          ? 1
+          : -1
 
         // 获取被拖拽行的数据
         const draggedRowPath = rowKeyIndexMap.value[getRowKey(item)]

@@ -23,8 +23,12 @@ const columns: StdTableColumn[] = [
     width: 100,
     customRender: ({ value }) =>
       h(Tag, {
-        color: value === 1 ? 'green' : 'red',
-      }, () => value === 1 ? '启用' : '禁用'),
+        color: value === 1
+          ? 'green'
+          : 'red',
+      }, () => value === 1
+        ? '启用'
+        : '禁用'),
   },
   {
     title: '角色',

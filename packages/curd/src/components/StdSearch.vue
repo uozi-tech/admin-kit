@@ -26,7 +26,13 @@ const { t } = useLocale()
 
 const curdConfig = useCurdConfig()
 const formDataBuffer = ref<Record<string, any>>({})
-const manualInputTypes = new Set(['input', 'textarea', 'password', 'autoComplete', 'inputNumber'])
+const manualInputTypes = new Set([
+  'input',
+  'textarea',
+  'password',
+  'autoComplete',
+  'inputNumber',
+])
 
 // {{ AURA-X: Add - 添加折叠功能状态管理. Approval: 寸止(ID:1723363200). }}
 const expand = ref(false)

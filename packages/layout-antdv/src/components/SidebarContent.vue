@@ -35,7 +35,10 @@ function isSameKeys(left: string[], right: string[]) {
 }
 
 function mergeKeys(baseKeys: string[], nextKeys: string[]) {
-  return Array.from(new Set([...baseKeys, ...nextKeys]))
+  return Array.from(new Set([
+    ...baseKeys,
+    ...nextKeys,
+  ]))
 }
 
 function normalizePath(path: string) {
@@ -53,7 +56,11 @@ function resolveMenuItemPath(parentPath: string, childPath: string) {
 }
 
 function getSelectedKeys() {
-  return route.name ? [String(route.name)] : []
+  return route.name
+    ? [
+        String(route.name),
+      ]
+    : []
 }
 
 function getOpenKeysFromItems() {
@@ -64,7 +71,9 @@ function getOpenKeysFromItems() {
       || resolveMenuItemPath(item.path, child.path) === routePath
   }))
 
-  return activeItem ? [activeItem.path] : []
+  return activeItem
+    ? [activeItem.path]
+    : []
 }
 
 function getOpenKeys() {
@@ -84,13 +93,21 @@ function getOpenKeys() {
   }
 
   const lastSepIndex = route.path.lastIndexOf('/')
-  const parentPath = lastSepIndex > 0 ? route.path.substring(0, lastSepIndex) : ''
+  const parentPath = lastSepIndex > 0
+    ? route.path.substring(0, lastSepIndex)
+    : ''
 
-  return parentPath ? [parentPath] : []
+  return parentPath
+    ? [parentPath]
+    : []
 }
 
 watch(
-  () => [route.name, route.path, route.matched.map(record => record.path).join('|')],
+  () => [
+    route.name,
+    route.path,
+    route.matched.map(record => record.path).join('|'),
+  ],
   () => {
     const nextSelectedKeys = getSelectedKeys()
     const nextOpenKeys = getOpenKeys()

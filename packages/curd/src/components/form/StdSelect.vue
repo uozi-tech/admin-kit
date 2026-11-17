@@ -27,15 +27,22 @@ async function computedOptions() {
   }
   if (p.props?.mask) {
     options.value = Object.entries(p.props.mask).map(([v, label]) => ({
-      label: isFunction(label) ? label() : label,
-      value: p.props?.maskIsNumberKey ? Number(v) : v,
+      label: isFunction(label)
+        ? label()
+        : label,
+      value: p.props?.maskIsNumberKey
+        ? Number(v)
+        : v,
     }))
     return
   }
   options.value = p.props?.options
 }
 
-watch([value, () => p.props], computedOptions, { immediate: true, deep: true })
+watch([
+  value,
+  () => p.props,
+], computedOptions, { immediate: true, deep: true })
 </script>
 
 <template>

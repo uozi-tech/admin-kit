@@ -63,7 +63,9 @@ function isFieldEditable(column: StdTableColumn): boolean {
   if (!props.editable || currentMode.value !== 'edit')
     return false
 
-  const dataIndex = Array.isArray(column.dataIndex) ? column.dataIndex.join('.') : column.dataIndex
+  const dataIndex = Array.isArray(column.dataIndex)
+    ? column.dataIndex.join('.')
+    : column.dataIndex
 
   if (props.editableFields?.length) {
     return props.editableFields.includes(dataIndex) && !!column.edit
@@ -113,12 +115,16 @@ function handleCancel() {
 function DataItemRender(renderProps: CustomRenderArgs) {
   const { record, column } = renderProps
   const value = get(record, column.dataIndex)
-  return column.customRender ? column.customRender(renderProps, 'detail') : value ?? '/'
+  return column.customRender
+    ? column.customRender(renderProps, 'detail')
+    : value ?? '/'
 }
 
 // 表单项渲染
 function FormItemRender({ column }: { column: StdTableColumn }) {
-  const dataIndex = Array.isArray(column.dataIndex) ? column.dataIndex.join('.') : column.dataIndex
+  const dataIndex = Array.isArray(column.dataIndex)
+    ? column.dataIndex.join('.')
+    : column.dataIndex
 
   return (
     <FormItem

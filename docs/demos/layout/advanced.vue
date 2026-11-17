@@ -122,7 +122,9 @@ const sidebarItems: SidebarItem[] = [
 
 // 主题切换
 function toggleTheme() {
-  theme.value = theme.value === 'dark' ? 'light' : 'dark'
+  theme.value = theme.value === 'dark'
+    ? 'light'
+    : 'dark'
 }
 
 // 显示通知

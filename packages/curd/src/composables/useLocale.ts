@@ -5,7 +5,9 @@ import { useI18n } from 'vue-i18n'
 import { useCurdConfig } from './useCurdConfig'
 
 function normalizeLocale(locale?: CurdLocaleValue): I18nLanguage {
-  const localeValue = typeof locale === 'string' ? locale : locale?.locale
+  const localeValue = typeof locale === 'string'
+    ? locale
+    : locale?.locale
 
   switch (localeValue?.replace('_', '-').toLowerCase()) {
     case 'zh-cn':

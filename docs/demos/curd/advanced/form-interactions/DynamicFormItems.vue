@@ -11,7 +11,9 @@ const dynamicFormKey = ref(0)
 // 动态表单数据
 const dynamicFormData = ref({
   name: '',
-  contacts: [{ name: '', phone: '' }],
+  contacts: [
+    { name: '', phone: '' },
+  ],
 })
 
 // 动态表单项列配置
@@ -66,7 +68,10 @@ const dynamicFormColumns = computed<StdTableColumn[]>(() => {
     },
   ]).flat() as StdTableColumn[]
 
-  return [...baseColumns, ...contactColumns]
+  return [
+    ...baseColumns,
+    ...contactColumns,
+  ]
 })
 
 // 事件处理函数

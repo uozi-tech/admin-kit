@@ -34,7 +34,9 @@ export default defineConfig({
     presetAttributify(),
     presetIcons({
       collections: {
-        tabler: () => import('@iconify-json/tabler/icons.json', { with: { type: 'json' } }).then(i => i.default),
+        tabler: () => import('@iconify-json/tabler/icons.json', {
+          with: { type: 'json' },
+        }).then(i => i.default),
       },
       extraProperties: {
         'display': 'inline-block',

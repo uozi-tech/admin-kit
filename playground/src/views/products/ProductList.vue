@@ -11,7 +11,11 @@ const columns: StdTableColumn[] = [
     search: true,
     edit: {
       type: 'input',
-      formItem: { rules: [{ required: true, min: 2, max: 100 }] },
+      formItem: {
+        rules: [
+          { required: true, min: 2, max: 100 },
+        ],
+      },
     },
   },
   {
@@ -19,7 +23,11 @@ const columns: StdTableColumn[] = [
     dataIndex: 'price',
     edit: {
       type: 'inputNumber',
-      formItem: { rules: [{ type: 'number', min: 0 }] },
+      formItem: {
+        rules: [
+          { type: 'number', min: 0 },
+        ],
+      },
     },
   },
   {
@@ -27,7 +35,11 @@ const columns: StdTableColumn[] = [
     dataIndex: 'stock',
     edit: {
       type: 'inputNumber',
-      formItem: { rules: [{ type: 'number', min: 0 }] },
+      formItem: {
+        rules: [
+          { type: 'number', min: 0 },
+        ],
+      },
     },
   },
   {
@@ -46,7 +58,9 @@ const columns: StdTableColumn[] = [
     },
     customRender: ({ value }) => {
       // 实际应通过接口获取分类名称
-      return value ? `分类${value}` : '-'
+      return value
+        ? `分类${value}`
+        : '-'
     },
   },
   {

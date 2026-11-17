@@ -125,7 +125,9 @@ const renderColumns = [
           }, [
             '库存: ',
             h('span', {
-              style: product.stock > 0 ? 'color: #52c41a;' : 'color: #f5222d;',
+              style: product.stock > 0
+                ? 'color: #52c41a;'
+                : 'color: #f5222d;',
             }, product.stock),
           ]),
         ]),

@@ -87,8 +87,12 @@ const columns: StdTableColumn[] = [
     dataIndex: 'status',
     customRender: ({ value }) =>
       h(Tag, {
-        color: value === 1 ? 'green' : 'red',
-      }, () => value === 1 ? '启用' : '禁用'),
+        color: value === 1
+          ? 'green'
+          : 'red',
+      }, () => value === 1
+        ? '启用'
+        : '禁用'),
     search: {
       type: 'select',
       select: {

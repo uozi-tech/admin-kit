@@ -7,31 +7,34 @@ const userApi = {
   getList: async (p) => {
     void p
     return {
-      data: [{
-        id: 1,
-        name: '张三',
-        mobile: '13800138000',
-        email: 'zhangsan@example.com',
-        gender: 1,
-        role: 1,
-        age: 20,
-        password: '123456',
-        status: 1,
-        avatar: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-        created_at: '2021-01-01',
-      }, {
-        id: 2,
-        name: '李四',
-        mobile: '13800138001',
-        email: 'lisi@example.com',
-        gender: -1,
-        role: -1,
-        age: 21,
-        password: '123456',
-        status: -1,
-        avatar: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-        created_at: '2021-01-02',
-      }],
+      data: [
+        {
+          id: 1,
+          name: '张三',
+          mobile: '13800138000',
+          email: 'zhangsan@example.com',
+          gender: 1,
+          role: 1,
+          age: 20,
+          password: '123456',
+          status: 1,
+          avatar: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+          created_at: '2021-01-01',
+        },
+        {
+          id: 2,
+          name: '李四',
+          mobile: '13800138001',
+          email: 'lisi@example.com',
+          gender: -1,
+          role: -1,
+          age: 21,
+          password: '123456',
+          status: -1,
+          avatar: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+          created_at: '2021-01-02',
+        },
+      ],
       pagination: {
         total: 0,
       },
@@ -76,7 +79,9 @@ const columns: StdTableColumn[] = [
       },
       selector: {
         getListApi: userApi.getList,
-        columns: [{ title: '姓名', dataIndex: 'name' }],
+        columns: [
+          { title: '姓名', dataIndex: 'name' },
+        ],
         valueKey: 'id',
         displayKey: 'name',
       },
@@ -85,7 +90,11 @@ const columns: StdTableColumn[] = [
     sorter: true,
     edit: {
       type: 'input',
-      formItem: { rules: [{ required: true }] },
+      formItem: {
+        rules: [
+          { required: true },
+        ],
+      },
       col: { span: 12 },
     },
   },
@@ -111,7 +120,11 @@ const columns: StdTableColumn[] = [
     edit: {
       disabled: true,
       type: 'input',
-      formItem: { rules: [{ required: true }] },
+      formItem: {
+        rules: [
+          { required: true },
+        ],
+      },
       col: { span: 12 },
     },
   },
@@ -121,7 +134,11 @@ const columns: StdTableColumn[] = [
     search: true,
     edit: {
       type: 'input',
-      formItem: { rules: [{ required: true }] },
+      formItem: {
+        rules: [
+          { required: true },
+        ],
+      },
       col: { span: 12 },
     },
   },
@@ -131,8 +148,17 @@ const columns: StdTableColumn[] = [
     search: true,
     edit: {
       type: 'select',
-      select: { options: [{ label: '男', value: 1 }, { label: '女', value: -1 }] },
-      formItem: { rules: [{ required: true }] },
+      select: {
+        options: [
+          { label: '男', value: 1 },
+          { label: '女', value: -1 },
+        ],
+      },
+      formItem: {
+        rules: [
+          { required: true },
+        ],
+      },
       defaultValue: 1,
     },
     batchEdit: true,
@@ -143,8 +169,17 @@ const columns: StdTableColumn[] = [
     search: true,
     edit: {
       type: 'select',
-      select: { options: [{ label: '管理员', value: 1 }, { label: '普通用户', value: -1 }] },
-      formItem: { rules: [{ required: true }] },
+      select: {
+        options: [
+          { label: '管理员', value: 1 },
+          { label: '普通用户', value: -1 },
+        ],
+      },
+      formItem: {
+        rules: [
+          { required: true },
+        ],
+      },
     },
   },
   {
@@ -153,7 +188,11 @@ const columns: StdTableColumn[] = [
     search: true,
     edit: {
       type: 'inputNumber',
-      formItem: { rules: [{ type: 'number', min: 0, max: 150 }] },
+      formItem: {
+        rules: [
+          { type: 'number', min: 0, max: 150 },
+        ],
+      },
     },
   },
   {
@@ -161,7 +200,11 @@ const columns: StdTableColumn[] = [
     dataIndex: 'password',
     edit: {
       type: 'password',
-      formItem: { rules: [{ required: true }] },
+      formItem: {
+        rules: [
+          { required: true },
+        ],
+      },
     },
   },
   {
@@ -171,10 +214,17 @@ const columns: StdTableColumn[] = [
     edit: {
       type: 'select',
       select: {
-        options: [{ label: '启用', value: 1 }, { label: '禁用', value: -1 }],
+        options: [
+          { label: '启用', value: 1 },
+          { label: '禁用', value: -1 },
+        ],
         defaultValue: 1,
       },
-      formItem: { rules: [{ required: true }] },
+      formItem: {
+        rules: [
+          { required: true },
+        ],
+      },
     },
   },
   {

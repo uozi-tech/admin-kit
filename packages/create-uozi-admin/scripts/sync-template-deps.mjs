@@ -26,8 +26,19 @@ import path from 'node:path'
 import process from 'node:process'
 import { fileURLToPath } from 'node:url'
 
-const DEPENDENCY_FIELDS = ['dependencies', 'devDependencies', 'optionalDependencies', 'peerDependencies']
-const FORBIDDEN_PROTOCOLS = ['catalog:', 'workspace:', 'link:', 'file:', 'portal:']
+const DEPENDENCY_FIELDS = [
+  'dependencies',
+  'devDependencies',
+  'optionalDependencies',
+  'peerDependencies',
+]
+const FORBIDDEN_PROTOCOLS = [
+  'catalog:',
+  'workspace:',
+  'link:',
+  'file:',
+  'portal:',
+]
 
 const scriptDir = path.dirname(fileURLToPath(import.meta.url))
 const packageDir = path.resolve(scriptDir, '..')
@@ -125,7 +136,11 @@ function collectProblems(pkg, catalog, localVersions) {
     }
   }
   if (pkg.pnpm?.overrides || pkg.overrides || pkg.resolutions) {
-    for (const [name, specifier] of Object.entries({ ...pkg.pnpm?.overrides, ...pkg.overrides, ...pkg.resolutions })) {
+    for (const [name, specifier] of Object.entries({
+      ...pkg.pnpm?.overrides,
+      ...pkg.overrides,
+      ...pkg.resolutions,
+    })) {
       if (typeof specifier === 'string' && FORBIDDEN_PROTOCOLS.some(p => specifier.startsWith(p)))
         problems.push(`override ${name} uses "${specifier}"`)
     }

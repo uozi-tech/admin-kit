@@ -6,6 +6,11 @@ export class Category {
   @Field({ type: 'number' })
   id?: number
 
-  @Field({ type: 'string', required: true, min: 2, max: 30 })
+  @Field({
+    type: 'string',
+    required: true,
+    min: 2,
+    max: 30,
+  })
   name?: string
 }

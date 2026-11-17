@@ -85,7 +85,10 @@ export const userApi = {
     await new Promise(resolve => setTimeout(resolve, 300))
     const index = mockUsers.findIndex(user => user.id === id)
     if (index !== -1) {
-      mockUsers[index] = { ...mockUsers[index], ...data }
+      mockUsers[index] = {
+        ...mockUsers[index],
+        ...data,
+      }
       return mockUsers[index]
     }
     throw new Error('User not found')
