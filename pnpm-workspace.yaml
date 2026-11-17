@@ -21,7 +21,7 @@ packages:
 overrides:
   '@antdv-next/auto-import-resolver': 1.2.0
   '@antdv-next/icons': 1.1.2
-  '@v-c/slider': 1.1.6
+  '@v-c/slider': 1.1.5
   '@vue/compiler-core': 3.5.45
   '@vue/compiler-dom': 3.5.45
   '@vue/compiler-sfc': 3.5.45
@@ -30,7 +30,7 @@ overrides:
   '@vue/runtime-dom': 3.5.45
   '@vue/server-renderer': 3.5.45
   '@vue/shared': 3.5.45
-  antdv-next: 1.8.2
+  antdv-next: 1.8.1
   chokidar: ^6.0.0
   semver: ^7.8.6
   undici-types: 8.12.4
@@ -92,7 +92,7 @@ catalog:
   '@vue/tsconfig': ^0.9.1
   '@vueuse/core': 15.0.0
   '@vueuse/router': 15.0.0
-  antdv-next: 1.8.2
+  antdv-next: 1.8.1
   axios: ^1.21.1
   chalk: ^6.0.1
   cross-spawn: ^7.0.6
@@ -135,7 +135,7 @@ catalog:
   vitepress-plugin-mermaid: ^2.0.17
   vitest: ^5.1.0
   vue: 3.5.45
-  vue-i18n: ^11.4.21
+  vue-i18n: ^11.4.20
   vue-router: 5.5.1
   vue-tsc: 3.3.14
   vue-types: ^7.0.1

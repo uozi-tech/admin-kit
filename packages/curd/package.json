@@ -38,13 +38,13 @@
     "generate-translations": "tsx scripts/generateTranslations.ts"
   },
   "peerDependencies": {
-    "@vueuse/core": "^15.0.0",
-    "@vueuse/router": "^15.0.0",
+    "@vueuse/core": "^14.4.0 || ^15.0.0",
+    "@vueuse/router": "^14.4.0 || ^15.0.0",
     "dayjs": ">=1.11.23",
     "lodash-es": ">=4.18.1",
-    "vue": "^3.5.45",
-    "vue-router": ">=5.5.1",
-    "antdv-next": ">=1.8.2",
+    "vue": "^3.5.43",
+    "vue-router": ">=5.3.1",
+    "antdv-next": ">=1.5.6",
     "@antdv-next/icons": ">=1.1.2"
   },
   "devDependencies": {
