@@ -103,8 +103,14 @@ const currentStepColumns = computed<StdTableColumn[]>(() => {
   if (steps[currentStep.value].key === 'confirm') {
     // 确认页面显示所有信息（只读）
     return [
-      ...allColumns.basic.map(col => ({ ...col, edit: { ...col.edit, disabled: true } })),
-      ...allColumns.detail.map(col => ({ ...col, edit: { ...col.edit, disabled: true } })),
+      ...allColumns.basic.map(col => ({
+        ...col,
+        edit: { ...col.edit, disabled: true },
+      })),
+      ...allColumns.detail.map(col => ({
+        ...col,
+        edit: { ...col.edit, disabled: true },
+      })),
     ]
   }
 

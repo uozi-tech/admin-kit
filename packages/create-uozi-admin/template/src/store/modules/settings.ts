@@ -16,7 +16,9 @@ export const useSettingsStore = defineStore('settings', () => {
   })
 
   const antdLanguage = computed(() => {
-    return language.value === 'zh_CN' ? zhCN : enUS
+    return language.value === 'zh_CN'
+      ? zhCN
+      : enUS
   })
 
   function setLanguage(lang: string) {

@@ -14,18 +14,24 @@ export default antfu({
 }).overrideRules({
   'vue/no-dupe-keys': 'off',
   'vue/html-indent': ['error', 2],
-  'vue/max-attributes-per-line': ['error', {
-    singleline: {
-      max: 1,
+  'vue/max-attributes-per-line': [
+    'error',
+    {
+      singleline: {
+        max: 1,
+      },
+      multiline: {
+        max: 1,
+      },
     },
-    multiline: {
-      max: 1,
+  ],
+  'vue/first-attribute-linebreak': [
+    'error',
+    {
+      singleline: 'beside',
+      multiline: 'below',
     },
-  }],
-  'vue/first-attribute-linebreak': ['error', {
-    singleline: 'beside',
-    multiline: 'below',
-  }],
+  ],
   'ts/no-use-before-define': 'off',
   'ts/no-non-null-asserted-optional-chain': 'warn',
   'no-console': 'warn',

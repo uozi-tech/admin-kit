@@ -30,7 +30,9 @@ const p = defineProps<{
   mode?: 'edit' | 'add' | 'search'
 }>()
 
-const formData = defineModel<Record<string, any>>('formData', { default: () => reactive({}) })
+const formData = defineModel<Record<string, any>>('formData', {
+  default: () => reactive({}),
+})
 
 function Render() {
   const { dataIndex } = p.column
@@ -74,7 +76,9 @@ function Render() {
       }
       const defaultValue = formConfig.defaultValue ?? componentConfig.value?.defaultValue
       if (p.mode === 'search') {
-        return typeof formConfig.search === 'object' ? defaultValue : undefined
+        return typeof formConfig.search === 'object'
+          ? defaultValue
+          : undefined
       }
       return defaultValue
     },

@@ -25,7 +25,10 @@ let globalDateFormats = {
 
 // 更新全局日期格式
 export function setGlobalDateFormats(formats: Partial<typeof globalDateFormats>) {
-  globalDateFormats = { ...globalDateFormats, ...formats }
+  globalDateFormats = {
+    ...globalDateFormats,
+    ...formats,
+  }
 }
 
 // 获取全局日期格式

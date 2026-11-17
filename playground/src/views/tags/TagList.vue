@@ -9,7 +9,11 @@ const columns: StdTableColumn[] = [
     dataIndex: 'name',
     edit: {
       type: 'input',
-      formItem: { rules: [{ required: true, min: 2, max: 20 }] },
+      formItem: {
+        rules: [
+          { required: true, min: 2, max: 20 },
+        ],
+      },
     },
   },
   {
@@ -19,7 +23,9 @@ const columns: StdTableColumn[] = [
       type: 'selector',
       selector: {
         getListApi: postApi.getList,
-        columns: [{ title: '标题', dataIndex: 'title' }],
+        columns: [
+          { title: '标题', dataIndex: 'title' },
+        ],
         valueKey: 'id',
         displayKey: 'title',
         selectionType: 'checkbox',

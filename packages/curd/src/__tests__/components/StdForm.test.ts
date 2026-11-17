@@ -6,7 +6,11 @@ import { createCurdConfig } from '../../utils'
 
 describe('stdForm 组件', () => {
   // StdFormItem calls useI18n(), so the curd plugin must be installed
-  const renderGlobal = { plugins: [createCurdConfig({})] }
+  const renderGlobal = {
+    plugins: [
+      createCurdConfig({}),
+    ],
+  }
 
   const mockColumns: StdTableColumn[] = [
     {

@@ -62,7 +62,10 @@ export default defineConfig({
   base: '/admin-kit/',
   title: 'Admin Kit',
   head: [
-    ['link', { rel: 'icon', href: './logo.svg' }],
+    [
+      'link',
+      { rel: 'icon', href: './logo.svg' },
+    ],
   ],
 
   lastUpdated: true,
@@ -94,7 +97,9 @@ export default defineConfig({
       chunkSizeWarningLimit: 5000,
     },
     plugins: [
-      ...(basicAuthPlugin ? [basicAuthPlugin] : []),
+      ...(basicAuthPlugin
+        ? [basicAuthPlugin]
+        : []),
       // AutoImport({
       //   imports: ['vue', 'vue-router', 'pinia'],
       //   vueTemplate: true,
@@ -125,7 +130,12 @@ export default defineConfig({
       // dayjs: vitepress-plugin-mermaid aliases `dayjs/plugin/*.js` to
       // `dayjs/esm/plugin/*`, whose extensionless internal imports Node ESM
       // rejects when externalized; bundling dayjs lets Vite resolve them.
-      noExternal: ['antdv-next', '@antdv-next/icons', '@uozi-admin/curd', 'dayjs'],
+      noExternal: [
+        'antdv-next',
+        '@antdv-next/icons',
+        '@uozi-admin/curd',
+        'dayjs',
+      ],
     },
   },
 })

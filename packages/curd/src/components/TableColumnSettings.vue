@@ -91,7 +91,10 @@ function generateFinalColumns(): StdTableColumn[] {
   // 添加系统列
   const systemColumns = props.columns.filter(column => isSystemColumn(column))
 
-  return normalizeTableColumnKeys([...visibleColumns, ...systemColumns])
+  return normalizeTableColumnKeys([
+    ...visibleColumns,
+    ...systemColumns,
+  ])
 }
 
 // 确认应用设置

@@ -80,10 +80,14 @@ const columns: StdTableColumn[] = [
       },
       cascader: {
         options: [
-          { label: '电子产品', value: 'electronics', children: [
-            { label: '手机', value: 'phone' },
-            { label: '电脑', value: 'computer' },
-          ] },
+          {
+            label: '电子产品',
+            value: 'electronics',
+            children: [
+              { label: '手机', value: 'phone' },
+              { label: '电脑', value: 'computer' },
+            ],
+          },
         ],
       },
     },
@@ -112,7 +116,11 @@ const columns: StdTableColumn[] = [
     title: '库存',
     dataIndex: 'stock',
     customRender: ({ value }) => {
-      const color = value > 10 ? 'green' : value > 0 ? 'orange' : 'red'
+      const color = value > 10
+        ? 'green'
+        : value > 0
+          ? 'orange'
+          : 'red'
       return h(Tag, { color }, () => `${value}件`)
     },
     edit: {

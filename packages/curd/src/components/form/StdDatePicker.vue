@@ -32,7 +32,9 @@ const resolvedValueFormat = computed(() => {
   }
   return p.props?.valueFormat ?? resolvedFormat.value
 })
-const stableShowTime = shallowRef<any>(p.type === 'datetime' ? true : undefined)
+const stableShowTime = shallowRef<any>(p.type === 'datetime'
+  ? true
+  : undefined)
 const resolvedShowTime = computed(() => stableShowTime.value)
 const pickerProps = computed(() => {
   const {
@@ -66,7 +68,9 @@ watch(() => p.props?.showTime, (newValue, oldValue) => {
 const computedValue = computed<any>({
   get() {
     if (usingTimestamp) {
-      return value.value ? dayjs.unix(Number(value.value)) : undefined
+      return value.value
+        ? dayjs.unix(Number(value.value))
+        : undefined
     }
     else {
       return value.value?.toString()

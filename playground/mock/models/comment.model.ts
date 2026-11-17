@@ -6,7 +6,12 @@ export class Comment {
   @Field({ type: 'number' })
   id?: number
 
-  @Field({ type: 'string', required: true, min: 1, max: 500 })
+  @Field({
+    type: 'string',
+    required: true,
+    min: 1,
+    max: 500,
+  })
   content?: string
 
   @Field({ type: 'number', ref: 'posts' })

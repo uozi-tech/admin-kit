@@ -6,7 +6,13 @@ export class Tag {
   @Field({ type: 'number' })
   id?: number
 
-  @Field({ type: 'string', required: true, unique: true, min: 2, max: 20 })
+  @Field({
+    type: 'string',
+    required: true,
+    unique: true,
+    min: 2,
+    max: 20,
+  })
   name?: string
 
   @Field({ type: 'array', ref: 'posts' })

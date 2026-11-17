@@ -99,7 +99,10 @@ export const orderApi = {
     await new Promise(resolve => setTimeout(resolve, 300))
     const index = mockOrders.findIndex(order => order.id === id)
     if (index !== -1) {
-      mockOrders[index] = { ...mockOrders[index], ...data }
+      mockOrders[index] = {
+        ...mockOrders[index],
+        ...data,
+      }
       return mockOrders[index]
     }
     throw new Error('Order not found')

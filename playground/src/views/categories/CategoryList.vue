@@ -9,7 +9,11 @@ const columns: StdTableColumn[] = [
     dataIndex: 'name',
     edit: {
       type: 'input',
-      formItem: { rules: [{ required: true }] },
+      formItem: {
+        rules: [
+          { required: true },
+        ],
+      },
     },
   },
   {

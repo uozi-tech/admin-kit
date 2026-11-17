@@ -4,7 +4,9 @@ import { describe, expect, it } from 'vitest'
 import { createMemoryHistory, createRouter } from 'vue-router'
 import SidebarContent from '../components/SidebarContent.vue'
 
-const Empty = { render: () => null }
+const Empty = {
+  render: () => null,
+}
 
 const items: SidebarItem[] = [
   { name: 'dashboard', path: '/dashboard', title: '仪表盘' },
@@ -26,7 +28,9 @@ async function mountAt(path: string) {
       {
         path: '/system',
         component: Empty,
-        children: [{ path: 'users', name: 'users', component: Empty }],
+        children: [
+          { path: 'users', name: 'users', component: Empty },
+        ],
       },
     ],
   })
@@ -35,7 +39,9 @@ async function mountAt(path: string) {
 
   return render(SidebarContent, {
     props: { items },
-    global: { plugins: [router] },
+    global: {
+      plugins: [router],
+    },
   })
 }
 

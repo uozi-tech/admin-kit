@@ -17,7 +17,9 @@ const { beforeUpload, ...restProps } = props ?? {}
 const { t } = useLocale()
 
 // 支持字符串、字符串数组或文件对象数组
-const modelValue = defineModel<string | string[] | UploadFile[]>('value', { default: () => [] })
+const modelValue = defineModel<string | string[] | UploadFile[]>('value', {
+  default: () => [],
+})
 
 // 内部文件列表状态
 const internalFileList = ref<UploadFile[]>([])
@@ -42,13 +44,15 @@ function convertToFileList(value: string | string[] | UploadFile[]) {
     })
   }
   else if (typeof value === 'string') {
-    return [{
-      uid: value,
-      name: value,
-      status: 'done',
-      thumbUrl: value,
-      url: value,
-    }]
+    return [
+      {
+        uid: value,
+        name: value,
+        status: 'done',
+        thumbUrl: value,
+        url: value,
+      },
+    ]
   }
   return [value]
 }

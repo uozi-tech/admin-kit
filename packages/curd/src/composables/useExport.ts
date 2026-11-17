@@ -68,7 +68,12 @@ function excel(columns: StdTableColumn[], data: Record<string, any>[]) {
     data.forEach((item) => {
       if (column.customRender) {
         const text = get(item, column.dataIndex)
-        set(item, column.dataIndex, column.customRender({ text, record: item, column, export: true }))
+        set(item, column.dataIndex, column.customRender({
+          text,
+          record: item,
+          column,
+          export: true,
+        }))
       }
     })
   })

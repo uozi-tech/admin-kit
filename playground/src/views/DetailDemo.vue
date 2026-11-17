@@ -45,7 +45,9 @@ const columns: StdTableColumn[] = [
     edit: {
       type: 'input',
       formItem: {
-        rules: [{ required: true, min: 2, max: 20 }],
+        rules: [
+          { required: true, min: 2, max: 20 },
+        ],
       },
     },
   },
@@ -68,7 +70,9 @@ const columns: StdTableColumn[] = [
     edit: {
       type: 'inputNumber',
       formItem: {
-        rules: [{ type: 'number', min: 0, max: 150 }],
+        rules: [
+          { type: 'number', min: 0, max: 150 },
+        ],
       },
     },
   },
@@ -83,9 +87,15 @@ const columns: StdTableColumn[] = [
           { label: '禁用', value: 0 },
         ],
       },
-      formItem: { rules: [{ required: true }] },
+      formItem: {
+        rules: [
+          { required: true },
+        ],
+      },
     },
-    customRender: ({ value }) => value === 1 ? '启用' : '禁用',
+    customRender: ({ value }) => value === 1
+      ? '启用'
+      : '禁用',
   },
   {
     title: 'VIP 状态',

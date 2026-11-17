@@ -49,8 +49,12 @@ function refresh(reset: boolean = false) {
 
 const tableLoading = ref(false)
 
-const selectedRowKeys = defineModel<any[]>('selectedRowKeys', { default: () => reactive([]) })
-const selectedRows = defineModel<any[]>('selectedRows', { default: () => reactive([]) })
+const selectedRowKeys = defineModel<any[]>('selectedRowKeys', {
+  default: () => reactive([]),
+})
+const selectedRows = defineModel<any[]>('selectedRows', {
+  default: () => reactive([]),
+})
 
 const stdForm = ref()
 const stdBatchEdit = ref()
@@ -209,7 +213,9 @@ async function handleSave(data: Record<string, any>) {
 
 // 处理删除/恢复数据
 function handleDataById(action: string, record: Record<string, any>) {
-  const apiKey = action.startsWith('delete') ? 'deleteItem' : 'restoreItem'
+  const apiKey = action.startsWith('delete')
+    ? 'deleteItem'
+    : 'restoreItem'
   emit(action as any, record)
 
   props.api?.[apiKey]?.(record[props.rowKey ?? 'id'], {

@@ -115,14 +115,18 @@ function phoneValidator(rule: any, value: string) {
 
 function handleDynamicFormSubmit() {
   formRef.value?.formRef?.validate().then(() => {
-    message.success(`${formType.value === 'personal' ? '个人' : '企业'}用户信息提交成功`)
+    message.success(`${formType.value === 'personal'
+      ? '个人'
+      : '企业'}用户信息提交成功`)
   }).catch(() => {
     message.error('请填写完整表单')
   })
 }
 
 function handleFormTypeChange() {
-  message.info(`切换到${formType.value === 'personal' ? '个人' : '企业'}用户表单`)
+  message.info(`切换到${formType.value === 'personal'
+    ? '个人'
+    : '企业'}用户表单`)
 }
 </script>
 

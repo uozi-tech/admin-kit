@@ -83,7 +83,10 @@ export const productApi = {
     await new Promise(resolve => setTimeout(resolve, 300))
     const index = mockProducts.findIndex(product => product.id === id)
     if (index !== -1) {
-      mockProducts[index] = { ...mockProducts[index], ...data }
+      mockProducts[index] = {
+        ...mockProducts[index],
+        ...data,
+      }
       return mockProducts[index]
     }
     throw new Error('Product not found')
