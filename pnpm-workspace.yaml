@@ -71,7 +71,7 @@ catalog:
   '@antdv-next/auto-import-resolver': 1.2.0
   '@antdv-next/icons': 1.1.2
   '@antfu/eslint-config': ^10.0.0
-  '@changesets/changelog-github': ^1.0.1
+  '@changesets/changelog-github': ^2.0.0
   '@changesets/cli': ^3.0.3
   '@commitlint/cli': ^21.2.4
   '@commitlint/config-conventional': ^21.2.4
